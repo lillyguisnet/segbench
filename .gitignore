@@ -1,0 +1,15 @@
+# secrets
+.env
+.env.*
+!.env.example
+
+# python
+.venv/
+__pycache__/
+*.pyc
+
+# model weights (SAM, DINOv3, local LLMs) are downloaded, never committed
+weights/
+*.pt
+*.pth
+*.safetensors

@@ -1,0 +1,15 @@
+[project]
+name = "segbench"
+version = "0.1.0"
+requires-python = ">=3.11"
+license = "Apache-2.0"
+dependencies = [
+    "lm15>=1.2.1",
+]
+
+[build-system]
+requires = ["uv_build>=0.9,<0.13"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-root = ""
