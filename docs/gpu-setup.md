@@ -80,7 +80,41 @@ models are Apache 2.0; SAM 1/2 Apache 2.0; SAM 3 and DINOv3 have Meta's own
 licences. Fine for a benchmark, but worth knowing before publishing code
 that bundles them.
 
-## Decisions needed
+## Plan agreed on 8 October: benchmark on GPU 0
+
+Maxime confirmed the sciencemadereadable 9B on GPU 0 has no users right now
+(demo stage), so GPU 0 is ours for the benchmark. GPU 1 and its embedding
+job stay as they are.
+
+To take GPU 0, in this order:
+
+```bash
+systemctl --user stop smr-worker-home      # website job worker; otherwise it starts jobs that fail
+sudo systemctl stop model-vllm-smr-9b      # frees ~22 GB on GPU 0
+```
+
+To give it back:
+
+```bash
+sudo systemctl start model-vllm-smr-9b
+systemctl --user start smr-worker-home
+```
+
+Things that can take GPU 0 back from us during a run:
+
+- **A system rebuild or a reboot** restarts the 9B (a manual stop does not
+  persist). Avoid `nixos-rebuild` / `deploy` on lambda while a run is going.
+- **The model router.** It refuses to load its big models while the 9B is
+  running; once the 9B is stopped, a request for `qwen3.8-flash-next` or
+  `north-mini-code` would load onto both GPUs. It has been idle for 5 days.
+- **The desktop.** GPU 0 also drives the screen; a game would share it.
+- The InkType retry timer is safe: it only restarts InkType after a skipped
+  start, and InkType is paused in the config.
+
+So the runner checks, before and after every timed call, that no other
+program is computing on GPU 0, and marks the timing as unreliable if one is.
+
+## Decisions needed (before the GPU 0 plan)
 
 1. **GPU room for runs.** Options: pause `openalex-embeddings` and
    `qwen3-embed-4b` while we benchmark (the job resumes where it stopped), or
