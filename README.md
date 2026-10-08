@@ -31,27 +31,70 @@ Top left is best: high quality, low cost.
 
 ### General models (vision + language, called through an API)
 
-Exact model IDs are confirmed the first time each one is called and
-written here. "Vision?" means we still have to check that the model accepts
-images; a model without image input drops out.
+The list, with exact routes, lives in `segbench/models.py`; list prices in
+`prices.json`. "Sees images" was observed on 2026-10-08 with
+`scripts/check_models.py` (four red circles, two blue squares: a model
+passes when it outlines exactly the four circles in the right places).
 
-| model | maker | route (API key) | vision? |
-|---|---|---|---|
-| Qwen 27B | Alibaba | OpenRouter / DeepInfra, or local on lambda | check: need the vision variant |
-| Luna (`gpt-5.6-luna`) | OpenAI | ChatGPT subscription: `openai-codex:` | yes, tested |
-| Terra (`gpt-5.6-terra`) | OpenAI | ChatGPT subscription: `openai-codex:` | yes, tested |
-| Sonnet (`claude-sonnet-5-5`) | Anthropic | Claude subscription: `claude-code:` | yes, tested |
-| GLM 5.3 | Z.AI | `ZAI_API_KEY` | check: may need the "V" variant |
-| GLM 5.3 Flash | Z.AI | `ZAI_API_KEY` | check |
-| DeepSeek Pro | DeepSeek | `DEEPSEEK_API_KEY` | check |
-| DeepSeek Flash | DeepSeek | `DEEPSEEK_API_KEY` | check |
-| Kimi K3 | Moonshot | `MOONSHOTAI_API_KEY` (also Together, Fireworks, Parasail) | yes |
-| Gemini Pro | Google | `GEMINI_API_KEY` | yes |
-| Gemini Flash | Google | `GEMINI_API_KEY` | yes |
-| Gemini Flash Lite | Google | `GEMINI_API_KEY` | yes |
+| model | exact model | route | sees images | 4-circle test |
+|---|---|---|---|---|
+| Luna | `gpt-5.6-luna` | ChatGPT plan (`openai-codex:`) | yes | pass |
+| Terra | `gpt-5.6-terra` | ChatGPT plan (`openai-codex:`) | yes | pass |
+| Sonnet | `claude-sonnet-5-5` | Claude plan (`claude-code:`) | yes | pass |
+| Gemini Pro | `gemini-3.1-pro-preview` | Google API | yes | pass |
+| Gemini Flash | `gemini-3.8-flash` | Google API | yes | pass |
+| Gemini Flash Lite | `gemini-3.5-flash-lite` | Google API | yes | right circles, but points written as [y, x] |
+| GLM 5.3 Flash | `glm-5.3-flash` | Z.AI API | yes | pass |
+| DeepSeek Flash | `deepseek-flash` (= V4.1 Flash) | DeepSeek API | yes | pass |
+| Kimi K3 | `kimi-k3` | Moonshot API | yes | pass |
+| Qwen 27B | `qwen/qwen3.8-27b` | OpenRouter, **Alibaba host only** | yes | pass on Alibaba, fail on Cerebras |
+| ~~GLM 5.3~~ | `glm-5.3` | Z.AI API | **no**: rejected with an error | excluded |
+| ~~DeepSeek Pro~~ | `deepseek-v4-pro` | DeepSeek API | **no**, and silently: the picture is replaced by "[Unsupported Image]" and the model answers anyway | excluded |
 
-All API calls go through [lm15](https://lm15.dev), one Python client for
-every provider, so the request code is the same for every model.
+All calls go through [lm15](https://lm15.dev), one Python client for
+every provider: `segbench/call.py` makes one call and returns one record
+(reply, tokens, seconds, cost, or the error). A failed call is a record, not
+a crash, so a run always finishes.
+
+What the first checks taught us:
+
+- **Pin the host of open-weight models.** OpenRouter offered 18 hosts for
+  Qwen 3.8 27B, some with compressed (fp4/fp8) versions, at prices that
+  differ up to 20×. The same model passed 3/3 on Alibaba's host and 0/3 on
+  Cerebras's. We pin the maker's own host and refuse fallbacks.
+- **A model can fail to see the picture without any error** (DeepSeek
+  Pro). Every new model must pass the circle test before it is benchmarked.
+- **Speed varies a lot from one call to the next.** Kimi K3 took 141 s and
+  then 264 s on the same picture; GLM 5.3 Flash 141 s and then 22 s. One call
+  per model says little: we keep the median of several.
+- **Gemini models like [y, x].** Gemini Flash Lite found every circle but
+  wrote coordinates as [y, x], Google's own convention, against the
+  prompt. Scored as written it fails. Whether to also test each family with
+  its own native format is an open decision.
+- **Cost is computed from tokens × list price** (`segbench/cost.py`).
+  Google counts thinking tokens apart from the answer but bills both; the
+  code adds them back. Our estimate for Qwen matched what OpenRouter billed
+  within 1 %.
+
+### Why lm15 and not FunctAI
+
+[FunctAI](https://github.com/MaximeRivest/functai) (built on lm15) turns a
+typed Python function into a model call. It is the right tool for a task
+like "classify this", but not for a benchmark:
+
+- **We must own the exact prompt.** FunctAI writes the prompt from the
+  function (name, docstring, comments, types) and its own layout; a new
+  FunctAI version can change the words sent, and so the scores.
+- **Pictures are not in a release yet.** Picture inputs landed on
+  2026-10-08 in unreleased code; in the published 1.2.0 a picture is sent
+  as text and the model guesses.
+- **One call must be one measurement.** FunctAI re-asks when a reply cannot
+  be read and can answer from its disk cache; both are good for apps and
+  wrong for us (an unreadable reply scores 0, and a cached reply has no
+  real time or cost). Both can be turned off, but then little of FunctAI is
+  left to use.
+- **Different families want different output formats** (see Gemini's
+  [y, x]); one typed return value hides that.
 
 ### OpenAI and Anthropic run on our subscriptions
 
@@ -66,10 +109,9 @@ ChatGPT and Claude plans instead of being billed per token.
   `ANTHROPIC_API_KEY`.
 - **The Codex route refuses a token limit** (`max_tokens`). Send an empty
   `Config()` there.
-- **Check that it works**: `uv run scripts/check_subscriptions.py` draws
-  four red circles, asks each model to segment them, and checks that it
-  finds them in the right places. That proves the image reached the model.
-  The script refuses any model that is not routed through a subscription.
+- **Check that it works**: `uv run scripts/check_models.py luna terra sonnet`
+  (see above). `segbench/call.py` refuses a subscription model whose route
+  does not resolve to a subscription login.
 - To list the models a login offers:
   `uv run python -c "from lm15 import OpenAICodexLM as L; print([m.id for m in L().list_models()])"`
   (or `ClaudeCodeLM`).
@@ -166,7 +208,7 @@ On `lambda` (the GPU server, where this project lives):
 cd ~/Projects/segbench
 uv sync                               # installs lm15 into .venv
 source .env                           # loads the API keys into the shell
-uv run scripts/check_subscriptions.py # OpenAI + Anthropic logins work
+uv run scripts/check_models.py        # every remote model answers and sees the picture
 ```
 
 API keys live in `.env`, which is **never committed** (`.gitignore`
@@ -193,7 +235,8 @@ docs/      research notes and candidate model survey
 - [x] first batch of photos (18, location data removed)
 - [ ] collect the remaining images (dishes stack, horns, engine, screenshot)
 - [ ] write ground truth and a scoring function per task
-- [ ] confirm exact model IDs and which ones accept images
+- [x] confirm exact model IDs and which ones accept images (2 excluded)
+- [x] remote calls with token, time and cost tracking (`segbench/call.py`)
 - [ ] decide how SAM 1/2 and DINOv3 receive the task
 - [ ] runner with cost and time tracking
 - [ ] the chart

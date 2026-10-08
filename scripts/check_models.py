@@ -57,7 +57,9 @@ def main(argv: list[str]) -> int:
         else:
             failures += not r["passed"]
             line = (f"{'OK   ' if r['passed'] else 'BAD  '} {r['detail']} | {r['seconds']:.1f}s | "
-                    f"in {u.get('input_tokens')} out {u.get('output_tokens')} reasoning {u.get('reasoning_tokens')}")
+                    f"in {u.get('input_tokens')} out {u.get('output_tokens')} thinking {u.get('reasoning_tokens')} | "
+                    f"${r['cost_usd'] or 0:.5f}" + (f" (OpenRouter billed ${r['provider_cost_usd']:.5f}, host {r.get('served_by')})"
+                                                   if r.get('provider_cost_usd') is not None else ""))
         print(f"{r['model']:18} {line}")
     print(f"\nsaved {out}")
     return 1 if failures else 0

@@ -15,6 +15,7 @@ from lm15 import Config, LMRouter, Message, Request
 from lm15.serde import response_to_dict, usage_to_dict
 from lm15.types import image as image_part
 
+from . import cost
 from .models import Model
 
 SUBSCRIPTION_PROVIDERS = {"openai-codex", "claude-code"}
@@ -41,7 +42,8 @@ def call(model: Model, image: bytes, media_type: str, prompt: str) -> dict:
         record["error"] = f"route resolves to {route.provider!r}, which does not match billing {model.billing!r}"
         return record
 
-    config = Config() if route.provider == "openai-codex" else Config(max_tokens=MAX_TOKENS)
+    limits = {} if route.provider == "openai-codex" else {"max_tokens": MAX_TOKENS}
+    config = Config(**limits, extensions=model.extensions) if model.extensions else Config(**limits)
     request = Request(
         model=model.route,
         messages=(Message.user([image_part(data=image, media_type=media_type), prompt]),),
@@ -60,4 +62,11 @@ def call(model: Model, image: bytes, media_type: str, prompt: str) -> dict:
     record["finish_reason"] = response.finish_reason
     record["usage"] = usage_to_dict(response.usage)
     record["response"] = response_to_dict(response, include_provider_data=True)
+    record["cost_usd"] = cost.usd(record)
+    record["prices_date"] = cost.PRICES_DATE
+    provider_data = response.provider_data or {}
+    if isinstance(provider_data, dict) and isinstance(provider_data.get("usage"), dict):
+        # OpenRouter bills each call itself and says so; keep it to check ours.
+        record["provider_cost_usd"] = provider_data["usage"].get("cost")
+        record["served_by"] = provider_data.get("provider")
     return record
