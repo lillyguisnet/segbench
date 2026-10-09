@@ -80,6 +80,8 @@ PAIRS = [
     ("gemini-pro", "medium", "sam3", 0.81),
     ("qwen-27b", "medium", "sam2.1-large", 0.63),
     ("gemini-flash-lite", "min", "sam2.1-large", 0.58),
+    ("gemini-flash", "min", "sam2.1-large", 0.70),
+    ("gemini-pro", "min", "sam3", 0.74),
 ]
 
 

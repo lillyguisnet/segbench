@@ -6,6 +6,7 @@
 
     uv run scripts/draw_charts.py --demo                 # made-up data, to work on the look
     uv run scripts/draw_charts.py results/run-*.jsonl    # real call records
+    uv run scripts/draw_charts.py --demo --level min     # one thinking level only
 
 Writes to charts/ (charts/demo/ with --demo), for each track:
     <track>.png   to post (3200 x 1800 pixels)
@@ -29,6 +30,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))  # this script runs in its own environment (above), not the project's
 
 from segbench.chart import draw, x_range  # noqa: E402
+from segbench.models import LEVELS  # noqa: E402
 from segbench.chart_data import TRACKS, aggregate, read_calls, write_points  # noqa: E402
 
 
@@ -37,6 +39,7 @@ def main() -> None:
     ap.add_argument("calls", nargs="*", type=Path, help="JSON Lines files of call records")
     ap.add_argument("--demo", action="store_true", help="make up demo data first and draw it")
     ap.add_argument("--out", type=Path, help="output folder (default charts/, or charts/demo/ with --demo)")
+    ap.add_argument("--level", choices=LEVELS, help="show only this thinking level (models without levels stay)")
     ap.add_argument("--track", choices=TRACKS, action="append", help="only this track (repeatable)")
     args = ap.parse_args()
 
@@ -51,6 +54,8 @@ def main() -> None:
 
     calls = read_calls(calls_files)
     points = aggregate(calls)
+    if args.level:  # a pair counts at its finder's level
+        points = [p for p in points if not p.level or p.level == args.level]
     if not points:
         sys.exit("no scored calls found in those files")
     write_points(points, out / "points.csv")

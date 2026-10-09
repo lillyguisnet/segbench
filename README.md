@@ -146,8 +146,9 @@ is computed: `segbench/chart_data.py`. Choices made for readability:
 - **Colour is the maker's brand colour** (`BRAND` in `segbench/chart.py`;
   where two brands share a colour, one is shifted or given a free colour).
   **Circles** are called through an API, **squares** run on our own GPU,
-  a dark **ring** marks a pair. Thinking level is the shade (light = min),
-  and one model's levels are joined by a line, labelled once.
+  a dark **ring** marks a pair. `--level min` (or medium, max) shows one
+  thinking level only; with all levels, the level is the shade (light =
+  min) and each model is labelled once, at its highest level.
 - **The best-value line is a staircase**: between two of its models,
   nothing better is known for that price; their names are in bold. A
   model that skipped tasks (they count as 0) is never on it.

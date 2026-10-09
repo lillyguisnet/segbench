@@ -17,7 +17,8 @@ says what it is. What the chart itself encodes:
   see BRAND below).
 - shape: circle = called through an API, square = run on our own GPU,
   dark ring = a pair (one model finds, another outlines).
-- shade: thinking level (light = min), one model's levels joined by a line.
+- shade: thinking level (light = min), only when the chart shows more than
+  one level; with one level every bubble is full colour.
 - dashed staircase: the best-value frontier; its names are in bold.
 """
 
@@ -197,7 +198,7 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
         stair += [(fx[i], fy[i - 1]), (fx[i], fy[i])]
     ax.step(fx, fy, where="post", color=INK, lw=1.3, ls=(0, (5, 4)), alpha=0.5, zorder=1)
 
-    # ----- thinking levels of one model, joined -----
+    # ----- one model's thinking levels (labelled once, at the highest) -----
     chains = defaultdict(list)
     for p in pts:
         if p.kind == "general":
@@ -205,15 +206,13 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
     rank = {lv: i for i, lv in enumerate(LEVELS)}
     for chain in chains.values():
         chain.sort(key=lambda p: rank.get(p.level, 0))
-        if len(chain) > 1:
-            ax.plot([X(p) for p in chain], [Y(p) for p in chain], color=colour_of(chain[0].maker),
-                    lw=1.3, alpha=0.5, zorder=2, solid_capstyle="round")
+    several_levels = len({p.level for p in pts if p.level}) > 1
 
     # ----- bubbles, biggest first so small ones stay visible -----
     for p in sorted(pts, key=lambda p: -p.seconds):
         c = colour_of(p.maker)
         d = diameter(p.seconds)
-        face = (*to_rgb(c), LEVEL_ALPHA.get(p.level, 0.85))
+        face = (*to_rgb(c), LEVEL_ALPHA.get(p.level, 0.85) if several_levels else 0.85)
         if p.kind == "pair":
             ax.scatter([X(p)], [Y(p)], s=(d + 9) ** 2, facecolors="none", edgecolors=PAIR_RING, linewidths=2.0,
                        zorder=3)
@@ -222,7 +221,8 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
 
     # ----- labels: one per model (at its most-thinking bubble), one per specialist or pair -----
     labelled: list[tuple[Point, str]] = [(chain[-1], chain[-1].label) for chain in chains.values()]
-    labelled += [(p, p.label + (f" ({p.level})" if p.level else "")) for p in pts if p.kind != "general"]
+    labelled += [(p, p.label + (f" ({p.level})" if p.level and several_levels else "")) for p in pts
+                 if p.kind != "general"]
 
     def on_frontier(p: Point) -> bool:
         return p.entrant in best_ids or (p.kind == "general" and any(q.entrant in best_ids for q in chains[p.model]))
@@ -318,7 +318,7 @@ def _legend(fig, fonts: Fonts, pts: list[Point]) -> None:
         fig.text(tx, y, "Pair: finder + outliner", **body)
         y -= step * 1.35
 
-    if any(p.level for p in pts if p.kind == "general"):
+    if len({p.level for p in pts if p.level}) > 1:
         fig.text(lx, y, "Thinking", **head)
         y -= step
         for lv, dx in zip(LEVELS, (0, 0.049, 0.122)):  # room for each word
