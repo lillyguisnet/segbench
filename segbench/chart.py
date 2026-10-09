@@ -58,7 +58,7 @@ LOGOS = {
     "Anthropic": "anthropic.svg",
     "Google": "google.svg",
     "DeepSeek": "deepseek.svg",
-    "Alibaba": "alibabacloud.svg",
+    "Alibaba": "qwen.svg",  # Alibaba's models are known by the Qwen mark
     "Moonshot": "moonshotai.svg",
     "Z.AI": "zdotai.svg",
     "Meta": "meta.svg",
