@@ -120,7 +120,7 @@ Three bubble charts, one per track, in the style of
 
 | axis | what it shows |
 |---|---|
-| **y** | quality: mean score over the track's tasks, 0 to 1, with the spread over repeats |
+| **y** | quality: mean score over the track's tasks, 0 to 1 (spread over repeats in `points.csv`) |
 | **x** | cost: US dollars per image (log scale), only the parts that track counts |
 | **bubble size** | time: median seconds per image, end to end |
 
@@ -141,12 +141,16 @@ is computed: `segbench/chart_data.py`. Choices made for readability:
   and 100 s are evenly spaced steps), on the same scale in every chart:
   times run from 0.02 s to minutes, so a linear size would make the GPU
   models invisible. The legend shows the steps.
-- **Colour is the maker**; every model on our own GPU shares one colour.
-  Thinking level is the shade (light = min), and one model's levels are
-  joined by a line, labelled once.
+- **No title, caption or footnotes on the image**: the post that shares it
+  says what it is. Made-up data gets a faint FAKE DATA stamp.
+- **Colour is the maker's brand colour** (`BRAND` in `segbench/chart.py`;
+  where two brands share a colour, one is shifted or given a free colour).
+  **Circles** are called through an API, **squares** run on our own GPU,
+  a dark **ring** marks a pair. Thinking level is the shade (light = min),
+  and one model's levels are joined by a line, labelled once.
 - **The best-value line is a staircase**: between two of its models,
-  nothing better is known for that price. A model that skipped tasks
-  (counted as 0, marked `*`) is never on it.
+  nothing better is known for that price; their names are in bold. A
+  model that skipped tasks (they count as 0) is never on it.
 
 ### Still to settle, in the pilot run
 

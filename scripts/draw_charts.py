@@ -8,7 +8,7 @@
     uv run scripts/draw_charts.py results/run-*.jsonl    # real call records
 
 Writes to charts/ (charts/demo/ with --demo), for each track:
-    <track>.png   to post (3200 x 2000 pixels)
+    <track>.png   to post (3200 x 1800 pixels)
     <track>.pdf   to print (vector, fonts embedded)
     <track>.svg   for the web (vector)
     points.csv    the numbers behind every bubble, all tracks
@@ -38,7 +38,6 @@ def main() -> None:
     ap.add_argument("--demo", action="store_true", help="make up demo data first and draw it")
     ap.add_argument("--out", type=Path, help="output folder (default charts/, or charts/demo/ with --demo)")
     ap.add_argument("--track", choices=TRACKS, action="append", help="only this track (repeatable)")
-    ap.add_argument("--note", default="", help="one more footnote line, e.g. the run's date and photo count")
     args = ap.parse_args()
 
     out = args.out or ROOT / "charts" / ("demo" if args.demo else "")
@@ -56,13 +55,11 @@ def main() -> None:
         sys.exit("no scored calls found in those files")
     write_points(points, out / "points.csv")
     xlim = x_range(points)  # one cost axis for all three charts
-    days = sorted(r["started_at"][:10] for r in calls if r.get("started_at"))
-    stamp = (days[0] if days[0] == days[-1] else f"{days[0]} to {days[-1]}") if days else ""
     for track in args.track or TRACKS:
         if not any(p.track == track for p in points):
             print(f"{track}: no data, skipped")
             continue
-        for path in draw(points, track, out / track, xlim=xlim, footnote=args.note, stamp=stamp):
+        for path in draw(points, track, out / track, xlim=xlim):
             print(path.relative_to(ROOT) if path.is_relative_to(ROOT) else path)
 
 
