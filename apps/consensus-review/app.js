@@ -159,7 +159,11 @@ function draw() {
     ctx.strokeStyle='#151515';ctx.beginPath();ctx.arc(x,y,o.id===selected?11:8,0,Math.PI*2);ctx.stroke();
     ctx.strokeStyle=color;if(o.status==='unsure')ctx.setLineDash([3,3]);
     ctx.beginPath();ctx.arc(x,y,o.id===selected?10:7,0,Math.PI*2);ctx.stroke();ctx.setLineDash([]);
-    if(o.status==='accepted'||o.origin==='human'){ctx.fillStyle=t().key==='dishes'?(o.label==='dirty'?'#ff7272':o.label==='clean'?'#6bbdff':'#ffc25a'):color;ctx.beginPath();ctx.arc(x,y,3.5,0,Math.PI*2);ctx.fill();}
+    if(t().key==='dishes'&&(!low||o.id===selected)){
+     ctx.fillStyle='#151515';ctx.beginPath();ctx.arc(x,y,6,0,Math.PI*2);ctx.fill();
+     ctx.fillStyle=o.label==='dirty'?'#ffaaaa':o.label==='clean'?'#a8d5ff':'#ffe1a3';
+     ctx.font='bold 10px system-ui';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(o.label==='dirty'?'D':o.label==='clean'?'C':'?',x,y+.5);
+    }else if(o.status==='accepted'||o.origin==='human'){ctx.fillStyle=color;ctx.beginPath();ctx.arc(x,y,3.5,0,Math.PI*2);ctx.fill();}
     if(o.status==='rejected'){ctx.beginPath();ctx.moveTo(x-5,y-5);ctx.lineTo(x+5,y+5);ctx.stroke();}
     if(o.id===selected){ctx.strokeStyle='#fff';ctx.beginPath();ctx.arc(x,y,14,0,Math.PI*2);ctx.stroke();}
     ctx.restore();
@@ -171,11 +175,12 @@ function draw() {
 function update() {
  $('#tasks').innerHTML=seed.tasks.map((x,i)=>{const s=state.tasks[x.key],count=s.objects?.filter(o=>o.status==='accepted').length;return `<button class="${i===taskIndex?'active':''}" data-task="${i}">${escapeHTML(x.title)}<small>${s.full_photo_checked?'✓ Photo checked':s.kind==='objects'?`${count} kept by you`:'Region draft'}</small></button>`;}).join('');
  $('#tasks').querySelectorAll('button').forEach(b=>b.onclick=()=>switchTask(Number(b.dataset.task)));
- $('#taskTitle').textContent=t().title;$('#target').textContent=`Find ${t().target}.`;
+ $('#taskTitle').textContent=t().title;$('#target').textContent=t().key==='dishes'?'Find each dish and label it dirty, clean, or unsure.':`Find ${t().target}.`;
  $('#taskKind').textContent=t().kind==='objects'?'OBJECT REVIEW':'REGION REVIEW';
  const isObject=t().kind==='objects';
  $('#objectTools').hidden=!isObject;$('#objectReview').hidden=!isObject;$('#weakLabel').hidden=!isObject;
  $('#regionTools').hidden=isObject;$('#regionReview').hidden=isObject;
+ $('#labels').hidden=t().key!=='dishes';
  $('#reviewed').checked=taskState().full_photo_checked;
  if(document.activeElement!==$('#notes'))$('#notes').value=taskState().notes;
  $('#undo').disabled=!(undos[t().key]?.length);$('#redo').disabled=!(redos[t().key]?.length);
@@ -187,8 +192,11 @@ function update() {
   const hiddenCount=objects.filter(o=>o.status==='pending'&&!candidateVisible(o)).length;
   $('#selection').innerHTML=o?`<b>${escapeHTML(o.status==='accepted'?'Kept by you':o.status==='rejected'?'Rejected by you':o.status==='unsure'?'Needs another look':'Not yet reviewed')}</b><small>${src?`${src.votes.length} model answers · agreement index ${src.support.toFixed(2)} (not a calibrated probability)`:'Added by you'}<br>${Math.round(o.x)}, ${Math.round(o.y)} photo pixels</small>`:`<b>Pick a dot or start reviewing</b><small>${hiddenCount} low-support suggestions hidden. Green dots mean you confirmed them—not just that models agreed.</small>`;
   ['accept','reject','unsure'].forEach(k=>$('#'+k).disabled=!o);
-  $('#labels').hidden=t().key!=='dishes'||!o;
-  document.querySelectorAll('[data-label]').forEach(b=>b.classList.toggle('active',o?.label===b.dataset.label));
+  $('#labelHint').textContent=o?`Selected dish: ${o.label}${o.status==='pending'?' (unreviewed)':''}.`:'Select a dish dot, then choose its label.';
+  document.querySelectorAll('[data-label]').forEach(b=>{
+   b.disabled=!o;const active=o?.label===b.dataset.label;
+   b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));
+  });
   $('#votes').textContent=src?src.votes.join('\n'):'No original model votes for this selection.';
  } else {
   const n=[...taskState().mask].filter(x=>x==='1').length;

@@ -64,8 +64,22 @@ def main(url, executable):
 
         # Label review, notes and full-photo review flag.
         page.click('[data-task="5"]')
+        assert page.locator('#labels').is_visible(), 'Dish controls must be discoverable before selecting a dot'
+        assert page.locator('[data-label="clean"]').is_disabled()
+        assert page.locator('#labels').bounding_box()['y'] < page.locator('#canvas').bounding_box()['y']
         page.click('#nextUncertain')
+        page.click('[data-label="dirty"]')
+        selected_id=get()['audit'][-1]['id']
+        label=lambda: next(o['label'] for o in get()['tasks']['dishes']['objects'] if o['id']==selected_id)
+        assert label()=='dirty'
+        page.keyboard.press('s')
+        assert label()=='unsure'
+        page.click('#undo')
+        assert label()=='dirty'
         page.click('[data-label="clean"]')
+        assert label()=='clean'
+        assert page.locator('[data-label="clean"]').get_attribute('aria-pressed')=='true'
+        page.screenshot(path='/tmp/consensus-dish-labels-desktop.png')
         page.click('#accept')
         assert any(o['status']=='accepted' and o['label']=='clean' for o in get()['tasks']['dishes']['objects'])
         page.fill('#notes','Check the stacked dishes separately.')
@@ -117,6 +131,15 @@ def main(url, executable):
         assert mobile.evaluate('reviewTest.getState().tasks')==saved['tasks']
         assert mobile.evaluate('document.documentElement.scrollWidth <= innerWidth'), 'Mobile layout overflows'
         mobile.screenshot(path='/tmp/consensus-review-mobile.png',full_page=True)
+        mobile.click('[data-task="5"]')
+        assert mobile.locator('#labels').is_visible()
+        assert mobile.locator('#labels').bounding_box()['y'] < mobile.locator('#canvas').bounding_box()['y']
+        mobile.click('#nextUncertain')
+        mobile.locator('#labels').scroll_into_view_if_needed()
+        mobile.click('[data-label="dirty"]')
+        assert mobile.locator('[data-label="dirty"]').get_attribute('aria-pressed')=='true'
+        mobile.screenshot(path='/tmp/consensus-dish-labels-mobile.png',full_page=True)
+        mobile.click('[data-task="0"]')
 
         # Two-finger gestures in Add mode must not accidentally add an object.
         mobile.click('[data-mode="add"]')

@@ -25,8 +25,11 @@ already live in the repository. Original images must be stored upright.
 - **Next unreviewed (N)** visits the remaining visible proposals.
 - **Enter** keeps an object and advances. **Delete** rejects it and advances.
 - Drag to move a dot; **A** adds a missed object; **V** selects; **X** removes.
-- For dishes, **D / C / S** sets dirty / clean / unsure. Keep the object to
-  confirm it; changing its label alone doesn't accept it.
+- For dishes, the **Dirty / Clean / Unsure** buttons stay visible directly
+  above the photo. Select a dot to enable them; **D / C / S** are the keyboard
+  shortcuts. Each visible dish dot displays **D / C / ?** for its current
+  label (model suggestions are still unreviewed). Labels save immediately.
+  Keep the object to confirm it; changing its label alone doesn't accept it.
 - Wheel zooms around the cursor; Space + drag pans; **F** fits the photo.
 - Two fingers pan/zoom on touchscreens; a dot can be dragged with one finger.
 - Hold **H** to inspect the photo without overlays.
