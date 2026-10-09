@@ -1,0 +1,45 @@
+{
+  "remote": {
+    "host": "local",
+    "root": "/home/maxime/Projects/segbench/annotations",
+    "python": "/home/maxime/family-ai/sam31/.venv/bin/python",
+    "uv": "uv"
+  },
+  "sam": {
+    "remote_port": 9300,
+    "local_port": 19300,
+    "timeout_s": 300
+  },
+  "sets": [
+    "segbench"
+  ],
+  "default_set": "segbench",
+  "proposals": {
+    "text_prompts": [
+      "cut log end",
+      "cow",
+      "fig leaf",
+      "tree",
+      "gravel road",
+      "plate",
+      "bowl",
+      "mug",
+      "pot",
+      "pan",
+      "baking tray",
+      "lid",
+      "cutting board",
+      "food container"
+    ],
+    "text_threshold": 0.3,
+    "grid_side": 12,
+    "dedupe_iou": 0.85,
+    "min_area_px": 12,
+    "grid_min_main_component": 0.6,
+    "grid_skip_max_frac": 0.02
+  },
+  "backup": {
+    "debounce_s": 8,
+    "enabled": true
+  }
+}

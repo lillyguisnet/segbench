@@ -20,3 +20,6 @@ specialists/*/vendor/
 
 # canonical PNGs for the annotation app are rebuilt by scripts/prepare_annotation_set.py
 annotations/data/*/canonical/
+annotations/backup/
+annotations/backup-history/
+annotations/exports/

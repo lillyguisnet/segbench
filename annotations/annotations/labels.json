@@ -1,0 +1,98 @@
+{
+ "schema": "corn-labels/1",
+ "groups": [
+  {
+   "id": "g_object",
+   "name": "Object",
+   "scope": "mask",
+   "exclusive": true,
+   "description": "What the mask is. Exactly one per mask."
+  },
+  {
+   "id": "g_dish",
+   "name": "Dish state",
+   "scope": "mask",
+   "exclusive": true,
+   "description": "Dishes only (task 6). Exactly one per dish."
+  },
+  {
+   "id": "g_image",
+   "name": "Image",
+   "scope": "image",
+   "exclusive": false,
+   "description": "Image-level flags."
+  }
+ ],
+ "labels": [
+  {
+   "id": "l_log_end",
+   "group": "g_object",
+   "name": "log end",
+   "color": "#c98a4b",
+   "description": "Task 1. The visible cut face of one log (end grain), bark ring included."
+  },
+  {
+   "id": "l_cow",
+   "group": "g_object",
+   "name": "cow",
+   "color": "#3a3a3a",
+   "description": "Task 2. One cow, every visible pixel, legs and tail included."
+  },
+  {
+   "id": "l_fig_leaf",
+   "group": "g_object",
+   "name": "fig leaf",
+   "color": "#5fae3c",
+   "description": "Task 3. One leaf of the fig plant, petiole excluded. Not the spider plant, not the purple plant."
+  },
+  {
+   "id": "l_crown",
+   "group": "g_object",
+   "name": "tree crown (foliage)",
+   "color": "#e0782a",
+   "description": "Task 4. The main tree's leaves and branches above the trunk; sky gaps may stay inside (the hue rule handles them)."
+  },
+  {
+   "id": "l_road",
+   "group": "g_object",
+   "name": "road",
+   "color": "#9a9a9a",
+   "description": "Task 5. The gravel surface of the road, as far as it is visible."
+  },
+  {
+   "id": "l_dish",
+   "group": "g_object",
+   "name": "dish",
+   "color": "#4a90d9",
+   "description": "Task 6. Plate, bowl, mug, pot, pan, baking tray, lid, cutting board, food container. Not cutlery or knives, bottles, appliances, cloths."
+  },
+  {
+   "id": "l_dirty",
+   "group": "g_dish",
+   "name": "dirty",
+   "color": "#b5532f",
+   "description": "On the counter or in the sink, or food visible."
+  },
+  {
+   "id": "l_clean",
+   "group": "g_dish",
+   "name": "clean",
+   "color": "#3fa7a0",
+   "description": "In the drying rack, no food visible."
+  },
+  {
+   "id": "l_dish_unsure",
+   "group": "g_dish",
+   "name": "unsure",
+   "color": "#d0d0d0",
+   "description": "The two clues disagree, or cannot tell. Not scored."
+  },
+  {
+   "id": "l_unsure_img",
+   "group": "g_image",
+   "name": "unsure",
+   "color": "#d0d0d0",
+   "description": "Something about this image needs discussion (write it in the notes)."
+  }
+ ]
+}
