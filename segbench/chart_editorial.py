@@ -11,7 +11,9 @@ What it shows:
 - big disc with a blue ring, name and score in blue: a best-value
   (Pareto) model. The curve between them is a guide for the eye, not
   more models: it is monotone (it never dips or overshoots between two
-  models), computed in log-cost space.
+  models), computed in log-cost space. It runs on flat to the right edge
+  (paying more never buys less), and the glow under it fades out left of
+  the cheapest model (nothing is cheaper).
 - small disc: any other model.
 - under each name: the maker and the median seconds per image (speed is
   text in this style, not colour).
@@ -242,25 +244,36 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
     best_ids = {p.entrant for p in best}
     others = [p for p in pts if p.entrant not in best_ids]
 
-    # ----- the curve and its soft fill -----
+    # ----- the curve and its soft fill, across the whole cost axis -----
+    # Right of the best model the curve runs on flat: paying more never buys
+    # less, since the best model can still be bought. Left of the cheapest
+    # model nothing exists, so there the glow fades out instead of claiming
+    # a quality that no model reaches.
     lx, ly = _pchip([math.log10(X(p)) for p in best], [Y(p) for p in best])
     cx_, cy_ = [10 ** v for v in lx], ly
-    if len(best) > 1:
-        poly = MPath(list(zip(cx_, cy_)) + [(cx_[-1], y0), (cx_[0], y0), (cx_[0], cy_[0])])
-        clip = PathPatch(poly, transform=ax.transData, facecolor="none", edgecolor="none")
-        ax.add_patch(clip)
-        # The fill fades from the top of the curve to nothing 25 points below
-        # its lowest point: a glow under the curve, not a block to the axis.
-        f_top, f_bottom = max(cy_), min(cy_) - 25
-        frac = [(v - y0) / (y1 - y0) for v in (f_bottom, f_top)]
-        rgba = np.zeros((256, 1, 4))
-        rgba[..., :3] = to_rgb(ACCENT)
-        rgba[..., 3] = np.linspace(0.20, 0.0, 256)[:, None]
-        img = ax.imshow(rgba, extent=(0, 1, frac[0], frac[1]), transform=ax.transAxes, aspect="auto",
-                        origin="upper", zorder=1)
-        img.set_clip_path(clip)
-        ax.plot(cx_, cy_, color=ACCENT, lw=3.2, zorder=3, solid_capstyle="round", solid_joinstyle="round")
-        style_axes()  # imshow may have touched the limits
+    curve = list(zip(cx_, cy_)) + [(xlim[1], cy_[-1])]
+    poly = MPath([(xlim[0], cy_[0])] + curve + [(xlim[1], y0), (xlim[0], y0), (xlim[0], cy_[0])])
+    clip = PathPatch(poly, transform=ax.transData, facecolor="none", edgecolor="none")
+    ax.add_patch(clip)
+    # Vertical: strongest at the top of the curve, gone 25 points below its
+    # lowest point. Horizontal: full from the cheapest model rightwards.
+    f_top, f_bottom = max(cy_), min(cy_) - 25
+    frac = [(v - y0) / (y1 - y0) for v in (f_bottom, f_top)]
+    lo, hi = math.log10(xlim[0]), math.log10(xlim[1])
+    x_first = (math.log10(cx_[0]) - lo) / (hi - lo)
+    cols = np.linspace(0, 1, 512)
+    across = np.clip(cols / max(x_first, 1e-6), 0, 1) ** 1.6
+    down = np.linspace(0.20, 0.0, 256)
+    rgba = np.zeros((256, 512, 4))
+    rgba[..., :3] = to_rgb(ACCENT)
+    rgba[..., 3] = down[:, None] * across[None, :]
+    img = ax.imshow(rgba, extent=(0, 1, frac[0], frac[1]), transform=ax.transAxes, aspect="auto",
+                    origin="upper", zorder=1)
+    img.set_clip_path(clip)
+    ax.plot(cx_, cy_, color=ACCENT, lw=3.2, zorder=3, solid_capstyle="round", solid_joinstyle="round")
+    ax.plot([cx_[-1], xlim[1]], [cy_[-1], cy_[-1]], color=ACCENT, lw=3.2, alpha=0.45, zorder=3,
+            solid_capstyle="round")
+    style_axes()  # imshow may have touched the limits
 
     # ----- discs -----
     for i, p in enumerate(sorted(others, key=lambda p: -p.seconds)):
@@ -272,7 +285,7 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
         if p.kind == "pair":
             _badge(ax, X(p), Y(p), p.outliner_maker, BIG_PT, fonts, 6 + i * 0.01)
 
-    _labels(fig, ax, fonts, pts, best_ids, names, X, Y, list(zip(cx_, cy_)))
+    _labels(fig, ax, fonts, pts, best_ids, names, X, Y, curve)
     if header:
         _header(fig, fonts, track, pts)
     if any(p.synthetic for p in pts):
@@ -354,9 +367,12 @@ def _labels(fig, ax, fonts: Fonts, pts, best_ids, names, X, Y, curve) -> None:
     ab = ax.get_window_extent(renderer)
     frame = (ab.x0 + 2, ab.y0 + 6, fig.bbox.width - 10, ab.y1 - 2)  # labels may use the right margin
     placed = []
-    for x, y in curve[::3]:
-        px, py = ax.transData.transform((x, y))
-        placed.append((px - 5, py - 5, px + 5, py + 5))
+    pix = [ax.transData.transform(xy) for xy in curve]
+    for (ax0, ay0), (ax1, ay1) in zip(pix, pix[1:]):
+        n = max(1, int(math.hypot(ax1 - ax0, ay1 - ay0) / 8))
+        for k in range(n + 1):
+            px, py = ax0 + (ax1 - ax0) * k / n, ay0 + (ay1 - ay0) * k / n
+            placed.append((px - 5, py - 5, px + 5, py + 5))
     gap = 4 * ppt
 
     # 1. Best-value models: name and score above the disc, if there is room.

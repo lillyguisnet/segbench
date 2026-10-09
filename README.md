@@ -162,7 +162,10 @@ is computed: `segbench/chart_data.py`. Choices made for readability:
   other model a small white disc with its logo in brand colour, and every
   model named with its maker and seconds per image (crowded ones in a
   column, with thin leader lines). The curve is monotone: it never dips or
-  overshoots between two models, but it is still a guide for the eye.
+  overshoots between two models, but it is still a guide for the eye. It
+  runs on flat to the right edge (paying more never buys less: the best
+  model can still be bought), and the glow fades out left of the cheapest
+  model, where no model exists.
 - **The best-value line joins the frontier models with straight
   segments**, cheapest to best, as Artificial Analysis draws it. It is a
   guide for the eye: a point on a segment between two models is not a
