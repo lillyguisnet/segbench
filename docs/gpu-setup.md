@@ -82,6 +82,10 @@ that bundles them.
 
 ## Plan agreed on 8 October: benchmark on GPU 0
 
+**Done 8 Oct ~19:30:** `smr-worker-home` and `model-vllm-smr-9b` stopped; GPU 0
+has ~22.7 GB free for the benchmark. They are still stopped; restart with the
+commands below when the benchmark is done.
+
 Maxime confirmed the sciencemadereadable 9B on GPU 0 has no users right now
 (demo stage), so GPU 0 is ours for the benchmark. GPU 1 and its embedding
 job stay as they are.

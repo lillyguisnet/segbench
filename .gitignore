@@ -13,3 +13,7 @@ weights/
 *.pt
 *.pth
 *.safetensors
+
+# third-party research code cloned at a pinned commit (see each pyproject.toml)
+specialists/*/vendor/
+.thumbs/

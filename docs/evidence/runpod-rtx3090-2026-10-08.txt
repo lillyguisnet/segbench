@@ -1,0 +1,3 @@
+"description": "On-demand RTX 3090 cloud GPU rental on Runpod. Community Cloud $0.22/hr, Secure Cloud $0.50/hr."
+"description": "RTX 3090 per-hour on-demand rate on Runpod Community Cloud"
+"description": "RTX 3090 per-hour on-demand rate on Runpod Secure Cloud"

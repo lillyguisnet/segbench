@@ -3,29 +3,112 @@
 How good are today's AI models at **image segmentation** on messy, real
 pictures, what does it cost, and how long does it take?
 
-We send each model a small set of real photos and ask it to segment
-something. The question is always phrased as a segmentation request (never
-"how many logs are there?"). Then, for each image, a small piece of code
-turns the model's segmentation into the number that actually matters for
-that picture (a count, a fraction of the image, the right part found or
-not). We score that number against the truth.
+We send each model a small set of real photos and ask it to find or
+segment something. Then, for each photo, a small piece of code turns the
+answer into the number that actually matters for that picture (a count, a
+size, the share of a tree that has turned red, where a road goes). We
+score that number against an answer key we made by hand.
 
 Why not score pixel overlap with a hand-drawn mask (IoU)? Because for many
 of these pictures the "correct" mask is unclear: where does a reddish
 clump of leaves end? A model can draw a reasonable outline that matches a
 human mask poorly. The real metric asks the question we care about.
 
-## The result: one chart
+## The design: three tracks, three charts (locked 2026-10-09)
 
-A bubble chart in the style of [Artificial Analysis](https://artificialanalysis.ai):
+Segmenting a picture is two jobs: **finding** the objects and
+**outlining** them. Some models can only do one of them (SAM 1 and 2
+outline but cannot read a request; DINOv3 compares but cannot outline).
+Others do both. A model that has to do both at once can lose points for
+either reason, so we measure each job on its own, plus the whole task.
+
+| track | the model gets | it answers with | scored on | entrants | cost and time counted |
+|---|---|---|---|---|---|
+| **1. Find** | the photo + the request ("put a dot on each cow") | one dot per object (and a label where the task needs one) | the dots against the answer key's dots | language models, SAM 3, YOLOE-26, RF-DETR (its 80 categories only), DINOv3 look-alike search | the finder only |
+| **2. Outline** | the photo + the request + **the answer key's dot on each object** | one outline per given dot | the task's measurement (size, area, overlap, path) | language models, SAM 1, SAM 2.1, SAM 3, gen2seg, DINOv3 (tree task) | the outliner only |
+| **3. Whole task** | the photo + the request, no hints | outlines, labelled where needed | finding and measurement together | single models that do both, and **labelled pairs** ("Gemini Flash + SAM 2.1") | everything: all parts, end to end |
+
+Why the outline track gets the answer key's dots, not the best finder's:
+a finder's mistakes would then lower every outliner's score, and the
+outline results would go stale every time a better finder appears. It
+gets a **dot, not a box**, because a box would give away the size we
+measure (log diameters).
+
+**Pairs in track 3** are built from the best-value finders of track 1
+(those on its frontier, below) combined with the best-value outliners of
+track 2. Each pair is its own bubble, labelled with both parts.
+
+**What we may and may not claim.** Each claim names its track. A model's
+outlining skill is judged in track 2 only; a low track-3 score never
+means "bad at outlining", because track 3 also asks it to find.
+
+### The six tasks
+
+Full detail and the reasons for each choice: `docs/task-ideas.md`.
+
+| # | photo | skill tested | segment… | track 1 (find) | track 2 (outline) |
+|---|---|---|---|---|---|
+| 1 | `log_ends_closeup_1` | many touching, similar objects | each cut log end | ~70 logs | diameter of each log end |
+| 2 | `field_with_cows` | tiny, distant objects; one odd one out | each cow | ~13 cows, incl. the brown one | outline stays on the cow |
+| 3 | `fig_plant` | look-alike plants | each fig leaf, not the other plants | ~12 fig leaves | total fig-leaf area |
+| 4 | `autumn_tree_orange_1` | fuzzy, gradual regions | the reddish (not yellow) foliage | — | % of the crown that is red |
+| 5 | `farm_road_1` | long, soft-edged region; direction | the gravel road | — | the road's path and width at ~6 heights |
+| 6 | `kitchen_counter_dishes` | meaning: dirty vs. clean | each dish, labelled dirty or clean | ~10 dirty + ~10 clean, label must be right | outline of each dish |
+
+Tasks 4 and 5 have nothing separate to find: they are run once, and that
+run counts in both track 2 and track 3.
+
+**Trick questions.** Each photo is also asked for something that is not
+there (cows in the log picture, cars in the fig picture). The right
+answer is nothing. Reported as a separate "invents objects" score next to
+each bubble, not mixed into quality.
+
+### Scores
+
+Every score is 0 to 1; a track's quality is the mean over its tasks.
+
+- **Finding:** each answer dot is paired with at most one answer-key dot
+  within a distance set from the typical object size of that task. Score
+  = F1, which punishes both missed objects and invented ones; the count
+  error is reported too. For dishes, a pair counts only if the label
+  (dirty or clean) is right; items the answer key marks *unsure* are left
+  out.
+- **Outlining:** the task's measurement, compared with the answer key and
+  turned into 0..1 by a stated tolerance (written in each task's folder).
+- **Whole task:** an answer-key dot is found when it falls inside exactly
+  one of the model's outlines (with the right label for dishes). Score =
+  the mean of that finding score and the outlining score on the objects
+  found.
+- **Specialists** answer with masks; for track 1 each mask becomes one dot
+  at the point deepest inside the mask (the centre can fall outside a
+  curved shape).
+
+### The charts
+
+Three bubble charts, one per track, in the style of
+[Artificial Analysis](https://artificialanalysis.ai):
 
 | axis | what it shows |
 |---|---|
-| **y** | quality: mean score over all tasks, 0 to 1 |
-| **x** | cost: US dollars per image (log scale) |
-| **bubble size** | inference time: median seconds per image |
+| **y** | quality: mean score over the track's tasks, 0 to 1, with the spread over repeats |
+| **x** | cost: US dollars per image (log scale), only the parts that track counts |
+| **bubble size** | time: median seconds per image, end to end |
 
-Top left is best: high quality, low cost.
+Each model at each thinking level is one bubble; pairs have their own
+marker. A line joins the **best-value models** (the Pareto frontier: no
+other bubble is both better and cheaper). Top left is best.
+
+### Still to settle, in the pilot run
+
+1. How a language model receives the dots in track 2: drawn as numbered
+   markers on the photo, or written as coordinates. Both are tried on one
+   photo; the better one is then used for **every** model.
+2. Gemini answers with points as (down, across) even when asked for
+   (across, down). Decide: score as written, or accept each family's own
+   order.
+3. The colour rule that defines "reddish" for task 4, shown on the photo
+   before it is fixed.
+4. Cutlery and knives in the dish count (current plan: left out).
 
 ## Models
 
@@ -81,7 +164,9 @@ What the first checks taught us:
 
 ### Thinking: minimum, medium, maximum
 
-Every model is run at three thinking levels, each translated into the
+Every model is run at three thinking levels (two for Kimi K3 and GPT-6
+Astra, whose "max" was dropped on 2026-10-09 as too expensive), each
+translated into the
 model's own settings in `segbench/models.py` (`THINKING`): **min** = off
 where the model can stop thinking, else its lowest level; **max** = its
 highest level that really reaches the provider; **medium** = the middle.
@@ -218,54 +303,57 @@ end-to-end time. Keep human-assisted results separate from automatic
 runs. Ground-truth-derived clicks/boxes are oracle-assisted diagnostics,
 not automatic benchmark inputs.
 
-## Images and tasks (first ideas)
-
-The first photos are in `images/` (see `images/README.md` for what each
-one shows). Planned pictures, each with the real metric we expect to score:
-
-| image | what the model is asked to segment | real metric (draft) |
-|---|---|---|
-| a stack of ~30 dishes | each dish | count error |
-| a log pile | each log (end) | count error |
-| an animal with horns | the horns | horns found, tips in the right place |
-| an engine | one named mechanical part | is the mask on the right part |
-| autumn tree leaves | the reddish clumps (fuzzy edges) | red share of the image vs. a colour-based reference |
-| a computer screenshot | named interface elements | elements found / missed / invented |
-| a fig tree | each leaf | count error |
-
-Each task gets its own folder in `tasks/` with the image's ground truth and
-the small scoring function. Scores are mapped to 0..1 so tasks can be
-averaged.
-
 ## How a run works
 
-1. Load an image and its task.
-2. Ask the model to segment, in **one shared output format** (draft: a JSON
-   list of objects, each with a label and a polygon in coordinates 0..1000
-   of the image width and height). Gemini can also return masks; any other
-   format is converted to the shared one before scoring.
-3. Turn the output into masks, then run the task's scoring function.
+1. Load a task (photo, request, answer key, scorer) and a track.
+2. Send the request to every entrant, all at once (they wait on remote
+   servers, not on this machine); specialists run on GPU 0.
+3. Read the answer in the track's shared format (dots, or outlines as
+   polygons in coordinates 0..1000 of the image width and height;
+   specialist masks are kept as masks). Score it with the task's scorer.
 4. Save one line per call to `results/` (JSON Lines, never overwritten):
-   model and exact ID, task, image, prompt version, raw reply, tokens in,
-   tokens out, reasoning tokens, cost in USD, wall-clock seconds, whether
-   the reply could be read, and the score.
+   track, task, model and exact ID, thinking level, prompt version, raw
+   reply, tokens in / out / thinking, cost in USD, seconds, whether the
+   reply could be read, and the score.
 
 Rules that keep the numbers honest:
 
-- **Cost** = tokens × the provider's price on the day of the run (the
+- **Same request for everyone** in a track and task, word for word, with
+  a version number. Changing a prompt means a new version, never an edit
+  in place.
+- **Cost** = tokens × the provider's list price on the day of the run (the
   price table and its date are saved with the results). When a provider
-  reports the cost itself (OpenRouter does), we keep both.
-- **Cost of models on our own GPUs** (SAM, DINOv3, a local Qwen) = GPU
-  seconds × a stated price per GPU-hour. That price is a choice and is
-  printed on the chart.
+  reports the cost itself (OpenRouter does), we keep both. Subscription
+  models are charged at their public API price.
+- **Cost of models on our own GPUs** (SAM, DINOv3, gen2seg, YOLOE,
+  RF-DETR) = rental price of the GPU ($0.22/hour for an RTX 3090, RunPod
+  Community Cloud, 8 Oct 2026) ÷ images per hour **under load** (best
+  batch size or several workers), because API prices also assume busy,
+  shared GPUs. Speed (bubble size) is still one image at a time. Method:
+  `specialists/README.md`.
 - **Time** = wall-clock seconds from request sent to full reply received.
-  API times depend on the provider's load, so we keep the median of
-  several runs and record the date and time of day.
-- **A reply we cannot read scores 0** but its cost and time still count.
-- **Repeats**: each model × image is run several times (start with 3) so
-  we can show how much a score moves between runs.
-- Every prompt has a version number; changing a prompt means a new
-  version, never an edit in place.
+  API times depend on the provider's load, so we keep the median of the
+  repeats and record the date and time of day. A pair's time is the sum
+  of its steps.
+- **A reply we cannot read scores 0**, but its cost and time still count.
+- **Repeats:** 3 per model, thinking level, task and track. Specialists
+  give the same answer every time, so they are scored once and timed
+  repeatedly.
+- **Retries:** a dropped connection is retried (and the dropped attempt
+  recorded); a real reply from the model is never retried.
+- **Thinking levels:** min, medium and max for every model, except Kimi
+  K3 and GPT-6 Astra (min and medium: their max cost up to $0.16 and
+  $0.24 per call).
+- **Answer-key hints are only used where the track says so** (track 2).
+  Nothing derived from the answer key ever reaches a track-1 or track-3
+  entrant.
+- **GPU guard:** specialist timings are flagged if another program used
+  GPU 0 during the run.
+
+**Size of a full run:** 37 model-and-level combinations × 14 runs per
+model (4 find, 6 outline, 4 whole-task; tasks 4 and 5 count in both track 2
+and 3) × 3 repeats ≈ 1,550 calls, plus ≈ 650 for the trick questions.
+The pilot measures the real cost and the ChatGPT-plan usage first.
 
 ## Setup
 
@@ -289,7 +377,8 @@ images/    the benchmark photos (with where each came from and its licence)
 tasks/     one folder per task: ground truth + scoring function
 scripts/   run models, score, draw the chart
 results/   raw call records (JSON Lines), one file per run
-docs/      research notes and candidate model survey
+docs/      research notes, task choices, candidate model survey
+specialists/  one environment per specialist model family (see its README)
 ```
 
 ## Status
@@ -298,15 +387,20 @@ docs/      research notes and candidate model survey
 - [x] OpenAI and Anthropic through our subscriptions, images tested
 - [x] initial specialist survey with primary sources and availability notes
 - [x] GPU and installed-model inventory (`docs/gpu-setup.md`)
-- [ ] free a GPU for runs, then install SAM 1/2/3, DINOv3, gen2seg, YOLOE-26, RF-DETR Seg
+- [x] GPU 0 taken for the benchmark; SAM 1/2.1/3, YOLOE-26, RF-DETR Seg, gen2seg installed, smoke-tested and priced (`specialists/README.md`)
+- [ ] DINOv3 + segmentation head
 - [x] first batch of photos (18, location data removed)
-- [ ] collect the remaining images (dishes stack, horns, engine, screenshot)
-- [ ] write ground truth and a scoring function per task
+- [x] six tasks chosen (`docs/task-ideas.md`); horns, engine and screenshot left out for now
+- [x] three-track design locked (above)
+- [ ] click page for the answer keys, then the answer keys
+- [ ] shared answer formats, prompts, and a scorer per task (tested on fake answers)
+- [ ] adapters: specialists into the shared formats; finder + outliner pairs; DINOv3 text matching and look-alike search; gen2seg colours into separate outlines
+- [ ] pilot run (settles the open points above), then the full run
 - [x] confirm exact model IDs and which ones accept images (2 excluded)
 - [x] remote calls with token, time and cost tracking (`segbench/call.py`)
-- [ ] decide how SAM 1/2 and DINOv3 receive the task
-- [ ] runner with cost and time tracking
-- [ ] the chart
+- [x] SAM 1/2 and DINOv3 receive the task through the tracks (above)
+- [ ] runner for the three tracks
+- [ ] the three charts
 
 ## Licence
 

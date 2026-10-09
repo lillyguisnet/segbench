@@ -1,0 +1,25 @@
+[project]
+name = "segbench-rfdetr"
+version = "0.1.0"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "torch==2.10.0",
+    "torchvision",
+    "rfdetr>=1.11.2",
+    "pillow",
+    "numpy",
+    "opencv-python-headless",
+    "psutil",
+]
+
+[tool.uv]
+package = false
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu128" }
+torchvision = { index = "pytorch-cu128" }

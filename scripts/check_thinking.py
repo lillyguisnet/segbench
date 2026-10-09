@@ -20,7 +20,7 @@ from pathlib import Path
 from segbench import smoke
 from segbench.call import call
 from segbench.cost import billed_output_tokens
-from segbench.models import BENCHMARKED, BY_KEY, LEVELS
+from segbench.models import BENCHMARKED, BY_KEY, levels_for
 
 REPEATS = 2
 
@@ -38,7 +38,7 @@ def one(model, level: str) -> dict:
 
 def main(argv: list[str]) -> int:
     models = [BY_KEY[k] for k in argv] if argv else list(BENCHMARKED)
-    jobs = [(m, level) for m in models for level in LEVELS for _ in range(REPEATS)]
+    jobs = [(m, level) for m in models for level in levels_for(m.key) for _ in range(REPEATS)]
     out = Path("results") / f"thinking-{datetime.now():%Y%m%d-%H%M%S}.jsonl"
     print(f"{len(jobs)} calls, all at once; each saved to {out} as it finishes", flush=True)
     records, lock = [], threading.Lock()
@@ -55,7 +55,7 @@ def main(argv: list[str]) -> int:
 
     print(f"{'model':18} {'level':7} {'thinking tokens':>18} {'answer tokens':>14} {'seconds':>14} {'cost $':>16}  passed")
     for m in models:
-        for level in LEVELS:
+        for level in levels_for(m.key):
             rs = [r for r in records if r["model"] == m.key and r["level"] == level]
             ok = [r for r in rs if "error" not in r]
             if not ok:

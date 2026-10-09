@@ -91,17 +91,25 @@ THINKING = {
     "terra":             {"min": {"effort": "off"}, "medium": {"effort": "medium"}, "max": {"effort": "max"}},
     "sonnet":            {"min": _OFF_SONNET, "medium": {"effort": "medium"}, "max": {"effort": "max"}},
     "opus":              {"min": {"effort": "low"}, "medium": {"effort": "medium"}, "max": {"effort": "max"}},
-    "astra":             {"min": {"effort": "low"}, "medium": {"effort": "medium"}, "max": {"effort": "max"}},
+    "astra":             {"min": {"effort": "low"}, "medium": {"effort": "medium"}},
     "sol":               {"min": {"effort": "low"}, "medium": {"effort": "medium"}, "max": {"effort": "max"}},
     "gemini-pro":        {"min": {"effort": "low"}, "medium": {"effort": "medium"}, "max": {"effort": "high"}},
     "gemini-flash":      {"min": {"effort": "low"}, "medium": {"effort": "medium"}, "max": {"effort": "high"}},
     "gemini-flash-lite": {"min": {"effort": "minimal"}, "medium": {"effort": "medium"}, "max": {"effort": "high"}},
     "glm-5.3-flash":     {"min": {"effort": "low"}, "medium": {"effort": "high"}, "max": {"effort": "max"}},
     "deepseek-flash":    {"min": {"effort": "off"}, "medium": {"effort": "medium"}, "max": {"effort": "max"}},
-    "kimi-k3":           {"min": {"effort": "off"}, "medium": {"effort": "high"}, "max": {"effort": "max"}},
+    "kimi-k3":           {"min": {"effort": "off"}, "medium": {"effort": "high"}},
     "qwen-27b":          {"min": {"effort": "off"}, "medium": {"effort": "medium"}, "max": {"effort": "max"}},
 }
 LEVELS = ("min", "medium", "max")
+# Dropped 2026-10-09: "max" for Kimi K3 and GPT-6 Astra. Measured at up to
+# $0.16 and $0.24 per call on one small picture (and up to 4 minutes for
+# Kimi), too expensive for the benchmark's ~thousands of calls.
+
+
+def levels_for(key: str) -> tuple[str, ...]:
+    """The thinking levels a model is run at, in LEVELS order."""
+    return tuple(level for level in LEVELS if level in THINKING[key])
 
 BY_KEY = {m.key: m for m in MODELS}
 

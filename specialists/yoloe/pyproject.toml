@@ -1,0 +1,26 @@
+[project]
+name = "segbench-yoloe"
+version = "0.1.0"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "torch==2.10.0",
+    "torchvision",
+    "ultralytics>=8.4.174",
+    "clip @ git+https://github.com/ultralytics/CLIP.git",  # text prompts; installed here so nothing pip-installs at run time
+    "pillow",
+    "numpy",
+    "opencv-python-headless",
+    "psutil",
+]
+
+[tool.uv]
+package = false
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu128" }
+torchvision = { index = "pytorch-cu128" }

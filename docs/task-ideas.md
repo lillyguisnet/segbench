@@ -4,6 +4,66 @@ Each task is asked as a segmentation ("segment every …"). A small scoring
 function then turns the masks into a **real-world number** and compares it
 with a ground truth we make by hand. Proposals; nothing here is built yet.
 
+## Shortlist of six (proposal, 2026-10-09)
+
+Chosen so each task tests a different skill, and each has an answer key
+that is quick to make and hard to argue with.
+
+| # | photo | skill tested | ask the model to segment | find track | outline track (given one dot per object) |
+|---|---|---|---|---|---|
+| 1 | `log_ends_closeup_1` | many touching, similar objects | each cut log end | log count (~70) + each dot matched | diameter of each log end vs. a two-click measurement (subset of ~20) |
+| 2 | `field_with_cows` | tiny, distant objects; one odd one out | each cow | head count (~13) + matching; is the brown cow found | mask stays on the cow: overlap with a quick polygon (edges are crisp here, so overlap is fair) |
+| 3 | `fig_plant` | telling look-alike plants apart | each fig leaf (not the spider plant or the purple plant) | fig leaf count (~12) + no leaves of the other plants | total fig-leaf area vs. polygons (a growth measure) |
+| 4 | `autumn_tree_orange_1` | fuzzy, gradual regions | the reddish (not yellow) foliage | none: nothing separate to find | % of the crown that is red vs. a hue rule |
+| 5 | `farm_road_1` | following a long, soft-edged region; direction | the gravel road | none: one road, nothing to count | the road's path: centre line and width at ~6 heights vs. clicks on both edges; which way it bends; where it disappears |
+| 6 | `kitchen_counter_dishes` | meaning, not just shape: dirty vs. clean | each dish, labelled dirty or clean | dirty count (~10) and clean count (~10), each dot matched **with the right label** | outline each dish (overlap with polygons; stacked bowls in the rack are the hard part) |
+
+The whole-task track runs the same six with no hints.
+
+**Task 4: one photo.** `autumn_tree_orange_1` (Android): the clearest
+split between red (upper right of the crown) and yellow (lower left), and
+no wires across the crown as in `_2`.
+
+**Task 5: no lanes.** It is a one-track gravel farm road with no painted
+lines, so there are no lanes to find. What can be measured is where the
+road goes: from the bottom of the picture it runs up, bends gently right,
+then left past the barn, and disappears near the far pole.
+`farm_road_1` (portrait) shows the longest stretch of road.
+
+**Task 6: what counts as a dish, and as dirty.** Dishes = plates, bowls,
+mugs, pots, pans, baking trays, lids, cutting board, food containers. Not
+counted: cutlery and knives (too thin; thin shapes are not this task's
+point), bottles, appliances, cloths. Answer key per item: *dirty* (on the
+counter or in the sink, or food visible), *clean* (in the drying rack),
+or *unsure* (not scored). The two clues agree for almost every item here;
+items where they disagree are marked unsure rather than argued over. The
+prompt asks for the label but does not explain the rule: deciding is the
+test.
+
+**Free trick question on every task:** also ask for something absent
+(cows in the log picture, cars in the fig picture). The right answer is
+nothing. Costs one extra call per task and needs no answer key.
+
+**Why the outline track gives a dot, not a box:** for logs, a box would
+give away the size we are measuring.
+
+**Left out, and why:**
+
+- **Utility poles:** replaced by the road task (Maxime, 2026-10-09).
+- **Second tree photo:** one is enough (Maxime, 2026-10-09).
+- **Big barn log pile:** hundreds of ends to click; the close-up already
+  tests the same skill.
+- **Fallen leaves, clouds, wires, sunset trees:** each overlaps a chosen
+  skill or has an arguable answer.
+- **Windows** (`red_house_driveway`): readable licence plate and people;
+  not worth the privacy step for a task like the others.
+- **Anemometer cups:** only 3, small and dark; too little signal.
+- **Horns, engine part, screenshot:** no photo yet.
+
+Answer-key work, roughly: ~120 dots (20 with a dirty/clean label), ~20
+two-click diameters, ~45 small polygons (cows, fig leaves, dishes), one
+crown outline, ~12 road-edge clicks, one hue rule. About 2 hours.
+
 ## How ground truth is made (cheap and unambiguous)
 
 - **One click per object** for everything we count (a dot in the middle of

@@ -1,0 +1,33 @@
+[project]
+name = "segbench-gen2seg"
+version = "0.1.0"
+description = "gen2seg (ICLR 2026). Code: vendor/ = github.com/UCDvision/gen2seg @ a8d3ffa6"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "torch==2.10.0",
+    "torchvision",
+    # versions close to the authors' environment.yml (diffusers 0.30.2, transformers 4.37)
+    "diffusers==0.30.2",
+    "transformers>=4.44,<4.50",
+    "accelerate<1.0",
+    "huggingface_hub<0.26",
+    "safetensors",
+    "pillow",
+    "numpy<2",
+    "opencv-contrib-python-headless",
+    "scikit-learn",
+    "einops",
+    "psutil",
+]
+
+[tool.uv]
+package = false
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu128" }
+torchvision = { index = "pytorch-cu128" }
