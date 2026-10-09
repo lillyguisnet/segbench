@@ -34,8 +34,11 @@ class Model:
 
 MODELS: tuple[Model, ...] = (
     # Our ChatGPT and Claude plans (no per-token bill; see README for how cost is counted).
-    Model("luna", "GPT-5.6 Luna", "OpenAI", "openai-codex:gpt-5.6-luna", "subscription", True),
-    Model("terra", "GPT-5.6 Terra", "OpenAI", "openai-codex:gpt-5.6-terra", "subscription", True),
+    Model("luna", "GPT-6 Luna", "OpenAI", "openai-codex:gpt-6-luna", "subscription", True,
+          "not in the plan's model list, but callable; vision and thinking levels checked through "
+          "OpenRouter (openai/gpt-6-luna) on 2026-10-08 because the plan's weekly limit was reached"),
+    Model("terra", "GPT-5.6 Terra", "OpenAI", "openai-codex:gpt-5.6-terra", "subscription", True,
+          "newest Terra on 2026-10-08: there is no GPT-6 Terra"),
     Model("sonnet", "Claude Sonnet 5.5", "Anthropic", "claude-code:claude-sonnet-5-5", "subscription", True),
     Model("opus", "Claude Opus 5.5", "Anthropic", "claude-code:claude-opus-5-5", "subscription", True),
     Model("astra", "GPT-6 Astra", "OpenAI", "openai-codex:gpt-6-astra", "subscription", True,

@@ -38,8 +38,8 @@ passes when it outlines exactly the four circles in the right places).
 
 | model | exact model | route | sees images | 4-circle test |
 |---|---|---|---|---|
-| Luna | `gpt-5.6-luna` | ChatGPT plan (`openai-codex:`) | yes | pass |
-| Terra | `gpt-5.6-terra` | ChatGPT plan (`openai-codex:`) | yes | pass |
+| Luna | `gpt-6-luna` | ChatGPT plan (`openai-codex:`) | yes | pass (checked through OpenRouter, see below) |
+| Terra | `gpt-5.6-terra` (no GPT-6 Terra exists) | ChatGPT plan (`openai-codex:`) | yes | pass |
 | Sonnet | `claude-sonnet-5-5` | Claude plan (`claude-code:`) | yes | pass |
 | Opus | `claude-opus-5-5` | Claude plan (`claude-code:`) | yes | pass |
 | Astra | `gpt-6-astra` | ChatGPT plan (`openai-codex:`) | yes | pass (OpenAI "overloaded" once) |
@@ -93,7 +93,7 @@ Thinking tokens on the circle test (two runs each, 2026-10-08):
 
 | model | min | medium | max | slowest call at max |
 |---|---|---|---|---|
-| Luna | 0 | ~1,800 | 9,000–18,000 | 137 s |
+| Luna (GPT-6, one run each, via OpenRouter) | 0 | ~700 | ~3,400 | 30 s |
 | Terra | 0 | ~300 | 7,000–14,000 | 402 s |
 | Sonnet | 0 | 0 (chose not to) | ~2,700 | 25 s |
 | Opus | 0 at low (cannot stop) | ~450 | ~6,200 | 58 s |
@@ -117,6 +117,15 @@ What to know:
   "off" settings), GPT-6 Astra and GPT-6.1 Sol (OpenAI accepts only low and
   up). Their minimum is "low"; on the circle test they then chose not to
   think at all.
+- **We use the newest version of every model.** Luna is GPT-6 Luna since
+  2026-10-08 (the earlier rows of `results/` are GPT-5.6 Luna).
+- **The ChatGPT plan has a weekly limit, shared with everyone using the
+  account.** It was reached on 2026-10-08 and resets on 2026-10-14 at
+  05:58 EDT; until then Luna, Terra, Astra and Sol cannot be called through
+  it. GPT-6 Luna was checked through OpenRouter instead (same model, served
+  by OpenAI, $0.0005 a call). See how much is left with the plan's usage
+  endpoint (`https://chatgpt.com/backend-api/wham/usage`, the Codex login's
+  token). A full benchmark run must check it before starting.
 - **Hidden models on the ChatGPT plan**: `gpt-6-astra` is listed only to
   Codex 0.153 or newer (lm15 1.2.1 says it is 0.147), and `gpt-6.1-sol`
   and `gpt-6-luna` are listed to nobody; all three answer. Use
