@@ -1,12 +1,12 @@
 {
-  "source": "results/point-benchmark-v1/scored.jsonl",
-  "source_sha256": "7e2388835fd7c1a56c2619f76378eb75d205465c3936e8dbb584fbe7a36369ad",
+  "source": "results/point-benchmark-v1.2/scored.jsonl",
+  "source_sha256": "2d169cb7d9db627d855f6f7c1adbdd72fd1a4570d92590147b502beb39206ee6",
   "renderer": "scripts/draw_charts.py --style editorial --track find --names all",
   "renderer_sha256": {
     "scripts/draw_charts.py": "4a03ff80a43352e54fdbb4c0edf4547b085d6e64241966c6c2c4989c98780cba",
-    "segbench/chart_editorial.py": "c6e4e5be0c427d79826428bbccb0dc3a5773969c4931da19562fea523333b3de",
+    "segbench/chart_editorial.py": "f374750604bc429631db0eff4c9a0ad1120669effd11eaae56ade81193974151",
     "segbench/chart.py": "1fe75877b2f264aa49a0d76d93611f8660ccba6cd9b4c4d46af82296dc4d2a27",
-    "segbench/chart_data.py": "db1ced795a8136a07623c5e5fef8856ebe36102e505151997a524c7c5b8f052e"
+    "segbench/chart_data.py": "d2a8828100fdb49f249aad1b477d2c0d46f5964cb2d99537672f0a2eaaeec824"
   },
   "metric": "point-localisation-v1; tolerance-average F1; equal weighting of four tasks",
   "excluded_incomplete": [

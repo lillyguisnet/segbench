@@ -1,9 +1,9 @@
 track,entrant,label,kind,maker,model,level,outliner,outliner_maker,quality,quality_low,quality_high,cost_usd,seconds,calls,repeats,tasks_done,tasks_total,synthetic
 find,astra@medium,GPT-6 Astra,general,OpenAI,astra,medium,,,0.723399355135882,0.723399355135882,0.723399355135882,0.125515,12.925,4,1,4,4,False
 find,deepseek-flash@medium,DeepSeek Flash,general,DeepSeek,deepseek-flash,medium,,,0.2887956578580032,0.2887956578580032,0.2887956578580032,0.004968825,15.611,4,1,4,4,False
-find,gemini-flash@medium,Gemini 3.8 Flash,general,Google,gemini-flash,medium,,,0.36919005982512654,0.36919005982512654,0.36919005982512654,0.0110214375,15.975999999999999,4,1,4,4,False
-find,gemini-flash-lite@medium,Gemini 3.5 Flash Lite,general,Google,gemini-flash-lite,medium,,,0.2875,0.2875,0.2875,0.0038108250000000003,4.713,4,1,4,4,False
-find,gemini-pro@medium,Gemini 3.1 Pro,general,Google,gemini-pro,medium,,,0.2953929539295393,0.2953929539295393,0.2953929539295393,0.0389335,22.427999999999997,4,1,4,4,False
+find,gemini-flash@medium,Gemini 3.8 Flash,general,Google,gemini-flash,medium,,,0.4242948603660326,0.4242948603660326,0.4242948603660326,0.0110214375,15.975999999999999,4,1,4,4,False
+find,gemini-flash-lite@medium,Gemini 3.5 Flash Lite,general,Google,gemini-flash-lite,medium,,,0.32483733733733733,0.32483733733733733,0.32483733733733733,0.0038108250000000003,4.713,4,1,4,4,False
+find,gemini-pro@medium,Gemini 3.1 Pro,general,Google,gemini-pro,medium,,,0.5896562968506003,0.5896562968506003,0.5896562968506003,0.0389335,22.427999999999997,4,1,4,4,False
 find,glm-5.3-flash@medium,GLM 5.3 Flash,general,Z.AI,glm-5.3-flash,medium,,,0.17114190105801294,0.17114190105801294,0.17114190105801294,0.001530825,13.220500000000001,4,1,4,4,False
 find,kimi-k3@medium,Kimi K3,general,Moonshot,kimi-k3,medium,,,0.2681443432818865,0.2681443432818865,0.2681443432818865,0.0358023,83.72749999999999,4,1,4,4,False
 find,luna@medium,GPT-6 Luna,general,OpenAI,luna,medium,,,0.20345868732300515,0.20345868732300515,0.20345868732300515,0.0013936500000000002,8.1745,4,1,4,4,False

@@ -124,28 +124,3 @@ Known problems this does NOT fix (need prompt v2 and a rerun):
   input tokens, OpenAI and Kimi ~11,000; no high-detail setting was asked.
 - Sonnet's fig answer has half its points beyond 1000 (no consistent frame
   to correct them); they stay misses.
-
-## v1.2 (2026-10-09): pointing specialists from ~/Projects/finders
-
-Added LocateAnything-3B, MolmoPoint-8B, Rex-Omni-3B and Florence-2-large
-(scripts/run_finders.py, combined by scripts/combine_finders.py). Wording:
-- first run (v1): the short singular phrases given to SAM 3 and YOLOE. Raw
-  answers showed MolmoPoint read "Point to cow" as one cow (1 of 11), and
-  Florence-2's caption-grounding mode drew one box over the whole log pile.
-- protocol v2, from each model's own documentation: MolmoPoint plural with
-  "the" (card: "Point to the boats"); LocateAnything plural in its pointing
-  template (no documented example, same rule); Rex-Omni unchanged (README:
-  singular categories; answers identical in both runs, a determinism check);
-  Florence-2 open-vocabulary detection. v2 returned one box per photo for
-  Florence-2, so with no documentation saying which mode means "every
-  object", both modes are entered as separate, labelled entrants rather than
-  one picked after seeing scores.
-- Side effect, reported: LocateAnything with the plural pointed at 73
-  "cows" in the log photo (0 with the singular).
-- MolmoPoint, fig photo: greedy decoding looped ("and a green leaf, ...")
-  to the 8,192-token limit, 3 points, 443 s. Kept as the model's answer.
-- MolmoPoint, Rex-Omni, Florence-2 ran with the SAM 3.1 helper paused
-  (whole GPU free); MolmoPoint was 5-7x faster with all layers on the GPU.
-  LocateAnything ran beside the helper.
-Cost for these = $0.22/GPU-hour x warm seconds, one image at a time, no load
-test: overstated compared with SAM 3 / YOLOE, which were load-tested.

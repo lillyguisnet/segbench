@@ -25,7 +25,9 @@ LOGOS = {
     "Ultralytics": "ultralytics.svg",
     "Roboflow": "roboflow.svg",
 }
-INITIALS = {"UC Davis": "UCD"}
+# No logo file yet for these (each needs its source and licence noted in
+# assets/logos/SOURCES.md first): initials instead.
+INITIALS = {"UC Davis": "UCD", "NVIDIA": "NV", "Ai2": "Ai2", "IDEA": "ID", "Microsoft": "MS"}
 
 # Brand colours (as on the 2026-10-09 brand-colour charts, commit 3aca946),
 # used where colour shows the maker (the point overlays, site and video; the
@@ -42,6 +44,10 @@ BRAND = {
     "Meta": "#0866ff",
     "Roboflow": "#a01ee6",
     "Ultralytics": "#f0507a",
+    "NVIDIA": "#76b900",
+    "Ai2": "#f0529c",
+    "IDEA": "#2b6cb0",
+    "Microsoft": "#737373",
 }
 OTHER = "#7a808a"
 

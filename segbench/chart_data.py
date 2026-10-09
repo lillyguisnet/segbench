@@ -55,6 +55,13 @@ SPECIALISTS: dict[str, tuple[str, str]] = {
     "yoloe-26x": ("YOLOE-26x", "Ultralytics"),
     "rfdetr-seg-2xl": ("RF-DETR Seg", "Roboflow"),
     "gen2seg-sd": ("gen2seg", "UC Davis"),
+    # pointing models from ~/Projects/finders (scripts/run_finders.py)
+    "locateanything-3b": ("LocateAnything 3B", "NVIDIA"),
+    "molmopoint-8b": ("MolmoPoint 8B", "Ai2"),
+    "rexomni-3b": ("Rex-Omni 3B", "IDEA"),
+    "florence2-large": ("Florence-2 Large", "Microsoft"),
+    "florence2-large-grounding": ("Florence-2 · grounding", "Microsoft"),
+    "florence2-large-ovd": ("Florence-2 · detection", "Microsoft"),
 }
 
 LEVEL_SHORT = {"min": "min", "medium": "med", "max": "max"}

@@ -16,8 +16,8 @@ import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / 'results/point-benchmark-v1/scored.jsonl'
-SUMMARY = ROOT / 'results/point-benchmark-v1/summary.csv'
+SOURCE = ROOT / 'results/point-benchmark-v1.2/scored.jsonl'
+SUMMARY = ROOT / 'results/point-benchmark-v1.2/summary.csv'
 OUT = ROOT / 'charts/point-pilot-editorial'
 
 
