@@ -1,0 +1,537 @@
+[
+ {
+  "setup": "locateanything-3b",
+  "finders_model": "locateanything",
+  "variant": null,
+  "task": "point",
+  "rounds": 3,
+  "single": [
+   {
+    "id": "single|logs|log end|0",
+    "wall": 8.840120098029729,
+    "model_seconds": 8.74
+   },
+   {
+    "id": "single|cows|cow|0",
+    "wall": 4.589503015973605,
+    "model_seconds": 4.524
+   },
+   {
+    "id": "single|fig|fig leaf|0",
+    "wall": 4.536560968030244,
+    "model_seconds": 4.476
+   },
+   {
+    "id": "single|dishes|dirty dish|0",
+    "wall": 5.008732676971704,
+    "model_seconds": 4.952
+   },
+   {
+    "id": "single|dishes|clean dish|0",
+    "wall": 4.667742002988234,
+    "model_seconds": 4.613
+   },
+   {
+    "id": "single|logs|log end|1",
+    "wall": 9.493335185048636,
+    "model_seconds": 9.353
+   },
+   {
+    "id": "single|cows|cow|1",
+    "wall": 5.86243093397934,
+    "model_seconds": 5.737
+   },
+   {
+    "id": "single|fig|fig leaf|1",
+    "wall": 5.690551356005017,
+    "model_seconds": 5.522
+   },
+   {
+    "id": "single|dishes|dirty dish|1",
+    "wall": 5.164730869000778,
+    "model_seconds": 5.087
+   },
+   {
+    "id": "single|dishes|clean dish|1",
+    "wall": 5.709266752994154,
+    "model_seconds": 5.647
+   },
+   {
+    "id": "single|logs|log end|2",
+    "wall": 8.633351491997018,
+    "model_seconds": 8.504
+   },
+   {
+    "id": "single|cows|cow|2",
+    "wall": 5.586163662024774,
+    "model_seconds": 5.424
+   },
+   {
+    "id": "single|fig|fig leaf|2",
+    "wall": 4.400786224985495,
+    "model_seconds": 4.334
+   },
+   {
+    "id": "single|dishes|dirty dish|2",
+    "wall": 5.200703173992224,
+    "model_seconds": 5.141
+   },
+   {
+    "id": "single|dishes|clean dish|2",
+    "wall": 6.081406353972852,
+    "model_seconds": 5.995
+   }
+  ],
+  "query_seconds": {
+   "logs|log end": 8.8401,
+   "cows|cow": 5.5862,
+   "fig|fig leaf": 4.5366,
+   "dishes|dirty dish": 5.1647,
+   "dishes|clean dish": 5.7093
+  },
+  "load": [
+   {
+    "copies": 1,
+    "load_factor": 1.0
+   },
+   {
+    "copies": 2,
+    "load_factor": null,
+    "failed": "worker exited 1; rch, and 142.40 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation. See documentation for Memory Management (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)"
+   }
+  ],
+  "load_factor": 1.0,
+  "gpu_others": {
+   "603447": 48,
+   "1925731": 60,
+   "753117": 1054
+  },
+  "elapsed_s": 161.3
+ },
+ {
+  "setup": "molmopoint-8b",
+  "finders_model": "molmopoint",
+  "variant": null,
+  "task": "point",
+  "rounds": 2,
+  "single": [
+   {
+    "id": "single|logs|log end|0",
+    "wall": 21.24622534000082,
+    "model_seconds": 21.155
+   },
+   {
+    "id": "single|cows|cow|0",
+    "wall": 4.606710015970748,
+    "model_seconds": 4.423
+   },
+   {
+    "id": "single|fig|fig leaf|0",
+    "wall": 358.68583820201457,
+    "model_seconds": 358.628
+   },
+   {
+    "id": "single|dishes|dirty dish|0",
+    "wall": 4.586428700014949,
+    "model_seconds": 4.522
+   },
+   {
+    "id": "single|dishes|clean dish|0",
+    "wall": 3.2335095360176638,
+    "model_seconds": 3.171
+   },
+   {
+    "id": "single|logs|log end|1",
+    "wall": 17.1283204020001,
+    "model_seconds": 17.063
+   },
+   {
+    "id": "single|cows|cow|1",
+    "wall": 3.784427690960001,
+    "model_seconds": 3.717
+   },
+   {
+    "id": "single|fig|fig leaf|1",
+    "wall": 378.5180994190159,
+    "model_seconds": 378.448
+   },
+   {
+    "id": "single|dishes|dirty dish|1",
+    "wall": 5.2243793699890375,
+    "model_seconds": 5.073
+   },
+   {
+    "id": "single|dishes|clean dish|1",
+    "wall": 5.175239964039065,
+    "model_seconds": 5.064
+   }
+  ],
+  "query_seconds": {
+   "logs|log end": 19.1873,
+   "cows|cow": 4.1956,
+   "fig|fig leaf": 368.602,
+   "dishes|dirty dish": 4.9054,
+   "dishes|clean dish": 4.2044
+  },
+  "load": [
+   {
+    "copies": 1,
+    "load_factor": 1.0
+   }
+  ],
+  "load_factor": 1.0,
+  "gpu_others": {
+   "603447": 48,
+   "1925731": 60,
+   "753117": 1054
+  },
+  "elapsed_s": 843.3
+ },
+ {
+  "setup": "rexomni-3b",
+  "finders_model": "rexomni",
+  "variant": null,
+  "task": "point",
+  "rounds": 3,
+  "single": [
+   {
+    "id": "single|logs|log end|0",
+    "wall": 10.793726390984375,
+    "model_seconds": 10.704
+   },
+   {
+    "id": "single|cows|cow|0",
+    "wall": 2.684270785015542,
+    "model_seconds": 2.542
+   },
+   {
+    "id": "single|fig|fig leaf|0",
+    "wall": 2.2560001550009474,
+    "model_seconds": 2.164
+   },
+   {
+    "id": "single|dishes|dirty dish|0",
+    "wall": 2.213999342988245,
+    "model_seconds": 2.151
+   },
+   {
+    "id": "single|dishes|clean dish|0",
+    "wall": 1.6671278100111522,
+    "model_seconds": 1.603
+   },
+   {
+    "id": "single|logs|log end|1",
+    "wall": 9.467541832011193,
+    "model_seconds": 9.402
+   },
+   {
+    "id": "single|cows|cow|1",
+    "wall": 2.147828432964161,
+    "model_seconds": 2.083
+   },
+   {
+    "id": "single|fig|fig leaf|1",
+    "wall": 2.0840348940109834,
+    "model_seconds": 2.025
+   },
+   {
+    "id": "single|dishes|dirty dish|1",
+    "wall": 2.1804998029838316,
+    "model_seconds": 2.117
+   },
+   {
+    "id": "single|dishes|clean dish|1",
+    "wall": 1.6578891950193793,
+    "model_seconds": 1.595
+   },
+   {
+    "id": "single|logs|log end|2",
+    "wall": 9.285427159979008,
+    "model_seconds": 9.219
+   },
+   {
+    "id": "single|cows|cow|2",
+    "wall": 2.1921375560341403,
+    "model_seconds": 2.128
+   },
+   {
+    "id": "single|fig|fig leaf|2",
+    "wall": 2.08046980999643,
+    "model_seconds": 2.028
+   },
+   {
+    "id": "single|dishes|dirty dish|2",
+    "wall": 2.17399108101381,
+    "model_seconds": 2.111
+   },
+   {
+    "id": "single|dishes|clean dish|2",
+    "wall": 1.6590288080042228,
+    "model_seconds": 1.591
+   }
+  ],
+  "query_seconds": {
+   "logs|log end": 9.4675,
+   "cows|cow": 2.1921,
+   "fig|fig leaf": 2.084,
+   "dishes|dirty dish": 2.1805,
+   "dishes|clean dish": 1.659
+  },
+  "load": [
+   {
+    "copies": 1,
+    "load_factor": 1.0
+   },
+   {
+    "copies": 2,
+    "window_s": 86.94,
+    "work_done_s": 139.01,
+    "load_factor": 0.6254,
+    "peak_gib": 7.89
+   }
+  ],
+  "load_factor": 0.6254,
+  "gpu_others": {
+   "603447": 48,
+   "1925731": 60,
+   "753117": 1054
+  },
+  "elapsed_s": 171.5
+ },
+ {
+  "setup": "florence2-large-grounding",
+  "finders_model": "florence2",
+  "variant": "large",
+  "task": "box",
+  "rounds": 3,
+  "single": [
+   {
+    "id": "single|logs|log end|0",
+    "wall": 0.7078929629642516,
+    "model_seconds": 0.626
+   },
+   {
+    "id": "single|cows|cow|0",
+    "wall": 0.8743280280032195,
+    "model_seconds": 0.801
+   },
+   {
+    "id": "single|fig|fig leaf|0",
+    "wall": 0.5201722049969248,
+    "model_seconds": 0.447
+   },
+   {
+    "id": "single|dishes|dirty dish|0",
+    "wall": 0.6366919110296294,
+    "model_seconds": 0.569
+   },
+   {
+    "id": "single|dishes|clean dish|0",
+    "wall": 0.5376210230169818,
+    "model_seconds": 0.463
+   },
+   {
+    "id": "single|logs|log end|1",
+    "wall": 0.633312041987665,
+    "model_seconds": 0.569
+   },
+   {
+    "id": "single|cows|cow|1",
+    "wall": 0.7333370569976978,
+    "model_seconds": 0.668
+   },
+   {
+    "id": "single|fig|fig leaf|1",
+    "wall": 0.46189804800087586,
+    "model_seconds": 0.406
+   },
+   {
+    "id": "single|dishes|dirty dish|1",
+    "wall": 0.4893036899738945,
+    "model_seconds": 0.423
+   },
+   {
+    "id": "single|dishes|clean dish|1",
+    "wall": 0.5110669260029681,
+    "model_seconds": 0.446
+   },
+   {
+    "id": "single|logs|log end|2",
+    "wall": 0.6722736080409959,
+    "model_seconds": 0.604
+   },
+   {
+    "id": "single|cows|cow|2",
+    "wall": 0.6920684429933317,
+    "model_seconds": 0.632
+   },
+   {
+    "id": "single|fig|fig leaf|2",
+    "wall": 0.5872659769956954,
+    "model_seconds": 0.531
+   },
+   {
+    "id": "single|dishes|dirty dish|2",
+    "wall": 0.37980464298743755,
+    "model_seconds": 0.297
+   },
+   {
+    "id": "single|dishes|clean dish|2",
+    "wall": 0.3403972149826586,
+    "model_seconds": 0.273
+   }
+  ],
+  "query_seconds": {
+   "logs|log end": 0.6723,
+   "cows|cow": 0.7333,
+   "fig|fig leaf": 0.5202,
+   "dishes|dirty dish": 0.4893,
+   "dishes|clean dish": 0.5111
+  },
+  "load": [
+   {
+    "copies": 1,
+    "load_factor": 1.0
+   },
+   {
+    "copies": 2,
+    "window_s": 13.74,
+    "work_done_s": 22.9,
+    "load_factor": 0.6001,
+    "peak_gib": 1.78
+   },
+   {
+    "copies": 4,
+    "window_s": 17.07,
+    "work_done_s": 42.26,
+    "load_factor": 0.4041,
+    "peak_gib": 1.78
+   }
+  ],
+  "load_factor": 0.4041,
+  "gpu_others": {
+   "603447": 48,
+   "1925731": 60,
+   "753117": 1054
+  },
+  "elapsed_s": 63.2
+ },
+ {
+  "setup": "florence2-large-ovd",
+  "finders_model": "florence2",
+  "variant": "large",
+  "task": "ovd",
+  "rounds": 3,
+  "single": [
+   {
+    "id": "single|logs|log end|0",
+    "wall": 0.45358685695100576,
+    "model_seconds": 0.377
+   },
+   {
+    "id": "single|cows|cow|0",
+    "wall": 0.2926950940163806,
+    "model_seconds": 0.229
+   },
+   {
+    "id": "single|fig|fig leaf|0",
+    "wall": 0.2960621740203351,
+    "model_seconds": 0.243
+   },
+   {
+    "id": "single|dishes|dirty dish|0",
+    "wall": 0.3165121399797499,
+    "model_seconds": 0.256
+   },
+   {
+    "id": "single|dishes|clean dish|0",
+    "wall": 0.3361099219764583,
+    "model_seconds": 0.272
+   },
+   {
+    "id": "single|logs|log end|1",
+    "wall": 0.4510947240050882,
+    "model_seconds": 0.389
+   },
+   {
+    "id": "single|cows|cow|1",
+    "wall": 0.2836849760496989,
+    "model_seconds": 0.22
+   },
+   {
+    "id": "single|fig|fig leaf|1",
+    "wall": 0.28531418496277183,
+    "model_seconds": 0.241
+   },
+   {
+    "id": "single|dishes|dirty dish|1",
+    "wall": 0.29277318698586896,
+    "model_seconds": 0.233
+   },
+   {
+    "id": "single|dishes|clean dish|1",
+    "wall": 0.3458514010417275,
+    "model_seconds": 0.288
+   },
+   {
+    "id": "single|logs|log end|2",
+    "wall": 0.44356797996442765,
+    "model_seconds": 0.379
+   },
+   {
+    "id": "single|cows|cow|2",
+    "wall": 0.2897599770221859,
+    "model_seconds": 0.231
+   },
+   {
+    "id": "single|fig|fig leaf|2",
+    "wall": 0.29167769401101395,
+    "model_seconds": 0.241
+   },
+   {
+    "id": "single|dishes|dirty dish|2",
+    "wall": 0.318166540004313,
+    "model_seconds": 0.255
+   },
+   {
+    "id": "single|dishes|clean dish|2",
+    "wall": 0.33500179898692295,
+    "model_seconds": 0.272
+   }
+  ],
+  "query_seconds": {
+   "logs|log end": 0.4511,
+   "cows|cow": 0.2898,
+   "fig|fig leaf": 0.2917,
+   "dishes|dirty dish": 0.3165,
+   "dishes|clean dish": 0.3361
+  },
+  "load": [
+   {
+    "copies": 1,
+    "load_factor": 1.0
+   },
+   {
+    "copies": 2,
+    "window_s": 11.21,
+    "work_done_s": 13.15,
+    "load_factor": 0.8526,
+    "peak_gib": 1.78
+   },
+   {
+    "copies": 4,
+    "window_s": 13.06,
+    "work_done_s": 24.74,
+    "load_factor": 0.528,
+    "peak_gib": 1.78
+   }
+  ],
+  "load_factor": 0.528,
+  "gpu_others": {
+   "603447": 48,
+   "1925731": 60,
+   "753117": 1054
+  },
+  "elapsed_s": 50.9
+ }
+]

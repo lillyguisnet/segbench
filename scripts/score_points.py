@@ -26,6 +26,17 @@ from segbench.chart_data import describe
 TASKS = ('logs', 'cows', 'fig', 'dishes')
 
 
+# Processes that held a little GPU 0 memory but did no computing during the
+# 2026-10-09 clean measurements (docs/point-benchmark-v2.md): the browser,
+# the desktop overlay, and the scholarsreadinglist embeddings job, paused.
+IDLE_GPU_HOLDERS = {'603447', '1925731', '753117'}
+
+
+def timed_on_free_gpu(r):
+    others = r.get('gpu_others')
+    return isinstance(others, dict) and set(others) <= IDLE_GPU_HOLDERS and r.get('started_at', '') >= '2026-10-09T20'
+
+
 def digest(p):
     return hashlib.sha256(p.read_bytes()).hexdigest()
 
@@ -34,7 +45,7 @@ def mean_known(values):
     return statistics.mean(values) if values and all(v is not None for v in values) else None
 
 
-def build(reference, inputs, out, parser='strict'):
+def build(reference, inputs, out, parser='strict', method='docs/point-benchmark-v1.md'):
     raw = json.loads(reference.read_text())
     if raw['schema'] != 'segbench-consensus-review/v1':
         raise ValueError('Unsupported reference format')
@@ -81,7 +92,7 @@ def build(reference, inputs, out, parser='strict'):
             rec.update({'entrant': key, 'label': label, 'maker': maker, 'kind': kind, 'track': 'find',
                         'metric': VERSION, 'parser': parser, 'reference_sha256': digest(reference), 'source_file': path.name,
                         'source_line': line_number, 'source_sha256': source_hash,
-                        'timing_provisional': kind == 'specialist',
+                        'timing_provisional': kind == 'specialist' and not timed_on_free_gpu(r),
                         'timing_trustworthy': r.get('timing_trustworthy'), 'cost_method': r.get('cost_method'),
                         'gpu_others': r.get('gpu_others'), 'predictions': []})
             try:
@@ -126,7 +137,7 @@ def build(reference, inputs, out, parser='strict'):
                 'input_files': {p.name: digest(p) for p in inputs}, 'tolerances': TOLERANCES,
                 'diagonal_cap': DIAGONAL_CAP, 'scope': 'Point localisation only. Not point-inside-object or segmentation.',
                 'aggregation': 'Equal mean over three F1 tolerances, then four tasks. Complete coverage required.',
-                'specification_sha256': digest(ROOT / 'docs/point-benchmark-v1.md'),
+                'specification': method, 'specification_sha256': digest(ROOT / method),
                 'scorer_sha256': digest(ROOT / 'segbench/point_score.py')}
     out.mkdir(parents=True, exist_ok=False)
     (out / 'images').mkdir()
@@ -138,7 +149,7 @@ def build(reference, inputs, out, parser='strict'):
     payload = {'manifest': manifest, 'tasks': task_meta, 'summary': summary, 'records': records}
     (out / 'data.js').write_text('window.POINT_REPORT=' + json.dumps(payload, separators=(',', ':')) + ';\n')
     shutil.copyfile(ROOT / 'scripts/point_report.html', out / 'index.html')
-    shutil.copyfile(ROOT / 'docs/point-benchmark-v1.md', out / 'method.md')
+    shutil.copyfile(ROOT / method, out / 'method.md')
     fields = ['entrant', 'label', 'level', 'coverage', 'score', *TASKS, *TOLERANCES, 'seconds', 'cost_usd', 'timing_provisional', 'unreadable', 'recovered']
     with (out / 'summary.csv').open('w') as f:
         writer = csv.DictWriter(f, fieldnames=fields);writer.writeheader()
@@ -162,5 +173,6 @@ if __name__ == '__main__':
     ap.add_argument('--out', type=Path, required=True)
     ap.add_argument('--parser', choices=('strict', 'lenient'), default='strict',
                     help='lenient: if strict JSON fails, recover [x, y] pairs mechanically (see point_score.recover_points)')
+    ap.add_argument('--method', default='docs/point-benchmark-v1.md', help='method document copied into the report')
     args = ap.parse_args()
-    build(args.reference, args.inputs, args.out, args.parser)
+    build(args.reference, args.inputs, args.out, args.parser, args.method)

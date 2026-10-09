@@ -29,8 +29,43 @@ MAX_TOKENS = 32_000
 _router = LMRouter()
 
 
+def _gemini_media_resolution_patch() -> None:
+    """Let a request ask Gemini for higher image detail.
+
+    Gemini 3 takes the image's detail on the image part itself:
+    {"inlineData": ..., "mediaResolution": {"level": "MEDIA_RESOLUTION_ULTRA_HIGH"}}.
+    Measured 2026-10-09 on a 4000x2252 picture: default and HIGH 1,108 input
+    tokens (HIGH is the default for images), ULTRA_HIGH 2,213; ULTRA_HIGH is
+    refused in generationConfig. lm15 1.2.1 has no door for it (extensions
+    land at the top level of the payload), so the extension key below is
+    removed after lm15 builds the payload and set on every image part.
+    """
+    from lm15.providers.gemini import GeminiLM
+
+    if getattr(GeminiLM._payload, "_segbench", False):
+        return
+    original = GeminiLM._payload
+
+    def _payload(self, request):
+        payload = original(self, request)
+        level = payload.pop("segbench_media_resolution", None)
+        if level:
+            for content in payload.get("contents", []):
+                for part in content.get("parts", []):
+                    if "inlineData" in part or "fileData" in part:
+                        part["mediaResolution"] = {"level": level}
+        return payload
+
+    _payload._segbench = True
+    GeminiLM._payload = _payload
+
+
+_gemini_media_resolution_patch()
+
+
 def call(model: Model, image: bytes | None, media_type: str, prompt: str,
-         effort: str | None = None, level: str | None = None) -> dict:
+         effort: str | None = None, level: str | None = None, detail: str | None = None,
+         media_resolution: str | None = None) -> dict:
     """Send one picture and one prompt to `model`; return the measured record.
 
     `level` is our thinking level ("min", "medium", "max"; see
@@ -39,6 +74,8 @@ def call(model: Model, image: bytes | None, media_type: str, prompt: str,
     for probing. Neither: the provider's default. `image=None` sends text only.
     """
     extensions = dict(model.extensions or {})
+    if media_resolution:  # Gemini only; see _gemini_media_resolution_patch
+        extensions["segbench_media_resolution"] = media_resolution
     if level is not None:
         chosen = THINKING[model.key][level]
         effort = chosen.get("effort")
@@ -53,6 +90,7 @@ def call(model: Model, image: bytes | None, media_type: str, prompt: str,
         "level": level,
         "effort": effort,
         "extensions": extensions or None,
+        "image_detail": detail,
     }
     if (model.billing == "subscription") != (route.provider in SUBSCRIPTION_PROVIDERS):
         record["error"] = f"route resolves to {route.provider!r}, which does not match billing {model.billing!r}"
@@ -63,9 +101,9 @@ def call(model: Model, image: bytes | None, media_type: str, prompt: str,
         settings["extensions"] = extensions
     if effort is not None:
         settings["reasoning"] = Reasoning(effort=effort)
-    content = [prompt] if image is None else [image_part(data=image, media_type=media_type), prompt]
     start = time.perf_counter()
-    try:  # building the request can refuse a setting too (an effort word the model lacks)
+    try:  # building the request can refuse a setting too (an effort word, an image detail)
+        content = [prompt] if image is None else [image_part(data=image, media_type=media_type, detail=detail), prompt]
         request = Request(model=model.route, messages=(Message.user(content),), config=Config(**settings))
         response = _router.complete(request)
     except Exception as error:

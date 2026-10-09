@@ -58,6 +58,43 @@ BY_KEY = {t.key: t for t in TASKS}
 
 TRACKS = ("find", "whole", "trick")
 
+# ---------------- prompt v2 (2026-10-09): points only ----------------
+# Written to measure pointing, not format-following (README; docs/point-benchmark-v1.md):
+# - coordinates named ("x", "y") instead of an unlabelled pair: in v1 two
+#   Gemini models wrote [y, x] although asked for [x, y];
+# - "mark every one ... do not stop early": in v1 three models stopped at
+#   exactly 50 of 83 log ends with room left to answer;
+# - the same words for every model; trick questions use the same template.
+# Checked on synthetic pictures only (scripts/check_points_v2.py) before any
+# benchmark photo was sent.
+PROMPT_VERSION_V2 = "v2"
+
+COORDINATES_V2 = """x and y are integers from 0 to 1000 over the whole photo: x is the horizontal
+position (0 = left edge, 1000 = right edge) and y the vertical position
+(0 = top edge, 1000 = bottom edge). They are not pixels: whatever the photo's
+size, the right edge is x = 1000 and the bottom edge is y = 1000."""
+# The last sentence was added after the synthetic check (scripts/check_points_v2.py):
+# DeepSeek Flash estimated positions on 0..1000, then divided them again as if
+# they were pixels. Added for every model, checked again on synthetic pictures.
+
+
+def prompt_v2(track: str, task: Task) -> str:
+    if track not in ("find", "trick"):
+        raise ValueError("prompt v2 covers the find and trick tracks only")
+    target = task.target if track == "find" else task.absent
+    labelled = track == "find" and bool(task.labels)
+    rule = _label_rule(task) if labelled else ""
+    note = f"\n{task.note}" if labelled and task.note else ""
+    item = '{"x": 0, "y": 0, "label": "..."}' if labelled else '{"x": 0, "y": 0}'
+    return f"""Find {target} in this photo. Put one point on each one, inside it.{rule}{note}
+Mark every one you can see, however many there are. Do not stop early or give only a sample.
+
+Reply with JSON only, in this shape:
+{{"objects": [{item}, ...]}}
+If there are none, reply {{"objects": []}}.
+
+{COORDINATES_V2}"""
+
 
 def applies(track: str, task: Task) -> bool:
     """Regions have nothing separate to find: they are only asked whole."""

@@ -16,9 +16,11 @@ import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / 'results/point-benchmark-v1.2/scored.jsonl'
-SUMMARY = ROOT / 'results/point-benchmark-v1.2/summary.csv'
-OUT = ROOT / 'charts/point-pilot-editorial'
+import sys
+RUN = sys.argv[1] if len(sys.argv) > 1 else 'point-benchmark-v1.2'
+SOURCE = ROOT / 'results' / RUN / 'scored.jsonl'
+SUMMARY = ROOT / 'results' / RUN / 'summary.csv'
+OUT = ROOT / 'charts' / (sys.argv[2] if len(sys.argv) > 2 else 'point-pilot-editorial')
 
 
 def main():

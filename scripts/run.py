@@ -34,10 +34,11 @@ from pathlib import Path
 from lm15 import LMRouter
 
 from segbench import parse
+from segbench.point_score import read_points
 from segbench.call import call
 from segbench.models import BENCHMARKED, BY_KEY, levels_for
 from segbench.tasks import BY_KEY as TASKS_BY_KEY
-from segbench.tasks import PROMPT_VERSION, TASKS, TRACKS, applies, prompt
+from segbench.tasks import PROMPT_VERSION, PROMPT_VERSION_V2, TASKS, TRACKS, applies, prompt, prompt_v2
 
 ROOT = Path(__file__).resolve().parents[1]
 ATTEMPTS = 3
@@ -45,6 +46,23 @@ BACKOFF_SECONDS = (15, 60)
 # Calls in flight at once per provider. Subscriptions are shared with the
 # family's own use, so they get fewer.
 PER_PROVIDER = defaultdict(lambda: 6, {"openai-codex": 4, "claude-code": 3})
+
+# Prompt v2 also asks each provider for the most image detail it offers
+# (scripts/probe_detail.py, 2026-10-09, input tokens of a 4000x2252 picture):
+# Gemini ULTRA_HIGH on the image part doubles it (1,108 -> 2,213); OpenAI's
+# default already takes the most (10,674; "high" would lower it to ~2,950);
+# GLM, DeepSeek, Kimi and Qwen ignore "high"; Anthropic has no setting.
+IMAGE_SETTINGS_V2 = {"gemini": {"media_resolution": "MEDIA_RESOLUTION_ULTRA_HIGH"}}
+
+
+def image_settings(model, version: str) -> dict:
+    if version != PROMPT_VERSION_V2:
+        return {}
+    return IMAGE_SETTINGS_V2.get(model.route.split(":")[0], {})
+
+
+def prompt_for(version: str, track: str, task) -> str:
+    return prompt_v2(track, task) if version == PROMPT_VERSION_V2 else prompt(track, task)
 
 
 def key_of(r: dict) -> tuple:
@@ -75,26 +93,32 @@ def done_keys(path: Path) -> set:
     return done
 
 
-def run_one(model, level, task, track, repeat, images, semaphores) -> dict:
+def run_one(model, level, task, track, repeat, images, semaphores, version=PROMPT_VERSION) -> dict:
     image = images[task.photo]
-    text = prompt(track, task)
+    text = prompt_for(version, track, task)
+    extra = image_settings(model, version)
     failed = []
     with semaphores[LMRouter().resolve(model.route).provider]:
         for attempt in range(ATTEMPTS):
-            record = call(model, image["bytes"], "image/jpeg", text, level=level)
+            record = call(model, image["bytes"], "image/jpeg", text, level=level, **extra)
             if "error" not in record or not record.get("retryable") or attempt == ATTEMPTS - 1:
                 break
             failed.append({k: record.get(k) for k in ("started_at", "seconds", "error")})
             time.sleep(BACKOFF_SECONDS[min(attempt, len(BACKOFF_SECONDS) - 1)])
     record.update({
         "track": track, "task": task.key, "task_number": task.number, "repeat": repeat,
-        "prompt_version": PROMPT_VERSION, "prompt": text,
+        "prompt_version": version, "prompt": text,
         "image": task.photo, "image_sha256": image["sha256"], "image_bytes": len(image["bytes"]),
         "failed_attempts": failed,
     })
     if "error" not in record:
         try:
-            answer = parse.read(track, task.kind, record["text"], task.labels)
+            if version == PROMPT_VERSION_V2:  # named x/y; same reader as the scorer
+                points, how = read_points(record["text"], labelled=track == "find" and bool(task.labels),
+                                          parser="lenient")
+                answer, record["read_as"] = {"items": points}, how
+            else:
+                answer = parse.read(track, task.kind, record["text"], task.labels)
             record["readable"], record["answer"] = True, answer
         except Exception as error:
             record["readable"], record["unreadable_because"] = False, f"{type(error).__name__}: {error}"[:300]
@@ -110,6 +134,8 @@ def main(argv: list[str]) -> int:
     ap.add_argument("--tracks", nargs="*", default=list(TRACKS), help=f"{list(TRACKS)} (default: all)")
     ap.add_argument("--repeats", type=int, default=1)
     ap.add_argument("--dry-run", action="store_true", help="print the plan and one prompt per track, call nothing")
+    ap.add_argument("--prompt-version", choices=(PROMPT_VERSION, PROMPT_VERSION_V2), default=PROMPT_VERSION,
+                    help="v2: named x/y, 'mark every one', most image detail; find and trick tracks only")
     args = ap.parse_args(argv)
 
     models = [BY_KEY[k] for k in args.models] if args.models else list(BENCHMARKED)
@@ -119,7 +145,10 @@ def main(argv: list[str]) -> int:
     jobs = plan(models, args.levels, tasks, args.tracks, args.repeats)
     out = ROOT / "results" / f"run-{args.name}.jsonl"
     done = done_keys(out)
-    todo = [j for j in jobs if (j[3], j[2].key, j[0].key, j[1], j[4], PROMPT_VERSION) not in done]
+    version = args.prompt_version
+    if version == PROMPT_VERSION_V2 and set(args.tracks) - {"find", "trick"}:
+        ap.error("prompt v2 covers --tracks find trick only")
+    todo = [j for j in jobs if (j[3], j[2].key, j[0].key, j[1], j[4], version) not in done]
     print(f"{len(jobs)} calls planned, {len(jobs) - len(todo)} already in {out.name}, {len(todo)} to send")
 
     if args.dry_run:
@@ -127,7 +156,7 @@ def main(argv: list[str]) -> int:
         for _, _, task, track, _ in todo:
             if (track, task.kind, bool(task.labels)) not in shown:
                 shown.add((track, task.kind, bool(task.labels)))
-                print(f"\n--- {track} / {task.key} ({PROMPT_VERSION}) ---\n{prompt(track, task)}")
+                print(f"\n--- {track} / {task.key} ({version}) ---\n{prompt_for(version, track, task)}")
         return 0
 
     images = {}
@@ -141,7 +170,7 @@ def main(argv: list[str]) -> int:
     start = time.time()
     n_ok = n_err = n_unreadable = 0
     with ThreadPoolExecutor(max_workers=64) as pool, out.open("a") as f:
-        futures = [pool.submit(run_one, *job, images, semaphores) for job in todo]
+        futures = [pool.submit(run_one, *job, images, semaphores, version) for job in todo]
         for i, future in enumerate(as_completed(futures), 1):
             r = future.result()
             with lock:

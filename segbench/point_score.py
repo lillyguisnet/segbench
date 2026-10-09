@@ -40,7 +40,12 @@ def parse_points(text: str, labelled: bool = False) -> list[dict]:
     for obj in data['objects']:
         if not isinstance(obj, dict):
             raise ValueError('Object must be a dictionary')
-        p = obj.get('point')
+        if 'point' in obj:  # prompt v1: "point": [x, y]
+            p = obj.get('point')
+        elif 'x' in obj or 'y' in obj:  # prompt v2: named coordinates
+            p = [obj.get('x'), obj.get('y')]
+        else:
+            p = None
         if not isinstance(p, list) or len(p) != 2 or not all(type(v) in (int, float) and math.isfinite(v) for v in p):
             raise ValueError('Expected two finite numeric coordinates')
         row = {'point': [float(v) for v in p]}
@@ -58,6 +63,9 @@ _NUM = r'-?\d+(?:\.\d+)?'
 # number (a broken '[188, 30, "label"'). Never a triple like [a, b, c].
 _PAIR = re.compile(r'\[\s*(' + _NUM + r')\s*,\s*(' + _NUM + r')\s*(?=\]|,\s*[^\d\s\-.])')
 _LABEL = re.compile(r'\b(dirty|clean)\b', re.I)
+# Prompt v2's named form: "x": n ... "y": n inside one object, either order.
+_NAMED = re.compile(r'"x"\s*:\s*(' + _NUM + r')\s*,\s*"y"\s*:\s*(' + _NUM + r')'
+                    r'|"y"\s*:\s*(' + _NUM + r')\s*,\s*"x"\s*:\s*(' + _NUM + r')')
 
 
 def recover_points(text: str, labelled: bool = False) -> list[dict]:
@@ -70,18 +78,43 @@ def recover_points(text: str, labelled: bool = False) -> list[dict]:
     scoring. Used only when parse_points fails, so a well-formed reply is
     never read differently.
     """
-    matches = list(_PAIR.finditer(text))
-    if not matches:
+    if re.search(r'"[xy]"\s*:', text):  # prompt v2's named form, possibly garbled
+        found = _recover_named(text)
+    else:
+        found = [(m.start(), m.end(), m.group(1), m.group(2)) for m in _PAIR.finditer(text)]
+    if not found:
         raise ValueError('No coordinate pairs found')
     out = []
-    for i, m in enumerate(matches):
-        row = {'point': [float(m.group(1)), float(m.group(2))]}
+    for i, (start, end_, x, y) in enumerate(found):
+        row = {'point': [float(x), float(y)]}
         if labelled:
-            end = matches[i + 1].start() if i + 1 < len(matches) else len(text)
-            lab = _LABEL.search(text, m.end(), end)
+            end = found[i + 1][0] if i + 1 < len(found) else len(text)
+            lab = _LABEL.search(text, end_, end)
             row['label'] = lab.group(1).lower() if lab else None
         out.append(row)
     return out
+
+
+_NUMTOK = re.compile(r'(?<![A-Za-z0-9_.])-?\d+(?:\.\d+)?(?![A-Za-z0-9_.])')
+
+
+def _recover_named(text: str) -> list[tuple]:
+    """Object by object (text between two '{'), as written: named x/y where the
+    keys are intact (either order); every other number in the object paired in
+    written order, first = x (the prompt's order). Numbers glued to letters
+    ("x0") are not coordinates. Returns (start, end, x, y)."""
+    cuts = [m.start() for m in re.finditer(r'\{', text)] + [len(text)]
+    out = []
+    for a, b in zip(cuts, cuts[1:]):
+        chunk, used = text[a:b], []
+        for m in _NAMED.finditer(chunk):
+            x, y = (m.group(1), m.group(2)) if m.group(1) is not None else (m.group(4), m.group(3))
+            out.append((a + m.start(), a + m.end(), x, y))
+            used.append((m.start(), m.end()))
+        rest = [n for n in _NUMTOK.finditer(chunk) if not any(s <= n.start() < e for s, e in used)]
+        for n1, n2 in zip(rest[0::2], rest[1::2]):
+            out.append((a + n1.start(), a + n2.end(), n1.group(0), n2.group(0)))
+    return sorted(out)
 
 
 def read_points(text: str, labelled: bool = False, parser: str = 'strict') -> tuple[list[dict], str]:

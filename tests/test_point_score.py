@@ -87,6 +87,21 @@ class PointScoreTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             recover_points('I see no objects.')
 
+    def test_named_coordinates_v2(self):
+        self.assertEqual(parse_points('{"objects":[{"x":1,"y":2},{"y":4,"x":3}]}'),
+                         [{'point': [1.0, 2.0]}, {'point': [3.0, 4.0]}])
+        self.assertEqual(parse_points('{"objects":[{"x":1,"y":2,"label":"dirty"}]}', True)[0]['label'], 'dirty')
+        with self.assertRaises(ValueError):
+            parse_points('{"objects":[{"x":1}]}')
+        broken = '{"objects":[{"x": 5, "y": 6}, "x": 7, "y": 8}, {"y": 10, "x": 9, "label": "clean"}'
+        self.assertEqual([p['point'] for p in recover_points(broken)], [[5, 6], [7, 8], [9, 10]])
+        self.assertEqual([p['label'] for p in recover_points(broken, True)], [None, None, 'clean'])
+
+    def test_garbled_named_keys_read_as_written(self):
+        g = '{"objects": [{"x": 296, "y": 48}, 314, 150}, {"xecho": 222, "y": 447}, {"x0 = 85, "y": 454}, {"label": "91, 856"}]}'
+        self.assertEqual([p['point'] for p in recover_points(g)],
+                         [[296, 48], [314, 150], [222, 447], [85, 454], [91, 856]])
+
 
 if __name__ == '__main__':
     unittest.main()
