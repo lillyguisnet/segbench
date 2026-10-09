@@ -60,7 +60,7 @@ SPECIALISTS: dict[str, tuple[str, str]] = {
     "molmopoint-8b": ("MolmoPoint 8B", "Ai2"),
     "rexomni-3b": ("Rex-Omni 3B", "IDEA"),
     "florence2-large": ("Florence-2 Large", "Microsoft"),
-    "florence2-large-grounding": ("Florence-2 · grounding", "Microsoft"),
+    "florence2-large-grounding": ("Florence-2 Large", "Microsoft"),  # its better text mode (phrase grounding)
     "florence2-large-ovd": ("Florence-2 · detection", "Microsoft"),
 }
 

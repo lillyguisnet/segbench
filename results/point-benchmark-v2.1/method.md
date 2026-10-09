@@ -85,23 +85,3 @@ overlay < 0.1 GB, no compute; both restored afterwards.
   shared omissions and anchoring are possible. Masks will replace the
   distance tolerance later.
 - Six photos (four object tasks here) do not support broad claims.
-
-## v2.1 (2026-10-09): each model keeps the better of two prompts (option B)
-
-Maxime chose option B: every model shown at its best of two fixed setups,
-with no note on the chart (the method is here and in the report folder).
-- Language models: prompt v1's exact words re-run with v2's image settings
-  ("v1-hd", `results/run-points-v1hd.jsonl`, 156 calls, 3 tries), so the two
-  candidates differ only in wording. Per model, the prompt with the higher
-  four-task score is kept for the whole model, never task by task
-  (`scripts/select_best_prompt.py`). Kept v1-hd: Astra 68.6 (v2 66.9), Sol
-  66.4 (63.5), Kimi 33.9 (30.7), GLM 18.2 (15.1), Luna 15.5 (11.7). Kept v2:
-  the other eight.
-- Florence-2 keeps its better text mode (phrase grounding 32.9 vs
-  open-vocabulary detection 5.9) and is shown once, as "Florence-2 Large".
-- **Known bias**: the choice is made on the test photos, so a chosen score
-  includes a little luck (scores move up to ~26 points between tries on one
-  photo). It favours the most erratic models slightly. The unbiased way
-  (option A: choose on separate photos, then run the test once) was offered
-  and not taken.
-Report: `results/point-benchmark-v2.1`; chart: `charts/point-benchmark-v2.1`.

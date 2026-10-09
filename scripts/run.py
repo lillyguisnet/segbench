@@ -55,8 +55,14 @@ PER_PROVIDER = defaultdict(lambda: 6, {"openai-codex": 4, "claude-code": 3})
 IMAGE_SETTINGS_V2 = {"gemini": {"media_resolution": "MEDIA_RESOLUTION_ULTRA_HIGH"}}
 
 
+# "v1-hd": prompt v1's exact words with v2's image settings, so the two
+# prompts differ only in wording (option B, 2026-10-09: each model keeps the
+# better of the two prompts; docs/point-benchmark-v2.md).
+PROMPT_VERSION_V1_HD = "v1-hd"
+
+
 def image_settings(model, version: str) -> dict:
-    if version != PROMPT_VERSION_V2:
+    if version not in (PROMPT_VERSION_V2, PROMPT_VERSION_V1_HD):
         return {}
     return IMAGE_SETTINGS_V2.get(model.route.split(":")[0], {})
 
@@ -134,7 +140,8 @@ def main(argv: list[str]) -> int:
     ap.add_argument("--tracks", nargs="*", default=list(TRACKS), help=f"{list(TRACKS)} (default: all)")
     ap.add_argument("--repeats", type=int, default=1)
     ap.add_argument("--dry-run", action="store_true", help="print the plan and one prompt per track, call nothing")
-    ap.add_argument("--prompt-version", choices=(PROMPT_VERSION, PROMPT_VERSION_V2), default=PROMPT_VERSION,
+    ap.add_argument("--prompt-version", choices=(PROMPT_VERSION, PROMPT_VERSION_V2, PROMPT_VERSION_V1_HD),
+                    default=PROMPT_VERSION,
                     help="v2: named x/y, 'mark every one', most image detail; find and trick tracks only")
     args = ap.parse_args(argv)
 
