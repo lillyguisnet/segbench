@@ -1,35 +1,31 @@
-"""Draw one bubble chart per track: quality up, cost across, time as size.
+"""Draw one bubble chart per track: quality up, cost across, speed as colour.
 
-Needs matplotlib (not in the base install): run it through
-scripts/draw_charts.py, which declares it.
+Needs matplotlib and svgelements (not in the base install): run it through
+scripts/draw_charts.py, which declares them.
 
 The image carries no title, caption or footnotes: the post that shares it
 says what it is. What the chart itself encodes:
 - y: quality, 0 to 100 (the README's 0..1 score x 100). The spread over
-  repeats is in points.csv, not drawn: 40 error bars made the chart
-  unreadable.
-- x: US dollars per 1,000 images, log scale.
-- size: speed, so that bigger is better like higher is. The fastest
-  model is the biggest bubble; the diameter shrinks with the logarithm of
-  the median seconds per image (0.01 s to 1,000 s, same scale on every
-  chart), because times range from 0.02 s to minutes. The legend reads in
-  seconds, the unit people know.
-- colour: the maker's brand colour (exceptions where two brands clash,
-  see BRAND below).
-- shape: circle = called through an API, square = run on our own GPU,
-  dark ring = a pair (one model finds, another outlines).
-- shade: thinking level (light = min), only when the chart shows more than
-  one level; with one level every bubble is full colour.
+  repeats is in points.csv, not drawn.
+- x: US dollars per 1,000 images, log scale. API models and models on a
+  rented GPU are drawn the same way: both can be bought by anyone.
+- marker: the maker's logo on a disc, every disc the same size.
+- ring colour: speed, median seconds per image, green (fast) through amber
+  to red (slow), on a log scale from 1 s to 100 s, the same on every chart.
+  The API models take 3 s to minutes, so that is where colour must tell
+  them apart; GPU models (well under 1 s) are all full green.
+- small second logo at the lower right: a pair (the big logo finds, the
+  small one outlines).
 - dashed line: the best-value (Pareto) frontier, straight segments from the
-  cheapest model to the best one, as Artificial Analysis draws it; its
-  names are in bold.
+  cheapest model to the best one; its names are in bold.
 """
 
 from __future__ import annotations
 
 import math
-from collections import defaultdict
+import re
 from dataclasses import dataclass
+from functools import cache
 from pathlib import Path
 
 import matplotlib
@@ -37,15 +33,16 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 from matplotlib import font_manager  # noqa: E402
-from matplotlib.colors import to_rgb  # noqa: E402
-from matplotlib.lines import Line2D  # noqa: E402
+from matplotlib.colors import LinearSegmentedColormap, to_rgb  # noqa: E402
+from matplotlib.path import Path as MPath  # noqa: E402
 from matplotlib.ticker import FixedLocator, NullLocator  # noqa: E402
+from matplotlib.transforms import ScaledTranslation  # noqa: E402
 
 from segbench.chart_data import Point, frontier  # noqa: E402
-from segbench.models import LEVELS  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 FONT_DIR = ROOT / "assets" / "fonts"
+LOGO_DIR = ROOT / "assets" / "logos"
 
 INK = "#16181d"
 INK_2 = "#4a4f5a"
@@ -54,31 +51,32 @@ GRID = "#ebecef"
 PAPER = "#ffffff"
 FAKE_RED = "#d62839"
 
-# Brand colours. Where two brands share a colour, the less known one is
-# moved to a nearby shade or, failing that, given a free colour:
-BRAND = {
-    # called through an API
-    "OpenAI": "#10a37f",     # the ChatGPT green (OpenAI's own mark is black, which Kimi uses)
-    "Anthropic": "#d97757",  # Claude's terracotta
-    "Google": "#4285f4",     # Google blue
-    "DeepSeek": "#26339c",   # DeepSeek's whale blue, darkened to stay apart from Google's
-    "Alibaba": "#615ced",    # Qwen violet
-    "Moonshot": "#1c1c1e",   # Kimi black
-    "Z.AI": "#e5484d",       # exception: Z.ai's black and white is taken; a free colour
-    # run on our own GPU (squares, so Meta blue is not read as Google)
-    "Meta": "#0866ff",       # Meta blue
-    "Roboflow": "#a01ee6",   # Roboflow purple
-    "Ultralytics": "#f0507a",  # exception: Ultralytics' blue is taken; a free colour
-    "UC Davis": "#daaa00",   # UC Davis gold
+# Maker -> logo file in assets/logos (sources there). A maker without a
+# logo gets its initials.
+LOGOS = {
+    "OpenAI": "openai.svg",
+    "Anthropic": "anthropic.svg",
+    "Google": "google.svg",
+    "DeepSeek": "deepseek.svg",
+    "Alibaba": "alibabacloud.svg",
+    "Moonshot": "moonshotai.svg",
+    "Z.AI": "zdotai.svg",
+    "Meta": "meta.svg",
+    "Ultralytics": "ultralytics.svg",
+    "Roboflow": "roboflow.svg",
 }
-OTHER = "#9aa0a6"
-PAIR_RING = INK_2
+INITIALS = {"UC Davis": "UCD"}
 
-LEVEL_ALPHA = {"min": 0.28, "medium": 0.55, "max": 0.88, "": 0.85}
+# Speed: green (fast) -> amber -> red (slow). The green is darker than the
+# red so the two still differ in lightness for red-green colour-blind readers.
+SPEED_CMAP = LinearSegmentedColormap.from_list("speed", ["#16834a", "#8fbf3a", "#f2b52b", "#ef7a2f", "#e0402f"])
+SPEED_DOMAIN = (1.0, 100.0)  # seconds; faster or slower is clipped to the ends
+SPEED_TICKS = (1, 3, 10, 30, 100)
 
-SECONDS_DOMAIN = (0.01, 1000.0)  # same bubble scale on every chart
-DIAMETER_PT = (9.0, 40.0)  # slowest, fastest
-SIZE_LEGEND = (100, 10, 1, 0.1)  # seconds, small (slow) to big (fast)
+DISC_PT = 27.0  # diameter of every disc
+RING_PT = 3.6
+LOGO_FRACTION = 0.56  # logo size inside the disc
+BADGE_PT = 15.0  # the outliner's small disc on a pair
 
 FIG_W, FIG_H = 16, 9  # inches; 3200 x 1800 pixels at dpi 200
 
@@ -102,19 +100,51 @@ def _fonts() -> Fonts:
     return Fonts(load("Regular"), load("Medium"), load("SemiBold"), load("Bold"))
 
 
-def colour_of(maker: str) -> str:
-    return BRAND.get(maker, OTHER)
+@cache
+def logo_path(maker: str) -> MPath | None:
+    """The maker's logo as a matplotlib path, centred, y up, or None."""
+    import svgelements as se
+
+    name = LOGOS.get(maker)
+    if not name or not (LOGO_DIR / name).exists():
+        return None
+    svg = (LOGO_DIR / name).read_text()
+    vb = [float(v) for v in re.search(r'viewBox="([^"]+)"', svg).group(1).split()]
+    cx, cy = vb[0] + vb[2] / 2, vb[1] + vb[3] / 2
+    verts, codes = [], []
+    for d in re.findall(r'<path[^>]*\sd="([^"]+)"', svg):
+        for s in se.Path(d):
+            if isinstance(s, se.Move):
+                verts.append(s.end)
+                codes.append(MPath.MOVETO)
+            elif isinstance(s, se.Close):
+                verts.append(s.end)
+                codes.append(MPath.CLOSEPOLY)
+            elif isinstance(s, se.Line):
+                verts.append(s.end)
+                codes.append(MPath.LINETO)
+            elif isinstance(s, se.QuadraticBezier):
+                verts += [s.control, s.end]
+                codes += [MPath.CURVE3] * 2
+            elif isinstance(s, se.CubicBezier):
+                verts += [s.control1, s.control2, s.end]
+                codes += [MPath.CURVE4] * 3
+            elif isinstance(s, se.Arc):
+                for c in s.as_cubic_curves():
+                    verts += [c.control1, c.control2, c.end]
+                    codes += [MPath.CURVE4] * 3
+    return MPath([(x - cx, cy - y) for x, y in verts], codes)
 
 
-def _darker(colour: str, f: float = 0.72) -> tuple[float, float, float]:
+def speed_colour(seconds: float):
+    lo, hi = (math.log10(v) for v in SPEED_DOMAIN)
+    t = (math.log10(min(max(seconds, SPEED_DOMAIN[0]), SPEED_DOMAIN[1])) - lo) / (hi - lo)
+    return SPEED_CMAP(t)
+
+
+def _tint(colour, f: float = 0.86) -> tuple[float, float, float]:
     r, g, b = to_rgb(colour)
-    return (r * f, g * f, b * f)
-
-
-def diameter(seconds: float) -> float:
-    lo, hi = (math.log10(v) for v in SECONDS_DOMAIN)
-    t = (math.log10(min(max(seconds, SECONDS_DOMAIN[0]), SECONDS_DOMAIN[1])) - lo) / (hi - lo)
-    return DIAMETER_PT[1] - t * (DIAMETER_PT[1] - DIAMETER_PT[0])  # faster = bigger
+    return (r + (1 - r) * f, g + (1 - g) * f, b + (1 - b) * f)
 
 
 def _money(v: float) -> str:
@@ -130,12 +160,33 @@ def x_range(points: list[Point]) -> tuple[float, float]:
     return 10 ** math.floor(math.log10(min(xs)) - 0.15), 10 ** math.ceil(math.log10(max(xs)) + 0.15)
 
 
-def _marker(p: Point) -> str:
-    return "s" if p.kind == "specialist" else "o"
+def _badge_offset_pt() -> float:
+    return (DISC_PT / 2) * 0.72  # along each axis: the badge sits on the ring, lower right
 
 
 def _radius_pt(p: Point) -> float:
-    return diameter(p.seconds) / 2 + (5 if p.kind == "pair" else 0)
+    r = DISC_PT / 2 + RING_PT / 2
+    if p.kind == "pair":
+        r = max(r, math.hypot(_badge_offset_pt(), _badge_offset_pt()) + BADGE_PT / 2)
+    return r
+
+
+def _disc(ax, x, y, maker: str, *, diameter: float, ring, ring_width: float, fill, fonts: Fonts,
+          transform=None, zorder: float = 4) -> None:
+    """One disc with a logo (or initials), drawn at (x, y) in `transform` (data by default)."""
+    kw = {"transform": transform} if transform is not None else {}
+    ax.scatter([x], [y], s=diameter ** 2, marker="o", facecolors=[fill], edgecolors=[ring], linewidths=ring_width,
+               zorder=zorder, **kw)
+    logo = logo_path(maker)
+    size = diameter * LOGO_FRACTION
+    if logo is not None:
+        ax.scatter([x], [y], s=size ** 2, marker=logo, facecolors=[to_rgb(INK)], edgecolors="none", linewidths=0,
+                   zorder=zorder + 0.1, **kw)
+    else:
+        text = INITIALS.get(maker) or "".join(w[0] for w in maker.split())[:3]
+        ax.text(x, y, text, ha="center", va="center_baseline", fontproperties=fonts.bold,
+                fontsize=size * (0.62 if len(text) < 3 else 0.48), color=INK, zorder=zorder + 0.1,
+                **({"transform": transform} if transform is not None else {}))
 
 
 def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, float] | None = None,
@@ -153,7 +204,7 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
 
     plt.rcParams.update({"svg.fonttype": "path", "pdf.fonttype": 42, "font.family": fonts.regular.get_name()})
     fig = plt.figure(figsize=(FIG_W, FIG_H), facecolor=PAPER)
-    ax = fig.add_axes((0.065, 0.105, 0.715, 0.865))
+    ax = fig.add_axes((0.065, 0.105, 0.745, 0.865))
     ax.set_facecolor(PAPER)
 
     # ----- axes -----
@@ -195,37 +246,23 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
     best = frontier([p for p in pts if p.tasks_done == p.tasks_total])
     best_ids = {p.entrant for p in best}
     line = [(X(p), Y(p)) for p in best]
-    ax.plot(*zip(*line), color=INK, lw=1.4, ls=(0, (5, 4)), alpha=0.5, zorder=1, solid_capstyle="round")
+    ax.plot(*zip(*line), color=INK, lw=1.4, ls=(0, (5, 4)), alpha=0.5, zorder=1)
 
-    # ----- one model's thinking levels (labelled once, at the highest) -----
-    chains = defaultdict(list)
-    for p in pts:
-        if p.kind == "general":
-            chains[p.model].append(p)
-    rank = {lv: i for i, lv in enumerate(LEVELS)}
-    for chain in chains.values():
-        chain.sort(key=lambda p: rank.get(p.level, 0))
-    several_levels = len({p.level for p in pts if p.level}) > 1
-
-    # ----- bubbles, biggest first so small ones stay visible -----
-    for p in sorted(pts, key=lambda p: -diameter(p.seconds)):
-        c = colour_of(p.maker)
-        d = diameter(p.seconds)
-        face = (*to_rgb(c), LEVEL_ALPHA.get(p.level, 0.85) if several_levels else 0.85)
+    # ----- discs: slowest first, so fast ones (often in crowded spots) stay on top -----
+    o = _badge_offset_pt()
+    for i, p in enumerate(sorted(pts, key=lambda p: -p.seconds)):
+        ring = speed_colour(p.seconds)
+        z = 4 + i * 0.01
+        _disc(ax, X(p), Y(p), p.maker, diameter=DISC_PT, ring=ring, ring_width=RING_PT, fill=_tint(ring),
+              fonts=fonts, zorder=z)
         if p.kind == "pair":
-            ax.scatter([X(p)], [Y(p)], s=(d + 9) ** 2, facecolors="none", edgecolors=PAIR_RING, linewidths=2.0,
-                       zorder=3)
-        side = d * math.sqrt(math.pi / 4) if p.kind == "specialist" else d  # square of the circle's area
-        ax.scatter([X(p)], [Y(p)], s=side ** 2, marker=_marker(p), facecolors=[face], edgecolors=[_darker(c)],
-                   linewidths=1.1, zorder=4)
+            shift = ax.transData + ScaledTranslation(o / 72, -o / 72, fig.dpi_scale_trans)
+            _disc(ax, X(p), Y(p), p.outliner_maker, diameter=BADGE_PT, ring=INK_3, ring_width=1.0, fill=PAPER,
+                  fonts=fonts, transform=shift, zorder=z + 0.005)
 
-    # ----- labels: one per model (at its most-thinking bubble), one per specialist or pair -----
-    labelled: list[tuple[Point, str]] = [(chain[-1], chain[-1].label) for chain in chains.values()]
-    labelled += [(p, p.label + (f" ({p.level})" if p.level and several_levels else "")) for p in pts
-                 if p.kind != "general"]
-
-    def on_frontier(p: Point) -> bool:
-        return p.entrant in best_ids or (p.kind == "general" and any(q.entrant in best_ids for q in chains[p.model]))
+    # ----- labels -----
+    several_levels = len({p.level for p in pts if p.level}) > 1
+    labelled = [(p, p.label + (f" \u00b7 {p.level}" if p.level and several_levels else "")) for p in pts]
 
     fig.canvas.draw()
     renderer = fig.canvas.get_renderer()
@@ -239,13 +276,12 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
     placed: list[tuple[float, float, float, float]] = []
     seg = [tuple(ax.transData.transform(xy)) for xy in line]
     for (x0, y0_), (x1, y1_) in zip(seg, seg[1:]):
-        n = max(1, int(math.hypot(x1 - x0, y1 - y0_) / 8))
+        n = max(1, int(math.hypot(x1 - x0, y1_ - y0_) / 8))
         for k in range(n + 1):
             x, y = x0 + (x1 - x0) * k / n, y0_ + (y1_ - y0_) * k / n
             placed.append((x - 4, y - 4, x + 4, y + 4))
-    for p, text in sorted(labelled, key=lambda it: (not on_frontier(it[0]), it[0].kind == "general",
-                                                    -it[0].quality)):
-        strong = on_frontier(p)
+    for p, text in sorted(labelled, key=lambda it: (it[0].entrant not in best_ids, -it[0].quality)):
+        strong = p.entrant in best_ids
         style = dict(fontproperties=fonts.semibold if strong else fonts.regular, fontsize=12,
                      color=INK if strong else INK_2, zorder=6)
         probe = ax.text(0, 0, text, **style)
@@ -276,71 +312,54 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
 
 
 def _legend(fig, fonts: Fonts, pts: list[Point]) -> None:
-    lx = 0.815  # left edge of the panel, in figure fractions
+    lx = 0.845  # left edge of the panel, in figure fractions
+    width = 0.125
     y = 0.93
     head = dict(fontproperties=fonts.semibold, fontsize=12.5, color=INK, ha="left", va="center")
-    body = dict(fontproperties=fonts.regular, fontsize=12, color=INK_2, ha="left", va="center")
-    step = 0.036
-    sx = lx + 0.009  # swatch centre
-    tx = lx + 0.024  # text after a swatch
+    body = dict(fontproperties=fonts.regular, fontsize=11.5, color=INK_2, ha="left", va="center")
 
-    def swatch(y_: float, colour, size: float = 11, marker: str = "o", alpha: float = 0.85, x_: float = sx,
-               ring: bool = False):
-        if ring:
-            fig.add_artist(Line2D([x_], [y_], marker="o", ms=size + 7, mfc="none", mec=PAIR_RING, mew=1.8,
-                                  transform=fig.transFigure))
-        fig.add_artist(Line2D([x_], [y_], marker=marker, ms=size, mfc=(*to_rgb(colour), alpha),
-                              mec=_darker(colour), mew=1.0, transform=fig.transFigure))
+    # speed: a colour bar with the seconds under it
+    fig.text(lx, y, "Speed", **head)
+    y -= 0.032
+    fig.text(lx, y, "seconds per image", **{**body, "color": INK_3})
+    y -= 0.040
+    bar = fig.add_axes((lx, y - 0.012, width, 0.024))
+    lo, hi = (math.log10(v) for v in SPEED_DOMAIN)
+    steps = 200
+    bar.imshow([[k / (steps - 1) for k in range(steps)]], cmap=SPEED_CMAP, aspect="auto",
+               extent=(lo, hi, 0, 1))
+    bar.set_xlim(lo, hi)
+    bar.set_xticks([math.log10(t) for t in SPEED_TICKS])
+    labels = [f"{t:g}" for t in SPEED_TICKS]
+    labels[0], labels[-1] = f"\u2264{labels[0]}", f"\u2265{labels[-1]}"
+    bar.set_xticklabels(labels)
+    bar.set_yticks([])
+    for s in bar.spines.values():
+        s.set_visible(False)
+    bar.tick_params(length=0, pad=5, labelcolor=INK_2)
+    for lab in bar.get_xticklabels():
+        lab.set_fontproperties(fonts.regular)
+        lab.set_fontsize(11)
+    y -= 0.062
+    fig.text(lx, y, "fast", **{**body, "fontsize": 11, "color": INK_3})
+    fig.text(lx + width, y, "slow", **{**body, "ha": "right", "fontsize": 11, "color": INK_3})
 
-    def makers(kinds: set[str]) -> list[str]:
-        seen = {p.maker for p in pts if p.kind in kinds} | {p.outliner_maker for p in pts if "pair" in kinds}
-        return [m for m in BRAND if m in seen] + sorted(seen - set(BRAND) - {""})
-
-    api = makers({"general", "pair"}) if any(p.kind in ("general", "pair") for p in pts) else []
-    api = [m for m in api if any(p.maker == m and p.kind != "specialist" for p in pts)]
-    gpu = [m for m in makers({"specialist", "pair"})
-           if any((p.maker == m and p.kind == "specialist") or p.outliner_maker == m for p in pts)]
-
-    if api:
-        fig.text(lx, y, "Through an API", **head)
-        y -= step
-        for m in api:
-            swatch(y, colour_of(m))
-            fig.text(tx, y, m, **body)
-            y -= step
-        y -= step * 0.35
-    if gpu:
-        fig.text(lx, y, "On our own GPU", **head)
-        y -= step
-        for m in gpu:
-            swatch(y, colour_of(m), marker="s", size=10)
-            fig.text(tx, y, m, **body)
-            y -= step
-        y -= step * 0.35
-    if any(p.kind == "pair" for p in pts):
-        swatch(y, colour_of("Google"), ring=True)
-        fig.text(tx, y, "Pair: finder + outliner", **body)
-        y -= step * 1.35
-
-    if len({p.level for p in pts if p.level}) > 1:
-        fig.text(lx, y, "Thinking", **head)
-        y -= step
-        for lv, dx in zip(LEVELS, (0, 0.049, 0.122)):  # room for each word
-            x = sx + dx
-            swatch(y, INK_2, size=12, alpha=LEVEL_ALPHA[lv], x_=x)
-            fig.text(x + 0.011, y, lv, **body)
-        y -= step * 1.35
-
-    fig.text(lx, y, "Speed (time per image)", **head)
-    y -= step * 1.45
-    x = lx
-    for i, s in enumerate(SIZE_LEGEND):
-        d = diameter(s)
-        x += d / 2 / 72 / FIG_W + (0.014 if i else 0)  # points -> inches -> fraction of the figure width
-        fig.add_artist(Line2D([x], [y], marker="o", ms=d, mfc="#eef0f3", mec="#9aa0a6", mew=1.0,
-                              transform=fig.transFigure))
-        fig.text(x, y - 0.045, f"{s:g} s", **{**body, "ha": "center", "fontsize": 11})
-        x += d / 2 / 72 / FIG_W
+    # pair
+    pair = next((p for p in pts if p.kind == "pair"), None)
+    if pair:
+        y -= 0.085
+        hx = lx + 0.016
+        hold = fig.add_axes((hx - 0.03, y - 0.05, 0.06, 0.1))
+        hold.set_xlim(-1, 1)
+        hold.set_ylim(-1, 1)
+        hold.axis("off")
+        _disc(hold, 0, 0, pair.maker, diameter=DISC_PT * 0.85, ring=INK_3, ring_width=1.6, fill=PAPER, fonts=fonts)
+        o = _badge_offset_pt() * 0.85
+        shift = hold.transData + ScaledTranslation(o / 72, -o / 72, fig.dpi_scale_trans)
+        _disc(hold, 0, 0, pair.outliner_maker, diameter=BADGE_PT * 0.85, ring=INK_3, ring_width=1.0, fill=PAPER,
+              fonts=fonts, transform=shift, zorder=4.1)
+        fig.text(lx + 0.042, y + 0.012, "Pair: big logo finds,", **body)
+        fig.text(lx + 0.042, y - 0.016, "small logo outlines", **body)
 
 
 def _overlap(a: tuple[float, float, float, float], b: tuple[float, float, float, float]) -> float:

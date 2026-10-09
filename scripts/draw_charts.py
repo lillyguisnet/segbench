@@ -1,6 +1,6 @@
 # /// script
 # requires-python = ">=3.11"
-# dependencies = ["matplotlib>=3.9"]
+# dependencies = ["matplotlib>=3.9", "svgelements>=1.9"]
 # ///
 """Draw the three bubble charts (one per track) from call records.
 

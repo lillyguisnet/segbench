@@ -122,7 +122,7 @@ Three bubble charts, one per track, in the style of
 |---|---|
 | **y** | quality: mean score over the track's tasks, 0 to 1 (spread over repeats in `points.csv`) |
 | **x** | cost: US dollars per image (log scale), only the parts that track counts |
-| **bubble size** | speed: bigger = faster (median seconds per image, end to end) |
+| **ring colour** | speed: median seconds per image, end to end; green = fast, red = slow |
 
 Each model at each thinking level is one bubble; pairs have their own
 marker. A line joins the **best-value models** (the Pareto frontier: no
@@ -137,19 +137,21 @@ is computed: `segbench/chart_data.py`. Choices made for readability:
 - **Quality is shown 0 to 100** (the 0..1 score × 100), easier to read.
 - **One cost axis for all three charts**, in dollars per 1,000 images
   (per image, the GPU models would read $0.0000008).
-- **Bigger bubble = faster**, so bigger is better, like higher. The size
-  follows the logarithm of the time (100 s, 10 s, 1 s and 0.1 s are evenly
-  spaced steps), on the same scale in every chart: times run from 0.02 s
-  to minutes. The legend is in seconds per image. The slowest models keep
-  a readable minimum size.
+- **Every model is a disc of the same size with its maker's logo**
+  (sources and licences: `assets/logos/SOURCES.md`). API models and models
+  on our GPU look the same: anyone can rent the GPU, so their cost and
+  speed compare fairly.
+- **Speed is the ring colour**, green (fast) to red (slow), on a log scale
+  from 1 s to 100 s, the same on every chart: the API models take 3 s to
+  minutes, so that is where colour must tell them apart; everything under
+  1 s is full green. The green is darker than the red so that red-green
+  colour-blind readers still see a difference in lightness.
 - **No title, caption or footnotes on the image**: the post that shares it
   says what it is. Made-up data gets a faint FAKE DATA stamp.
-- **Colour is the maker's brand colour** (`BRAND` in `segbench/chart.py`;
-  where two brands share a colour, one is shifted or given a free colour).
-  **Circles** are called through an API, **squares** run on our own GPU,
-  a dark **ring** marks a pair. `--level min` (or medium, max) shows one
-  thinking level only; with all levels, the level is the shade (light =
-  min) and each model is labelled once, at its highest level.
+- **A pair** (one model finds, another outlines) shows the finder's logo
+  with the outliner's logo as a small badge.
+- `--level min` (or medium, max) shows one thinking level only; with all
+  levels, each label ends with its level.
 - **The best-value line joins the frontier models with straight
   segments**, cheapest to best, as Artificial Analysis draws it. It is a
   guide for the eye: a point on a segment between two models is not a
@@ -387,7 +389,7 @@ Rules that keep the numbers honest:
   RF-DETR) = rental price of the GPU ($0.22/hour for an RTX 3090, RunPod
   Community Cloud, 8 Oct 2026) ÷ images per hour **under load** (best
   batch size or several workers), because API prices also assume busy,
-  shared GPUs. Speed (bubble size) is still one image at a time. Method:
+  shared GPUs. Speed (ring colour) is still one image at a time. Method:
   `specialists/README.md`.
 - **Time** = wall-clock seconds from request sent to full reply received.
   API times depend on the provider's load, so we keep the median of the
@@ -437,6 +439,7 @@ scripts/   run models, score, draw the chart
 results/   raw call records (JSON Lines), one file per run
 charts/    the drawn charts (charts/demo/: made-up data, not committed)
 assets/fonts/  Inter, the charts' font (SIL Open Font License, OFL.txt)
+assets/logos/  makers' logos for the charts (trademarks; SOURCES.md)
 docs/      research notes, task choices, candidate model survey
 specialists/  one environment per specialist model family (see its README)
 ```
@@ -475,3 +478,6 @@ specialists/  one environment per specialist model family (see its README)
 - **Font in `assets/fonts/`:** [Inter](https://github.com/rsms/inter) by
   The Inter Project Authors, under the [SIL Open Font License 1.1](assets/fonts/OFL.txt);
   cut down to Latin letters for the charts.
+- **Logos in `assets/logos/`:** trademarks of their owners, used only to
+  show who made each model; not covered by the Apache licence. Sources in
+  `assets/logos/SOURCES.md`.
