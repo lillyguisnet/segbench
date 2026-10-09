@@ -202,8 +202,11 @@ def _pair_badge(ax, x, y, maker: str, fonts: Fonts, *, diameter: float = DISC_PT
 
 
 def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, float] | None = None,
-         dpi: int = 216) -> list[Path]:
+         legend: bool = True, names: str = "all", dpi: int = 216) -> list[Path]:
     """Draw the points of one track; return the files written.
+
+    legend=False drops the row above the chart; names="frontier" names only
+    the best-value models (the logos say who made the others).
 
     out_base.png  to post (2160 x 2160 pixels at dpi=216)
     out_base.pdf  to print: vector, fonts embedded
@@ -216,7 +219,7 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
 
     plt.rcParams.update({"svg.fonttype": "path", "pdf.fonttype": 42, "font.family": fonts.regular.get_name()})
     fig = plt.figure(figsize=(FIG_W, FIG_H), facecolor=PAPER)
-    ax = fig.add_axes((0.105, 0.085, 0.85, 0.80))
+    ax = fig.add_axes((0.105, 0.085, 0.85, 0.80 if legend else 0.885))
     ax.set_facecolor(PAPER)
 
     # ----- axes -----
@@ -270,7 +273,8 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
 
     # ----- labels -----
     several_levels = len({p.level for p in pts if p.level}) > 1
-    labelled = [(p, p.label + (f" \u00b7 {p.level}" if p.level and several_levels else "")) for p in pts]
+    labelled = [(p, p.label + (f" \u00b7 {p.level}" if p.level and several_levels else "")) for p in pts
+                if names == "all" or p.entrant in best_ids]
 
     fig.canvas.draw()
     renderer = fig.canvas.get_renderer()
@@ -303,7 +307,8 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
         ax.annotate(text, (X(p), Y(p)), xytext=(off[0] / px_per_pt, off[1] / px_per_pt), textcoords="offset points",
                     ha=ha, va=va, arrowprops=arrow, annotation_clip=False, **style)
 
-    _legend(fig, fonts, pts)
+    if legend:
+        _legend(fig, fonts, pts)
 
     # Made-up numbers must never pass for results: a large faint stamp.
     if any(p.synthetic for p in pts):

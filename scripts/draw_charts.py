@@ -7,6 +7,7 @@
     uv run scripts/draw_charts.py --demo                 # made-up data, to work on the look
     uv run scripts/draw_charts.py results/run-*.jsonl    # real call records
     uv run scripts/draw_charts.py --demo --level min     # one thinking level only
+    uv run scripts/draw_charts.py --demo --no-legend --names frontier   # bare version
 
 Writes to charts/ (charts/demo/ with --demo), for each track:
     <track>.png   to post (2160 x 2160 pixels, square)
@@ -40,6 +41,9 @@ def main() -> None:
     ap.add_argument("--demo", action="store_true", help="make up demo data first and draw it")
     ap.add_argument("--out", type=Path, help="output folder (default charts/, or charts/demo/ with --demo)")
     ap.add_argument("--level", choices=LEVELS, help="show only this thinking level (models without levels stay)")
+    ap.add_argument("--no-legend", action="store_true", help="no speed and pair key above the chart")
+    ap.add_argument("--names", choices=("all", "frontier"), default="all",
+                    help="name every model, or only the best-value ones")
     ap.add_argument("--track", choices=TRACKS, action="append", help="only this track (repeatable)")
     args = ap.parse_args()
 
@@ -64,7 +68,8 @@ def main() -> None:
         if not any(p.track == track for p in points):
             print(f"{track}: no data, skipped")
             continue
-        for path in draw(points, track, out / track, xlim=xlim):
+        for path in draw(points, track, out / track, xlim=xlim, legend=not args.no_legend,
+                         names=args.names):
             print(path.relative_to(ROOT) if path.is_relative_to(ROOT) else path)
 
 
