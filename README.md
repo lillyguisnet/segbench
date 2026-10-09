@@ -122,7 +122,7 @@ Three bubble charts, one per track, in the style of
 |---|---|
 | **y** | quality: mean score over the track's tasks, 0 to 1 (spread over repeats in `points.csv`) |
 | **x** | cost: US dollars per image (log scale), only the parts that track counts |
-| **bubble size** | time: median seconds per image, end to end |
+| **bubble size** | speed: bigger = faster (median seconds per image, end to end) |
 
 Each model at each thinking level is one bubble; pairs have their own
 marker. A line joins the **best-value models** (the Pareto frontier: no
@@ -137,10 +137,11 @@ is computed: `segbench/chart_data.py`. Choices made for readability:
 - **Quality is shown 0 to 100** (the 0..1 score × 100), easier to read.
 - **One cost axis for all three charts**, in dollars per 1,000 images
   (per image, the GPU models would read $0.0000008).
-- **Bubble size grows with the logarithm of the time** (0.1 s, 1 s, 10 s
-  and 100 s are evenly spaced steps), on the same scale in every chart:
-  times run from 0.02 s to minutes, so a linear size would make the GPU
-  models invisible. The legend shows the steps.
+- **Bigger bubble = faster**, so bigger is better, like higher. The size
+  follows the logarithm of the time (100 s, 10 s, 1 s and 0.1 s are evenly
+  spaced steps), on the same scale in every chart: times run from 0.02 s
+  to minutes. The legend is in seconds per image. The slowest models keep
+  a readable minimum size.
 - **No title, caption or footnotes on the image**: the post that shares it
   says what it is. Made-up data gets a faint FAKE DATA stamp.
 - **Colour is the maker's brand colour** (`BRAND` in `segbench/chart.py`;

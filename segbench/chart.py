@@ -9,10 +9,11 @@ says what it is. What the chart itself encodes:
   repeats is in points.csv, not drawn: 40 error bars made the chart
   unreadable.
 - x: US dollars per 1,000 images, log scale.
-- size: median seconds per image. The diameter grows with the logarithm
-  of the time (0.01 s to 1,000 s, same scale on every chart): times range
-  from 0.02 s to minutes, and on a linear scale the GPU models would be
-  invisible dots.
+- size: speed, so that bigger is better like higher is. The fastest
+  model is the biggest bubble; the diameter shrinks with the logarithm of
+  the median seconds per image (0.01 s to 1,000 s, same scale on every
+  chart), because times range from 0.02 s to minutes. The legend reads in
+  seconds, the unit people know.
 - colour: the maker's brand colour (exceptions where two brands clash,
   see BRAND below).
 - shape: circle = called through an API, square = run on our own GPU,
@@ -76,8 +77,8 @@ PAIR_RING = INK_2
 LEVEL_ALPHA = {"min": 0.28, "medium": 0.55, "max": 0.88, "": 0.85}
 
 SECONDS_DOMAIN = (0.01, 1000.0)  # same bubble scale on every chart
-DIAMETER_PT = (6.0, 40.0)
-SIZE_LEGEND = (0.1, 1, 10, 100)  # seconds
+DIAMETER_PT = (9.0, 40.0)  # slowest, fastest
+SIZE_LEGEND = (100, 10, 1, 0.1)  # seconds, small (slow) to big (fast)
 
 FIG_W, FIG_H = 16, 9  # inches; 3200 x 1800 pixels at dpi 200
 
@@ -113,7 +114,7 @@ def _darker(colour: str, f: float = 0.72) -> tuple[float, float, float]:
 def diameter(seconds: float) -> float:
     lo, hi = (math.log10(v) for v in SECONDS_DOMAIN)
     t = (math.log10(min(max(seconds, SECONDS_DOMAIN[0]), SECONDS_DOMAIN[1])) - lo) / (hi - lo)
-    return DIAMETER_PT[0] + t * (DIAMETER_PT[1] - DIAMETER_PT[0])
+    return DIAMETER_PT[1] - t * (DIAMETER_PT[1] - DIAMETER_PT[0])  # faster = bigger
 
 
 def _money(v: float) -> str:
@@ -207,14 +208,15 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
     several_levels = len({p.level for p in pts if p.level}) > 1
 
     # ----- bubbles, biggest first so small ones stay visible -----
-    for p in sorted(pts, key=lambda p: -p.seconds):
+    for p in sorted(pts, key=lambda p: -diameter(p.seconds)):
         c = colour_of(p.maker)
         d = diameter(p.seconds)
         face = (*to_rgb(c), LEVEL_ALPHA.get(p.level, 0.85) if several_levels else 0.85)
         if p.kind == "pair":
             ax.scatter([X(p)], [Y(p)], s=(d + 9) ** 2, facecolors="none", edgecolors=PAIR_RING, linewidths=2.0,
                        zorder=3)
-        ax.scatter([X(p)], [Y(p)], s=d ** 2, marker=_marker(p), facecolors=[face], edgecolors=[_darker(c)],
+        side = d * math.sqrt(math.pi / 4) if p.kind == "specialist" else d  # square of the circle's area
+        ax.scatter([X(p)], [Y(p)], s=side ** 2, marker=_marker(p), facecolors=[face], edgecolors=[_darker(c)],
                    linewidths=1.1, zorder=4)
 
     # ----- labels: one per model (at its most-thinking bubble), one per specialist or pair -----
@@ -329,7 +331,7 @@ def _legend(fig, fonts: Fonts, pts: list[Point]) -> None:
             fig.text(x + 0.011, y, lv, **body)
         y -= step * 1.35
 
-    fig.text(lx, y, "Time per image", **head)
+    fig.text(lx, y, "Speed (time per image)", **head)
     y -= step * 1.45
     x = lx
     for i, s in enumerate(SIZE_LEGEND):
