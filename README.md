@@ -128,6 +128,26 @@ Each model at each thinking level is one bubble; pairs have their own
 marker. A line joins the **best-value models** (the Pareto frontier: no
 other bubble is both better and cheaper). Top left is best.
 
+Drawing them: `uv run scripts/draw_charts.py results/<run>.jsonl` (or
+`--demo` for made-up data, stamped FAKE DATA). It writes a PNG to post, a
+PDF to print, an SVG for the web and `points.csv` (the numbers behind
+every bubble) to `charts/`. What a call record must hold and how a bubble
+is computed: `segbench/chart_data.py`. Choices made for readability:
+
+- **Quality is shown 0 to 100** (the 0..1 score × 100), easier to read.
+- **One cost axis for all three charts**, in dollars per 1,000 images
+  (per image, the GPU models would read $0.0000008).
+- **Bubble size grows with the logarithm of the time** (0.1 s, 1 s, 10 s
+  and 100 s are evenly spaced steps), on the same scale in every chart:
+  times run from 0.02 s to minutes, so a linear size would make the GPU
+  models invisible. The legend shows the steps.
+- **Colour is the maker**; every model on our own GPU shares one colour.
+  Thinking level is the shade (light = min), and one model's levels are
+  joined by a line, labelled once.
+- **The best-value line is a staircase**: between two of its models,
+  nothing better is known for that price. A model that skipped tasks
+  (counted as 0, marked `*`) is never on it.
+
 ### Still to settle, in the pilot run
 
 1. How a language model receives the dots in track 2: drawn as numbered
@@ -407,6 +427,8 @@ images/    the benchmark photos (with where each came from and its licence)
 tasks/     one folder per task: ground truth + scoring function
 scripts/   run models, score, draw the chart
 results/   raw call records (JSON Lines), one file per run
+charts/    the drawn charts (charts/demo/: made-up data, not committed)
+assets/fonts/  Inter, the charts' font (SIL Open Font License, OFL.txt)
 docs/      research notes, task choices, candidate model survey
 specialists/  one environment per specialist model family (see its README)
 ```
@@ -430,7 +452,8 @@ specialists/  one environment per specialist model family (see its README)
 - [x] remote calls with token, time and cost tracking (`segbench/call.py`)
 - [x] SAM 1/2 and DINOv3 receive the task through the tracks (above)
 - [ ] runner for the three tracks
-- [ ] the three charts
+- [x] chart drawing (`scripts/draw_charts.py`), checked on made-up data
+- [ ] the three charts, from real scores
 
 ## Licence
 
@@ -438,3 +461,6 @@ specialists/  one environment per specialist model family (see its README)
 - **Photos in `images/`:** [Creative Commons Attribution 4.0](images/LICENSE-CC-BY-4.0.txt)
   (CC BY 4.0). Anyone may use, share and change them, also commercially,
   as long as they credit "segbench authors" and link to the licence.
+- **Font in `assets/fonts/`:** [Inter](https://github.com/rsms/inter) by
+  The Inter Project Authors, under the [SIL Open Font License 1.1](assets/fonts/OFL.txt);
+  cut down to Latin letters for the charts.
