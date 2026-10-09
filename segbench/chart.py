@@ -19,7 +19,9 @@ says what it is. What the chart itself encodes:
   dark ring = a pair (one model finds, another outlines).
 - shade: thinking level (light = min), only when the chart shows more than
   one level; with one level every bubble is full colour.
-- dashed staircase: the best-value frontier; its names are in bold.
+- dashed line: the best-value (Pareto) frontier, straight segments from the
+  cheapest model to the best one, as Artificial Analysis draws it; its
+  names are in bold.
 """
 
 from __future__ import annotations
@@ -186,17 +188,13 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
     def Y(p: Point) -> float:
         return p.quality * 100
 
-    # ----- best-value frontier: a staircase (between two points, nothing better is known) -----
+    # ----- best-value frontier: straight segments joining the frontier models -----
     # Only entrants that attempted every task can be "best value": a model
     # that skipped tasks is cheap for a reason that the frontier would hide.
     best = frontier([p for p in pts if p.tasks_done == p.tasks_total])
     best_ids = {p.entrant for p in best}
-    fx = [X(p) for p in best] + [xlim[1]]
-    fy = [Y(p) for p in best] + [Y(best[-1])]
-    stair = [(fx[0], fy[0])]
-    for i in range(1, len(fx)):
-        stair += [(fx[i], fy[i - 1]), (fx[i], fy[i])]
-    ax.step(fx, fy, where="post", color=INK, lw=1.3, ls=(0, (5, 4)), alpha=0.5, zorder=1)
+    line = [(X(p), Y(p)) for p in best]
+    ax.plot(*zip(*line), color=INK, lw=1.4, ls=(0, (5, 4)), alpha=0.5, zorder=1, solid_capstyle="round")
 
     # ----- one model's thinking levels (labelled once, at the highest) -----
     chains = defaultdict(list)
@@ -234,11 +232,15 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
     ab = ax.get_window_extent(renderer)
     frame = (ab.x0 + 4, ab.y0 + 4, ab.x1 - 4, ab.y1 - 4)
 
-    # Labels must not sit on the frontier line either: each of its segments is an obstacle.
+    # Labels must not sit on the frontier line either: small boxes every few
+    # pixels along each (slanted) segment are obstacles.
     placed: list[tuple[float, float, float, float]] = []
-    seg = [tuple(ax.transData.transform(xy)) for xy in stair]
+    seg = [tuple(ax.transData.transform(xy)) for xy in line]
     for (x0, y0_), (x1, y1_) in zip(seg, seg[1:]):
-        placed.append((min(x0, x1) - 2, min(y0_, y1_) - 2, max(x0, x1) + 2, max(y0_, y1_) + 2))
+        n = max(1, int(math.hypot(x1 - x0, y1 - y0_) / 8))
+        for k in range(n + 1):
+            x, y = x0 + (x1 - x0) * k / n, y0_ + (y1_ - y0_) * k / n
+            placed.append((x - 4, y - 4, x + 4, y + 4))
     for p, text in sorted(labelled, key=lambda it: (not on_frontier(it[0]), it[0].kind == "general",
                                                     -it[0].quality)):
         strong = on_frontier(p)
