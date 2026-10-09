@@ -46,7 +46,7 @@ def main() -> None:
                     help="editorial: header, smooth blue best-value curve, every model named")
     ap.add_argument("--no-header", action="store_true", help="editorial style without its headline")
     ap.add_argument("--title", help="editorial style: headline instead of the track's own (one track at a time)")
-    ap.add_argument("--accent", help="editorial style: accent colour, e.g. '#1d5fe0'")
+    ap.add_argument("--accent", help="editorial style: accent colour (default #f03441)")
     ap.add_argument("--no-legend", action="store_true", help="no speed and pair key above the chart")
     ap.add_argument("--names", choices=("all", "frontier"), default="all",
                     help="name every model, or only the best-value ones")

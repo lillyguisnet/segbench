@@ -46,7 +46,7 @@ INK_2 = "#4b5260"
 INK_3 = "#8b93a1"
 GRID = "#e4e8ef"
 RIM = "#cfd5df"
-ACCENT = "#1d5fe0"
+ACCENT = "#f03441"  # Maxime, 2026-10-09 (was #1d5fe0)
 FAKE_RED = "#d62839"
 
 # Logo colours on white discs: each brand's own colour (nothing is encoded
