@@ -9,7 +9,7 @@
     uv run scripts/draw_charts.py --demo --level min     # one thinking level only
 
 Writes to charts/ (charts/demo/ with --demo), for each track:
-    <track>.png   to post (3200 x 1800 pixels)
+    <track>.png   to post (2160 x 2160 pixels, square)
     <track>.pdf   to print (vector, fonts embedded)
     <track>.svg   for the web (vector)
     points.csv    the numbers behind every bubble, all tracks

@@ -122,7 +122,7 @@ Three bubble charts, one per track, in the style of
 |---|---|
 | **y** | quality: mean score over the track's tasks, 0 to 1 (spread over repeats in `points.csv`) |
 | **x** | cost: US dollars per image (log scale), only the parts that track counts |
-| **ring colour** | speed: median seconds per image, end to end; green = fast, red = slow |
+| **disc colour** | speed: median seconds per image, end to end; green = fast, red = slow |
 
 Each model at each thinking level is one bubble; pairs have their own
 marker. A line joins the **best-value models** (the Pareto frontier: no
@@ -137,11 +137,13 @@ is computed: `segbench/chart_data.py`. Choices made for readability:
 - **Quality is shown 0 to 100** (the 0..1 score × 100), easier to read.
 - **One cost axis for all three charts**, in dollars per 1,000 images
   (per image, the GPU models would read $0.0000008).
-- **Every model is a disc of the same size with its maker's logo**
-  (sources and licences: `assets/logos/SOURCES.md`). API models and models
+- **Square image** (2160 × 2160): feeds show posts as squares.
+- **Every model is a disc of the same size with its maker's logo in
+  white** (the models' own mark where it is better known: Gemini, Qwen,
+  Kimi; sources and licences: `assets/logos/SOURCES.md`). API models and models
   on our GPU look the same: anyone can rent the GPU, so their cost and
   speed compare fairly.
-- **Speed is the ring colour**, green (fast) to red (slow), on a log scale
+- **Speed is the disc colour**, green (fast) to red (slow), on a log scale
   from 1 s to 100 s, the same on every chart: the API models take 3 s to
   minutes, so that is where colour must tell them apart; everything under
   1 s is full green. The green is darker than the red so that red-green
@@ -149,7 +151,9 @@ is computed: `segbench/chart_data.py`. Choices made for readability:
 - **No title, caption or footnotes on the image**: the post that shares it
   says what it is. Made-up data gets a faint FAKE DATA stamp.
 - **A pair** (one model finds, another outlines) shows the finder's logo
-  with the outliner's logo as a small badge.
+  with the outliner's logo on a small white badge.
+- **The cost axis spans the data** plus a third of a decade each side,
+  the same on all three charts.
 - `--level min` (or medium, max) shows one thinking level only; with all
   levels, each label ends with its level.
 - **The best-value line joins the frontier models with straight
@@ -389,7 +393,7 @@ Rules that keep the numbers honest:
   RF-DETR) = rental price of the GPU ($0.22/hour for an RTX 3090, RunPod
   Community Cloud, 8 Oct 2026) ÷ images per hour **under load** (best
   batch size or several workers), because API prices also assume busy,
-  shared GPUs. Speed (ring colour) is still one image at a time. Method:
+  shared GPUs. Speed (disc colour) is still one image at a time. Method:
   `specialists/README.md`.
 - **Time** = wall-clock seconds from request sent to full reply received.
   API times depend on the provider's load, so we keep the median of the
