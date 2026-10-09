@@ -76,6 +76,51 @@ What the first checks taught us:
   code adds them back. Our estimate for Qwen matched what OpenRouter billed
   within 1 %.
 
+### Thinking: minimum, medium, maximum
+
+Every model is run at three thinking levels, each translated into the
+model's own settings in `segbench/models.py` (`THINKING`): **min** = off
+where the model can stop thinking, else its lowest level; **max** = its
+highest level that really reaches the provider; **medium** = the middle.
+Checked on 2026-10-08 (`scripts/probe_thinking.py` reads what is sent;
+`scripts/check_thinking.py` measures the effect on the circle test, all 60
+calls at once, in about 6 minutes).
+
+Thinking tokens on the circle test (two runs each, 2026-10-08):
+
+| model | min | medium | max | slowest call at max |
+|---|---|---|---|---|
+| Luna | 0 | ~1,800 | 9,000–18,000 | 137 s |
+| Terra | 0 | ~300 | 7,000–14,000 | 402 s |
+| Sonnet | 0 | 0 (chose not to) | ~2,700 | 25 s |
+| Gemini Pro | 0 | ~1,600 | 1,800–9,000 | 73 s |
+| Gemini Flash | 0 | ~550 | 2,000–3,100 | 30 s |
+| Gemini Flash Lite | 0 | ~470 | ~520 | 9 s |
+| GLM 5.3 Flash | 50–230 (cannot stop) | 50–250 | ~3,000 | 64 s |
+| DeepSeek Flash | 0 | 1,800–3,700 | 2,200–2,600 | 18 s |
+| Kimi K3 | 0 | 1,300–2,500 | 6,000–9,700 | 244 s |
+| Qwen 27B | 0 | 180–530 | ~1,000 | 20 s |
+
+What to know:
+
+- **The dial works on every model**, but levels are not comparable across
+  makers: Terra's "max" thinks 40 times longer than Qwen's.
+- **Off costs accuracy for some**: with thinking off, Luna and Kimi failed
+  the circle test both times; at medium they passed.
+- **Thinking runs vary a lot**: the same model and level can think twice as
+  long on the next call (Luna max: 8,800 then 17,800 tokens).
+- **Long calls get cut**: the ChatGPT-plan route dropped both Terra-max
+  calls after 5–6 minutes ("connection closed mid-chunk"); the retry
+  worked (3 and 7 minutes). The benchmark runner must retry dropped
+  connections (and keep a record of the dropped attempt), but never retry
+  a reply the model actually gave.
+- **lm15 1.2.1 has gaps here** (to fix in lm15): `effort="off"` sends
+  nothing to Sonnet 5.5, which thinks by default (we send Anthropic's
+  `thinking: {"type": "between_tools"}` ourselves); and some words are
+  quietly changed instead of refused, contrary to lm15's own rule
+  ("minimal" becomes "low" on Sonnet and Kimi, "medium" becomes "low" on
+  Kimi, "xhigh"/"max" become "high" on Gemini).
+
 ### Why lm15 and not FunctAI
 
 [FunctAI](https://github.com/MaximeRivest/functai) (built on lm15) turns a

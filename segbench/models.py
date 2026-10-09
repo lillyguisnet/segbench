@@ -27,6 +27,9 @@ class Model:
     vision: bool | None  # None = not checked yet
     note: str = ""
     extensions: dict | None = None  # extra request fields sent as-is (lm15 Config.extensions)
+    # Three thinking levels, each as lm15 settings: {"effort": word} and/or
+    # {"extensions": {...}}. See THINKING below for why each is what it is.
+    thinking: dict | None = None
 
 
 MODELS: tuple[Model, ...] = (
@@ -59,6 +62,33 @@ MODELS: tuple[Model, ...] = (
           "newest 27B Qwen on 2026-10-08; pinned to Alibaba's host (see above)",
           extensions={"provider": {"order": ["Alibaba"], "allow_fallbacks": False}}),
 )
+
+# Minimum, medium and maximum thinking, in each model's own levels (checked
+# 2026-10-08 by sending each lm15 effort word and reading the request on the
+# wire and the thinking tokens back; scripts/probe_thinking.py):
+# - minimum = off where the model can stop thinking, else its lowest level;
+#   maximum = its highest level that is really sent (lm15 turns Gemini's
+#   xhigh/max into high, so high is Gemini's top); medium = the middle of
+#   the levels the model really has.
+# - Sonnet 5.5: lm15 1.2.1's effort="off" sends nothing, and Sonnet 5.5
+#   thinks by default; Anthropic's own off for this model is
+#   thinking={"type": "between_tools"}. Sent here directly.
+# - GLM 5.3 Flash has only low, high, max and cannot stop thinking.
+# - Kimi K3 has off, low, high, max (lm15 sends minimal/medium as low).
+_OFF_SONNET = {"extensions": {"thinking": {"type": "between_tools"}}}
+THINKING = {
+    "luna":              {"min": {"effort": "off"}, "medium": {"effort": "medium"}, "max": {"effort": "max"}},
+    "terra":             {"min": {"effort": "off"}, "medium": {"effort": "medium"}, "max": {"effort": "max"}},
+    "sonnet":            {"min": _OFF_SONNET, "medium": {"effort": "medium"}, "max": {"effort": "max"}},
+    "gemini-pro":        {"min": {"effort": "low"}, "medium": {"effort": "medium"}, "max": {"effort": "high"}},
+    "gemini-flash":      {"min": {"effort": "low"}, "medium": {"effort": "medium"}, "max": {"effort": "high"}},
+    "gemini-flash-lite": {"min": {"effort": "minimal"}, "medium": {"effort": "medium"}, "max": {"effort": "high"}},
+    "glm-5.3-flash":     {"min": {"effort": "low"}, "medium": {"effort": "high"}, "max": {"effort": "max"}},
+    "deepseek-flash":    {"min": {"effort": "off"}, "medium": {"effort": "medium"}, "max": {"effort": "max"}},
+    "kimi-k3":           {"min": {"effort": "off"}, "medium": {"effort": "high"}, "max": {"effort": "max"}},
+    "qwen-27b":          {"min": {"effort": "off"}, "medium": {"effort": "medium"}, "max": {"effort": "max"}},
+}
+LEVELS = ("min", "medium", "max")
 
 BY_KEY = {m.key: m for m in MODELS}
 
