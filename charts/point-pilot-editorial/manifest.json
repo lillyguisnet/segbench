@@ -1,0 +1,21 @@
+{
+  "source": "results/point-benchmark-v1/scored.jsonl",
+  "source_sha256": "7e2388835fd7c1a56c2619f76378eb75d205465c3936e8dbb584fbe7a36369ad",
+  "renderer": "scripts/draw_charts.py --style editorial --track find --names all",
+  "renderer_sha256": {
+    "scripts/draw_charts.py": "d21a235969e4e1efa28e2212e4f13e8b1bce0f890039ec8210985dae1da47e3c",
+    "segbench/chart_editorial.py": "449df7dfe66d275a738a509f4022a69a15e75c931bea80436ab5651c154e3da1",
+    "segbench/chart.py": "1fe75877b2f264aa49a0d76d93611f8660ccba6cd9b4c4d46af82296dc4d2a27",
+    "segbench/chart_data.py": "db1ced795a8136a07623c5e5fef8856ebe36102e505151997a524c7c5b8f052e"
+  },
+  "metric": "point-localisation-v1; tolerance-average F1; equal weighting of four tasks",
+  "excluded_incomplete": [
+    "rfdetr-seg-2xl"
+  ],
+  "caveats": [
+    "Single medium-thinking pilot, not repeat-validated.",
+    "Reference-point proximity is not point-inside-mask correctness.",
+    "Specialist cost estimates and shared-GPU timings are provisional.",
+    "The smooth curve is a visual guide, not measured intermediate models."
+  ]
+}
