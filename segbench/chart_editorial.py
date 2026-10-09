@@ -1,4 +1,4 @@
-"""The charts in an editorial style: a short header, the best-value models
+"""The charts in an editorial style: a short header (track and title only), the best-value models
 joined by a smooth blue curve over a soft fill, every model a white disc
 with its logo in brand colour, and every model named, crowded ones in
 neat columns with thin leader lines.
@@ -33,7 +33,6 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 import numpy as np  # noqa: E402
 from matplotlib.colors import to_rgb  # noqa: E402
-from matplotlib.lines import Line2D  # noqa: E402
 from matplotlib.patches import PathPatch  # noqa: E402
 from matplotlib.path import Path as MPath  # noqa: E402
 from matplotlib.ticker import FixedLocator, NullLocator  # noqa: E402
@@ -201,8 +200,8 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
     bg.imshow(top * (1 - t) + bottom * t, extent=(0, 1, 0, 1), aspect="auto", origin="upper")
     bg.axis("off")
 
-    ax_top = 0.80 if header else 0.93
-    ax = fig.add_axes((0.065, 0.06, 0.905, ax_top - 0.06))
+    ax_top = 0.835 if header else 0.93
+    ax = fig.add_axes((0.065, 0.095, 0.905, ax_top - 0.095))
     ax.set_facecolor("none")
 
     xlim = xlim or x_range(pts)
@@ -233,6 +232,8 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
     for lab in ax.get_yticklabels():
         lab.set_fontproperties(fonts.medium)
         lab.set_fontsize(12)
+    ax.set_xlabel("Cost ($ per 1,000 images)", fontproperties=fonts.semibold, fontsize=13, color=INK_2,
+                  labelpad=12)
 
     def X(p: Point) -> float:
         return p.cost_usd * 1000
@@ -469,27 +470,9 @@ def _labels(fig, ax, fonts: Fonts, pts, best_ids, names, X, Y, curve) -> None:
 
 
 def _header(fig, fonts: Fonts, track: str, pts) -> None:
-    renderer = fig.canvas.get_renderer()
     x = 0.065
     eyebrow = "SEGBENCH \u00b7 " + TRACK_NAME[track].upper()
     fig.text(x, 0.952, "\u2009".join(eyebrow), fontproperties=fonts.bold, fontsize=12, color=ACCENT,
              va="baseline")
     fig.text(x - 0.003, 0.892, "Quality vs. cost", fontproperties=fonts.bold, fontsize=38, color=INK,
              va="baseline")
-    tasks = max(p.tasks_total for p in pts)
-    lead = fig.text(x, 0.852, f"{tasks} tasks on real photos \u00b7 cost per 1,000 images \u00b7 ",
-                    fontproperties=fonts.regular, fontsize=14, color=INK_2, va="baseline")
-    w = lead.get_window_extent(renderer).width / fig.bbox.width
-    fig.text(x + w + 0.005, 0.852, "best-value models in blue", fontproperties=fonts.semibold, fontsize=14, color=INK,
-             va="baseline")
-
-    lx = 0.735
-    body = {"fontproperties": fonts.medium, "fontsize": 12, "color": INK_2, "va": "center"}
-    fig.add_artist(Line2D([lx, lx + 0.035], [0.947, 0.947], color=ACCENT, lw=3.2, solid_capstyle="round",
-                          transform=fig.transFigure))
-    fig.text(lx + 0.048, 0.947, "Best value", **body)
-    fig.add_artist(Line2D([lx + 0.0175], [0.917], marker="o", ms=10, mfc="white", mec=RIM, mew=1.2,
-                          transform=fig.transFigure))
-    fig.text(lx + 0.048, 0.917, "Other models", **body)
-    fig.text(lx + 0.0175, 0.887, "s", **{**body, "ha": "center", "color": INK_3, "fontproperties": fonts.semibold})
-    fig.text(lx + 0.048, 0.887, "seconds per image", **body)
