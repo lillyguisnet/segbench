@@ -29,7 +29,9 @@ git -C "$out/site" -c credential.helper= -c "credential.https://github.com.helpe
   push -q -f "$(git remote get-url origin)" gh-pages:gh-pages
 
 token=$(gh auth token -h github.com -u lillyguisnet)
+# GitHub may switch Pages on by itself for a new gh-pages branch: "already enabled" is fine.
 if ! GH_TOKEN=$token gh api "repos/$repo/pages" >/dev/null 2>&1; then
-  GH_TOKEN=$token gh api -X POST "repos/$repo/pages" -f "source[branch]=gh-pages" -f "source[path]=/" >/dev/null
+  GH_TOKEN=$token gh api -X POST "repos/$repo/pages" -f "source[branch]=gh-pages" -f "source[path]=/" >/dev/null 2>&1 \
+    || GH_TOKEN=$token gh api "repos/$repo/pages" >/dev/null
 fi
 echo "published: https://lillyguisnet.github.io/segbench/ (live in about a minute)"
