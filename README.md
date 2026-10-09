@@ -156,6 +156,13 @@ is computed: `segbench/chart_data.py`. Choices made for readability:
   the same on all three charts.
 - `--level min` (or medium, max) shows one thinking level only; with all
   levels, each label ends with its level.
+- **A second style**, `--style editorial` (`segbench/chart_editorial.py`):
+  a header (track, title, a one-line key), the best-value models as big
+  blue-ringed discs joined by a smooth curve over a soft blue glow, every
+  other model a small white disc with its logo in brand colour, and every
+  model named with its maker and seconds per image (crowded ones in a
+  column, with thin leader lines). The curve is monotone: it never dips or
+  overshoots between two models, but it is still a guide for the eye.
 - **The best-value line joins the frontier models with straight
   segments**, cheapest to best, as Artificial Analysis draws it. It is a
   guide for the eye: a point on a segment between two models is not a
