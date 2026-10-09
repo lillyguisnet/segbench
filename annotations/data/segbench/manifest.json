@@ -1,0 +1,91 @@
+{
+ "set": "segbench",
+ "description": "segbench task photos (CC BY 4.0), canonical pixels, upright",
+ "count": 6,
+ "images": [
+  {
+   "id": "log_ends_closeup_1",
+   "file": "log_ends_closeup_1.png",
+   "width": 4000,
+   "height": 2252,
+   "task": 1,
+   "original": {
+    "path": "images/log_ends_closeup_1.jpg",
+    "format": "JPEG",
+    "mode": "RGB",
+    "sha256": "50dc1bb9ccf2f0a65ac5fec94d87c84756838624c4a6466902dcb01997203eca",
+    "exif_orientation": 1
+   }
+  },
+  {
+   "id": "field_with_cows",
+   "file": "field_with_cows.png",
+   "width": 4000,
+   "height": 2252,
+   "task": 2,
+   "original": {
+    "path": "images/field_with_cows.jpg",
+    "format": "JPEG",
+    "mode": "RGB",
+    "sha256": "355bf7be1bdc3665bdc558395aa185e0a272676bf40d486a27dcb7e7bad18035",
+    "exif_orientation": 1
+   }
+  },
+  {
+   "id": "fig_plant",
+   "file": "fig_plant.png",
+   "width": 2252,
+   "height": 4000,
+   "task": 3,
+   "original": {
+    "path": "images/fig_plant.jpg",
+    "format": "JPEG",
+    "mode": "RGB",
+    "sha256": "5bd758e2e5df0b50d76f49dddeaafaef7e66fd5096608b3197ac17aa6403e1ee",
+    "exif_orientation": 1
+   }
+  },
+  {
+   "id": "autumn_tree_orange_1",
+   "file": "autumn_tree_orange_1.png",
+   "width": 2252,
+   "height": 4000,
+   "task": 4,
+   "original": {
+    "path": "images/autumn_tree_orange_1.jpg",
+    "format": "JPEG",
+    "mode": "RGB",
+    "sha256": "1576ad0ec872240e933b908107b9dd3eacc902e8538d36ac76756e3586be9adf",
+    "exif_orientation": 1
+   }
+  },
+  {
+   "id": "farm_road_1",
+   "file": "farm_road_1.png",
+   "width": 2252,
+   "height": 4000,
+   "task": 5,
+   "original": {
+    "path": "images/farm_road_1.jpg",
+    "format": "JPEG",
+    "mode": "RGB",
+    "sha256": "c4ecf841f24bbfc64473c96a68c80b8475f980fc226b0358e43729334748f03f",
+    "exif_orientation": 1
+   }
+  },
+  {
+   "id": "kitchen_counter_dishes",
+   "file": "kitchen_counter_dishes.png",
+   "width": 4000,
+   "height": 2252,
+   "task": 6,
+   "original": {
+    "path": "images/kitchen_counter_dishes.jpg",
+    "format": "JPEG",
+    "mode": "RGB",
+    "sha256": "827e8fd7934b1d10fd2c10bdebaa2465535dea56f0179143cbbc1874a03a5abf",
+    "exif_orientation": 1
+   }
+  }
+ ]
+}

@@ -17,3 +17,6 @@ weights/
 # third-party research code cloned at a pinned commit (see each pyproject.toml)
 specialists/*/vendor/
 .thumbs/
+
+# canonical PNGs for the annotation app are rebuilt by scripts/prepare_annotation_set.py
+annotations/data/*/canonical/

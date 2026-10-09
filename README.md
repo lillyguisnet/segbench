@@ -24,8 +24,8 @@ either reason, so we measure each job on its own, plus the whole task.
 
 | track | the model gets | it answers with | scored on | entrants | cost and time counted |
 |---|---|---|---|---|---|
-| **1. Find** | the photo + the request ("put a dot on each cow") | one dot per object (and a label where the task needs one) | the dots against the answer key's dots | language models, SAM 3, YOLOE-26, RF-DETR (its 80 categories only), DINOv3 look-alike search | the finder only |
-| **2. Outline** | the photo + the request + **the answer key's dot on each object** | one outline per given dot | the task's measurement (size, area, overlap, path) | language models, SAM 1, SAM 2.1, SAM 3, gen2seg, DINOv3 (tree task) | the outliner only |
+| **1. Find** | the photo + the request ("put a dot on each cow") | one dot per object (and a label where the task needs one) | whether each dot lands inside an answer-key mask | language models, SAM 3, YOLOE-26, RF-DETR (its 80 categories only), DINOv3 look-alike search | the finder only |
+| **2. Outline** | the photo + the request + **one dot on each object**, taken from the answer key | one outline per given dot | the task's measurement (size, area, overlap, path) | language models, SAM 1, SAM 2.1, SAM 3, gen2seg, DINOv3 (tree task) | the outliner only |
 | **3. Whole task** | the photo + the request, no hints | outlines, labelled where needed | finding and measurement together | single models that do both, and **labelled pairs** ("Gemini Flash + SAM 2.1") | everything: all parts, end to end |
 
 Why the outline track gets the answer key's dots, not the best finder's:
@@ -67,12 +67,17 @@ each bubble, not mixed into quality.
 
 Every score is 0 to 1; a track's quality is the mean over its tasks.
 
-- **Finding:** each answer dot is paired with at most one answer-key dot
-  within a distance set from the typical object size of that task. Score
-  = F1, which punishes both missed objects and invented ones; the count
-  error is reported too. For dishes, a pair counts only if the label
-  (dirty or clean) is right; items the answer key marks *unsure* are left
-  out.
+- **The answer key is masks.** A dot on an object is right anywhere on
+  the object, so the truth for "where is it" is the object's mask, not a
+  dot. Every object of every task gets its own mask (plus a label for the
+  dishes: dirty, clean or unsure); widths, areas and the road's path are
+  measured on these masks. The dot given to outliners in track 2 is the
+  point deepest inside each answer-key mask.
+- **Finding:** an answer dot is right when it lands inside an answer-key
+  mask that no earlier dot has claimed (each object can be found once).
+  Score = F1, which punishes both missed objects and invented ones; the
+  count error is reported too. For dishes, a dot counts only if its label
+  (dirty or clean) is right; *unsure* items are left out.
 - **Outlining:** the task's measurement, compared with the answer key and
   turned into 0..1 by a stated tolerance (written in each task's folder).
 - **Whole task:** an answer-key dot is found when it falls inside exactly
@@ -82,6 +87,31 @@ Every score is 0 to 1; a track's quality is the mean over its tasks.
 - **Specialists** answer with masks; for track 1 each mask becomes one dot
   at the point deepest inside the mask (the centre can fall outside a
   curved shape).
+
+### How the answer key is made, and its one known bias
+
+Masks are drawn in Lilly's annotation app **recorn** on the canonical
+photos (`scripts/prepare_annotation_set.py`), with SAM 3.1 suggesting
+outlines that a person accepts, corrects or redraws. That is fast, but
+an answer key that starts from SAM's outlines can favour SAM-family
+outliners in track 2. Three safeguards:
+
+- **Every mask is checked by a person at full zoom**, and recorn records
+  where each one came from (SAM text prompt, SAM click, or hand-drawn)
+  and how many pixels the person changed. That record is kept with the
+  answer key.
+- **Most track-2 scores are tolerant measurements** (log diameter, leaf
+  area, red share, the road's path), not pixel-by-pixel overlap, so edge
+  details matter less.
+- **A bias check:** for ~10 objects (cows and dishes, the two tasks scored
+  by overlap) a second mask is drawn fully by hand. If SAM models score
+  clearly better against the SAM-assisted masks than against the
+  hand-drawn ones, that is reported next to the track-2 chart.
+
+**One pixel grid.** All photos must be stored upright (no EXIF rotation
+tag; the preparation script refuses any other photo). Answer keys,
+models and scorers then all see the same pixels; model coordinates
+(0..1000) are mapped onto that grid.
 
 ### The charts
 
@@ -392,7 +422,7 @@ specialists/  one environment per specialist model family (see its README)
 - [x] first batch of photos (18, location data removed)
 - [x] six tasks chosen (`docs/task-ideas.md`); horns, engine and screenshot left out for now
 - [x] three-track design locked (above)
-- [ ] click page for the answer keys, then the answer keys
+- [ ] answer-key masks in recorn (SAM 3.1 service moved to GPU 0 for this; photos prepared)
 - [ ] shared answer formats, prompts, and a scorer per task (tested on fake answers)
 - [ ] adapters: specialists into the shared formats; finder + outliner pairs; DINOv3 text matching and look-alike search; gen2seg colours into separate outlines
 - [ ] pilot run (settles the open points above), then the full run

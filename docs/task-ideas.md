@@ -60,9 +60,11 @@ give away the size we are measuring.
 - **Anemometer cups:** only 3, small and dark; too little signal.
 - **Horns, engine part, screenshot:** no photo yet.
 
-Answer-key work, roughly: ~120 dots (20 with a dirty/clean label), ~20
-two-click diameters, ~45 small polygons (cows, fig leaves, dishes), one
-crown outline, ~12 road-edge clicks, one hue rule. About 2 hours.
+Answer-key work: one mask per object (~70 log ends, ~13 cows, ~12 fig
+leaves, ~20 dishes with a dirty/clean/unsure label), the tree's crown, the
+road, and one hue rule. Widths, areas and the road's path are measured on
+the masks. Made in recorn with SAM 3.1 suggestions (see README for the
+bias safeguards).
 
 ## How ground truth is made (cheap and unambiguous)
 

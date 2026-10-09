@@ -118,6 +118,19 @@ Things that can take GPU 0 back from us during a run:
 So the runner checks, before and after every timed call, that no other
 program is computing on GPU 0, and marks the timing as unreliable if one is.
 
+## SAM 3.1 service moved to GPU 0 (2026-10-09, temporary)
+
+For making the answer-key masks in recorn. A runtime override, gone at
+the next reboot; the system configuration is unchanged:
+`/run/systemd/system/sam31.service.d/segbench-gpu0.conf` (sets
+`CUDA_DEVICE_ORDER=PCI_BUS_ID` and GPU 0's UUID). Tested: 11 cows found
+on `field_with_cows.jpg`, 8.3 GB on GPU 0.
+
+**Stop it before timing the specialists** (`sudo systemctl stop sam31`),
+or the timing guard marks the runs untrustworthy. To put it back on
+GPU 1 without a reboot: `sudo rm -r /run/systemd/system/sam31.service.d &&
+sudo systemctl daemon-reload && sudo systemctl restart sam31`.
+
 ## Decisions needed (before the GPU 0 plan)
 
 1. **GPU room for runs.** Options: pause `openalex-embeddings` and
