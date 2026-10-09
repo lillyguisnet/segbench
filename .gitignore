@@ -33,3 +33,6 @@ results/views/
 # Review app assets, rebuilt by scripts/build_consensus_review.py
 apps/consensus-review/images/
 apps/consensus-review/seed.js
+
+# Duplicate photos in generated point benchmark reports (originals are in images/)
+results/point-benchmark-*/images/
