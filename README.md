@@ -41,6 +41,9 @@ passes when it outlines exactly the four circles in the right places).
 | Luna | `gpt-5.6-luna` | ChatGPT plan (`openai-codex:`) | yes | pass |
 | Terra | `gpt-5.6-terra` | ChatGPT plan (`openai-codex:`) | yes | pass |
 | Sonnet | `claude-sonnet-5-5` | Claude plan (`claude-code:`) | yes | pass |
+| Opus | `claude-opus-5-5` | Claude plan (`claude-code:`) | yes | pass |
+| Astra | `gpt-6-astra` | ChatGPT plan (`openai-codex:`) | yes | pass (OpenAI "overloaded" once) |
+| Sol | `gpt-6.1-sol` | ChatGPT plan (`openai-codex:`) | yes | pass |
 | Gemini Pro | `gemini-3.1-pro-preview` | Google API | yes | pass |
 | Gemini Flash | `gemini-3.8-flash` | Google API | yes | pass |
 | Gemini Flash Lite | `gemini-3.5-flash-lite` | Google API | yes | right circles, but points written as [y, x] |
@@ -93,6 +96,9 @@ Thinking tokens on the circle test (two runs each, 2026-10-08):
 | Luna | 0 | ~1,800 | 9,000–18,000 | 137 s |
 | Terra | 0 | ~300 | 7,000–14,000 | 402 s |
 | Sonnet | 0 | 0 (chose not to) | ~2,700 | 25 s |
+| Opus | 0 at low (cannot stop) | ~450 | ~6,200 | 58 s |
+| Astra | 0 at low (cannot stop) | 0 | 1,600–4,300 | 119 s |
+| Sol | 0 at low (cannot stop) | ~150 | ~2,500 | 60 s |
 | Gemini Pro | 0 | ~1,600 | 1,800–9,000 | 73 s |
 | Gemini Flash | 0 | ~550 | 2,000–3,100 | 30 s |
 | Gemini Flash Lite | 0 | ~470 | ~520 | 9 s |
@@ -107,6 +113,14 @@ What to know:
   makers: Terra's "max" thinks 40 times longer than Qwen's.
 - **Off costs accuracy for some**: with thinking off, Luna and Kimi failed
   the circle test both times; at medium they passed.
+- **Some cannot stop thinking**: Opus 5.5 (Anthropic refuses both of its
+  "off" settings), GPT-6 Astra and GPT-6.1 Sol (OpenAI accepts only low and
+  up). Their minimum is "low"; on the circle test they then chose not to
+  think at all.
+- **Hidden models on the ChatGPT plan**: `gpt-6-astra` is listed only to
+  Codex 0.153 or newer (lm15 1.2.1 says it is 0.147), and `gpt-6.1-sol`
+  and `gpt-6-luna` are listed to nobody; all three answer. Use
+  `LM15_CODEX_CLIENT_VERSION=0.153.4` to see the full list.
 - **Thinking runs vary a lot**: the same model and level can think twice as
   long on the next call (Luna max: 8,800 then 17,800 tokens).
 - **Long calls get cut**: the ChatGPT-plan route dropped both Terra-max

@@ -37,6 +37,11 @@ MODELS: tuple[Model, ...] = (
     Model("luna", "GPT-5.6 Luna", "OpenAI", "openai-codex:gpt-5.6-luna", "subscription", True),
     Model("terra", "GPT-5.6 Terra", "OpenAI", "openai-codex:gpt-5.6-terra", "subscription", True),
     Model("sonnet", "Claude Sonnet 5.5", "Anthropic", "claude-code:claude-sonnet-5-5", "subscription", True),
+    Model("opus", "Claude Opus 5.5", "Anthropic", "claude-code:claude-opus-5-5", "subscription", True),
+    Model("astra", "GPT-6 Astra", "OpenAI", "openai-codex:gpt-6-astra", "subscription", True,
+          "listed only to Codex clients >= 0.153 (lm15 claims 0.147), but callable"),
+    Model("sol", "GPT-6.1 Sol", "OpenAI", "openai-codex:gpt-6.1-sol", "subscription", True,
+          "not in the plan's model list on 2026-10-08, but callable"),
     # Google, direct.
     Model("gemini-pro", "Gemini 3.1 Pro", "Google", "gemini:gemini-3.1-pro-preview", "per-token", True,
           "newest Pro on 2026-10-08; still a preview"),
@@ -74,12 +79,18 @@ MODELS: tuple[Model, ...] = (
 #   thinks by default; Anthropic's own off for this model is
 #   thinking={"type": "between_tools"}. Sent here directly.
 # - GLM 5.3 Flash has only low, high, max and cannot stop thinking.
+# - Opus 5.5, GPT-6 Astra and GPT-6.1 Sol cannot stop thinking: Anthropic
+#   refuses both "disabled" and "between_tools" for Opus 5.5; OpenAI accepts
+#   only low, medium, high, xhigh, max for Astra and Sol. Their min is low.
 # - Kimi K3 has off, low, high, max (lm15 sends minimal/medium as low).
 _OFF_SONNET = {"extensions": {"thinking": {"type": "between_tools"}}}
 THINKING = {
     "luna":              {"min": {"effort": "off"}, "medium": {"effort": "medium"}, "max": {"effort": "max"}},
     "terra":             {"min": {"effort": "off"}, "medium": {"effort": "medium"}, "max": {"effort": "max"}},
     "sonnet":            {"min": _OFF_SONNET, "medium": {"effort": "medium"}, "max": {"effort": "max"}},
+    "opus":              {"min": {"effort": "low"}, "medium": {"effort": "medium"}, "max": {"effort": "max"}},
+    "astra":             {"min": {"effort": "low"}, "medium": {"effort": "medium"}, "max": {"effort": "max"}},
+    "sol":               {"min": {"effort": "low"}, "medium": {"effort": "medium"}, "max": {"effort": "max"}},
     "gemini-pro":        {"min": {"effort": "low"}, "medium": {"effort": "medium"}, "max": {"effort": "high"}},
     "gemini-flash":      {"min": {"effort": "low"}, "medium": {"effort": "medium"}, "max": {"effort": "high"}},
     "gemini-flash-lite": {"min": {"effort": "minimal"}, "medium": {"effort": "medium"}, "max": {"effort": "high"}},
