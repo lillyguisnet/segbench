@@ -95,32 +95,3 @@ metric constants and score diagnostics. Changing the reference or metric
 produces a new run folder. Do not overwrite raw replies or reference files.
 This six-photo project (four object tasks here) does not support broad claims
 of universally superior object finding.
-
-## v1.1 (2026-10-09): reading answers for pointing, not for JSON skill
-
-Goal (Maxime): measure pointing, not structured-output skill. Change: if
-strict JSON fails, `recover_points` takes every `[number, number]` pair in
-reply order (labels: the first dirty/clean between a pair and the next).
-Nothing is reordered, swapped, rescaled, clipped or deduplicated, and a
-reply strict JSON can read is never read differently (tested). Applied to
-every model alike. Output: `results/point-benchmark-v1.1-lenient/`; the
-strict v1 report is kept unchanged.
-
-Audit of the five recovered replies (all Gemini), against the raw text:
-Pro fig 23 points and Pro logs 66 (missing braces), Flash Lite logs 65
-(missing bracket on the last point), Flash Lite fig 12 (all points under one
-key), Flash logs 410 distinct points (format broke after point 18 and the
-model kept pointing: a real over-count, so it keeps its low score).
-
-Known problems this does NOT fix (need prompt v2 and a rerun):
-- Coordinate order. Gemini Flash (fig) and Flash Lite (fig, logs) wrote
-  [y, x] although asked for [x, y]; read swapped, their points land on the
-  objects (median distance 0.5-0.7 % of the diagonal instead of 2.8-4.9 %).
-  Choosing the order per reply by looking at the answer key would let the
-  key do the reading, so it is reported, never applied.
-- Stopping early: GLM 5.3 Flash, Kimi K3 and Sonnet 5.5 each gave exactly
-  50 log ends (83 approved), with room left to answer.
-- Image detail: Gemini and DeepSeek received the photo as ~1,100-1,200
-  input tokens, OpenAI and Kimi ~11,000; no high-detail setting was asked.
-- Sonnet's fig answer has half its points beyond 1000 (no consistent frame
-  to correct them); they stay misses.

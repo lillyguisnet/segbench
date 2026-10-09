@@ -20,7 +20,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from segbench.point_score import VERSION, TOLERANCES, DIAGONAL_CAP, parse_points, reference_distances, score
+from segbench.point_score import VERSION, TOLERANCES, DIAGONAL_CAP, read_points, reference_distances, score
 from segbench.chart_data import describe
 
 TASKS = ('logs', 'cows', 'fig', 'dishes')
@@ -34,7 +34,7 @@ def mean_known(values):
     return statistics.mean(values) if values and all(v is not None for v in values) else None
 
 
-def build(reference, inputs, out):
+def build(reference, inputs, out, parser='strict'):
     raw = json.loads(reference.read_text())
     if raw['schema'] != 'segbench-consensus-review/v1':
         raise ValueError('Unsupported reference format')
@@ -79,7 +79,7 @@ def build(reference, inputs, out):
             key = r['model'] + ('@' + r['level'] if r.get('level') else '')
             rec = {field: r.get(field) for field in ('model', 'level', 'task', 'repeat', 'seconds', 'cost_usd', 'provider')}
             rec.update({'entrant': key, 'label': label, 'maker': maker, 'kind': kind, 'track': 'find',
-                        'metric': VERSION, 'reference_sha256': digest(reference), 'source_file': path.name,
+                        'metric': VERSION, 'parser': parser, 'reference_sha256': digest(reference), 'source_file': path.name,
                         'source_line': line_number, 'source_sha256': source_hash,
                         'timing_provisional': kind == 'specialist',
                         'timing_trustworthy': r.get('timing_trustworthy'), 'cost_method': r.get('cost_method'),
@@ -87,10 +87,10 @@ def build(reference, inputs, out):
             try:
                 if r.get('error'):
                     raise ValueError(r['error'])
-                points = parse_points(r.get('text', ''), labelled=k == 'dishes')
+                points, how = read_points(r.get('text', ''), labelled=k == 'dishes', parser=parser)
                 scored = score(points, refs[k], task_meta[k]['width'], task_meta[k]['height'], labelled=k == 'dishes')
                 rec.update(scored)
-                rec.update({'readable': True, 'predictions': points,
+                rec.update({'readable': True, 'read_as': how, 'predictions': points,
                             'predicted_labels': dict(Counter(p['label'] for p in points)) if k == 'dishes' else {}})
             except (ValueError, KeyError, TypeError) as e:
                 rec.update({'score': 0, 'readable': False, 'error': str(e), 'predicted_count': None,
@@ -114,13 +114,14 @@ def build(reference, inputs, out):
                         'seconds': statistics.median(times) if all(v is not None for v in times) else None,
                         'cost_usd': mean_known([r['cost_usd'] for r in rows]),
                         'timing_provisional': any(r['timing_provisional'] for r in rows),
-                        'unreadable': sum(not r['readable'] for r in rows)})
+                        'unreadable': sum(not r['readable'] for r in rows),
+                        'recovered': sum(r.get('read_as') == 'recovered' for r in rows)})
     for s in summary:
         ranks = [1 + sum(other['tolerances'][level] > s['tolerances'][level] + 1e-12 for other in summary if other['coverage'] == 4)
                  for level in TOLERANCES] if s['coverage'] == 4 else []
         s['rank_range'] = [min(ranks), max(ranks)] if ranks else None
     summary.sort(key=lambda s: -(s['score'] if s['score'] is not None else -1))
-    manifest = {'metric': VERSION, 'created_at': datetime.now(timezone.utc).isoformat(),
+    manifest = {'metric': VERSION, 'parser': parser, 'created_at': datetime.now(timezone.utc).isoformat(),
                 'reference': reference.name, 'reference_sha256': digest(reference),
                 'input_files': {p.name: digest(p) for p in inputs}, 'tolerances': TOLERANCES,
                 'diagonal_cap': DIAGONAL_CAP, 'scope': 'Point localisation only. Not point-inside-object or segmentation.',
@@ -138,13 +139,13 @@ def build(reference, inputs, out):
     (out / 'data.js').write_text('window.POINT_REPORT=' + json.dumps(payload, separators=(',', ':')) + ';\n')
     shutil.copyfile(ROOT / 'scripts/point_report.html', out / 'index.html')
     shutil.copyfile(ROOT / 'docs/point-benchmark-v1.md', out / 'method.md')
-    fields = ['entrant', 'label', 'level', 'coverage', 'score', *TASKS, *TOLERANCES, 'seconds', 'cost_usd', 'timing_provisional', 'unreadable']
+    fields = ['entrant', 'label', 'level', 'coverage', 'score', *TASKS, *TOLERANCES, 'seconds', 'cost_usd', 'timing_provisional', 'unreadable', 'recovered']
     with (out / 'summary.csv').open('w') as f:
         writer = csv.DictWriter(f, fieldnames=fields);writer.writeheader()
         for s in summary:
             row = {k: s.get(k) for k in fields};row.update(s['task_scores']);row.update(s['tolerances']);writer.writerow(row)
     with (out / 'per-task.csv').open('w') as f:
-        fields = ['entrant', 'task', 'repeat', 'score', 'predicted_count', 'reference_count', 'count_error', 'readable', 'error', *TOLERANCES]
+        fields = ['entrant', 'task', 'repeat', 'score', 'predicted_count', 'reference_count', 'count_error', 'readable', 'read_as', 'error', *TOLERANCES]
         writer = csv.DictWriter(f, fieldnames=fields);writer.writeheader()
         for r in records:
             row = {k: r.get(k) for k in fields};row.update({level:r['tolerances'][level]['f1'] for level in TOLERANCES});writer.writerow(row)
@@ -159,5 +160,7 @@ if __name__ == '__main__':
     ap.add_argument('--reference', type=Path, default=ROOT / 'annotations/reviews/segbench-review-6187f623-approved.json')
     ap.add_argument('--inputs', nargs='+', type=Path, default=[ROOT / 'results/run-pilot-1.jsonl', ROOT / 'results/run-specialists-1.jsonl'])
     ap.add_argument('--out', type=Path, required=True)
+    ap.add_argument('--parser', choices=('strict', 'lenient'), default='strict',
+                    help='lenient: if strict JSON fails, recover [x, y] pairs mechanically (see point_score.recover_points)')
     args = ap.parse_args()
-    build(args.reference, args.inputs, args.out)
+    build(args.reference, args.inputs, args.out, args.parser)

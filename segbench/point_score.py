@@ -53,6 +53,47 @@ def parse_points(text: str, labelled: bool = False) -> list[dict]:
     return out
 
 
+_NUM = r'-?\d+(?:\.\d+)?'
+# A pair: '[a, b' followed by ']' or by a comma and something that is not a
+# number (a broken '[188, 30, "label"'). Never a triple like [a, b, c].
+_PAIR = re.compile(r'\[\s*(' + _NUM + r')\s*,\s*(' + _NUM + r')\s*(?=\]|,\s*[^\d\s\-.])')
+_LABEL = re.compile(r'\b(dirty|clean)\b', re.I)
+
+
+def recover_points(text: str, labelled: bool = False) -> list[dict]:
+    """Mechanical fallback for replies strict JSON cannot read.
+
+    Every [number, number] pair, in reply order, as written: no reordering,
+    deduplication, clipping, axis swapping or rescaling. For labels, the
+    first 'dirty'/'clean' after a pair and before the next pair; a pair
+    without one keeps no label and so can only count as a miss in labelled
+    scoring. Used only when parse_points fails, so a well-formed reply is
+    never read differently.
+    """
+    matches = list(_PAIR.finditer(text))
+    if not matches:
+        raise ValueError('No coordinate pairs found')
+    out = []
+    for i, m in enumerate(matches):
+        row = {'point': [float(m.group(1)), float(m.group(2))]}
+        if labelled:
+            end = matches[i + 1].start() if i + 1 < len(matches) else len(text)
+            lab = _LABEL.search(text, m.end(), end)
+            row['label'] = lab.group(1).lower() if lab else None
+        out.append(row)
+    return out
+
+
+def read_points(text: str, labelled: bool = False, parser: str = 'strict') -> tuple[list[dict], str]:
+    """(points, how they were read): 'strict', or 'recovered' (lenient parser only)."""
+    try:
+        return parse_points(text, labelled), 'strict'
+    except (ValueError, KeyError, TypeError):
+        if parser != 'lenient':
+            raise
+    return recover_points(text, labelled), 'recovered'
+
+
 def reference_distances(refs: list[dict], width: int, height: int) -> list[float]:
     coords = [(r['x'], r['y']) for r in refs]
     if len(set(coords)) != len(coords):

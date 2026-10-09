@@ -1,0 +1,21 @@
+{
+  "metric": "point-localisation-v1",
+  "parser": "lenient",
+  "created_at": "2026-10-09T18:16:33.006909+00:00",
+  "reference": "segbench-review-6187f623-approved.json",
+  "reference_sha256": "2862bb074507022fbfdd58d017f57520abcafb4b8366b9824adeae066c9c120b",
+  "input_files": {
+    "run-pilot-1.jsonl": "c828cf269e0fe4df9cba8b86485974360c3b8a0085e30d3fb824bbcc283c83fa",
+    "run-specialists-1.jsonl": "85216e07540db137241efd5431ce958e94085369f220c53a869a53b3f96e2897"
+  },
+  "tolerances": {
+    "tight": 0.1,
+    "medium": 0.25,
+    "loose": 0.5
+  },
+  "diagonal_cap": 0.02,
+  "scope": "Point localisation only. Not point-inside-object or segmentation.",
+  "aggregation": "Equal mean over three F1 tolerances, then four tasks. Complete coverage required.",
+  "specification_sha256": "13bcebcab4bdd203cdc5696b76b998f1b39a76d2d43c551a0f4df2222c00e678",
+  "scorer_sha256": "5639c3610746f166e9f285b7fd00438be586802bc5fbe82b7960932779fc811e"
+}

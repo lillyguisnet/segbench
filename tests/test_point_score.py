@@ -2,7 +2,7 @@
 import itertools
 import json
 import unittest
-from segbench.point_score import maximum_matching, parse_points, reference_distances, score, score_at
+from segbench.point_score import maximum_matching, parse_points, read_points, recover_points, reference_distances, score, score_at
 
 
 class PointScoreTests(unittest.TestCase):
@@ -65,6 +65,27 @@ class PointScoreTests(unittest.TestCase):
             with self.assertRaises(ValueError):parse_points(text)
         with self.assertRaises(ValueError):parse_points('{"objects":[{"point":[1,2]}]}',True)
         self.assertEqual(parse_points('{"objects":[{"point":[1,2],"label":" CLEAN "}]}',True)[0]['label'],'clean')
+
+    def test_recovery_only_when_strict_fails(self):
+        ok = '{"objects":[{"label":"dirty","point":[1,2]},{"point":[3,4],"label":"clean"}]}'
+        self.assertEqual(read_points(ok, True, 'lenient'), (parse_points(ok, True), 'strict'))
+        with self.assertRaises(ValueError):
+            read_points('{"objects":[{"point":[1,2]}, "point":[3,4]}]}', parser='strict')
+
+    def test_recovery_cases_seen_in_pilot(self):
+        missing_brace = '```json\n{"objects": [{"point": [757, 787]}, "point": [834, 694]}, {"point": [912, 800]}]}\n```'
+        self.assertEqual([p['point'] for p in recover_points(missing_brace)], [[757, 787], [834, 694], [912, 800]])
+        one_key = '{"objects": [{"point": [114, 377], [599, 293], [726, 122]}]}'
+        self.assertEqual(len(recover_points(one_key)), 3)
+        open_bracket = '{"objects": [{"point": [57, 57], "label": "x"}, {"point": [188, 30, "label": "x"}]}'
+        self.assertEqual(recover_points(open_bracket)[-1]['point'], [188, 30])
+        self.assertEqual(recover_points('[[1, 2, 3]]' + '[4, 5]'), [{'point': [4.0, 5.0]}])
+        labelled = '{"objects": [{"point": [1, 2], "label": "Dirty"}, "point": [3, 4]}, {"point": [5, 6], "label": "clean"}'
+        self.assertEqual([p['label'] for p in recover_points(labelled, True)], ['dirty', None, 'clean'])
+        # As written: no swapping, rescaling, clipping or deduplication.
+        self.assertEqual(recover_points('[2000, -5] [2000, -5]'), [{'point': [2000.0, -5.0]}] * 2)
+        with self.assertRaises(ValueError):
+            recover_points('I see no objects.')
 
 
 if __name__ == '__main__':
