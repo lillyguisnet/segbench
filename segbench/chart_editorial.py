@@ -1,4 +1,4 @@
-"""The charts in an editorial style: a short header (track and title only), the best-value models
+"""The charts in an editorial style: a one-line headline (the ability measured), the best-value models
 joined by a smooth blue curve over a soft fill, every model a white disc
 with its logo in brand colour, and every model named, crowded ones in
 neat columns with thin leader lines.
@@ -65,7 +65,12 @@ BRAND = {
     "UC Davis": "#022851",
 }
 MAKER_NAME = {"Moonshot": "Moonshot AI", "Z.AI": "Z.ai"}
-TRACK_NAME = {"find": "Finding objects", "outline": "Outlining objects", "whole": "The whole task"}
+# The headline of each chart: what ability it measures, in plain words.
+TITLES = {
+    "find": "How well can AI point at things in a photo?",
+    "outline": "How well can AI outline things in a photo?",
+    "whole": "How well can AI find and outline things in a photo?",
+}
 
 BIG_PT = 31.0  # best-value discs
 SMALL_PT = 20.0  # every other disc
@@ -106,7 +111,7 @@ def _disc(ax, x, y, maker: str, d: float, *, rim, rim_w: float, fonts: Fonts, z:
     t = transform if transform is not None else ax.transData
     if shadow:
         drop = t + ScaledTranslation(0, -2 / 72, ax.figure.dpi_scale_trans)
-        ax.scatter([x], [y], s=(d + 4) ** 2, facecolors=[(0.11, 0.25, 0.6, 0.13)], edgecolors="none",
+        ax.scatter([x], [y], s=(d + 4) ** 2, facecolors=[(*to_rgb(rim), 0.16)], edgecolors="none",
                    transform=drop, zorder=z - 0.004)
     ax.scatter([x], [y], s=d ** 2, facecolors="white", edgecolors=[rim], linewidths=rim_w, transform=t, zorder=z)
     logo = logo_path(maker)
@@ -183,8 +188,12 @@ def _place(cx, cy, r, w, h, prefer, rings, step, placed, circles, own, frame, ga
 
 
 def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, float] | None = None,
-         header: bool = True, names: str = "all", dpi: int = 216) -> list[Path]:
-    """Draw the points of one track; return the files written (PNG 2160 x 2160, PDF, SVG)."""
+         header: bool = True, title: str | None = None, accent: str = ACCENT, names: str = "all",
+         dpi: int = 216) -> list[Path]:
+    """Draw the points of one track; return the files written (PNG 2160 x 2160, PDF, SVG).
+
+    `title` replaces the track's headline (TITLES); `accent` is the colour of
+    the best-value curve, rings, scores, glow and the background's tint."""
     pts = [p for p in points if p.track == track]
     if not pts:
         raise ValueError(f"no points for track {track!r}")
@@ -196,11 +205,12 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
     bg = fig.add_axes((0, 0, 1, 1), zorder=-10)
     yy, xx = np.mgrid[0:1:200j, 0:1:200j]
     t = np.clip((xx + (1 - yy)) / 2, 0, 1)[..., None]
-    top, bottom = np.array(to_rgb("#ffffff")), np.array(to_rgb("#eaf1fd"))
+    top = np.array(to_rgb("#ffffff"))
+    bottom = top * 0.91 + np.array(to_rgb(accent)) * 0.09  # a faint wash of the accent
     bg.imshow(top * (1 - t) + bottom * t, extent=(0, 1, 0, 1), aspect="auto", origin="upper")
     bg.axis("off")
 
-    ax_top = 0.835 if header else 0.93
+    ax_top = 0.855 if header else 0.93
     ax = fig.add_axes((0.065, 0.095, 0.905, ax_top - 0.095))
     ax.set_facecolor("none")
 
@@ -266,13 +276,13 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
     across = np.clip(cols / max(x_first, 1e-6), 0, 1) ** 1.6
     down = np.linspace(0.20, 0.0, 256)
     rgba = np.zeros((256, 512, 4))
-    rgba[..., :3] = to_rgb(ACCENT)
+    rgba[..., :3] = to_rgb(accent)
     rgba[..., 3] = down[:, None] * across[None, :]
     img = ax.imshow(rgba, extent=(0, 1, frac[0], frac[1]), transform=ax.transAxes, aspect="auto",
                     origin="upper", zorder=1)
     img.set_clip_path(clip)
-    ax.plot(cx_, cy_, color=ACCENT, lw=3.2, zorder=3, solid_capstyle="round", solid_joinstyle="round")
-    ax.plot([cx_[-1], xlim[1]], [cy_[-1], cy_[-1]], color=ACCENT, lw=3.2, alpha=0.45, zorder=3,
+    ax.plot(cx_, cy_, color=accent, lw=3.2, zorder=3, solid_capstyle="round", solid_joinstyle="round")
+    ax.plot([cx_[-1], xlim[1]], [cy_[-1], cy_[-1]], color=accent, lw=3.2, alpha=0.45, zorder=3,
             solid_capstyle="round")
     style_axes()  # imshow may have touched the limits
 
@@ -282,13 +292,13 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
         if p.kind == "pair":
             _badge(ax, X(p), Y(p), p.outliner_maker, SMALL_PT, fonts, 4 + i * 0.01)
     for i, p in enumerate(best):
-        _disc(ax, X(p), Y(p), p.maker, BIG_PT, rim=ACCENT, rim_w=2.8, fonts=fonts, z=6 + i * 0.01, shadow=True)
+        _disc(ax, X(p), Y(p), p.maker, BIG_PT, rim=accent, rim_w=2.8, fonts=fonts, z=6 + i * 0.01, shadow=True)
         if p.kind == "pair":
             _badge(ax, X(p), Y(p), p.outliner_maker, BIG_PT, fonts, 6 + i * 0.01)
 
-    _labels(fig, ax, fonts, pts, best_ids, names, X, Y, curve)
+    _labels(fig, ax, fonts, pts, best_ids, names, X, Y, curve, accent)
     if header:
-        _header(fig, fonts, track, pts)
+        _header(fig, fonts, title or TITLES[track])
     if any(p.synthetic for p in pts):
         ax.text(0.5, 0.42, "FAKE DATA", transform=ax.transAxes, ha="center", va="center", rotation=35,
                 fontproperties=fonts.bold, fontsize=110, color=FAKE_RED, alpha=0.06, zorder=0.5)
@@ -302,7 +312,7 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
     return paths
 
 
-def _labels(fig, ax, fonts: Fonts, pts, best_ids, names, X, Y, curve) -> None:
+def _labels(fig, ax, fonts: Fonts, pts, best_ids, names, X, Y, curve, accent: str) -> None:
     fig.canvas.draw()
     renderer = fig.canvas.get_renderer()
     ppt = fig.dpi / 72
@@ -323,7 +333,7 @@ def _labels(fig, ax, fonts: Fonts, pts, best_ids, names, X, Y, curve) -> None:
         name = p.label + (f" \u00b7 {p.level}" if p.level and several_levels else "")
         if p.entrant in best_ids:
             lines = [[(name, props(fonts.bold, 13.5, INK))],
-                     [(f"{100 * p.quality:.1f}", props(fonts.bold, 13.5, ACCENT)),
+                     [(f"{100 * p.quality:.1f}", props(fonts.bold, 13.5, accent)),
                       (f"  {_secs(p.seconds)}", props(fonts.medium, 11, INK_3))]]
         else:
             maker = MAKER_NAME.get(p.maker, p.maker)
@@ -469,10 +479,10 @@ def _labels(fig, ax, fonts: Fonts, pts, best_ids, names, X, Y, curve) -> None:
                 leader(c, b, align, sized[0][3])
 
 
-def _header(fig, fonts: Fonts, track: str, pts) -> None:
-    x = 0.065
-    eyebrow = "SEGBENCH \u00b7 " + TRACK_NAME[track].upper()
-    fig.text(x, 0.952, "\u2009".join(eyebrow), fontproperties=fonts.bold, fontsize=12, color=ACCENT,
-             va="baseline")
-    fig.text(x - 0.003, 0.892, "Quality vs. cost", fontproperties=fonts.bold, fontsize=38, color=INK,
-             va="baseline")
+def _header(fig, fonts: Fonts, title: str) -> None:
+    """The headline, at 30 pt or smaller if that is what it takes to fit the width."""
+    t = fig.text(0.062, 0.915, title, fontproperties=fonts.bold, fontsize=30, color=INK, va="baseline")
+    room = (0.97 - 0.062) * fig.bbox.width
+    width = t.get_window_extent(fig.canvas.get_renderer()).width
+    if width > room:
+        t.set_fontsize(30 * room / width)

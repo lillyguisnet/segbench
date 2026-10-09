@@ -44,7 +44,9 @@ def main() -> None:
     ap.add_argument("--level", choices=LEVELS, help="show only this thinking level (models without levels stay)")
     ap.add_argument("--style", choices=("standard", "editorial"), default="standard",
                     help="editorial: header, smooth blue best-value curve, every model named")
-    ap.add_argument("--no-header", action="store_true", help="editorial style without its header")
+    ap.add_argument("--no-header", action="store_true", help="editorial style without its headline")
+    ap.add_argument("--title", help="editorial style: headline instead of the track's own (one track at a time)")
+    ap.add_argument("--accent", help="editorial style: accent colour, e.g. '#1d5fe0'")
     ap.add_argument("--no-legend", action="store_true", help="no speed and pair key above the chart")
     ap.add_argument("--names", choices=("all", "frontier"), default="all",
                     help="name every model, or only the best-value ones")
@@ -76,6 +78,7 @@ def main() -> None:
             from segbench.chart_editorial import draw as draw_editorial
 
             paths = draw_editorial(points, track, out / track, xlim=xlim, header=not args.no_header,
+                                   title=args.title, **({"accent": args.accent} if args.accent else {}),
                                    names=args.names)
         else:
             paths = draw(points, track, out / track, xlim=xlim, legend=not args.no_legend, names=args.names)
