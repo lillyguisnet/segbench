@@ -459,6 +459,7 @@ specialists/  one environment per specialist model family (see its README)
 - [x] SAM 1/2 and DINOv3 receive the task through the tracks (above)
 - [x] runner for the tracks that need no answer key: `scripts/run.py` (find, whole, trick; resumable, retries dropped calls only); prompts in `segbench/tasks.py` (version v1); `scripts/summarize_run.py`
 - [ ] track 2 (outline) in the runner: needs the answer key's dots
+- [x] draft answer key from model consensus, for the person making the real one (`scripts/consensus.py`, methods in `segbench/consensus.py`): Dawid-Skene voting for objects and labels, STAPLE for regions, a review queue of contested objects, and a provisional ranking that judges each model only against other companies' models. Never used as the answer key: models that share a blind spot agree on the same mistake
 - [x] chart drawing (`scripts/draw_charts.py`), checked on made-up data
 - [ ] the three charts, from real scores
 

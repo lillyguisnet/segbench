@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>segbench: draft answer key from model consensus</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- Template for scripts/consensus.py, which puts the data in place of the DATA marker below. -->
+<style>
+:root{--bg:#fafaf8;--fg:#1d1d1b;--mut:#6b6b66;--card:#fff;--line:#e4e2dc;--acc:#b5532a;--hl:#b5532a22}
+@media(prefers-color-scheme:dark){:root{--bg:#161614;--fg:#ecebe6;--mut:#9a9890;--card:#201f1c;--line:#34332e;--acc:#e08a5c;--hl:#e08a5c26}}
+*{box-sizing:border-box}body{margin:0;font:14px/1.45 system-ui,sans-serif;background:var(--bg);color:var(--fg)}
+main{max-width:1500px;margin:auto;padding:18px 16px 60px}h1{font-size:21px;margin:0 0 4px}.mut{color:var(--mut)}
+.warn{background:var(--hl);border-left:3px solid var(--acc);padding:7px 12px;margin:10px 0 14px;border-radius:4px}
+nav{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+nav button{border:1px solid var(--line);background:var(--card);color:var(--fg);padding:6px 12px;border-radius:7px;cursor:pointer;font:inherit}
+nav button.on{background:var(--acc);border-color:var(--acc);color:#fff}
+h2{font-size:17px;margin:14px 0 4px}
+.split{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:18px;align-items:start}
+@media(max-width:1000px){.split{grid-template-columns:1fr}}
+.pic{position:relative;line-height:0}.pic img{width:100%;border-radius:6px}.pic svg,.pic .heat{position:absolute;inset:0;width:100%;height:100%}
+.pic .heat{image-rendering:auto}
+table{border-collapse:collapse;font-variant-numeric:tabular-nums;width:100%}
+th,td{padding:4px 8px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}th{color:var(--mut);font-weight:500;vertical-align:bottom;white-space:normal}
+td:first-child,th:first-child,td:nth-child(2),th:nth-child(2){text-align:left}
+tbody tr{cursor:pointer}tbody tr:hover{background:var(--hl)}tr.sel{background:var(--hl);outline:2px solid #0af}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12.5px;margin:6px 0}.legend i{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:5px;vertical-align:-1px}
+.bar{display:inline-block;height:8px;background:var(--acc);border-radius:2px;vertical-align:middle;margin-left:6px;opacity:.75}
+</style></head><body><main>
+<h1>Draft answer key from the models' consensus</h1>
+<div class="mut" id="sub"></div>
+<div class="warn"><b>A draft for a person to check, not the answer key.</b> Models that share a blind spot agree on the same mistake, and a lone model that is right gets outvoted. Use it to speed up the answer key (check the orange ones first) and as a rough ranking until the real answer key exists. Each model's provisional score compares it only with the consensus of <i>other companies'</i> models, so it can't vote for itself or its siblings.</div>
+<nav id="nav"></nav><div id="page"></div>
+</main>
+<script>
+const D=/*DATA*/null;
+const $=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+$('#sub').textContent=`${D.run} · merged from every readable "find" and "whole task" answer (trick questions left out)`;
+const TR={find:'find (dots)',whole:'whole (outlines)'};
+const pct=v=>v==null?'–':Math.round(v*100)+'%';
+const bar=v=>`<span class="bar" style="width:${Math.round((v||0)*60)}px"></span>`;
+let tab=location.hash.slice(1)||D.tasks[0].key, sel=null;
+function nav(){const tabs=[...D.tasks.map(t=>[t.key,`${t.number}. ${t.key}`]),['ranking','Provisional ranking']];
+  $('#nav').innerHTML=tabs.map(([k,n])=>`<button class="${tab===k?'on':''}" data-k="${k}">${n}</button>`).join('');
+  $('#nav').querySelectorAll('button').forEach(b=>b.onclick=()=>{tab=b.dataset.k;sel=null;render()});}
+function render(){nav();history.replaceState(null,'','#'+tab);if(tab==='ranking')return ranking();
+  const t=D.tasks.find(x=>x.key===tab);t.kind==='objects'?objects(t):region(t);}
+function svgObjects(t){
+  const r=Math.max(t.w,t.h)/120,sw=Math.max(t.w,t.h)/500;let s='';
+  t.objects.forEach(o=>{const p=o.p_real;const[x,y]=o.center;const n=o.votes.length;
+    const tip=`<title>${n} answers marked it · chance it is real ${pct(p)}${o['p_dirty']!=null?` · dirty ${pct(o.p_dirty)}`:''}\n${o.votes.join(', ')}</title>`;
+    if(p<0.2){s+=`<circle cx="${x}" cy="${y}" r="${r*0.45}" fill="#888" fill-opacity=".7">${tip}</circle>`;return}
+    let fill=p>=0.8?'#30d158':'#ff9f0a';
+    if(t.labels.length&&o.p_dirty!=null)fill=o.p_dirty>0.5?'#ff3b30':'#30d158';
+    const ring=p<0.8||(o.p_dirty!=null&&o.p_dirty>0.25&&o.p_dirty<0.75);
+    s+=`<circle cx="${x}" cy="${y}" r="${r}" fill="${fill}" fill-opacity="${p>=0.8?0.85:0.55}" stroke="${ring?'#ff9f0a':'#fff'}" stroke-width="${ring?sw*2.2:sw}" ${ring?`stroke-dasharray="${sw*3}"`:''}>${tip}</circle>`;});
+  if(sel){const a=t.answers[sel];(a.dots||[]).forEach(([x,y])=>{s+=`<circle cx="${x}" cy="${y}" r="${r*0.55}" fill="none" stroke="#0af" stroke-width="${sw*2}"/><circle cx="${x}" cy="${y}" r="${sw*1.6}" fill="#0af"/>`});}
+  return `<svg viewBox="0 0 ${t.w} ${t.h}" preserveAspectRatio="none">${s}</svg>`;}
+function objects(t){
+  const real=t.objects.filter(o=>o.p_real>0.5),rev=t.objects.filter(o=>o.p_real>0.2&&o.p_real<0.8);
+  const lab=t.labels.length;const labRev=lab?real.filter(o=>o.p_dirty>0.25&&o.p_dirty<0.75).length:0;
+  const dirty=lab?real.filter(o=>o.p_dirty>0.5).length:0;
+  const rows=Object.entries(t.answers).map(([n,a])=>({n,a,w:t.weights[n],s:t.scores[n]})).sort((x,y)=>(y.s.f1_labelled??y.s.f1)-(x.s.f1_labelled??x.s.f1));
+  let h=`<h2>Task ${t.number}: ${esc(t.target)}</h2>
+  <div class="mut">Consensus: <b>${real.length}</b> likely objects${lab?` (<b style="color:#ff3b30">${dirty}</b> dirty, <b style="color:#30d158">${real.length-dirty}</b> clean)`:''} · <b style="color:#ff9f0a">${rev.length}</b> contested${lab?` · ${labRev} with a disputed label`:''} · dots closer than ${Math.round(t.radius_px)} px (half a typical object) count as the same object</div>
+  <div class="legend">${lab?'<span><i style="background:#ff3b30"></i>dirty</span><span><i style="background:#30d158"></i>clean</span>':'<span><i style="background:#30d158"></i>agreed (over 80% likely real)</span>'}<span><i style="background:#ff9f0a"></i>contested: a person should look (dashed ring)</span><span><i style="background:#888"></i>probably not real (few, weak votes)</span><span><i style="background:#0af"></i>selected model's dots (click a row)</span></div>
+  <div class="split"><div class="pic"><img src="img/${t.photo}">${svgObjects(t)}</div><div>
+  <table><thead><tr><th>model</th><th>answer</th><th>dots</th><th title='Estimated share of the real objects this answer marks. The vote trusts high-recall, high-precision answers more.'>recall</th><th title='Share of its dots that land on likely-real objects'>precision</th>${lab?'<th title='Estimated share of labels (dirty/clean) that are right'>label acc.</th>':''}<th title='Compared only with the consensus of other companies’ models'>score (F1)</th>${lab?'<th>F1, right label</th>':''}</tr></thead><tbody>`+
+  rows.map(({n,a,w,s})=>`<tr data-n="${n}" class="${sel===n?'sel':''}"><td>${esc(a.label)}</td><td>${TR[a.track]}</td><td>${s.found}</td><td>${pct(w.recall)}</td><td>${pct(w.precision)}</td>${lab?`<td>${pct(w.label_accuracy)}</td>`:''}<td>${(s.f1).toFixed(2)}${lab?'':bar(s.f1)}</td>${lab?`<td>${s.f1_labelled.toFixed(2)}${bar(s.f1_labelled)}</td>`:''}</tr>`).join('')+
+  `</tbody></table><div class="mut" style="margin-top:6px"><b>recall</b>: share of the likely objects it marked · <b>precision</b>: share of its dots on likely objects. The vote trusts answers with both high. Hover a dot for its votes. F1 is 1 when a model's dots match the other companies' consensus one-to-one; it falls for missed objects and for extra dots.</div></div></div>`;
+  $('#page').innerHTML=h;bindRows();}
+function region(t){
+  const rows=Object.entries(t.answers).map(([n,a])=>({n,a,w:t.weights[n],s:t.scores[n]})).sort((x,y)=>y.s.iou-x.s.iou);
+  const sw=Math.max(t.w,t.h)/350;
+  const svg=sel?`<svg viewBox="0 0 ${t.w} ${t.h}" preserveAspectRatio="none">${t.answers[sel].polys.map(p=>`<polygon points="${p.map(q=>q.join(',')).join(' ')}" fill="none" stroke="#0af" stroke-width="${sw}"/>`).join('')}</svg>`:'';
+  let h=`<h2>Task ${t.number}: ${esc(t.target)}</h2><div class="mut">Merged with STAPLE, the standard method for combining several outlines of one picture. The redder a spot, the more (and the more reliable) models included it; the white line is where it becomes more likely in than out. Consensus area: <b>${t.area_pct}%</b> of the photo. <b>Sensitivity</b>: share of the consensus region an answer covers; <b>specificity</b>: share of the rest it leaves out; the vote trusts answers with both high.</div>
+  <div class="legend"><span><i style="background:#ff2d55"></i>consensus (stronger = more agreement)</span><span><i style="background:#0af"></i>selected model's outline (click a row)</span></div>
+  <div class="split"><div class="pic"><img src="img/${t.photo}"><img class="heat" src="${t.heat}">${svg}</div><div>
+  <table><thead><tr><th>model</th><th>answer</th><th title='Share of the consensus region it covers'>sensitivity</th><th title='Share of the rest of the photo it correctly leaves out'>specificity</th><th>its area %</th><th title='Area of the consensus of the other companies’ models'>others' area %</th><th title='Overlap with the consensus of the other companies’ models'>score (IoU)</th></tr></thead><tbody>`+
+  rows.map(({n,a,w,s})=>`<tr data-n="${n}" class="${sel===n?'sel':''}"><td>${esc(a.label)}</td><td>${TR[a.track]}</td><td>${pct(w.sensitivity)}</td><td>${pct(w.specificity)}</td><td>${s.area_pct}</td><td>${s.key_area_pct}</td><td>${s.iou.toFixed(2)}${bar(s.iou)}</td></tr>`).join('')+
+  `</tbody></table></div></div>`;
+  $('#page').innerHTML=h;bindRows();}
+function bindRows(){$('#page').querySelectorAll('tbody tr').forEach(r=>r.onclick=()=>{sel=sel===r.dataset.n?null:r.dataset.n;render()});}
+function ranking(){
+  const score=(t,n)=>{const s=t.scores[n];if(!s)return null;return t.kind==='region'?s.iou:(s.f1_labelled??s.f1)};
+  const models=[...new Set(D.tasks.flatMap(t=>Object.values(t.answers).map(a=>a.model)))];
+  const label={};D.tasks.forEach(t=>Object.values(t.answers).forEach(a=>label[a.model]=a.label));
+  let h=`<h2>Provisional ranking (consensus of other companies, not the benchmark score)</h2><div class="mut">A missing or unreadable answer counts as 0, as in the benchmark. Objects: F1 (dishes: with the right label). Regions: overlap (IoU).</div>`;
+  for(const track of ['find','whole']){
+    const tasks=D.tasks.filter(t=>Object.values(t.answers).some(a=>a.track===track));
+    const rows=models.map(m=>{const v=tasks.map(t=>score(t,`${m}/${track}`)??0);return{m,v,mean:v.reduce((a,b)=>a+b,0)/v.length}}).sort((a,b)=>b.mean-a.mean);
+    h+=`<h2>${track==='find'?'Find track (a dot on each object)':'Whole-task track (outlines, no hints)'}</h2><table style="max-width:1100px"><thead><tr><th>model</th><th></th>${tasks.map(t=>`<th>${t.key}</th>`).join('')}<th>mean</th></tr></thead><tbody>`+
+      rows.map(r=>`<tr><td>${esc(label[r.m])}</td><td></td>${r.v.map(v=>`<td>${v.toFixed(2)}</td>`).join('')}<td><b>${r.mean.toFixed(2)}</b>${bar(r.mean)}</td></tr>`).join('')+'</tbody></table>';}
+  $('#page').innerHTML=h;}
+render();
+</script></body></html>
