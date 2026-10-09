@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>segbench: what the models answered</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- Template for scripts/view_run.py, which puts the run's data in place of the DATA marker below. -->
+<style>
+:root{--bg:#fafaf8;--fg:#1d1d1b;--mut:#6b6b66;--card:#fff;--line:#e4e2dc;--acc:#b5532a;--hl:#b5532a22}
+@media(prefers-color-scheme:dark){:root{--bg:#161614;--fg:#ecebe6;--mut:#9a9890;--card:#201f1c;--line:#34332e;--acc:#e08a5c;--hl:#e08a5c26}}
+*{box-sizing:border-box}body{margin:0;font:14px/1.45 system-ui,sans-serif;background:var(--bg);color:var(--fg)}
+main{max-width:1500px;margin:auto;padding:18px 16px 60px}
+h1{font-size:21px;margin:0 0 4px}.mut{color:var(--mut)}
+.warn{background:var(--hl);border-left:3px solid var(--acc);padding:7px 12px;margin:10px 0 14px;border-radius:4px}
+nav{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+nav button,.seg button{border:1px solid var(--line);background:var(--card);color:var(--fg);padding:6px 12px;border-radius:7px;cursor:pointer;font:inherit}
+nav button.on,.seg button.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.seg{display:inline-flex;gap:4px;margin:4px 0 10px}
+h2{font-size:17px;margin:14px 0 2px}
+table{border-collapse:collapse;margin:8px 0 16px;font-variant-numeric:tabular-nums;width:100%;max-width:1100px}
+th,td{padding:4px 9px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}th{color:var(--mut);font-weight:500}
+td:first-child,th:first-child{text-align:left}tbody tr{cursor:pointer}tbody tr:hover{background:var(--hl)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px;align-items:start}
+.card{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:7px;cursor:zoom-in}
+.card.flash{outline:3px solid var(--acc)}
+.card h3{margin:0 0 4px;font-size:14px;display:flex;justify-content:space-between;gap:8px}.card h3 span{color:var(--mut);font-weight:400;font-size:12.5px}
+.pic{position:relative;line-height:0}.pic img{width:100%;border-radius:5px}.pic svg{position:absolute;inset:0;width:100%;height:100%}
+.meta{font-size:12.5px;margin-top:5px}.err{color:#d33;font-size:12.5px;white-space:pre-wrap;word-break:break-word;line-height:1.35}
+.legend{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12px;margin-top:5px}.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px;vertical-align:-1px}
+#modal{position:fixed;inset:0;background:#000e;display:none;z-index:9;cursor:zoom-out;overflow:auto;padding:14px}
+#modal .box{max-width:min(96vw,1500px);margin:auto;color:#eee}#modal .pic img{max-height:86vh;width:auto;max-width:100%}
+#modal .pic{display:inline-block}#modal h3{margin:0 0 6px}
+</style></head><body><main>
+<h1>What the models answered</h1>
+<div class="mut" id="sub"></div>
+<div class="warn"><b>Not scores yet.</b> The answer key is still being made, so this shows what each model drew and the numbers its drawing implies, not whether they are right. Click any picture to enlarge it; click a table row to jump to that model.</div>
+<nav id="nav"></nav>
+<div id="page"></div>
+</main>
+<div id="modal"><div class="box"></div></div>
+<script>
+const D=/*DATA*/null;
+const $=s=>document.querySelector(s), esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const MODELS=[...new Set(D.records.map(r=>r.model))];
+const COST={};D.records.forEach(r=>COST[r.model]=(COST[r.model]||0)+(r.cost||0));
+MODELS.sort((a,b)=>COST[a]-COST[b]);
+const MCOL={};MODELS.forEach((m,i)=>MCOL[m]=`hsl(${(i*360/MODELS.length+10)%360} 85% 55%)`);
+const LABEL={};D.records.forEach(r=>LABEL[r.model]=r.label);
+const TASK={};D.tasks.forEach(t=>TASK[t.key]=t);
+$('#sub').textContent=`${D.run} · ${D.records.length} replies · ${MODELS.length} models · thinking: ${[...new Set(D.records.map(r=>r.level))].join(', ')}`;
+const find=(task,track,model)=>D.records.filter(r=>r.task===task&&r.track===track&&r.model===model);
+const fmt$=c=>c==null?'–':c<0.01?'$'+c.toFixed(4):'$'+c.toFixed(3);
+const objColor=(it,i)=>it.label==='dirty'?'#ff3b30':it.label==='clean'?'#30d158':it.point?'#ffd60a':`hsl(${(i*137.5)%360} 90% 55%)`;
+
+function overlay(t,items,opts={}){
+  const W=t.w,H=t.h,sx=W/1000,sy=H/1000,r=Math.max(W,H)/110,sw=Math.max(W,H)/450;let s='';
+  (items||[]).forEach((it,i)=>{const c=opts.color||objColor(it,i);
+    if(it.polygon)s+=`<polygon points="${it.polygon.map(p=>p[0]*sx+','+p[1]*sy).join(' ')}" fill="${c}" fill-opacity=".33" stroke="${c}" stroke-width="${sw}"/>`;
+    if(it.point)s+=`<circle cx="${it.point[0]*sx}" cy="${it.point[1]*sy}" r="${r}" fill="${c}" stroke="#fff" stroke-width="${sw}"/>`;});
+  if(opts.road)opts.road.forEach(row=>{if(row.left==null)return;const y=row.y*sy;
+    s+=`<line x1="${row.left*sx}" x2="${row.right*sx}" y1="${y}" y2="${y}" stroke="#fff" stroke-width="${sw*1.5}" stroke-dasharray="${sw*4}"/>`;});
+  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">${s}</svg>`;
+}
+function pic(t,svg){return `<div class="pic"><img loading="lazy" src="img/${t.photo}">${svg}</div>`}
+
+function measureText(t,r){
+  if(r.error)return '';if(r.unreadable)return '';const m=r.m;let s=[];
+  if(r.track==='find'||t.kind==='objects')s.push(`<b>${m.count}</b> ${r.track==='find'?'dots':'outlines'}`);
+  if(m.dirty!=null)s.push(`<b style="color:#ff3b30">${m.dirty}</b> dirty, <b style="color:#30d158">${m.clean}</b> clean`);
+  if(t.key==='logs'&&m.diameter_px)s.push(`diameter median <b>${m.diameter_px.median}</b> px (${m.diameter_px.min}–${m.diameter_px.max})`);
+  if(t.key==='fig'&&m.area_pct!=null)s.push(`leaf area <b>${m.area_pct}%</b> of photo`);
+  if(t.key==='tree')s.push(`reddish area <b>${m.area_pct}%</b> of photo, ${m.count} piece${m.count===1?'':'s'}`);
+  if(t.key==='road'){s.push(`<b>${m.area_pct}%</b> of photo, reaches ${m.reaches_y==null?'–':(1000-m.reaches_y)/10+'% up'}`);
+    s.push('width: '+m.road.map(x=>x.width_pct==null?'–':x.width_pct+'%').join(' · ')+' <span class="mut">(bottom → top)</span>');}
+  return s.join(' · ');
+}
+function card(t,r,big){
+  const head=`<h3>${esc(r.label)} <span>${r.seconds!=null?r.seconds.toFixed(1)+' s':''} · ${fmt$(r.cost)}${r.thinking?` · ${r.thinking} thinking tokens`:''}</span></h3>`;
+  if(r.error)return head+`<div class="err">Error: ${esc(r.error)}</div>`;
+  const svg=overlay(t,r.items||[],{color:t.kind==='region'?'#ff2d55':null,road:t.key==='road'&&r.m?r.m.road:null});
+  const body=pic(t,svg);
+  if(r.unreadable)return head+body+`<div class="err">Unreadable reply (scores 0): ${esc(r.unreadable)}${big?'\n\n'+esc(r.text):''}</div>`;
+  return head+body+`<div class="meta">${measureText(t,r)}</div>`;
+}
+function openModal(html){$('#modal .box').innerHTML=html;$('#modal').style.display='block'}
+$('#modal').onclick=()=>$('#modal').style.display='none';
+
+const [h0,h1]=location.hash.slice(1).split('/');
+let state={tab:h0||D.tasks[0].key,track:h1||null};
+function nav(){
+  const tabs=[...D.tasks.map(t=>[t.key,`${t.number}. ${t.key}`]),['trick','Trick questions'],['overview','All counts']];
+  $('#nav').innerHTML=tabs.map(([k,n])=>`<button class="${state.tab===k?'on':''}" data-k="${k}">${n}</button>`).join('');
+  $('#nav').querySelectorAll('button').forEach(b=>b.onclick=()=>{state.tab=b.dataset.k;state.track=null;render()});
+}
+function render(){nav();history.replaceState(null,'','#'+state.tab+(state.track?'/'+state.track:''));
+  if(state.tab==='trick')return renderTrick();
+  if(state.tab==='overview')return renderOverview();
+  const t=TASK[state.tab];
+  const tracks=['find','whole'].filter(tr=>D.records.some(r=>r.task===t.key&&r.track===tr));
+  if(!tracks.includes(state.track))state.track=tracks[0];
+  const tr=state.track;
+  const rows=MODELS.map(m=>find(t.key,tr,m)[0]).filter(Boolean);
+  let h=`<h2>Task ${t.number}: segment ${esc(t.target)}</h2>`;
+  h+=`<div class="seg">${tracks.map(x=>`<button class="${x===tr?'on':''}" data-t="${x}">${x==='find'?'Find (a dot on each)':'Whole task (outlines, no hints)'}</button>`).join('')}</div>`;
+  // table
+  const cols=t.key==='dishes'?['dots / outlines','dirty','clean']:t.key==='logs'&&tr==='whole'?['outlines','median diameter (px)']:
+    t.key==='fig'&&tr==='whole'?['outlines','leaf area (% of photo)']:t.key==='tree'?['pieces','reddish area (% of photo)']:
+    t.key==='road'?['road area (% of photo)','width at bottom (%)','width halfway (%)','reaches (% up)']:[tr==='find'?'dots':'outlines'];
+  const val=r=>{if(r.error)return cols.map((_,i)=>i?'':'error');if(r.unreadable)return cols.map((_,i)=>i?'':'unreadable');const m=r.m;
+    if(t.key==='dishes')return[m.count,m.dirty,m.clean];
+    if(t.key==='logs'&&tr==='whole')return[m.count,m.diameter_px?m.diameter_px.median:'–'];
+    if(t.key==='fig'&&tr==='whole')return[m.count,m.area_pct];
+    if(t.key==='tree')return[m.count,m.area_pct];
+    if(t.key==='road')return[m.area_pct,m.road[0].width_pct??'–',m.road[3].width_pct??'–',m.reaches_y==null?'–':(1000-m.reaches_y)/10];
+    return[m.count];};
+  h+=`<table><thead><tr><th>model</th>${cols.map(c=>`<th>${c}</th>`).join('')}<th>seconds</th><th>cost</th></tr></thead><tbody>`+
+    rows.map(r=>`<tr data-m="${r.model}"><td><i style="display:inline-block;width:9px;height:9px;border-radius:50%;background:${MCOL[r.model]};margin-right:6px"></i>${esc(r.label)}</td>${val(r).map(v=>`<td>${v}</td>`).join('')}<td>${r.seconds!=null?r.seconds.toFixed(1):''}</td><td>${fmt$(r.cost)}</td></tr>`).join('')+`</tbody></table>`;
+  // cards
+  h+='<div class="grid">';
+  if(tr==='find'){const all=rows.filter(r=>r.items).flatMap(r=>r.items.map(it=>({...it,model:r.model})));
+    h+=`<div class="card" data-all="1"><h3>All models together <span>one colour per model</span></h3>${pic(t,allSvg(t,all))}<div class="legend">${rows.map(r=>`<span><i style="background:${MCOL[r.model]}"></i>${esc(r.label)}</span>`).join('')}</div></div>`;}
+  h+=rows.map(r=>`<div class="card" id="c-${r.model}" data-m="${r.model}">${card(t,r)}</div>`).join('')+'</div>';
+  $('#page').innerHTML=h;
+  $('#page').querySelectorAll('.seg button').forEach(b=>b.onclick=()=>{state.track=b.dataset.t;render()});
+  $('#page').querySelectorAll('tbody tr').forEach(row=>row.onclick=()=>{const c=$('#c-'+row.dataset.m);c.scrollIntoView({behavior:'smooth',block:'center'});c.classList.add('flash');setTimeout(()=>c.classList.remove('flash'),1500)});
+  $('#page').querySelectorAll('.card').forEach(c=>c.onclick=()=>openModal(c.dataset.all?c.innerHTML:card(t,rows.find(r=>r.model===c.dataset.m),true)));
+}
+function allSvg(t,items){
+  const W=t.w,H=t.h,r=Math.max(W,H)/150,sw=Math.max(W,H)/700;
+  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">${items.map(it=>it.label==='clean'?
+    `<rect x="${it.point[0]*W/1000-r}" y="${it.point[1]*H/1000-r}" width="${2*r}" height="${2*r}" fill="${MCOL[it.model]}" stroke="#fff" stroke-width="${sw}"/>`:
+    `<circle cx="${it.point[0]*W/1000}" cy="${it.point[1]*H/1000}" r="${r}" fill="${MCOL[it.model]}" stroke="#fff" stroke-width="${sw}"/>`).join('')}</svg>`;
+}
+function renderTrick(){
+  const tasks=D.tasks.filter(t=>D.records.some(r=>r.task===t.key&&r.track==='trick'));
+  let h=`<h2>Trick questions: ask for something that is not in the photo</h2><div class="mut">The right answer is always nothing (0). A number means the model pointed at things that are not there.</div>`;
+  h+=`<table><thead><tr><th>model</th>${tasks.map(t=>`<th>${esc(t.absent.replace('each ',''))}s in ${t.key}</th>`).join('')}<th>total invented</th></tr></thead><tbody>`;
+  const bad=[];
+  MODELS.forEach(m=>{let tot=0;const cells=tasks.map(t=>{const r=find(t.key,'trick',m)[0];if(!r)return'–';if(r.error)return'error';if(r.unreadable)return'?';
+      const n=r.items.length;tot+=n;if(n)bad.push([t,r]);return n?`<b style="color:#ff453a">${n}</b>`:'0';});
+    h+=`<tr><td>${esc(LABEL[m])}</td>${cells.map(c=>`<td>${c}</td>`).join('')}<td>${tot?`<b style="color:#ff453a">${tot}</b>`:'0'}</td></tr>`;});
+  h+='</tbody></table>';
+  if(bad.length){h+='<h2>Where they pointed</h2><div class="grid">'+bad.map(([t,r],i)=>`<div class="card" data-i="${i}"><h3>${esc(r.label)} <span>"${esc(t.absent)}" in ${t.key}</span></h3>${pic(t,overlay(t,r.items,{color:'#ff2bd6'}))}</div>`).join('')+'</div>';}
+  $('#page').innerHTML=h;
+  $('#page').querySelectorAll('.card').forEach(c=>c.onclick=()=>openModal(c.innerHTML));
+}
+function renderOverview(){
+  const cols=[];D.tasks.forEach(t=>['find','whole'].forEach(tr=>{if(t.kind==='objects'&&D.records.some(r=>r.task===t.key&&r.track===tr))cols.push([t,tr])}));
+  let h=`<h2>How many objects each model reported</h2><div class="mut">Rough expected counts from looking at the photos (not the answer key): logs ~70, cows ~13, fig leaves ~12, dishes ~20.</div>`;
+  h+=`<table><thead><tr><th>model</th>${cols.map(([t,tr])=>`<th>${t.key} ${tr}</th>`).join('')}<th>total seconds</th><th>total cost</th></tr></thead><tbody>`;
+  MODELS.forEach(m=>{const rs=D.records.filter(r=>r.model===m);
+    h+=`<tr><td>${esc(LABEL[m])}</td>${cols.map(([t,tr])=>{const r=find(t.key,tr,m)[0];return`<td>${!r?'–':r.error?'error':r.unreadable?'?':r.m.count}</td>`}).join('')}<td>${rs.reduce((a,r)=>a+(r.seconds||0),0).toFixed(0)}</td><td>${fmt$(COST[m])}</td></tr>`;});
+  $('#page').innerHTML=h+'</tbody></table><div class="mut">? = reply could not be read (scores 0).</div>';
+}
+render();
+</script></body></html>

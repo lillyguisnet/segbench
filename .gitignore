@@ -26,3 +26,6 @@ annotations/exports/
 
 # charts drawn from made-up data (scripts/draw_charts.py --demo)
 charts/demo/
+
+# answer viewers, rebuilt by scripts/view_run.py
+results/views/
