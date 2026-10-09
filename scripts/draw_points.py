@@ -16,27 +16,23 @@ whether they are right.
 How a point is drawn:
 - a disc centred exactly on the point, with the maker's logo in white
   (the same logos as the charts: segbench/chart.py, assets/logos);
-- disc colour: the maker's brand colour. Models from the same maker get
-  darker and lighter shades of it, darkest first in the legend. Two
-  makers may share a colour (Meta and Google are both blue): the logo
-  already tells makers apart, the colour only has to tell one maker's
-  models apart;
+- disc colour: the maker's brand colour; models from the same maker get
+  darker and lighter shades of it, darkest first in the legend, the same
+  on every photo (segbench/points.py);
 - the view is zoomed to where the points are (all of them, with a margin)
   when that leaves out a good part of the photo: the cows are far away;
   --no-zoom shows the whole photo;
 - the points of all models are drawn in a shuffled order (fixed seed), so
   no model is always on top and none is always buried.
 
-Replies are read with today's reader (segbench/parse.py), like the answer
-viewer. A reply that cannot be read is listed in the legend as
-"unreadable", never guessed at. Points are drawn as written: no [y, x]
-swapping (README, open decision 2).
+Replies are read by segbench/points.py. A reply that cannot be read is
+listed in the legend as "reply not readable", never guessed at. Points are
+drawn as written: no [y, x] swapping (README, open decision 2).
 """
 
 from __future__ import annotations
 
 import argparse
-import json
 import random
 import sys
 from collections import defaultdict
@@ -50,32 +46,11 @@ import matplotlib  # noqa: E402
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
-from matplotlib.colors import to_hex, to_rgb  # noqa: E402
 from PIL import Image  # noqa: E402
 
-from segbench import parse  # noqa: E402
+from segbench import points  # noqa: E402
 from segbench.chart import INK, INK_2, INK_3, PAPER, _disc, _fonts  # noqa: E402
-from segbench.chart_data import describe  # noqa: E402
-from segbench.models import LEVELS  # noqa: E402
 from segbench.tasks import BY_KEY as TASKS  # noqa: E402
-
-RUNS = ("results/run-pilot-1.jsonl", "results/run-specialists-1.jsonl")
-
-# Brand colours (as on the 2026-10-09 brand-colour charts, commit 3aca946).
-BRAND = {
-    "OpenAI": "#10a37f",  # the ChatGPT green
-    "Anthropic": "#d97757",  # Claude's terracotta
-    "Google": "#4285f4",
-    "DeepSeek": "#26339c",
-    "Alibaba": "#615ced",  # Qwen violet
-    "Moonshot": "#1c1c1e",  # Kimi black
-    "Z.AI": "#e5484d",  # Z.ai is black and white; black is Kimi's
-    "Meta": "#0866ff",
-    "Roboflow": "#a01ee6",
-    "Ultralytics": "#f0507a",
-}
-OTHER = "#7a808a"
-MAKER_ORDER = list(BRAND)
 
 LONG_SIDE = 3000  # pixels of the photo in the output
 DISC = 0.0115  # disc diameter, as a share of the photo's longest side
@@ -89,69 +64,21 @@ class Entrant:
     key: str  # model key, plus the level when one model ran at several
     label: str
     maker: str
+    colour: str
     points: dict[str, list[tuple[float, float]]] = field(default_factory=lambda: defaultdict(list))
     unreadable: str = ""
-    colour: str = OTHER
-
-
-def shade(colour: str, t: float) -> str:
-    """t < 0 mixes toward black, t > 0 toward white."""
-    r, g, b = to_rgb(colour)
-    target = 0.0 if t < 0 else 1.0
-    a = abs(t)
-    return to_hex(tuple(c + (target - c) * a for c in (r, g, b)))
-
-
-def give_colours(entrants: list[Entrant]) -> None:
-    by_maker = defaultdict(list)
-    for e in entrants:
-        by_maker[e.maker].append(e)
-    for maker, group in by_maker.items():
-        base = BRAND.get(maker, OTHER)
-        k = len(group)
-        for i, e in enumerate(group):
-            # from 40 % darker to 28 % lighter: lighter still carries a white logo
-            e.colour = base if k == 1 else shade(base, -0.40 + 0.68 * i / (k - 1))
 
 
 def load(runs: list[Path], track: str, repeat: int, only: set[str] | None) -> dict[str, list[Entrant]]:
-    """task -> entrants, in legend order."""
-    rows = []
-    for run in runs:
-        for line in run.read_text().splitlines():
-            r = json.loads(line)
-            if r["track"] != track or r.get("repeat", 0) != repeat or "+" in r["model"]:
-                continue
-            if only and r["model"] not in only:
-                continue
-            rows.append(r)
-    levels = defaultdict(set)
-    for r in rows:
-        levels[r["model"]].add(r.get("level"))
-
+    """task -> entrants, in legend order (segbench/points.py reads the replies)."""
+    answers = points.load(runs, track, repeat, only)
+    colour = points.colours(answers)
     tasks: dict[str, list[Entrant]] = defaultdict(list)
-    for r in rows:
-        task = TASKS[r["task"]]
-        label, maker, _ = describe(r["model"])
-        several = len(levels[r["model"]]) > 1
-        e = Entrant(key=f'{r["model"]}@{r.get("level")}' if several else r["model"],
-                    label=f'{label} ({r.get("level")})' if several else label, maker=maker)
-        if "error" in r or not r.get("text"):
-            e.unreadable = "no reply"
-        else:
-            try:
-                answer = parse.read(r["track"], task.kind, r["text"], task.labels)
-                for item in answer["items"]:
-                    e.points[item.get("label", "")].append(tuple(item["point"]))
-            except (ValueError, KeyError, TypeError):
-                e.unreadable = "reply not readable"
-        tasks[r["task"]].append(e)
-
-    level_rank = {lv: i for i, lv in enumerate(LEVELS)}
-    for entrants in tasks.values():
-        entrants.sort(key=lambda e: (MAKER_ORDER.index(e.maker) if e.maker in MAKER_ORDER else 99, e.label,
-                                     level_rank.get(e.key.partition("@")[2], 0)))
-        give_colours(entrants)
+    for a in answers:
+        e = Entrant(a.key, a.label, a.maker, colour[a.key], unreadable=a.unreadable)
+        for p in a.points:
+            e.points[p.get("label", "")].append((p["x"], p["y"]))
+        tasks[a.task].append(e)
     return tasks
 
 
@@ -252,7 +179,7 @@ def draw(task_key: str, label: str, entrants: list[Entrant], out: Path, title: s
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("runs", nargs="*", default=list(RUNS), help="call records (.jsonl)")
+    ap.add_argument("runs", nargs="*", default=list(points.RUNS), help="call records (.jsonl)")
     ap.add_argument("--track", default="find", choices=("find", "trick"))
     ap.add_argument("--repeat", type=int, default=0, help="which repeat to draw (default 0)")
     ap.add_argument("--models", help="comma-separated model keys to draw (default: all)")

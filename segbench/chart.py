@@ -38,11 +38,11 @@ from matplotlib.path import Path as MPath  # noqa: E402
 from matplotlib.ticker import FixedLocator, NullLocator  # noqa: E402
 from matplotlib.transforms import ScaledTranslation  # noqa: E402
 
+from segbench.brand import INITIALS, LOGO_DIR, LOGOS  # noqa: E402,F401 (INITIALS, LOGOS: used by callers too)
 from segbench.chart_data import Point, frontier  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 FONT_DIR = ROOT / "assets" / "fonts"
-LOGO_DIR = ROOT / "assets" / "logos"
 
 INK = "#16181d"
 INK_2 = "#4a4f5a"
@@ -51,22 +51,6 @@ GRID = "#ebecef"
 PAPER = "#ffffff"
 FAKE_RED = "#d62839"
 
-# Maker -> logo file in assets/logos (sources there): the mark readers know
-# the models by (the Gemini star, Kimi, Qwen), else the company's. A maker
-# without a logo gets its initials.
-LOGOS = {
-    "OpenAI": "openai.svg",
-    "Anthropic": "anthropic.svg",
-    "Google": "googlegemini.svg",
-    "DeepSeek": "deepseek.svg",
-    "Alibaba": "qwen.svg",
-    "Moonshot": "kimi.svg",
-    "Z.AI": "zdotai.svg",
-    "Meta": "meta.svg",
-    "Ultralytics": "ultralytics.svg",
-    "Roboflow": "roboflow.svg",
-}
-INITIALS = {"UC Davis": "UCD"}
 
 # Speed: green (fast) -> amber -> red (slow), each deep enough to carry a
 # white logo. The green is darker than the red, so red-green colour-blind

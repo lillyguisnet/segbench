@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>segbench · where AI models put their dots</title>
+<meta name="description" content="Sixteen AI models were asked to put a dot on each cow, log end, fig leaf and dish. See where each one pointed.">
+<style>
+@font-face { font-family: Inter; src: url(fonts/Inter-Regular.ttf) format("truetype"); font-weight: 400; font-display: swap; }
+@font-face { font-family: Inter; src: url(fonts/Inter-Medium.ttf) format("truetype"); font-weight: 500; font-display: swap; }
+@font-face { font-family: Inter; src: url(fonts/Inter-SemiBold.ttf) format("truetype"); font-weight: 600; font-display: swap; }
+:root {
+  --ink: #16181d; --ink2: #4a4f5a; --ink3: #8a8f99; --line: #e6e7ea; --soft: #f4f5f7; --paper: #fff;
+  --accent: #16181d; --dirty: #c26d12; --clean: #1fa6dc;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--paper); color: var(--ink);
+  font: 400 15px/1.45 Inter, system-ui, -apple-system, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; }
+button { font: inherit; color: inherit; }
+.wrap { max-width: 1520px; margin: 0 auto; padding: 18px 22px 28px; }
+header { display: flex; align-items: flex-end; justify-content: space-between; gap: 18px; flex-wrap: wrap; margin-bottom: 14px; }
+.brand b { font-weight: 600; font-size: 19px; letter-spacing: -0.01em; }
+.brand span { display: block; color: var(--ink2); font-size: 14px; }
+nav { display: flex; gap: 8px; flex-wrap: wrap; }
+nav button { display: flex; align-items: center; gap: 9px; padding: 5px 12px 5px 5px; border: 1px solid var(--line);
+  background: var(--paper); border-radius: 10px; cursor: pointer; font-weight: 500; font-size: 14px; }
+nav button img { width: 46px; height: 34px; object-fit: cover; border-radius: 6px; display: block; }
+nav button:hover { border-color: #c9ccd2; }
+nav button.on { border-color: var(--ink); box-shadow: 0 0 0 1px var(--ink); }
+nav kbd { color: var(--ink3); font: 500 11px Inter, sans-serif; }
+main { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 22px; align-items: start; }
+.ask { color: var(--ink2); font-size: 14px; margin: 0 0 8px; min-height: 20px; }
+.ask q { color: var(--ink); quotes: "“" "”"; }
+#stage { position: relative; border-radius: 12px; overflow: hidden; background: #0d0e10; margin: 0 auto;
+  touch-action: none; cursor: grab; user-select: none; }
+#stage.drag { cursor: grabbing; }
+#svg { display: block; width: 100%; height: 100%; }
+.dot { cursor: pointer; }
+.zoom { position: absolute; right: 10px; bottom: 10px; display: flex; gap: 6px; }
+.zoom button { width: 34px; height: 34px; border-radius: 9px; border: 0; background: rgba(255,255,255,.92);
+  box-shadow: 0 1px 4px rgba(0,0,0,.25); cursor: pointer; font-size: 18px; line-height: 1; }
+.hint { position: absolute; left: 12px; bottom: 12px; color: #fff; font-size: 12px; background: rgba(0,0,0,.45);
+  padding: 4px 9px; border-radius: 7px; transition: opacity .6s; pointer-events: none; }
+.msg { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; padding: 30px; pointer-events: none; }
+.msg div { background: rgba(255,255,255,.95); border-radius: 12px; padding: 14px 18px; max-width: 460px;
+  box-shadow: 0 4px 24px rgba(0,0,0,.25); font-size: 14px; }
+#tip { position: absolute; pointer-events: none; background: rgba(22,24,29,.92); color: #fff; font-size: 12.5px;
+  padding: 5px 9px; border-radius: 7px; white-space: nowrap; transform: translate(-50%, calc(-100% - 14px)); display: none; }
+.info { margin-top: 12px; display: flex; gap: 14px 22px; flex-wrap: wrap; align-items: baseline; min-height: 26px; }
+.info .name { font-weight: 600; font-size: 17px; display: flex; align-items: center; gap: 9px; }
+.info .facts { color: var(--ink2); display: flex; gap: 6px 18px; flex-wrap: wrap; }
+.info .facts b { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+.info pre { flex-basis: 100%; margin: 0; font-size: 12px; background: var(--soft); padding: 10px 12px; border-radius: 8px;
+  white-space: pre-wrap; word-break: break-all; color: var(--ink2); max-height: 140px; overflow: auto; }
+.sw { display: inline-block; width: 11px; height: 11px; border-radius: 50%; border: 2.5px solid; vertical-align: -1px; margin-right: 4px; }
+aside { position: sticky; top: 14px; }
+.list { border: 1px solid var(--line); border-radius: 12px; padding: 6px; }
+.list button { display: grid; grid-template-columns: 26px 1fr auto; gap: 10px; align-items: center; width: 100%;
+  padding: 6px 8px; border: 0; background: none; border-radius: 8px; cursor: pointer; text-align: left; font-size: 14px; }
+.list button:hover { background: var(--soft); }
+.list button.on { background: #eceef2; font-weight: 600; }
+.list button .n { color: var(--ink2); font-variant-numeric: tabular-nums; font-size: 13px; font-weight: 400; }
+.list button.bad .t, .list button.bad .n { color: var(--ink3); }
+.list .sep { height: 1px; background: var(--line); margin: 5px 8px; }
+.list svg { display: block; }
+.opts { margin: 10px 4px 0; font-size: 13.5px; color: var(--ink2); display: flex; flex-direction: column; gap: 6px; }
+.opts label { display: flex; gap: 8px; align-items: center; cursor: pointer; }
+.keys { color: var(--ink3); font-size: 12.5px; margin: 10px 4px 0; }
+footer { margin-top: 26px; padding-top: 14px; border-top: 1px solid var(--line); color: var(--ink2); font-size: 13px;
+  display: flex; gap: 6px 18px; flex-wrap: wrap; }
+footer a { color: inherit; }
+@media (max-width: 960px) {
+  main { grid-template-columns: 1fr; }
+  aside { position: static; }
+  .list { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+  .list .sep { display: none; }
+  .keys, .hint { display: none; }
+  .wrap { padding: 12px 12px 22px; }
+}
+</style>
+</head>
+<body>
+<svg id="logos" width="0" height="0" style="position:absolute" aria-hidden="true"><defs></defs></svg>
+<div class="wrap">
+  <header>
+    <div class="brand"><b>segbench</b><span>Where AI models put their dots</span></div>
+    <nav id="photos"></nav>
+  </header>
+  <main>
+    <section>
+      <p class="ask" id="ask"></p>
+      <div id="stage">
+        <svg id="svg" xmlns="http://www.w3.org/2000/svg"></svg>
+        <div class="msg" id="msg"><div></div></div>
+        <div id="tip"></div>
+        <div class="hint" id="hint">Scroll or pinch to zoom · drag to move</div>
+        <div class="zoom">
+          <button id="zin" title="Zoom in (+)" aria-label="Zoom in">+</button>
+          <button id="zout" title="Zoom out (−)" aria-label="Zoom out">−</button>
+          <button id="zreset" title="Whole photo (0)" aria-label="Whole photo">⤢</button>
+        </div>
+      </div>
+      <div class="info" id="info"></div>
+    </section>
+    <aside>
+      <div class="list" id="list"></div>
+      <div class="opts">
+        <label><input type="checkbox" id="others" checked> Show the other models' dots, small</label>
+      </div>
+      <p class="keys">Keys: ← → photo · ↑ ↓ model · Esc all models · 0 whole photo</p>
+    </aside>
+  </main>
+  <footer id="foot"></footer>
+</div>
+<script>
+const D = /*DATA*/null;
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"})[c]);
+const slug = m => "logo-" + m.replace(/[^A-Za-z0-9]/g, "");
+const LABEL_COLOUR = {dirty: getComputedStyle(document.documentElement).getPropertyValue("--dirty").trim(),
+                      clean: getComputedStyle(document.documentElement).getPropertyValue("--clean").trim()};
+
+let ti = 0, focus = null, showOthers = true, view = null, scale = 1;
+
+// ---------- logos ----------
+const defs = Object.entries(D.logos).map(([m, l]) => l.d
+  ? `<symbol id="${slug(m)}" viewBox="${l.viewBox}">${l.d.map(d => `<path d="${d}"/>`).join("")}</symbol>` : "").join("");
+
+// A disc with the maker's logo, centred on 0,0, radius r (in the units of where it is drawn).
+function disc(key, r, edge = 0.16) {
+  const m = D.models[key], l = D.logos[m.maker], s = 2 * r * 0.58;
+  const mark = l.d ? `<use href="#${slug(m.maker)}" x="${-s / 2}" y="${-s / 2}" width="${s}" height="${s}" fill="#fff"/>`
+    : `<text text-anchor="middle" dominant-baseline="central" fill="#fff" font-size="${r * 0.62}" font-weight="600">${esc(l.initials)}</text>`;
+  return `<circle r="${r}" fill="${m.colour}" stroke="#fff" stroke-width="${r * edge}"/>${mark}`;
+}
+$("#logos defs").innerHTML = defs;  // one copy, used by every disc on the page
+const icon = (key, px = 24) =>
+  `<svg width="${px}" height="${px}" viewBox="-12.5 -12.5 25 25">${disc(key, 11, 0.1)}</svg>`;
+
+// ---------- data helpers ----------
+const task = () => D.tasks[ti];
+const answers = () => D.answers[task().key];
+const present = () => D.order.filter(k => k in answers());
+const inside = p => p[0] >= 0 && p[0] <= 1000 && p[1] >= 0 && p[1] <= 1000;
+function rng(seed) { let h = 2166136261; for (const c of seed) h = Math.imul(h ^ c.charCodeAt(0), 16777619);
+  return () => ((h = Math.imul(h ^ (h >>> 15), 2246822507), h = Math.imul(h ^ (h >>> 13), 3266489909), (h ^= h >>> 16) >>> 0) / 4294967296); }
+const money = v => v >= 0.1 ? `$${v.toFixed(2)}` : v >= 0.001 ? `$${v.toFixed(3)}` : `$${v.toPrecision(2)}`;
+const secs = v => v >= 60 ? `${Math.floor(v / 60)} min ${Math.round(v % 60)} s` : v >= 10 ? `${Math.round(v)} s` : `${v.toFixed(1)} s`;
+
+// ---------- layout and zoom ----------
+const stage = $("#stage"), svg = $("#svg");
+function layout() {
+  const t = task(), avail = stage.parentElement.clientWidth;
+  const narrow = innerWidth <= 960;
+  const maxH = Math.max(300, narrow ? innerHeight * 0.72 : innerHeight - stage.getBoundingClientRect().top - scrollY - 70);
+  const s = Math.min(avail / t.w, maxH / t.h);
+  stage.style.width = `${Math.round(t.w * s)}px`;
+  stage.style.height = `${Math.round(t.h * s)}px`;
+  draw();
+}
+function resetView() { const t = task(); view = {x: 0, y: 0, w: t.w, h: t.h}; }
+function clampView() {
+  const t = task();
+  view.w = Math.min(t.w, Math.max(t.w / 16, view.w)); view.h = view.w * t.h / t.w;
+  view.x = Math.min(t.w - view.w, Math.max(0, view.x)); view.y = Math.min(t.h - view.h, Math.max(0, view.y));
+}
+function zoomAt(f, cx, cy) {  // f > 1 zooms in; (cx, cy) in photo pixels stays put
+  const nw = view.w / f, k = nw / view.w;
+  view.x = cx - (cx - view.x) * k; view.y = cy - (cy - view.y) * k; view.w = nw; clampView(); draw(); hideHint();
+}
+function toPhoto(ev) {
+  const r = stage.getBoundingClientRect();
+  return [view.x + (ev.clientX - r.left) / r.width * view.w, view.y + (ev.clientY - r.top) / r.height * view.h];
+}
+let pending = 0;
+function draw() { if (!pending) pending = requestAnimationFrame(() => { pending = 0; render(); }); }
+
+// ---------- drawing ----------
+function render() {
+  const t = task(), A = answers(), keys = present();
+  svg.setAttribute("viewBox", `${view.x} ${view.y} ${view.w} ${view.h}`);
+  scale = stage.clientWidth / view.w;
+  const u = 1 / scale;  // photo pixels per screen pixel
+  const R = Math.min(1, Math.max(0.62, Math.max(stage.clientWidth, stage.clientHeight) / 1000));  // disc size, on screen, relative to a wide screen
+  const X = p => p[0] * t.w / 1000, Y = p => p[1] * t.h / 1000;
+  let out = `<image href="${t.photo}" width="${t.w}" height="${t.h}"/>`;
+  if (focus === null) {
+    const dots = [];
+    for (const k of keys) A[k].points.forEach((p, i) => inside(p) && dots.push([k, p, i]));
+    const r = rng(t.key);
+    for (let i = dots.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [dots[i], dots[j]] = [dots[j], dots[i]]; }
+    for (const [k, p, i] of dots)
+      out += `<g class="dot" data-k="${k}" data-i="${i}" transform="translate(${X(p)} ${Y(p)})">${disc(k, 9.5 * R * u)}</g>`;
+  } else {
+    out += `<rect x="0" y="0" width="${t.w}" height="${t.h}" fill="#000" opacity=".3" pointer-events="none"/>`;
+    if (showOthers) for (const k of keys) if (k !== focus) for (const [i, p] of A[k].points.entries()) if (inside(p))
+      out += `<circle class="dot" data-k="${k}" data-i="${i}" cx="${X(p)}" cy="${Y(p)}" r="${3.6 * R * u}" fill="${D.models[k].colour}" stroke="#fff" stroke-width="${0.9 * R * u}" opacity=".85"/>`;
+    for (const [i, p] of (A[focus]?.points || []).entries()) if (inside(p)) {
+      const ring = p[2] ? `<circle r="${15.5 * R * u}" fill="none" stroke="${LABEL_COLOUR[p[2]]}" stroke-width="${3.6 * R * u}"/>` : "";
+      out += `<g class="dot" data-k="${focus}" data-i="${i}" transform="translate(${X(p)} ${Y(p)})">${ring}${disc(focus, 12 * R * u)}</g>`;
+    }
+  }
+  svg.innerHTML = out;
+}
+
+function renderAll() {
+  const t = task(), A = answers(), keys = present();
+  if (focus !== null && !(focus in A)) focus = null;
+  // photos
+  $("#photos").innerHTML = D.tasks.map((x, i) =>
+    `<button class="${i === ti ? "on" : ""}" data-t="${i}"><img src="${x.thumb}" alt="">${esc(x.name)}</button>`).join("");
+  // request
+  const spec = focus && D.models[focus].kind === "specialist" ? A[focus].prompt : null;
+  $("#ask").innerHTML = spec ? `Text prompt given to ${esc(D.models[focus].label)}: <q>${esc(spec)}</q>`
+    : `Asked: <q>${esc(t.ask)}</q>`;
+  // list
+  const total = keys.reduce((s, k) => s + A[k].points.length, 0);
+  let list = `<button class="${focus === null ? "on" : ""}" data-k=""><span></span><span class="t">All models</span><span class="n">${total}</span></button><div class="sep"></div>`;
+  for (const k of keys) {
+    const a = A[k], bad = !!a.unreadable;
+    list += `<button class="${k === focus ? "on" : ""} ${bad ? "bad" : ""}" data-k="${k}" title="${bad ? esc(a.unreadable) : ""}">
+      ${icon(k)}<span class="t">${esc(D.models[k].label)}</span><span class="n">${bad ? "—" : a.points.length}</span></button>`;
+  }
+  $("#list").innerHTML = list;
+  // info and message
+  const msg = $("#msg");
+  msg.style.display = "none";
+  if (focus === null) {
+    $("#info").innerHTML = `<span class="facts"><span><b>${keys.length}</b> models</span><span><b>${total}</b> dots</span>
+      <span>Each logo is one model's dot. Pick a model, or click a dot, to see one model alone.</span></span>`;
+  } else {
+    const a = A[focus], m = D.models[focus], facts = [];
+    if (a.unreadable) {
+      facts.push(`<span>The reply could not be read as the JSON we asked for, so there is nothing to draw.</span>`);
+      msg.style.display = "flex";
+      msg.firstElementChild.textContent = `${m.label}: reply not readable. Nothing to draw.`;
+    } else {
+      facts.push(`<span><b>${a.points.length}</b> dot${a.points.length === 1 ? "" : "s"}</span>`);
+      if (t.labels.length) for (const l of t.labels)
+        facts.push(`<span><span class="sw" style="border-color:${LABEL_COLOUR[l]}"></span><b>${a.points.filter(p => p[2] === l).length}</b> ${l}</span>`);
+      if (a.off) facts.push(`<span><b>${a.off}</b> off the photo (not drawn)</span>`);
+      if (!a.points.length) { msg.style.display = "flex"; msg.firstElementChild.textContent = `${m.label} found none.`; }
+    }
+    if (a.seconds != null) facts.push(`<span><b>${secs(a.seconds)}</b></span>`);
+    if (a.cost != null) facts.push(`<span><b>${money(a.cost)}</b> at list price</span>`);
+    if (m.kind === "specialist") facts.push(`<span>Runs on a GPU; its time is left out until it is measured cleanly</span>`);
+    else if (m.level) facts.push(`<span>${esc(m.level)} thinking</span>`);
+    $("#info").innerHTML = `<span class="name">${icon(focus, 26)}${esc(m.label)}</span><span class="facts">${facts.join("")}</span>`
+      + (a.raw ? `<pre>${esc(a.raw)}${a.raw.length >= 400 ? " …" : ""}</pre>` : "");
+  }
+  history.replaceState(null, "", `#${t.key}${focus ? "/" + focus : ""}`);
+  layout();
+}
+
+// ---------- interaction ----------
+function setTask(i) { ti = (i + D.tasks.length) % D.tasks.length; resetView(); renderAll(); }
+function setFocus(k) { focus = k || null; renderAll(); }
+$("#photos").onclick = e => { const b = e.target.closest("button"); if (b) setTask(+b.dataset.t); };
+$("#list").onclick = e => { const b = e.target.closest("button"); if (b) setFocus(b.dataset.k); };
+$("#others").onchange = e => { showOthers = e.target.checked; draw(); };
+$("#zin").onclick = () => zoomAt(1.6, view.x + view.w / 2, view.y + view.h / 2);
+$("#zout").onclick = () => zoomAt(1 / 1.6, view.x + view.w / 2, view.y + view.h / 2);
+$("#zreset").onclick = () => { resetView(); draw(); };
+let hinted = false;
+function hideHint() { if (!hinted) { hinted = true; $("#hint").style.opacity = 0; } }
+
+stage.addEventListener("wheel", e => {
+  e.preventDefault();
+  const [cx, cy] = toPhoto(e);
+  zoomAt(Math.exp(-e.deltaY * (e.deltaMode === 1 ? 0.05 : 0.0018)), cx, cy);
+}, {passive: false});
+
+const pointers = new Map();
+let dragFrom = null, pinchFrom = null, moved = false;
+stage.addEventListener("pointerdown", e => {
+  if (e.target.closest(".zoom")) return;
+  stage.setPointerCapture(e.pointerId);
+  pointers.set(e.pointerId, [e.clientX, e.clientY]);
+  moved = false;
+  if (pointers.size === 1) dragFrom = {x: e.clientX, y: e.clientY, vx: view.x, vy: view.y};
+  if (pointers.size === 2) { const [a, b] = [...pointers.values()]; pinchFrom = {d: Math.hypot(a[0] - b[0], a[1] - b[1]), w: view.w}; }
+});
+stage.addEventListener("pointermove", e => {
+  tip(e);
+  if (!pointers.has(e.pointerId)) return;
+  pointers.set(e.pointerId, [e.clientX, e.clientY]);
+  if (pointers.size === 2 && pinchFrom) {
+    const [a, b] = [...pointers.values()], d = Math.hypot(a[0] - b[0], a[1] - b[1]);
+    const [cx, cy] = toPhoto({clientX: (a[0] + b[0]) / 2, clientY: (a[1] + b[1]) / 2});
+    zoomAt(view.w / (pinchFrom.w * pinchFrom.d / d), cx, cy); moved = true;
+  } else if (dragFrom) {
+    const dx = e.clientX - dragFrom.x, dy = e.clientY - dragFrom.y;
+    if (Math.abs(dx) + Math.abs(dy) > 4) { moved = true; stage.classList.add("drag"); }
+    view.x = dragFrom.vx - dx / scale; view.y = dragFrom.vy - dy / scale; clampView(); draw();
+  }
+});
+function release(e) {
+  pointers.delete(e.pointerId);
+  if (pointers.size < 2) pinchFrom = null;
+  if (!pointers.size) {
+    stage.classList.remove("drag");
+    if (!moved && e.type === "pointerup") {  // a click: focus the model whose dot it was
+      const hit = document.elementFromPoint(e.clientX, e.clientY)?.closest(".dot");
+      if (hit && hit.dataset.k !== focus) setFocus(hit.dataset.k);
+    } else if (moved) hideHint();
+    dragFrom = null;
+  }
+}
+stage.addEventListener("pointerup", release);
+stage.addEventListener("pointercancel", release);
+stage.addEventListener("pointerleave", () => { $("#tip").style.display = "none"; });
+stage.addEventListener("dblclick", () => { resetView(); draw(); });
+
+function tip(e) {
+  const el = $("#tip"), hit = pointers.size ? null : e.target.closest?.(".dot");
+  if (!hit) { el.style.display = "none"; return; }
+  const k = hit.dataset.k, p = answers()[k].points[+hit.dataset.i], r = stage.getBoundingClientRect();
+  el.textContent = `${D.models[k].label}${p[2] ? " · " + p[2] : ""} · [${Math.round(p[0])}, ${Math.round(p[1])}]`;
+  el.style.left = `${e.clientX - r.left}px`; el.style.top = `${e.clientY - r.top}px`; el.style.display = "block";
+}
+
+addEventListener("keydown", e => {
+  if (e.target.closest?.("input, textarea") || e.metaKey || e.ctrlKey || e.altKey) return;
+  const keys = present(), at = focus === null ? -1 : keys.indexOf(focus);
+  if (e.key === "ArrowRight") setTask(ti + 1);
+  else if (e.key === "ArrowLeft") setTask(ti - 1);
+  else if (e.key === "ArrowDown") setFocus(keys[Math.min(keys.length - 1, at + 1)]);
+  else if (e.key === "ArrowUp") setFocus(at <= 0 ? null : keys[at - 1]);
+  else if (e.key === "Escape") setFocus(null);
+  else if (e.key === "0") { resetView(); draw(); }
+  else if (e.key === "+" || e.key === "=") $("#zin").click();
+  else if (e.key === "-") $("#zout").click();
+  else return;
+  e.preventDefault();
+});
+addEventListener("resize", layout);
+
+// ---------- start ----------
+$("#foot").innerHTML = `<span>Pilot run of ${esc(D.run_date)}: each model asked once, medium thinking.</span>
+  <span><b>Not scored yet</b>: the answer key is still being made, so this shows where models pointed, not whether they were right.</span>
+  <span><a href="${D.repo}">Code and data</a> (Apache 2.0) · photos CC BY 4.0 · logos belong to their owners</span>`;
+function fromHash() {  // #cows or #cows/terra: a link to one photo and one model
+  const [hk, hm] = decodeURIComponent(location.hash.slice(1)).split("/");
+  const i = D.tasks.findIndex(t => t.key === hk);
+  if (i >= 0 && i !== ti) { ti = i; resetView(); }
+  focus = hm && hm in D.answers[D.tasks[ti].key] ? hm : null;
+  renderAll();
+}
+addEventListener("hashchange", fromHash);
+resetView();
+fromHash();
+</script>
+</body>
+</html>
