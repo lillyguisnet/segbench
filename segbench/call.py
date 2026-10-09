@@ -12,6 +12,7 @@ import traceback
 from datetime import datetime, timezone
 
 from lm15 import Config, LMRouter, Message, Reasoning, Request
+from lm15.errors import RETRYABLE_ERRORS
 from lm15.serde import response_to_dict, usage_to_dict
 from lm15.types import image as image_part
 
@@ -71,6 +72,10 @@ def call(model: Model, image: bytes | None, media_type: str, prompt: str,
         record["seconds"] = round(time.perf_counter() - start, 3)
         record["error"] = f"{type(error).__name__}: {error}"
         record["traceback"] = traceback.format_exc(limit=3)
+        # Worth sending again: the provider never gave an answer (rate limit,
+        # dropped connection, server busy). OpenAI's "overloaded" arrives as a
+        # plain ProviderError, so it is matched by its words.
+        record["retryable"] = isinstance(error, RETRYABLE_ERRORS) or "overloaded" in str(error).lower()
         return record
     record["seconds"] = round(time.perf_counter() - start, 3)
     record["text"] = response.text or ""

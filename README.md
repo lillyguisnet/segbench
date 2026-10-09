@@ -447,11 +447,13 @@ specialists/  one environment per specialist model family (see its README)
 - [ ] answer-key masks in recorn (SAM 3.1 service moved to GPU 0 for this; photos prepared)
 - [ ] shared answer formats, prompts, and a scorer per task (tested on fake answers)
 - [ ] adapters: specialists into the shared formats; finder + outliner pairs; DINOv3 text matching and look-alike search; gen2seg colours into separate outlines
-- [ ] pilot run (settles the open points above), then the full run
+- [x] pilot run 1 (2026-10-09): every model at medium thinking, tracks find / whole / trick, once each; 208 calls, all answered, $5.36 at list prices ($1.30 really billed), 3 % of the ChatGPT plan's week (`results/run-pilot-1.jsonl`)
+- [ ] full run (all thinking levels, 3 repeats), after the open points above
 - [x] confirm exact model IDs and which ones accept images (2 excluded)
 - [x] remote calls with token, time and cost tracking (`segbench/call.py`)
 - [x] SAM 1/2 and DINOv3 receive the task through the tracks (above)
-- [ ] runner for the three tracks
+- [x] runner for the tracks that need no answer key: `scripts/run.py` (find, whole, trick; resumable, retries dropped calls only); prompts in `segbench/tasks.py` (version v1); `scripts/summarize_run.py`
+- [ ] track 2 (outline) in the runner: needs the answer key's dots
 - [x] chart drawing (`scripts/draw_charts.py`), checked on made-up data
 - [ ] the three charts, from real scores
 
