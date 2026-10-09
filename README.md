@@ -478,6 +478,7 @@ specialists/  one environment per specialist model family (see its README)
 - [ ] track 2 (outline) in the runner: needs the answer key's dots
 - [x] draft answer key from model consensus, for the person making the real one (`scripts/consensus.py`, methods in `segbench/consensus.py`): Dawid-Skene voting for objects and labels, STAPLE for regions, a review queue of contested objects, and a provisional ranking that judges each model only against other companies' models. Never used as the answer key: models that share a blind spot agree on the same mistake
 - [x] chart drawing (`scripts/draw_charts.py`), checked on made-up data
+- [x] every model's dots on its photo, each dot drawn as its maker's logo, one image per photo (`scripts/draw_points.py`, writes `results/views/points-find/`); models of one maker are told apart by shades of its colour
 - [ ] the three charts, from real scores
 
 ## Licence
