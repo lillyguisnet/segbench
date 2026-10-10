@@ -68,6 +68,11 @@ MODELS: tuple[Model, ...] = (
     Model("qwen-27b", "Qwen 3.8 27B", "Alibaba", "openrouter:qwen/qwen3.8-27b", "per-token", True,
           "newest 27B Qwen on 2026-10-08; pinned to Alibaba's host (see above)",
           extensions={"provider": {"order": ["Alibaba"], "allow_fallbacks": False}}),
+    # Added 2026-10-10 (Maxime). OpenRouter's "Qwen3.8 Flash" links to the
+    # Qwen/Qwen3.8-Flash-Next model page; Alibaba is its only host there.
+    Model("qwen-flash", "Qwen 3.8 Flash Next", "Alibaba", "openrouter:qwen/qwen3.8-flash", "per-token", True,
+          "OpenRouter name qwen/qwen3.8-flash (hugging_face_id Qwen/Qwen3.8-Flash-Next); pinned to Alibaba; circle test passed 2026-10-10",
+          extensions={"provider": {"order": ["Alibaba"], "allow_fallbacks": False}}),
 )
 
 # Minimum, medium and maximum thinking, in each model's own levels (checked
@@ -100,6 +105,8 @@ THINKING = {
     "deepseek-flash":    {"min": {"effort": "off"}, "medium": {"effort": "medium"}, "max": {"effort": "max"}},
     "kimi-k3":           {"min": {"effort": "off"}, "medium": {"effort": "high"}},
     "qwen-27b":          {"min": {"effort": "off"}, "medium": {"effort": "medium"}, "max": {"effort": "max"}},
+    # Checked 2026-10-10 (scripts/probe_thinking.py): off 0 thinking tokens, medium accepted.
+    "qwen-flash":        {"min": {"effort": "off"}, "medium": {"effort": "medium"}, "max": {"effort": "max"}},
 }
 LEVELS = ("min", "medium", "max")
 # Dropped 2026-10-09: "max" for Kimi K3 and GPT-6 Astra. Measured at up to

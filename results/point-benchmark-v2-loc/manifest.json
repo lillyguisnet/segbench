@@ -2,11 +2,11 @@
   "metric": "point-localisation-v1",
   "parser": "lenient",
   "dish_labels": "separate",
-  "created_at": "2026-10-10T13:05:07.332970+00:00",
+  "created_at": "2026-10-10T15:49:40.566736+00:00",
   "reference": "segbench-review-6187f623-approved.json",
   "reference_sha256": "2862bb074507022fbfdd58d017f57520abcafb4b8366b9824adeae066c9c120b",
   "input_files": {
-    "run-points-v2.jsonl": "bfa9c98e33c0a9a8e34b85d23bf659067d7ec3138776feb0e1b3d999456010d4",
+    "run-points-v2.jsonl": "238c0e6c2cf729b0c4a582a6e6670bda917017d85dd62ae39621a8123289d55f",
     "run-specialists-2.jsonl": "b15aecdc539c5f591270d80f0abd81bd2a29a8a46c70de744b68b3fd61deacb8",
     "run-finders-3.jsonl": "e4b5b30cd1eab3fb2be42a7c00c51e8f98dcecb87b451256a6a10742d7d963a2"
   },
@@ -19,6 +19,6 @@
   "scope": "Point localisation only. Not point-inside-object or segmentation.",
   "aggregation": "Equal mean over three F1 tolerances, then four tasks. Complete coverage required.",
   "specification": "docs/point-benchmark-v2.md",
-  "specification_sha256": "8488757aee29633abb9b1aacfcf1c38ee04cdcf3e631cf622e50f3833624f11d",
-  "scorer_sha256": "625f1944d53ddd36213719785b3fd3ab5b731f8ca3b7cc0a211924aee12e4718"
+  "specification_sha256": "d84551990606798446febe22e8528bf0bcd48bb956e625992f7e7afbb8a6d605",
+  "scorer_sha256": "18764a82bae5881aff972aebf5ec0ab0698c9a6c33489b65d7f57e5b15f1ebea"
 }

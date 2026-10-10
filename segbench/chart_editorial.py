@@ -406,7 +406,9 @@ def _labels(fig, ax, fonts: Fonts, pts, best_ids, names, X, Y, curve, accent: st
     for p in others:
         i = index[p.entrant]
         sized, w, h = blocks[p.entrant]
-        box, align, _, free = _place(*circles[i], w, h, ["right", "left"], 1, 0, placed, circles, i, frame, gap)
+        # beside the disc first; just below it when both sides are taken (e.g. under the flat best-value line)
+        box, align, _, free = _place(*circles[i], w, h, ["right", "left", "lr", "ll", "below"], 1, 0, placed, circles, i,
+                                     frame, gap)
         if free:
             placed.append(box)
             render(sized, box, align)

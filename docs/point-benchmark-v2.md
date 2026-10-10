@@ -135,3 +135,23 @@ same photos (`timing_source` in each record; today's busy-GPU seconds,
 3-7x slower, kept as `seconds_this_run`). On the chart its disc covers
 YOLOE's: 23.5 vs 23.2, $0.0028 vs $0.0028 per 1,000 images.
 Report: `results/point-benchmark-v2.3`; chart: `charts/point-benchmark-v2.3`.
+
+## v2.4 (2026-10-10): Qwen 3.8 Flash Next
+
+Maxime: add Qwen 3.8 Flash Next on Alibaba's API. Reached through
+OpenRouter's `qwen/qwen3.8-flash` (its model page link: Qwen/Qwen3.8-Flash-Next),
+pinned to the Alibaba host with fallbacks refused, like Qwen 27B; every call
+was served by Alibaba. That OpenRouter's "Flash" is Flash-Next rests on
+OpenRouter's link, not on a statement from Alibaba. Price $0.15 / $0.47 per
+million tokens (OpenRouter, 2026-10-10). Same checks as every model before
+any benchmark photo: circle test passed; thinking off = 0 thinking tokens,
+medium accepted; image detail: "high" ignored (2,513 input tokens either
+way), so default; prompt v2 synthetic check passed wide and tall. Both
+prompts run 3 times (42 calls, $0.04 at list price, $0.03 billed by
+OpenRouter); v2 kept (71.6 vs 69.6). Two v1-hd answers needed coordinate
+recovery (checked: 11 and 79 points as written). Result 71.6, first place:
+logs 85.4, cows 100, fig 54.9, dishes 46.1 (by location).
+Chart labels: models off the best-value line may now put their label just
+below their disc when both sides are taken (they sat in a far column with
+long crossing leader lines under the flat part of the line).
+Report: `results/point-benchmark-v2.4`; chart: `charts/point-benchmark-v2.4`.

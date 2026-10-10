@@ -105,3 +105,33 @@ with no note on the chart (the method is here and in the report folder).
   (option A: choose on separate photos, then run the test once) was offered
   and not taken.
 Report: `results/point-benchmark-v2.1`; chart: `charts/point-benchmark-v2.1`.
+
+## v2.2 (2026-10-10): dishes by location; chart changes
+
+- **Dishes count on location alone** (Maxime): a dot matches a dish by
+  position only. Dirty/clean is kept as a separate number, the share of
+  correct labels among the dishes found (`label_accuracy` in
+  `scored.jsonl`; `scripts/score_points.py --dish-labels separate`). The
+  prompt still asks for the label, unchanged. Each model's choice of prompt
+  was re-made under this rule and did not change.
+- Chart (`segbench/chart_editorial.py`): plain white background (the accent
+  wash, meant for the lower right, was strongest at the upper right);
+  y-axis labels with %; models off the best-value line show their score
+  instead of their maker, at the same small size; logos for NVIDIA (Simple
+  Icons, CC0), Microsoft and Ai2 (Lobe Icons, MIT); IDEA Research has no
+  logo in either library and is written as text.
+Report: `results/point-benchmark-v2.2`; chart: `charts/point-benchmark-v2.2`.
+
+## v2.3 (2026-10-10): RF-DETR on all four tasks
+
+Maxime: RF-DETR failing where its vocabulary has no word is part of the
+result. It now answers every task with the COCO categories that fit, fixed
+before running (`specialists/rfdetr/points.py`): logs none and fig none (no
+dots, score 0), cows "cow", dishes "bowl" and "cup" (dishes are scored by
+location). Result 23.5: cows 76.7, dishes 17.2, logs 0, fig 0. Answers were
+computed on 2026-10-10 with GPU 0 busy (another project's vLLM evaluation,
+not paused); seconds and cost are its clean 2026-10-09 measurements on the
+same photos (`timing_source` in each record; today's busy-GPU seconds,
+3-7x slower, kept as `seconds_this_run`). On the chart its disc covers
+YOLOE's: 23.5 vs 23.2, $0.0028 vs $0.0028 per 1,000 images.
+Report: `results/point-benchmark-v2.3`; chart: `charts/point-benchmark-v2.3`.

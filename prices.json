@@ -77,6 +77,12 @@
           "output": 10.0,
           "listed_as": "openai/gpt-6.1-sol",
           "note": "called through our ChatGPT plan; API price"
+        },
+        "qwen-flash": {
+          "input": 0.15,
+          "output": 0.47,
+          "listed_as": "qwen/qwen3.8-flash on the Alibaba host",
+          "note": "added 2026-10-10: price read from OpenRouter that day (Alibaba endpoint), kept in this snapshot so one price table serves the run; OpenRouter also reports each call's cost"
         }
       }
     }

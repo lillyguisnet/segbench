@@ -2,11 +2,11 @@
   "metric": "point-localisation-v1",
   "parser": "lenient",
   "dish_labels": "separate",
-  "created_at": "2026-10-10T15:49:41.277487+00:00",
+  "created_at": "2026-10-10T15:49:42.262822+00:00",
   "reference": "segbench-review-6187f623-approved.json",
   "reference_sha256": "2862bb074507022fbfdd58d017f57520abcafb4b8366b9824adeae066c9c120b",
   "input_files": {
-    "run-points-v1hd.jsonl": "6533fa6a6891e0b9b0e14245f8f4e0abadbb781d5e6c5ba3a143a94a411dcd6b"
+    "run-points-best.jsonl": "0841856ff85a3c6c92b5c9b29e73f81f43d2f7fd97f877578814604dc3396350"
   },
   "tolerances": {
     "tight": 0.1,
