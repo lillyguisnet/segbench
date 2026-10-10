@@ -243,7 +243,7 @@ function renderAll() {
     }
     if (a.seconds != null) facts.push(`<span><b>${secs(a.seconds)}</b></span>`);
     if (a.cost != null) facts.push(`<span><b>${money(a.cost)}</b> at list price</span>`);
-    if (m.kind === "specialist") facts.push(`<span>Runs on a GPU; its time is left out until it is measured cleanly</span>`);
+    if (m.kind === "specialist" && a.seconds == null) facts.push(`<span>Runs on a GPU; its time is left out until it is measured cleanly</span>`);
     else if (m.level) facts.push(`<span>${esc(m.level)} thinking</span>`);
     $("#info").innerHTML = `<span class="name">${icon(focus, 26)}${esc(m.label)}</span><span class="facts">${facts.join("")}</span>`
       + (a.raw ? `<pre>${esc(a.raw)}${a.raw.length >= 400 ? " …" : ""}</pre>` : "");
@@ -336,8 +336,8 @@ addEventListener("keydown", e => {
 addEventListener("resize", layout);
 
 // ---------- start ----------
-$("#foot").innerHTML = `<span>Pilot run of ${esc(D.run_date)}: each model asked once, medium thinking.</span>
-  <span><b>Not scored yet</b>: the answer key is still being made, so this shows where models pointed, not whether they were right.</span>
+$("#foot").innerHTML = `<span>Run of ${esc(D.run_date)}: language models at medium thinking, each with the better of two prompts; specialists on our GPU. Each model's first of 3 tries is shown.</span>
+  <span>This shows where models pointed. Scores, against points checked by a person, are on the chart.</span>
   <span><a href="${D.repo}">Code and data</a> (Apache 2.0) · photos CC BY 4.0 · logos belong to their owners</span>`;
 function fromHash() {  // #cows or #cows/terra: a link to one photo and one model
   const [hk, hm] = decodeURIComponent(location.hash.slice(1)).split("/");

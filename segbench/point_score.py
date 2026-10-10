@@ -190,3 +190,15 @@ def score(points, refs, width, height, labelled=False):
     return {'score': sum(v['f1'] for v in levels.values()) / len(levels), 'tolerances': levels,
             'geometry_only_f1': geometry or None, 'count_error': len(points) - len(refs),
             'predicted_count': len(points), 'reference_count': len(refs)}
+
+
+# Processes that held a little GPU 0 memory but did no computing during the
+# 2026-10-09 clean measurements (docs/point-benchmark-v2.md): the browser,
+# the desktop overlay, and the scholarsreadinglist embeddings job, paused.
+IDLE_GPU_HOLDERS = {'603447', '1925731', '753117'}
+
+
+def timed_on_free_gpu(r: dict) -> bool:
+    """A specialist record timed on the whole of GPU 0 (only idle holders present)."""
+    others = r.get('gpu_others')
+    return isinstance(others, dict) and set(others) <= IDLE_GPU_HOLDERS and r.get('started_at', '') >= '2026-10-09T20'

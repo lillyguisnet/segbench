@@ -14,9 +14,8 @@ smaller (img/), and the Inter font. Logos are written into the page from
 assets/logos.
 
 What it shows comes from segbench/points.py (the same reading and colours
-as the point overlays). Nothing is scored. Time and cost are shown per call;
-the specialists' time and cost are left out while their timing is marked
-untrustworthy (our GPU was shared during the run).
+as the point overlays). Time and cost are shown per call; a specialist's are left out unless it
+was timed on the free GPU. Each model's first of its 3 tries is shown.
 """
 
 from __future__ import annotations
@@ -58,8 +57,8 @@ def logo(maker: str) -> dict:
 
 
 def ask(prompt: str) -> str:
-    """The request itself: the prompt's first paragraph."""
-    return prompt.strip().split("\n\n")[0].replace("\n", " ")
+    """The request itself: the prompt's first line (the same in both prompt versions)."""
+    return prompt.strip().split("\n")[0]
 
 
 def build(out: Path, runs: list[str], track: str) -> Path:

@@ -5,8 +5,9 @@ Shared by the point overlays (scripts/draw_points.py), the points site
 three read answers the same way and give every model the same colour.
 No third-party packages.
 
-Replies are read with today's reader (segbench/parse.py). A reply that
-cannot be read is kept as `unreadable`, never guessed at. Points are kept as
+Replies are read exactly as the scorer reads them (segbench/point_score.py
+read_points: strict JSON, else the coordinates as written). A reply that
+cannot be read even so is kept as `unreadable`, never guessed at. Points are kept as
 written, 0..1000 of the photo's width and height: no [y, x] swapping, no
 clipping (a point off the photo is counted in `off_photo`).
 """
@@ -18,14 +19,17 @@ from collections import defaultdict
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from segbench import parse
+from segbench.point_score import read_points, timed_on_free_gpu
 from segbench.brand import BRAND, OTHER
 from segbench.chart_data import describe
 from segbench.models import LEVELS
 from segbench.tasks import BY_KEY as TASKS
 
 ROOT = Path(__file__).resolve().parents[1]
-RUNS = ("results/run-pilot-1.jsonl", "results/run-specialists-1.jsonl")
+# The answers the published chart is scored from (point benchmark v2.2,
+# scripts/select_best_prompt.py): each language model at its better prompt,
+# 3 tries; specialists timed on the free GPU. Find track only.
+RUNS = ("results/run-points-best.jsonl",)
 
 MAKER_ORDER = list(BRAND)
 # One maker's models are told apart by shades of its colour, darker to
@@ -108,13 +112,15 @@ def load(runs=RUNS, track: str = "find", repeat: int = 0, only: set[str] | None 
         a = Answer(key=f"{r['model']}@{level}" if several else r["model"], model=r["model"], level=level,
                    label=f"{label} ({level})" if several else label, maker=maker, kind=kind, task=r["task"],
                    seconds=r.get("seconds"), cost_usd=r.get("cost_usd"),
-                   timing_trustworthy=r.get("timing_trustworthy", True) is not False, prompt=r.get("prompt", ""),
+                   timing_trustworthy=r.get("timing_trustworthy", True) is not False or timed_on_free_gpu(r),
+                   prompt=r.get("prompt", ""),
                    started_at=r.get("started_at", ""))
         if "error" in r or not r.get("text"):
             a.unreadable = "no reply"
         else:
             try:
-                for item in parse.read(r["track"], task.kind, r["text"], task.labels)["items"]:
+                labelled = r["track"] == "find" and bool(task.labels)
+                for item in read_points(r["text"], labelled=labelled, parser="lenient")[0]:
                     x, y = item["point"]
                     a.points.append({"x": x, "y": y, **({"label": item["label"]} if "label" in item else {})})
             except (ValueError, KeyError, TypeError):

@@ -20,21 +20,11 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from segbench.point_score import VERSION, TOLERANCES, DIAGONAL_CAP, read_points, reference_distances, score
+from segbench.point_score import (VERSION, TOLERANCES, DIAGONAL_CAP, read_points, reference_distances, score,
+                                  timed_on_free_gpu)
 from segbench.chart_data import describe
 
 TASKS = ('logs', 'cows', 'fig', 'dishes')
-
-
-# Processes that held a little GPU 0 memory but did no computing during the
-# 2026-10-09 clean measurements (docs/point-benchmark-v2.md): the browser,
-# the desktop overlay, and the scholarsreadinglist embeddings job, paused.
-IDLE_GPU_HOLDERS = {'603447', '1925731', '753117'}
-
-
-def timed_on_free_gpu(r):
-    others = r.get('gpu_others')
-    return isinstance(others, dict) and set(others) <= IDLE_GPU_HOLDERS and r.get('started_at', '') >= '2026-10-09T20'
 
 
 def digest(p):
