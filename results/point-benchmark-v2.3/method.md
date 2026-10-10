@@ -121,17 +121,3 @@ Report: `results/point-benchmark-v2.1`; chart: `charts/point-benchmark-v2.1`.
   Icons, CC0), Microsoft and Ai2 (Lobe Icons, MIT); IDEA Research has no
   logo in either library and is written as text.
 Report: `results/point-benchmark-v2.2`; chart: `charts/point-benchmark-v2.2`.
-
-## v2.3 (2026-10-10): RF-DETR on all four tasks
-
-Maxime: RF-DETR failing where its vocabulary has no word is part of the
-result. It now answers every task with the COCO categories that fit, fixed
-before running (`specialists/rfdetr/points.py`): logs none and fig none (no
-dots, score 0), cows "cow", dishes "bowl" and "cup" (dishes are scored by
-location). Result 23.5: cows 76.7, dishes 17.2, logs 0, fig 0. Answers were
-computed on 2026-10-10 with GPU 0 busy (another project's vLLM evaluation,
-not paused); seconds and cost are its clean 2026-10-09 measurements on the
-same photos (`timing_source` in each record; today's busy-GPU seconds,
-3-7x slower, kept as `seconds_this_run`). On the chart its disc covers
-YOLOE's: 23.5 vs 23.2, $0.0028 vs $0.0028 per 1,000 images.
-Report: `results/point-benchmark-v2.3`; chart: `charts/point-benchmark-v2.3`.
