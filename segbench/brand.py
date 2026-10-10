@@ -24,10 +24,13 @@ LOGOS = {
     "Meta": "meta.svg",
     "Ultralytics": "ultralytics.svg",
     "Roboflow": "roboflow.svg",
+    "NVIDIA": "nvidia.svg",
+    "Ai2": "ai2.svg",
+    "Microsoft": "microsoft.svg",
 }
 # No logo file yet for these (each needs its source and licence noted in
 # assets/logos/SOURCES.md first): initials instead.
-INITIALS = {"UC Davis": "UCD", "NVIDIA": "NV", "Ai2": "Ai2", "IDEA": "ID", "Microsoft": "MS"}
+INITIALS = {"UC Davis": "UCD", "IDEA": "IDEA"}  # no logo in Simple Icons or Lobe Icons (checked 2026-10-10)
 
 # Brand colours (as on the 2026-10-09 brand-colour charts, commit 3aca946),
 # used where colour shows the maker (the point overlays, site and video; the

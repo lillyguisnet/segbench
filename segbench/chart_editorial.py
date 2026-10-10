@@ -205,14 +205,9 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
     plt.rcParams.update({"svg.fonttype": "path", "pdf.fonttype": 42, "font.family": fonts.regular.get_name()})
     fig = plt.figure(figsize=(FIG, FIG))
 
-    # Background: white, washing to a faint blue at the lower right.
-    bg = fig.add_axes((0, 0, 1, 1), zorder=-10)
-    yy, xx = np.mgrid[0:1:200j, 0:1:200j]
-    t = np.clip((xx + (1 - yy)) / 2, 0, 1)[..., None]
-    top = np.array(to_rgb("#ffffff"))
-    bottom = top * 0.91 + np.array(to_rgb(accent)) * 0.09  # a faint wash of the accent
-    bg.imshow(top * (1 - t) + bottom * t, extent=(0, 1, 0, 1), aspect="auto", origin="upper")
-    bg.axis("off")
+    # Background: plain white (Maxime, 2026-10-10: no accent wash; the old
+    # wash was strongest at the upper right, behind the headline).
+    fig.patch.set_facecolor("white")
 
     ax_top = 0.855 if header else 0.93
     ax = fig.add_axes((0.065, 0.095, 0.905, ax_top - 0.095))
@@ -232,7 +227,9 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
         ax.xaxis.set_major_locator(FixedLocator(decades))
         ax.xaxis.set_minor_locator(NullLocator())
         ax.set_xticklabels([_money(v) for v in decades])
-        ax.set_yticks(range(int(y0), int(y1) + 1, 10))
+        ticks = list(range(int(y0), int(y1) + 1, 10))
+        ax.set_yticks(ticks)
+        ax.set_yticklabels([f"{v}%" for v in ticks])
 
     style_axes()
     for side in ("top", "right", "left"):
@@ -339,12 +336,10 @@ def _labels(fig, ax, fonts: Fonts, pts, best_ids, names, X, Y, curve, accent: st
             lines = [[(name, props(fonts.bold, 13.5, INK))],
                      [(f"{100 * p.quality:.1f}", props(fonts.bold, 13.5, accent)),
                       (f"  {_secs(p.seconds)}", props(fonts.medium, 11, INK_3))]]
-        else:
-            maker = MAKER_NAME.get(p.maker, p.maker)
-            if p.kind == "pair":
-                maker += " + " + MAKER_NAME.get(p.outliner_maker, p.outliner_maker)
+        else:  # score instead of the maker (Maxime, 2026-10-10), at the line's own small size
             lines = [[(name, props(fonts.semibold, 11, INK))],
-                     [(f"{maker} \u00b7 {_secs(p.seconds)}", props(fonts.regular, 9.5, INK_3))]]
+                     [(f"{100 * p.quality:.1f}", props(fonts.semibold, 9.5, INK_2)),
+                      (f" \u00b7 {_secs(p.seconds)}", props(fonts.regular, 9.5, INK_3))]]
         sized = []
         for line in lines:
             ws = [width(t, pr) for t, pr in line]

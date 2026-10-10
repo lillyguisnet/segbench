@@ -45,7 +45,7 @@ def mean_known(values):
     return statistics.mean(values) if values and all(v is not None for v in values) else None
 
 
-def build(reference, inputs, out, parser='strict', method='docs/point-benchmark-v1.md'):
+def build(reference, inputs, out, parser='strict', method='docs/point-benchmark-v1.md', dish_labels='required'):
     raw = json.loads(reference.read_text())
     if raw['schema'] != 'segbench-consensus-review/v1':
         raise ValueError('Unsupported reference format')
@@ -99,7 +99,15 @@ def build(reference, inputs, out, parser='strict', method='docs/point-benchmark-
                 if r.get('error'):
                     raise ValueError(r['error'])
                 points, how = read_points(r.get('text', ''), labelled=k == 'dishes', parser=parser)
-                scored = score(points, refs[k], task_meta[k]['width'], task_meta[k]['height'], labelled=k == 'dishes')
+                need_label = k == 'dishes' and dish_labels == 'required'
+                scored = score(points, refs[k], task_meta[k]['width'], task_meta[k]['height'], labelled=need_label)
+                if k == 'dishes' and dish_labels == 'separate':
+                    # dirty/clean right among the dishes found by location; not part of the score
+                    ref_label = {o['id']: o['label'] for o in refs[k]}
+                    scored['label_accuracy'] = {
+                        lvl: (sum(points[m['prediction']].get('label') == ref_label[m['reference_id']]
+                                  for m in v['matches']) / len(v['matches']) if v['matches'] else None)
+                        for lvl, v in scored['tolerances'].items()}
                 rec.update(scored)
                 rec.update({'readable': True, 'read_as': how, 'predictions': points,
                             'predicted_labels': dict(Counter(p['label'] for p in points)) if k == 'dishes' else {}})
@@ -132,7 +140,7 @@ def build(reference, inputs, out, parser='strict', method='docs/point-benchmark-
                  for level in TOLERANCES] if s['coverage'] == 4 else []
         s['rank_range'] = [min(ranks), max(ranks)] if ranks else None
     summary.sort(key=lambda s: -(s['score'] if s['score'] is not None else -1))
-    manifest = {'metric': VERSION, 'parser': parser, 'created_at': datetime.now(timezone.utc).isoformat(),
+    manifest = {'metric': VERSION, 'parser': parser, 'dish_labels': dish_labels, 'created_at': datetime.now(timezone.utc).isoformat(),
                 'reference': reference.name, 'reference_sha256': digest(reference),
                 'input_files': {p.name: digest(p) for p in inputs}, 'tolerances': TOLERANCES,
                 'diagonal_cap': DIAGONAL_CAP, 'scope': 'Point localisation only. Not point-inside-object or segmentation.',
@@ -174,5 +182,7 @@ if __name__ == '__main__':
     ap.add_argument('--parser', choices=('strict', 'lenient'), default='strict',
                     help='lenient: if strict JSON fails, recover [x, y] pairs mechanically (see point_score.recover_points)')
     ap.add_argument('--method', default='docs/point-benchmark-v1.md', help='method document copied into the report')
+    ap.add_argument('--dish-labels', choices=('required', 'separate'), default='required',
+                    help='separate: dishes scored on location alone; dirty/clean accuracy reported apart')
     args = ap.parse_args()
-    build(args.reference, args.inputs, args.out, args.parser, args.method)
+    build(args.reference, args.inputs, args.out, args.parser, args.method, args.dish_labels)

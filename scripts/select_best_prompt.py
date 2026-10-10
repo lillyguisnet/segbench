@@ -27,7 +27,11 @@ def scores(run):
     return {r["entrant"]: float(r["score"]) for r in csv.DictReader(open(R / run / "summary.csv")) if r["score"]}
 
 
-v2, v1 = scores("point-benchmark-v2"), scores("point-benchmark-v1hd")
+import sys
+# Score folders to choose from (default: dishes need the right label;
+# "-loc" folders: dishes scored on location alone, as from 2026-10-10).
+V2_RUN, V1_RUN = (sys.argv[1], sys.argv[2]) if len(sys.argv) > 2 else ("point-benchmark-v2", "point-benchmark-v1hd")
+v2, v1 = scores(V2_RUN), scores(V1_RUN)
 choice = {e: ("v2" if v2[e] >= v1[e] else "v1-hd") for e in v2 if e in v1}
 fl = {k: v2[k] for k in ("florence2-large-grounding", "florence2-large-ovd")}
 florence = max(fl, key=fl.get)

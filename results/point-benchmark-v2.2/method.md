@@ -105,19 +105,3 @@ with no note on the chart (the method is here and in the report folder).
   (option A: choose on separate photos, then run the test once) was offered
   and not taken.
 Report: `results/point-benchmark-v2.1`; chart: `charts/point-benchmark-v2.1`.
-
-## v2.2 (2026-10-10): dishes by location; chart changes
-
-- **Dishes count on location alone** (Maxime): a dot matches a dish by
-  position only. Dirty/clean is kept as a separate number, the share of
-  correct labels among the dishes found (`label_accuracy` in
-  `scored.jsonl`; `scripts/score_points.py --dish-labels separate`). The
-  prompt still asks for the label, unchanged. Each model's choice of prompt
-  was re-made under this rule and did not change.
-- Chart (`segbench/chart_editorial.py`): plain white background (the accent
-  wash, meant for the lower right, was strongest at the upper right);
-  y-axis labels with %; models off the best-value line show their score
-  instead of their maker, at the same small size; logos for NVIDIA (Simple
-  Icons, CC0), Microsoft and Ai2 (Lobe Icons, MIT); IDEA Research has no
-  logo in either library and is written as text.
-Report: `results/point-benchmark-v2.2`; chart: `charts/point-benchmark-v2.2`.
