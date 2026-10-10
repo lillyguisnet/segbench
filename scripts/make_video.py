@@ -7,6 +7,7 @@
     uv run scripts/make_video.py                    # results/views/video/segbench-points.mp4
     uv run scripts/make_video.py --preview          # a few still frames instead, to check the look
 
+No title or end card: the video is the four photos, one after another.
 For each photo: the question, then each model's dots popping in, one model
 after another (its logo lights up below), then how far apart the counts
 were. Nothing is scored: it shows what the models answered, not whether it
@@ -45,12 +46,11 @@ WHITE = (255, 255, 255)
 DIM = (150, 155, 165)
 FAINT = (95, 100, 110)
 FONT = ROOT / "assets" / "fonts"
-SITE = "lillyguisnet.github.io/segbench"
 
 PHOTO_BOX = (40, 190, 1040, 880)  # where the photo is fitted (x0, y0, x1, y1)
 STRIP_Y = 945  # centre line of the row of logos
 
-INTRO, SCENE, OUTRO = 2.6, 5.4, 3.4  # seconds
+SCENE = 5.4  # seconds per photo
 DOTS_FROM, DOTS_TO = 0.55, 3.55  # seconds into a scene: when dots start and finish popping in
 POP = 0.30  # seconds for one dot to pop in
 
@@ -237,37 +237,10 @@ class Scene:
         return out
 
 
-def card(lines: list[tuple[str, str, int, tuple]], t: float, length: float) -> Image.Image:
-    """A text card: lines of (text, weight, size, colour), each fading up in turn."""
-    img = Image.new("RGBA", (SIZE, SIZE), (*BG, 255))
-    draw = ImageDraw.Draw(img)
-    total = sum(s * 1.5 for _, _, s, _ in lines)
-    y = SIZE / 2 - total / 2
-    for i, (text, weight, size, colour) in enumerate(lines):
-        a = ease((t - 0.15 - 0.35 * i) / 0.5) * ease((length - t) / 0.35)
-        lift = 14 * (1 - ease((t - 0.15 - 0.35 * i) / 0.5))
-        draw.text((SIZE / 2, y + size * 0.75 + lift), text, font=font(weight, size), fill=(*colour, round(255 * a)),
-                  anchor="mm")
-        y += size * 1.5
-    return img.convert("RGB")
-
-
-def frames(scenes: list[Scene], n_models: int):
-    intro = [("We asked " + str(n_models) + " AI models", "SemiBold", 58, WHITE),
-             ("to put a dot on each object", "SemiBold", 58, WHITE),
-             ("in four photos.", "SemiBold", 58, WHITE)]
-    outro = [("Same photo, same question,", "SemiBold", 56, WHITE),
-             ("very different answers.", "SemiBold", 56, WHITE),
-             ("", "Regular", 20, WHITE),
-             (f"See every model's dots: {SITE}", "Medium", 30, DIM),
-             ("Pilot run. Not scored yet: the answer key is being made.", "Regular", 24, FAINT)]
-    for i in range(round(INTRO * FPS)):
-        yield card(intro, i / FPS, INTRO)
+def frames(scenes: list[Scene]):
     for s in scenes:
         for i in range(round(SCENE * FPS)):
             yield s.frame(i / FPS)
-    for i in range(round(OUTRO * FPS)):
-        yield card(outro, i / FPS, OUTRO)
 
 
 def main() -> None:
@@ -280,7 +253,6 @@ def main() -> None:
     answers = points.load(args.runs, "find")
     colour = points.colours(answers)
     scenes = [Scene(k, q, n, z, answers, colour) for k, q, n, z in SCENES]
-    n_models = len({a.key for a in answers})
     args.out.parent.mkdir(parents=True, exist_ok=True)
 
     if args.preview:
@@ -289,9 +261,6 @@ def main() -> None:
             p = args.out.with_name(f"preview-{i}.png")
             s.frame(t).save(p)
             print(f"wrote {p}")
-        card_frames = list(frames([], n_models))
-        for name, f in (("intro", card_frames[round(INTRO * FPS) - 10]), ("outro", card_frames[-12])):
-            f.save(args.out.with_name(f"preview-{name}.png"))
         return
 
     cmd = ["ffmpeg", "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{SIZE}x{SIZE}",
@@ -299,7 +268,7 @@ def main() -> None:
            "-movflags", "+faststart", str(args.out)]
     ff = subprocess.Popen(cmd, stdin=subprocess.PIPE)
     n = 0
-    for f in frames(scenes, n_models):
+    for f in frames(scenes):
         ff.stdin.write(np.asarray(f, dtype=np.uint8).tobytes())
         n += 1
     ff.stdin.close()
