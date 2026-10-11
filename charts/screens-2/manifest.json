@@ -12,6 +12,11 @@
   "key_sha256": "4aa377d4607a346895a4abaeb1d7309ccda3e5288c3d0333e849a778e3c7b489",
   "key_status": "accepted by lilly",
   "renderer": "scripts/draw_charts.py --style editorial --track find --names all --title ...",
+  "label_spots": {
+    "sam3": "right",
+    "moondream-3.1": "above",
+    "florence2-large-grounding": "above"
+  },
   "metric": "F1 of clicks on the key's targets (one click per target), mean over tries, then over the questions",
   "caveats": [
     "Five screenshots cannot support broad claims.",

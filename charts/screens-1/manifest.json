@@ -12,6 +12,7 @@
   "key_sha256": "dc84237addbae86bd4b293bf1373f5ca41e4d52341613b7a510252f27cd4d227",
   "key_status": "accepted by lilly",
   "renderer": "scripts/draw_charts.py --style editorial --track find --names all --title ...",
+  "label_spots": {},
   "metric": "F1 of clicks on the key's targets (one click per target), mean over tries, then over the questions",
   "caveats": [
     "Five screenshots cannot support broad claims.",

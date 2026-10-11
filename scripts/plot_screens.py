@@ -21,6 +21,11 @@ from segbench.point_score import maximum_matching  # noqa: E402
 from segbench.screens import hits  # noqa: E402
 
 TITLE = "How well can AI click the right thing on a screen?"
+# Labels pinned beside their logo, per chart (Maxime, 2026-10-11): on round 2,
+# SAM 3's label beside its logo on the 0% line, which frees the spot just above
+# Moondream's logo; Florence-2 Large's just above its logo (else it touches
+# SAM 3's by 2 px and the placer sends it far off with a long line).
+LABEL_SPOTS = {"screens-2": {"sam3": "right", "moondream-3.1": "above", "florence2-large-grounding": "above"}}
 
 
 def f1(clicks, targets):
@@ -53,13 +58,17 @@ def main(runs: list[Path], key_path: Path, name: str, title: str = TITLE):
         out.mkdir(parents=True, exist_ok=True)
         calls = out / "calls.jsonl"
         calls.write_text("".join(json.dumps(r) + "\n" for r in vrows))
+        here = {r["entrant"] for r in vrows}
+        spots = [f"--label-spot={e}={s}" for e, s in LABEL_SPOTS.get(name, {}).items() if e in here]
         subprocess.run(["uv", "run", str(ROOT / "scripts/draw_charts.py"), str(calls), "--style", "editorial",
-                        "--track", "find", "--names", "all", "--title", title, "--out", str(out)], cwd=ROOT, check=True)
+                        "--track", "find", "--names", "all", "--title", title, "--out", str(out), *spots],
+                       cwd=ROOT, check=True)
     digest = lambda p: hashlib.sha256(p.read_bytes()).hexdigest()  # noqa: E731
     (ROOT / "charts" / name / "manifest.json").write_text(json.dumps({
         "sources": {str(r.relative_to(ROOT)): digest(r) for r in runs},
         "key": str(key_path.relative_to(ROOT)), "key_sha256": digest(key_path), "key_status": key["status"],
         "renderer": "scripts/draw_charts.py --style editorial --track find --names all --title ...",
+        "label_spots": LABEL_SPOTS.get(name, {}),
         "metric": "F1 of clicks on the key's targets (one click per target), mean over tries, then over the questions",
         "caveats": ["Five screenshots cannot support broad claims.",
                     "Language-model seconds include the internet and the provider's queue; local models' do not.",

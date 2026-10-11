@@ -215,11 +215,14 @@ def _place(cx, cy, r, w, h, prefer, rings, step, placed, circles, own, frame, ga
 
 def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, float] | None = None,
          header: bool = True, title: str | None = None, accent: str = ACCENT, names: str = "all",
-         dpi: int = 216) -> list[Path]:
+         label_spots: dict[str, str] | None = None, dpi: int = 216) -> list[Path]:
     """Draw the points of one track; return the files written (PNG 2160 x 2160, PDF, SVG).
 
     `title` replaces the track's headline (TITLES); `accent` is the colour of
-    the best-value curve, rings, scores, glow and the background's tint."""
+    the best-value curve, rings, scores, glow and the background's tint.
+    `label_spots` pins a model's label right next to its disc, by entrant:
+    {"sam3": "ur"} (a key of SPOTS), placed before the automatic labels, which
+    then go around it. For a person's layout choice on one chart."""
     pts = [p for p in points if p.track == track]
     if not pts:
         raise ValueError(f"no points for track {track!r}")
@@ -334,7 +337,7 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
         if p.kind == "pair":
             _badge(ax, X(p), Y(p), p.outliner_maker, BIG_PT, fonts, 6 + i * 0.01)
 
-    _labels(fig, ax, fonts, pts, best_ids, names, X, Y, curve, accent, floor_at_zero)
+    _labels(fig, ax, fonts, pts, best_ids, names, X, Y, curve, accent, floor_at_zero, label_spots or {})
     if header:
         _header(fig, fonts, title or TITLES[track])
     if any(p.synthetic for p in pts):
@@ -353,7 +356,9 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
 EXTRA = (0, 25, 50, 90)  # pt further out a label column may sit from its cluster
 
 
-def _labels(fig, ax, fonts: Fonts, pts, best_ids, names, X, Y, curve, accent: str, floor_at_zero: bool = False) -> None:
+def _labels(fig, ax, fonts: Fonts, pts, best_ids, names, X, Y, curve, accent: str, floor_at_zero: bool = False,
+            label_spots: dict[str, str] | None = None) -> None:
+    label_spots = label_spots or {}
     fig.canvas.draw()
     renderer = fig.canvas.get_renderer()
     ppt = fig.dpi / 72
@@ -442,8 +447,25 @@ def _labels(fig, ax, fonts: Fonts, pts, best_ids, names, X, Y, curve, accent: st
     if names != "all":
         return
 
-    # 2. Every other model: right next to its disc when that spot is free...
-    others = sorted((p for p in pts if p.entrant not in best_ids), key=lambda p: -p.quality)
+    unknown = set(label_spots) - {p.entrant for p in pts if p.entrant not in best_ids}
+    if unknown:
+        raise ValueError(f"label_spots: {sorted(unknown)} not on this chart, or on the best-value line")
+    # 2a. Labels a person pinned to one side of their disc (label_spots), right next to it.
+    index_pinned = [p for p in pts if p.entrant in label_spots]
+    for p in index_pinned:
+        i = index[p.entrant]
+        sized, w, h = block(p)
+        (ux, uy), ha, va = SPOTS[label_spots[p.entrant]]
+        cx, cy, r = circles[i]
+        box = _box(cx, cy, (ux * (r + gap), uy * (r + gap)), ha, va, w, h)
+        lift = max(0.0, frame[1] - box[1]) if floor_at_zero else 0.0  # stays above the 0% line, as every label
+        box = (box[0], box[1] + lift, box[2], box[3] + lift)
+        placed.append(box)
+        render(sized, box, ha)
+
+    # 2b. Every other model: right next to its disc when that spot is free...
+    others = sorted((p for p in pts if p.entrant not in best_ids and p.entrant not in label_spots),
+                    key=lambda p: -p.quality)
     blocks = {p.entrant: block(p) for p in others}
     crowded = []
     for p in others:
