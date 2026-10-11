@@ -11,8 +11,9 @@ Static, no outside requests, same look as the points site (scripts/site.html):
 scripts/screens_site.html with the data written in. Shows each question's
 answer key (boxes and circles checked by a person) and every model's clicks,
 each marked right, repeated (on a target already clicked) or wrong, with the
-same matching as the scorer (scripts/score_screens.py). All 3 tries of each
-model can be stepped through.
+same matching as the scorer (scripts/score_screens.py). Round 2 only (several
+right clicks per question); each model's best of its tries is shown, as
+chosen by its score on that question (ties: the earliest try).
 
 Screenshots are stored as lossless WebP: the pixels the models were sent.
 Local models' runs (results/run-screens-local-*.jsonl) are included when
@@ -43,9 +44,10 @@ from segbench.screens import BY_KEY as TASKS, ROUNDS, hits  # noqa: E402
 sys.path.insert(0, str(ROOT / "scripts"))
 from build_site import REPO, logo  # noqa: E402
 
-KEYS = {1: ROOT / "annotations/screens/key.json", 2: ROOT / "annotations/screens/key-round2.json"}
-RUNS = ["results/run-screens-1.jsonl", "results/run-screens-2.jsonl"]
-CHARTS = {1: ROOT / "charts/screens-1/language-models/find.png", 2: ROOT / "charts/screens-2/language-models/find.png"}
+SHOWN = (2,)  # rounds on the page: round 2 only (round 1 had one right click per question)
+KEYS = {2: ROOT / "annotations/screens/key-round2.json"}
+RUNS = ["results/run-screens-2.jsonl"]
+CHARTS = {2: ROOT / "charts/screens-2/language-models/find.png"}
 SHORT = {"chattering": "Fold Lilly’s group", "x": "Reply to Michael", "viewer": "Close the viewer",
          "favorites": "Add to favorites", "shopify": "Tick lamb-only",
          "fold-groups": "Fold all but segbench", "news-1000": "News > 1,000 posts",
@@ -64,7 +66,7 @@ def build(out: Path) -> Path:
     for r, k in keys.items():
         if not k["status"].startswith("accepted"):
             sys.exit(f"round {r} answer key is not accepted yet ({k['status']})")
-    round_of = {t.key: r for r, ts in ROUNDS.items() for t in ts}
+    round_of = {t.key: r for r in SHOWN for t in ROUNDS[r]}
 
     rows = []
     for path in runs_present():
@@ -77,8 +79,8 @@ def build(out: Path) -> Path:
         shutil.rmtree(out)
     (out / "img").mkdir(parents=True)
 
-    shots, tasks, answers, models = {}, [], {}, {}
-    for rnd in sorted(ROUNDS):
+    shots, tasks, answers, models, tries = {}, [], {}, {}, {}
+    for rnd in SHOWN:
         for t in ROUNDS[rnd]:
             key = keys[rnd]["tasks"][t.key]
             if t.image not in shots:
@@ -118,24 +120,21 @@ def build(out: Path) -> Path:
                     entry["prompt"] = r.get("prompt")
                 if not r.get("readable"):
                     entry["unreadable"] = r.get("unreadable_because", "reply not readable")
-                answers[t.key].setdefault(r["model"], []).append(entry)
+                entry["try"] = r["repeat"] + 1
+                tries.setdefault((t.key, r["model"]), []).append(entry)
                 label, maker, kind = describe(r["model"])
                 models.setdefault(r["model"], {"label": label, "maker": maker, "kind": kind, "level": r.get("level"),
                                                "deterministic": bool(r.get("deterministic"))})
+
+    for (tkey, model), es in tries.items():  # the best try: highest score, then the earliest
+        best = max(es, key=lambda e: (e["f1"], -e["try"]))
+        answers[tkey][model] = {**best, "of": len(es), "mean": round(sum(e["f1"] for e in es) / len(es), 4)}
 
     stand_ins = [SimpleNamespace(key=k, maker=m["maker"], label=m["label"], level=m["level"]) for k, m in models.items()]
     colour = points.colours(stand_ins)
     for k in models:
         models[k]["colour"] = colour[k]
     order = [a.key for a in sorted(stand_ins, key=points.order_key)]
-    # each model's score per round: mean over tries, then over questions (as on the charts)
-    for k in models:
-        models[k]["rounds"] = {}
-        for rnd in sorted(ROUNDS):
-            per_q = [sum(e["f1"] for e in answers[t.key][k]) / len(answers[t.key][k])
-                     for t in ROUNDS[rnd] if k in answers[t.key]]
-            if len(per_q) == len(ROUNDS[rnd]):
-                models[k]["rounds"][rnd] = round(sum(per_q) / len(per_q), 4)
 
     charts = {}
     (out / "charts").mkdir()

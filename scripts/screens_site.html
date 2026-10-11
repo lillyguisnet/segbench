@@ -23,12 +23,10 @@ header { display: flex; align-items: flex-end; justify-content: space-between; g
 .brand b { font-weight: 600; font-size: 19px; letter-spacing: -0.01em; }
 .brand span { display: block; color: var(--ink2); font-size: 14px; }
 .brand a { font-size: 13px; color: var(--ink2); }
-nav { display: flex; flex-direction: column; gap: 6px; }
-nav .row { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
-nav .round { width: 64px; color: var(--ink3); font-size: 12px; font-weight: 500; }
-nav button { display: flex; align-items: center; gap: 8px; padding: 4px 10px 4px 4px; border: 1px solid var(--line);
-  background: var(--paper); border-radius: 9px; cursor: pointer; font-weight: 500; font-size: 13px; }
-nav button img { width: 40px; height: 24px; object-fit: cover; object-position: top left; border-radius: 5px; display: block; }
+nav { display: flex; gap: 8px; flex-wrap: wrap; }
+nav button { display: flex; align-items: center; gap: 9px; padding: 5px 12px 5px 5px; border: 1px solid var(--line);
+  background: var(--paper); border-radius: 10px; cursor: pointer; font-weight: 500; font-size: 14px; }
+nav button img { width: 46px; height: 34px; object-fit: cover; object-position: top left; border-radius: 6px; display: block; }
 nav button:hover { border-color: #c9ccd2; }
 nav button.on { border-color: var(--ink); box-shadow: 0 0 0 1px var(--ink); }
 main { display: grid; grid-template-columns: minmax(0, 1fr) 310px; gap: 22px; align-items: start; }
@@ -58,13 +56,10 @@ main { display: grid; grid-template-columns: minmax(0, 1fr) 310px; gap: 22px; al
 .sw { display: inline-block; width: 11px; height: 11px; border-radius: 50%; border: 3px solid; vertical-align: -1px; margin-right: 5px; }
 .sq { display: inline-block; width: 13px; height: 10px; border: 2px solid var(--key); background: rgba(34,197,94,.15); vertical-align: -1px; margin-right: 5px; border-radius: 2px; }
 aside { position: sticky; top: 14px; }
-.tries { display: flex; gap: 6px; align-items: center; margin: 0 4px 10px; font-size: 13.5px; color: var(--ink2); }
-.tries button { min-width: 34px; height: 30px; border: 1px solid var(--line); background: var(--paper); border-radius: 8px; cursor: pointer; font-weight: 500; }
-.tries button.on { border-color: var(--ink); box-shadow: 0 0 0 1px var(--ink); color: var(--ink); }
 .list { border: 1px solid var(--line); border-radius: 12px; padding: 6px; }
-.list .head { display: grid; grid-template-columns: 26px 1fr 48px 48px; gap: 8px; padding: 2px 8px 4px; font-size: 11px; color: var(--ink3); }
-.list .head span:nth-child(n+3) { text-align: right; }
-.list button { display: grid; grid-template-columns: 26px 1fr 48px 48px; gap: 8px; align-items: center; width: 100%;
+.list .head { display: grid; grid-template-columns: 26px 1fr auto; gap: 10px; padding: 2px 8px 4px; font-size: 11px; color: var(--ink3); }
+.list .head span:last-child { text-align: right; }
+.list button { display: grid; grid-template-columns: 26px 1fr auto; gap: 8px; align-items: center; width: 100%;
   padding: 5px 8px; border: 0; background: none; border-radius: 8px; cursor: pointer; text-align: left; font-size: 14px; }
 .list button:hover { background: var(--soft); }
 .list button.on { background: #eceef2; font-weight: 600; }
@@ -84,7 +79,6 @@ footer { margin-top: 26px; padding-top: 14px; border-top: 1px solid var(--line);
   aside { position: static; }
   .keys, .hint { display: none; }
   .wrap { padding: 12px 12px 22px; }
-  nav .round { width: 100%; }
 }
 </style>
 </head>
@@ -112,7 +106,6 @@ footer { margin-top: 26px; padding-top: 14px; border-top: 1px solid var(--line);
       <div class="info" id="info"></div>
     </section>
     <aside>
-      <div class="tries" id="tries"></div>
       <div class="list" id="list"></div>
       <div class="opts">
         <label><input type="checkbox" id="showKey" checked> Show the answer key (K)</label>
@@ -124,7 +117,7 @@ footer { margin-top: 26px; padding-top: 14px; border-top: 1px solid var(--line);
         <span><span class="sw" style="border-color:var(--dup)"></span>on a target that was already clicked</span>
         <span><span class="sw" style="border-color:var(--miss)"></span>wrong click</span>
       </div>
-      <p class="keys">Keys: ← → question · ↑ ↓ model · 1 2 3 try · K answer key · Esc all models · 0 whole screenshot</p>
+      <p class="keys">Keys: ← → question · ↑ ↓ model · K answer key · Esc all models · 0 whole screenshot</p>
     </aside>
   </main>
   <footer id="foot"></footer>
@@ -138,7 +131,7 @@ const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).
 const STATE = {hit: css("--hit"), dup: css("--dup"), miss: css("--miss")};
 const SAID = {hit: "right", dup: "on a target already clicked", miss: "wrong"};
 
-let ti = 0, focus = null, tr = 0, showOthers = true, showKey = true, view = null, scale = 1;
+let ti = 0, focus = null, showOthers = true, showKey = true, view = null, scale = 1;
 
 // ---------- logos ----------
 $("#logos defs").innerHTML = Object.entries(D.logos).map(([m, l]) => l.d
@@ -156,15 +149,14 @@ const task = () => D.tasks[ti];
 const shot = () => D.shots[task().shot];
 const answers = () => D.answers[task().key];
 const present = () => D.order.filter(k => k in answers());
-const entry = (k, t = tr) => { const a = answers()[k]; return a ? a[Math.min(t, a.length - 1)] : null; };
-const ntries = () => Math.max(1, ...present().map(k => answers()[k].length));
+const entry = k => answers()[k] || null;  // each model's best try on this question
 const pct = v => `${Math.round(v * 100)}`;
 const money = v => v >= 0.1 ? `$${v.toFixed(2)}` : v >= 0.001 ? `$${v.toFixed(3)}` : `$${v.toPrecision(2)}`;
 const secs = v => v >= 60 ? `${Math.floor(v / 60)} min ${Math.round(v % 60)} s` : v >= 10 ? `${Math.round(v)} s` : `${v.toFixed(1)} s`;
 const onScreen = c => c[0] >= 0 && c[0] <= shot().w && c[1] >= 0 && c[1] <= shot().h;
 function rng(seed) { let h = 2166136261; for (const c of seed) h = Math.imul(h ^ c.charCodeAt(0), 16777619);
   return () => ((h = Math.imul(h ^ (h >>> 15), 2246822507), h = Math.imul(h ^ (h >>> 13), 3266489909), (h ^= h >>> 16) >>> 0) / 4294967296); }
-function clickedBy(j) {  // models whose right click is on target j, this try
+function clickedBy(j) {  // models whose right click is on target j
   return present().filter(k => (entry(k)?.clicks || []).some(c => c[2] === "hit" && c[3] === j));
 }
 
@@ -220,7 +212,7 @@ function render() {
   if (focus === null) {
     const dots = [];
     for (const k of keys) (entry(k)?.clicks || []).forEach((c, i) => onScreen(c) && dots.push([k, c, i]));
-    const r = rng(t.key + tr);
+    const r = rng(t.key);
     for (let i = dots.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [dots[i], dots[j]] = [dots[j], dots[i]]; }
     for (const [k, c, i] of dots)
       out += `<g class="dot" data-k="${k}" data-i="${i}" transform="translate(${c[0]} ${c[1]})">${disc(k, 9 * R * u, STATE[c[2]], 0.22)}</g>`;
@@ -236,27 +228,21 @@ function render() {
 function renderAll() {
   const t = task(), keys = present();
   if (focus !== null && !(focus in answers())) focus = null;
-  tr = Math.min(tr, ntries() - 1);
-  // questions, by round
-  $("#questions").innerHTML = [...new Set(D.tasks.map(x => x.round))].map(rnd => `<div class="row"><span class="round">Round ${rnd}</span>` +
-    D.tasks.map((x, i) => x.round !== rnd ? "" :
-      `<button class="${i === ti ? "on" : ""}" data-t="${i}" title="${esc(x.ask)}"><img src="${D.shots[x.shot].thumb}" alt="">${esc(x.name)}</button>`).join("") + "</div>").join("");
+  $("#questions").innerHTML = D.tasks.map((x, i) =>
+    `<button class="${i === ti ? "on" : ""}" data-t="${i}" title="${esc(x.ask)}"><img src="${D.shots[x.shot].thumb}" alt="">${esc(x.name)}</button>`).join("");
   // request
   const m = focus && D.models[focus], spec = focus && entry(focus)?.prompt;
-  $("#ask").innerHTML = `<q>${esc(t.ask)}</q><span>${t.targets.length} right click${t.targets.length === 1 ? "" : "s"} · round ${t.round}</span>`
+  $("#ask").innerHTML = `Asked: <q>${esc(t.ask)}</q><span>${t.targets.length} right clicks</span>`
     + (spec ? `<span>Text given to ${esc(m.label)}: “${esc(spec)}”</span>` : "");
-  // tries
-  const n = ntries();
-  $("#tries").innerHTML = n > 1 ? `Try ${[...Array(n).keys()].map(i => `<button class="${i === tr ? "on" : ""}" data-try="${i}">${i + 1}</button>`).join("")}` : "";
   // list
   const total = keys.reduce((s, k) => s + (entry(k)?.clicks.length || 0), 0);
-  let list = `<div class="head"><span></span><span></span><span>this try</span><span>round ${t.round}</span></div>`
-    + `<button class="${focus === null ? "on" : ""}" data-k=""><span></span><span class="t">All models</span><span class="n">${total}</span><span class="n">clicks</span></button><div class="sep"></div>`;
+  let list = `<button class="${focus === null ? "on" : ""}" data-k=""><span></span><span class="t">All models</span><span class="n">${total} clicks</span></button><div class="sep"></div>`
+    + `<div class="head"><span></span><span></span><span>score</span></div>`;
   for (const k of keys) {
-    const e = entry(k), rs = D.models[k].rounds[t.round];
+    const e = entry(k);
     const cls = e.f1 === 1 ? "full" : e.f1 === 0 ? "zero" : "";
     list += `<button class="${k === focus ? "on" : ""}" data-k="${k}">${icon(k)}<span class="t">${esc(D.models[k].label)}</span>`
-      + `<span class="n ${cls}">${e.unreadable ? "—" : pct(e.f1)}</span><span class="n">${rs == null ? "" : pct(rs)}</span></button>`;
+      + `<span class="n ${cls}">${e.unreadable ? "—" : pct(e.f1)}</span></button>`;
   }
   $("#list").innerHTML = list;
   // info
@@ -285,20 +271,19 @@ function renderAll() {
     if (e.cost != null) facts.push(`<span><b>${money(e.cost)}</b>${m.kind === "specialist" ? " of GPU time" : " at list price"}</span>`);
     if (m.level) facts.push(`<span>${esc(m.level)} thinking</span>`);
     if (m.deterministic) facts.push(`<span>gives the same answer every try</span>`);
+    else if (e.of > 1) facts.push(`<span>best of ${e.of} tries (try ${e.try}; mean of the ${e.of}: ${pct(e.mean)})</span>`);
     $("#info").innerHTML = `<span class="name">${icon(focus, 26)}${esc(m.label)}</span><span class="facts">${facts.join("")}</span>`
       + (e.unreadable ? `<pre>${esc(e.unreadable)}</pre>` : "");
   }
-  history.replaceState(null, "", `#${t.key}${focus ? "/" + focus : ""}${tr ? (focus ? "" : "/") + "/" + (tr + 1) : ""}`);
+  history.replaceState(null, "", `#${t.key}${focus ? "/" + focus : ""}`);
   layout();
 }
 
 // ---------- interaction ----------
 function setTask(i) { ti = (i + D.tasks.length) % D.tasks.length; resetView(); renderAll(); }
 function setFocus(k) { focus = k || null; renderAll(); }
-function setTry(i) { tr = Math.max(0, Math.min(ntries() - 1, i)); renderAll(); }
 $("#questions").onclick = e => { const b = e.target.closest("button"); if (b) setTask(+b.dataset.t); };
 $("#list").onclick = e => { const b = e.target.closest("button"); if (b) setFocus(b.dataset.k); };
-$("#tries").onclick = e => { const b = e.target.closest("button"); if (b) setTry(+b.dataset.try); };
 $("#others").onchange = e => { showOthers = e.target.checked; draw(); };
 $("#showKey").onchange = e => { showKey = e.target.checked; draw(); };
 $("#zin").onclick = () => zoomAt(1.6, view.x + view.w / 2, view.y + view.h / 2);
@@ -361,10 +346,10 @@ function tip(e) {
   let text = "";
   if (dot) {
     const k = dot.dataset.k, c = entry(k).clicks[+dot.dataset.i];
-    text = `${D.models[k].label} · try ${Math.min(tr, answers()[k].length - 1) + 1} · ${SAID[c[2]]}`;
+    text = `${D.models[k].label} · ${SAID[c[2]]}`;
   } else if (tgt) {
     const j = +tgt.dataset.j, who = clickedBy(j);
-    text = `${task().targets[j].id} · found by ${who.length} of ${present().length} models (try ${tr + 1})`;
+    text = `${task().targets[j].id} · found by ${who.length} of ${present().length} models`;
   }
   if (!text) { el.style.display = "none"; return; }
   const r = stage.getBoundingClientRect();
@@ -379,7 +364,6 @@ addEventListener("keydown", e => {
   else if (e.key === "ArrowDown") setFocus(keys[Math.min(keys.length - 1, at + 1)]);
   else if (e.key === "ArrowUp") setFocus(at <= 0 ? null : keys[at - 1]);
   else if (e.key === "Escape") setFocus(null);
-  else if (/^[1-9]$/.test(e.key)) setTry(+e.key - 1);
   else if (e.key.toLowerCase() === "k") { $("#showKey").click(); }
   else if (e.key === "0") { resetView(); draw(); }
   else if (e.key === "+" || e.key === "=") $("#zin").click();
@@ -390,16 +374,15 @@ addEventListener("keydown", e => {
 addEventListener("resize", layout);
 
 // ---------- start ----------
-const chartLinks = Object.entries(D.charts).map(([r, p]) => `<a href="${p}">round ${r} chart</a>`).join(" · ");
-$("#foot").innerHTML = `<span>Run of ${esc(D.run_date)}. Each language model got the screenshot and one plain prompt, never tuned: the task, “Where would you click to do it? Give one point for each click needed.”, at medium thinking, 3 tries.</span>
-  <span>A click is right when it lands on a target no earlier click has taken; score = F1 (right clicks count, wrong or extra ones cost). Answer key drawn by hand and checked by ${esc(D.reviewer[1] || "a person")}.</span>
+const chartLinks = Object.values(D.charts).map(p => `<a href="${p}">the chart</a>`).join(" · ");
+$("#foot").innerHTML = `<span>Run of ${esc(D.run_date)}. Each language model got the screenshot and one plain prompt, never tuned: the task, “Where would you click to do it? Give one point for each click needed.”, at medium thinking, 3 tries. Each model's best try on each question is shown; scores on the chart are the mean of the 3.</span>
+  <span>A click is right when it lands on a target no earlier click has taken; score = F1 (right clicks count, wrong or extra ones cost). Answer key drawn by hand and checked by ${esc(Object.values(D.reviewer)[0] || "a person")}.</span>
   <span>${chartLinks}${chartLinks ? " · " : ""}<a href="${D.repo}">Code and data</a> (Apache 2.0) · screenshots show other sites and are here only to show this benchmark (not covered by the photos' CC BY licence) · logos belong to their owners</span>`;
-function fromHash() {  // #fold-groups, #fold-groups/sol, #fold-groups/sol/2, #fold-groups//2
-  const [hk, hm, ht] = decodeURIComponent(location.hash.slice(1)).split("/");
+function fromHash() {  // #fold-groups or #fold-groups/sol: one question, one model
+  const [hk, hm] = decodeURIComponent(location.hash.slice(1)).split("/");
   const i = D.tasks.findIndex(t => t.key === hk);
   if (i >= 0 && i !== ti) { ti = i; resetView(); }
   focus = hm && hm in D.answers[D.tasks[ti].key] ? hm : null;
-  tr = ht ? Math.max(0, +ht - 1 || 0) : 0;
   renderAll();
 }
 addEventListener("hashchange", fromHash);
