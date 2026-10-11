@@ -116,14 +116,15 @@ def _disc(ax, x, y, maker: str, d: float, *, rim, rim_w: float, fonts: Fonts, z:
     if shadow:
         drop = t + ScaledTranslation(0, -2 / 72, ax.figure.dpi_scale_trans)
         ax.scatter([x], [y], s=(d + 4) ** 2, facecolors=[(*to_rgb(rim), 0.16)], edgecolors="none",
-                   transform=drop, zorder=z - 0.004)
-    ax.scatter([x], [y], s=d ** 2, facecolors="white", edgecolors=[rim], linewidths=rim_w, transform=t, zorder=z)
+                   transform=drop, zorder=z - 0.004, clip_on=False)
+    ax.scatter([x], [y], s=d ** 2, facecolors="white", edgecolors=[rim], linewidths=rim_w, transform=t, zorder=z,
+               clip_on=False)
     logo = logo_path(maker)
     size = d * 0.56
     colour = BRAND.get(maker, INK)
     if logo is not None:
         ax.scatter([x], [y], s=size ** 2, marker=logo, facecolors=[colour], edgecolors="none", linewidths=0,
-                   transform=t, zorder=z + 0.001)
+                   transform=t, zorder=z + 0.001, clip_on=False)
     else:
         text = INITIALS.get(maker) or "".join(w[0] for w in maker.split())[:3]
         ax.text(x, y, text, ha="center", va="center_baseline", fontproperties=fonts.bold,
@@ -163,9 +164,9 @@ def _penalty(box, placed, circles, own, frame) -> float:
     for i, (bx, by, br) in enumerate(circles):
         if i != own:
             cost += _overlap(box, (bx - br, by - br, bx + br, by + br)) * 12
-    out = (max(0, frame[0] - box[0]) + max(0, box[2] - frame[2])
-           + max(0, frame[1] - box[1]) + max(0, box[3] - frame[3]))
-    return cost + out * 5000
+    out = max(0, frame[0] - box[0]) + max(0, box[2] - frame[2]) + max(0, box[3] - frame[3])
+    below = max(0, frame[1] - box[1])  # frame[4]: how bad going below the bottom edge is (a 0% floor)
+    return cost + out * 5000 + below * (frame[4] if len(frame) > 4 else 5000)
 
 
 def _inside_length(a, b, box) -> float:
@@ -236,11 +237,12 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
     xlim = xlim or x_range(pts)
     xlim = (xlim[0], xlim[1] * 10 ** 0.35)  # room on the right for labels
     if sum(100 * p.quality <= 0.05 for p in pts) >= 3:  # models tied at 0% pile up at the cheap end: room on the left too
-        xlim = (xlim[0] / 10 ** 0.35, xlim[1])
+        xlim = (xlim[0] / 10 ** 0.6, xlim[1])
     qs = [100 * p.quality for p in pts]
     y0 = max(0, 10 * math.floor((min(qs) - 5) / 10))
-    if min(qs) - 5 < 0:  # discs at or near 0% need room below the bottom line (no -10% tick)
-        y0 = -6 - 1.5 * min(4, sum(q <= 0.05 for q in qs))  # ties at 0% get room for their labels below it
+    # Discs at or near 0%: the 0% line is the bottom of the chart (Maxime, 2026-10-11). Discs on it
+    # are drawn whole, over the line; every label stays above it; the cost numbers move down.
+    floor_at_zero = y0 == 0 and min(qs) < 5  # only when discs actually sit on the floor
     y1 = min(100, 10 * math.ceil((max(qs) + 6) / 10))
     if max(qs) + 6 > 100:  # discs at or near 100% need room above the top line (no 110% tick)
         y1 = 100 + 6 + 2 * min(4, sum(q >= 99.95 for q in qs))  # ties at 100% get room for their labels above it
@@ -266,6 +268,8 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
     ax.spines["bottom"].set_color(GRID)
     ax.grid(True, axis="y", color=GRID, lw=1.0, zorder=0)
     ax.tick_params(length=0, pad=7, labelcolor=INK_3)
+    if floor_at_zero:  # discs sit on the bottom line: keep the cost numbers clear of them
+        ax.tick_params(axis="x", pad=7 + BIG_PT / 2)
     for lab in ax.get_xticklabels():
         lab.set_fontproperties(fonts.semibold)
         lab.set_fontsize(12)
@@ -315,6 +319,7 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
     ax.plot([cx_[-1], xlim[1]], [cy_[-1], cy_[-1]], color=accent, lw=3.2, alpha=0.45, zorder=3,
             solid_capstyle="round")
     style_axes()  # imshow may have touched the limits
+    ax.set_autoscale_on(False)  # nothing drawn after this (leader lines) may stretch the axes
 
     # ----- discs -----
     for i, p in enumerate(sorted(others, key=lambda p: -p.seconds)):
@@ -326,7 +331,7 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
         if p.kind == "pair":
             _badge(ax, X(p), Y(p), p.outliner_maker, BIG_PT, fonts, 6 + i * 0.01)
 
-    _labels(fig, ax, fonts, pts, best_ids, names, X, Y, curve, accent)
+    _labels(fig, ax, fonts, pts, best_ids, names, X, Y, curve, accent, floor_at_zero)
     if header:
         _header(fig, fonts, title or TITLES[track])
     if any(p.synthetic for p in pts):
@@ -345,7 +350,7 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
 EXTRA = (0, 25, 50, 90)  # pt further out a label column may sit from its cluster
 
 
-def _labels(fig, ax, fonts: Fonts, pts, best_ids, names, X, Y, curve, accent: str) -> None:
+def _labels(fig, ax, fonts: Fonts, pts, best_ids, names, X, Y, curve, accent: str, floor_at_zero: bool = False) -> None:
     fig.canvas.draw()
     renderer = fig.canvas.get_renderer()
     ppt = fig.dpi / 72
@@ -408,6 +413,8 @@ def _labels(fig, ax, fonts: Fonts, pts, best_ids, names, X, Y, curve, accent: st
         circles.append((cx, cy, _radius_pt(p, BIG_PT if p.entrant in best_ids else SMALL_PT) * ppt))
     ab = ax.get_window_extent(renderer)
     frame = (ab.x0 + 2, ab.y0 + 6, fig.bbox.width - 10, ab.y1 - 2)  # labels may use the right margin
+    if floor_at_zero:  # the 0% line is the floor: labels may come down to it, never below
+        frame = (frame[0], ab.y0 + 1, frame[2], frame[3], 500000)
     placed = []
     pix = [ax.transData.transform(xy) for xy in curve]
     for (ax0, ay0), (ax1, ay1) in zip(pix, pix[1:]):
@@ -440,8 +447,8 @@ def _labels(fig, ax, fonts: Fonts, pts, best_ids, names, X, Y, curve, accent: st
         i = index[p.entrant]
         sized, w, h = blocks[p.entrant]
         # beside the disc first; just below it when both sides are taken (e.g. under the flat best-value line)
-        box, align, _, free = _place(*circles[i], w, h, ["right", "left", "lr", "ll", "below"], 1, 0, placed, circles, i,
-                                     frame, gap)
+        spots = ["right", "left", "lr", "ll", "below"] + (["ur", "ul", "above"] if floor_at_zero else [])
+        box, align, _, free = _place(*circles[i], w, h, spots, 1, 0, placed, circles, i, frame, gap)
         if free:
             placed.append(box)
             render(sized, box, align)
@@ -499,7 +506,7 @@ def _labels(fig, ax, fonts: Fonts, pts, best_ids, names, X, Y, curve, accent: st
             # a label printed over another label cannot be read: the last resort, worse than any line
             pen += 2000 * sum(_overlap(b, t) for b in moved for t in taken if t not in curve_boxes)
             # covering another model's disc hides its logo: as bad as covering a label
-            pen += 50 * sum(_overlap(b, (x - r, y - r, x + r, y + r)) for b in moved for x, y, r in circles)
+            pen += 2000 * sum(_overlap(b, (x - r, y - r, x + r, y + r)) for b in moved for x, y, r in circles)
             if best_col is None or pen < best_col[0]:
                 best_col = (pen, moved)
         return best_col[0], list(zip(sub, cs, best_col[1])), "left" if side == "right" else "right"
@@ -507,7 +514,7 @@ def _labels(fig, ax, fonts: Fonts, pts, best_ids, names, X, Y, curve, accent: st
     for g in groups:
         # each column beside the cluster, or further out (a crowded cluster has no room right next to it)
         options = [[(g, "right", e)] for e in EXTRA] + [[(g, "left", e)] for e in EXTRA]
-        if len(g) >= 3:  # split by cost: cheaper half to the left, dearer half to the right
+        if len(g) >= 2:  # split by cost: cheaper half to the left, dearer half to the right
             by_x = sorted(g, key=lambda p: circles[index[p.entrant]][0])
             half = len(g) // 2
             options += [[(by_x[:half], "left", e1), (by_x[half:], "right", e2)] for e1 in EXTRA for e2 in EXTRA]
