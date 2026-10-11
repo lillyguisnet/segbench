@@ -46,7 +46,8 @@ for name, keep in (("run-points-v2.jsonl", "v2"), ("run-points-v1hd.jsonl", "v1-
             out.append(r)
 # RF-DETR: all four tasks from run-rfdetr-3 (2026-10-10; logs and fig: no
 # matching COCO category, so no dots), not its cows-only record in specialists-2.
-for name in ("run-specialists-2.jsonl", "run-finders-3.jsonl", "run-rfdetr-3.jsonl"):
+# Moondream 3.1: run-finders-4 (2026-10-11, timed on the whole of GPU 1).
+for name in ("run-specialists-2.jsonl", "run-finders-3.jsonl", "run-rfdetr-3.jsonl", "run-finders-4.jsonl"):
     for i, line in enumerate((R / name).read_text().splitlines(), 1):
         r = json.loads(line)
         if r["track"] != "find" or (r["model"].startswith("florence2") and r["model"] != florence):

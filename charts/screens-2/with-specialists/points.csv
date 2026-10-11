@@ -17,6 +17,7 @@ find,florence2-large-grounding,Florence-2 Large,specialist,Microsoft,florence2-l
 find,florence2-large-ovd,Florence-2 · detection,specialist,Microsoft,florence2-large-ovd,,,,0.13333333333333333,0.13333333333333333,0.13333333333333333,8.395786666666666e-06,0.245,5,1,5,5,False
 find,locateanything-3b,LocateAnything 3B,specialist,NVIDIA,locateanything-3b,,,,0.029629629629629627,0.0,0.04444444444444444,6.465962962962964e-05,1.08,15,3,5,5,False
 find,molmopoint-8b,MolmoPoint 8B,specialist,Ai2,molmopoint-8b,,,,0.18571428571428572,0.18571428571428572,0.18571428571428572,0.0001984888888888889,2.709,5,1,5,5,False
+find,moondream-3.1,Moondream 3.1,specialist,Moondream,moondream-3.1,,,,0.13333333333333333,0.13333333333333333,0.13333333333333333,1.7196666666666664e-05,0.266,5,1,5,5,False
 find,rexomni-3b,Rex-Omni 3B,specialist,IDEA,rexomni-3b,,,,0.13333333333333333,0.13333333333333333,0.13333333333333333,5.443134155555555e-05,1.353,5,1,5,5,False
 find,rfdetr-seg-2xl,RF-DETR Seg,specialist,Roboflow,rfdetr-seg-2xl,,,,0.0,0.0,0.0,1.7417761531622453e-06,0.0655,5,1,5,5,False
 find,sam3,SAM 3,specialist,Meta,sam3,,,,0.0,0.0,0.0,1.0992177777777777e-05,0.177,5,1,5,5,False

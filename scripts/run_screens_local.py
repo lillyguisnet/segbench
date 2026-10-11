@@ -60,7 +60,12 @@ MODELS = {
     "florence2-large-grounding": ("florence2", "box", "large", 1, 0.4041),
     "florence2-large-ovd": ("florence2", "ovd", "large", 1, 0.528),
     "sam3": ("sam3", "segment", None, 1, 1.022),
+    # Added 2026-10-11; load factor from scripts/time_finders.py on the photos
+    # (results/run-finders-4.timing.json; ~17 GB per copy, so one copy: factor 1).
+    # Run on the whole of GPU 1 (--gpu 1).
+    "moondream-3.1": ("moondream", "point", None, 1, 1.0),  # one copy fits: factor 1
 }
+GPUS = {"0": "GPU-ed411651-10df-4a1c-981a-9cf0787065b1", "1": "GPU-73bb8110-4d4b-f645-dce4-724b0baf767f"}
 
 
 def gpu_others() -> dict:
@@ -74,7 +79,10 @@ def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--name", required=True)
     ap.add_argument("--models", nargs="*", default=list(MODELS))
+    ap.add_argument("--gpu", choices=list(GPUS), default="0", help="which whole GPU to run on (default 0, as before)")
     args = ap.parse_args()
+    global GPU_UUID
+    GPU_UUID = GPUS[args.gpu]
     out = ROOT / "results" / f"run-{args.name}.jsonl"
     if out.exists():
         sys.exit(f"{out} exists: choose a new --name")
@@ -88,6 +96,8 @@ def main() -> None:
 
     for key in args.models:
         fmodel, ftask, variant, seeds, factor = MODELS[key]
+        if factor is None:
+            sys.exit(f"{key}: no load factor yet (measure it on the photos first)")
         ask = (lambda q: q.removesuffix(".")) if fmodel in ADDS_STOP else (lambda q: q)
         warm = {"image": str(shots[tasks[0].key]["path"]), "query": ask(tasks[0].instruction), "task": ftask, "id": "warm-up"}
         jobs = [warm] + [{"image": str(shots[t.key]["path"]), "query": ask(t.instruction), "task": ftask,
@@ -120,7 +130,7 @@ def main() -> None:
                     "finders": {"model": fmodel, "variant": variant, "task": ftask, "seed": int(seed),
                                 "weights": rec.get("weights"), "settings": rec.get("settings"),
                                 "load_seconds": recs[0].get("load_seconds"), "gpu_peak_gib": rec.get("gpu_peak_gib")},
-                    "deterministic": seeds == 1, "gpu_others": others,
+                    "deterministic": seeds == 1, "gpu_others": others, "gpu_uuid": GPU_UUID,
                 }) + "\n")
                 print(f"   {tkey:17} seed {seed}  {len(clicks):3} clicks  {seconds:6.2f}s", flush=True)
     print(f"saved {out}")

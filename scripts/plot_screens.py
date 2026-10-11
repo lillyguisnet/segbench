@@ -64,7 +64,8 @@ def main(runs: list[Path], key_path: Path, name: str, title: str = TITLE):
         "caveats": ["Five screenshots cannot support broad claims.",
                     "Language-model seconds include the internet and the provider's queue; local models' do not.",
                     "Local models: cost uses each model's load factor measured on the photos, not on screenshots.",
-                    "Local models timed on GPU 0 while it also drew the desktop (window manager, 20-30% busy).",
+                    "Local models timed on GPU 0 while it also drew the desktop (window manager, 20-30% busy); "
+                    "Moondream 3.1 (added 2026-10-11) on the whole of GPU 1, the same card model, with nothing else on it.",
                     "The smooth curve is a visual guide, not measured intermediate models."],
     }, indent=2) + "\n")
 

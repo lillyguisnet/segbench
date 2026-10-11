@@ -67,6 +67,7 @@ BRAND = {
     "Ai2": "#d63384",
     "IDEA": "#2b6cb0",
     "Microsoft": "#5e5e5e",
+    "Moondream": "#8a6508",  # dark gold so the initials read on white
 }
 MAKER_NAME = {"Moonshot": "Moonshot AI", "Z.AI": "Z.ai"}
 # The headline of each chart: what ability it measures, in plain words.

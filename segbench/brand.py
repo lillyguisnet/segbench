@@ -30,7 +30,8 @@ LOGOS = {
 }
 # No logo file yet for these (each needs its source and licence noted in
 # assets/logos/SOURCES.md first): initials instead.
-INITIALS = {"UC Davis": "UCD", "IDEA": "IDEA"}  # no logo in Simple Icons or Lobe Icons (checked 2026-10-10)
+INITIALS = {"UC Davis": "UCD", "IDEA": "IDEA",  # no logo in Simple Icons or Lobe Icons (checked 2026-10-10)
+            "Moondream": "MD"}  # neither has Moondream (M87 Labs) either (checked 2026-10-11)
 
 # Brand colours (as on the 2026-10-09 brand-colour charts, commit 3aca946),
 # used where colour shows the maker (the point overlays, site and video; the
@@ -51,6 +52,7 @@ BRAND = {
     "Ai2": "#f0529c",
     "IDEA": "#2b6cb0",
     "Microsoft": "#737373",
+    "Moondream": "#b8860b",  # moonlight gold; Moondream's own site is black and white
 }
 OTHER = "#7a808a"
 

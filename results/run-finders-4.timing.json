@@ -1,0 +1,102 @@
+[
+ {
+  "setup": "moondream-3.1",
+  "finders_model": "moondream",
+  "variant": null,
+  "task": "point",
+  "rounds": 3,
+  "single": [
+   {
+    "id": "single|logs|log end|0",
+    "wall": 0.8885307769814972,
+    "model_seconds": 0.825
+   },
+   {
+    "id": "single|cows|cow|0",
+    "wall": 0.3340129110147245,
+    "model_seconds": 0.278
+   },
+   {
+    "id": "single|fig|fig leaf|0",
+    "wall": 0.4560261190054007,
+    "model_seconds": 0.414
+   },
+   {
+    "id": "single|dishes|dirty dish|0",
+    "wall": 0.3447971209825482,
+    "model_seconds": 0.277
+   },
+   {
+    "id": "single|dishes|clean dish|0",
+    "wall": 0.3304260430159047,
+    "model_seconds": 0.279
+   },
+   {
+    "id": "single|logs|log end|1",
+    "wall": 0.8774741980014369,
+    "model_seconds": 0.815
+   },
+   {
+    "id": "single|cows|cow|1",
+    "wall": 0.35289108799770474,
+    "model_seconds": 0.3
+   },
+   {
+    "id": "single|fig|fig leaf|1",
+    "wall": 0.45271171699278057,
+    "model_seconds": 0.408
+   },
+   {
+    "id": "single|dishes|dirty dish|1",
+    "wall": 0.32763106501079164,
+    "model_seconds": 0.28
+   },
+   {
+    "id": "single|dishes|clean dish|1",
+    "wall": 0.3325186529837083,
+    "model_seconds": 0.279
+   },
+   {
+    "id": "single|logs|log end|2",
+    "wall": 0.8875100199948065,
+    "model_seconds": 0.828
+   },
+   {
+    "id": "single|cows|cow|2",
+    "wall": 0.3325861140037887,
+    "model_seconds": 0.275
+   },
+   {
+    "id": "single|fig|fig leaf|2",
+    "wall": 0.45533373102080077,
+    "model_seconds": 0.415
+   },
+   {
+    "id": "single|dishes|dirty dish|2",
+    "wall": 0.3413212159939576,
+    "model_seconds": 0.279
+   },
+   {
+    "id": "single|dishes|clean dish|2",
+    "wall": 0.3359707859926857,
+    "model_seconds": 0.284
+   }
+  ],
+  "query_seconds": {
+   "logs|log end": 0.8875,
+   "cows|cow": 0.334,
+   "fig|fig leaf": 0.4553,
+   "dishes|dirty dish": 0.3413,
+   "dishes|clean dish": 0.3325
+  },
+  "load": [
+   {
+    "copies": 1,
+    "load_factor": 1.0
+   }
+  ],
+  "load_factor": 1.0,
+  "gpu_others": {},
+  "elapsed_s": 22.9
+ }
+]

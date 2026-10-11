@@ -155,3 +155,32 @@ Chart labels: models off the best-value line may now put their label just
 below their disc when both sides are taken (they sat in a far column with
 long crossing leader lines under the flat part of the line).
 Report: `results/point-benchmark-v2.4`; chart: `charts/point-benchmark-v2.4`.
+
+## v2.5 (2026-10-11): Moondream 3.1
+
+Maxime: add Moondream 3.1 (M87 Labs, July 2026; 9B mixture of experts, about
+2B active), run locally. Set up in `~/Projects/finders/models/moondream`:
+Moondream's own engine (Photon, `moondream` 2.6.1 / `kestrel` 0.9.1),
+weights pinned at `moondream/moondream3.1-9B-A2B@1da27e6c2d`, its `point`
+skill, greedy decoding, the object limit raised to 1000 (the default would
+stop near 383 points), Photon's reuse of a picture between questions off (a
+reused picture gave points a few pixels off a fresh one, and repeats would
+look ~6x faster). Answers repeat exactly (checked).
+- **Wording**: protocol v2's rule (each model's documented form): singular
+  phrases, like Rex-Omni, as Moondream's documentation points at "face" and
+  detects "person": "log end", "cow", "fig leaf", "dirty dish" + "clean
+  dish". Fixed before the run; one run, no alternatives tried.
+- **GPU 1, not GPU 0**: timed by `scripts/time_finders.py --gpu 1` on the
+  whole of GPU 1, the same card model (RTX 3090, 350 W, PCIe 4 x16), with its
+  four programs stopped for the run (09:07-09:11) and restarted after.
+  `results/run-finders-4.jsonl`, `.timing.json`.
+- **Cost**: one copy only (Photon reserves ~17 GB of the card), so load
+  factor 1, i.e. no discount for running copies side by side. Photon instead
+  batches questions inside one copy; that was not measured, so Moondream's
+  cost here is likely an overestimate, as for MolmoPoint.
+- **Result 59.4**: logs 78.8, cows 70.2, fig 64.3 (the best fig score of any
+  entrant), dishes 24.4 (by location; 0 of the dishes it found carry the
+  right dirty/clean label). 0.56 s per question, $0.036 per 1,000 images: on
+  the best-value line, between Florence-2 and Qwen 3.8 Flash Next. Trick
+  questions: none invented except 10 "person" dots on the autumn tree photo.
+Report: `results/point-benchmark-v2.5`; chart: `charts/point-benchmark-v2.5`.

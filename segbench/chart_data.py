@@ -62,6 +62,7 @@ SPECIALISTS: dict[str, tuple[str, str]] = {
     "florence2-large": ("Florence-2 Large", "Microsoft"),
     "florence2-large-grounding": ("Florence-2 Large", "Microsoft"),  # its better text mode (phrase grounding)
     "florence2-large-ovd": ("Florence-2 · detection", "Microsoft"),
+    "moondream-3.1": ("Moondream 3.1", "Moondream"),
 }
 
 LEVEL_SHORT = {"min": "min", "medium": "med", "max": "max"}

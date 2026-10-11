@@ -53,7 +53,19 @@ SETUPS = {
     "rexomni-3b": ("rexomni", "point", None, (2,), 3),
     "florence2-large-grounding": ("florence2", "box", "large", (2, 4), 3),
     "florence2-large-ovd": ("florence2", "ovd", "large", (2, 4), 3),
+    # Added 2026-10-11, timed on the whole of GPU 1 (--gpu 1): same model of card
+    # (RTX 3090), its own programs stopped for the run. Singular phrases, like
+    # Rex-Omni: Moondream's documentation points at "face", detects "person".
+    # Photon reserves ~17 GB of the card (weights + its answer memory): one copy only.
+    "moondream-3.1": ("moondream", "point", None, (), 3),
 }
+GPUS = {"0": ("GPU-ed411651-10df-4a1c-981a-9cf0787065b1",
+              "whole GPU 0: SAM 3.1 helper stopped, scholarsreadinglist embeddings job paused (SIGSTOP, 1 GB held, "
+              "no compute); browser and desktop overlay hold <0.1 GB, no compute"),
+        "1": ("GPU-73bb8110-4d4b-f645-dce4-724b0baf767f",
+              "whole GPU 1 (same RTX 3090 model as GPU 0, no display): its four programs stopped for the run "
+              "(chattering-semantic, kokoro-tts, parakeet-server, qwen3-embed-4b), nothing else on it")}
+TIMING_BASIS = GPUS["0"][1]
 
 
 def gpu_others() -> dict:
@@ -202,21 +214,24 @@ def make_record(key, track, tkey, rnd, parts, factor, shas, sizes, others, fmode
             "image": task.photo, "image_sha256": shas[tkey], "provider": "local-gpu", "route": "local",
             "started_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
             "seconds": round(seconds, 4), "cost_usd": PRICE / 3600 * seconds * factor,
-            "cost_method": f"${PRICE}/GPU-hour x single-copy seconds x load factor {factor:.3f} (this run, whole GPU 0)",
+            "cost_method": f"${PRICE}/GPU-hour x single-copy seconds x load factor {factor:.3f} (this run, {TIMING_BASIS.split(':')[0]})",
             "text": json.dumps({"objects": objects}),
             "point_from": sorted({o.get("point_from") for _, rec, _ in parts for o in rec["objects"]} - {None}),
             "finders": {"model": fmodel, "variant": variant, "task": ftask, "weights": parts[0][1].get("weights"),
                         "settings": parts[0][1].get("settings"), "queries": [
                             {"query": q, "prompt_sent": rec.get("prompt_sent"), "raw_output": rec.get("raw_output"),
                              "model_seconds": rec["seconds"]} for q, rec, _ in parts]},
-            "gpu_others": others, "timing_trustworthy": not others, "timing_basis": "whole GPU 0: SAM 3.1 helper stopped, scholarsreadinglist embeddings job paused (SIGSTOP, 1 GB held, no compute); browser and desktop overlay hold <0.1 GB, no compute"}
+            "gpu_others": others, "timing_trustworthy": not others, "timing_basis": TIMING_BASIS, "gpu_uuid": GPU_UUID}
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--name", required=True)
     ap.add_argument("--setups", nargs="*", default=list(SETUPS))
+    ap.add_argument("--gpu", choices=list(GPUS), default="0", help="which whole GPU to time on (default 0, as before)")
     a = ap.parse_args()
+    global GPU_UUID, TIMING_BASIS
+    GPU_UUID, TIMING_BASIS = GPUS[a.gpu]
     out = ROOT / "results" / f"run-{a.name}.jsonl"
     if out.exists():
         sys.exit(f"{out} exists")
