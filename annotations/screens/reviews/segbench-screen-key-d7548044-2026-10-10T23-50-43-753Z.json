@@ -1,0 +1,351 @@
+{
+  "schema": "segbench-screen-key/v1",
+  "status": "accepted by lilly",
+  "reviewer": "lilly",
+  "exported_at": "2026-10-10T23:50:43.752Z",
+  "draft": "annotations/screens/key-round2-draft2.json",
+  "draft_sha256": "d754804465d4a02da401593b88721b4f67f139548ae0ebc8174b82f1f9ecbfbd",
+  "run": "run-screens-2.jsonl",
+  "coordinates": "screenshot pixels, [left, top, right, bottom], edges included",
+  "scoring": "a click is right when it falls inside a box no earlier click has claimed; score = F1 per answer",
+  "tasks": {
+    "fold-groups": {
+      "instruction": "Fold every open conversation group except segbench.",
+      "image": "screenshots/screen_chattering_chart.png",
+      "image_size": [
+        1920,
+        1079
+      ],
+      "image_sha256": "a414638570603c8ad161af5fe48b87bcc9aca726be63d2d12bebd606c3ea870e",
+      "accepted": true,
+      "accepted_at": "2026-10-10T23:32:04.487Z",
+      "notes": "",
+      "targets": [
+        {
+          "id": "lilly-s",
+          "box": [
+            8,
+            364,
+            239,
+            391
+          ],
+          "why": "Group header row (same box Lilly drew in round 1)."
+        },
+        {
+          "id": "long-compute",
+          "box": [
+            8,
+            486,
+            239,
+            513
+          ],
+          "why": "Group header row; chevron y 498-501, same height as lilly's."
+        },
+        {
+          "id": "need-my-action",
+          "box": [
+            8,
+            609,
+            239,
+            636
+          ],
+          "why": "Group header row; chevron y 621-624. 'waiting on compute' is already folded (decoy); segbench excluded."
+        }
+      ]
+    },
+    "news-1000": {
+      "instruction": "Open every news story with more than 1,000 posts.",
+      "image": "screenshots/screen_x_feed.png",
+      "image_size": [
+        1917,
+        1080
+      ],
+      "image_sha256": "dd07d08efe5f01576129b5c37d3b8b3801fcd2f3f9fae11ef8781a0590b1dd41",
+      "accepted": true,
+      "accepted_at": "2026-10-10T23:32:46.797Z",
+      "notes": "",
+      "targets": [
+        {
+          "id": "google-gemini-agent",
+          "box": [
+            1223,
+            396,
+            1570,
+            488
+          ],
+          "why": "Whole news item (title 407-440, meta 450-471): 20.5K posts."
+        },
+        {
+          "id": "microsoft-decision-1",
+          "box": [
+            1223,
+            489,
+            1570,
+            586
+          ],
+          "why": "Whole news item (title 509-542, meta 552-573): 9,853 posts. vLLM story (378) excluded."
+        }
+      ]
+    },
+    "onedrive-folders": {
+      "instruction": "Open every folder inside OneDrive.",
+      "image": "screenshots/screen_slack_photo_viewer.png",
+      "image_size": [
+        1920,
+        1080
+      ],
+      "image_sha256": "6269de4a88c5c6ad7ad049b7944b375ad4a87816a4b3c435342ac49c79419c4a",
+      "accepted": true,
+      "accepted_at": "2026-10-10T23:33:32.895Z",
+      "notes": "",
+      "targets": [
+        {
+          "id": "onedrive-attachments",
+          "box": [
+            179,
+            427,
+            271,
+            450
+          ],
+          "why": "Explorer navigation row under OneDrive (text y 435-443); the same name under This PC is a decoy."
+        },
+        {
+          "id": "onedrive-documents",
+          "box": [
+            179,
+            451,
+            271,
+            474
+          ],
+          "why": "Explorer navigation row under OneDrive (text y 459-467); the same name under This PC is a decoy."
+        },
+        {
+          "id": "onedrive-music",
+          "box": [
+            179,
+            475,
+            271,
+            498
+          ],
+          "why": "Explorer navigation row under OneDrive (text y 483-491); the same name under This PC is a decoy."
+        },
+        {
+          "id": "onedrive-pictures",
+          "box": [
+            179,
+            499,
+            271,
+            522
+          ],
+          "why": "Explorer navigation row under OneDrive (text y 507-515); the same name under This PC is a decoy."
+        }
+      ]
+    },
+    "dirty-labels": {
+      "instruction": "Click every D (dirty) label.",
+      "image": "screenshots/screen_review_app_dishes.png",
+      "image_size": [
+        1920,
+        1077
+      ],
+      "image_sha256": "80d1ad5e4620b64995147dce17c451fd95484b79b0a37b5fec2fd67c6f9e89ad",
+      "accepted": true,
+      "accepted_at": "2026-10-10T23:50:38.584Z",
+      "notes": "",
+      "targets": [
+        {
+          "id": "dirty-label-mug",
+          "circle": [
+            650.2,
+            711.8,
+            9
+          ],
+          "why": "Round D label; centre fitted to its ring (77 ring pixels); radius 9 px = ring plus its dark outline, the same for every label."
+        },
+        {
+          "id": "dirty-label-small-bowl",
+          "circle": [
+            676.2,
+            745.1,
+            9
+          ],
+          "why": "Round D label; centre fitted to its ring (80 ring pixels); radius 9 px = ring plus its dark outline, the same for every label."
+        },
+        {
+          "id": "dirty-label-patterned-plate",
+          "circle": [
+            430.1,
+            764.1,
+            9
+          ],
+          "why": "Round D label; centre fitted to its ring (85 ring pixels); radius 9 px = ring plus its dark outline, the same for every label."
+        },
+        {
+          "id": "dirty-label-cutting-board",
+          "circle": [
+            533,
+            774.5,
+            9
+          ],
+          "why": "Round D label; centre fitted to its ring (109 ring pixels); radius 9 px = ring plus its dark outline, the same for every label."
+        },
+        {
+          "id": "dirty-label-big-bowl",
+          "circle": [
+            599.8,
+            792.8,
+            9
+          ],
+          "why": "Round D label; centre fitted to its ring (74 ring pixels); radius 9 px = ring plus its dark outline, the same for every label."
+        },
+        {
+          "id": "dirty-label-plate-stack-top",
+          "circle": [
+            717.7,
+            770.7,
+            9
+          ],
+          "why": "Round D label; centre fitted to its ring (70 ring pixels); radius 9 px = ring plus its dark outline, the same for every label. The green-ringed label below is drawn over its lower edge: a click there is for that one.",
+          "covered_by": [
+            "dirty-label-plate-stack-bottom"
+          ]
+        },
+        {
+          "id": "dirty-label-plate-stack-bottom",
+          "circle": [
+            719,
+            786,
+            9
+          ],
+          "why": "Round D label; centre fitted to its ring (86 ring pixels); radius 9 px = ring plus its dark outline, the same for every label."
+        }
+      ]
+    },
+    "sold-out": {
+      "instruction": "Tick every product that has no more items to sell.",
+      "image": "screenshots/screen_shopify_products.png",
+      "image_size": [
+        1693,
+        1055
+      ],
+      "image_sha256": "386164512c978e70426349353fb357143242743d60dc33487038106a3db82ed2",
+      "accepted": true,
+      "accepted_at": "2026-10-10T23:34:45.550Z",
+      "notes": "",
+      "targets": [
+        {
+          "id": "thanksgiving-2026",
+          "box": [
+            286,
+            278,
+            336,
+            334
+          ],
+          "why": "Row checkbox, same size as Lilly's round-1 boxes; stock -1: none left to sell."
+        },
+        {
+          "id": "beef-wagyu-liver",
+          "box": [
+            286,
+            461,
+            336,
+            517
+          ],
+          "why": "Row checkbox, same size as Lilly's round-1 boxes; 0 in stock."
+        },
+        {
+          "id": "bundle-easter",
+          "box": [
+            286,
+            522,
+            336,
+            578
+          ],
+          "why": "Row checkbox, same size as Lilly's round-1 boxes; 0 in stock."
+        },
+        {
+          "id": "bundle-winter-duos",
+          "box": [
+            286,
+            583,
+            336,
+            639
+          ],
+          "why": "Row checkbox, same size as Lilly's round-1 boxes; 0 in stock."
+        },
+        {
+          "id": "bundle-holiday",
+          "box": [
+            286,
+            705,
+            336,
+            761
+          ],
+          "why": "Row checkbox, same size as Lilly's round-1 boxes; 0 in stock."
+        },
+        {
+          "id": "bundle-thanksgiving-2025",
+          "box": [
+            286,
+            766,
+            336,
+            822
+          ],
+          "why": "Row checkbox, same size as Lilly's round-1 boxes; 0 in stock."
+        },
+        {
+          "id": "lamb-reservations-2026",
+          "box": [
+            286,
+            827,
+            336,
+            883
+          ],
+          "why": "Row checkbox, same size as Lilly's round-1 boxes; 0 in stock."
+        },
+        {
+          "id": "bundle-summer-grill",
+          "box": [
+            286,
+            949,
+            336,
+            1005
+          ],
+          "why": "Row checkbox, same size as Lilly's round-1 boxes; 0 in stock."
+        }
+      ]
+    }
+  },
+  "log": [
+    {
+      "at": "2026-10-10T23:49:45.840Z",
+      "task": "dirty-labels",
+      "action": "moved dirty-label-cutting-board to circle [533,774.5,9]"
+    },
+    {
+      "at": "2026-10-10T23:49:50.255Z",
+      "task": "dirty-labels",
+      "action": "moved dirty-label-big-bowl to circle [599.8,792.8,9]"
+    },
+    {
+      "at": "2026-10-10T23:50:11.766Z",
+      "task": "dirty-labels",
+      "action": "moved dirty-label-small-bowl to circle [676.2,745.1,9]"
+    },
+    {
+      "at": "2026-10-10T23:50:17.063Z",
+      "task": "dirty-labels",
+      "action": "moved dirty-label-plate-stack-top to circle [717.7,770.7,9]"
+    },
+    {
+      "at": "2026-10-10T23:50:18.902Z",
+      "task": "dirty-labels",
+      "action": "moved dirty-label-plate-stack-bottom to circle [719,786,9]"
+    },
+    {
+      "at": "2026-10-10T23:50:38.584Z",
+      "task": "dirty-labels",
+      "action": "accepted with [[\"dirty-label-mug\",[650.2,711.8,9]],[\"dirty-label-small-bowl\",[676.2,745.1,9]],[\"dirty-label-patterned-plate\",[430.1,764.1,9]],[\"dirty-label-cutting-board\",[533,774.5,9]],[\"dirty-label-big-bowl\",[599.8,792.8,9]],[\"dirty-label-plate-stack-top\",[717.7,770.7,9]],[\"dirty-label-plate-stack-bottom\",[719,786,9]]]"
+    }
+  ]
+}

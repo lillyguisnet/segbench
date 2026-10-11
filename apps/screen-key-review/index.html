@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Screen answer key · segbench</title><link rel="stylesheet" href="style.css?v=1"></head>
+<body>
+<header>
+ <div><span class="eyebrow">SEGBENCH / SCREEN CLICKS / HUMAN REVIEW</span><h1>Fix and accept the answer key</h1></div>
+ <div class="save"><label class="who">Reviewed by <input id="reviewer" placeholder="your name" autocomplete="name"></label>
+  <span id="saveStatus" role="status">Loading…</span><button id="export" class="primary">Export answer key ↓</button><button id="import">Import</button><input id="file" type="file" accept=".json,application/json" hidden></div>
+</header>
+<div class="notice">Each green box or circle is a place where a click does what the instruction asks. Make each one match the target's <b>real area</b>. Dots are the models' clicks (green: on a target, red: off) and recolour as you edit. The boxes started where most models agreed, so check that the models are right. Nothing is final until you accept it.</div>
+<nav id="tasks" aria-label="Screenshots"></nav>
+<div class="workspace">
+ <section class="editor">
+  <div class="toolbar">
+   <button data-mode="select" title="V · click a box to select it, drag to move it, drag its handles to resize; drag empty space to pan">↖ Select</button>
+   <button data-mode="draw" title="B · drag to draw a new box">▭ Draw box</button>
+   <button data-mode="circle" title="O · press at the centre, drag out to the edge">◯ Draw circle</button>
+   <button data-mode="pan" title="H, or hold Space · drag to pan">✥ Pan</button>
+   <label class="check"><input type="checkbox" id="showClicks" checked> Show clicks</label>
+   <span class="spacer"></span>
+   <button id="undo" title="Ctrl/Cmd Z">↶ Undo</button><button id="redo" title="Ctrl/Cmd Shift Z">↷ Redo</button>
+  </div>
+  <div class="stage" id="stage">
+   <svg id="svg" tabindex="0" aria-label="Screenshot with the answer-key boxes and the models' clicks"></svg>
+   <div class="zoom"><button id="zoomOut" aria-label="Zoom out">−</button><span id="zoomLabel">100%</span><button id="zoomIn" aria-label="Zoom in">+</button><button id="fit" title="F">Fit</button></div>
+   <div id="coords" class="coords"></div>
+  </div>
+  <p class="keys">Scroll to zoom · drag empty space to pan · arrows move the selected box 1 px or circle ½ px (Shift: more) · Alt + arrows: box's right or bottom edge, circle's radius · Delete removes it · N next screenshot</p>
+ </section>
+ <aside>
+  <span class="eyebrow">INSTRUCTION</span>
+  <h2 id="instruction"></h2>
+  <p id="what" class="muted"></p>
+  <div class="tally" id="tally"></div>
+  <div class="section-head"><span class="eyebrow">TARGETS</span><button id="resetTask" class="small" title="Throw away this screenshot's edits">Reset to draft</button></div>
+  <div id="boxes"></div>
+  <div class="accept" id="acceptBox"></div>
+  <label class="notes-label" for="notes">Notes</label>
+  <textarea id="notes" rows="3" placeholder="Why a box is where it is, anything ambiguous…"></textarea>
+  <div class="section-head"><span class="eyebrow">MODELS ON THIS SCREENSHOT</span></div>
+  <p class="muted small">Score per try with the boxes as they are now. Click a model to highlight its clicks.</p>
+  <table id="models"></table>
+ </aside>
+</div>
+<div id="toast" role="status" hidden></div>
+<script src="seed.js"></script>
+<script src="app.js?v=3"></script>
+</body></html>

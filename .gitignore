@@ -36,3 +36,7 @@ apps/consensus-review/seed.js
 
 # Duplicate photos in generated point benchmark reports (originals are in images/)
 results/point-benchmark-*/images/
+
+# Screen review app: private screenshots and built seed, rebuilt by scripts/build_screen_review.py
+apps/screen-key-review/images/
+apps/screen-key-review/seed.js

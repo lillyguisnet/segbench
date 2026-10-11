@@ -483,6 +483,7 @@ specialists/  one environment per specialist model family (see its README)
 - [x] chart drawing (`scripts/draw_charts.py`), checked on made-up data
 - [x] every model's dots on its photo, each dot drawn as its maker's logo, one image per photo (`scripts/draw_points.py`, writes `results/views/points-find/`); models of one maker are told apart by shades of its colour
 - [x] points site, public at <https://lillyguisnet.github.io/segbench/>: pick a model, step through the photos, zoom in; links open one photo and one model (`#cows/terra`). Build and look locally: `uv run scripts/build_site.py --serve`; publish: `scripts/publish_site.sh` (replaces the `gh-pages` branch, commits as Lilly)
+- [x] screen-clicks page, built into the same site at `screens/` (`scripts/build_screens_site.py`): each question, its answer key, every model's clicks marked right, repeated or wrong, all 3 tries; published with the photo site. The screenshots are not in the repository (they show other sites); `images/screenshots/` must be present to build it
 - [x] short square video of the point answers for posting (`uv run scripts/make_video.py`, writes `results/views/video/segbench-points.mp4`, 22 s, no title or end card; `--preview` for still frames)
 - [ ] the three charts, from real scores
 

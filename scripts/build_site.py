@@ -4,7 +4,7 @@
 # ///
 """Build the points site: pick a model, see its dots on each photo.
 
-    uv run scripts/build_site.py                 # writes results/views/site/
+    uv run scripts/build_site.py                 # writes results/views/site/ (screen clicks in screens/)
     uv run scripts/build_site.py --serve         # and serves it on http://localhost:8790
     scripts/publish_site.sh                      # builds, then publishes to GitHub Pages
 
@@ -33,6 +33,7 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))  # this script runs in its own environment (above)
+sys.path.insert(0, str(ROOT / "scripts"))
 
 from segbench import points  # noqa: E402
 from segbench.brand import LOGO_DIR, LOGOS, initials  # noqa: E402
@@ -121,6 +122,13 @@ def build(out: Path, runs: list[str], track: str) -> Path:
     html = html.replace("/*DATA*/null", json.dumps(data, separators=(",", ":")))
     (out / "index.html").write_text(html)
     (out / ".nojekyll").write_text("")  # serve the files as they are
+    # The screen-clicks page, in screens/. Its screenshots are not in the repository
+    # (they show other sites; images/ is CC BY): without them the photo site is built alone.
+    if (ROOT / "images" / "screenshots").is_dir():
+        from build_screens_site import build as build_screens
+        build_screens(out / "screens")
+    else:
+        print("images/screenshots/ missing: screen-clicks page not built (the photo page still links to it)")
     size = sum(f.stat().st_size for f in out.rglob("*") if f.is_file())
     print(f"wrote {out} ({size / 1e6:.1f} MB: {len(tasks)} photos, {len(models)} models)")
     return out

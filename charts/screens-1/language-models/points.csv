@@ -1,0 +1,15 @@
+track,entrant,label,kind,maker,model,level,outliner,outliner_maker,quality,quality_low,quality_high,cost_usd,seconds,calls,repeats,tasks_done,tasks_total,synthetic
+find,astra@medium,GPT-6 Astra,general,OpenAI,astra,medium,,,0.96,0.96,0.96,0.026705333333333334,3.285,15,3,5,5,False
+find,deepseek-flash@medium,DeepSeek Flash,general,DeepSeek,deepseek-flash,medium,,,0.21333333333333332,0.16,0.27999999999999997,0.0029105000000000003,5.62,15,3,5,5,False
+find,gemini-flash@medium,Gemini 3.8 Flash,general,Google,gemini-flash,medium,,,0.96,0.96,0.96,0.0095644,6.117,15,3,5,5,False
+find,gemini-flash-lite@medium,Gemini 3.5 Flash Lite,general,Google,gemini-flash-lite,medium,,,0.8266666666666668,0.5599999999999999,0.96,0.0018034933333333334,1.863,15,3,5,5,False
+find,gemini-pro@medium,Gemini 3.1 Pro,general,Google,gemini-pro,medium,,,0.96,0.96,0.96,0.009294,5.677,15,3,5,5,False
+find,glm-5.3-flash@medium,GLM 5.3 Flash,general,Z.AI,glm-5.3-flash,medium,,,0.3,0.2,0.4,0.00046970666666666666,2.925,15,3,5,5,False
+find,kimi-k3@medium,Kimi K3,general,Moonshot,kimi-k3,medium,,,0.7066666666666667,0.4,0.96,0.010399136,13.07,15,3,5,5,False
+find,luna@medium,GPT-6 Luna,general,OpenAI,luna,medium,,,0.8933333333333333,0.76,0.96,0.0002917866666666667,2.732,15,3,5,5,False
+find,opus@medium,Claude Opus 5.5,general,Anthropic,opus,medium,,,0.96,0.96,0.96,0.013110933333333333,1.97,15,3,5,5,False
+find,qwen-27b@medium,Qwen 3.8 27B,general,Alibaba,qwen-27b,medium,,,0.7733333333333333,0.6,0.96,0.00217141,7.454,15,3,5,5,False
+find,qwen-flash@medium,Qwen 3.8 Flash Next,general,Alibaba,qwen-flash,medium,,,0.8266666666666668,0.76,0.96,0.0010855700000000001,17.558,15,3,5,5,False
+find,sol@medium,GPT-6.1 Sol,general,OpenAI,sol,medium,,,0.96,0.96,0.96,0.005401733333333334,2.542,15,3,5,5,False
+find,sonnet@medium,Claude Sonnet 5.5,general,Anthropic,sonnet,medium,,,0.96,0.96,0.96,0.007135466666666667,2.42,15,3,5,5,False
+find,terra@medium,GPT-5.6 Terra,general,OpenAI,terra,medium,,,0.96,0.96,0.96,0.0065596,3.811,15,3,5,5,False

@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>segbench · where AI models click on a screen</title>
+<meta name="description" content="AI models were given a screenshot and a task, and asked where they would click. See every click, and the answer key.">
+<style>
+@font-face { font-family: Inter; src: url(fonts/Inter-Regular.ttf) format("truetype"); font-weight: 400; font-display: swap; }
+@font-face { font-family: Inter; src: url(fonts/Inter-Medium.ttf) format("truetype"); font-weight: 500; font-display: swap; }
+@font-face { font-family: Inter; src: url(fonts/Inter-SemiBold.ttf) format("truetype"); font-weight: 600; font-display: swap; }
+:root {
+  --ink: #16181d; --ink2: #4a4f5a; --ink3: #8a8f99; --line: #e6e7ea; --soft: #f4f5f7; --paper: #fff;
+  --hit: #16a34a; --dup: #d97706; --miss: #dc2626; --key: #22c55e;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--paper); color: var(--ink);
+  font: 400 15px/1.45 Inter, system-ui, -apple-system, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; }
+button { font: inherit; color: inherit; }
+a { color: inherit; }
+.wrap { max-width: 1560px; margin: 0 auto; padding: 18px 22px 28px; }
+header { display: flex; align-items: flex-end; justify-content: space-between; gap: 18px; flex-wrap: wrap; margin-bottom: 14px; }
+.brand b { font-weight: 600; font-size: 19px; letter-spacing: -0.01em; }
+.brand span { display: block; color: var(--ink2); font-size: 14px; }
+.brand a { font-size: 13px; color: var(--ink2); }
+nav { display: flex; flex-direction: column; gap: 6px; }
+nav .row { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+nav .round { width: 64px; color: var(--ink3); font-size: 12px; font-weight: 500; }
+nav button { display: flex; align-items: center; gap: 8px; padding: 4px 10px 4px 4px; border: 1px solid var(--line);
+  background: var(--paper); border-radius: 9px; cursor: pointer; font-weight: 500; font-size: 13px; }
+nav button img { width: 40px; height: 24px; object-fit: cover; object-position: top left; border-radius: 5px; display: block; }
+nav button:hover { border-color: #c9ccd2; }
+nav button.on { border-color: var(--ink); box-shadow: 0 0 0 1px var(--ink); }
+main { display: grid; grid-template-columns: minmax(0, 1fr) 310px; gap: 22px; align-items: start; }
+.ask { color: var(--ink2); font-size: 14px; margin: 0 0 8px; min-height: 20px; display: flex; gap: 6px 14px; flex-wrap: wrap; align-items: baseline; }
+.ask q { color: var(--ink); quotes: "“" "”"; font-size: 17px; font-weight: 600; }
+#stage { position: relative; border-radius: 12px; overflow: hidden; background: #0d0e10; margin: 0 auto;
+  touch-action: none; cursor: grab; user-select: none; }
+#stage.drag { cursor: grabbing; }
+#svg { display: block; width: 100%; height: 100%; }
+.dot, .tgt { cursor: pointer; }
+.zoom { position: absolute; right: 10px; bottom: 10px; display: flex; gap: 6px; }
+.zoom button { width: 34px; height: 34px; border-radius: 9px; border: 0; background: rgba(255,255,255,.92);
+  box-shadow: 0 1px 4px rgba(0,0,0,.25); cursor: pointer; font-size: 18px; line-height: 1; }
+.hint { position: absolute; left: 12px; bottom: 12px; color: #fff; font-size: 12px; background: rgba(0,0,0,.55);
+  padding: 4px 9px; border-radius: 7px; transition: opacity .6s; pointer-events: none; }
+.msg { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; padding: 30px; pointer-events: none; }
+.msg div { background: rgba(255,255,255,.95); border-radius: 12px; padding: 14px 18px; max-width: 460px;
+  box-shadow: 0 4px 24px rgba(0,0,0,.25); font-size: 14px; }
+#tip { position: absolute; pointer-events: none; background: rgba(22,24,29,.92); color: #fff; font-size: 12.5px;
+  padding: 5px 9px; border-radius: 7px; white-space: nowrap; transform: translate(-50%, calc(-100% - 14px)); display: none; }
+.info { margin-top: 12px; display: flex; gap: 10px 22px; flex-wrap: wrap; align-items: baseline; min-height: 26px; }
+.info .name { font-weight: 600; font-size: 17px; display: flex; align-items: center; gap: 9px; }
+.info .facts { color: var(--ink2); display: flex; gap: 6px 18px; flex-wrap: wrap; }
+.info .facts b { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+.info pre { flex-basis: 100%; margin: 0; font-size: 12px; background: var(--soft); padding: 10px 12px; border-radius: 8px;
+  white-space: pre-wrap; word-break: break-word; color: var(--ink2); }
+.sw { display: inline-block; width: 11px; height: 11px; border-radius: 50%; border: 3px solid; vertical-align: -1px; margin-right: 5px; }
+.sq { display: inline-block; width: 13px; height: 10px; border: 2px solid var(--key); background: rgba(34,197,94,.15); vertical-align: -1px; margin-right: 5px; border-radius: 2px; }
+aside { position: sticky; top: 14px; }
+.tries { display: flex; gap: 6px; align-items: center; margin: 0 4px 10px; font-size: 13.5px; color: var(--ink2); }
+.tries button { min-width: 34px; height: 30px; border: 1px solid var(--line); background: var(--paper); border-radius: 8px; cursor: pointer; font-weight: 500; }
+.tries button.on { border-color: var(--ink); box-shadow: 0 0 0 1px var(--ink); color: var(--ink); }
+.list { border: 1px solid var(--line); border-radius: 12px; padding: 6px; }
+.list .head { display: grid; grid-template-columns: 26px 1fr 48px 48px; gap: 8px; padding: 2px 8px 4px; font-size: 11px; color: var(--ink3); }
+.list .head span:nth-child(n+3) { text-align: right; }
+.list button { display: grid; grid-template-columns: 26px 1fr 48px 48px; gap: 8px; align-items: center; width: 100%;
+  padding: 5px 8px; border: 0; background: none; border-radius: 8px; cursor: pointer; text-align: left; font-size: 14px; }
+.list button:hover { background: var(--soft); }
+.list button.on { background: #eceef2; font-weight: 600; }
+.list button .n { color: var(--ink2); font-variant-numeric: tabular-nums; font-size: 13px; font-weight: 400; text-align: right; }
+.list button .n.full { color: var(--hit); font-weight: 600; }
+.list button .n.zero { color: var(--miss); }
+.list .sep { height: 1px; background: var(--line); margin: 5px 8px; }
+.list svg { display: block; }
+.opts { margin: 10px 4px 0; font-size: 13.5px; color: var(--ink2); display: flex; flex-direction: column; gap: 6px; }
+.opts label { display: flex; gap: 8px; align-items: center; cursor: pointer; }
+.legend { margin: 10px 4px 0; font-size: 13px; color: var(--ink2); display: flex; flex-direction: column; gap: 4px; }
+.keys { color: var(--ink3); font-size: 12.5px; margin: 10px 4px 0; }
+footer { margin-top: 26px; padding-top: 14px; border-top: 1px solid var(--line); color: var(--ink2); font-size: 13px;
+  display: flex; gap: 6px 18px; flex-wrap: wrap; }
+@media (max-width: 1000px) {
+  main { grid-template-columns: 1fr; }
+  aside { position: static; }
+  .keys, .hint { display: none; }
+  .wrap { padding: 12px 12px 22px; }
+  nav .round { width: 100%; }
+}
+</style>
+</head>
+<body>
+<svg id="logos" width="0" height="0" style="position:absolute" aria-hidden="true"><defs></defs></svg>
+<div class="wrap">
+  <header>
+    <div class="brand"><b>segbench</b><span>Where AI models click on a screen · <a href="../">photos: where they put their dots →</a></span></div>
+    <nav id="questions"></nav>
+  </header>
+  <main>
+    <section>
+      <p class="ask" id="ask"></p>
+      <div id="stage">
+        <svg id="svg" xmlns="http://www.w3.org/2000/svg"></svg>
+        <div class="msg" id="msg"><div></div></div>
+        <div id="tip"></div>
+        <div class="hint" id="hint">Scroll or pinch to zoom · drag to move · click a click or a target</div>
+        <div class="zoom">
+          <button id="zin" title="Zoom in (+)" aria-label="Zoom in">+</button>
+          <button id="zout" title="Zoom out (−)" aria-label="Zoom out">−</button>
+          <button id="zreset" title="Whole screenshot (0)" aria-label="Whole screenshot">⤢</button>
+        </div>
+      </div>
+      <div class="info" id="info"></div>
+    </section>
+    <aside>
+      <div class="tries" id="tries"></div>
+      <div class="list" id="list"></div>
+      <div class="opts">
+        <label><input type="checkbox" id="showKey" checked> Show the answer key (K)</label>
+        <label><input type="checkbox" id="others" checked> Show the other models' clicks, small</label>
+      </div>
+      <div class="legend">
+        <span><span class="sq"></span>answer key: where a click does the task</span>
+        <span><span class="sw" style="border-color:var(--hit)"></span>right click</span>
+        <span><span class="sw" style="border-color:var(--dup)"></span>on a target that was already clicked</span>
+        <span><span class="sw" style="border-color:var(--miss)"></span>wrong click</span>
+      </div>
+      <p class="keys">Keys: ← → question · ↑ ↓ model · 1 2 3 try · K answer key · Esc all models · 0 whole screenshot</p>
+    </aside>
+  </main>
+  <footer id="foot"></footer>
+</div>
+<script>
+const D = /*DATA*/null;
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"})[c]);
+const slug = m => "logo-" + m.replace(/[^A-Za-z0-9]/g, "");
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const STATE = {hit: css("--hit"), dup: css("--dup"), miss: css("--miss")};
+const SAID = {hit: "right", dup: "on a target already clicked", miss: "wrong"};
+
+let ti = 0, focus = null, tr = 0, showOthers = true, showKey = true, view = null, scale = 1;
+
+// ---------- logos ----------
+$("#logos defs").innerHTML = Object.entries(D.logos).map(([m, l]) => l.d
+  ? `<symbol id="${slug(m)}" viewBox="${l.viewBox}">${l.d.map(d => `<path d="${d}"/>`).join("")}</symbol>` : "").join("");
+function disc(key, r, ring = "#fff", edge = 0.16) {
+  const m = D.models[key], l = D.logos[m.maker], s = 2 * r * 0.58;
+  const mark = l.d ? `<use href="#${slug(m.maker)}" x="${-s / 2}" y="${-s / 2}" width="${s}" height="${s}" fill="#fff"/>`
+    : `<text text-anchor="middle" dominant-baseline="central" fill="#fff" font-size="${r * 0.62}" font-weight="600">${esc(l.initials)}</text>`;
+  return `<circle r="${r}" fill="${m.colour}" stroke="${ring}" stroke-width="${r * edge}"/>${mark}`;
+}
+const icon = (key, px = 24) => `<svg width="${px}" height="${px}" viewBox="-12.5 -12.5 25 25">${disc(key, 11, "#fff", 0.1)}</svg>`;
+
+// ---------- data helpers ----------
+const task = () => D.tasks[ti];
+const shot = () => D.shots[task().shot];
+const answers = () => D.answers[task().key];
+const present = () => D.order.filter(k => k in answers());
+const entry = (k, t = tr) => { const a = answers()[k]; return a ? a[Math.min(t, a.length - 1)] : null; };
+const ntries = () => Math.max(1, ...present().map(k => answers()[k].length));
+const pct = v => `${Math.round(v * 100)}`;
+const money = v => v >= 0.1 ? `$${v.toFixed(2)}` : v >= 0.001 ? `$${v.toFixed(3)}` : `$${v.toPrecision(2)}`;
+const secs = v => v >= 60 ? `${Math.floor(v / 60)} min ${Math.round(v % 60)} s` : v >= 10 ? `${Math.round(v)} s` : `${v.toFixed(1)} s`;
+const onScreen = c => c[0] >= 0 && c[0] <= shot().w && c[1] >= 0 && c[1] <= shot().h;
+function rng(seed) { let h = 2166136261; for (const c of seed) h = Math.imul(h ^ c.charCodeAt(0), 16777619);
+  return () => ((h = Math.imul(h ^ (h >>> 15), 2246822507), h = Math.imul(h ^ (h >>> 13), 3266489909), (h ^= h >>> 16) >>> 0) / 4294967296); }
+function clickedBy(j) {  // models whose right click is on target j, this try
+  return present().filter(k => (entry(k)?.clicks || []).some(c => c[2] === "hit" && c[3] === j));
+}
+
+// ---------- layout and zoom ----------
+const stage = $("#stage"), svg = $("#svg");
+function layout() {
+  const s0 = shot(), avail = stage.parentElement.clientWidth;
+  const narrow = innerWidth <= 1000;
+  const maxH = Math.max(300, narrow ? innerHeight * 0.72 : innerHeight - stage.getBoundingClientRect().top - scrollY - 70);
+  const s = Math.min(avail / s0.w, maxH / s0.h);
+  stage.style.width = `${Math.round(s0.w * s)}px`;
+  stage.style.height = `${Math.round(s0.h * s)}px`;
+  draw();
+}
+function resetView() { const s = shot(); view = {x: 0, y: 0, w: s.w, h: s.h}; }
+function clampView() {
+  const s = shot();
+  view.w = Math.min(s.w, Math.max(s.w / 24, view.w)); view.h = view.w * s.h / s.w;
+  view.x = Math.min(s.w - view.w, Math.max(0, view.x)); view.y = Math.min(s.h - view.h, Math.max(0, view.y));
+}
+function zoomAt(f, cx, cy) {
+  const nw = view.w / f, k = nw / view.w;
+  view.x = cx - (cx - view.x) * k; view.y = cy - (cy - view.y) * k; view.w = nw; clampView(); draw(); hideHint();
+}
+function zoomTo(b) {  // b = [left, top, right, bottom] in screenshot pixels
+  const s = shot(), pad = Math.max(60, (b[2] - b[0]) * 0.8);
+  view.w = Math.max(b[2] - b[0] + 2 * pad, (b[3] - b[1] + 2 * pad) * s.w / s.h);
+  view.x = (b[0] + b[2]) / 2 - view.w / 2; view.y = (b[1] + b[3]) / 2 - view.w * s.h / s.w / 2; clampView(); draw(); hideHint();
+}
+function toShot(ev) {
+  const r = stage.getBoundingClientRect();
+  return [view.x + (ev.clientX - r.left) / r.width * view.w, view.y + (ev.clientY - r.top) / r.height * view.h];
+}
+let pending = 0;
+function draw() { if (!pending) pending = requestAnimationFrame(() => { pending = 0; render(); }); }
+const bounds = g => g.circle ? [g.circle[0] - g.circle[2], g.circle[1] - g.circle[2], g.circle[0] + g.circle[2], g.circle[1] + g.circle[2]] : g.box;
+
+// ---------- drawing ----------
+function render() {
+  const t = task(), s = shot(), keys = present();
+  svg.setAttribute("viewBox", `${view.x} ${view.y} ${view.w} ${view.h}`);
+  scale = stage.clientWidth / view.w;
+  const u = 1 / scale;
+  const R = Math.min(1, Math.max(0.62, Math.max(stage.clientWidth, stage.clientHeight) / 1000));
+  let out = `<image href="${s.img}" width="${s.w}" height="${s.h}" style="image-rendering:${scale >= 2 ? "pixelated" : "auto"}"/>`;
+  if (focus !== null) out += `<rect width="${s.w}" height="${s.h}" fill="#000" opacity=".3" pointer-events="none"/>`;
+  if (showKey) t.targets.forEach((g, j) => {
+    const look = (stroke, w, fill) => `fill="${fill}" stroke="${stroke}" stroke-width="${w * u}"`;
+    const shape = a => g.circle ? `<circle cx="${g.circle[0]}" cy="${g.circle[1]}" r="${g.circle[2]}" ${a}/>`
+      : `<rect x="${g.box[0]}" y="${g.box[1]}" width="${g.box[2] - g.box[0]}" height="${g.box[3] - g.box[1]}" rx="${2 * u}" ${a}/>`;
+    out += `<g class="tgt" data-j="${j}">${shape(look("rgba(0,0,0,.55)", 4.5, "rgba(34,197,94,.16)"))}${shape(look(css("--key"), 2, "none"))}</g>`;
+  });
+  if (focus === null) {
+    const dots = [];
+    for (const k of keys) (entry(k)?.clicks || []).forEach((c, i) => onScreen(c) && dots.push([k, c, i]));
+    const r = rng(t.key + tr);
+    for (let i = dots.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [dots[i], dots[j]] = [dots[j], dots[i]]; }
+    for (const [k, c, i] of dots)
+      out += `<g class="dot" data-k="${k}" data-i="${i}" transform="translate(${c[0]} ${c[1]})">${disc(k, 9 * R * u, STATE[c[2]], 0.22)}</g>`;
+  } else {
+    if (showOthers) for (const k of keys) if (k !== focus) (entry(k)?.clicks || []).forEach((c, i) => onScreen(c) &&
+      (out += `<circle class="dot" data-k="${k}" data-i="${i}" cx="${c[0]}" cy="${c[1]}" r="${3.6 * R * u}" fill="${D.models[k].colour}" stroke="#fff" stroke-width="${0.9 * R * u}" opacity=".85"/>`));
+    (entry(focus)?.clicks || []).forEach((c, i) => onScreen(c) &&
+      (out += `<g class="dot" data-k="${focus}" data-i="${i}" transform="translate(${c[0]} ${c[1]})"><circle r="${15 * R * u}" fill="none" stroke="${STATE[c[2]]}" stroke-width="${4 * R * u}"/>${disc(focus, 11 * R * u)}</g>`));
+  }
+  svg.innerHTML = out;
+}
+
+function renderAll() {
+  const t = task(), keys = present();
+  if (focus !== null && !(focus in answers())) focus = null;
+  tr = Math.min(tr, ntries() - 1);
+  // questions, by round
+  $("#questions").innerHTML = [...new Set(D.tasks.map(x => x.round))].map(rnd => `<div class="row"><span class="round">Round ${rnd}</span>` +
+    D.tasks.map((x, i) => x.round !== rnd ? "" :
+      `<button class="${i === ti ? "on" : ""}" data-t="${i}" title="${esc(x.ask)}"><img src="${D.shots[x.shot].thumb}" alt="">${esc(x.name)}</button>`).join("") + "</div>").join("");
+  // request
+  const m = focus && D.models[focus], spec = focus && entry(focus)?.prompt;
+  $("#ask").innerHTML = `<q>${esc(t.ask)}</q><span>${t.targets.length} right click${t.targets.length === 1 ? "" : "s"} · round ${t.round}</span>`
+    + (spec ? `<span>Text given to ${esc(m.label)}: “${esc(spec)}”</span>` : "");
+  // tries
+  const n = ntries();
+  $("#tries").innerHTML = n > 1 ? `Try ${[...Array(n).keys()].map(i => `<button class="${i === tr ? "on" : ""}" data-try="${i}">${i + 1}</button>`).join("")}` : "";
+  // list
+  const total = keys.reduce((s, k) => s + (entry(k)?.clicks.length || 0), 0);
+  let list = `<div class="head"><span></span><span></span><span>this try</span><span>round ${t.round}</span></div>`
+    + `<button class="${focus === null ? "on" : ""}" data-k=""><span></span><span class="t">All models</span><span class="n">${total}</span><span class="n">clicks</span></button><div class="sep"></div>`;
+  for (const k of keys) {
+    const e = entry(k), rs = D.models[k].rounds[t.round];
+    const cls = e.f1 === 1 ? "full" : e.f1 === 0 ? "zero" : "";
+    list += `<button class="${k === focus ? "on" : ""}" data-k="${k}">${icon(k)}<span class="t">${esc(D.models[k].label)}</span>`
+      + `<span class="n ${cls}">${e.unreadable ? "—" : pct(e.f1)}</span><span class="n">${rs == null ? "" : pct(rs)}</span></button>`;
+  }
+  $("#list").innerHTML = list;
+  // info
+  const msg = $("#msg");
+  msg.style.display = "none";
+  if (focus === null) {
+    const all = keys.flatMap(k => entry(k)?.clicks || []), right = all.filter(c => c[2] === "hit").length;
+    $("#info").innerHTML = `<span class="facts"><span><b>${keys.length}</b> models</span><span><b>${right}</b> of <b>${all.length}</b> clicks right</span>
+      <span>Each logo is one model's click; its ring says if it was right. Pick a model, or click a logo, to see one model alone. Click a green target to see who found it.</span></span>`;
+  } else {
+    const e = entry(focus), facts = [];
+    if (e.unreadable) {
+      msg.style.display = "flex"; msg.firstElementChild.textContent = `${m.label}: reply not readable. Nothing to draw.`;
+    } else {
+      const c = e.clicks, by = st => c.filter(x => x[2] === st).length;
+      facts.push(`<span><b>${c.length}</b> click${c.length === 1 ? "" : "s"}</span>`);
+      facts.push(`<span><b>${e.right}</b> of <b>${t.targets.length}</b> targets found</span>`);
+      if (by("dup")) facts.push(`<span><span class="sw" style="border-color:var(--dup)"></span><b>${by("dup")}</b> repeated</span>`);
+      if (by("miss")) facts.push(`<span><span class="sw" style="border-color:var(--miss)"></span><b>${by("miss")}</b> wrong</span>`);
+      facts.push(`<span>score <b>${pct(e.f1)}</b></span>`);
+      const off = c.filter(x => !onScreen(x)).length;
+      if (off) facts.push(`<span><b>${off}</b> off the screenshot (not drawn)</span>`);
+      if (!c.length) { msg.style.display = "flex"; msg.firstElementChild.textContent = `${m.label} gave no click.`; }
+    }
+    if (e.seconds != null) facts.push(`<span><b>${secs(e.seconds)}</b></span>`);
+    if (e.cost != null) facts.push(`<span><b>${money(e.cost)}</b>${m.kind === "specialist" ? " of GPU time" : " at list price"}</span>`);
+    if (m.level) facts.push(`<span>${esc(m.level)} thinking</span>`);
+    if (m.deterministic) facts.push(`<span>gives the same answer every try</span>`);
+    $("#info").innerHTML = `<span class="name">${icon(focus, 26)}${esc(m.label)}</span><span class="facts">${facts.join("")}</span>`
+      + (e.unreadable ? `<pre>${esc(e.unreadable)}</pre>` : "");
+  }
+  history.replaceState(null, "", `#${t.key}${focus ? "/" + focus : ""}${tr ? (focus ? "" : "/") + "/" + (tr + 1) : ""}`);
+  layout();
+}
+
+// ---------- interaction ----------
+function setTask(i) { ti = (i + D.tasks.length) % D.tasks.length; resetView(); renderAll(); }
+function setFocus(k) { focus = k || null; renderAll(); }
+function setTry(i) { tr = Math.max(0, Math.min(ntries() - 1, i)); renderAll(); }
+$("#questions").onclick = e => { const b = e.target.closest("button"); if (b) setTask(+b.dataset.t); };
+$("#list").onclick = e => { const b = e.target.closest("button"); if (b) setFocus(b.dataset.k); };
+$("#tries").onclick = e => { const b = e.target.closest("button"); if (b) setTry(+b.dataset.try); };
+$("#others").onchange = e => { showOthers = e.target.checked; draw(); };
+$("#showKey").onchange = e => { showKey = e.target.checked; draw(); };
+$("#zin").onclick = () => zoomAt(1.6, view.x + view.w / 2, view.y + view.h / 2);
+$("#zout").onclick = () => zoomAt(1 / 1.6, view.x + view.w / 2, view.y + view.h / 2);
+$("#zreset").onclick = () => { resetView(); draw(); };
+let hinted = false;
+function hideHint() { if (!hinted) { hinted = true; $("#hint").style.opacity = 0; } }
+
+stage.addEventListener("wheel", e => {
+  e.preventDefault();
+  const [cx, cy] = toShot(e);
+  zoomAt(Math.exp(-e.deltaY * (e.deltaMode === 1 ? 0.05 : 0.0018)), cx, cy);
+}, {passive: false});
+
+const pointers = new Map();
+let dragFrom = null, pinchFrom = null, moved = false;
+stage.addEventListener("pointerdown", e => {
+  if (e.target.closest(".zoom")) return;
+  stage.setPointerCapture(e.pointerId);
+  pointers.set(e.pointerId, [e.clientX, e.clientY]);
+  moved = false;
+  if (pointers.size === 1) dragFrom = {x: e.clientX, y: e.clientY, vx: view.x, vy: view.y};
+  if (pointers.size === 2) { const [a, b] = [...pointers.values()]; pinchFrom = {d: Math.hypot(a[0] - b[0], a[1] - b[1]), w: view.w}; }
+});
+stage.addEventListener("pointermove", e => {
+  tip(e);
+  if (!pointers.has(e.pointerId)) return;
+  pointers.set(e.pointerId, [e.clientX, e.clientY]);
+  if (pointers.size === 2 && pinchFrom) {
+    const [a, b] = [...pointers.values()], d = Math.hypot(a[0] - b[0], a[1] - b[1]);
+    const [cx, cy] = toShot({clientX: (a[0] + b[0]) / 2, clientY: (a[1] + b[1]) / 2});
+    zoomAt(view.w / (pinchFrom.w * pinchFrom.d / d), cx, cy); moved = true;
+  } else if (dragFrom) {
+    const dx = e.clientX - dragFrom.x, dy = e.clientY - dragFrom.y;
+    if (Math.abs(dx) + Math.abs(dy) > 4) { moved = true; stage.classList.add("drag"); }
+    view.x = dragFrom.vx - dx / scale; view.y = dragFrom.vy - dy / scale; clampView(); draw();
+  }
+});
+function release(e) {
+  pointers.delete(e.pointerId);
+  if (pointers.size < 2) pinchFrom = null;
+  if (!pointers.size) {
+    stage.classList.remove("drag");
+    if (!moved && e.type === "pointerup") {
+      const under = document.elementFromPoint(e.clientX, e.clientY);
+      const dot = under?.closest(".dot"), tgt = under?.closest(".tgt");
+      if (dot && dot.dataset.k !== focus) setFocus(dot.dataset.k);
+      else if (!dot && tgt) zoomTo(bounds(task().targets[+tgt.dataset.j]));
+    } else if (moved) hideHint();
+    dragFrom = null;
+  }
+}
+stage.addEventListener("pointerup", release);
+stage.addEventListener("pointercancel", release);
+stage.addEventListener("pointerleave", () => { $("#tip").style.display = "none"; });
+stage.addEventListener("dblclick", () => { resetView(); draw(); });
+
+function tip(e) {
+  const el = $("#tip"), dot = pointers.size ? null : e.target.closest?.(".dot"), tgt = pointers.size ? null : e.target.closest?.(".tgt");
+  let text = "";
+  if (dot) {
+    const k = dot.dataset.k, c = entry(k).clicks[+dot.dataset.i];
+    text = `${D.models[k].label} · try ${Math.min(tr, answers()[k].length - 1) + 1} · ${SAID[c[2]]}`;
+  } else if (tgt) {
+    const j = +tgt.dataset.j, who = clickedBy(j);
+    text = `${task().targets[j].id} · found by ${who.length} of ${present().length} models (try ${tr + 1})`;
+  }
+  if (!text) { el.style.display = "none"; return; }
+  const r = stage.getBoundingClientRect();
+  el.textContent = text; el.style.left = `${e.clientX - r.left}px`; el.style.top = `${e.clientY - r.top}px`; el.style.display = "block";
+}
+
+addEventListener("keydown", e => {
+  if (e.target.closest?.("input, textarea") || e.metaKey || e.ctrlKey || e.altKey) return;
+  const keys = present(), at = focus === null ? -1 : keys.indexOf(focus);
+  if (e.key === "ArrowRight") setTask(ti + 1);
+  else if (e.key === "ArrowLeft") setTask(ti - 1);
+  else if (e.key === "ArrowDown") setFocus(keys[Math.min(keys.length - 1, at + 1)]);
+  else if (e.key === "ArrowUp") setFocus(at <= 0 ? null : keys[at - 1]);
+  else if (e.key === "Escape") setFocus(null);
+  else if (/^[1-9]$/.test(e.key)) setTry(+e.key - 1);
+  else if (e.key.toLowerCase() === "k") { $("#showKey").click(); }
+  else if (e.key === "0") { resetView(); draw(); }
+  else if (e.key === "+" || e.key === "=") $("#zin").click();
+  else if (e.key === "-") $("#zout").click();
+  else return;
+  e.preventDefault();
+});
+addEventListener("resize", layout);
+
+// ---------- start ----------
+const chartLinks = Object.entries(D.charts).map(([r, p]) => `<a href="${p}">round ${r} chart</a>`).join(" · ");
+$("#foot").innerHTML = `<span>Run of ${esc(D.run_date)}. Each language model got the screenshot and one plain prompt, never tuned: the task, “Where would you click to do it? Give one point for each click needed.”, at medium thinking, 3 tries.</span>
+  <span>A click is right when it lands on a target no earlier click has taken; score = F1 (right clicks count, wrong or extra ones cost). Answer key drawn by hand and checked by ${esc(D.reviewer[1] || "a person")}.</span>
+  <span>${chartLinks}${chartLinks ? " · " : ""}<a href="${D.repo}">Code and data</a> (Apache 2.0) · screenshots show other sites and are here only to show this benchmark (not covered by the photos' CC BY licence) · logos belong to their owners</span>`;
+function fromHash() {  // #fold-groups, #fold-groups/sol, #fold-groups/sol/2, #fold-groups//2
+  const [hk, hm, ht] = decodeURIComponent(location.hash.slice(1)).split("/");
+  const i = D.tasks.findIndex(t => t.key === hk);
+  if (i >= 0 && i !== ti) { ti = i; resetView(); }
+  focus = hm && hm in D.answers[D.tasks[ti].key] ? hm : null;
+  tr = ht ? Math.max(0, +ht - 1 || 0) : 0;
+  renderAll();
+}
+addEventListener("hashchange", fromHash);
+resetView();
+fromHash();
+</script>
+</body>
+</html>

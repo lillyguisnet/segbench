@@ -1,0 +1,235 @@
+{
+  "schema": "segbench-screen-key/v1",
+  "status": "accepted by lilly",
+  "reviewer": "lilly",
+  "exported_at": "2026-10-10T23:15:03.613Z",
+  "draft": "annotations/screens/key-draft.json",
+  "draft_sha256": "ebb411b9e3bae455fc4a2b5aa7dd8e7eb56d83322526c35ba79f36be153a5680",
+  "run": "run-screens-1.jsonl",
+  "coordinates": "screenshot pixels, [left, top, right, bottom], edges included",
+  "scoring": "a click is right when it falls inside a box no earlier click has claimed; score = F1 per answer",
+  "tasks": {
+    "chattering": {
+      "instruction": "Collapse Lilly's conversation group.",
+      "image": "screenshots/screen_chattering_chart.png",
+      "image_size": [
+        1920,
+        1079
+      ],
+      "image_sha256": "a414638570603c8ad161af5fe48b87bcc9aca726be63d2d12bebd606c3ea870e",
+      "accepted": true,
+      "accepted_at": "2026-10-10T23:04:17.061Z",
+      "notes": "",
+      "targets": [
+        {
+          "id": "lilly-group-header",
+          "box": [
+            8,
+            364,
+            239,
+            391
+          ],
+          "why": "The whole group header row is the fold button (Chattering list-groups.js: .ag-ghead role=button; 'lilly's' is a hand-made group, so its name is plain text, not the project link). Height: CSS min-height 28px around the chevron (y 373-382). Right end left out: the + and ... buttons appear there on hover."
+        }
+      ]
+    },
+    "x": {
+      "instruction": "Open a reply to Michael.",
+      "image": "screenshots/screen_x_feed.png",
+      "image_size": [
+        1917,
+        1080
+      ],
+      "image_sha256": "dd07d08efe5f01576129b5c37d3b8b3801fcd2f3f9fae11ef8781a0590b1dd41",
+      "accepted": true,
+      "accepted_at": "2026-10-10T23:04:58.317Z",
+      "notes": "",
+      "targets": [
+        {
+          "id": "michael-reply",
+          "box": [
+            648,
+            360,
+            684,
+            395
+          ],
+          "why": "Reply icon under Michael's post (icon pixels x 658-673, y 370-384); X's round hover area is about 35px across."
+        }
+      ]
+    },
+    "viewer": {
+      "instruction": "Close the photo viewer.",
+      "image": "screenshots/screen_slack_photo_viewer.png",
+      "image_size": [
+        1920,
+        1080
+      ],
+      "image_sha256": "6269de4a88c5c6ad7ad049b7944b375ad4a87816a4b3c435342ac49c79419c4a",
+      "accepted": true,
+      "accepted_at": "2026-10-10T23:05:19.901Z",
+      "notes": "",
+      "targets": [
+        {
+          "id": "viewer-close",
+          "box": [
+            1425,
+            80,
+            1471,
+            127
+          ],
+          "why": "Close button of the real Photos window (title 'Screenshot 2026-10-10 182636.png'). Window right edge x 1471, top y 80; Windows caption buttons are 46px wide; title-bar height assumed 48px. The close buttons inside the picture are not windows."
+        }
+      ]
+    },
+    "favorites": {
+      "instruction": "Add to favorites.",
+      "image": "screenshots/screen_review_app_dishes.png",
+      "image_size": [
+        1920,
+        1077
+      ],
+      "image_sha256": "80d1ad5e4620b64995147dce17c451fd95484b79b0a37b5fec2fd67c6f9e89ad",
+      "accepted": true,
+      "accepted_at": "2026-10-10T23:06:08.501Z",
+      "notes": "",
+      "targets": [
+        {
+          "id": "edge-star",
+          "box": [
+            1706,
+            50,
+            1728,
+            70
+          ],
+          "why": "Edge's 'Add this page to favorites' star in the address bar (icon x 1709-1724, y 53-66). The star-with-lines button next to it opens the favorites list instead."
+        }
+      ]
+    },
+    "shopify": {
+      "instruction": "Tick lamb-only products.",
+      "image": "screenshots/screen_shopify_products.png",
+      "image_size": [
+        1693,
+        1055
+      ],
+      "image_sha256": "386164512c978e70426349353fb357143242743d60dc33487038106a3db82ed2",
+      "accepted": true,
+      "accepted_at": "2026-10-10T23:10:22.141Z",
+      "notes": "",
+      "targets": [
+        {
+          "id": "lamb-bone-in-loin-roast",
+          "box": [
+            286,
+            644,
+            336,
+            700
+          ],
+          "why": "Row checkbox (x 301-319, y 663-681); category Lamb."
+        },
+        {
+          "id": "lamb-reservations-2026",
+          "box": [
+            285,
+            828,
+            336,
+            885
+          ],
+          "why": "Row checkbox (y 846-864); category Lamb."
+        }
+      ]
+    }
+  },
+  "log": [
+    {
+      "at": "2026-10-10T23:03:50.558Z",
+      "task": "chattering",
+      "action": "resized lilly-group-header to [8,364,242,391]"
+    },
+    {
+      "at": "2026-10-10T23:03:55.261Z",
+      "task": "chattering",
+      "action": "resized lilly-group-header to [8,364,239,391]"
+    },
+    {
+      "at": "2026-10-10T23:04:17.061Z",
+      "task": "chattering",
+      "action": "accepted with [[\"lilly-group-header\",[8,364,239,391]]]"
+    },
+    {
+      "at": "2026-10-10T23:04:58.317Z",
+      "task": "x",
+      "action": "accepted with [[\"michael-reply\",[648,360,684,395]]]"
+    },
+    {
+      "at": "2026-10-10T23:05:19.901Z",
+      "task": "viewer",
+      "action": "accepted with [[\"viewer-close\",[1425,80,1471,127]]]"
+    },
+    {
+      "at": "2026-10-10T23:05:47.310Z",
+      "task": "favorites",
+      "action": "resized edge-star to [1702,46,1730,73]"
+    },
+    {
+      "at": "2026-10-10T23:05:54.022Z",
+      "task": "favorites",
+      "action": "resized edge-star to [1705,46,1730,73]"
+    },
+    {
+      "at": "2026-10-10T23:05:56.733Z",
+      "task": "favorites",
+      "action": "resized edge-star to [1705,46,1730,70]"
+    },
+    {
+      "at": "2026-10-10T23:05:59.045Z",
+      "task": "favorites",
+      "action": "resized edge-star to [1705,50,1730,70]"
+    },
+    {
+      "at": "2026-10-10T23:06:01.454Z",
+      "task": "favorites",
+      "action": "resized edge-star to [1706,50,1730,70]"
+    },
+    {
+      "at": "2026-10-10T23:06:04.662Z",
+      "task": "favorites",
+      "action": "resized edge-star to [1706,50,1728,70]"
+    },
+    {
+      "at": "2026-10-10T23:06:08.501Z",
+      "task": "favorites",
+      "action": "accepted with [[\"edge-star\",[1706,50,1728,70]]]"
+    },
+    {
+      "at": "2026-10-10T23:09:48.645Z",
+      "task": "shopify",
+      "action": "resized lamb-bone-in-loin-roast to [286,644,327,689]"
+    },
+    {
+      "at": "2026-10-10T23:09:53.797Z",
+      "task": "shopify",
+      "action": "resized lamb-bone-in-loin-roast to [286,644,336,700]"
+    },
+    {
+      "at": "2026-10-10T23:10:01.631Z",
+      "task": "shopify",
+      "action": "removed box bundle-doggos-delight"
+    },
+    {
+      "at": "2026-10-10T23:10:06.182Z",
+      "task": "shopify",
+      "action": "resized lamb-reservations-2026 to [285,828,327,872]"
+    },
+    {
+      "at": "2026-10-10T23:10:09.933Z",
+      "task": "shopify",
+      "action": "resized lamb-reservations-2026 to [285,828,336,885]"
+    },
+    {
+      "at": "2026-10-10T23:10:22.142Z",
+      "task": "shopify",
+      "action": "accepted with [[\"lamb-bone-in-loin-roast\",[286,644,336,700]],[\"lamb-reservations-2026\",[285,828,336,885]]]"
+    }
+  ]
+}

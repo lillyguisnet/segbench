@@ -1,0 +1,298 @@
+{
+ "schema": "segbench-screen-key/v1",
+ "status": "draft: four screenshots accepted by lilly (export of 2026-10-10 19:34); dirty labels measured, not yet checked",
+ "made": "2026-10-10",
+ "from_review": "segbench-screen-key-db13acf3-2026-10-10T23-34-51-262Z.json",
+ "coordinates": "screenshot pixels; box [left, top, right, bottom] or circle [cx, cy, r], edges included",
+ "scoring": "a click is right when it falls on a target no earlier click has claimed (a target drawn on top takes the click); score = F1 per answer",
+ "tasks": {
+  "fold-groups": {
+   "image_size": [
+    1920,
+    1079
+   ],
+   "targets": [
+    {
+     "id": "lilly-s",
+     "box": [
+      8,
+      364,
+      239,
+      391
+     ],
+     "why": "Group header row (same box Lilly drew in round 1)."
+    },
+    {
+     "id": "long-compute",
+     "box": [
+      8,
+      486,
+      239,
+      513
+     ],
+     "why": "Group header row; chevron y 498-501, same height as lilly's."
+    },
+    {
+     "id": "need-my-action",
+     "box": [
+      8,
+      609,
+      239,
+      636
+     ],
+     "why": "Group header row; chevron y 621-624. 'waiting on compute' is already folded (decoy); segbench excluded."
+    }
+   ],
+   "accepted": true,
+   "accepted_at": "2026-10-10T23:32:04.487Z",
+   "notes": ""
+  },
+  "news-1000": {
+   "image_size": [
+    1917,
+    1080
+   ],
+   "targets": [
+    {
+     "id": "google-gemini-agent",
+     "box": [
+      1223,
+      396,
+      1570,
+      488
+     ],
+     "why": "Whole news item (title 407-440, meta 450-471): 20.5K posts."
+    },
+    {
+     "id": "microsoft-decision-1",
+     "box": [
+      1223,
+      489,
+      1570,
+      586
+     ],
+     "why": "Whole news item (title 509-542, meta 552-573): 9,853 posts. vLLM story (378) excluded."
+    }
+   ],
+   "accepted": true,
+   "accepted_at": "2026-10-10T23:32:46.797Z",
+   "notes": ""
+  },
+  "onedrive-folders": {
+   "image_size": [
+    1920,
+    1080
+   ],
+   "targets": [
+    {
+     "id": "onedrive-attachments",
+     "box": [
+      179,
+      427,
+      271,
+      450
+     ],
+     "why": "Explorer navigation row under OneDrive (text y 435-443); the same name under This PC is a decoy."
+    },
+    {
+     "id": "onedrive-documents",
+     "box": [
+      179,
+      451,
+      271,
+      474
+     ],
+     "why": "Explorer navigation row under OneDrive (text y 459-467); the same name under This PC is a decoy."
+    },
+    {
+     "id": "onedrive-music",
+     "box": [
+      179,
+      475,
+      271,
+      498
+     ],
+     "why": "Explorer navigation row under OneDrive (text y 483-491); the same name under This PC is a decoy."
+    },
+    {
+     "id": "onedrive-pictures",
+     "box": [
+      179,
+      499,
+      271,
+      522
+     ],
+     "why": "Explorer navigation row under OneDrive (text y 507-515); the same name under This PC is a decoy."
+    }
+   ],
+   "accepted": true,
+   "accepted_at": "2026-10-10T23:33:32.895Z",
+   "notes": ""
+  },
+  "dirty-labels": {
+   "image_size": [
+    1920,
+    1077
+   ],
+   "targets": [
+    {
+     "id": "dirty-label-mug",
+     "circle": [
+      650.2,
+      711.8,
+      9.0
+     ],
+     "why": "Round D label; centre fitted to its ring (77 ring pixels); radius 9 px = ring plus its dark outline, the same for every label."
+    },
+    {
+     "id": "dirty-label-small-bowl",
+     "circle": [
+      675.6,
+      744.5,
+      9.0
+     ],
+     "why": "Round D label; centre fitted to its ring (80 ring pixels); radius 9 px = ring plus its dark outline, the same for every label."
+    },
+    {
+     "id": "dirty-label-patterned-plate",
+     "circle": [
+      430.1,
+      764.1,
+      9.0
+     ],
+     "why": "Round D label; centre fitted to its ring (85 ring pixels); radius 9 px = ring plus its dark outline, the same for every label."
+    },
+    {
+     "id": "dirty-label-cutting-board",
+     "circle": [
+      531.9,
+      774.5,
+      9.0
+     ],
+     "why": "Round D label; centre fitted to its ring (109 ring pixels); radius 9 px = ring plus its dark outline, the same for every label."
+    },
+    {
+     "id": "dirty-label-big-bowl",
+     "circle": [
+      599.3,
+      792.1,
+      9.0
+     ],
+     "why": "Round D label; centre fitted to its ring (74 ring pixels); radius 9 px = ring plus its dark outline, the same for every label."
+    },
+    {
+     "id": "dirty-label-plate-stack-top",
+     "circle": [
+      717.3,
+      769.7,
+      9.0
+     ],
+     "why": "Round D label; centre fitted to its ring (70 ring pixels); radius 9 px = ring plus its dark outline, the same for every label. The green-ringed label below is drawn over its lower edge: a click there is for that one.",
+     "covered_by": [
+      "dirty-label-plate-stack-bottom"
+     ]
+    },
+    {
+     "id": "dirty-label-plate-stack-bottom",
+     "circle": [
+      718.6,
+      785.3,
+      9.0
+     ],
+     "why": "Round D label; centre fitted to its ring (86 ring pixels); radius 9 px = ring plus its dark outline, the same for every label."
+    }
+   ]
+  },
+  "sold-out": {
+   "image_size": [
+    1693,
+    1055
+   ],
+   "targets": [
+    {
+     "id": "thanksgiving-2026",
+     "box": [
+      286,
+      278,
+      336,
+      334
+     ],
+     "why": "Row checkbox, same size as Lilly's round-1 boxes; stock -1: none left to sell."
+    },
+    {
+     "id": "beef-wagyu-liver",
+     "box": [
+      286,
+      461,
+      336,
+      517
+     ],
+     "why": "Row checkbox, same size as Lilly's round-1 boxes; 0 in stock."
+    },
+    {
+     "id": "bundle-easter",
+     "box": [
+      286,
+      522,
+      336,
+      578
+     ],
+     "why": "Row checkbox, same size as Lilly's round-1 boxes; 0 in stock."
+    },
+    {
+     "id": "bundle-winter-duos",
+     "box": [
+      286,
+      583,
+      336,
+      639
+     ],
+     "why": "Row checkbox, same size as Lilly's round-1 boxes; 0 in stock."
+    },
+    {
+     "id": "bundle-holiday",
+     "box": [
+      286,
+      705,
+      336,
+      761
+     ],
+     "why": "Row checkbox, same size as Lilly's round-1 boxes; 0 in stock."
+    },
+    {
+     "id": "bundle-thanksgiving-2025",
+     "box": [
+      286,
+      766,
+      336,
+      822
+     ],
+     "why": "Row checkbox, same size as Lilly's round-1 boxes; 0 in stock."
+    },
+    {
+     "id": "lamb-reservations-2026",
+     "box": [
+      286,
+      827,
+      336,
+      883
+     ],
+     "why": "Row checkbox, same size as Lilly's round-1 boxes; 0 in stock."
+    },
+    {
+     "id": "bundle-summer-grill",
+     "box": [
+      286,
+      949,
+      336,
+      1005
+     ],
+     "why": "Row checkbox, same size as Lilly's round-1 boxes; 0 in stock."
+    }
+   ],
+   "accepted": true,
+   "accepted_at": "2026-10-10T23:34:45.550Z",
+   "notes": ""
+  }
+ }
+}

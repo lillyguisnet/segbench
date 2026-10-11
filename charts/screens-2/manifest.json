@@ -1,0 +1,15 @@
+{
+  "source": "results/run-screens-2.jsonl",
+  "source_sha256": "dd3b50bf16e42c888b2958e22170ad1fa27ba42a6f3a687dc58293aae8edfa57",
+  "key": "annotations/screens/key-round2.json",
+  "key_sha256": "4aa377d4607a346895a4abaeb1d7309ccda3e5288c3d0333e849a778e3c7b489",
+  "key_status": "accepted by lilly",
+  "renderer": "scripts/draw_charts.py --style editorial --track find --names all --title ...",
+  "metric": "F1 of clicks inside the key's targets (one click per target), mean over 3 tries, then over the tasks",
+  "caveats": [
+    "Answer key is a draft until a person checks it.",
+    "Five screenshots: seven models score 100, so the top is not separated.",
+    "Language models only: the local pointing models are not run yet.",
+    "The smooth curve is a visual guide, not measured intermediate models."
+  ]
+}

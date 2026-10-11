@@ -1,0 +1,25 @@
+{
+  "schema": "segbench-screen-key/v1",
+  "status": "draft: boxes placed where most models agreed, sized to the control's clickable area; not yet checked by a person",
+  "made": "2026-10-10",
+  "coordinates": "screenshot pixels, [left, top, right, bottom], edges included",
+  "scoring": "a click is right when it falls inside a box no earlier click has claimed; score = F1 per answer",
+  "tasks": {
+    "chattering": {"image_size": [1920, 1079], "targets": [
+      {"id": "lilly-group-header", "box": [8, 364, 230, 391],
+       "why": "The whole group header row is the fold button (Chattering list-groups.js: .ag-ghead role=button; 'lilly's' is a hand-made group, so its name is plain text, not the project link). Height: CSS min-height 28px around the chevron (y 373-382). Right end left out: the + and ... buttons appear there on hover."}]},
+    "x": {"image_size": [1917, 1080], "targets": [
+      {"id": "michael-reply", "box": [648, 360, 684, 395],
+       "why": "Reply icon under Michael's post (icon pixels x 658-673, y 370-384); X's round hover area is about 35px across."}]},
+    "viewer": {"image_size": [1920, 1080], "targets": [
+      {"id": "viewer-close", "box": [1425, 80, 1471, 127],
+       "why": "Close button of the real Photos window (title 'Screenshot 2026-10-10 182636.png'). Window right edge x 1471, top y 80; Windows caption buttons are 46px wide; title-bar height assumed 48px. The close buttons inside the picture are not windows."}]},
+    "favorites": {"image_size": [1920, 1077], "targets": [
+      {"id": "edge-star", "box": [1702, 46, 1731, 73],
+       "why": "Edge's 'Add this page to favorites' star in the address bar (icon x 1709-1724, y 53-66). The star-with-lines button next to it opens the favorites list instead."}]},
+    "shopify": {"image_size": [1693, 1055], "targets": [
+      {"id": "lamb-bone-in-loin-roast", "box": [293, 655, 327, 689], "why": "Row checkbox (x 301-319, y 663-681); category Lamb."},
+      {"id": "lamb-reservations-2026", "box": [293, 838, 327, 872], "why": "Row checkbox (y 846-864); category Lamb."},
+      {"id": "bundle-doggos-delight", "box": [293, 899, 327, 933], "why": "Row checkbox (y 907-925); category Lamb although the name does not say lamb. 13 of 14 models ticked it."}]}
+  }
+}

@@ -168,6 +168,26 @@ def _penalty(box, placed, circles, own, frame) -> float:
     return cost + out * 5000
 
 
+def _inside_length(a, b, box) -> float:
+    """Length of the segment a-b that runs inside `box` (Liang-Barsky clipping)."""
+    (x0, y0), (x1, y1) = a, b
+    dx, dy = x1 - x0, y1 - y0
+    t0, t1 = 0.0, 1.0
+    for p, q in ((-dx, x0 - box[0]), (dx, box[2] - x0), (-dy, y0 - box[1]), (dy, box[3] - y0)):
+        if p == 0:
+            if q < 0:
+                return 0.0
+            continue
+        t = q / p
+        if p < 0:
+            t0 = max(t0, t)
+        else:
+            t1 = min(t1, t)
+        if t0 > t1:
+            return 0.0
+    return (t1 - t0) * math.hypot(dx, dy)
+
+
 SPOTS = {"right": ((1, 0), "left", "center"), "left": ((-1, 0), "right", "center"),
          "above": ((0, 1), "center", "bottom"), "below": ((0, -1), "center", "top"),
          "ur": ((0.72, 0.72), "left", "bottom"), "ul": ((-0.72, 0.72), "right", "bottom"),
@@ -218,6 +238,8 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
     qs = [100 * p.quality for p in pts]
     y0 = max(0, 10 * math.floor((min(qs) - 5) / 10))
     y1 = min(100, 10 * math.ceil((max(qs) + 6) / 10))
+    if max(qs) + 6 > 100:  # discs at or near 100% need room above the top line (no 110% tick)
+        y1 = 100 + 6 + 2 * min(4, sum(q >= 99.95 for q in qs))  # ties at 100% get room for their labels above it
 
     def style_axes():
         ax.set_xscale("log")
@@ -227,7 +249,7 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
         ax.xaxis.set_major_locator(FixedLocator(decades))
         ax.xaxis.set_minor_locator(NullLocator())
         ax.set_xticklabels([_money(v) for v in decades])
-        ticks = list(range(int(y0), int(y1) + 1, 10))
+        ticks = list(range(int(y0), min(int(y1), 100) + 1, 10))
         ax.set_yticks(ticks)
         ax.set_yticklabels([f"{v}%" for v in ticks])
 
@@ -313,6 +335,9 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
     return paths
 
 
+EXTRA = (0, 25, 50, 90)  # pt further out a label column may sit from its cluster
+
+
 def _labels(fig, ax, fonts: Fonts, pts, best_ids, names, X, Y, curve, accent: str) -> None:
     fig.canvas.draw()
     renderer = fig.canvas.get_renderer()
@@ -383,6 +408,7 @@ def _labels(fig, ax, fonts: Fonts, pts, best_ids, names, X, Y, curve, accent: st
         for k in range(n + 1):
             px, py = ax0 + (ax1 - ax0) * k / n, ay0 + (ay1 - ay0) * k / n
             placed.append((px - 5, py - 5, px + 5, py + 5))
+    curve_boxes = set(placed)  # so far only the curve's sample boxes
     gap = 4 * ppt
 
     # 1. Best-value models: name and score above the disc, if there is room.
@@ -424,11 +450,12 @@ def _labels(fig, ax, fonts: Fonts, pts, best_ids, names, X, Y, curve, accent: st
                                                    c[1] - circles[index[q.entrant]][1]) < near for q in g)]
         merged = [p] + [q for g in hit for q in g]
         groups = [g for g in groups if g not in hit] + [merged]
-    def column(sub, side, taken):
+    def column(sub, side, taken, extra=0.0):
         """Labels of `sub` stacked beside it on `side`, slid to the freest height."""
         sub = sorted(sub, key=lambda p: -circles[index[p.entrant]][1])
         cs = [circles[index[p.entrant]] for p in sub]
         tops, sizes = [], []
+        first_h = [blocks[p.entrant][0][0][3] for p in sub]
         for p, c in zip(sub, cs):
             sized, w, h = blocks[p.entrant]
             want = c[1] + sized[0][3] / 2
@@ -439,10 +466,10 @@ def _labels(fig, ax, fonts: Fonts, pts, best_ids, names, X, Y, curve, accent: st
         shift = statistics.fmean(c[1] + blocks[p.entrant][0][0][3] / 2 - t for p, c, t in zip(sub, cs, tops))
         tops = [t + shift for t in tops]
         if side == "right":
-            xc = max(c[0] + c[2] for c in cs) + 10 * ppt
+            xc = max(c[0] + c[2] for c in cs) + (10 + extra) * ppt
             bxs = [(xc, t - h, xc + w, t) for t, (w, h) in zip(tops, sizes)]
         else:
-            xc = min(c[0] - c[2] for c in cs) - 10 * ppt
+            xc = min(c[0] - c[2] for c in cs) - (10 + extra) * ppt
             bxs = [(xc - w, t - h, xc, t) for t, (w, h) in zip(tops, sizes)]
         best_col = None
         for k in range(61):
@@ -452,21 +479,31 @@ def _labels(fig, ax, fonts: Fonts, pts, best_ids, names, X, Y, curve, accent: st
             # long leader lines cross the chart: they cost too
             pen += 3 * sum(math.hypot((b[0] if side == "right" else b[2]) - c[0], b[3] - c[1])
                            for b, c in zip(moved, cs))
+            # a leader line through another label reads as pointing at it
+            # (from the disc's rim, as drawn; crossing the curve is fine)
+            for b, c, fh in zip(moved, cs, first_h):
+                end = ((b[0] - 3) if side == "right" else (b[2] + 3), b[3] - fh / 2)
+                d = math.hypot(end[0] - c[0], end[1] - c[1]) or 1
+                rim = (c[0] + (end[0] - c[0]) / d * c[2], c[1] + (end[1] - c[1]) / d * c[2])
+                pen += 2000 * sum(_inside_length(rim, end, t) for t in taken if t not in curve_boxes)
+            # covering another model's disc hides its logo: as bad as covering a label
+            pen += 50 * sum(_overlap(b, (x - r, y - r, x + r, y + r)) for b in moved for x, y, r in circles)
             if best_col is None or pen < best_col[0]:
                 best_col = (pen, moved)
         return best_col[0], list(zip(sub, cs, best_col[1])), "left" if side == "right" else "right"
 
     for g in groups:
-        options = [[(g, "right")], [(g, "left")]]
+        # each column beside the cluster, or further out (a crowded cluster has no room right next to it)
+        options = [[(g, "right", e)] for e in EXTRA] + [[(g, "left", e)] for e in EXTRA]
         if len(g) >= 3:  # split by cost: cheaper half to the left, dearer half to the right
             by_x = sorted(g, key=lambda p: circles[index[p.entrant]][0])
             half = len(g) // 2
-            options.append([(by_x[:half], "left"), (by_x[half:], "right")])
+            options += [[(by_x[:half], "left", e1), (by_x[half:], "right", e2)] for e1 in EXTRA for e2 in EXTRA]
         best_opt = None
         for opt in options:
             taken, total, parts = list(placed), 0.0, []
-            for sub, side in opt:
-                pen, rows, align = column(sub, side, taken)
+            for sub, side, extra in opt:
+                pen, rows, align = column(sub, side, taken, extra)
                 total += pen
                 taken += [b for _, _, b in rows]
                 parts.append((rows, align))

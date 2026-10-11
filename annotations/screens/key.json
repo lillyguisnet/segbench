@@ -1,0 +1,128 @@
+{
+  "schema": "segbench-screen-key/v1",
+  "status": "accepted by lilly",
+  "reviewer": "lilly",
+  "accepted_from": "annotations/screens/reviews/segbench-screen-key-ebb411b9-2026-10-10T23-15-03-615Z.json",
+  "export_sha256": "315bc8d9961d79fcd32ccd0b21e4ba467716788a96e85a34a36704e2db56d84f",
+  "draft": "annotations/screens/key-draft.json",
+  "draft_sha256": "ebb411b9e3bae455fc4a2b5aa7dd8e7eb56d83322526c35ba79f36be153a5680",
+  "coordinates": "screenshot pixels, [left, top, right, bottom], edges included",
+  "scoring": "a click is right when it falls inside a box no earlier click has claimed; score = F1 per answer",
+  "tasks": {
+    "chattering": {
+      "image_size": [
+        1920,
+        1079
+      ],
+      "image_sha256": "a414638570603c8ad161af5fe48b87bcc9aca726be63d2d12bebd606c3ea870e",
+      "accepted_at": "2026-10-10T23:04:17.061Z",
+      "notes": "",
+      "targets": [
+        {
+          "id": "lilly-group-header",
+          "box": [
+            8,
+            364,
+            239,
+            391
+          ],
+          "why": "The whole group header row is the fold button (Chattering list-groups.js: .ag-ghead role=button; 'lilly's' is a hand-made group, so its name is plain text, not the project link). Height: CSS min-height 28px around the chevron (y 373-382). Right end left out: the + and ... buttons appear there on hover."
+        }
+      ]
+    },
+    "x": {
+      "image_size": [
+        1917,
+        1080
+      ],
+      "image_sha256": "dd07d08efe5f01576129b5c37d3b8b3801fcd2f3f9fae11ef8781a0590b1dd41",
+      "accepted_at": "2026-10-10T23:04:58.317Z",
+      "notes": "",
+      "targets": [
+        {
+          "id": "michael-reply",
+          "box": [
+            648,
+            360,
+            684,
+            395
+          ],
+          "why": "Reply icon under Michael's post (icon pixels x 658-673, y 370-384); X's round hover area is about 35px across."
+        }
+      ]
+    },
+    "viewer": {
+      "image_size": [
+        1920,
+        1080
+      ],
+      "image_sha256": "6269de4a88c5c6ad7ad049b7944b375ad4a87816a4b3c435342ac49c79419c4a",
+      "accepted_at": "2026-10-10T23:05:19.901Z",
+      "notes": "",
+      "targets": [
+        {
+          "id": "viewer-close",
+          "box": [
+            1425,
+            80,
+            1471,
+            127
+          ],
+          "why": "Close button of the real Photos window (title 'Screenshot 2026-10-10 182636.png'). Window right edge x 1471, top y 80; Windows caption buttons are 46px wide; title-bar height assumed 48px. The close buttons inside the picture are not windows."
+        }
+      ]
+    },
+    "favorites": {
+      "image_size": [
+        1920,
+        1077
+      ],
+      "image_sha256": "80d1ad5e4620b64995147dce17c451fd95484b79b0a37b5fec2fd67c6f9e89ad",
+      "accepted_at": "2026-10-10T23:06:08.501Z",
+      "notes": "",
+      "targets": [
+        {
+          "id": "edge-star",
+          "box": [
+            1706,
+            50,
+            1728,
+            70
+          ],
+          "why": "Edge's 'Add this page to favorites' star in the address bar (icon x 1709-1724, y 53-66). The star-with-lines button next to it opens the favorites list instead."
+        }
+      ]
+    },
+    "shopify": {
+      "image_size": [
+        1693,
+        1055
+      ],
+      "image_sha256": "386164512c978e70426349353fb357143242743d60dc33487038106a3db82ed2",
+      "accepted_at": "2026-10-10T23:10:22.141Z",
+      "notes": "",
+      "targets": [
+        {
+          "id": "lamb-bone-in-loin-roast",
+          "box": [
+            286,
+            644,
+            336,
+            700
+          ],
+          "why": "Row checkbox (x 301-319, y 663-681); category Lamb."
+        },
+        {
+          "id": "lamb-reservations-2026",
+          "box": [
+            285,
+            828,
+            336,
+            885
+          ],
+          "why": "Row checkbox (y 846-864); category Lamb."
+        }
+      ]
+    }
+  }
+}

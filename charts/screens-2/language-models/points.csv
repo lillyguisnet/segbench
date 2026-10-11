@@ -1,0 +1,15 @@
+track,entrant,label,kind,maker,model,level,outliner,outliner_maker,quality,quality_low,quality_high,cost_usd,seconds,calls,repeats,tasks_done,tasks_total,synthetic
+find,astra@medium,GPT-6 Astra,general,OpenAI,astra,medium,,,1.0,1.0,1.0,0.02937933333333333,4.391,15,3,5,5,False
+find,deepseek-flash@medium,DeepSeek Flash,general,DeepSeek,deepseek-flash,medium,,,0.25,0.1,0.35,0.00415182,9.734,15,3,5,5,False
+find,gemini-flash@medium,Gemini 3.8 Flash,general,Google,gemini-flash,medium,,,0.9623931623931623,0.9333333333333333,1.0,0.00943005,13.334,15,3,5,5,False
+find,gemini-flash-lite@medium,Gemini 3.5 Flash Lite,general,Google,gemini-flash-lite,medium,,,0.8458008658008659,0.8005194805194804,0.9247619047619047,0.0028080866666666668,2.924,15,3,5,5,False
+find,gemini-pro@medium,Gemini 3.1 Pro,general,Google,gemini-pro,medium,,,0.9333333333333333,0.8,1.0,0.0203664,11.776,15,3,5,5,False
+find,glm-5.3-flash@medium,GLM 5.3 Flash,general,Z.AI,glm-5.3-flash,medium,,,0.5988888888888889,0.5733333333333334,0.62,0.0006322,7.044,15,3,5,5,False
+find,kimi-k3@medium,Kimi K3,general,Moonshot,kimi-k3,medium,,,0.5265432098765432,0.4796296296296296,0.6,0.03070208,50.066,15,3,5,5,False
+find,luna@medium,GPT-6 Luna,general,OpenAI,luna,medium,,,0.9199999999999999,0.7866666666666667,0.9866666666666667,0.00038026000000000005,4.388,15,3,5,5,False
+find,opus@medium,Claude Opus 5.5,general,Anthropic,opus,medium,,,0.9846153846153847,0.9846153846153847,0.9846153846153847,0.016150666666666667,3.049,15,3,5,5,False
+find,qwen-27b@medium,Qwen 3.8 27B,general,Alibaba,qwen-27b,medium,,,0.730164476046829,0.6961344537815126,0.7846153846153847,0.00426224,23.776,15,3,5,5,False
+find,qwen-flash@medium,Qwen 3.8 Flash Next,general,Alibaba,qwen-flash,medium,,,0.6333333333333333,0.6,0.6666666666666667,0.001994612,46.56,15,3,5,5,False
+find,sol@medium,GPT-6.1 Sol,general,OpenAI,sol,medium,,,1.0,1.0,1.0,0.006211866666666666,4.652,15,3,5,5,False
+find,sonnet@medium,Claude Sonnet 5.5,general,Anthropic,sonnet,medium,,,0.9697435897435899,0.9533333333333334,0.9846153846153847,0.008931999999999999,3.253,15,3,5,5,False
+find,terra@medium,GPT-5.6 Terra,general,OpenAI,terra,medium,,,0.8386772486772486,0.7549206349206349,0.8944444444444445,0.012858000000000001,10.49,15,3,5,5,False
