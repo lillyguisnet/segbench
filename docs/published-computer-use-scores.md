@@ -44,7 +44,14 @@ Neither official table lists any of the model versions we tested.
 | qwen-flash | Qwen3.8 Flash | – | – | 19.4% ⁴ |
 | sonnet, kimi-k3, glm-5.3-flash, deepseek-flash | | nothing found | nothing found | nothing found |
 
-1. On benchlm.ai only.
+Earlier versions of our models that the ScreenSpot-Pro tables list (makers'
+own numbers; not the versions we ran): Gemini 3 Pro 72.7%, Gemini 3 Flash
+69.1%, Qwen3.5-27B 70.3%, Claude Opus 4.8 87.9%. llm-stats.com's own
+"verified" tab for ScreenSpot-Pro holds a single run (GPT-5.4 nano, shown as
+1.14 on a 0-1 scale), so none of these numbers has been checked
+independently there either.
+
+1. On benchlm.ai only (llm-stats.com lists Gemini 3 Pro, not 3.1 Pro).
 2. On llm-stats.com only. For Sol, OpenAI's launch post says it comes within
    2.1 points of Astra at maximum reasoning effort.
 3. llm-stats.com says 81.8%, benchlm.ai says 48.7%. Anthropic's own page
