@@ -1,0 +1,165 @@
+{
+  "read_on": "2026-10-11",
+  "about": "Published computer-use scores near the models in our screen-click benchmark. Copied as found; not checked by us. 'self-report' = the model maker's own number, as collected by the site named in 'source'.",
+  "official_osworld_verified": {
+    "source": "https://os-world.github.io/static/data/osworld_verified_results.xlsx (OSWorld team, unified setup)",
+    "note": "None of our exact model versions is listed; these are the nearest earlier versions.",
+    "rows": [
+      {
+        "model": "Kimi K2.5",
+        "institution": "Moonshot AI",
+        "approach": "General model",
+        "max_steps": 100,
+        "extra_code_actions": "No",
+        "date": "2026-01-31",
+        "success_rate": 63.3,
+        "success_over_total": "228.65/361"
+      },
+      {
+        "model": "Kimi K2.6",
+        "institution": "Moonshot AI",
+        "approach": "General model",
+        "max_steps": 100,
+        "extra_code_actions": "No",
+        "date": "2026-04-20",
+        "success_rate": 73.06,
+        "success_over_total": "261.58/358"
+      },
+      {
+        "model": "OpenAPA w/ gemini-3.1-pro",
+        "institution": "Laiye",
+        "approach": "Agentic framework",
+        "max_steps": 100,
+        "extra_code_actions": "Yes",
+        "date": "2026-04-17",
+        "success_rate": 78.34,
+        "success_over_total": "282.8/361"
+      },
+      {
+        "model": "Qwen 3.7 Plus",
+        "institution": "Qwen Team, Alibaba Group",
+        "approach": "General model",
+        "max_steps": 100,
+        "extra_code_actions": "No",
+        "date": "2026-05-25",
+        "success_rate": 73.3,
+        "success_over_total": "264 / 360"
+      },
+      {
+        "model": "claude-fable-5[1m]",
+        "institution": "Anthropic",
+        "approach": "General model",
+        "max_steps": 100,
+        "extra_code_actions": "No",
+        "date": "2026-08-01",
+        "success_rate": 85.96,
+        "success_over_total": "307.73 / 358"
+      },
+      {
+        "model": "claude-opus-5[1m]",
+        "institution": "Anthropic",
+        "approach": "General model",
+        "max_steps": 100,
+        "extra_code_actions": "No",
+        "date": "2026-08-01",
+        "success_rate": 83.39,
+        "success_over_total": "300.2 / 360"
+      }
+    ]
+  },
+  "official_screenspot_pro": {
+    "source": "https://gui-agent.github.io/grounding-leaderboard/results/screenspot_pro.json",
+    "note": "99 entries; none of our model versions. Nearest general models: 'GPT5-minimal (resized)' 0.185, 'Claude (Computer Use)' 0.171."
+  },
+  "collected_self_reports": [
+    {
+      "ours": "astra",
+      "listed_as": "GPT-6 Astra",
+      "benchmark": "ScreenSpot-Pro",
+      "score": 92.7,
+      "source": "https://llm-stats.com/benchmarks/screenspot-pro ; https://benchlm.ai/benchmarks/screenspot-pro"
+    },
+    {
+      "ours": "astra",
+      "listed_as": "GPT-6 Astra",
+      "benchmark": "OSWorld 2.0",
+      "score": 72.6,
+      "source": "https://llm-stats.com/benchmarks/osworld-2.0 ; https://benchlm.ai/benchmarks/osworld2"
+    },
+    {
+      "ours": "gemini-pro",
+      "listed_as": "Gemini 3.1 Pro",
+      "benchmark": "ScreenSpot-Pro",
+      "score": 84.4,
+      "source": "https://benchlm.ai/benchmarks/screenspot-pro (not on llm-stats)"
+    },
+    {
+      "ours": "qwen-27b",
+      "listed_as": "Qwen3.8-27B",
+      "benchmark": "OSWorld-Verified",
+      "score": 84.3,
+      "source": "https://llm-stats.com/benchmarks/osworld-verified ; https://benchlm.ai/benchmarks/osworld-verified"
+    },
+    {
+      "ours": "gemini-flash-lite",
+      "listed_as": "Gemini 3.5 Flash-Lite",
+      "benchmark": "OSWorld-Verified",
+      "score": 74.0,
+      "source": "https://llm-stats.com/benchmarks/osworld-verified ; https://benchlm.ai/benchmarks/osworld-verified"
+    },
+    {
+      "ours": "sol",
+      "listed_as": "GPT-6.1 Sol",
+      "benchmark": "OSWorld 2.0",
+      "score": 71.4,
+      "source": "https://llm-stats.com/benchmarks/osworld-2.0 (not on benchlm). OpenAI's launch post says it comes within 2.1 points of Astra at maximum reasoning effort"
+    },
+    {
+      "ours": "gemini-flash",
+      "listed_as": "Gemini 3.8 Flash",
+      "benchmark": "OSWorld 2.0",
+      "score": 59.0,
+      "source": "https://llm-stats.com/benchmarks/osworld-2.0 ; https://benchlm.ai/benchmarks/osworld2"
+    },
+    {
+      "ours": "luna",
+      "listed_as": "GPT-6 Luna",
+      "benchmark": "OSWorld 2.0",
+      "score": 52.7,
+      "source": "https://llm-stats.com/benchmarks/osworld-2.0 (not on benchlm)"
+    },
+    {
+      "ours": "terra",
+      "listed_as": "GPT-5.6 Terra",
+      "benchmark": "OSWorld 2.0",
+      "score": 50.2,
+      "source": "https://llm-stats.com/benchmarks/osworld-2.0 ; https://benchlm.ai/benchmarks/osworld2"
+    },
+    {
+      "ours": "opus",
+      "listed_as": "Claude Opus 5.5",
+      "benchmark": "OSWorld 2.0 / 2.1",
+      "score": null,
+      "conflict": {
+        "llm-stats OSWorld 2.0": 81.8,
+        "benchlm OSWorld 2.0": 48.7,
+        "anthropic.com/claude-opus-5-5": "OSWorld 2.1: 81.8% partial (partial credit, adaptive thinking at max effort)"
+      },
+      "source": "https://www.anthropic.com/claude-opus-5-5"
+    },
+    {
+      "ours": "qwen-flash",
+      "listed_as": "Qwen3.8 Flash / Qwen3.8-Flash-Next",
+      "benchmark": "OSWorld 2.0",
+      "score": 19.4,
+      "doubt": "benchlm gives Qwen3.8 Max the identical 19.4%; likely one number copied to both",
+      "source": "https://llm-stats.com/benchmarks/osworld-2.0 ; https://benchlm.ai/benchmarks/osworld2"
+    }
+  ],
+  "nothing_found": [
+    "sonnet (Claude Sonnet 5.5)",
+    "kimi-k3 (Kimi K3; the OSWorld repository has a K3 agent, but no score was found)",
+    "glm-5.3-flash",
+    "deepseek-flash (DeepSeek V4.1 Flash)"
+  ]
+}
