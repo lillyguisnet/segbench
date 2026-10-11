@@ -235,6 +235,8 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
 
     xlim = xlim or x_range(pts)
     xlim = (xlim[0], xlim[1] * 10 ** 0.35)  # room on the right for labels
+    if sum(100 * p.quality <= 0.05 for p in pts) >= 3:  # models tied at 0% pile up at the cheap end: room on the left too
+        xlim = (xlim[0] / 10 ** 0.35, xlim[1])
     qs = [100 * p.quality for p in pts]
     y0 = max(0, 10 * math.floor((min(qs) - 5) / 10))
     if min(qs) - 5 < 0:  # discs at or near 0% need room below the bottom line (no -10% tick)
