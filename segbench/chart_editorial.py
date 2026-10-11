@@ -246,6 +246,8 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
     y1 = min(100, 10 * math.ceil((max(qs) + 6) / 10))
     if max(qs) + 6 > 100:  # discs at or near 100% need room above the top line (no 110% tick)
         y1 = 100 + 6 + 2 * min(4, sum(q >= 99.95 for q in qs))  # ties at 100% get room for their labels above it
+        if max(qs) >= 99.95:  # a model at 100%: its name and score fit above its disc, not pushed below it
+            y1 = max(y1, 113)
     tied_top = sum(q >= max(qs) - 2 for q in qs)
     if tied_top >= 4:  # a crowd at the top: its labels need room above it
         y1 = max(y1, max(qs) + 6 + 3 * min(6, tied_top))
