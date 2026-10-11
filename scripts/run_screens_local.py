@@ -46,6 +46,12 @@ from segbench.screens import PROMPT_VERSION, ROUNDS  # noqa: E402
 
 GPU_UUID = "GPU-ed411651-10df-4a1c-981a-9cf0787065b1"  # GPU 0, the benchmark GPU
 PRICE_PER_GPU_HOUR = 0.22
+# Models whose prompt pattern adds its own full stop after the request
+# (LocateAnything "Point to: {q}."): the instruction's own final full stop is
+# dropped for them, so they get the documented wording, not "...group..".
+# Fixed 2026-10-11 after the first run; that run's LocateAnything answers are
+# kept apart (results/superseded/run-screens-local-1.locateanything-double-stop*.jsonl).
+ADDS_STOP = {"locateanything"}
 # key -> (finders model, task, variant, seeds, load factor measured on the photos)
 MODELS = {
     "locateanything-3b": ("locateanything", "point", None, 3, 1.0),
@@ -82,8 +88,9 @@ def main() -> None:
 
     for key in args.models:
         fmodel, ftask, variant, seeds, factor = MODELS[key]
-        warm = {"image": str(shots[tasks[0].key]["path"]), "query": tasks[0].instruction, "task": ftask, "id": "warm-up"}
-        jobs = [warm] + [{"image": str(shots[t.key]["path"]), "query": t.instruction, "task": ftask,
+        ask = (lambda q: q.removesuffix(".")) if fmodel in ADDS_STOP else (lambda q: q)
+        warm = {"image": str(shots[tasks[0].key]["path"]), "query": ask(tasks[0].instruction), "task": ftask, "id": "warm-up"}
+        jobs = [warm] + [{"image": str(shots[t.key]["path"]), "query": ask(t.instruction), "task": ftask,
                           "seed": s, "id": f"{t.key}|{s}"} for t in tasks for s in range(seeds)]
         before = gpu_others()
         started = datetime.now(timezone.utc).isoformat(timespec="seconds")

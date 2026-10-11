@@ -237,9 +237,14 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
     xlim = (xlim[0], xlim[1] * 10 ** 0.35)  # room on the right for labels
     qs = [100 * p.quality for p in pts]
     y0 = max(0, 10 * math.floor((min(qs) - 5) / 10))
+    if min(qs) - 5 < 0:  # discs at or near 0% need room below the bottom line (no -10% tick)
+        y0 = -6 - 1.5 * min(4, sum(q <= 0.05 for q in qs))  # ties at 0% get room for their labels below it
     y1 = min(100, 10 * math.ceil((max(qs) + 6) / 10))
     if max(qs) + 6 > 100:  # discs at or near 100% need room above the top line (no 110% tick)
         y1 = 100 + 6 + 2 * min(4, sum(q >= 99.95 for q in qs))  # ties at 100% get room for their labels above it
+    tied_top = sum(q >= max(qs) - 2 for q in qs)
+    if tied_top >= 4:  # a crowd at the top: its labels need room above it
+        y1 = max(y1, max(qs) + 6 + 3 * min(6, tied_top))
 
     def style_axes():
         ax.set_xscale("log")
@@ -249,7 +254,7 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
         ax.xaxis.set_major_locator(FixedLocator(decades))
         ax.xaxis.set_minor_locator(NullLocator())
         ax.set_xticklabels([_money(v) for v in decades])
-        ticks = list(range(int(y0), min(int(y1), 100) + 1, 10))
+        ticks = list(range(max(int(y0), 0), min(int(y1), 100) + 1, 10))
         ax.set_yticks(ticks)
         ax.set_yticklabels([f"{v}%" for v in ticks])
 
@@ -486,6 +491,11 @@ def _labels(fig, ax, fonts: Fonts, pts, best_ids, names, X, Y, curve, accent: st
                 d = math.hypot(end[0] - c[0], end[1] - c[1]) or 1
                 rim = (c[0] + (end[0] - c[0]) / d * c[2], c[1] + (end[1] - c[1]) / d * c[2])
                 pen += 2000 * sum(_inside_length(rim, end, t) for t in taken if t not in curve_boxes)
+                # ...and a line through another model's logo reads as pointing at that model
+                pen += 2000 * sum(_inside_length(rim, end, (x - r * .8, y - r * .8, x + r * .8, y + r * .8))
+                                  for x, y, r in circles if (x, y, r) != tuple(c))
+            # a label printed over another label cannot be read: the last resort, worse than any line
+            pen += 2000 * sum(_overlap(b, t) for b in moved for t in taken if t not in curve_boxes)
             # covering another model's disc hides its logo: as bad as covering a label
             pen += 50 * sum(_overlap(b, (x - r, y - r, x + r, y + r)) for b in moved for x, y, r in circles)
             if best_col is None or pen < best_col[0]:

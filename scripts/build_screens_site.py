@@ -47,7 +47,7 @@ from build_site import REPO, logo  # noqa: E402
 SHOWN = (2,)  # rounds on the page: round 2 only (round 1 had one right click per question)
 KEYS = {2: ROOT / "annotations/screens/key-round2.json"}
 RUNS = ["results/run-screens-2.jsonl"]
-CHARTS = {2: ROOT / "charts/screens-2/language-models/find.png"}
+CHARTS = {2: ROOT / "charts/screens-2/with-specialists/find.png"}
 SHORT = {"chattering": "Fold Lilly’s group", "x": "Reply to Michael", "viewer": "Close the viewer",
          "favorites": "Add to favorites", "shopify": "Tick lamb-only",
          "fold-groups": "Fold all but segbench", "news-1000": "News > 1,000 posts",

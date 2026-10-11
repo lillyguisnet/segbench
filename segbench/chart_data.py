@@ -201,7 +201,7 @@ def frontier(points: list[Point]) -> list[Point]:
     Returned from cheapest to most expensive.
     """
     best = []
-    top = float("-inf")
+    top = 0.0  # a point that scores nothing is no value at any price: never on the frontier
     for p in sorted(points, key=lambda p: (p.cost_usd, -p.quality)):
         if p.quality > top:
             best.append(p)

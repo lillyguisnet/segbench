@@ -1,6 +1,6 @@
 """Draw the screen-click results with the photo benchmark's editorial chart.
 
-    python3 scripts/plot_screens.py results/run-screens-1.jsonl annotations/screens/key-draft.json screens-1
+    python3 scripts/plot_screens.py annotations/screens/key.json screens-1 "TITLE" results/run-screens-1.jsonl results/run-screens-local-1*.jsonl
 
 Scores each answer against the key exactly as scripts/score_screens.py does
 (F1 of clicks inside the key's boxes), writes one call record per answer in
@@ -28,40 +28,47 @@ def f1(clicks, targets):
     return 2 * tp / (len(clicks) + len(targets)) if clicks or targets else 1.0
 
 
-def main(run: Path, key_path: Path, name: str, title: str = TITLE):
+def main(runs: list[Path], key_path: Path, name: str, title: str = TITLE):
     key = json.loads(key_path.read_text())
-    out = ROOT / "charts" / name / "language-models"
-    out.mkdir(parents=True, exist_ok=True)
     rows = []
-    for line in run.read_text().splitlines():
-        r = json.loads(line)
-        if r["task"] not in key["tasks"]:
-            continue  # a question this key does not answer (e.g. a retired one)
-        W, H = r["image_size"]
-        assert [W, H] == key["tasks"][r["task"]]["image_size"], r["task"]
-        clicks = [(c["x"] * W / 1000, c["y"] * H / 1000) for c in r.get("clicks", [])] if r.get("readable") else []
-        label, maker, kind = describe(r["model"])
-        rows.append({"track": "find", "task": r["task"], "model": r["model"], "level": r["level"],
-                     "repeat": r["repeat"], "entrant": f"{r['model']}@{r['level']}", "label": label,
-                     "maker": maker, "kind": kind, "seconds": r.get("seconds"), "cost_usd": r.get("cost_usd"),
-                     "readable": bool(r.get("readable")) and "error" not in r,
-                     "score": f1(clicks, key["tasks"][r["task"]]["targets"])})
-    calls = out / "calls.jsonl"
-    calls.write_text("".join(json.dumps(r) + "\n" for r in rows))
-    subprocess.run(["uv", "run", str(ROOT / "scripts/draw_charts.py"), str(calls), "--style", "editorial",
-                    "--track", "find", "--names", "all", "--title", title, "--out", str(out)], cwd=ROOT, check=True)
+    for run in runs:
+        for line in run.read_text().splitlines():
+            r = json.loads(line)
+            if r["task"] not in key["tasks"] or "error" in r:
+                continue  # a question this key does not answer (e.g. a retired one)
+            W, H = r["image_size"]
+            assert [W, H] == key["tasks"][r["task"]]["image_size"], r["task"]
+            clicks = [(c["x"] * W / 1000, c["y"] * H / 1000) for c in r.get("clicks", [])] if r.get("readable") else []
+            label, maker, kind = describe(r["model"])
+            rows.append({"track": "find", "task": r["task"], "model": r["model"], "level": r["level"],
+                         "repeat": r["repeat"], "entrant": r["model"] + (f"@{r['level']}" if r["level"] else ""),
+                         "label": label, "maker": maker, "kind": kind, "seconds": r.get("seconds"),
+                         "cost_usd": r.get("cost_usd"), "readable": bool(r.get("readable")),
+                         "score": f1(clicks, key["tasks"][r["task"]]["targets"])})
+    variants = {"language-models": [r for r in rows if r["kind"] == "general"]}
+    if any(r["kind"] == "specialist" for r in rows):
+        variants["with-specialists"] = rows
+    for variant, vrows in variants.items():
+        out = ROOT / "charts" / name / variant
+        out.mkdir(parents=True, exist_ok=True)
+        calls = out / "calls.jsonl"
+        calls.write_text("".join(json.dumps(r) + "\n" for r in vrows))
+        subprocess.run(["uv", "run", str(ROOT / "scripts/draw_charts.py"), str(calls), "--style", "editorial",
+                        "--track", "find", "--names", "all", "--title", title, "--out", str(out)], cwd=ROOT, check=True)
     digest = lambda p: hashlib.sha256(p.read_bytes()).hexdigest()  # noqa: E731
-    (out.parent / "manifest.json").write_text(json.dumps({
-        "source": str(run.relative_to(ROOT)), "source_sha256": digest(run),
+    (ROOT / "charts" / name / "manifest.json").write_text(json.dumps({
+        "sources": {str(r.relative_to(ROOT)): digest(r) for r in runs},
         "key": str(key_path.relative_to(ROOT)), "key_sha256": digest(key_path), "key_status": key["status"],
         "renderer": "scripts/draw_charts.py --style editorial --track find --names all --title ...",
-        "metric": "F1 of clicks inside the key's targets (one click per target), mean over 3 tries, then over the tasks",
-        "caveats": ["Answer key is a draft until a person checks it.",
-                    "Five screenshots: seven models score 100, so the top is not separated.",
-                    "Language models only: the local pointing models are not run yet.",
+        "metric": "F1 of clicks on the key's targets (one click per target), mean over tries, then over the questions",
+        "caveats": ["Five screenshots cannot support broad claims.",
+                    "Language-model seconds include the internet and the provider's queue; local models' do not.",
+                    "Local models: cost uses each model's load factor measured on the photos, not on screenshots.",
+                    "Local models timed on GPU 0 while it also drew the desktop (window manager, 20-30% busy).",
                     "The smooth curve is a visual guide, not measured intermediate models."],
     }, indent=2) + "\n")
 
 
 if __name__ == "__main__":
-    main(Path(sys.argv[1]).resolve(), Path(sys.argv[2]).resolve(), sys.argv[3], *sys.argv[4:5])
+    # plot_screens.py KEY NAME "TITLE" RUN [RUN ...]
+    main([Path(a).resolve() for a in sys.argv[4:]], Path(sys.argv[1]).resolve(), sys.argv[2], sys.argv[3])

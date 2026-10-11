@@ -1,15 +1,21 @@
 {
-  "source": "results/run-screens-2.jsonl",
-  "source_sha256": "dd3b50bf16e42c888b2958e22170ad1fa27ba42a6f3a687dc58293aae8edfa57",
+  "sources": {
+    "results/run-screens-2.jsonl": "dd3b50bf16e42c888b2958e22170ad1fa27ba42a6f3a687dc58293aae8edfa57",
+    "results/run-screens-local-1.jsonl": "60f0311a125163b6de91f1fcbdd8cde91f1b82d47953dfb326dee89fc524faf3",
+    "results/run-screens-local-1-la.jsonl": "a7bef5b0f3f1a273aec6b7b2fcfa68b9e005ab42ae8b503677cfb4e8fcbaf183",
+    "results/run-screens-local-1-ovd.jsonl": "edfdd840b6042e1dac179301e8fc682d917ae6fb94d970fd88b745e0b7500635",
+    "results/run-screens-local-1-yoloe.jsonl": "8b14548c635988145d09368b1c6259e95b325668953007b7c6881352a97d73c4"
+  },
   "key": "annotations/screens/key-round2.json",
   "key_sha256": "4aa377d4607a346895a4abaeb1d7309ccda3e5288c3d0333e849a778e3c7b489",
   "key_status": "accepted by lilly",
   "renderer": "scripts/draw_charts.py --style editorial --track find --names all --title ...",
-  "metric": "F1 of clicks inside the key's targets (one click per target), mean over 3 tries, then over the tasks",
+  "metric": "F1 of clicks on the key's targets (one click per target), mean over tries, then over the questions",
   "caveats": [
-    "Answer key is a draft until a person checks it.",
-    "Five screenshots: seven models score 100, so the top is not separated.",
-    "Language models only: the local pointing models are not run yet.",
+    "Five screenshots cannot support broad claims.",
+    "Language-model seconds include the internet and the provider's queue; local models' do not.",
+    "Local models: cost uses each model's load factor measured on the photos, not on screenshots.",
+    "Local models timed on GPU 0 while it also drew the desktop (window manager, 20-30% busy).",
     "The smooth curve is a visual guide, not measured intermediate models."
   ]
 }
