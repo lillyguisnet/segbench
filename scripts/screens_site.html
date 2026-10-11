@@ -72,10 +72,17 @@ aside { position: sticky; top: 14px; }
 .opts label { display: flex; gap: 8px; align-items: center; cursor: pointer; }
 .legend { margin: 10px 4px 0; font-size: 13px; color: var(--ink2); display: flex; flex-direction: column; gap: 4px; }
 .keys { color: var(--ink3); font-size: 12.5px; margin: 10px 4px 0; }
+main > section:first-child { grid-column: 1; grid-row: 1; }
+main > aside { grid-column: 2; grid-row: 1 / span 2; }
+.overall { grid-column: 1; grid-row: 2; margin-top: 10px; max-width: 900px; }
+.overall h2 { font-size: 17px; font-weight: 600; margin: 0 0 4px; }
+.overall p { color: var(--ink2); font-size: 14px; margin: 0 0 10px; max-width: 760px; }
+.overall img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 12px; }
 footer { margin-top: 26px; padding-top: 14px; border-top: 1px solid var(--line); color: var(--ink2); font-size: 13px;
   display: flex; gap: 6px 18px; flex-wrap: wrap; }
 @media (max-width: 1000px) {
-  main { grid-template-columns: 1fr; }
+  main { grid-template-columns: minmax(0, 1fr); }  /* 1fr would grow to the widest content: the page ran off phone screens */
+  main > section:first-child, main > aside, .overall { grid-column: auto; grid-row: auto; }
   aside { position: static; }
   .keys, .hint { display: none; }
   .wrap { padding: 12px 12px 22px; }
@@ -119,6 +126,7 @@ footer { margin-top: 26px; padding-top: 14px; border-top: 1px solid var(--line);
       </div>
       <p class="keys">Keys: ← → question · ↑ ↓ model · K answer key · Esc all models · 0 whole screenshot</p>
     </aside>
+    <section class="overall" id="overall" hidden></section>
   </main>
   <footer id="foot"></footer>
 </div>
@@ -374,7 +382,14 @@ addEventListener("keydown", e => {
 addEventListener("resize", layout);
 
 // ---------- start ----------
-const chartLinks = Object.values(D.charts).map(p => `<a href="${p}">the chart</a>`).join(" · ");
+const chart = Object.values(D.charts)[0];
+if (chart) {  // every model's overall result, under the screenshot
+  $("#overall").innerHTML = `<h2>All models on all five questions</h2>
+    <p>Higher is better: the score out of 100 is how many right things a model clicked, minus wrong or extra clicks, over the five questions (the mean of its 3 tries; above, each model's best try is shown). Further left is cheaper (dollars per 1,000 screenshots). The grey number is seconds per question. The red line joins the best value for money: no model is both better and cheaper.</p>
+    <a href="${chart}" title="Open the chart full size"><img src="${chart}" width="2160" height="2160" loading="lazy" alt="Chart: each model's score against its cost, all five questions"></a>`;
+  $("#overall").hidden = false;
+}
+const chartLinks = "";
 $("#foot").innerHTML = `<span>Run of ${esc(D.run_date)}. Each language model got the screenshot and one plain prompt, never tuned: the task, “Where would you click to do it? Give one point for each click needed.”, at medium thinking, 3 tries. Each model's best try on each question is shown; scores on the chart are the mean of the 3.</span>
   <span>A click is right when it lands on a target no earlier click has taken; score = F1 (right clicks count, wrong or extra ones cost). Answer key drawn by hand and checked by ${esc(Object.values(D.reviewer)[0] || "a person")}.</span>
   <span>${chartLinks}${chartLinks ? " · " : ""}<a href="${D.repo}">Code and data</a> (Apache 2.0) · screenshots show other sites and are here only to show this benchmark (not covered by the photos' CC BY licence) · logos belong to their owners</span>`;

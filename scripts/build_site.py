@@ -44,6 +44,8 @@ THUMB_SIDE = 360
 SHORT = {"logs": "Log ends", "cows": "Cows", "fig": "Fig leaves", "tree": "Red foliage", "road": "Road",
          "dishes": "Dishes"}
 REPO = "https://github.com/lillyguisnet/segbench"
+# The chart shown under the photo: the current point benchmark, all models. Change with each new version.
+CHART = ROOT / "charts" / "point-benchmark-v2.5" / "with-specialists" / "find.png"
 
 
 def logo(maker: str) -> dict:
@@ -109,7 +111,9 @@ def build(out: Path, runs: list[str], track: str) -> Path:
 
     order = list(dict.fromkeys(a.key for a in sorted(answers, key=points.order_key)))
     makers = sorted({m["maker"] for m in models.values()})
-    data = {"track": track, "runs": [Path(r).stem for r in runs],
+    if CHART.exists():  # every model's overall result, shown under the photo
+        shutil.copy(CHART, out / "img" / "chart.png")
+    data = {"track": track, "runs": [Path(r).stem for r in runs], "chart": "img/chart.png" if CHART.exists() else None,
             "run_date": min(a.started_at for a in answers if a.started_at)[:10],
             "repo": REPO, "tasks": tasks, "order": order, "models": models, "answers": by_task,
             "logos": {m: logo(m) for m in makers}}

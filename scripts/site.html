@@ -67,11 +67,18 @@ aside { position: sticky; top: 14px; }
 .opts { margin: 10px 4px 0; font-size: 13.5px; color: var(--ink2); display: flex; flex-direction: column; gap: 6px; }
 .opts label { display: flex; gap: 8px; align-items: center; cursor: pointer; }
 .keys { color: var(--ink3); font-size: 12.5px; margin: 10px 4px 0; }
+main > section:first-child { grid-column: 1; grid-row: 1; }
+main > aside { grid-column: 2; grid-row: 1 / span 2; }
+.overall { grid-column: 1; grid-row: 2; margin-top: 10px; max-width: 900px; }
+.overall h2 { font-size: 17px; font-weight: 600; margin: 0 0 4px; }
+.overall p { color: var(--ink2); font-size: 14px; margin: 0 0 10px; max-width: 760px; }
+.overall img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 12px; }
 footer { margin-top: 26px; padding-top: 14px; border-top: 1px solid var(--line); color: var(--ink2); font-size: 13px;
   display: flex; gap: 6px 18px; flex-wrap: wrap; }
 footer a { color: inherit; }
 @media (max-width: 960px) {
-  main { grid-template-columns: 1fr; }
+  main { grid-template-columns: minmax(0, 1fr); }  /* 1fr would grow to the widest content: the page ran off phone screens */
+  main > section:first-child, main > aside, .overall { grid-column: auto; grid-row: auto; }
   aside { position: static; }
   .list { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
   .list .sep { display: none; }
@@ -110,6 +117,7 @@ footer a { color: inherit; }
       </div>
       <p class="keys">Keys: ← → photo · ↑ ↓ model · Esc all models · 0 whole photo</p>
     </aside>
+    <section class="overall" id="overall" hidden></section>
   </main>
   <footer id="foot"></footer>
 </div>
@@ -337,8 +345,14 @@ addEventListener("keydown", e => {
 addEventListener("resize", layout);
 
 // ---------- start ----------
+if (D.chart) {  // every model's overall result, under the photo
+  $("#overall").innerHTML = `<h2>All models on all four photos</h2>
+    <p>Higher is better: the score out of 100 is how well a model's dots match the objects, over the four photos. Further left is cheaper (dollars per 1,000 photos). The grey number is seconds per photo. The red line joins the best value for money: no model is both better and cheaper.</p>
+    <a href="${D.chart}" title="Open the chart full size"><img src="${D.chart}" width="2160" height="2160" loading="lazy" alt="Chart: each model's score against its cost, all four photos"></a>`;
+  $("#overall").hidden = false;
+}
 $("#foot").innerHTML = `<span>Run of ${esc(D.run_date)}: language models at medium thinking, each with the better of two prompts; specialists on our GPU. Each model's first of 3 tries is shown.</span>
-  <span>This shows where models pointed. Scores, against points checked by a person, are on the chart.</span>
+  <span>This shows where models pointed. Scores, against points checked by a person, are on the chart above.</span>
   <span><a href="${D.repo}">Code and data</a> (Apache 2.0) · photos CC BY 4.0 · logos belong to their owners</span>`;
 function fromHash() {  // #cows or #cows/terra: a link to one photo and one model
   const [hk, hm] = decodeURIComponent(location.hash.slice(1)).split("/");
