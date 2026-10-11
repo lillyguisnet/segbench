@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>segbench · where AI models click on a screen</title>
+<meta name="description" content="AI models were given a screenshot and a task, and asked where they would click. See every click, and the answer key.">
+<style>
+@font-face { font-family: Inter; src: url(fonts/Inter-Regular.ttf) format("truetype"); font-weight: 400; font-display: swap; }
+@font-face { font-family: Inter; src: url(fonts/Inter-Medium.ttf) format("truetype"); font-weight: 500; font-display: swap; }
+@font-face { font-family: Inter; src: url(fonts/Inter-SemiBold.ttf) format("truetype"); font-weight: 600; font-display: swap; }
+:root {
+  --ink: #16181d; --ink2: #4a4f5a; --ink3: #8a8f99; --line: #e6e7ea; --soft: #f4f5f7; --paper: #fff;
+  --hit: #16a34a; --dup: #d97706; --miss: #dc2626; --key: #22c55e;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--paper); color: var(--ink);
+  font: 400 15px/1.45 Inter, system-ui, -apple-system, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; }
+button { font: inherit; color: inherit; }
+a { color: inherit; }
+.wrap { max-width: 1560px; margin: 0 auto; padding: 18px 22px 28px; }
+header { display: flex; align-items: flex-end; justify-content: space-between; gap: 18px; flex-wrap: wrap; margin-bottom: 14px; }
+.brand b { font-weight: 600; font-size: 19px; letter-spacing: -0.01em; }
+.brand span { display: block; color: var(--ink2); font-size: 14px; }
+.brand a { font-size: 13px; color: var(--ink2); }
+nav { display: flex; gap: 8px; flex-wrap: wrap; }
+nav button { display: flex; align-items: center; gap: 9px; padding: 5px 12px 5px 5px; border: 1px solid var(--line);
+  background: var(--paper); border-radius: 10px; cursor: pointer; font-weight: 500; font-size: 14px; }
+nav button img { width: 46px; height: 34px; object-fit: cover; object-position: top left; border-radius: 6px; display: block; }
+nav button:hover { border-color: #c9ccd2; }
+nav button.on { border-color: var(--ink); box-shadow: 0 0 0 1px var(--ink); }
+main { display: grid; grid-template-columns: minmax(0, 1fr) 310px; gap: 22px; align-items: start; }
+.ask { color: var(--ink2); font-size: 14px; margin: 0 0 8px; min-height: 20px; display: flex; gap: 6px 14px; flex-wrap: wrap; align-items: baseline; }
+.ask q { color: var(--ink); quotes: "“" "”"; font-size: 17px; font-weight: 600; }
+#stage { position: relative; border-radius: 12px; overflow: hidden; background: #0d0e10; margin: 0 auto;
+  touch-action: none; cursor: grab; user-select: none; }
+#stage.drag { cursor: grabbing; }
+#svg { display: block; width: 100%; height: 100%; }
+.dot, .tgt { cursor: pointer; }
+.zoom { position: absolute; right: 10px; bottom: 10px; display: flex; gap: 6px; }
+.zoom button { width: 34px; height: 34px; border-radius: 9px; border: 0; background: rgba(255,255,255,.92);
+  box-shadow: 0 1px 4px rgba(0,0,0,.25); cursor: pointer; font-size: 18px; line-height: 1; }
+.hint { position: absolute; left: 12px; bottom: 12px; color: #fff; font-size: 12px; background: rgba(0,0,0,.55);
+  padding: 4px 9px; border-radius: 7px; transition: opacity .6s; pointer-events: none; }
+.msg { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; padding: 30px; pointer-events: none; }
+.msg div { background: rgba(255,255,255,.95); border-radius: 12px; padding: 14px 18px; max-width: 460px;
+  box-shadow: 0 4px 24px rgba(0,0,0,.25); font-size: 14px; }
+#tip { position: absolute; pointer-events: none; background: rgba(22,24,29,.92); color: #fff; font-size: 12.5px;
+  padding: 5px 9px; border-radius: 7px; white-space: nowrap; transform: translate(-50%, calc(-100% - 14px)); display: none; }
+.info { margin-top: 12px; display: flex; gap: 10px 22px; flex-wrap: wrap; align-items: baseline; min-height: 26px; }
+.info .name { font-weight: 600; font-size: 17px; display: flex; align-items: center; gap: 9px; }
+.info .facts { color: var(--ink2); display: flex; gap: 6px 18px; flex-wrap: wrap; }
+.info .facts b { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+.info pre { flex-basis: 100%; margin: 0; font-size: 12px; background: var(--soft); padding: 10px 12px; border-radius: 8px;
+  white-space: pre-wrap; word-break: break-word; color: var(--ink2); }
+.sw { display: inline-block; width: 11px; height: 11px; border-radius: 50%; border: 3px solid; vertical-align: -1px; margin-right: 5px; }
+.sq { display: inline-block; width: 13px; height: 10px; border: 2px solid var(--key); background: rgba(34,197,94,.15); vertical-align: -1px; margin-right: 5px; border-radius: 2px; }
+aside { position: sticky; top: 14px; }
+.list { border: 1px solid var(--line); border-radius: 12px; padding: 6px; }
+.list .head { display: grid; grid-template-columns: 26px 1fr auto; gap: 10px; padding: 2px 8px 4px; font-size: 11px; color: var(--ink3); }
+.list .head span:last-child { text-align: right; }
+.list button { display: grid; grid-template-columns: 26px 1fr auto; gap: 8px; align-items: center; width: 100%;
+  padding: 5px 8px; border: 0; background: none; border-radius: 8px; cursor: pointer; text-align: left; font-size: 14px; }
+.list button:hover { background: var(--soft); }
+.list button.on { background: #eceef2; font-weight: 600; }
+.list button .n { color: var(--ink2); font-variant-numeric: tabular-nums; font-size: 13px; font-weight: 400; text-align: right; }
+.list button .n.full { color: var(--hit); font-weight: 600; }
+.list button .n.zero { color: var(--miss); }
+.list .sep { height: 1px; background: var(--line); margin: 5px 8px; }
+.list svg { display: block; }
+.opts { margin: 10px 4px 0; font-size: 13.5px; color: var(--ink2); display: flex; flex-direction: column; gap: 6px; }
+.opts label { display: flex; gap: 8px; align-items: center; cursor: pointer; }
+.legend { margin: 10px 4px 0; font-size: 13px; color: var(--ink2); display: flex; flex-direction: column; gap: 4px; }
+.keys { color: var(--ink3); font-size: 12.5px; margin: 10px 4px 0; }
+footer { margin-top: 26px; padding-top: 14px; border-top: 1px solid var(--line); color: var(--ink2); font-size: 13px;
+  display: flex; gap: 6px 18px; flex-wrap: wrap; }
+@media (max-width: 1000px) {
+  main { grid-template-columns: 1fr; }
+  aside { position: static; }
+  .keys, .hint { display: none; }
+  .wrap { padding: 12px 12px 22px; }
+}
+</style>
+</head>
+<body>
+<svg id="logos" width="0" height="0" style="position:absolute" aria-hidden="true"><defs></defs></svg>
+<div class="wrap">
+  <header>
+    <div class="brand"><b>segbench</b><span>Where AI models click on a screen · <a href="../">photos: where they put their dots →</a></span></div>
+    <nav id="questions"></nav>
+  </header>
+  <main>
+    <section>
+      <p class="ask" id="ask"></p>
+      <div id="stage">
+        <svg id="svg" xmlns="http://www.w3.org/2000/svg"></svg>
+        <div class="msg" id="msg"><div></div></div>
+        <div id="tip"></div>
+        <div class="hint" id="hint">Scroll or pinch to zoom · drag to move · click a click or a target</div>
+        <div class="zoom">
+          <button id="zin" title="Zoom in (+)" aria-label="Zoom in">+</button>
+          <button id="zout" title="Zoom out (−)" aria-label="Zoom out">−</button>
+          <button id="zreset" title="Whole screenshot (0)" aria-label="Whole screenshot">⤢</button>
+        </div>
+      </div>
+      <div class="info" id="info"></div>
+    </section>
+    <aside>
+      <div class="list" id="list"></div>
+      <div class="opts">
+        <label><input type="checkbox" id="showKey" checked> Show the answer key (K)</label>
+        <label><input type="checkbox" id="others" checked> Show the other models' clicks, small</label>
+      </div>
+      <div class="legend">
+        <span><span class="sq"></span>answer key: where a click does the task</span>
+        <span><span class="sw" style="border-color:var(--hit)"></span>right click</span>
+        <span><span class="sw" style="border-color:var(--dup)"></span>on a target that was already clicked</span>
+        <span><span class="sw" style="border-color:var(--miss)"></span>wrong click</span>
+      </div>
+      <p class="keys">Keys: ← → question · ↑ ↓ model · K answer key · Esc all models · 0 whole screenshot</p>
+    </aside>
+  </main>
+  <footer id="foot"></footer>
+</div>
+<script>
+const D = {"repo":"https://github.com/lillyguisnet/segbench","run_date":"2026-10-10","shots":{"screen_chattering_chart.png":{"img":"img/screen_chattering_chart.webp","thumb":"img/screen_chattering_chart.thumb.jpg","w":1920,"h":1079},"screen_x_feed.png":{"img":"img/screen_x_feed.webp","thumb":"img/screen_x_feed.thumb.jpg","w":1917,"h":1080},"screen_slack_photo_viewer.png":{"img":"img/screen_slack_photo_viewer.webp","thumb":"img/screen_slack_photo_viewer.thumb.jpg","w":1920,"h":1080},"screen_review_app_dishes.png":{"img":"img/screen_review_app_dishes.webp","thumb":"img/screen_review_app_dishes.thumb.jpg","w":1920,"h":1077},"screen_shopify_products.png":{"img":"img/screen_shopify_products.webp","thumb":"img/screen_shopify_products.thumb.jpg","w":1693,"h":1055}},"tasks":[{"key":"fold-groups","round":2,"name":"Fold all but segbench","ask":"Fold every open conversation group except segbench.","shot":"screen_chattering_chart.png","targets":[{"id":"lilly-s","box":[8,364,239,391]},{"id":"long-compute","box":[8,486,239,513]},{"id":"need-my-action","box":[8,609,239,636]}]},{"key":"news-1000","round":2,"name":"News > 1,000 posts","ask":"Open every news story with more than 1,000 posts.","shot":"screen_x_feed.png","targets":[{"id":"google-gemini-agent","box":[1223,396,1570,488]},{"id":"microsoft-decision-1","box":[1223,489,1570,586]}]},{"key":"onedrive-folders","round":2,"name":"OneDrive folders","ask":"Open every folder inside OneDrive.","shot":"screen_slack_photo_viewer.png","targets":[{"id":"onedrive-attachments","box":[179,427,271,450]},{"id":"onedrive-documents","box":[179,451,271,474]},{"id":"onedrive-music","box":[179,475,271,498]},{"id":"onedrive-pictures","box":[179,499,271,522]}]},{"key":"dirty-labels","round":2,"name":"D labels","ask":"Click every D (dirty) label.","shot":"screen_review_app_dishes.png","targets":[{"id":"dirty-label-mug","circle":[650.2,711.8,9]},{"id":"dirty-label-small-bowl","circle":[676.2,745.1,9]},{"id":"dirty-label-patterned-plate","circle":[430.1,764.1,9]},{"id":"dirty-label-cutting-board","circle":[533,774.5,9]},{"id":"dirty-label-big-bowl","circle":[599.8,792.8,9]},{"id":"dirty-label-plate-stack-top","circle":[717.7,770.7,9],"covered_by":["dirty-label-plate-stack-bottom"]},{"id":"dirty-label-plate-stack-bottom","circle":[719,786,9]}]},{"key":"sold-out","round":2,"name":"Nothing left to sell","ask":"Tick every product that has no more items to sell.","shot":"screen_shopify_products.png","targets":[{"id":"thanksgiving-2026","box":[286,278,336,334]},{"id":"beef-wagyu-liver","box":[286,461,336,517]},{"id":"bundle-easter","box":[286,522,336,578]},{"id":"bundle-winter-duos","box":[286,583,336,639]},{"id":"bundle-holiday","box":[286,705,336,761]},{"id":"bundle-thanksgiving-2025","box":[286,766,336,822]},{"id":"lamb-reservations-2026","box":[286,827,336,883]},{"id":"bundle-summer-grill","box":[286,949,336,1005]}]}],"order":["terra","astra","luna","sol","opus","sonnet","gemini-pro","gemini-flash-lite","gemini-flash","deepseek-flash","qwen-27b","qwen-flash","kimi-k3","glm-5.3-flash"],"models":{"astra":{"label":"GPT-6 Astra","maker":"OpenAI","kind":"general","level":"medium","deterministic":false,"colour":"#0d8769"},"deepseek-flash":{"label":"DeepSeek Flash","maker":"DeepSeek","kind":"general","level":"medium","deterministic":false,"colour":"#26339c"},"gemini-flash":{"label":"Gemini 3.8 Flash","maker":"Google","kind":"general","level":"medium","deterministic":false,"colour":"#77a7f7"},"gemini-flash-lite":{"label":"Gemini 3.5 Flash Lite","maker":"Google","kind":"general","level":"medium","deterministic":false,"colour":"#3e7de5"},"gemini-pro":{"label":"Gemini 3.1 Pro","maker":"Google","kind":"general","level":"medium","deterministic":false,"colour":"#285092"},"glm-5.3-flash":{"label":"GLM 5.3 Flash","maker":"Z.AI","kind":"general","level":"medium","deterministic":false,"colour":"#e5484d"},"kimi-k3":{"label":"Kimi K3","maker":"Moonshot","kind":"general","level":"medium","deterministic":false,"colour":"#1c1c1e"},"luna":{"label":"GPT-6 Luna","maker":"OpenAI","kind":"general","level":"medium","deterministic":false,"colour":"#1da886"},"opus":{"label":"Claude Opus 5.5","maker":"Anthropic","kind":"general","level":"medium","deterministic":false,"colour":"#824734"},"qwen-27b":{"label":"Qwen 3.8 27B","maker":"Alibaba","kind":"general","level":"medium","deterministic":false,"colour":"#3a378e"},"qwen-flash":{"label":"Qwen 3.8 Flash Next","maker":"Alibaba","kind":"general","level":"medium","deterministic":false,"colour":"#8d8af2"},"sol":{"label":"GPT-6.1 Sol","maker":"OpenAI","kind":"general","level":"medium","deterministic":false,"colour":"#53bda3"},"sonnet":{"label":"Claude Sonnet 5.5","maker":"Anthropic","kind":"general","level":"medium","deterministic":false,"colour":"#e49d86"},"terra":{"label":"GPT-5.6 Terra","maker":"OpenAI","kind":"general","level":"medium","deterministic":false,"colour":"#0a624c"}},"answers":{"fold-groups":{"astra":{"clicks":[[21.1,376.6,"hit",0],[21.1,499.6,"hit",1],[21.1,622.6,"hit",2]],"right":3,"f1":1.0,"seconds":3.39,"cost":0.02786,"try":1,"of":3,"mean":1.0},"deepseek-flash":{"clicks":[[30.7,345.3,"miss"],[30.7,462.9,"miss"]],"right":0,"f1":0.0,"seconds":7.43,"cost":0.0022197,"try":1,"of":3,"mean":0.0},"gemini-flash":{"clicks":[[48.0,376.6,"hit",0],[67.2,498.5,"hit",1],[76.8,622.6,"hit",2]],"right":3,"f1":1.0,"seconds":8.54,"cost":0.00663375,"try":1,"of":3,"mean":1.0},"gemini-flash-lite":{"clicks":[[21.1,375.5,"hit",0],[21.1,458.6,"miss"],[21.1,498.5,"hit",1],[21.1,620.4,"hit",2]],"right":3,"f1":0.8571,"seconds":3.04,"cost":0.002891,"try":2,"of":3,"mean":0.7936},"gemini-pro":{"clicks":[[86.4,378.7,"hit",0],[86.4,499.6,"hit",1],[86.4,620.4,"hit",2]],"right":3,"f1":1.0,"seconds":7.28,"cost":0.011916,"try":1,"of":3,"mean":1.0},"glm-5.3-flash":{"clicks":[[26.9,370.1,"hit",0],[26.9,550.3,"miss"],[26.9,678.7,"miss"]],"right":1,"f1":0.3333,"seconds":8.01,"cost":0.0006449,"try":2,"of":3,"mean":0.2222},"kimi-k3":{"clicks":[[28.8,404.6,"miss"],[28.8,537.3,"miss"],[28.8,670.1,"miss"]],"right":0,"f1":0.0,"seconds":36.81,"cost":0.02105266,"try":1,"of":3,"mean":0.0},"luna":{"clicks":[[21.1,374.4,"hit",0],[21.1,496.3,"hit",1],[21.1,619.3,"hit",2]],"right":3,"f1":1.0,"seconds":3.19,"cost":0.0003486,"try":1,"of":3,"mean":1.0},"opus":{"clicks":[[21.1,376.6,"hit",0],[21.1,499.6,"hit",1],[21.1,622.6,"hit",2]],"right":3,"f1":1.0,"seconds":2.79,"cost":0.01574,"try":1,"of":3,"mean":1.0},"qwen-27b":{"clicks":[[15.4,373.3,"hit",0],[15.4,501.7,"hit",1],[15.4,620.4,"hit",2]],"right":3,"f1":1.0,"seconds":36.84,"cost":0.006057099999999999,"try":1,"of":3,"mean":0.9524},"qwen-flash":{"clicks":[[13.4,346.4,"miss"],[13.4,492.0,"hit",1],[13.4,616.1,"hit",2]],"right":2,"f1":0.6667,"seconds":51.37,"cost":0.00208328,"try":2,"of":3,"mean":0.3333},"sol":{"clicks":[[19.2,376.6,"hit",0],[19.2,499.6,"hit",1],[19.2,622.6,"hit",2]],"right":3,"f1":1.0,"seconds":4.38,"cost":0.006342,"try":1,"of":3,"mean":1.0},"sonnet":{"clicks":[[21.1,622.6,"hit",2],[21.1,499.6,"hit",1],[21.1,376.6,"hit",0]],"right":3,"f1":1.0,"seconds":2.74,"cost":0.0088,"try":1,"of":3,"mean":1.0},"terra":{"clicks":[[19.2,375.5,"hit",0],[19.2,498.5,"hit",1],[19.2,617.2,"hit",2]],"right":3,"f1":1.0,"seconds":11.48,"cost":0.009852,"try":2,"of":3,"mean":0.5397}},"news-1000":{"astra":{"clicks":[[1393.7,422.3,"hit",0],[1393.7,526.0,"hit",1]],"right":2,"f1":1.0,"seconds":2.15,"cost":0.0275,"try":1,"of":3,"mean":1.0},"deepseek-flash":{"clicks":[[1533.6,415.8,"hit",0],[1533.6,523.8,"hit",1]],"right":2,"f1":1.0,"seconds":4.67,"cost":0.0015945,"try":2,"of":3,"mean":0.5},"gemini-flash":{"clicks":[[1370.7,437.4,"hit",0],[1370.7,534.6,"hit",1]],"right":2,"f1":1.0,"seconds":6.07,"cost":0.004767,"try":1,"of":3,"mean":1.0},"gemini-flash-lite":{"clicks":[[1341.9,415.8,"hit",0],[1341.9,523.8,"hit",1]],"right":2,"f1":1.0,"seconds":1.89,"cost":0.0017403,"try":1,"of":3,"mean":1.0},"gemini-pro":{"clicks":[[1389.8,424.4,"hit",0],[1389.8,526.0,"hit",1]],"right":2,"f1":1.0,"seconds":6.6,"cost":0.011616,"try":1,"of":3,"mean":1.0},"glm-5.3-flash":{"clicks":[[1332.3,422.3,"hit",0],[1332.3,530.3,"hit",1]],"right":2,"f1":1.0,"seconds":3.94,"cost":0.0004995,"try":1,"of":3,"mean":1.0},"kimi-k3":{"clicks":[[1387.9,422.3,"hit",0],[1395.6,523.8,"hit",1]],"right":2,"f1":1.0,"seconds":15.5,"cost":0.010080440000000001,"try":1,"of":3,"mean":1.0},"luna":{"clicks":[[1389.8,420.1,"hit",0],[1391.7,519.5,"hit",1]],"right":2,"f1":1.0,"seconds":62.39,"cost":0.0003165,"try":1,"of":3,"mean":1.0},"opus":{"clicks":[[1387.9,422.3,"hit",0],[1395.6,523.8,"hit",1]],"right":2,"f1":1.0,"seconds":2.93,"cost":0.014928,"try":1,"of":3,"mean":1.0},"qwen-27b":{"clicks":[[1384.1,413.6,"hit",0],[1389.8,513.0,"hit",1]],"right":2,"f1":1.0,"seconds":13.98,"cost":0.0026911,"try":1,"of":3,"mean":1.0},"qwen-flash":{"clicks":[[1389.8,420.1,"hit",0],[1393.7,526.0,"hit",1]],"right":2,"f1":1.0,"seconds":21.02,"cost":0.0009533599999999999,"try":1,"of":3,"mean":0.5},"sol":{"clicks":[[1387.9,423.4,"hit",0],[1393.7,523.8,"hit",1]],"right":2,"f1":1.0,"seconds":2.44,"cost":0.0055,"try":1,"of":3,"mean":1.0},"sonnet":{"clicks":[[1387.9,422.3,"hit",0],[1395.6,523.8,"hit",1]],"right":2,"f1":1.0,"seconds":2.4,"cost":0.007884,"try":1,"of":3,"mean":1.0},"terra":{"clicks":[[1361.1,421.2,"hit",0],[1370.7,524.9,"hit",1]],"right":2,"f1":1.0,"seconds":3.77,"cost":0.00644,"try":1,"of":3,"mean":1.0}},"onedrive-folders":{"astra":{"clicks":[[226.6,439.6,"hit",0],[226.6,464.4,"hit",1],[217.0,488.2,"hit",2],[220.8,511.9,"hit",3]],"right":4,"f1":1.0,"seconds":3.78,"cost":0.02974,"try":1,"of":3,"mean":1.0},"deepseek-flash":{"clicks":[[199.7,424.4,"miss"],[199.7,452.5,"hit",1],[199.7,479.5,"hit",2],[199.7,507.6,"hit",3]],"right":3,"f1":0.75,"seconds":9.49,"cost":0.0031611,"try":2,"of":3,"mean":0.25},"gemini-flash":{"clicks":[[238.1,438.5,"hit",0],[238.1,463.3,"hit",1],[238.1,488.2,"hit",2],[238.1,513.0,"hit",3]],"right":4,"f1":1.0,"seconds":20.37,"cost":0.0128565,"try":1,"of":3,"mean":0.8889},"gemini-flash-lite":{"clicks":[[230.4,440.6,"hit",0],[230.4,464.4,"hit",1],[230.4,488.2,"hit",2],[230.4,513.0,"hit",3]],"right":4,"f1":1.0,"seconds":6.3,"cost":0.005037600000000001,"try":3,"of":3,"mean":0.7778},"gemini-pro":{"clicks":[[241.9,437.4,"hit",0],[234.2,461.2,"hit",1],[222.7,484.9,"hit",2],[228.5,510.8,"hit",3]],"right":4,"f1":1.0,"seconds":11.91,"cost":0.020202,"try":2,"of":3,"mean":0.6667},"glm-5.3-flash":{"clicks":[[236.2,439.6,"hit",0],[243.8,463.3,"hit",1],[230.4,486.0,"hit",2],[232.3,509.8,"hit",3]],"right":4,"f1":1.0,"seconds":3.93,"cost":0.0005475999999999999,"try":1,"of":3,"mean":0.9167},"kimi-k3":{"clicks":[[238.1,439.6,"hit",0],[238.1,462.2,"hit",1],[232.3,486.0,"hit",2],[236.2,510.8,"hit",3]],"right":4,"f1":1.0,"seconds":50.07,"cost":0.02523602,"try":1,"of":3,"mean":0.5833},"luna":{"clicks":[[228.5,439.6,"hit",0],[228.5,462.2,"hit",1],[228.5,486.0,"hit",2],[228.5,511.9,"hit",3]],"right":4,"f1":1.0,"seconds":4.07,"cost":0.00038290000000000004,"try":2,"of":3,"mean":0.6667},"opus":{"clicks":[[238.1,439.6,"hit",0],[236.2,464.4,"hit",1],[222.7,488.2,"hit",2],[226.6,511.9,"hit",3]],"right":4,"f1":1.0,"seconds":2.87,"cost":0.016016,"try":1,"of":3,"mean":1.0},"qwen-27b":{"clicks":[[163.2,415.8,"miss"],[432.0,530.3,"miss"]],"right":0,"f1":0.0,"seconds":34.52,"cost":0.0054876,"try":1,"of":3,"mean":0.0},"qwen-flash":{"clicks":[[234.2,437.4,"hit",0],[234.2,462.2,"hit",1],[234.2,487.1,"hit",2],[234.2,510.8,"hit",3]],"right":4,"f1":1.0,"seconds":44.64,"cost":0.00172578,"try":3,"of":3,"mean":0.3333},"sol":{"clicks":[[220.8,439.6,"hit",0],[220.8,464.4,"hit",1],[220.8,488.2,"hit",2],[220.8,511.9,"hit",3]],"right":4,"f1":1.0,"seconds":6.33,"cost":0.006468,"try":1,"of":3,"mean":1.0},"sonnet":{"clicks":[[230.4,439.6,"hit",0],[236.2,464.4,"hit",1],[222.7,488.2,"hit",2],[226.6,511.9,"hit",3]],"right":4,"f1":1.0,"seconds":3.85,"cost":0.009188,"try":1,"of":3,"mean":1.0},"terra":{"clicks":[[195.8,439.6,"hit",0],[195.8,463.3,"hit",1],[195.8,488.2,"hit",2],[195.8,510.8,"hit",3]],"right":4,"f1":1.0,"seconds":19.1,"cost":0.011948,"try":3,"of":3,"mean":0.9259}},"dirty-labels":{"astra":{"clicks":[[430.1,764.7,"hit",2],[531.8,774.4,"hit",3],[599.0,792.7,"hit",4],[650.9,713.0,"hit",0],[675.8,745.3,"hit",1],[718.1,770.1,"hit",5],[718.1,786.2,"hit",6]],"right":7,"f1":1.0,"seconds":6.01,"cost":0.0327,"try":1,"of":3,"mean":1.0},"deepseek-flash":{"clicks":[[599.0,729.1,"miss"],[572.2,739.9,"miss"],[677.8,725.9,"miss"],[691.2,729.1,"miss"]],"right":0,"f1":0.0,"seconds":38.98,"cost":0.011278499999999999,"try":1,"of":3,"mean":0.0},"gemini-flash":{"clicks":[[428.2,763.6,"hit",2],[533.8,774.4,"hit",3],[599.0,790.5,"hit",4],[649.0,711.9,"hit",0],[675.8,744.2,"hit",1],[716.2,767.9,"hit",5],[716.2,784.1,"hit",6]],"right":7,"f1":1.0,"seconds":20.38,"cost":0.01349175,"try":1,"of":3,"mean":0.9231},"gemini-flash-lite":{"clicks":[[424.3,761.4,"hit",2],[535.7,772.2,"hit",3],[597.1,793.7,"hit",4],[650.9,713.0,"hit",0],[673.9,744.2,"hit",1]],"right":5,"f1":0.8333,"seconds":2.45,"cost":0.0021081999999999997,"try":3,"of":3,"mean":0.702},"gemini-pro":{"clicks":[[430.1,765.7,"hit",2],[531.8,774.4,"hit",3],[599.0,792.7,"hit",4],[649.0,710.8,"hit",0],[673.9,746.4,"hit",1],[714.2,769.0,"hit",5],[718.1,786.2,"hit",6]],"right":7,"f1":1.0,"seconds":11.78,"cost":0.021514,"try":1,"of":3,"mean":1.0},"glm-5.3-flash":{"clicks":[[428.2,733.4,"miss"],[641.3,683.9,"miss"],[574.1,762.5,"miss"],[718.1,742.1,"miss"],[721.9,784.1,"hit",6]],"right":1,"f1":0.1667,"seconds":10.03,"cost":0.00067575,"try":1,"of":3,"mean":0.0556},"kimi-k3":{"clicks":[[650.9,747.4,"miss"],[675.8,798.1,"miss"],[718.1,777.6,"hit",6],[718.1,835.8,"miss"],[597.1,850.8,"miss"],[535.7,773.3,"hit",3],[426.2,822.8,"miss"],[1017.6,799.1,"miss"],[1046.4,749.6,"miss"],[1071.4,779.7,"miss"],[1092.5,859.4,"miss"],[1213.4,681.7,"miss"],[1173.1,736.7,"miss"],[1244.2,689.3,"miss"],[1292.2,749.6,"miss"],[1390.1,702.2,"miss"],[1347.8,764.7,"miss"],[1488.0,704.4,"miss"],[1407.4,760.4,"miss"],[1461.1,816.4,"miss"]],"right":2,"f1":0.1481,"seconds":85.1,"cost":0.045149339999999996,"try":2,"of":3,"mean":0.0494},"luna":{"clicks":[[430.1,762.5,"hit",2],[533.8,773.3,"hit",3],[599.0,790.5,"hit",4],[650.9,709.7,"hit",0],[675.8,744.2,"hit",1],[718.1,767.9,"hit",5],[718.1,785.1,"hit",6]],"right":7,"f1":1.0,"seconds":5.84,"cost":0.000445,"try":1,"of":3,"mean":1.0},"opus":{"clicks":[[650.9,709.7,"hit",0],[675.8,743.1,"hit",1],[430.1,761.4,"hit",2],[533.8,771.1,"hit",3],[716.2,767.9,"hit",5],[599.0,789.4,"hit",4]],"right":6,"f1":0.9231,"seconds":3.73,"cost":0.017448,"try":1,"of":3,"mean":0.9231},"qwen-27b":{"clicks":[[426.2,762.5,"hit",2],[533.8,770.1,"hit",3],[595.2,789.4,"hit",4],[673.9,741.0,"hit",1],[650.9,713.0,"hit",0],[721.9,779.7,"hit",6]],"right":6,"f1":0.9231,"seconds":35.81,"cost":0.0055670749999999995,"try":3,"of":3,"mean":0.7873},"qwen-flash":{"clicks":[[430.1,764.7,"hit",2],[533.8,774.4,"hit",3],[601.0,791.6,"hit",4],[673.9,742.1,"hit",1],[718.1,770.1,"hit",5],[718.1,784.1,"hit",6],[649.0,711.9,"hit",0]],"right":7,"f1":1.0,"seconds":46.56,"cost":0.0017611799999999998,"try":1,"of":3,"mean":1.0},"sol":{"clicks":[[430.1,762.5,"hit",2],[531.8,772.2,"hit",3],[599.0,789.4,"hit",4],[650.9,710.8,"hit",0],[675.8,743.1,"hit",1],[718.1,767.9,"hit",5],[718.1,784.1,"hit",6]],"right":7,"f1":1.0,"seconds":5.09,"cost":0.00696,"try":1,"of":3,"mean":1.0},"sonnet":{"clicks":[[430.1,761.4,"hit",2],[533.8,771.1,"hit",3],[601.0,789.4,"hit",4],[650.9,709.7,"hit",0],[675.8,743.1,"hit",1],[716.2,767.9,"hit",5]],"right":6,"f1":0.9231,"seconds":3.25,"cost":0.008924,"try":1,"of":3,"mean":0.8932},"terra":{"clicks":[[428.2,765.7,"hit",2],[531.8,776.5,"hit",3],[599.0,792.7,"hit",4],[650.9,713.0,"hit",0],[673.9,745.3,"hit",1],[718.1,771.1,"hit",5],[718.1,786.2,"hit",6]],"right":7,"f1":1.0,"seconds":29.16,"cost":0.018454,"try":3,"of":3,"mean":0.7278}},"sold-out":{"astra":{"clicks":[[309.8,307.0,"hit",0],[309.8,489.5,"hit",1],[309.8,550.7,"hit",2],[309.8,611.9,"hit",3],[309.8,734.3,"hit",4],[309.8,794.4,"hit",5],[309.8,855.6,"hit",6],[309.8,978.0,"hit",7]],"right":8,"f1":1.0,"seconds":6.68,"cost":0.02903,"try":1,"of":3,"mean":1.0},"deepseek-flash":{"clicks":[[299.7,300.7,"hit",0],[299.7,469.5,"hit",1],[299.7,534.9,"hit",2],[299.7,599.2,"hit",3],[299.7,730.1,"hit",4],[299.7,794.4,"hit",5],[299.7,858.8,"hit",6],[299.7,989.6,"hit",7]],"right":8,"f1":1.0,"seconds":10.21,"cost":0.0037268999999999996,"try":1,"of":3,"mean":0.5},"gemini-flash":{"clicks":[[309.8,305.9,"hit",0],[309.8,488.5,"hit",1],[309.8,548.6,"hit",2],[309.8,608.7,"hit",3],[309.8,732.2,"hit",4],[309.8,793.4,"hit",5],[309.8,854.5,"hit",6],[309.8,975.9,"hit",7]],"right":8,"f1":1.0,"seconds":13.33,"cost":0.00949875,"try":1,"of":3,"mean":1.0},"gemini-flash-lite":{"clicks":[[309.8,304.9,"hit",0],[309.8,488.5,"hit",1],[309.8,548.6,"hit",2],[309.8,610.8,"hit",3],[309.8,731.1,"hit",4],[309.8,793.4,"hit",5],[309.8,855.6,"hit",6],[309.8,975.9,"hit",7]],"right":8,"f1":1.0,"seconds":3.8,"cost":0.0039575,"try":1,"of":3,"mean":0.9555},"gemini-pro":{"clicks":[[309.8,305.9,"hit",0],[309.8,489.5,"hit",1],[309.8,550.7,"hit",2],[309.8,611.9,"hit",3],[309.8,734.3,"hit",4],[309.8,795.5,"hit",5],[309.8,856.7,"hit",6],[309.8,979.0,"hit",7]],"right":8,"f1":1.0,"seconds":14.32,"cost":0.024296,"try":1,"of":3,"mean":1.0},"glm-5.3-flash":{"clicks":[[320.0,486.4,"hit",1],[320.0,549.7,"hit",2],[320.0,613.0,"hit",3],[320.0,741.7,"hit",4],[320.0,805.0,"hit",5],[320.0,868.3,"hit",6],[320.0,972.7,"hit",7]],"right":7,"f1":0.9333,"seconds":4.56,"cost":0.00050975,"try":1,"of":3,"mean":0.8},"kimi-k3":{"clicks":[[309.8,305.9,"hit",0],[309.8,488.5,"hit",1],[309.8,548.6,"hit",2],[309.8,609.8,"hit",3],[309.8,732.2,"hit",4],[309.8,793.4,"hit",5],[309.8,854.5,"hit",6],[309.8,975.9,"hit",7]],"right":8,"f1":1.0,"seconds":61.8,"cost":0.03254744,"try":1,"of":3,"mean":1.0},"luna":{"clicks":[[309.8,488.5,"hit",1],[309.8,549.7,"hit",2],[309.8,610.8,"hit",3],[309.8,733.2,"hit",4],[309.8,795.5,"hit",5],[309.8,855.6,"hit",6],[309.8,976.9,"hit",7]],"right":7,"f1":0.9333,"seconds":13.87,"cost":0.0004128,"try":1,"of":3,"mean":0.9333},"opus":{"clicks":[[309.8,305.9,"hit",0],[309.8,488.5,"hit",1],[309.8,549.7,"hit",2],[309.8,610.8,"hit",3],[309.8,733.2,"hit",4],[309.8,794.4,"hit",5],[309.8,854.5,"hit",6],[309.8,976.9,"hit",7]],"right":8,"f1":1.0,"seconds":4.24,"cost":0.016448,"try":1,"of":3,"mean":1.0},"qwen-27b":{"clicks":[[309.8,305.9,"hit",0],[309.8,487.4,"hit",1],[309.8,548.6,"hit",2],[309.8,609.8,"hit",3],[309.8,731.1,"hit",4],[309.8,791.2,"hit",5],[309.8,852.4,"hit",6],[309.8,973.8,"hit",7]],"right":8,"f1":1.0,"seconds":37.47,"cost":0.006130625,"try":3,"of":3,"mean":0.9111},"qwen-flash":{"clicks":[[313.2,307.0,"hit",0],[313.2,488.5,"hit",1],[313.2,549.7,"hit",2],[313.2,609.8,"hit",3],[313.2,731.1,"hit",4],[313.2,792.3,"hit",5],[313.2,852.4,"hit",6],[313.2,973.8,"hit",7]],"right":8,"f1":1.0,"seconds":100.84,"cost":0.0041563400000000006,"try":1,"of":3,"mean":1.0},"sol":{"clicks":[[309.8,305.9,"hit",0],[309.8,489.5,"hit",1],[309.8,549.7,"hit",2],[309.8,610.8,"hit",3],[309.8,733.2,"hit",4],[309.8,794.4,"hit",5],[309.8,854.5,"hit",6],[309.8,976.9,"hit",7]],"right":8,"f1":1.0,"seconds":4.72,"cost":0.006226,"try":1,"of":3,"mean":1.0},"sonnet":{"clicks":[[311.5,305.9,"hit",0],[311.5,488.5,"hit",1],[311.5,549.7,"hit",2],[311.5,610.8,"hit",3],[311.5,733.2,"hit",4],[311.5,794.4,"hit",5],[311.5,854.5,"hit",6],[311.5,976.9,"hit",7]],"right":8,"f1":1.0,"seconds":3.6,"cost":0.010004,"try":3,"of":3,"mean":0.9555},"terra":{"clicks":[[309.8,307.0,"hit",0],[309.8,489.5,"hit",1],[309.8,550.7,"hit",2],[309.8,611.9,"hit",3],[309.8,734.3,"hit",4],[309.8,794.4,"hit",5],[309.8,855.6,"hit",6],[309.8,978.0,"hit",7]],"right":8,"f1":1.0,"seconds":10.49,"cost":0.008556,"try":1,"of":3,"mean":1.0}}},"charts":{"2":"charts/round-2.png"},"reviewer":{"2":"lilly"},"logos":{"Alibaba":{"viewBox":"0 0 24 24","d":["M23.919 14.545 20.817 9.17l1.47-2.544a.56.56 0 0 0 0-.566l-1.633-2.83a.57.57 0 0 0-.49-.283h-6.207L12.487.402a.57.57 0 0 0-.49-.284H8.732a.56.56 0 0 0-.49.284L5.139 5.775h-2.94a.56.56 0 0 0-.49.284L.077 8.887a.56.56 0 0 0 0 .567L3.18 14.83l-1.47 2.545a.56.56 0 0 0 0 .566l1.634 2.83a.57.57 0 0 0 .49.283h6.205l1.47 2.545a.57.57 0 0 0 .49.284h3.266a.57.57 0 0 0 .49-.284l3.104-5.375h2.94a.57.57 0 0 0 .49-.283l1.634-2.828a.55.55 0 0 0-.004-.568M8.733.686l1.634 2.828-1.634 2.828H21.8L20.164 9.17H7.425L5.63 6.06Zm1.306 19.801-6.205-.002 1.634-2.83h3.265L2.201 6.344h3.267q3.182 5.517 6.367 11.032zm10.124-5.66L18.53 12l-6.532 11.315-1.634-2.83c2.129-3.673 4.25-7.351 6.373-11.028h3.592l3.102 5.374z"]},"Anthropic":{"viewBox":"0 0 24 24","d":["M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"]},"DeepSeek":{"viewBox":"0 0 24 24","d":["M23.748 4.651c-.254-.124-.364.113-.512.233-.051.04-.094.09-.137.137-.372.397-.806.657-1.373.626-.829-.046-1.537.214-2.163.848-.133-.782-.575-1.248-1.247-1.548-.352-.155-.708-.311-.955-.65-.172-.24-.219-.509-.305-.774-.055-.16-.11-.323-.293-.35-.2-.031-.278.136-.356.276-.313.572-.434 1.202-.422 1.84.027 1.436.633 2.58 1.838 3.393.137.094.172.187.129.323-.082.28-.18.553-.266.833-.055.179-.137.218-.328.14a5.5 5.5 0 0 1-1.737-1.179c-.857-.828-1.631-1.743-2.597-2.46a12 12 0 0 0-.689-.47c-.985-.957.13-1.743.387-1.836.27-.098.094-.433-.778-.428-.872.003-1.67.295-2.687.685a3 3 0 0 1-.465.136 9.6 9.6 0 0 0-2.883-.101c-1.885.21-3.39 1.1-4.497 2.622C.082 8.776-.231 10.854.152 13.02c.403 2.284 1.568 4.175 3.36 5.653 1.857 1.533 3.997 2.284 6.438 2.14 1.482-.085 3.132-.284 4.994-1.86.47.234.962.328 1.78.398.629.058 1.235-.031 1.705-.129.735-.155.684-.836.418-.961-2.155-1.004-1.682-.595-2.112-.926 1.095-1.295 2.768-3.598 3.284-6.733.05-.346.115-.834.108-1.114-.004-.171.035-.238.23-.257a4.2 4.2 0 0 0 1.545-.475c1.397-.763 1.96-2.016 2.093-3.517.02-.23-.004-.467-.247-.588M11.58 18.168c-2.088-1.642-3.101-2.183-3.52-2.16-.39.024-.32.472-.234.763.09.288.207.487.371.74.114.167.192.416-.113.603-.673.416-1.842-.14-1.897-.168-1.361-.801-2.5-1.86-3.301-3.306-.775-1.393-1.225-2.888-1.299-4.482-.02-.385.094-.522.477-.592a4.7 4.7 0 0 1 1.53-.038c2.131.311 3.946 1.264 5.467 2.774.868.86 1.525 1.887 2.202 2.89.72 1.066 1.494 2.082 2.48 2.915.348.291.626.513.892.677-.802.09-2.14.109-3.055-.615zm1.001-6.44a.306.306 0 0 1 .415-.287.3.3 0 0 1 .113.074.3.3 0 0 1 .086.214c0 .17-.136.307-.308.307a.303.303 0 0 1-.306-.307m3.11 1.596c-.2.081-.4.151-.591.16a1.25 1.25 0 0 1-.798-.254c-.274-.23-.47-.358-.551-.758a1.7 1.7 0 0 1 .015-.588c.07-.327-.007-.537-.238-.727-.188-.156-.426-.199-.689-.199a.6.6 0 0 1-.254-.078.253.253 0 0 1-.114-.358 1 1 0 0 1 .192-.21c.356-.202.767-.136 1.146.016.352.144.618.408 1.001.782.392.451.462.576.685.915.176.264.336.536.446.848.066.194-.02.353-.25.45"]},"Google":{"viewBox":"0 0 24 24","d":["M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"]},"Moonshot":{"viewBox":"0 0 24 24","d":["M21.765.351C22.998.351 24 1.353 24 2.586S22.998 4.82 21.765 4.82h-1.974c-.15 0-.26-.12-.26-.26V2.586A2.237 2.237 0 0 1 21.765.35M9.41 13.388l8.447-8.377c.16-.16.07-.471-.14-.471h-4.55s-.1.02-.14.06l-9.099 9.029c-.14.14-.35.02-.35-.21V4.81c0-.15-.1-.27-.221-.27H.22c-.12 0-.22.12-.22.27v18.57c0 .15.1.27.22.27h3.137c.12 0 .22-.12.22-.27v-3.79c0-.08.03-.16.08-.21l2.826-2.796c.07-.07.16-.08.241-.03l7.546 5.551a8.9 8.9 0 0 0 4.018 1.493c.12.01.23-.11.23-.27V19.76c0-.14-.08-.25-.19-.26a5.8 5.8 0 0 1-2.355-.942l-6.533-4.73c-.14-.09-.15-.32-.03-.441"]},"OpenAI":{"viewBox":"0 0 24 24","d":["M9.205 8.658v-2.26c0-.19.072-.333.238-.428l4.543-2.616c.619-.357 1.356-.523 2.117-.523 2.854 0 4.662 2.212 4.662 4.566 0 .167 0 .357-.024.547l-4.71-2.759a.797.797 0 00-.856 0l-5.97 3.473zm10.609 8.8V12.06c0-.333-.143-.57-.429-.737l-5.97-3.473 1.95-1.118a.433.433 0 01.476 0l4.543 2.617c1.309.76 2.189 2.378 2.189 3.948 0 1.808-1.07 3.473-2.76 4.163zM7.802 12.703l-1.95-1.142c-.167-.095-.239-.238-.239-.428V5.899c0-2.545 1.95-4.472 4.591-4.472 1 0 1.927.333 2.712.928L8.23 5.067c-.285.166-.428.404-.428.737v6.898zM12 15.128l-2.795-1.57v-3.33L12 8.658l2.795 1.57v3.33L12 15.128zm1.796 7.23c-1 0-1.927-.332-2.712-.927l4.686-2.712c.285-.166.428-.404.428-.737v-6.898l1.974 1.142c.167.095.238.238.238.428v5.233c0 2.545-1.974 4.472-4.614 4.472zm-5.637-5.303l-4.544-2.617c-1.308-.761-2.188-2.378-2.188-3.948A4.482 4.482 0 014.21 6.327v5.423c0 .333.143.571.428.738l5.947 3.449-1.95 1.118a.432.432 0 01-.476 0zm-.262 3.9c-2.688 0-4.662-2.021-4.662-4.519 0-.19.024-.38.047-.57l4.686 2.71c.286.167.571.167.856 0l5.97-3.448v2.26c0 .19-.07.333-.237.428l-4.543 2.616c-.619.357-1.356.523-2.117.523zm5.899 2.83a5.947 5.947 0 005.827-4.756C22.287 18.339 24 15.84 24 13.296c0-1.665-.713-3.282-1.998-4.448.119-.5.19-.999.19-1.498 0-3.401-2.759-5.947-5.946-5.947-.642 0-1.26.095-1.88.31A5.962 5.962 0 0010.205 0a5.947 5.947 0 00-5.827 4.757C1.713 5.447 0 7.945 0 10.49c0 1.666.713 3.283 1.998 4.448-.119.5-.19 1-.19 1.499 0 3.401 2.759 5.946 5.946 5.946.642 0 1.26-.095 1.88-.309a5.96 5.96 0 004.162 1.713z"]},"Z.AI":{"viewBox":"0 0 24 24","d":["M12.606 1.806l-1.677 2.388c-0.258 0.374-0.697 0.606-1.161 0.606h-9.162V1.794C0.594 1.806 12.606 1.806 12.606 1.806zM24 1.806L9.6 22.206 0 22.206 14.4 1.806zM11.394 22.206l1.69-2.4c0.258-0.374 0.697-0.606 1.161-0.606h9.149v3.006H11.394z"]}}};
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"})[c]);
+const slug = m => "logo-" + m.replace(/[^A-Za-z0-9]/g, "");
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const STATE = {hit: css("--hit"), dup: css("--dup"), miss: css("--miss")};
+const SAID = {hit: "right", dup: "on a target already clicked", miss: "wrong"};
+
+let ti = 0, focus = null, showOthers = true, showKey = true, view = null, scale = 1;
+
+// ---------- logos ----------
+$("#logos defs").innerHTML = Object.entries(D.logos).map(([m, l]) => l.d
+  ? `<symbol id="${slug(m)}" viewBox="${l.viewBox}">${l.d.map(d => `<path d="${d}"/>`).join("")}</symbol>` : "").join("");
+function disc(key, r, ring = "#fff", edge = 0.16) {
+  const m = D.models[key], l = D.logos[m.maker], s = 2 * r * 0.58;
+  const mark = l.d ? `<use href="#${slug(m.maker)}" x="${-s / 2}" y="${-s / 2}" width="${s}" height="${s}" fill="#fff"/>`
+    : `<text text-anchor="middle" dominant-baseline="central" fill="#fff" font-size="${r * 0.62}" font-weight="600">${esc(l.initials)}</text>`;
+  return `<circle r="${r}" fill="${m.colour}" stroke="${ring}" stroke-width="${r * edge}"/>${mark}`;
+}
+const icon = (key, px = 24) => `<svg width="${px}" height="${px}" viewBox="-12.5 -12.5 25 25">${disc(key, 11, "#fff", 0.1)}</svg>`;
+
+// ---------- data helpers ----------
+const task = () => D.tasks[ti];
+const shot = () => D.shots[task().shot];
+const answers = () => D.answers[task().key];
+const present = () => D.order.filter(k => k in answers());
+const entry = k => answers()[k] || null;  // each model's best try on this question
+const pct = v => `${Math.round(v * 100)}`;
+const money = v => v >= 0.1 ? `$${v.toFixed(2)}` : v >= 0.001 ? `$${v.toFixed(3)}` : `$${v.toPrecision(2)}`;
+const secs = v => v >= 60 ? `${Math.floor(v / 60)} min ${Math.round(v % 60)} s` : v >= 10 ? `${Math.round(v)} s` : `${v.toFixed(1)} s`;
+const onScreen = c => c[0] >= 0 && c[0] <= shot().w && c[1] >= 0 && c[1] <= shot().h;
+function rng(seed) { let h = 2166136261; for (const c of seed) h = Math.imul(h ^ c.charCodeAt(0), 16777619);
+  return () => ((h = Math.imul(h ^ (h >>> 15), 2246822507), h = Math.imul(h ^ (h >>> 13), 3266489909), (h ^= h >>> 16) >>> 0) / 4294967296); }
+function clickedBy(j) {  // models whose right click is on target j
+  return present().filter(k => (entry(k)?.clicks || []).some(c => c[2] === "hit" && c[3] === j));
+}
+
+// ---------- layout and zoom ----------
+const stage = $("#stage"), svg = $("#svg");
+function layout() {
+  const s0 = shot(), avail = stage.parentElement.clientWidth;
+  const narrow = innerWidth <= 1000;
+  const maxH = Math.max(300, narrow ? innerHeight * 0.72 : innerHeight - stage.getBoundingClientRect().top - scrollY - 70);
+  const s = Math.min(avail / s0.w, maxH / s0.h);
+  stage.style.width = `${Math.round(s0.w * s)}px`;
+  stage.style.height = `${Math.round(s0.h * s)}px`;
+  draw();
+}
+function resetView() { const s = shot(); view = {x: 0, y: 0, w: s.w, h: s.h}; }
+function clampView() {
+  const s = shot();
+  view.w = Math.min(s.w, Math.max(s.w / 24, view.w)); view.h = view.w * s.h / s.w;
+  view.x = Math.min(s.w - view.w, Math.max(0, view.x)); view.y = Math.min(s.h - view.h, Math.max(0, view.y));
+}
+function zoomAt(f, cx, cy) {
+  const nw = view.w / f, k = nw / view.w;
+  view.x = cx - (cx - view.x) * k; view.y = cy - (cy - view.y) * k; view.w = nw; clampView(); draw(); hideHint();
+}
+function zoomTo(b) {  // b = [left, top, right, bottom] in screenshot pixels
+  const s = shot(), pad = Math.max(60, (b[2] - b[0]) * 0.8);
+  view.w = Math.max(b[2] - b[0] + 2 * pad, (b[3] - b[1] + 2 * pad) * s.w / s.h);
+  view.x = (b[0] + b[2]) / 2 - view.w / 2; view.y = (b[1] + b[3]) / 2 - view.w * s.h / s.w / 2; clampView(); draw(); hideHint();
+}
+function toShot(ev) {
+  const r = stage.getBoundingClientRect();
+  return [view.x + (ev.clientX - r.left) / r.width * view.w, view.y + (ev.clientY - r.top) / r.height * view.h];
+}
+let pending = 0;
+function draw() { if (!pending) pending = requestAnimationFrame(() => { pending = 0; render(); }); }
+const bounds = g => g.circle ? [g.circle[0] - g.circle[2], g.circle[1] - g.circle[2], g.circle[0] + g.circle[2], g.circle[1] + g.circle[2]] : g.box;
+
+// ---------- drawing ----------
+function render() {
+  const t = task(), s = shot(), keys = present();
+  svg.setAttribute("viewBox", `${view.x} ${view.y} ${view.w} ${view.h}`);
+  scale = stage.clientWidth / view.w;
+  const u = 1 / scale;
+  const R = Math.min(1, Math.max(0.62, Math.max(stage.clientWidth, stage.clientHeight) / 1000));
+  let out = `<image href="${s.img}" width="${s.w}" height="${s.h}" style="image-rendering:${scale >= 2 ? "pixelated" : "auto"}"/>`;
+  if (focus !== null) out += `<rect width="${s.w}" height="${s.h}" fill="#000" opacity=".3" pointer-events="none"/>`;
+  if (showKey) t.targets.forEach((g, j) => {
+    const look = (stroke, w, fill) => `fill="${fill}" stroke="${stroke}" stroke-width="${w * u}"`;
+    const shape = a => g.circle ? `<circle cx="${g.circle[0]}" cy="${g.circle[1]}" r="${g.circle[2]}" ${a}/>`
+      : `<rect x="${g.box[0]}" y="${g.box[1]}" width="${g.box[2] - g.box[0]}" height="${g.box[3] - g.box[1]}" rx="${2 * u}" ${a}/>`;
+    out += `<g class="tgt" data-j="${j}">${shape(look("rgba(0,0,0,.55)", 4.5, "rgba(34,197,94,.16)"))}${shape(look(css("--key"), 2, "none"))}</g>`;
+  });
+  if (focus === null) {
+    const dots = [];
+    for (const k of keys) (entry(k)?.clicks || []).forEach((c, i) => onScreen(c) && dots.push([k, c, i]));
+    const r = rng(t.key);
+    for (let i = dots.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [dots[i], dots[j]] = [dots[j], dots[i]]; }
+    for (const [k, c, i] of dots)
+      out += `<g class="dot" data-k="${k}" data-i="${i}" transform="translate(${c[0]} ${c[1]})">${disc(k, 9 * R * u, STATE[c[2]], 0.22)}</g>`;
+  } else {
+    if (showOthers) for (const k of keys) if (k !== focus) (entry(k)?.clicks || []).forEach((c, i) => onScreen(c) &&
+      (out += `<circle class="dot" data-k="${k}" data-i="${i}" cx="${c[0]}" cy="${c[1]}" r="${3.6 * R * u}" fill="${D.models[k].colour}" stroke="#fff" stroke-width="${0.9 * R * u}" opacity=".85"/>`));
+    (entry(focus)?.clicks || []).forEach((c, i) => onScreen(c) &&
+      (out += `<g class="dot" data-k="${focus}" data-i="${i}" transform="translate(${c[0]} ${c[1]})"><circle r="${15 * R * u}" fill="none" stroke="${STATE[c[2]]}" stroke-width="${4 * R * u}"/>${disc(focus, 11 * R * u)}</g>`));
+  }
+  svg.innerHTML = out;
+}
+
+function renderAll() {
+  const t = task(), keys = present();
+  if (focus !== null && !(focus in answers())) focus = null;
+  $("#questions").innerHTML = D.tasks.map((x, i) =>
+    `<button class="${i === ti ? "on" : ""}" data-t="${i}" title="${esc(x.ask)}"><img src="${D.shots[x.shot].thumb}" alt="">${esc(x.name)}</button>`).join("");
+  // request
+  const m = focus && D.models[focus], spec = focus && entry(focus)?.prompt;
+  $("#ask").innerHTML = `Asked: <q>${esc(t.ask)}</q><span>${t.targets.length} right clicks</span>`
+    + (spec ? `<span>Text given to ${esc(m.label)}: “${esc(spec)}”</span>` : "");
+  // list
+  const total = keys.reduce((s, k) => s + (entry(k)?.clicks.length || 0), 0);
+  let list = `<button class="${focus === null ? "on" : ""}" data-k=""><span></span><span class="t">All models</span><span class="n">${total} clicks</span></button><div class="sep"></div>`
+    + `<div class="head"><span></span><span></span><span>score</span></div>`;
+  for (const k of keys) {
+    const e = entry(k);
+    const cls = e.f1 === 1 ? "full" : e.f1 === 0 ? "zero" : "";
+    list += `<button class="${k === focus ? "on" : ""}" data-k="${k}">${icon(k)}<span class="t">${esc(D.models[k].label)}</span>`
+      + `<span class="n ${cls}">${e.unreadable ? "—" : pct(e.f1)}</span></button>`;
+  }
+  $("#list").innerHTML = list;
+  // info
+  const msg = $("#msg");
+  msg.style.display = "none";
+  if (focus === null) {
+    const all = keys.flatMap(k => entry(k)?.clicks || []), right = all.filter(c => c[2] === "hit").length;
+    $("#info").innerHTML = `<span class="facts"><span><b>${keys.length}</b> models</span><span><b>${right}</b> of <b>${all.length}</b> clicks right</span>
+      <span>Each logo is one model's click; its ring says if it was right. Pick a model, or click a logo, to see one model alone. Click a green target to see who found it.</span></span>`;
+  } else {
+    const e = entry(focus), facts = [];
+    if (e.unreadable) {
+      msg.style.display = "flex"; msg.firstElementChild.textContent = `${m.label}: reply not readable. Nothing to draw.`;
+    } else {
+      const c = e.clicks, by = st => c.filter(x => x[2] === st).length;
+      facts.push(`<span><b>${c.length}</b> click${c.length === 1 ? "" : "s"}</span>`);
+      facts.push(`<span><b>${e.right}</b> of <b>${t.targets.length}</b> targets found</span>`);
+      if (by("dup")) facts.push(`<span><span class="sw" style="border-color:var(--dup)"></span><b>${by("dup")}</b> repeated</span>`);
+      if (by("miss")) facts.push(`<span><span class="sw" style="border-color:var(--miss)"></span><b>${by("miss")}</b> wrong</span>`);
+      facts.push(`<span>score <b>${pct(e.f1)}</b></span>`);
+      const off = c.filter(x => !onScreen(x)).length;
+      if (off) facts.push(`<span><b>${off}</b> off the screenshot (not drawn)</span>`);
+      if (!c.length) { msg.style.display = "flex"; msg.firstElementChild.textContent = `${m.label} gave no click.`; }
+    }
+    if (e.seconds != null) facts.push(`<span><b>${secs(e.seconds)}</b></span>`);
+    if (e.cost != null) facts.push(`<span><b>${money(e.cost)}</b>${m.kind === "specialist" ? " of GPU time" : " at list price"}</span>`);
+    if (m.level) facts.push(`<span>${esc(m.level)} thinking</span>`);
+    if (m.deterministic) facts.push(`<span>gives the same answer every try</span>`);
+    else if (e.of > 1) facts.push(`<span>best of ${e.of} tries (try ${e.try}; mean of the ${e.of}: ${pct(e.mean)})</span>`);
+    $("#info").innerHTML = `<span class="name">${icon(focus, 26)}${esc(m.label)}</span><span class="facts">${facts.join("")}</span>`
+      + (e.unreadable ? `<pre>${esc(e.unreadable)}</pre>` : "");
+  }
+  history.replaceState(null, "", `#${t.key}${focus ? "/" + focus : ""}`);
+  layout();
+}
+
+// ---------- interaction ----------
+function setTask(i) { ti = (i + D.tasks.length) % D.tasks.length; resetView(); renderAll(); }
+function setFocus(k) { focus = k || null; renderAll(); }
+$("#questions").onclick = e => { const b = e.target.closest("button"); if (b) setTask(+b.dataset.t); };
+$("#list").onclick = e => { const b = e.target.closest("button"); if (b) setFocus(b.dataset.k); };
+$("#others").onchange = e => { showOthers = e.target.checked; draw(); };
+$("#showKey").onchange = e => { showKey = e.target.checked; draw(); };
+$("#zin").onclick = () => zoomAt(1.6, view.x + view.w / 2, view.y + view.h / 2);
+$("#zout").onclick = () => zoomAt(1 / 1.6, view.x + view.w / 2, view.y + view.h / 2);
+$("#zreset").onclick = () => { resetView(); draw(); };
+let hinted = false;
+function hideHint() { if (!hinted) { hinted = true; $("#hint").style.opacity = 0; } }
+
+stage.addEventListener("wheel", e => {
+  e.preventDefault();
+  const [cx, cy] = toShot(e);
+  zoomAt(Math.exp(-e.deltaY * (e.deltaMode === 1 ? 0.05 : 0.0018)), cx, cy);
+}, {passive: false});
+
+const pointers = new Map();
+let dragFrom = null, pinchFrom = null, moved = false;
+stage.addEventListener("pointerdown", e => {
+  if (e.target.closest(".zoom")) return;
+  stage.setPointerCapture(e.pointerId);
+  pointers.set(e.pointerId, [e.clientX, e.clientY]);
+  moved = false;
+  if (pointers.size === 1) dragFrom = {x: e.clientX, y: e.clientY, vx: view.x, vy: view.y};
+  if (pointers.size === 2) { const [a, b] = [...pointers.values()]; pinchFrom = {d: Math.hypot(a[0] - b[0], a[1] - b[1]), w: view.w}; }
+});
+stage.addEventListener("pointermove", e => {
+  tip(e);
+  if (!pointers.has(e.pointerId)) return;
+  pointers.set(e.pointerId, [e.clientX, e.clientY]);
+  if (pointers.size === 2 && pinchFrom) {
+    const [a, b] = [...pointers.values()], d = Math.hypot(a[0] - b[0], a[1] - b[1]);
+    const [cx, cy] = toShot({clientX: (a[0] + b[0]) / 2, clientY: (a[1] + b[1]) / 2});
+    zoomAt(view.w / (pinchFrom.w * pinchFrom.d / d), cx, cy); moved = true;
+  } else if (dragFrom) {
+    const dx = e.clientX - dragFrom.x, dy = e.clientY - dragFrom.y;
+    if (Math.abs(dx) + Math.abs(dy) > 4) { moved = true; stage.classList.add("drag"); }
+    view.x = dragFrom.vx - dx / scale; view.y = dragFrom.vy - dy / scale; clampView(); draw();
+  }
+});
+function release(e) {
+  pointers.delete(e.pointerId);
+  if (pointers.size < 2) pinchFrom = null;
+  if (!pointers.size) {
+    stage.classList.remove("drag");
+    if (!moved && e.type === "pointerup") {
+      const under = document.elementFromPoint(e.clientX, e.clientY);
+      const dot = under?.closest(".dot"), tgt = under?.closest(".tgt");
+      if (dot && dot.dataset.k !== focus) setFocus(dot.dataset.k);
+      else if (!dot && tgt) zoomTo(bounds(task().targets[+tgt.dataset.j]));
+    } else if (moved) hideHint();
+    dragFrom = null;
+  }
+}
+stage.addEventListener("pointerup", release);
+stage.addEventListener("pointercancel", release);
+stage.addEventListener("pointerleave", () => { $("#tip").style.display = "none"; });
+stage.addEventListener("dblclick", () => { resetView(); draw(); });
+
+function tip(e) {
+  const el = $("#tip"), dot = pointers.size ? null : e.target.closest?.(".dot"), tgt = pointers.size ? null : e.target.closest?.(".tgt");
+  let text = "";
+  if (dot) {
+    const k = dot.dataset.k, c = entry(k).clicks[+dot.dataset.i];
+    text = `${D.models[k].label} · ${SAID[c[2]]}`;
+  } else if (tgt) {
+    const j = +tgt.dataset.j, who = clickedBy(j);
+    text = `${task().targets[j].id} · found by ${who.length} of ${present().length} models`;
+  }
+  if (!text) { el.style.display = "none"; return; }
+  const r = stage.getBoundingClientRect();
+  el.textContent = text; el.style.left = `${e.clientX - r.left}px`; el.style.top = `${e.clientY - r.top}px`; el.style.display = "block";
+}
+
+addEventListener("keydown", e => {
+  if (e.target.closest?.("input, textarea") || e.metaKey || e.ctrlKey || e.altKey) return;
+  const keys = present(), at = focus === null ? -1 : keys.indexOf(focus);
+  if (e.key === "ArrowRight") setTask(ti + 1);
+  else if (e.key === "ArrowLeft") setTask(ti - 1);
+  else if (e.key === "ArrowDown") setFocus(keys[Math.min(keys.length - 1, at + 1)]);
+  else if (e.key === "ArrowUp") setFocus(at <= 0 ? null : keys[at - 1]);
+  else if (e.key === "Escape") setFocus(null);
+  else if (e.key.toLowerCase() === "k") { $("#showKey").click(); }
+  else if (e.key === "0") { resetView(); draw(); }
+  else if (e.key === "+" || e.key === "=") $("#zin").click();
+  else if (e.key === "-") $("#zout").click();
+  else return;
+  e.preventDefault();
+});
+addEventListener("resize", layout);
+
+// ---------- start ----------
+const chartLinks = Object.values(D.charts).map(p => `<a href="${p}">the chart</a>`).join(" · ");
+$("#foot").innerHTML = `<span>Run of ${esc(D.run_date)}. Each language model got the screenshot and one plain prompt, never tuned: the task, “Where would you click to do it? Give one point for each click needed.”, at medium thinking, 3 tries. Each model's best try on each question is shown; scores on the chart are the mean of the 3.</span>
+  <span>A click is right when it lands on a target no earlier click has taken; score = F1 (right clicks count, wrong or extra ones cost). Answer key drawn by hand and checked by ${esc(Object.values(D.reviewer)[0] || "a person")}.</span>
+  <span>${chartLinks}${chartLinks ? " · " : ""}<a href="${D.repo}">Code and data</a> (Apache 2.0) · screenshots show other sites and are here only to show this benchmark (not covered by the photos' CC BY licence) · logos belong to their owners</span>`;
+function fromHash() {  // #fold-groups or #fold-groups/sol: one question, one model
+  const [hk, hm] = decodeURIComponent(location.hash.slice(1)).split("/");
+  const i = D.tasks.findIndex(t => t.key === hk);
+  if (i >= 0 && i !== ti) { ti = i; resetView(); }
+  focus = hm && hm in D.answers[D.tasks[ti].key] ? hm : null;
+  renderAll();
+}
+addEventListener("hashchange", fromHash);
+resetView();
+fromHash();
+</script>
+</body>
+</html>
