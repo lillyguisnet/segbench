@@ -1,7 +1,7 @@
 """Prompt v2 on synthetic pictures, before any benchmark photo: does every model
 answer with named x/y, in the right order, on both a wide and a tall picture?
 
-uv run --with pillow scripts/check_points_v2.py  ->  results/check-points-v2-<time>.jsonl
+uv run --with pillow scripts/check_points_v2.py [--tags] [models]  ->  results/check-points-{v2,tags}-<time>.jsonl
 
 Six red circles and four blue squares (distractors), at known places. Pass =
 one point inside each circle and no other point. A placement chosen so that
@@ -18,7 +18,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from segbench.call import call
 from segbench.models import BENCHMARKED, levels_for
 from segbench.point_score import read_points
-from segbench.tasks import BY_KEY, prompt_v2
+from segbench.perceptron import read_tag_answer
+from segbench.tasks import BY_KEY, prompt_tags, prompt_v2
 from run import image_settings
 
 def picture(w, h):
@@ -46,29 +47,30 @@ def grade(points, circles, r, w, h):
 def run(job):
     m, shape = job
     data, circles, r = pics[shape]
-    rec = call(m, data, "image/jpeg", prompt_v2("find", task), level="medium" if "medium" in levels_for(m.key) else None,
+    rec = call(m, data, "image/jpeg", (prompt_tags if TAGS else prompt_v2)("find", task), level="medium" if "medium" in levels_for(m.key) else None,
                **image_settings(m, "v2"))
-    rec.update(check="points-v2", shape=shape)
+    rec.update(check="points-tags" if TAGS else "points-v2", shape=shape)
     if "error" not in rec:
         try:
-            pts, how = read_points(rec["text"], parser="lenient")
+            pts, how = read_tag_answer(rec["text"]) if TAGS else read_points(rec["text"], parser="lenient")
             rec["read_as"] = how
             rec["hit"], rec["extra"] = grade(pts, circles, r, *dims[shape])
-            rec["named"] = '"x"' in rec["text"]
+            rec["named"] = how.startswith("tags") if TAGS else '"x"' in rec["text"]
         except Exception as e:
             rec["unreadable"] = str(e)
     return rec
 
-only = set(sys.argv[1:])
+TAGS = "--tags" in sys.argv  # prompt "tags" (Perceptron's own format) instead of v2
+only = set(sys.argv[1:]) - {"--tags"}
 jobs = [(m, s) for m in BENCHMARKED for s in pics if not only or m.key in only]
 with ThreadPoolExecutor(16) as pool:
     recs = list(pool.map(run, jobs))
-out = Path("results") / f"check-points-v2-{datetime.now():%Y%m%d-%H%M%S}.jsonl"
+out = Path("results") / f"check-points-{'tags' if TAGS else 'v2'}-{datetime.now():%Y%m%d-%H%M%S}.jsonl"
 out.write_text("".join(json.dumps(r) + "\n" for r in recs))
 for r in recs:
     if "error" in r: s = "ERROR " + r["error"][:100]
     elif "unreadable" in r: s = "UNREADABLE " + r["unreadable"][:80]
     else: s = (f"{'PASS' if r['hit'] == 6 and r['extra'] == 0 else 'fail'}  {r['hit']}/6 circles, {r['extra']} extra, "
-               f"{'named x/y' if r['named'] else 'NOT named'}, read {r['read_as']}, ${r.get('cost_usd') or 0:.4f}, {r['seconds']:.0f}s")
+               f"{('tags' if TAGS else 'named x/y') if r['named'] else ('NO tags' if TAGS else 'NOT named')}, read {r['read_as']}, ${r.get('cost_usd') or 0:.4f}, {r['seconds']:.0f}s")
     print(f"{r['model']:18} {r['shape']:4} {s}")
 print("saved", out)

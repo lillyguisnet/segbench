@@ -45,7 +45,13 @@ SHORT = {"logs": "Log ends", "cows": "Cows", "fig": "Fig leaves", "tree": "Red f
          "dishes": "Dishes"}
 REPO = "https://github.com/lillyguisnet/segbench"
 # The chart shown under the photo: the current point benchmark, all models. Change with each new version.
-CHART = ROOT / "charts" / "point-benchmark-v2.5" / "with-specialists" / "find.png"
+CHART = ROOT / "charts" / "point-benchmark-v2.6" / "with-specialists" / "find.png"
+
+
+def runs_of(dates) -> str:
+    """'Run of 2026-10-09', or 'Runs of 2026-10-09 to 2026-10-12' when models were added later."""
+    first, last = min(dates), max(dates)
+    return f"Run of {first}" if first == last else f"Runs of {first} to {last}"
 
 
 def logo(maker: str) -> dict:
@@ -114,7 +120,7 @@ def build(out: Path, runs: list[str], track: str) -> Path:
     if CHART.exists():  # every model's overall result, shown under the photo
         shutil.copy(CHART, out / "img" / "chart.png")
     data = {"track": track, "runs": [Path(r).stem for r in runs], "chart": "img/chart.png" if CHART.exists() else None,
-            "run_date": min(a.started_at for a in answers if a.started_at)[:10],
+            "run_date": runs_of([a.started_at[:10] for a in answers if a.started_at]),
             "repo": REPO, "tasks": tasks, "order": order, "models": models, "answers": by_task,
             "logos": {m: logo(m) for m in makers}}
 

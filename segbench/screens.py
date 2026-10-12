@@ -113,6 +113,19 @@ Reply with JSON only, in this shape:
 {COORDINATES}"""
 
 
+# Perceptron Mk1.5 only (2026-10-12): the same words with the reply paragraph
+# swapped for its own annotation tags (see segbench/tasks.py prompt_tags);
+# read by segbench/perceptron.py, a box's centre counting as its click.
+PROMPT_VERSION_TAGS = "screen-tags"
+
+
+def prompt_tags(task: ScreenTask) -> str:
+    return f"""This is a screenshot of a computer screen. Task: {task.instruction}
+Where would you click to do it? Give one point for each click needed.
+
+Return one point annotation per click."""
+
+
 # ---------------- reading answers, generously ----------------
 # Any of these counts as a click, wherever it sits in the reply (JSON,
 # code fence, prose): {"x": a, "y": b} (either order), "point"/"click"/

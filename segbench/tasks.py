@@ -96,6 +96,33 @@ If there are none, reply {{"objects": []}}.
 {COORDINATES_V2}"""
 
 
+# ---------------- prompt "tags" (2026-10-12): Perceptron's own answer format ----------------
+# For Perceptron Mk1.5 only (Maxime, 2026-10-12: try it with and without its
+# own format). Prompt v2's task words unchanged; only the reply paragraph is
+# swapped for the annotation tags Perceptron's docs ask for ("Return one
+# point annotation per ...", mention= for labels, "if none are visible, say
+# so without inventing" from its detection guide). No coordinate paragraph:
+# the tags' 0..1000 grid is the model's own. Written once, checked on the
+# synthetic pictures before any benchmark photo. Read by segbench/perceptron.py.
+PROMPT_VERSION_TAGS = "tags"
+
+
+def prompt_tags(track: str, task: Task) -> str:
+    if track not in ("find", "trick"):
+        raise ValueError("prompt tags covers the find and trick tracks only")
+    target = task.target if track == "find" else task.absent
+    labelled = track == "find" and bool(task.labels)
+    rule = _label_rule(task) if labelled else ""
+    note = f"\n{task.note}" if labelled and task.note else ""
+    mention = (" Give each label as its mention: " + " or ".join(f'mention="{x}"' for x in task.labels) + "."
+               if labelled else "")
+    return f"""Find {target} in this photo. Put one point on each one, inside it.{rule}{note}
+Mark every one you can see, however many there are. Do not stop early or give only a sample.
+
+Return one point annotation per object.{mention}
+If there are none, say so without inventing a point."""
+
+
 def applies(track: str, task: Task) -> bool:
     """Regions have nothing separate to find: they are only asked whole."""
     return not (track == "find" and task.kind == "region")

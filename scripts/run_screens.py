@@ -22,16 +22,16 @@ import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
-from lm15 import LMRouter
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "scripts"))
 from run import ATTEMPTS, BACKOFF_SECONDS, IMAGE_SETTINGS_V2, PER_PROVIDER  # noqa: E402
 
-from segbench.call import call  # noqa: E402
+from segbench.call import call, pool as call_pool  # noqa: E402
 from segbench.models import BENCHMARKED, BY_KEY  # noqa: E402
-from segbench.screens import BY_KEY as TASKS, PROMPT_VERSION, ROUNDS, prompt, read_clicks  # noqa: E402
+from segbench.perceptron import read_tags  # noqa: E402
+from segbench.screens import BY_KEY as TASKS, PROMPT_VERSION, PROMPT_VERSION_TAGS, ROUNDS, prompt, prompt_tags, read_clicks  # noqa: E402
 
 LEVEL = "medium"
 
@@ -40,23 +40,31 @@ def key_of(r):
     return (r["task"], r["model"], r["level"], r["repeat"], r["prompt_version"])
 
 
-def run_one(model, task, repeat, image, semaphores):
-    text = prompt(task)
+def run_one(model, task, repeat, image, semaphores, version=PROMPT_VERSION):
+    text = prompt_tags(task) if version == PROMPT_VERSION_TAGS else prompt(task)
     extra = IMAGE_SETTINGS_V2.get(model.route.split(":")[0], {})
     failed = []
-    with semaphores[LMRouter().resolve(model.route).provider]:
+    with semaphores[call_pool(model)]:
         for attempt in range(ATTEMPTS):
             record = call(model, image["bytes"], "image/png", text, level=LEVEL, **extra)
             if "error" not in record or not record.get("retryable") or attempt == ATTEMPTS - 1:
                 break
             failed.append({k: record.get(k) for k in ("started_at", "seconds", "error")})
             time.sleep(BACKOFF_SECONDS[min(attempt, len(BACKOFF_SECONDS) - 1)])
-    record.update({"track": "screen", "task": task.key, "repeat": repeat, "prompt_version": PROMPT_VERSION,
+    record.update({"track": "screen", "task": task.key, "repeat": repeat, "prompt_version": version,
                    "prompt": text, "image": "screenshots/" + task.image, "image_sha256": image["sha256"],
                    "image_size": image["size"], "failed_attempts": failed})
     if "error" not in record:
         try:
-            clicks, how = read_clicks(record["text"])
+            if version == PROMPT_VERSION_TAGS:  # Perceptron's tags (segbench/perceptron.py)
+                points, info = read_tags(record["text"])
+                if info["read_as"] == "tags":
+                    clicks = [{"x": p["point"][0], "y": p["point"][1], "form": p["form"]} for p in points]
+                    how = "tags" + (f" ({info['skipped']} skipped)" if info["skipped"] else "")
+                else:  # no tag: read like every other model's reply
+                    clicks, how = read_clicks(record["text"])
+            else:
+                clicks, how = read_clicks(record["text"])
             record.update(readable=True, read_as=how, clicks=clicks)
         except ValueError as error:
             record.update(readable=False, unreadable_because=str(error))
@@ -70,6 +78,7 @@ def main(argv):
     ap.add_argument("--tasks", nargs="*", default=[])
     ap.add_argument("--repeats", type=int, default=3)
     ap.add_argument("--round", type=int, default=1, choices=sorted(ROUNDS))
+    ap.add_argument("--prompt-version", choices=(PROMPT_VERSION, PROMPT_VERSION_TAGS), default=PROMPT_VERSION)
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args(argv)
 
@@ -83,10 +92,11 @@ def main(argv):
             if "error" not in r or not r.get("retryable"):
                 done.add(key_of(r))
     jobs = [(m, t, i) for m in models for t in tasks for i in range(args.repeats)]
-    todo = [j for j in jobs if (j[1].key, j[0].key, LEVEL, j[2], PROMPT_VERSION) not in done]
+    version = args.prompt_version
+    todo = [j for j in jobs if (j[1].key, j[0].key, LEVEL, j[2], version) not in done]
     print(f"{len(jobs)} calls planned, {len(jobs) - len(todo)} already in {out.name}, {len(todo)} to send")
     if args.dry_run:
-        print("\n" + prompt(tasks[0]))
+        print("\n" + (prompt_tags(tasks[0]) if version == PROMPT_VERSION_TAGS else prompt(tasks[0])))
         return 0
 
     images = {}
@@ -97,10 +107,10 @@ def main(argv):
         size = [int.from_bytes(data[16:20], "big"), int.from_bytes(data[20:24], "big")]
         images[t.key] = {"bytes": data, "sha256": hashlib.sha256(data).hexdigest(), "size": size}
     semaphores = {p: threading.Semaphore(PER_PROVIDER[p])
-                  for p in {LMRouter().resolve(m.route).provider for m in models}}
+                  for p in {call_pool(m) for m in models}}
     start, lock = time.time(), threading.Lock()
     with ThreadPoolExecutor(max_workers=64) as pool, out.open("a") as f:
-        futures = [pool.submit(run_one, m, t, i, images[t.key], semaphores) for m, t, i in todo]
+        futures = [pool.submit(run_one, m, t, i, images[t.key], semaphores, version) for m, t, i in todo]
         for n, fut in enumerate(as_completed(futures), 1):
             r = fut.result()
             with lock:

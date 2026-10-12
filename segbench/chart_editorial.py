@@ -510,6 +510,10 @@ def _labels(fig, ax, fonts: Fonts, pts, best_ids, names, X, Y, curve, accent: st
         else:
             xc = min(c[0] - c[2] for c in cs) - (10 + extra) * ppt
             bxs = [(xc - w, t - h, xc, t) for t, (w, h) in zip(tops, sizes)]
+        # never past the picture's edge (2026-10-12: "Muse Wonder Full" lost its last word at the
+        # right edge): a column that would leave the frame moves sideways back into it
+        dx = min(0.0, frame[2] - max(b[2] for b in bxs)) + max(0.0, frame[0] - min(b[0] for b in bxs))
+        bxs = [(b[0] + dx, b[1], b[2] + dx, b[3]) for b in bxs]
         best_col = None
         for k in range(61):
             dy = (k + 1) // 2 * 5 * ppt * (1 if k % 2 else -1)
@@ -525,6 +529,8 @@ def _labels(fig, ax, fonts: Fonts, pts, best_ids, names, X, Y, curve, accent: st
                 d = math.hypot(end[0] - c[0], end[1] - c[1]) or 1
                 rim = (c[0] + (end[0] - c[0]) / d * c[2], c[1] + (end[1] - c[1]) / d * c[2])
                 pen += 2000 * sum(_inside_length(rim, end, t) for t in taken if t not in curve_boxes)
+                # ...including the other labels of this same column
+                pen += 2000 * sum(_inside_length(rim, end, o) for o in moved if o is not b)
                 # ...and a line through another model's logo reads as pointing at that model
                 pen += 2000 * sum(_inside_length(rim, end, (x - r * .8, y - r * .8, x + r * .8, y + r * .8))
                                   for x, y, r in circles if (x, y, r) != tuple(c))

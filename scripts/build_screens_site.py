@@ -42,7 +42,7 @@ from segbench.point_score import maximum_matching  # noqa: E402
 from segbench.screens import BY_KEY as TASKS, ROUNDS, hits  # noqa: E402
 
 sys.path.insert(0, str(ROOT / "scripts"))
-from build_site import REPO, logo  # noqa: E402
+from build_site import REPO, logo, runs_of  # noqa: E402
 
 SHOWN = (2,)  # rounds on the page: round 2 only (round 1 had one right click per question)
 KEYS = {2: ROOT / "annotations/screens/key-round2.json"}
@@ -144,7 +144,7 @@ def build(out: Path) -> Path:
             charts[rnd] = f"charts/round-{rnd}.png"
 
     run_dates = [r["started_at"][:10] for r in rows if r.get("started_at")]
-    data = {"repo": REPO, "run_date": min(run_dates), "shots": shots, "tasks": tasks, "order": order,
+    data = {"repo": REPO, "run_date": runs_of(run_dates), "shots": shots, "tasks": tasks, "order": order,
             "models": models, "answers": answers, "charts": charts,
             "reviewer": {r: k.get("reviewer") for r, k in keys.items()},
             "logos": {m: logo(m) for m in sorted({m["maker"] for m in models.values()})}}

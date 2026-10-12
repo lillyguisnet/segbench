@@ -1,6 +1,6 @@
 {
   "sources": {
-    "results/run-screens-2.jsonl": "dd3b50bf16e42c888b2958e22170ad1fa27ba42a6f3a687dc58293aae8edfa57",
+    "results/run-screens-2.jsonl": "641f3781e34b5bc1f70dab73e1b60dad6555ec91fefe8b73865af9eaa64896e7",
     "results/run-screens-local-1.jsonl": "60f0311a125163b6de91f1fcbdd8cde91f1b82d47953dfb326dee89fc524faf3",
     "results/run-screens-local-1-la.jsonl": "a7bef5b0f3f1a273aec6b7b2fcfa68b9e005ab42ae8b503677cfb4e8fcbaf183",
     "results/run-screens-local-1-ovd.jsonl": "edfdd840b6042e1dac179301e8fc682d917ae6fb94d970fd88b745e0b7500635",
@@ -13,9 +13,15 @@
   "key_status": "accepted by lilly",
   "renderer": "scripts/draw_charts.py --style editorial --track find --names all --title ...",
   "label_spots": {
-    "sam3": "right",
-    "moondream-3.1": "above",
-    "florence2-large-grounding": "above"
+    "screens-2": {
+      "sam3": "right",
+      "moondream-3.1": "above",
+      "florence2-large-grounding": "above",
+      "muse-wonder@medium": "right"
+    },
+    "screens-2/language-models": {
+      "opus@medium": "above"
+    }
   },
   "metric": "F1 of clicks on the key's targets (one click per target), mean over tries, then over the questions",
   "caveats": [

@@ -11,22 +11,32 @@ import time
 import traceback
 from datetime import datetime, timezone
 
-from lm15 import Config, LMRouter, Message, Reasoning, Request
+from lm15 import Config, LMRouter, Message, Reasoning, Request, Timeouts
+from lm15.router import RouterConfig
 from lm15.errors import RETRYABLE_ERRORS
 from lm15.serde import response_to_dict, usage_to_dict
 from lm15.types import image as image_part
 
-from . import cost
+from . import cost, muse_plan
 from .models import THINKING, Model
 
 SUBSCRIPTION_PROVIDERS = {"openai-codex", "claude-code"}
+# Plans reached with a key of their own rather than a provider route.
+SUBSCRIPTION_CREDENTIALS = {muse_plan.CREDENTIAL}
 
 # Ceiling on the reply, thinking included. Generous on purpose: a model that
 # thinks long before drawing 30 polygons must not be cut off. The Codex
 # backend refuses any ceiling, so it gets none.
 MAX_TOKENS = 32_000
 
-_router = LMRouter()
+# How long a call may wait for its reply: lm15's default (10 minutes without
+# a byte), the same for every model. On 2026-10-12 three Muse Wonder Full
+# calls on the log photo got no reply for 10 minutes and were sent again;
+# the rerun answered the same questions in 37-69 s, so that was a stall on
+# Meta's side, not a long answer, and the default stays.
+TIMEOUTS = Timeouts()
+
+_router = LMRouter(RouterConfig(timeouts=TIMEOUTS))
 
 
 def _gemini_media_resolution_patch() -> None:
@@ -63,6 +73,11 @@ def _gemini_media_resolution_patch() -> None:
 _gemini_media_resolution_patch()
 
 
+def pool(model: Model) -> str:
+    """Which concurrency pool a model's calls share: its plan, else its provider."""
+    return model.credential or _router.resolve(model.route).provider
+
+
 def call(model: Model, image: bytes | None, media_type: str, prompt: str,
          effort: str | None = None, level: str | None = None, detail: str | None = None,
          media_resolution: str | None = None) -> dict:
@@ -80,7 +95,15 @@ def call(model: Model, image: bytes | None, media_type: str, prompt: str,
         chosen = THINKING[model.key][level]
         effort = chosen.get("effort")
         extensions.update(chosen.get("extensions", {}))
-    route = _router.resolve(model.route)
+    router, credential = _router, None
+    if model.credential == muse_plan.CREDENTIAL:
+        try:
+            router, credential = muse_plan.router()
+        except muse_plan.NotOnPlan as error:  # never fall back to the pay-per-token key
+            return {"model": model.key, "route": model.route, "level": level,
+                    "started_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                    "error": f"NotOnPlan: {error}", "retryable": False}
+    route = router.resolve(model.route)
     record: dict = {
         "model": model.key,
         "route": model.route,
@@ -91,8 +114,10 @@ def call(model: Model, image: bytes | None, media_type: str, prompt: str,
         "effort": effort,
         "extensions": extensions or None,
         "image_detail": detail,
+        **(credential or {}),
     }
-    if (model.billing == "subscription") != (route.provider in SUBSCRIPTION_PROVIDERS):
+    on_plan = route.provider in SUBSCRIPTION_PROVIDERS or model.credential in SUBSCRIPTION_CREDENTIALS
+    if (model.billing == "subscription") != on_plan:
         record["error"] = f"route resolves to {route.provider!r}, which does not match billing {model.billing!r}"
         return record
 
@@ -105,7 +130,7 @@ def call(model: Model, image: bytes | None, media_type: str, prompt: str,
     try:  # building the request can refuse a setting too (an effort word, an image detail)
         content = [prompt] if image is None else [image_part(data=image, media_type=media_type, detail=detail), prompt]
         request = Request(model=model.route, messages=(Message.user(content),), config=Config(**settings))
-        response = _router.complete(request)
+        response = router.complete(request)
     except Exception as error:
         record["seconds"] = round(time.perf_counter() - start, 3)
         record["error"] = f"{type(error).__name__}: {error}"

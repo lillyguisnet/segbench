@@ -390,7 +390,7 @@ if (chart) {  // every model's overall result, under the screenshot
   $("#overall").hidden = false;
 }
 const chartLinks = "";
-$("#foot").innerHTML = `<span>Run of ${esc(D.run_date)}. Each language model got the screenshot and one plain prompt, never tuned: the task, “Where would you click to do it? Give one point for each click needed.”, at medium thinking, 3 tries. Each model's best try on each question is shown; scores on the chart are the mean of the 3.</span>
+$("#foot").innerHTML = `<span>${esc(D.run_date)}. Each language model got the screenshot and one plain prompt, never tuned: the task, “Where would you click to do it? Give one point for each click needed.”, at medium thinking, 3 tries. Each model's best try on each question is shown; scores on the chart are the mean of the 3.</span>
   <span>A click is right when it lands on a target no earlier click has taken; score = F1 (right clicks count, wrong or extra ones cost). Answer key drawn by hand and checked by ${esc(Object.values(D.reviewer)[0] || "a person")}.</span>
   <span>${chartLinks}${chartLinks ? " · " : ""}<a href="${D.repo}">Code and data</a> (Apache 2.0) · screenshots show other sites and are here only to show this benchmark (not covered by the photos' CC BY licence) · logos belong to their owners</span>`;
 function fromHash() {  // #fold-groups or #fold-groups/sol: one question, one model

@@ -25,7 +25,13 @@ TITLE = "How well can AI click the right thing on a screen?"
 # SAM 3's label beside its logo on the 0% line, which frees the spot just above
 # Moondream's logo; Florence-2 Large's just above its logo (else it touches
 # SAM 3's by 2 px and the placer sends it far off with a long line).
-LABEL_SPOTS = {"screens-2": {"sam3": "right", "moondream-3.1": "above", "florence2-large-grounding": "above"}}
+# 2026-10-12: Muse Wonder's beside its disc (with Muse Wonder Full, GPT-6 Astra
+# and Gemini 3.1 Pro all near it, the automatic column put labels on top of
+# each other).
+LABEL_SPOTS = {"screens-2": {"sam3": "right", "moondream-3.1": "above", "florence2-large-grounding": "above",
+                             "muse-wonder@medium": "right"},
+               # one variant only: "<chart>/<variant>", added to the chart's own
+               "screens-2/language-models": {"opus@medium": "above"}}
 
 
 def f1(clicks, targets):
@@ -59,7 +65,8 @@ def main(runs: list[Path], key_path: Path, name: str, title: str = TITLE):
         calls = out / "calls.jsonl"
         calls.write_text("".join(json.dumps(r) + "\n" for r in vrows))
         here = {r["entrant"] for r in vrows}
-        spots = [f"--label-spot={e}={s}" for e, s in LABEL_SPOTS.get(name, {}).items() if e in here]
+        pinned = {**LABEL_SPOTS.get(name, {}), **LABEL_SPOTS.get(f"{name}/{variant}", {})}
+        spots = [f"--label-spot={e}={s}" for e, s in pinned.items() if e in here]
         subprocess.run(["uv", "run", str(ROOT / "scripts/draw_charts.py"), str(calls), "--style", "editorial",
                         "--track", "find", "--names", "all", "--title", title, "--out", str(out), *spots],
                        cwd=ROOT, check=True)
@@ -68,7 +75,7 @@ def main(runs: list[Path], key_path: Path, name: str, title: str = TITLE):
         "sources": {str(r.relative_to(ROOT)): digest(r) for r in runs},
         "key": str(key_path.relative_to(ROOT)), "key_sha256": digest(key_path), "key_status": key["status"],
         "renderer": "scripts/draw_charts.py --style editorial --track find --names all --title ...",
-        "label_spots": LABEL_SPOTS.get(name, {}),
+        "label_spots": {k: v for k, v in LABEL_SPOTS.items() if k == name or k.startswith(name + "/")},
         "metric": "F1 of clicks on the key's targets (one click per target), mean over tries, then over the questions",
         "caveats": ["Five screenshots cannot support broad claims.",
                     "Language-model seconds include the internet and the provider's queue; local models' do not.",

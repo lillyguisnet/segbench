@@ -31,27 +31,30 @@ from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
-from lm15 import LMRouter
 
 from segbench import parse
 from segbench.point_score import read_points
-from segbench.call import call
+from segbench.call import call, pool as call_pool
 from segbench.models import BENCHMARKED, BY_KEY, levels_for
 from segbench.tasks import BY_KEY as TASKS_BY_KEY
-from segbench.tasks import PROMPT_VERSION, PROMPT_VERSION_V2, TASKS, TRACKS, applies, prompt, prompt_v2
+from segbench.perceptron import read_tag_answer
+from segbench.tasks import (PROMPT_VERSION, PROMPT_VERSION_TAGS, PROMPT_VERSION_V2, TASKS, TRACKS, applies, prompt,
+                            prompt_tags, prompt_v2)
 
 ROOT = Path(__file__).resolve().parents[1]
 ATTEMPTS = 3
 BACKOFF_SECONDS = (15, 60)
 # Calls in flight at once per provider. Subscriptions are shared with the
 # family's own use, so they get fewer.
-PER_PROVIDER = defaultdict(lambda: 6, {"openai-codex": 4, "claude-code": 3})
+PER_PROVIDER = defaultdict(lambda: 6, {"openai-codex": 4, "claude-code": 3, "muse-code": 3})  # muse-code: our Muse Code plan (segbench/muse_plan.py)
 
 # Prompt v2 also asks each provider for the most image detail it offers
 # (scripts/probe_detail.py, 2026-10-09, input tokens of a 4000x2252 picture):
 # Gemini ULTRA_HIGH on the image part doubles it (1,108 -> 2,213); OpenAI's
 # default already takes the most (10,674; "high" would lower it to ~2,950);
 # GLM, DeepSeek, Kimi and Qwen ignore "high"; Anthropic has no setting.
+# Meta (Muse Wonder, 2026-10-12): "high" and "low" change nothing; the
+# default already takes the most (4,096 tokens, its cap; 2000x1126 takes 2,856).
 IMAGE_SETTINGS_V2 = {"gemini": {"media_resolution": "MEDIA_RESOLUTION_ULTRA_HIGH"}}
 
 
@@ -62,12 +65,14 @@ PROMPT_VERSION_V1_HD = "v1-hd"
 
 
 def image_settings(model, version: str) -> dict:
-    if version not in (PROMPT_VERSION_V2, PROMPT_VERSION_V1_HD):
+    if version not in (PROMPT_VERSION_V2, PROMPT_VERSION_V1_HD, PROMPT_VERSION_TAGS):
         return {}
     return IMAGE_SETTINGS_V2.get(model.route.split(":")[0], {})
 
 
 def prompt_for(version: str, track: str, task) -> str:
+    if version == PROMPT_VERSION_TAGS:
+        return prompt_tags(track, task)
     return prompt_v2(track, task) if version == PROMPT_VERSION_V2 else prompt(track, task)
 
 
@@ -104,7 +109,7 @@ def run_one(model, level, task, track, repeat, images, semaphores, version=PROMP
     text = prompt_for(version, track, task)
     extra = image_settings(model, version)
     failed = []
-    with semaphores[LMRouter().resolve(model.route).provider]:
+    with semaphores[call_pool(model)]:
         for attempt in range(ATTEMPTS):
             record = call(model, image["bytes"], "image/jpeg", text, level=level, **extra)
             if "error" not in record or not record.get("retryable") or attempt == ATTEMPTS - 1:
@@ -119,7 +124,11 @@ def run_one(model, level, task, track, repeat, images, semaphores, version=PROMP
     })
     if "error" not in record:
         try:
-            if version == PROMPT_VERSION_V2:  # named x/y; same reader as the scorer
+            if version == PROMPT_VERSION_TAGS:  # Perceptron's tags; same reader as the scorer
+                labels = task.labels if track == "find" else ()
+                points, how = read_tag_answer(record["text"], labels)
+                answer, record["read_as"] = {"items": points}, how
+            elif version == PROMPT_VERSION_V2:  # named x/y; same reader as the scorer
                 points, how = read_points(record["text"], labelled=track == "find" and bool(task.labels),
                                           parser="lenient")
                 answer, record["read_as"] = {"items": points}, how
@@ -140,7 +149,8 @@ def main(argv: list[str]) -> int:
     ap.add_argument("--tracks", nargs="*", default=list(TRACKS), help=f"{list(TRACKS)} (default: all)")
     ap.add_argument("--repeats", type=int, default=1)
     ap.add_argument("--dry-run", action="store_true", help="print the plan and one prompt per track, call nothing")
-    ap.add_argument("--prompt-version", choices=(PROMPT_VERSION, PROMPT_VERSION_V2, PROMPT_VERSION_V1_HD),
+    ap.add_argument("--prompt-version", choices=(PROMPT_VERSION, PROMPT_VERSION_V2, PROMPT_VERSION_V1_HD,
+                                                 PROMPT_VERSION_TAGS),
                     default=PROMPT_VERSION,
                     help="v2: named x/y, 'mark every one', most image detail; find and trick tracks only")
     args = ap.parse_args(argv)
@@ -153,8 +163,8 @@ def main(argv: list[str]) -> int:
     out = ROOT / "results" / f"run-{args.name}.jsonl"
     done = done_keys(out)
     version = args.prompt_version
-    if version == PROMPT_VERSION_V2 and set(args.tracks) - {"find", "trick"}:
-        ap.error("prompt v2 covers --tracks find trick only")
+    if version in (PROMPT_VERSION_V2, PROMPT_VERSION_TAGS) and set(args.tracks) - {"find", "trick"}:
+        ap.error(f"prompt {version} covers --tracks find trick only")
     todo = [j for j in jobs if (j[3], j[2].key, j[0].key, j[1], j[4], version) not in done]
     print(f"{len(jobs)} calls planned, {len(jobs) - len(todo)} already in {out.name}, {len(todo)} to send")
 
@@ -171,7 +181,7 @@ def main(argv: list[str]) -> int:
         data = (ROOT / "images" / task.photo).read_bytes()
         images[task.photo] = {"bytes": data, "sha256": hashlib.sha256(data).hexdigest()}
     semaphores = {p: threading.Semaphore(PER_PROVIDER[p])
-                  for p in {LMRouter().resolve(m.route).provider for m in models}}
+                  for p in {call_pool(m) for m in models}}
 
     lock = threading.Lock()
     start = time.time()

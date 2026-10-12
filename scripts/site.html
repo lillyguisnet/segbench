@@ -351,7 +351,7 @@ if (D.chart) {  // every model's overall result, under the photo
     <a href="${D.chart}" title="Open the chart full size"><img src="${D.chart}" width="2160" height="2160" loading="lazy" alt="Chart: each model's score against its cost, all four photos"></a>`;
   $("#overall").hidden = false;
 }
-$("#foot").innerHTML = `<span>Run of ${esc(D.run_date)}: language models at medium thinking, each with the better of two prompts; specialists on our GPU. Each model's first of 3 tries is shown.</span>
+$("#foot").innerHTML = `<span>${esc(D.run_date)}: language models at medium thinking, each with the better of two prompts; specialists on our GPU. Each model's first of 3 tries is shown.</span>
   <span>This shows where models pointed. Scores, against points checked by a person, are on the chart above.</span>
   <span><a href="${D.repo}">Code and data</a> (Apache 2.0) · photos CC BY 4.0 · logos belong to their owners</span>`;
 function fromHash() {  // #cows or #cows/terra: a link to one photo and one model

@@ -7,6 +7,9 @@ find,gemini-pro@medium,Gemini 3.1 Pro,general,Google,gemini-pro,medium,,,0.93333
 find,glm-5.3-flash@medium,GLM 5.3 Flash,general,Z.AI,glm-5.3-flash,medium,,,0.5988888888888889,0.5733333333333334,0.62,0.0006322,7.044,15,3,5,5,False
 find,kimi-k3@medium,Kimi K3,general,Moonshot,kimi-k3,medium,,,0.5265432098765432,0.4796296296296296,0.6,0.03070208,50.066,15,3,5,5,False
 find,luna@medium,GPT-6 Luna,general,OpenAI,luna,medium,,,0.9199999999999999,0.7866666666666667,0.9866666666666667,0.00038026000000000005,4.388,15,3,5,5,False
+find,mk1.5@medium,Perceptron Mk1.5,general,Perceptron,mk1.5,medium,,,0.44743589743589746,0.3,0.55,0.00627852,14.666,15,3,5,5,False
+find,muse-wonder@medium,Muse Wonder,general,Meta,muse-wonder,medium,,,0.9714285714285713,0.9714285714285713,0.9714285714285713,0.028455466666666665,11.795,15,3,5,5,False
+find,muse-wonder-full@medium,Muse Wonder Full,general,Meta,muse-wonder-full,medium,,,1.0,1.0,1.0,0.029331466666666663,16.168,15,3,5,5,False
 find,opus@medium,Claude Opus 5.5,general,Anthropic,opus,medium,,,0.9846153846153847,0.9846153846153847,0.9846153846153847,0.016150666666666667,3.049,15,3,5,5,False
 find,qwen-27b@medium,Qwen 3.8 27B,general,Alibaba,qwen-27b,medium,,,0.730164476046829,0.6961344537815126,0.7846153846153847,0.00426224,23.776,15,3,5,5,False
 find,qwen-flash@medium,Qwen 3.8 Flash Next,general,Alibaba,qwen-flash,medium,,,0.6333333333333333,0.6,0.6666666666666667,0.001994612,46.56,15,3,5,5,False

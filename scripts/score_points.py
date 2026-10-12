@@ -20,6 +20,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+from segbench.perceptron import read_tag_answer
 from segbench.point_score import (VERSION, TOLERANCES, DIAGONAL_CAP, read_points, reference_distances, score,
                                   timed_on_free_gpu)
 from segbench.chart_data import describe
@@ -88,7 +89,10 @@ def build(reference, inputs, out, parser='strict', method='docs/point-benchmark-
             try:
                 if r.get('error'):
                     raise ValueError(r['error'])
-                points, how = read_points(r.get('text', ''), labelled=k == 'dishes', parser=parser)
+                if r.get('prompt_version') == 'tags':  # Perceptron's own tags (segbench/perceptron.py)
+                    points, how = read_tag_answer(r.get('text', ''), ('dirty', 'clean') if k == 'dishes' else ())
+                else:
+                    points, how = read_points(r.get('text', ''), labelled=k == 'dishes', parser=parser)
                 need_label = k == 'dishes' and dish_labels == 'required'
                 scored = score(points, refs[k], task_meta[k]['width'], task_meta[k]['height'], labelled=need_label)
                 if k == 'dishes' and dish_labels == 'separate':

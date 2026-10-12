@@ -30,6 +30,9 @@ class Model:
     # Three thinking levels, each as lm15 settings: {"effort": word} and/or
     # {"extensions": {...}}. See THINKING below for why each is what it is.
     thinking: dict | None = None
+    # Where the key comes from when it is not lm15's usual one for the route.
+    # "muse-code": our Muse Code plan's login (segbench/muse_plan.py).
+    credential: str | None = None
 
 
 MODELS: tuple[Model, ...] = (
@@ -73,6 +76,28 @@ MODELS: tuple[Model, ...] = (
     Model("qwen-flash", "Qwen 3.8 Flash Next", "Alibaba", "openrouter:qwen/qwen3.8-flash", "per-token", True,
           "OpenRouter name qwen/qwen3.8-flash (hugging_face_id Qwen/Qwen3.8-Flash-Next); pinned to Alibaba; circle test passed 2026-10-10",
           extensions={"provider": {"order": ["Alibaba"], "allow_fallbacks": False}}),
+    # Added 2026-10-12 (Maxime). Closed weights: Perceptron's API, reached
+    # through OpenRouter, whose only host for it is Perceptron itself.
+    # OpenRouter does not pass Perceptron's own "vision_config" switch
+    # (annotation_format): checked 2026-10-12, identical replies with and
+    # without it. Its own answer format (tags) is tested as a prompt instead:
+    # prompt version "tags" (segbench/tasks.py, segbench/perceptron.py).
+    Model("mk1.5", "Perceptron Mk1.5", "Perceptron", "openrouter:perceptron/perceptron-mk1.5", "per-token", True,
+          "OpenRouter perceptron/perceptron-mk1.5 (snapshot 20260925), pinned to Perceptron; circle test passed 2026-10-12",
+          extensions={"provider": {"order": ["Perceptron"], "allow_fallbacks": False}}),
+    # Added 2026-10-12 (Maxime): Meta's Muse Wonder and Muse Wonder Full,
+    # released that day. Both are called on our Muse Code plan (Power Usage),
+    # with the plan's own key from `muse login`, never the pay-per-token
+    # META_API_KEY: segbench/muse_plan.py. Full exists only on the plan (the
+    # pay-per-token key gets HTTP 404 for it). The plain ids, not the
+    # "-contributor" copies Meta may train on (see muse_plan.py).
+    Model("muse-wonder", "Muse Wonder", "Meta", "meta:muse-wonder-1.0", "subscription", True,
+          "circle test passed 2026-10-12 (pay-per-token key, then on the plan); cannot stop thinking",
+          credential="muse-code"),
+    Model("muse-wonder-full", "Muse Wonder Full", "Meta", "meta:muse-wonder-full-1.0", "subscription", True,
+          "Muse Code Power or Maximum Usage plan only; circle test passed on the plan 2026-10-12 (4 of 4, 32 s); "
+          "no per-token price exists (see prices.json)",
+          credential="muse-code"),
 )
 
 # Minimum, medium and maximum thinking, in each model's own levels (checked
@@ -107,6 +132,16 @@ THINKING = {
     "qwen-27b":          {"min": {"effort": "off"}, "medium": {"effort": "medium"}, "max": {"effort": "max"}},
     # Checked 2026-10-10 (scripts/probe_thinking.py): off 0 thinking tokens, medium accepted.
     "qwen-flash":        {"min": {"effort": "off"}, "medium": {"effort": "medium"}, "max": {"effort": "max"}},
+    # OpenRouter lists none, minimal, low, medium, high (default high) for Mk1.5.
+    "mk1.5":             {"min": {"effort": "off"}, "medium": {"effort": "medium"}, "max": {"effort": "high"}},
+    # Checked 2026-10-12 (scripts/probe_thinking.py): Meta refuses "none" for
+    # both and accepts minimal, low, medium, high, xhigh, max. Thinking tokens
+    # on the test question, one try each: Wonder 178, 291, 254, 369, 350, 630
+    # (default 415); Full on the plan 151, 289, 281, 323, 209, 209 (default
+    # 367). Like GPT-6 Astra and Sol, they cannot stop thinking: min is their
+    # lowest level, medium the middle.
+    "muse-wonder":       {"min": {"effort": "minimal"}, "medium": {"effort": "medium"}, "max": {"effort": "max"}},
+    "muse-wonder-full":  {"min": {"effort": "minimal"}, "medium": {"effort": "medium"}, "max": {"effort": "max"}},
 }
 LEVELS = ("min", "medium", "max")
 # Dropped 2026-10-09: "max" for Kimi K3 and GPT-6 Astra. Measured at up to

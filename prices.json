@@ -83,6 +83,24 @@
           "output": 0.47,
           "listed_as": "qwen/qwen3.8-flash on the Alibaba host",
           "note": "added 2026-10-10: price read from OpenRouter that day (Alibaba endpoint), kept in this snapshot so one price table serves the run; OpenRouter also reports each call's cost"
+        },
+        "mk1.5": {
+          "input": 0.15,
+          "output": 1.5,
+          "listed_as": "perceptron/perceptron-mk1.5 on the Perceptron host",
+          "note": "added 2026-10-12: price read from OpenRouter that day (Perceptron endpoint; same as Perceptron's own docs), kept in this snapshot so one price table serves the run; OpenRouter also reports each call's cost"
+        },
+        "muse-wonder": {
+          "input": 4.0,
+          "output": 20.0,
+          "listed_as": "meta/muse-wonder",
+          "note": "added 2026-10-12: price read from OpenRouter's catalogue that day, kept in this snapshot so one price table serves the run; called direct on Meta's API. Meta counts thinking inside output_tokens. Called through our Muse Code plan; API price"
+        },
+        "muse-wonder-full": {
+          "input": 4.0,
+          "output": 20.0,
+          "listed_as": "meta/muse-wonder (Muse Wonder's API price)",
+          "note": "added 2026-10-12 (Maxime): Muse Wonder Full is sold only inside the Muse Code plan and has no per-token price anywhere (Meta's API, OpenRouter, checked that day). Its tokens are priced at Muse Wonder's API price, as every plan-called model is priced at an API price; not marked on the chart. If Meta ever sells Full per token, it will likely cost more than this"
         }
       }
     }

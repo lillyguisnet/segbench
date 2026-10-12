@@ -10,6 +10,7 @@ owners; they are **not** covered by this project's Apache 2.0 licence.
 
 | `nvidia.svg` | NVIDIA | [Simple Icons](https://simpleicons.org) 16.34.0 | CC0 1.0 |
 | `microsoft.svg`, `ai2.svg` | Microsoft (Florence-2), Ai2 (MolmoPoint) | [Lobe Icons](https://github.com/lobehub/lobe-icons) (`@lobehub/icons-static-svg` 1.95.1); the Microsoft file is titled "Azure" there but is the four-square Microsoft mark | MIT |
+| `perceptron.svg` | Perceptron (Mk1.5) | [Lobe Icons](https://github.com/lobehub/lobe-icons) (`@lobehub/icons-static-svg` 1.95.1), downloaded 2026-10-12; its holes rely on the even-odd fill rule, which the charts and the site do not use, so it was rewritten once with [picosvg](https://github.com/googlefonts/picosvg) into the same shape under the default rule (rendered pixel-identical at 240 px) | MIT |
 | `moondream.svg` | M87 Labs (Moondream) | moondream.ai's own icon, `https://moondream.ai/safari-pinned-tab.svg` | the owner's trademark (in neither library) |
 
 Downloaded 2026-10-09 (the last three on 2026-10-10), unchanged. Moondream (2026-10-11): its

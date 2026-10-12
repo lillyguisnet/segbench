@@ -184,3 +184,57 @@ look ~6x faster). Answers repeat exactly (checked).
   the best-value line, between Florence-2 and Qwen 3.8 Flash Next. Trick
   questions: none invented except 10 "person" dots on the autumn tree photo.
 Report: `results/point-benchmark-v2.5`; chart: `charts/point-benchmark-v2.5`.
+
+## v2.6 (2026-10-12): Muse Wonder, Muse Wonder Full, Perceptron Mk1.5
+
+Maxime: add Meta's Muse Wonder and Muse Wonder Full (released 2026-10-12)
+and Perceptron Mk1.5. Same checks as every model before any benchmark photo
+(circle test, prompt v2 synthetic check wide and tall, thinking levels,
+image detail), same runs (prompts v2 and v1-hd, 3 tries, medium thinking,
+plus the trick questions), same rule (each model keeps its better prompt,
+`scripts/select_best_prompt.py`). Every earlier entrant's score is unchanged
+(checked: the candidate scores and the 236 earlier selected records are
+identical).
+
+- **Muse Wonder and Muse Wonder Full** (Meta, direct API): called on our Muse
+  Code plan (Power Usage) with the plan's own key, never the pay-per-token
+  key (`segbench/muse_plan.py`; Full exists only on the plan). Meta's terms
+  reserve that key for Muse Code; using it here was Maxime's decision. The
+  plain model ids, not the "-contributor" copies Meta may train on. They
+  cannot stop thinking (min = minimal); image detail: Meta already takes its
+  most by default (4,096 tokens for a 4000x2252 picture; "high" changes
+  nothing). Cost at Muse Wonder's API price, $4 / $20 per million tokens
+  (OpenRouter, 2026-10-12), for both: Full has no per-token price anywhere,
+  so its tokens are priced like Wonder's, as every plan-called model is
+  priced at an API price; Full sold per token would likely cost more. Three
+  Full calls on the log photo got no reply for 10 minutes on the first
+  attempt and the batch was restarted; the same questions then took 37-69 s.
+  Results: Muse Wonder **75.4** (prompt v1-hd; v2 74.4): logs 83.9, cows
+  94.7, fig 72.5, dishes 50.7 (by location), 18.8 s, $47.81 per 1,000
+  images. Muse Wonder Full **74.6** (v2; v1-hd 74.4): logs 85.6, cows 91.8,
+  fig 73.2, dishes 48.0, 35.7 s, $55.64 per 1,000. First and second, ahead of
+  Qwen 3.8 Flash Next (71.6); the two differ by less than one point. Trick
+  questions: none invented. Plan use for all runs: 8% of the 5-hour window.
+- **Perceptron Mk1.5** (closed weights; Perceptron's API through OpenRouter,
+  pinned to Perceptron): our prompts like every model. **38.9** (v2; v1-hd
+  36.7): logs 21.4, cows 98.0, fig 0.0, dishes 36.1, 49.0 s, $6.50 per 1,000.
+  Perceptron caps a reply at 8,192 tokens, thinking included (the others
+  had 32,000); at medium thinking 4 of its 12 v2 answers ran out while
+  thinking and came back empty, which score 0 and are not asked again.
+  Its own answer format (point tags, `prompt_version` "tags",
+  `results/run-points-tags.jsonl`) scored 46.1, mostly by running out less
+  often; not used on the chart (Maxime, 2026-10-12: the usual prompt, as for
+  every model). OpenRouter does not pass Perceptron's own "answer with
+  points" switch (identical replies with and without it). Two trick
+  questions were blocked by the OpenRouter key's spending cap and rerun;
+  the failed records are kept in side files.
+
+Screen clicks, round 2 (`results/run-screens-2.jsonl`, untuned prompt, 3
+tries, medium thinking): Muse Wonder Full 100, Muse Wonder 97, Perceptron
+Mk1.5 45 (its own tag format: 52, `results/run-screens-2-tags.jsonl`, not
+used). Every earlier model's score unchanged.
+
+Candidate scores: `results/point-benchmark-v2-loc-2026-10-12`,
+`results/point-benchmark-v1hd-loc-2026-10-12`. Report:
+`results/point-benchmark-v2.6`; charts: `charts/point-benchmark-v2.6`,
+`charts/screens-2`.

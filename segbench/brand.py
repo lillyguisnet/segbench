@@ -28,6 +28,7 @@ LOGOS = {
     "Ai2": "ai2.svg",
     "Microsoft": "microsoft.svg",
     "Moondream": "moondream.svg",
+    "Perceptron": "perceptron.svg",
 }
 # No logo file yet for these (each needs its source and licence noted in
 # assets/logos/SOURCES.md first): initials instead.
@@ -53,6 +54,7 @@ BRAND = {
     "IDEA": "#2b6cb0",
     "Microsoft": "#737373",
     "Moondream": "#b8860b",  # moonlight gold; Moondream's own site is black and white
+    "Perceptron": "#1e130e",  # its mark's dark brown (Lobe Icons' Perceptron avatar), near Kimi's black
 }
 OTHER = "#7a808a"
 
