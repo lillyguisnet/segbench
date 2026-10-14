@@ -186,6 +186,9 @@ is computed: `segbench/chart_data.py`. Choices made for readability:
 
 ## Models
 
+**Adding one:** `docs/adding-a-model.md` (the steps, and the rules every
+model so far was added by), helped by `uv run scripts/add_model.py status KEY`.
+
 ### General models (vision + language, called through an API)
 
 The list, with exact routes, lives in `segbench/models.py`; list prices in

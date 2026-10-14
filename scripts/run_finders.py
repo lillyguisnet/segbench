@@ -73,6 +73,8 @@ PLURAL_MODELS = {"locateanything-3b", "molmopoint-8b"}
 V2_TASK = {"florence2-large": "ovd"}
 
 # Our key -> (finders model, task, variant). Defaults of the finders package.
+# Frozen: the first runs (protocol v1/v2). New local models are timed and run with
+# scripts/time_finders.py from segbench/local_models.py (docs/adding-a-model.md).
 MODELS = {
     "locateanything-3b": ("locateanything", "point", None),
     "molmopoint-8b": ("molmopoint", "point", None),

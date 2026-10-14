@@ -39,15 +39,16 @@ sys.path.insert(0, str(ROOT))
 from segbench import points  # noqa: E402
 from segbench.chart_data import describe  # noqa: E402
 from segbench.point_score import maximum_matching  # noqa: E402
+from segbench.protocol import PUBLISHED_SCREENS, SCREEN_KEY, SCREEN_RUN  # noqa: E402
 from segbench.screens import BY_KEY as TASKS, ROUNDS, hits  # noqa: E402
 
 sys.path.insert(0, str(ROOT / "scripts"))
 from build_site import REPO, logo, runs_of  # noqa: E402
 
 SHOWN = (2,)  # rounds on the page: round 2 only (round 1 had one right click per question)
-KEYS = {2: ROOT / "annotations/screens/key-round2.json"}
-RUNS = ["results/run-screens-2.jsonl"]
-CHARTS = {2: ROOT / "charts/screens-2/with-specialists/find.png"}
+KEYS = {2: ROOT / SCREEN_KEY}
+RUNS = [f"results/run-{SCREEN_RUN}.jsonl"]
+CHARTS = {2: ROOT / "charts" / PUBLISHED_SCREENS / "with-specialists" / "find.png"}
 SHORT = {"chattering": "Fold Lilly’s group", "x": "Reply to Michael", "viewer": "Close the viewer",
          "favorites": "Add to favorites", "shopify": "Tick lamb-only",
          "fold-groups": "Fold all but segbench", "news-1000": "News > 1,000 posts",

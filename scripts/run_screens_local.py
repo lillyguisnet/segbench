@@ -42,6 +42,7 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(0, "/home/maxime/Projects/finders")
 import finders  # noqa: E402
 
+from segbench.local_models import screen_setups  # noqa: E402
 from segbench.screens import PROMPT_VERSION, ROUNDS  # noqa: E402
 
 GPU_UUID = "GPU-ed411651-10df-4a1c-981a-9cf0787065b1"  # GPU 0, the benchmark GPU
@@ -52,19 +53,9 @@ PRICE_PER_GPU_HOUR = 0.22
 # Fixed 2026-10-11 after the first run; that run's LocateAnything answers are
 # kept apart (results/superseded/run-screens-local-1.locateanything-double-stop*.jsonl).
 ADDS_STOP = {"locateanything"}
-# key -> (finders model, task, variant, seeds, load factor measured on the photos)
-MODELS = {
-    "locateanything-3b": ("locateanything", "point", None, 3, 1.0),
-    "molmopoint-8b": ("molmopoint", "point", None, 1, 1.0),
-    "rexomni-3b": ("rexomni", "point", None, 1, 0.6254),
-    "florence2-large-grounding": ("florence2", "box", "large", 1, 0.4041),
-    "florence2-large-ovd": ("florence2", "ovd", "large", 1, 0.528),
-    "sam3": ("sam3", "segment", None, 1, 1.022),
-    # Added 2026-10-11; load factor from scripts/time_finders.py on the photos
-    # (results/run-finders-4.timing.json; ~17 GB per copy, so one copy: factor 1).
-    # Run on the whole of GPU 1 (--gpu 1).
-    "moondream-3.1": ("moondream", "point", None, 1, 1.0),  # one copy fits: factor 1
-}
+# key -> (finders model, task, variant, seeds, load factor measured on the photos),
+# from segbench/local_models.py (each model's notes are there).
+MODELS = screen_setups()
 GPUS = {"0": "GPU-ed411651-10df-4a1c-981a-9cf0787065b1", "1": "GPU-73bb8110-4d4b-f645-dce4-724b0baf767f"}
 
 

@@ -17,9 +17,12 @@ Records are copied unchanged plus "derived_from" and "selected_prompt".
 """
 import csv
 import json
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from segbench.protocol import LOCAL_PHOTO_RUNS  # noqa: E402
 R = ROOT / "results"
 
 
@@ -27,7 +30,6 @@ def scores(run):
     return {r["entrant"]: float(r["score"]) for r in csv.DictReader(open(R / run / "summary.csv")) if r["score"]}
 
 
-import sys
 # Score folders to choose from (default: dishes need the right label;
 # "-loc" folders: dishes scored on location alone, as from 2026-10-10).
 V2_RUN, V1_RUN = (sys.argv[1], sys.argv[2]) if len(sys.argv) > 2 else ("point-benchmark-v2", "point-benchmark-v1hd")
@@ -47,7 +49,8 @@ for name, keep in (("run-points-v2.jsonl", "v2"), ("run-points-v1hd.jsonl", "v1-
 # RF-DETR: all four tasks from run-rfdetr-3 (2026-10-10; logs and fig: no
 # matching COCO category, so no dots), not its cows-only record in specialists-2.
 # Moondream 3.1: run-finders-4 (2026-10-11, timed on the whole of GPU 1).
-for name in ("run-specialists-2.jsonl", "run-finders-3.jsonl", "run-rfdetr-3.jsonl", "run-finders-4.jsonl"):
+# The list is segbench/protocol.py LOCAL_PHOTO_RUNS: a new local model's file goes there.
+for name in LOCAL_PHOTO_RUNS:
     for i, line in enumerate((R / name).read_text().splitlines(), 1):
         r = json.loads(line)
         if r["track"] != "find" or (r["model"].startswith("florence2") and r["model"] != florence):

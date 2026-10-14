@@ -30,6 +30,9 @@ charts/demo/
 # answer viewers, rebuilt by scripts/view_run.py
 results/views/
 
+# a new model's scores before publishing, rebuilt by scripts/add_model.py preview
+results/preview/
+
 # Review app assets, rebuilt by scripts/build_consensus_review.py
 apps/consensus-review/images/
 apps/consensus-review/seed.js

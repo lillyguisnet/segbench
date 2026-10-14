@@ -38,7 +38,8 @@ from PIL import Image
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "scripts"))
-from run_finders import LABEL_OF, PHRASES, PLURAL, PLURAL_MODELS  # noqa: E402
+from run_finders import LABEL_OF, PHRASES, PLURAL  # noqa: E402
+from segbench.local_models import BY_KEY as LOCAL, photo_setups  # noqa: E402
 from segbench.tasks import BY_KEY as TASKS, TASKS as ALL_TASKS  # noqa: E402
 
 FINDERS = Path("/home/maxime/Projects/finders")
@@ -46,19 +47,11 @@ GPU_UUID = "GPU-ed411651-10df-4a1c-981a-9cf0787065b1"
 PRICE = 0.22
 POINT_TASKS = ("logs", "cows", "fig", "dishes")
 
-# our key -> (finders model, task, variant, copies to try under load, rounds of answers)
-SETUPS = {
-    "locateanything-3b": ("locateanything", "point", None, (2,), 3),
-    "molmopoint-8b": ("molmopoint", "point", None, (), 2),  # ~19 GB: one copy only on 24 GB
-    "rexomni-3b": ("rexomni", "point", None, (2,), 3),
-    "florence2-large-grounding": ("florence2", "box", "large", (2, 4), 3),
-    "florence2-large-ovd": ("florence2", "ovd", "large", (2, 4), 3),
-    # Added 2026-10-11, timed on the whole of GPU 1 (--gpu 1): same model of card
-    # (RTX 3090), its own programs stopped for the run. Singular phrases, like
-    # Rex-Omni: Moondream's documentation points at "face", detects "person".
-    # Photon reserves ~17 GB of the card (weights + its answer memory): one copy only.
-    "moondream-3.1": ("moondream", "point", None, (), 3),
-}
+# our key -> (finders model, task, variant, copies to try under load, rounds of answers),
+# from segbench/local_models.py (each model's notes are there).
+SETUPS = photo_setups()
+# Asked with plurals ("the cows"), as their own documentation asks for all instances.
+PLURAL_MODELS = {k for k in SETUPS if LOCAL[k].plural}
 GPUS = {"0": ("GPU-ed411651-10df-4a1c-981a-9cf0787065b1",
               "whole GPU 0: SAM 3.1 helper stopped, scholarsreadinglist embeddings job paused (SIGSTOP, 1 GB held, "
               "no compute); browser and desktop overlay hold <0.1 GB, no compute"),

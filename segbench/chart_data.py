@@ -42,28 +42,13 @@ from collections import defaultdict
 from dataclasses import asdict, dataclass, fields
 from pathlib import Path
 
+from segbench.local_models import LOCAL_MODELS
 from segbench.models import BY_KEY, LEVELS
 
 TRACKS = ("find", "outline", "whole")
 
-# Models run on our own GPU: chart label and maker.
-SPECIALISTS: dict[str, tuple[str, str]] = {
-    "sam1-vit-h": ("SAM 1", "Meta"),
-    "sam2.1-large": ("SAM 2.1", "Meta"),
-    "sam3": ("SAM 3", "Meta"),
-    "dinov3": ("DINOv3", "Meta"),
-    "yoloe-26x": ("YOLOE-26x", "Ultralytics"),
-    "rfdetr-seg-2xl": ("RF-DETR Seg", "Roboflow"),
-    "gen2seg-sd": ("gen2seg", "UC Davis"),
-    # pointing models from ~/Projects/finders (scripts/run_finders.py)
-    "locateanything-3b": ("LocateAnything 3B", "NVIDIA"),
-    "molmopoint-8b": ("MolmoPoint 8B", "Ai2"),
-    "rexomni-3b": ("Rex-Omni 3B", "IDEA"),
-    "florence2-large": ("Florence-2 Large", "Microsoft"),
-    "florence2-large-grounding": ("Florence-2 Large", "Microsoft"),  # its better text mode (phrase grounding)
-    "florence2-large-ovd": ("Florence-2 · detection", "Microsoft"),
-    "moondream-3.1": ("Moondream 3.1", "Moondream"),
-}
+# Models run on our own GPU: chart label and maker (segbench/local_models.py).
+SPECIALISTS: dict[str, tuple[str, str]] = {m.key: (m.label, m.maker) for m in LOCAL_MODELS}
 
 LEVEL_SHORT = {"min": "min", "medium": "med", "max": "max"}
 

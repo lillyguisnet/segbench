@@ -36,6 +36,7 @@ sys.path.insert(0, str(ROOT))  # this script runs in its own environment (above)
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from segbench import points  # noqa: E402
+from segbench.protocol import PUBLISHED_PHOTOS  # noqa: E402
 from segbench.brand import LOGO_DIR, LOGOS, initials  # noqa: E402
 from segbench.tasks import BY_KEY as TASKS  # noqa: E402
 
@@ -44,8 +45,8 @@ THUMB_SIDE = 360
 SHORT = {"logs": "Log ends", "cows": "Cows", "fig": "Fig leaves", "tree": "Red foliage", "road": "Road",
          "dishes": "Dishes"}
 REPO = "https://github.com/lillyguisnet/segbench"
-# The chart shown under the photo: the current point benchmark, all models. Change with each new version.
-CHART = ROOT / "charts" / "point-benchmark-v2.6" / "with-specialists" / "find.png"
+# The chart shown under the photo: the current point benchmark, all models (segbench/protocol.py).
+CHART = ROOT / "charts" / PUBLISHED_PHOTOS / "with-specialists" / "find.png"
 
 
 def runs_of(dates) -> str:
