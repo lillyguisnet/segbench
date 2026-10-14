@@ -219,7 +219,7 @@ def _place(cx, cy, r, w, h, prefer, rings, step, placed, circles, own, frame, ga
 def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, float] | None = None,
          header: bool = True, title: str | None = None, accent: str = ACCENT, names: str = "all",
          label_spots: dict[str, str] | None = None, highlight: set[str] | None = None,
-         dpi: int = 216) -> list[Path]:
+         xlabel: str = "Cost ($ per 1,000 images)", dpi: int = 216) -> list[Path]:
     """Draw the points of one track; return the files written (PNG 2160 x 2160, PDF, SVG).
 
     `title` replaces the track's headline (TITLES); `accent` is the colour of
@@ -227,6 +227,11 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
     `label_spots` pins a model's label right next to its disc, by entrant:
     {"sam3": "ur"} (a key of SPOTS), placed before the automatic labels, which
     then go around it. For a person's layout choice on one chart.
+    A spot may carry a nudge in points, "ul@-20,5" (left 20, up 5): the label
+    then gets a leader line to its disc, unless the nudge ends in "!"
+    ("above@0,36!": two labels stacked over one spot). Labels on the best-value line can be
+    pinned too (drawn in their own large style).
+    `xlabel`: the cost axis's caption.
     `highlight` (entrants): only these keep their colours; every other
     model's label and logo is light grey. Layout, discs and rings unchanged."""
     pts = [p for p in points if p.track == track]
@@ -288,7 +293,7 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
     for lab in ax.get_yticklabels():
         lab.set_fontproperties(fonts.medium)
         lab.set_fontsize(12)
-    ax.set_xlabel("Cost ($ per 1,000 images)", fontproperties=fonts.semibold, fontsize=13, color=INK_2,
+    ax.set_xlabel(xlabel, fontproperties=fonts.semibold, fontsize=13, color=INK_2,
                   labelpad=12)
 
     def X(p: Point) -> float:
@@ -376,7 +381,14 @@ EXTRA = (0, 25, 50, 90)  # pt further out a label column may sit from its cluste
 
 def _labels(fig, ax, fonts: Fonts, pts, best_ids, names, X, Y, curve, accent: str, floor_at_zero: bool = False,
             label_spots: dict[str, str] | None = None, highlight: set[str] | None = None) -> None:
-    label_spots = label_spots or {}
+    def parse(spec):
+        spot, _, nudge = spec.partition("@")
+        line = not nudge.endswith("!")
+        dx, dy = (float(v) for v in nudge.rstrip("!").split(",")) if nudge else (0.0, 0.0)
+        return spot, dx, dy, line and bool(dx or dy)
+
+    spot_of = {e: parse(v) for e, v in (label_spots or {}).items()}
+    label_spots = {e: v[0] for e, v in spot_of.items()}
     fig.canvas.draw()
     renderer = fig.canvas.get_renderer()
     ppt = fig.dpi / 72
@@ -453,10 +465,30 @@ def _labels(fig, ax, fonts: Fonts, pts, best_ids, names, X, Y, curve, accent: st
     curve_boxes = set(placed)  # so far only the curve's sample boxes
     gap = 4 * ppt
 
-    # 1. Best-value models: name and score above the disc, if there is room.
+    def pin(p):
+        """A label a person placed: its spot beside the disc, plus any nudge (then with a leader line)."""
+        i = index[p.entrant]
+        sized, w, h = block(p)
+        spot, ndx, ndy, line = spot_of[p.entrant]
+        (ux, uy), ha, va = SPOTS[spot]
+        cx, cy, r = circles[i]
+        box = _box(cx + ndx * ppt, cy + ndy * ppt, (ux * (r + gap), uy * (r + gap)), ha, va, w, h)
+        lift = max(0.0, frame[1] - box[1]) if floor_at_zero else 0.0  # stays above the 0% line, as every label
+        box = (box[0], box[1] + lift, box[2], box[3] + lift)
+        placed.append(box)
+        render(sized, box, ha)
+        if line:
+            leader(circles[i], box, ha, sized[0][3])
+
+    # 1. Best-value models: name and score above the disc, if there is room
+    # (labels a person pinned first, so the others go around them).
     index = {p.entrant: i for i, p in enumerate(pts)}
+    for p in pts:
+        if p.entrant in best_ids and p.entrant in label_spots:
+            pin(p)
     best_margins = []
-    for p in sorted((p for p in pts if p.entrant in best_ids), key=lambda p: -p.quality):
+    for p in sorted((p for p in pts if p.entrant in best_ids and p.entrant not in label_spots),
+                    key=lambda p: -p.quality):
         i = index[p.entrant]
         sized, w, h = block(p)
         # Best-value labels keep a margin between each other (2026-10-14,
@@ -473,21 +505,13 @@ def _labels(fig, ax, fonts: Fonts, pts, best_ids, names, X, Y, curve, accent: st
     if names != "all":
         return
 
-    unknown = set(label_spots) - {p.entrant for p in pts if p.entrant not in best_ids}
+    unknown = set(label_spots) - {p.entrant for p in pts}
     if unknown:
-        raise ValueError(f"label_spots: {sorted(unknown)} not on this chart, or on the best-value line")
+        raise ValueError(f"label_spots: {sorted(unknown)} not on this chart")
     # 2a. Labels a person pinned to one side of their disc (label_spots), right next to it.
-    index_pinned = [p for p in pts if p.entrant in label_spots]
-    for p in index_pinned:
-        i = index[p.entrant]
-        sized, w, h = block(p)
-        (ux, uy), ha, va = SPOTS[label_spots[p.entrant]]
-        cx, cy, r = circles[i]
-        box = _box(cx, cy, (ux * (r + gap), uy * (r + gap)), ha, va, w, h)
-        lift = max(0.0, frame[1] - box[1]) if floor_at_zero else 0.0  # stays above the 0% line, as every label
-        box = (box[0], box[1] + lift, box[2], box[3] + lift)
-        placed.append(box)
-        render(sized, box, ha)
+    for p in pts:
+        if p.entrant in label_spots and p.entrant not in best_ids:
+            pin(p)
 
     # 2b. Every other model: right next to its disc when that spot is free...
     others = sorted((p for p in pts if p.entrant not in best_ids and p.entrant not in label_spots),
