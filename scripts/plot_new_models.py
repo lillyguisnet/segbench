@@ -12,8 +12,8 @@ chart (charts/point-benchmark-v2.7), with Maxime's choices of 2026-10-14 for
 this one picture:
 - Muse Wonder Full left out (its score stays in the published chart);
 - the cost axis says it is a log scale;
-- labels placed by hand: every best-value model's label on the white side
-  of the red line, the rest moved around them (LABELS below; a spot beside
+- labels placed by hand: best-value models' labels on the white side of
+  the red line (but the four cheapest, left where the placer puts them), the rest moved around them (LABELS below; a spot beside
   the disc, then a nudge in points, x to the right and y up);
 - the language-model chart's cost axis starts a little lower (WIDEN_LEFT).
 """
@@ -39,12 +39,9 @@ LEFT_OUT = {"muse-wonder-full"}  # by model
 XLABEL = "Cost ($ per 1,000 images, log scale)"
 LABELS = {
     "with-specialists": {
-        # best-value line, left (white) side: a column above YOLOE's disc,
-        # which RF-DETR's covers (same cost, 23.2 vs 23.5)
-        "yoloe-26x": "above",
-        "rfdetr-seg-2xl": "above@0,36!",
-        "sam3": "ul@0,34",
-        "florence2-large-grounding": "ul@0,53",
+        # best-value line, left (white) side. YOLOE, RF-DETR, SAM 3 and
+        # Florence-2 keep their automatic places, on either side of the line
+        # (Maxime: nothing else is near them).
         "moondream-3.1": "above@-15,0!",
         "haiku@medium": "left@0,14!",
         # the rest
