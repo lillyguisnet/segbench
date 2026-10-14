@@ -1,0 +1,16 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Point benchmark v2.7 · the four new models</title><style>
+*{box-sizing:border-box}body{margin:0;padding:16px;background:#fafaf8;color:#202520;font:14px/1.5 system-ui,sans-serif}main{max-width:1000px;margin:auto}
+nav{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px}button{font:inherit;cursor:pointer;border:1px solid #cdd4c8;border-radius:7px;padding:8px 12px;background:#edf0e9;color:inherit}
+button[aria-pressed=true]{border:2px solid #265caf;font-weight:600}.downloads{margin-left:auto;display:flex;gap:12px}a{color:#265caf}p{margin:8px 0;color:#606a5b}img{display:block;width:100%;height:auto;margin:12px 0;background:#fff}
+@media(prefers-color-scheme:dark){body{background:#171b17;color:#e8eee5}button{background:#262d25;border-color:#53604e}p{color:#a7b09f}}
+</style></head><body><main>
+<nav><button id="all" aria-pressed="true">All models</button><button id="general" aria-pressed="false">Language models only</button>
+<span class="downloads"><a id="png" download>PNG</a><a id="svg" download>SVG</a><a id="pdf" download>PDF</a></span></nav>
+<p>In colour: the four models added on 2026-10-14 (Gemini 4 Argon, Claude Haiku 5.5, Mistral Large 4, GroundingPI 4B). Everyone else is grey. Same scores as point benchmark v2.7; Muse Wonder Full is left out of this picture.</p>
+<img id="plot" alt="Point-finding quality against cost, the four new models highlighted" width="2160" height="2160">
+</main><script>
+function select(all){const d=all?'with-specialists':'language-models';document.querySelector('#plot').src=d+'/find.png';
+['png','svg','pdf'].forEach(e=>document.querySelector('#'+e).href=d+'/find.'+e);
+document.querySelector('#all').setAttribute('aria-pressed',String(all));document.querySelector('#general').setAttribute('aria-pressed',String(!all));}
+document.querySelector('#all').onclick=()=>select(true);document.querySelector('#general').onclick=()=>select(false);select(true);
+</script></body></html>
