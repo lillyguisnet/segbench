@@ -1,0 +1,33 @@
+30 calls planned, 0 already in run-points-v2.jsonl, 30 to send
+[1/30      5s] gemini-argon       medium trick logs      5.1s $0.0049  0 items
+[2/30      6s] gemini-argon       medium trick logs      6.2s $0.0049  0 items
+[3/30      9s] gemini-argon       medium trick logs      8.5s $0.0049  0 items
+[4/30     11s] gemini-argon       medium find  cows      5.8s $0.0067  11 items
+[5/30     11s] gemini-argon       medium find  cows      5.0s $0.0068  12 items
+[6/30     14s] gemini-argon       medium trick cows      3.4s $0.0049  0 items
+[7/30     16s] gemini-argon       medium trick cows      4.9s $0.0053  0 items
+[8/30     17s] gemini-argon       medium find  cows      8.3s $0.0089  11 items
+[9/30     18s] gemini-argon       medium find  logs     18.2s $0.0175  80 items
+[10/30     19s] gemini-argon       medium trick cows      4.5s $0.0053  0 items
+[11/30     21s] gemini-argon       medium find  logs     20.7s $0.0174  79 items
+[12/30     22s] gemini-argon       medium trick fig       3.5s $0.0049  0 items
+[13/30     24s] gemini-argon       medium trick fig       3.5s $0.0049  0 items
+[14/30     25s] gemini-argon       medium find  fig       8.0s $0.0096  29 items
+[15/30     27s] gemini-argon       medium trick fig       4.2s $0.0049  0 items
+[16/30     27s] gemini-argon       medium find  fig      10.6s $0.0092  27 items
+[17/30     30s] gemini-argon       medium trick tree      3.6s $0.0049  0 items
+[18/30     31s] gemini-argon       medium trick tree      6.5s $0.0049  0 items
+[19/30     31s] gemini-argon       medium find  fig      12.8s $0.0094  28 items
+[20/30     32s] gemini-argon       medium trick tree      6.8s $0.0049  0 items
+[21/30     33s] gemini-argon       medium trick road      6.8s $0.0049  0 items
+[22/30     35s] gemini-argon       medium trick road      4.7s $0.0049  0 items
+[23/30     35s] gemini-argon       medium trick road      4.5s $0.0049  0 items
+[24/30     38s] gemini-argon       medium trick dishes    3.5s $0.0049  0 items
+[25/30     40s] gemini-argon       medium trick dishes    5.2s $0.0049  0 items
+[26/30     41s] gemini-argon       medium find  dishes   10.3s $0.0101  23 items
+[27/30     42s] gemini-argon       medium find  dishes    9.9s $0.0103  24 items
+[28/30     42s] gemini-argon       medium find  dishes    8.4s $0.0105  25 items
+[29/30     49s] gemini-argon       medium trick dishes   11.2s $0.0049  0 items
+[30/30     50s] gemini-argon       medium find  logs     49.8s $0.0178  82 items
+
+30 read, 0 unreadable, 0 errors; saved /home/maxime/Projects/segbench/results/run-points-v2.jsonl

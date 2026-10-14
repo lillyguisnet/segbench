@@ -1,0 +1,15 @@
+12 calls planned, 0 already in run-points-v1hd.jsonl, 12 to send
+[1/12      5s] gemini-argon       medium find  cows      5.1s $0.0062  11 items
+[2/12      6s] gemini-argon       medium find  cows      5.6s $0.0062  11 items
+[3/12      9s] gemini-argon       medium find  cows      8.9s $0.0062  11 items
+[4/12     12s] gemini-argon       medium find  fig       6.9s $0.0083  27 items
+[5/12     12s] gemini-argon       medium find  logs     12.1s $0.0153  82 items
+[6/12     13s] gemini-argon       medium find  fig       6.9s $0.0083  27 items
+[7/12     14s] gemini-argon       medium find  logs     13.6s $0.0153  82 items
+[8/12     14s] gemini-argon       medium find  logs     13.7s $0.0150  80 items
+[9/12     20s] gemini-argon       medium find  dishes    8.3s $0.0095  24 items
+[10/12     22s] gemini-argon       medium find  dishes    9.1s $0.0096  25 items
+[11/12     22s] gemini-argon       medium find  dishes   10.3s $0.0096  25 items
+[12/12     25s] gemini-argon       medium find  fig      15.7s $0.0084  28 items
+
+12 read, 0 unreadable, 0 errors; saved /home/maxime/Projects/segbench/results/run-points-v1hd.jsonl
