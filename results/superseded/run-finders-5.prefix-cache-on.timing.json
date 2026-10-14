@@ -1,0 +1,135 @@
+[
+ {
+  "setup": "groundingpi-4b",
+  "finders_model": "groundingpi",
+  "variant": null,
+  "task": "point",
+  "rounds": 3,
+  "service": {
+   "url": "http://127.0.0.1:60641/v1",
+   "max_at_once": 8
+  },
+  "single": [
+   {
+    "id": "single|logs|log end|0",
+    "wall": 6.644281704997411,
+    "model_seconds": 6.573
+   },
+   {
+    "id": "single|cows|cow|0",
+    "wall": 1.2370089600153733,
+    "model_seconds": 1.166
+   },
+   {
+    "id": "single|fig|fig leaf|0",
+    "wall": 1.127917064994108,
+    "model_seconds": 1.06
+   },
+   {
+    "id": "single|dishes|dirty dish|0",
+    "wall": 1.3185191609954927,
+    "model_seconds": 1.255
+   },
+   {
+    "id": "single|dishes|clean dish|0",
+    "wall": 0.48418455399223603,
+    "model_seconds": 0.421
+   },
+   {
+    "id": "single|logs|log end|1",
+    "wall": 6.199609986011637,
+    "model_seconds": 6.136
+   },
+   {
+    "id": "single|cows|cow|1",
+    "wall": 1.2435700729838572,
+    "model_seconds": 1.176
+   },
+   {
+    "id": "single|fig|fig leaf|1",
+    "wall": 2.099375106015941,
+    "model_seconds": 2.045
+   },
+   {
+    "id": "single|dishes|dirty dish|1",
+    "wall": 0.7426349539891817,
+    "model_seconds": 0.679
+   },
+   {
+    "id": "single|dishes|clean dish|1",
+    "wall": 0.4991418849967886,
+    "model_seconds": 0.434
+   },
+   {
+    "id": "single|logs|log end|2",
+    "wall": 6.349597045016708,
+    "model_seconds": 6.284
+   },
+   {
+    "id": "single|cows|cow|2",
+    "wall": 1.2822191919840407,
+    "model_seconds": 1.217
+   },
+   {
+    "id": "single|fig|fig leaf|2",
+    "wall": 2.146069325011922,
+    "model_seconds": 2.09
+   },
+   {
+    "id": "single|dishes|dirty dish|2",
+    "wall": 0.7584085249982309,
+    "model_seconds": 0.686
+   },
+   {
+    "id": "single|dishes|clean dish|2",
+    "wall": 0.5141269309970085,
+    "model_seconds": 0.442
+   }
+  ],
+  "query_seconds": {
+   "logs|log end": 6.3496,
+   "cows|cow": 1.2436,
+   "fig|fig leaf": 2.0994,
+   "dishes|dirty dish": 0.7584,
+   "dishes|clean dish": 0.4991
+  },
+  "load": [
+   {
+    "copies": 1,
+    "load_factor": 1.0
+   },
+   {
+    "copies": 2,
+    "window_s": 44.82,
+    "work_done_s": 87.1,
+    "load_factor": 0.5146,
+    "peak_gib": 0,
+    "service_gpu_mib": 17058,
+    "service_max_at_once": 8
+   },
+   {
+    "copies": 4,
+    "window_s": 45.86,
+    "work_done_s": 172.95,
+    "load_factor": 0.2652,
+    "peak_gib": 0,
+    "service_gpu_mib": 17058,
+    "service_max_at_once": 8
+   },
+   {
+    "copies": 8,
+    "window_s": 42.62,
+    "work_done_s": 307.99,
+    "load_factor": 0.1384,
+    "peak_gib": 0,
+    "service_gpu_mib": 17058,
+    "service_max_at_once": 8
+   }
+  ],
+  "load_factor": 0.1384,
+  "gpu_others": {
+   "4920": 130
+  },
+  "elapsed_s": 240.3
+ }
+]

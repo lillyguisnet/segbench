@@ -96,11 +96,14 @@ LOCAL_MODELS: tuple[LocalModel, ...] = (
     # ("Point to: cow."), singular like its own examples ("car</c>person").
     # Screenshots: its GUI template ("Point to the UI element to click for the
     # following instruction: ..."), made for exactly that.
-    # Not timed yet: load_factor comes from scripts/time_finders.py; then
-    # screen_seeds=1 (deterministic), as the guide orders it.
+    # Timed 2026-10-14 on the whole of GPU 0 (its one service, the paper
+    # rewriter, stopped): load factor 0.3148 with 16 requests at once (2: 0.682,
+    # 4: 0.496, 8: 0.371), results/run-finders-5.timing.json. vLLM's reuse of
+    # earlier requests off (finders serve_fresh.py): with it on, repeats differed
+    # and ran faster than any new picture would (results/superseded/run-finders-5.prefix-cache-on.*).
     LocalModel("groundingpi-4b", "GroundingPI 4B", "GroundingPI", "groundingpi", "point",
-               photo_copies=(2, 4, 8), photo_rounds=3, screen_task="gui", service=True,
-               note="vLLM service; copies = requests at once to one service"),
+               photo_copies=(2, 4, 8, 16), photo_rounds=3, screen_seeds=1, screen_task="gui", service=True,
+               load_factor=0.3148, note="vLLM service; copies = requests at once to one service"),
 )
 
 BY_KEY = {m.key: m for m in LOCAL_MODELS}

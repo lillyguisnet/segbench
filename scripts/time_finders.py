@@ -101,7 +101,8 @@ class Service:
         env = dict(os.environ, FINDERS_GPU=GPU_UUID)
         env.pop("VIRTUAL_ENV", None)
         self.max_at_once = max_at_once
-        self.proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=open(log_path, "w"), text=True, env=env)
+        self.proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=open(log_path, "w"), text=True, env=env,
+                                     preexec_fn=_die_with_parent)
         self.url = self.proc.stdout.readline().strip()  # printed once it answers
         if not self.url.startswith("http"):
             self.proc.kill()
@@ -123,6 +124,13 @@ class Service:
             self.proc.wait(60)
         except subprocess.TimeoutExpired:
             self.proc.kill()
+
+
+def _die_with_parent() -> None:
+    import ctypes
+    import signal
+
+    ctypes.CDLL("libc.so.6").prctl(1, signal.SIGTERM)  # PR_SET_PDEATHSIG: the service stops if this script dies
 
 
 def _free_port() -> int:
@@ -302,9 +310,12 @@ def main():
     ap.add_argument("--name", required=True)
     ap.add_argument("--setups", nargs="*", default=list(SETUPS))
     ap.add_argument("--gpu", choices=list(GPUS), default="0", help="which whole GPU to time on (default 0, as before)")
+    ap.add_argument("--basis", help="what was stopped to free the GPU for this run, if not as in GPUS (kept in every record)")
     a = ap.parse_args()
     global GPU_UUID, TIMING_BASIS
     GPU_UUID, TIMING_BASIS = GPUS[a.gpu]
+    if a.basis:
+        TIMING_BASIS = a.basis
     out = ROOT / "results" / f"run-{a.name}.jsonl"
     if out.exists():
         sys.exit(f"{out} exists")

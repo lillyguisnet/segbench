@@ -54,4 +54,5 @@ PUBLISHED_SCREENS = "screens-2"  # charts/<this>/
 
 # Local models' answer files on the photos, as chosen into the published
 # selection by scripts/select_best_prompt.py.
-LOCAL_PHOTO_RUNS = ("run-specialists-2.jsonl", "run-finders-3.jsonl", "run-rfdetr-3.jsonl", "run-finders-4.jsonl")
+LOCAL_PHOTO_RUNS = ("run-specialists-2.jsonl", "run-finders-3.jsonl", "run-rfdetr-3.jsonl", "run-finders-4.jsonl",
+                    "run-finders-5.jsonl")

@@ -1,0 +1,23 @@
+[finders] GPU 0 (6300 MiB free)
+[finders] using the running GroundingPI service at http://127.0.0.1:53381/v1
+[finders] groundingpi loaded in 0.02s
+[finders] 1/20 log_ends_closeup_1.jpg 'log end': 75 found in 11.548s
+[finders] 2/20 field_with_cows.jpg 'cow': 11 found in 6.333s
+[finders] 3/20 fig_plant.jpg 'fig leaf': 22 found in 12.364s
+[finders] 4/20 kitchen_counter_dishes.jpg 'dirty dish': 4 found in 4.507s
+[finders] 5/20 kitchen_counter_dishes.jpg 'clean dish': 1 found in 3.702s
+[finders] 6/20 log_ends_closeup_1.jpg 'log end': 75 found in 12.987s
+[finders] 7/20 field_with_cows.jpg 'cow': 11 found in 5.065s
+[finders] 8/20 fig_plant.jpg 'fig leaf': 22 found in 10.609s
+[finders] 9/20 kitchen_counter_dishes.jpg 'dirty dish': 4 found in 4.517s
+[finders] 10/20 kitchen_counter_dishes.jpg 'clean dish': 1 found in 3.8s
+[finders] 11/20 log_ends_closeup_1.jpg 'log end': 75 found in 12.912s
+[finders] 12/20 field_with_cows.jpg 'cow': 11 found in 4.878s
+[finders] 13/20 fig_plant.jpg 'fig leaf': 22 found in 14.455s
+[finders] 14/20 kitchen_counter_dishes.jpg 'dirty dish': 6 found in 3.482s
+[finders] 15/20 kitchen_counter_dishes.jpg 'clean dish': 1 found in 2.168s
+[finders] 16/20 log_ends_closeup_1.jpg 'log end': 75 found in 14.703s
+[finders] 17/20 field_with_cows.jpg 'cow': 11 found in 6.387s
+[finders] 18/20 fig_plant.jpg 'fig leaf': 22 found in 7.274s
+[finders] 19/20 kitchen_counter_dishes.jpg 'dirty dish': 6 found in 2.738s
+[finders] 20/20 kitchen_counter_dishes.jpg 'clean dish': 1 found in 2.317s

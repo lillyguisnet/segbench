@@ -1,0 +1,2 @@
+[finders] GPU 0 (23545 MiB free)
+[finders] GroundingPI service starting on http://127.0.0.1:53381/v1 (max 16 at once; log /home/maxime/Projects/finders/models/groundingpi/vendor/GroundingPI/outputs/service-53381.log)
