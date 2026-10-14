@@ -55,6 +55,9 @@ main { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 22px; al
   white-space: pre-wrap; word-break: break-all; color: var(--ink2); max-height: 140px; overflow: auto; }
 .sw { display: inline-block; width: 11px; height: 11px; border-radius: 50%; border: 2.5px solid; vertical-align: -1px; margin-right: 4px; }
 aside { position: sticky; top: 14px; }
+.shown { margin: 0 0 10px; padding: 8px 11px; border-left: 3px solid var(--dup); background: var(--soft);
+  border-radius: 0 8px 8px 0; color: var(--ink2); font-size: 13px; line-height: 1.4; }
+.shown b { color: var(--ink); font-weight: 600; }
 .list { border: 1px solid var(--line); border-radius: 12px; padding: 6px; }
 .list button { display: grid; grid-template-columns: 26px 1fr auto; gap: 10px; align-items: center; width: 100%;
   padding: 6px 8px; border: 0; background: none; border-radius: 8px; cursor: pointer; text-align: left; font-size: 14px; }
@@ -111,6 +114,7 @@ footer a { color: inherit; }
       <div class="info" id="info"></div>
     </section>
     <aside>
+      <p class="shown"><b>These are each model's first try</b> of 3 on each photo, not its best and not its average: the chart below scores the average of all 3 tries.</p>
       <div class="list" id="list"></div>
       <div class="opts">
         <label><input type="checkbox" id="others" checked> Show the other models' dots, small</label>

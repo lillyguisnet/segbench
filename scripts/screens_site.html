@@ -56,6 +56,9 @@ main { display: grid; grid-template-columns: minmax(0, 1fr) 310px; gap: 22px; al
 .sw { display: inline-block; width: 11px; height: 11px; border-radius: 50%; border: 3px solid; vertical-align: -1px; margin-right: 5px; }
 .sq { display: inline-block; width: 13px; height: 10px; border: 2px solid var(--key); background: rgba(34,197,94,.15); vertical-align: -1px; margin-right: 5px; border-radius: 2px; }
 aside { position: sticky; top: 14px; }
+.shown { margin: 0 0 10px; padding: 8px 11px; border-left: 3px solid var(--dup); background: var(--soft);
+  border-radius: 0 8px 8px 0; color: var(--ink2); font-size: 13px; line-height: 1.4; }
+.shown b { color: var(--ink); font-weight: 600; }
 .list { border: 1px solid var(--line); border-radius: 12px; padding: 6px; }
 .list .head { display: grid; grid-template-columns: 26px 1fr auto; gap: 10px; padding: 2px 8px 4px; font-size: 11px; color: var(--ink3); }
 .list .head span:last-child { text-align: right; }
@@ -113,6 +116,7 @@ footer { margin-top: 26px; padding-top: 14px; border-top: 1px solid var(--line);
       <div class="info" id="info"></div>
     </section>
     <aside>
+      <p class="shown"><b>These are each model's best clicks</b>: its best of 3 tries on each question. That does not reflect its average performance: the chart below scores the average of all 3 tries.</p>
       <div class="list" id="list"></div>
       <div class="opts">
         <label><input type="checkbox" id="showKey" checked> Show the answer key (K)</label>
