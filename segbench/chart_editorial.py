@@ -337,10 +337,17 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
     def muted(p):
         return MUTED if highlight is not None and p.entrant not in highlight else None
 
+    # On a highlight chart, highlighted small discs go above every other disc,
+    # big ones included (2026-10-14: Gemini 4 Argon's disc lay hidden under
+    # GPT-6.1 Sol's, both at 100% for nearly the same price). Charts without
+    # highlight are drawn as before.
+    def small_z(p, i):
+        return (7 if highlight is not None and p.entrant in highlight else 4) + i * 0.01
+
     for i, p in enumerate(sorted(others, key=lambda p: -p.seconds)):
-        _disc(ax, X(p), Y(p), p.maker, SMALL_PT, rim=RIM, rim_w=1.0, fonts=fonts, z=4 + i * 0.01, colour=muted(p))
+        _disc(ax, X(p), Y(p), p.maker, SMALL_PT, rim=RIM, rim_w=1.0, fonts=fonts, z=small_z(p, i), colour=muted(p))
         if p.kind == "pair":
-            _badge(ax, X(p), Y(p), p.outliner_maker, SMALL_PT, fonts, 4 + i * 0.01, colour=muted(p))
+            _badge(ax, X(p), Y(p), p.outliner_maker, SMALL_PT, fonts, small_z(p, i), colour=muted(p))
     for i, p in enumerate(best):
         _disc(ax, X(p), Y(p), p.maker, BIG_PT, rim=accent, rim_w=2.8, fonts=fonts, z=6 + i * 0.01, shadow=True,
               colour=muted(p))
