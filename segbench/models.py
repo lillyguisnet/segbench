@@ -43,6 +43,10 @@ MODELS: tuple[Model, ...] = (
           "newest Terra on 2026-10-08: there is no GPT-6 Terra"),
     Model("sonnet", "Claude Sonnet 5.5", "Anthropic", "claude-code:claude-sonnet-5-5", "subscription", True),
     Model("opus", "Claude Opus 5.5", "Anthropic", "claude-code:claude-opus-5-5", "subscription", True),
+    # Added 2026-10-14 (Maxime). Claude Haiku 5.5, released 2026-10-07, the
+    # newest Haiku; on our Claude plan (listed there since 2026-10-09).
+    Model("haiku", "Claude Haiku 5.5", "Anthropic", "claude-code:claude-haiku-5-5", "subscription", True,
+          "circle test passed 4 of 4 on the plan 2026-10-14"),
     Model("astra", "GPT-6 Astra", "OpenAI", "openai-codex:gpt-6-astra", "subscription", True,
           "listed only to Codex clients >= 0.153 (lm15 claims 0.147), but callable"),
     Model("sol", "GPT-6.1 Sol", "OpenAI", "openai-codex:gpt-6.1-sol", "subscription", True,
@@ -129,6 +133,12 @@ THINKING = {
     "terra":             {"min": {"effort": "off"}, "medium": {"effort": "medium"}, "max": {"effort": "max"}},
     "sonnet":            {"min": _OFF_SONNET, "medium": {"effort": "medium"}, "max": {"effort": "max"}},
     "opus":              {"min": {"effort": "low"}, "medium": {"effort": "medium"}, "max": {"effort": "max"}},
+    # Checked 2026-10-14 (scripts/probe_thinking.py): lm15's "off" sends nothing
+    # and Haiku 5.5 thinks by default (185 thinking tokens); Anthropic refuses
+    # "between_tools" for it but accepts "disabled" (0 thinking tokens).
+    # Thinking tokens on the test question, one try each: minimal 194, low 187,
+    # medium 274, high 209, xhigh 204, max 392 (default 190).
+    "haiku":             {"min": {"extensions": {"thinking": {"type": "disabled"}}}, "medium": {"effort": "medium"}, "max": {"effort": "max"}},
     "astra":             {"min": {"effort": "low"}, "medium": {"effort": "medium"}},
     "sol":               {"min": {"effort": "low"}, "medium": {"effort": "medium"}, "max": {"effort": "max"}},
     "gemini-pro":        {"min": {"effort": "low"}, "medium": {"effort": "medium"}, "max": {"effort": "high"}},

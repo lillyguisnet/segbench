@@ -107,6 +107,12 @@
           "output": 4.18,
           "listed_as": "mistralai/mistral-large-4-0 on the Mistral host (Mistral's regular price)",
           "note": "added 2026-10-13 (Maxime): Mistral's REGULAR price, from docs.mistral.ai/models/mistral-large-4-0 that day. Mistral and OpenRouter currently sell it at half that ($0.68 in, $2.09 out, a launch sale with no end date given), so OpenRouter's billed cost saved next to ours is about half of this. Mistral counts thinking inside output_tokens"
+        },
+        "haiku": {
+          "input": 0.1,
+          "output": 0.5,
+          "listed_as": "anthropic/claude-haiku-5.5",
+          "note": "added 2026-10-14: price read from OpenRouter that day (Anthropic's own API price), kept in this snapshot so one price table serves the run; called through our Claude plan; API price"
         }
       }
     }
