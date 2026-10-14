@@ -73,6 +73,34 @@ def _gemini_media_resolution_patch() -> None:
 _gemini_media_resolution_patch()
 
 
+def _gemini_4_thinking_level_patch() -> None:
+    """Send Gemini 4 models a thinking level, as the Gemini 3 models get.
+
+    lm15 1.2.1 picks Gemini's thinking setting by model name: names starting
+    with "gemini-3" get thinkingLevel (minimal|low|medium|high), any other
+    name a thinkingBudget in tokens (medium = 8,192), the Gemini 2.5 style.
+    So gemini-4-argon at "medium" got a budget, not Google's medium level
+    that the other Gemini models are benchmarked at. Checked 2026-10-14 on
+    the API: Gemini 4 Argon takes thinkingLevel low, medium and high, and
+    refuses minimal (HTTP 400) and max/xhigh (not a level).
+    """
+    from lm15.providers import gemini
+
+    if getattr(gemini.gemini_level_class, "_segbench", False):
+        return
+    original = gemini.gemini_level_class
+
+    def gemini_level_class(model: str) -> bool:
+        lowered = model.lower().removeprefix("models/")
+        return original(model) or lowered.startswith("gemini-4")
+
+    gemini_level_class._segbench = True
+    gemini.gemini_level_class = gemini_level_class
+
+
+_gemini_4_thinking_level_patch()
+
+
 def pool(model: Model) -> str:
     """Which concurrency pool a model's calls share: its plan, else its provider."""
     return model.credential or _router.resolve(model.route).provider

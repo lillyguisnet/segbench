@@ -113,6 +113,12 @@
           "output": 0.5,
           "listed_as": "anthropic/claude-haiku-5.5",
           "note": "added 2026-10-14: price read from OpenRouter that day (Anthropic's own API price), kept in this snapshot so one price table serves the run; called through our Claude plan; API price"
+        },
+        "gemini-argon": {
+          "input": 2.0,
+          "output": 10.0,
+          "listed_as": "google/gemini-4-argon",
+          "note": "added 2026-10-14: price read from OpenRouter that day (Google's own API price; no higher long-prompt tier listed, unlike Gemini 3.1 Pro), kept in this snapshot so one price table serves the run. The batch copy (google/gemini-4-argon:batch) is half price; not used. Google counts thinking outside output_tokens (segbench/cost.py THINKING_NOT_IN_OUTPUT)"
         }
       }
     }

@@ -58,6 +58,14 @@ MODELS: tuple[Model, ...] = (
           "answered HTTP 503 'high demand' once on 2026-10-08"),
     Model("gemini-flash-lite", "Gemini 3.5 Flash Lite", "Google", "gemini:gemini-3.5-flash-lite", "per-token", True,
           "writes points as [y, x] (Google's own habit) although the prompt asks for [x, y]"),
+    # Added 2026-10-14 (Maxime). Gemini 4 Argon, Google's new flagship
+    # reasoning model: on Google's API and OpenRouter since 2026-10-13, plain
+    # id gemini-4-argon (no "-preview", no dated snapshot: Google may update
+    # it under the same name). Thinking levels need segbench/call.py's
+    # _gemini_4_thinking_level_patch (lm15 1.2.1 knows only "gemini-3" names).
+    Model("gemini-argon", "Gemini 4 Argon", "Google", "gemini:gemini-4-argon", "per-token", True,
+          "newest Gemini on 2026-10-14; replies at most 32,768 tokens, thinking included; "
+          "circle test passed 4 of 4 on 2026-10-14"),
     # Z.AI, direct.
     Model("glm-5.3", "GLM 5.3", "Z.AI", "zai:glm-5.3", "per-token", False,
           "text only: Z.AI rejects the image (HTTP 400, 'allowed values: text')"),
@@ -144,6 +152,15 @@ THINKING = {
     "gemini-pro":        {"min": {"effort": "low"}, "medium": {"effort": "medium"}, "max": {"effort": "high"}},
     "gemini-flash":      {"min": {"effort": "low"}, "medium": {"effort": "medium"}, "max": {"effort": "high"}},
     "gemini-flash-lite": {"min": {"effort": "minimal"}, "medium": {"effort": "medium"}, "max": {"effort": "high"}},
+    # Checked 2026-10-14 on Google's API: Gemini 4 Argon takes thinkingLevel
+    # low, medium, high only (minimal refused; it cannot stop thinking by
+    # level). Like Gemini Pro and Flash: min low, medium medium, max high.
+    # Thinking tokens, one try each (scripts/probe_thinking.py, with the
+    # thinking-level patch): low none reported, medium 125, high 643 (xhigh
+    # and max are sent as high: 768, 714), default 107. On the circle picture:
+    # low 0, medium 0, high 1,931. Without the patch lm15 sent thinkingBudget
+    # 8,192 for medium (circle picture: 0 thinking tokens).
+    "gemini-argon":      {"min": {"effort": "low"}, "medium": {"effort": "medium"}, "max": {"effort": "high"}},
     "glm-5.3-flash":     {"min": {"effort": "low"}, "medium": {"effort": "high"}, "max": {"effort": "max"}},
     "deepseek-flash":    {"min": {"effort": "off"}, "medium": {"effort": "medium"}, "max": {"effort": "max"}},
     "kimi-k3":           {"min": {"effort": "off"}, "medium": {"effort": "high"}},
