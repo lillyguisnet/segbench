@@ -1,0 +1,33 @@
+30 calls planned, 0 already in run-points-v2.jsonl, 30 to send
+[1/30      5s] mistral-large-4    medium trick logs      4.8s $0.0032  0 items
+[2/30      5s] mistral-large-4    medium trick logs      5.4s $0.0031  0 items
+[3/30      6s] mistral-large-4    medium trick logs      5.8s $0.0032  0 items
+[4/30     21s] mistral-large-4    medium find  cows     15.2s $0.0050  12 items
+[5/30     28s] mistral-large-4    medium trick cows      7.4s $0.0038  0 items
+[6/30     32s] mistral-large-4    medium trick cows      4.1s $0.0031  0 items
+[7/30     37s] mistral-large-4    medium trick cows      4.6s $0.0032  0 items
+[8/30     75s] mistral-large-4    medium find  cows     70.5s $0.0245  10 items
+[9/30     89s] mistral-large-4    medium find  cows     83.4s $0.0311  11 items
+[10/30    143s] mistral-large-4    medium find  logs    142.7s $0.0406  81 items
+[11/30    154s] mistral-large-4    medium trick fig      11.5s $0.0057  0 items
+[12/30    160s] mistral-large-4    medium find  logs    159.5s $0.0594  80 items
+[13/30    173s] mistral-large-4    medium trick fig      13.5s $0.0053  0 items
+[14/30    199s] mistral-large-4    medium find  logs    198.6s $0.0710  141 items
+[15/30    214s] mistral-large-4    medium trick tree     15.0s $0.0043  0 items
+[16/30    224s] mistral-large-4    medium trick fig      70.3s $0.0209  1 items
+[17/30    229s] mistral-large-4    medium trick road      4.6s $0.0031  0 items
+[18/30    239s] mistral-large-4    medium find  fig     163.5s $0.0427  18 items
+[19/30    241s] mistral-large-4    medium trick tree     68.2s $0.0143  2 items
+[20/30    242s] mistral-large-4    medium trick road      3.1s $0.0028  0 items
+[21/30    245s] mistral-large-4    medium trick tree     31.1s $0.0108  0 items
+[22/30    281s] mistral-large-4    medium find  fig     244.4s $0.0549  31 items
+[23/30    287s] mistral-large-4    medium trick dishes    5.9s $0.0034  0 items
+[24/30    291s] mistral-large-4    medium trick dishes    4.1s $0.0031  0 items
+[25/30    297s] mistral-large-4    medium trick dishes    6.1s $0.0035  0 items
+[26/30    298s] mistral-large-4    medium find  fig     209.2s $0.0736  26 items
+[27/30    344s] mistral-large-4    medium trick road    115.3s $0.0324  3 items
+[28/30    392s] mistral-large-4    medium find  dishes  150.4s $0.0417  21 items
+[29/30    412s] mistral-large-4    medium find  dishes  169.8s $0.0517  16 items
+[30/30    524s] mistral-large-4    medium find  dishes  278.9s $0.0605  18 items
+
+30 read, 0 unreadable, 0 errors; saved /home/maxime/Projects/segbench/results/run-points-v2.jsonl

@@ -1,0 +1,16 @@
+model,label,task,repeat,clicks,tp,fp,fn,f1,readable,seconds,cost_usd
+mk1.5,Perceptron Mk1.5,news-1000,1,2,2,0,0,1.0,True,10.131,0.0012346500000000001
+mk1.5,Perceptron Mk1.5,news-1000,0,2,2,0,0,1.0,True,12.727,0.0016006500000000001
+mk1.5,Perceptron Mk1.5,news-1000,2,2,2,0,0,1.0,True,14.211,0.00188265
+mk1.5,Perceptron Mk1.5,onedrive-folders,1,4,3,1,1,0.75,True,38.423,0.00230745
+mk1.5,Perceptron Mk1.5,fold-groups,2,5,1,4,2,0.25,True,61.95,0.00663225
+mk1.5,Perceptron Mk1.5,dirty-labels,1,11,2,9,5,0.2222222222222222,True,32.075,0.0029511
+mk1.5,Perceptron Mk1.5,dirty-labels,0,15,4,11,3,0.36363636363636365,True,59.725,0.0054846
+mk1.5,Perceptron Mk1.5,fold-groups,1,0,0,0,3,0.0,False,116.995,0.01260375
+mk1.5,Perceptron Mk1.5,fold-groups,0,0,0,0,3,0.0,False,119.647,0.01260375
+mk1.5,Perceptron Mk1.5,sold-out,0,8,8,0,0,1.0,True,9.525,0.0023874
+mk1.5,Perceptron Mk1.5,sold-out,1,7,7,0,1,0.9333333333333333,True,5.356,0.0012864
+mk1.5,Perceptron Mk1.5,dirty-labels,2,10,3,7,4,0.35294117647058826,True,40.657,0.0054021
+mk1.5,Perceptron Mk1.5,onedrive-folders,0,0,0,0,4,0.0,False,125.777,0.01260345
+mk1.5,Perceptron Mk1.5,onedrive-folders,2,0,0,0,4,0.0,False,125.237,0.01260345
+mk1.5,Perceptron Mk1.5,sold-out,2,8,8,0,0,1.0,True,23.671,0.0046419

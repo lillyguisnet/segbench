@@ -98,6 +98,14 @@ MODELS: tuple[Model, ...] = (
           "Muse Code Power or Maximum Usage plan only; circle test passed on the plan 2026-10-12 (4 of 4, 32 s); "
           "no per-token price exists (see prices.json)",
           credential="muse-code"),
+    # Added 2026-10-13 (Maxime). Mistral Large 4 (released 2026-10-06, "Public
+    # Preview": Mistral says it keeps training it under the same name, so a
+    # score holds for its run date). Weights promised for end of October 2026;
+    # 1.05T parameters, too big for our GPUs anyway. Reached through OpenRouter,
+    # whose only host for it is Mistral itself.
+    Model("mistral-large-4", "Mistral Large 4", "Mistral", "openrouter:mistralai/mistral-large-4-0", "per-token", True,
+          "OpenRouter mistralai/mistral-large-4-0 (snapshot 20261006), pinned to Mistral; circle test passed 3 of 3 on 2026-10-12",
+          extensions={"provider": {"order": ["Mistral"], "allow_fallbacks": False}}),
 )
 
 # Minimum, medium and maximum thinking, in each model's own levels (checked
@@ -142,6 +150,14 @@ THINKING = {
     # lowest level, medium the middle.
     "muse-wonder":       {"min": {"effort": "minimal"}, "medium": {"effort": "medium"}, "max": {"effort": "max"}},
     "muse-wonder-full":  {"min": {"effort": "minimal"}, "medium": {"effort": "medium"}, "max": {"effort": "max"}},
+    # Mistral's docs (docs.mistral.ai/studio/conversations/reasoning, read
+    # 2026-10-13) give Large 4 two reasoning_effort values only: "none" and
+    # "high". OpenRouter accepts the other words, but on 2026-10-12 they gave
+    # no ordered effect (thinking tokens on the test question, one try each:
+    # off 0, minimal 690, low 394, medium 1038, high 261, xhigh 574, max 396).
+    # So, like Kimi K3: min = off, medium = its one thinking level (high), and
+    # no max (it would repeat high). Maxime, 2026-10-13: run it with full thinking.
+    "mistral-large-4":   {"min": {"effort": "off"}, "medium": {"effort": "high"}},
 }
 LEVELS = ("min", "medium", "max")
 # Dropped 2026-10-09: "max" for Kimi K3 and GPT-6 Astra. Measured at up to

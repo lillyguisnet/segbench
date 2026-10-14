@@ -101,6 +101,12 @@
           "output": 20.0,
           "listed_as": "meta/muse-wonder (Muse Wonder's API price)",
           "note": "added 2026-10-12 (Maxime): Muse Wonder Full is sold only inside the Muse Code plan and has no per-token price anywhere (Meta's API, OpenRouter, checked that day). Its tokens are priced at Muse Wonder's API price, as every plan-called model is priced at an API price; not marked on the chart. If Meta ever sells Full per token, it will likely cost more than this"
+        },
+        "mistral-large-4": {
+          "input": 1.36,
+          "output": 4.18,
+          "listed_as": "mistralai/mistral-large-4-0 on the Mistral host (Mistral's regular price)",
+          "note": "added 2026-10-13 (Maxime): Mistral's REGULAR price, from docs.mistral.ai/models/mistral-large-4-0 that day. Mistral and OpenRouter currently sell it at half that ($0.68 in, $2.09 out, a launch sale with no end date given), so OpenRouter's billed cost saved next to ours is about half of this. Mistral counts thinking inside output_tokens"
         }
       }
     }

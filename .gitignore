@@ -43,3 +43,7 @@ results/point-benchmark-*/images/
 # Screen review app: private screenshots and built seed, rebuilt by scripts/build_screen_review.py
 apps/screen-key-review/images/
 apps/screen-key-review/seed.js
+
+# trial reports: duplicate photos (originals in images/) and drawings on the private screenshots
+results/*-trial/*/images/
+results/*-trial/screens*/*.png

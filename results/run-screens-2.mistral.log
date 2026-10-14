@@ -1,0 +1,16 @@
+15 calls planned, 0 already in run-screens-2.jsonl, 15 to send
+[1/15    21s] mistral-large-4    news-1000    20.6s $0.0061  unreadable: ''
+[2/15    25s] mistral-large-4    fold-groups   25.1s $0.0123  4 clicks (json) (18,368) (18,451) (18,504) (18,606)
+[3/15   129s] mistral-large-4    news-1000   128.6s $0.0370  2 clicks (json) (730,425) (730,518)
+[4/15   150s] mistral-large-4    news-1000   149.8s $0.0362  2 clicks (json) (730,410) (730,510)
+[5/15   254s] mistral-large-4    onedrive-folders  233.4s $0.0611  4 clicks (json) (150,423) (150,450) (150,477) (150,505)
+[6/15   275s] mistral-large-4    fold-groups  274.6s $0.0437  4 clicks (json) (25,383) (25,453) (25,522) (25,622)
+[7/15   346s] mistral-large-4    dirty-labels   91.6s $0.0255  1 clicks (json) (688,336)
+[8/15   418s] mistral-large-4    onedrive-folders  393.2s $0.0859  3 clicks (json) (120,385) (120,410) (120,435)
+[9/15   463s] mistral-large-4    fold-groups  462.8s $0.0752  4 clicks (json) (20,110) (20,330) (20,450) (20,580)
+[10/15   500s] mistral-large-4    dirty-labels  224.9s $0.0520  1 clicks (json) (683,333)
+[11/15   535s] mistral-large-4    sold-out    189.0s $0.0637  7 clicks (json) (180,455) (180,510) (180,565) (180,675)
+[12/15   592s] mistral-large-4    dirty-labels  442.4s $0.0987  1 clicks (json) (737,362)
+[13/15   623s] mistral-large-4    onedrive-folders  494.6s $0.0658  1 clicks (json) (163,409)
+[14/15   628s] mistral-large-4    sold-out    164.9s $0.0640  8 clicks (json) (180,300) (180,470) (180,530) (180,590)
+[15/15   658s] mistral-large-4    sold-out    240.1s $0.0546  8 clicks (json) (183,311) (183,485) (183,543) (183,601)
