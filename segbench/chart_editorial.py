@@ -44,6 +44,7 @@ from segbench.chart_data import Point, frontier  # noqa: E402
 INK = "#0f1115"
 INK_2 = "#4b5260"
 INK_3 = "#8b93a1"
+MUTED = "#b4bac4"  # labels and logos of every model but the highlighted ones (draw(highlight=...))
 GRID = "#e4e8ef"
 RIM = "#cfd5df"
 ACCENT = "#f03441"  # Maxime, 2026-10-09 (was #1d5fe0)
@@ -112,7 +113,7 @@ def _pchip(xs: list[float], ys: list[float], n: int = 48) -> tuple[list[float], 
 
 
 def _disc(ax, x, y, maker: str, d: float, *, rim, rim_w: float, fonts: Fonts, z: float,
-          transform=None, shadow: bool = False) -> None:
+          transform=None, shadow: bool = False, colour: str | None = None) -> None:
     t = transform if transform is not None else ax.transData
     if shadow:
         drop = t + ScaledTranslation(0, -2 / 72, ax.figure.dpi_scale_trans)
@@ -122,7 +123,7 @@ def _disc(ax, x, y, maker: str, d: float, *, rim, rim_w: float, fonts: Fonts, z:
                clip_on=False)
     logo = logo_path(maker)
     size = d * 0.56
-    colour = BRAND.get(maker, INK)
+    colour = colour or BRAND.get(maker, INK)
     if logo is not None:
         ax.scatter([x], [y], s=size ** 2, marker=logo, facecolors=[colour], edgecolors="none", linewidths=0,
                    transform=t, zorder=z + 0.001, clip_on=False)
@@ -132,10 +133,10 @@ def _disc(ax, x, y, maker: str, d: float, *, rim, rim_w: float, fonts: Fonts, z:
                 fontsize=size * (0.6 if len(text) < 3 else 0.44), color=colour, transform=t, zorder=z + 0.001)
 
 
-def _badge(ax, x, y, maker: str, d: float, fonts: Fonts, z: float) -> None:
+def _badge(ax, x, y, maker: str, d: float, fonts: Fonts, z: float, colour: str | None = None) -> None:
     o = d / 2 * 0.74
     t = ax.transData + ScaledTranslation(o / 72, -o / 72, ax.figure.dpi_scale_trans)
-    _disc(ax, x, y, maker, d * 0.56, rim=RIM, rim_w=0.9, fonts=fonts, z=z + 0.002, transform=t)
+    _disc(ax, x, y, maker, d * 0.56, rim=RIM, rim_w=0.9, fonts=fonts, z=z + 0.002, transform=t, colour=colour)
 
 
 def _radius_pt(p: Point, d: float) -> float:
@@ -215,14 +216,17 @@ def _place(cx, cy, r, w, h, prefer, rings, step, placed, circles, own, frame, ga
 
 def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, float] | None = None,
          header: bool = True, title: str | None = None, accent: str = ACCENT, names: str = "all",
-         label_spots: dict[str, str] | None = None, dpi: int = 216) -> list[Path]:
+         label_spots: dict[str, str] | None = None, highlight: set[str] | None = None,
+         dpi: int = 216) -> list[Path]:
     """Draw the points of one track; return the files written (PNG 2160 x 2160, PDF, SVG).
 
     `title` replaces the track's headline (TITLES); `accent` is the colour of
     the best-value curve, rings, scores, glow and the background's tint.
     `label_spots` pins a model's label right next to its disc, by entrant:
     {"sam3": "ur"} (a key of SPOTS), placed before the automatic labels, which
-    then go around it. For a person's layout choice on one chart."""
+    then go around it. For a person's layout choice on one chart.
+    `highlight` (entrants): only these keep their colours; every other
+    model's label and logo is light grey. Layout, discs and rings unchanged."""
     pts = [p for p in points if p.track == track]
     if not pts:
         raise ValueError(f"no points for track {track!r}")
@@ -328,16 +332,21 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
     ax.set_autoscale_on(False)  # nothing drawn after this (leader lines) may stretch the axes
 
     # ----- discs -----
-    for i, p in enumerate(sorted(others, key=lambda p: -p.seconds)):
-        _disc(ax, X(p), Y(p), p.maker, SMALL_PT, rim=RIM, rim_w=1.0, fonts=fonts, z=4 + i * 0.01)
-        if p.kind == "pair":
-            _badge(ax, X(p), Y(p), p.outliner_maker, SMALL_PT, fonts, 4 + i * 0.01)
-    for i, p in enumerate(best):
-        _disc(ax, X(p), Y(p), p.maker, BIG_PT, rim=accent, rim_w=2.8, fonts=fonts, z=6 + i * 0.01, shadow=True)
-        if p.kind == "pair":
-            _badge(ax, X(p), Y(p), p.outliner_maker, BIG_PT, fonts, 6 + i * 0.01)
+    def muted(p):
+        return MUTED if highlight is not None and p.entrant not in highlight else None
 
-    _labels(fig, ax, fonts, pts, best_ids, names, X, Y, curve, accent, floor_at_zero, label_spots or {})
+    for i, p in enumerate(sorted(others, key=lambda p: -p.seconds)):
+        _disc(ax, X(p), Y(p), p.maker, SMALL_PT, rim=RIM, rim_w=1.0, fonts=fonts, z=4 + i * 0.01, colour=muted(p))
+        if p.kind == "pair":
+            _badge(ax, X(p), Y(p), p.outliner_maker, SMALL_PT, fonts, 4 + i * 0.01, colour=muted(p))
+    for i, p in enumerate(best):
+        _disc(ax, X(p), Y(p), p.maker, BIG_PT, rim=accent, rim_w=2.8, fonts=fonts, z=6 + i * 0.01, shadow=True,
+              colour=muted(p))
+        if p.kind == "pair":
+            _badge(ax, X(p), Y(p), p.outliner_maker, BIG_PT, fonts, 6 + i * 0.01, colour=muted(p))
+
+    _labels(fig, ax, fonts, pts, best_ids, names, X, Y, curve, accent, floor_at_zero, label_spots or {},
+            highlight)
     if header:
         _header(fig, fonts, title or TITLES[track])
     if any(p.synthetic for p in pts):
@@ -357,7 +366,7 @@ EXTRA = (0, 25, 50, 90)  # pt further out a label column may sit from its cluste
 
 
 def _labels(fig, ax, fonts: Fonts, pts, best_ids, names, X, Y, curve, accent: str, floor_at_zero: bool = False,
-            label_spots: dict[str, str] | None = None) -> None:
+            label_spots: dict[str, str] | None = None, highlight: set[str] | None = None) -> None:
     label_spots = label_spots or {}
     fig.canvas.draw()
     renderer = fig.canvas.get_renderer()
@@ -385,6 +394,8 @@ def _labels(fig, ax, fonts: Fonts, pts, best_ids, names, X, Y, curve, accent: st
             lines = [[(name, props(fonts.semibold, 11, INK))],
                      [(f"{100 * p.quality:.1f}", props(fonts.semibold, 9.5, INK_2)),
                       (f" \u00b7 {_secs(p.seconds)}", props(fonts.regular, 9.5, INK_3))]]
+        if highlight is not None and p.entrant not in highlight:
+            lines = [[(t, {**pr, "color": MUTED}) for t, pr in line] for line in lines]
         sized = []
         for line in lines:
             ws = [width(t, pr) for t, pr in line]

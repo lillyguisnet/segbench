@@ -54,6 +54,8 @@ def main() -> None:
     ap.add_argument("--label-spot", action="append", default=[], metavar="ENTRANT=SPOT",
                     help="editorial style: pin this model's label beside its disc (SPOT: right, left, above, below, "
                          "ur, ul, lr, ll); repeatable")
+    ap.add_argument("--highlight", action="append", metavar="ENTRANT",
+                    help="editorial style: only these models keep their colours, every other label and logo grey; repeatable")
     args = ap.parse_args()
 
     out = args.out or ROOT / "charts" / ("demo" if args.demo else "")
@@ -83,7 +85,8 @@ def main() -> None:
             paths = draw_editorial(points, track, out / track, xlim=xlim, header=not args.no_header,
                                    title=args.title, **({"accent": args.accent} if args.accent else {}),
                                    label_spots=dict(s.split("=", 1) for s in args.label_spot),
-                                   names=args.names)
+                                   names=args.names,
+                                   highlight=set(args.highlight) if args.highlight else None)
         else:
             paths = draw(points, track, out / track, xlim=xlim, legend=not args.no_legend, names=args.names)
         for path in paths:
