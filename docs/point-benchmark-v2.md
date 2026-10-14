@@ -238,3 +238,76 @@ Candidate scores: `results/point-benchmark-v2-loc-2026-10-12`,
 `results/point-benchmark-v1hd-loc-2026-10-12`. Report:
 `results/point-benchmark-v2.6`; charts: `charts/point-benchmark-v2.6`,
 `charts/screens-2`.
+
+## v2.7 (2026-10-14): Gemini 4 Argon, Claude Haiku 5.5, Mistral Large 4, GroundingPI 4B
+
+Maxime: add Gemini 4 Argon and Claude Haiku 5.5 (both asked for that day),
+Mistral Large 4 (run 2026-10-13, held back until now) and GroundingPI 4B
+(local, weights out 2026-10-14). Same checks and runs as every model before
+(`docs/adding-a-model.md`), same rule (each language model keeps its better
+prompt). Every earlier entrant's score is unchanged, on the photos and on the
+screens (checked: the selection gained 12 records per new model and lost
+none; the earlier rows of both score tables are identical).
+
+- **Gemini 4 Argon** (Google API, `gemini-4-argon`, on the API since
+  2026-10-13; no dated snapshot, so Google may change it under the same
+  name). lm15 1.2.1 sends Google's thinking *levels* only to names starting
+  "gemini-3" and gave Argon a token budget instead (8,192 for medium);
+  `segbench/call.py` now sends levels to "gemini-4" names too. Argon takes
+  low, medium and high (minimal refused), so min low, medium medium, max high,
+  as Gemini 3.1 Pro and 3.8 Flash. At medium it mostly chooses not to think
+  (305 thinking tokens over the 30 v2 answers). Ultra-high image detail
+  doubles its image tokens, so it gets it, as every Gemini. $2 / $10 per
+  million tokens. **71.8** (v2; v1-hd 65.9): logs 84.6, cows 92.6, fig 68.9,
+  dishes 40.9, 10.1 s, $11.18 per 1,000 images. Third, behind Muse Wonder and
+  Muse Wonder Full. It counts well and places loosely: on the dishes its
+  counts were 23-25 of 26, but 1-5 points per try hit the tight mark. Trick
+  questions: none invented (0 of 18).
+- **Claude Haiku 5.5** (Claude plan, `claude-haiku-5-5`, released
+  2026-10-07). Thinks by default; Anthropic's off for it is
+  `thinking: disabled` (min). Priced at its API price, $0.10 / $0.50.
+  **62.9** (v2; v1-hd 60.5): logs 58.2, cows 99.0, fig 50.3, dishes 44.1,
+  7.7 s, $1.37 per 1,000: on the best-value line between Moondream 3.1 and
+  Qwen 3.8 Flash Next. Trick questions: none invented.
+- **Mistral Large 4** (OpenRouter, pinned to Mistral, `mistral-large-4-0`;
+  "public preview": Mistral keeps training it under the same name). Its only
+  thinking levels are off and high, so medium = high, no max. Charted at
+  Mistral's regular price ($1.36 / $4.18), not the launch sale it was billed
+  at. **50.8** (v2; v1-hd 45.5): logs 34.6, cows 80.6, fig 55.2, dishes 33.0,
+  161 s per question, $46.39 per 1,000. One answer was read by the lenient
+  reader (recovered 1). Trick questions: invented in 3 of 18 (a car on the
+  fig photo, people in the tree, cows on the road).
+- **GroundingPI 4B** (arXiv:2609.39601; `~/Projects/finders/models/groundingpi`,
+  through its authors' own vLLM server, temperature 0, answers repeat
+  exactly). Photos: its category-point template, singular ("Point to: cow."),
+  like its examples. Timed on the whole of GPU 0 (its one program, the paper
+  rewriter, stopped); load factor 0.3148 with 16 requests at once.
+  **50.0**: logs 83.1, cows 93.9, fig 5.7, dishes 17.2, 2.1 s, $0.059 per
+  1,000. Trick questions: one invented point on every one (6 of 6), e.g. a
+  "cow" in the middle of the log photo. Not on the best-value line (Moondream
+  3.1 is cheaper and better).
+
+Screen clicks, round 2 (`results/run-screens-2.jsonl`;
+`results/run-screens-local-2.jsonl` for GroundingPI): Gemini 4 Argon 100
+(tied first with GPT-6.1 Sol, GPT-6 Astra and Muse Wonder Full), Claude
+Haiku 5.5 98.5 (on the best-value line), Mistral Large 4 41.5 (225 s per
+question), GroundingPI 4B 17.8 (on the best-value line, between Florence-2
+in detection mode and MolmoPoint 8B). GroundingPI gets its makers' screen template ("Point to the UI
+element to click for the following instruction: ..."), which asks for one
+element: it always clicks once, and every question has 2 to 8 right
+answers, so one click scores at most 41 here. Said on the screens page.
+
+Charts: Mistral's logo (Simple Icons, CC0) and orange; GroundingPI has no
+mark that fits a disc, so "GPI" in its purple (`assets/logos/SOURCES.md`).
+Labels on the best-value line now keep a small margin between each other
+(GroundingPI's ran into MolmoPoint's on the screens chart); every earlier
+chart redraws identically with it (checked v2.5, v2.6 and screens-1).
+Pinned labels: v2.7 Gemini 3.1 Pro left (and Qwen 3.8 27B left on the
+language-model chart), `scripts/plot_point_pilot.py`; on screens-2,
+Moondream's pin removed (GroundingPI's disc now sits where it pointed),
+`scripts/plot_screens.py`.
+
+Candidate scores: `results/point-benchmark-v2-loc-2026-10-14`,
+`results/point-benchmark-v1hd-loc-2026-10-14`. Report:
+`results/point-benchmark-v2.7`; charts: `charts/point-benchmark-v2.7`,
+`charts/screens-2`.

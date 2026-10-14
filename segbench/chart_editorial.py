@@ -69,6 +69,8 @@ BRAND = {
     "IDEA": "#2b6cb0",
     "Microsoft": "#5e5e5e",
     "Moondream": "#0f1115",  # its logo's black face on a white moon
+    "Mistral": "#fa520f",  # Mistral orange (2026-10-14), as in segbench/brand.py
+    "GroundingPI": "#7050ad",  # its name's purple (2026-10-14); initials "GPI"
 }
 MAKER_NAME = {"Moonshot": "Moonshot AI", "Z.AI": "Z.ai"}
 # The headline of each chart: what ability it measures, in plain words.
@@ -446,11 +448,17 @@ def _labels(fig, ax, fonts: Fonts, pts, best_ids, names, X, Y, curve, accent: st
 
     # 1. Best-value models: name and score above the disc, if there is room.
     index = {p.entrant: i for i, p in enumerate(pts)}
+    best_margins = []
     for p in sorted((p for p in pts if p.entrant in best_ids), key=lambda p: -p.quality):
         i = index[p.entrant]
         sized, w, h = block(p)
+        # Best-value labels keep a margin between each other (2026-10-14,
+        # screens-2: "GroundingPI 4B" sat flush against "MolmoPoint 8B", the
+        # two read as one name). Only among themselves: the other labels are
+        # placed against the labels' true boxes, as before.
         box, align, far, _ = _place(*circles[i], w, h, ["above", "ul", "ur", "left", "right", "below"], 6,
-                                    10 * ppt, placed, circles, i, frame, gap)
+                                    10 * ppt, placed + best_margins, circles, i, frame, gap)
+        best_margins.append((box[0] - gap, box[1], box[2] + gap, box[3]))
         placed.append(box)
         render(sized, box, align)
         if far:

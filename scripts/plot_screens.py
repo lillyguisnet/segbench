@@ -28,7 +28,11 @@ TITLE = "How well can AI click the right thing on a screen?"
 # 2026-10-12: Muse Wonder's beside its disc (with Muse Wonder Full, GPT-6 Astra
 # and Gemini 3.1 Pro all near it, the automatic column put labels on top of
 # each other).
-LABEL_SPOTS = {"screens-2": {"sam3": "right", "moondream-3.1": "above", "florence2-large-grounding": "above",
+# 2026-10-14: Moondream's pin removed. GroundingPI 4B's disc now sits just
+# above Moondream's, so a label pinned above it lay on that disc; every pinned
+# spot tried (below, left, lower left, lower right) covered another label.
+# Placed automatically, it goes above the cluster with a line.
+LABEL_SPOTS = {"screens-2": {"sam3": "right", "florence2-large-grounding": "above",
                              "muse-wonder@medium": "right"},
                # one variant only: "<chart>/<variant>", added to the chart's own
                "screens-2/language-models": {"opus@medium": "above"}}

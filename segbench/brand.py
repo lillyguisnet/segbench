@@ -29,10 +29,14 @@ LOGOS = {
     "Microsoft": "microsoft.svg",
     "Moondream": "moondream.svg",
     "Perceptron": "perceptron.svg",
+    "Mistral": "mistralai.svg",
 }
 # No logo file yet for these (each needs its source and licence noted in
 # assets/logos/SOURCES.md first): initials instead.
 INITIALS = {"UC Davis": "UCD", "IDEA": "IDEA"}  # no logo in Simple Icons or Lobe Icons (checked 2026-10-10)
+# GroundingPI (checked 2026-10-14): in neither library, and its only mark is
+# a wide picture of its name (the README title), not a mark for a small disc.
+INITIALS["GroundingPI"] = "GPI"
 
 # Brand colours (as on the 2026-10-09 brand-colour charts, commit 3aca946),
 # used where colour shows the maker (the point overlays, site and video; the
@@ -55,6 +59,8 @@ BRAND = {
     "Microsoft": "#737373",
     "Moondream": "#b8860b",  # moonlight gold; Moondream's own site is black and white
     "Perceptron": "#1e130e",  # its mark's dark brown (Lobe Icons' Perceptron avatar), near Kimi's black
+    "Mistral": "#fa520f",  # Mistral orange (Simple Icons' colour for Mistral AI)
+    "GroundingPI": "#7050ad",  # the purple of its name and of the first badge on its README
 }
 OTHER = "#7a808a"
 

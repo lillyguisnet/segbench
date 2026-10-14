@@ -211,6 +211,9 @@ passes when it outlines exactly the four circles in the right places).
 | DeepSeek Flash | `deepseek-flash` (= V4.1 Flash) | DeepSeek API | yes | pass |
 | Kimi K3 | `kimi-k3` | Moonshot API | yes | pass |
 | Qwen 27B | `qwen/qwen3.8-27b` | OpenRouter, **Alibaba host only** | yes | pass on Alibaba, fail on Cerebras |
+| Gemini 4 Argon | `gemini-4-argon` (added 2026-10-14) | Google API | yes | pass |
+| Claude Haiku 5.5 | `claude-haiku-5-5` (added 2026-10-14) | Claude plan (`claude-code:`) | yes | pass |
+| Mistral Large 4 | `mistralai/mistral-large-4-0` (public preview; added 2026-10-13) | OpenRouter, **Mistral host only** | yes | pass |
 | ~~GLM 5.3~~ | `glm-5.3` | Z.AI API | **no**: rejected with an error | excluded |
 | ~~DeepSeek Pro~~ | `deepseek-v4-pro` | DeepSeek API | **no**, and silently: the picture is replaced by "[Unsupported Image]" and the model answers anyway | excluded |
 

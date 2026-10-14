@@ -22,6 +22,18 @@ SOURCE = ROOT / 'results' / RUN / 'scored.jsonl'
 SUMMARY = ROOT / 'results' / RUN / 'summary.csv'
 OUT = ROOT / 'charts' / (sys.argv[2] if len(sys.argv) > 2 else 'point-pilot-editorial')
 
+# Labels pinned beside their disc, per chart, as in scripts/plot_screens.py
+# (keys "<chart>" or "<chart>/<variant>"); the automatic placer puts the rest
+# around them. Charts not listed are drawn exactly as before.
+# 2026-10-14, v2.7: Gemini 3.1 Pro's left of its disc. Left to the placer, it
+# went far to the right with a line through Claude Opus's and Mistral Large
+# 4's labels, and Gemini 3.8 Flash's (whose disc sits under Gemini 4 Argon's)
+# crossed GPT-6.1 Sol's. On the language-model chart, Qwen 3.8 27B's left of
+# its disc (it ran into Claude Haiku 5.5's; labels on the best-value line,
+# like Haiku's, cannot be pinned).
+LABEL_SPOTS = {'point-benchmark-v2.7': {'gemini-pro@medium': 'left'},
+               'point-benchmark-v2.7/language-models': {'qwen-27b@medium': 'left'}}
+
 
 def main():
     records = [json.loads(line) for line in SOURCE.read_text().splitlines()]
@@ -37,8 +49,11 @@ def main():
         folder.mkdir(parents=True, exist_ok=True)
         calls = folder / 'calls.jsonl'
         calls.write_text(''.join(json.dumps(r) + '\n' for r in rows))
+        here = {r['entrant'] for r in rows}
+        pinned = {**LABEL_SPOTS.get(OUT.name, {}), **LABEL_SPOTS.get(f'{OUT.name}/{variant}', {})}
+        spots = [f'--label-spot={e}={s}' for e, s in pinned.items() if e in here]
         subprocess.run(['uv', 'run', str(ROOT / 'scripts/draw_charts.py'), str(calls),
-                        '--style', 'editorial', '--track', 'find', '--names', 'all', '--out', str(folder)],
+                        '--style', 'editorial', '--track', 'find', '--names', 'all', '--out', str(folder), *spots],
                        cwd=ROOT, check=True)
         with (folder / 'points.csv').open() as f:
             plotted = list(csv.DictReader(f))
@@ -53,6 +68,8 @@ def main():
         'renderer': 'scripts/draw_charts.py --style editorial --track find --names all',
         'renderer_sha256': {name: hashlib.sha256((ROOT / name).read_bytes()).hexdigest()
                             for name in ['scripts/draw_charts.py', 'segbench/chart_editorial.py', 'segbench/chart.py', 'segbench/chart_data.py']},
+        **({'label_spots': spots} if (spots := {k: v for k, v in LABEL_SPOTS.items()
+                                                 if k == OUT.name or k.startswith(OUT.name + '/')}) else {}),
         'metric': 'point-localisation-v1; tolerance-average F1; equal weighting of four tasks',
         'excluded_incomplete': [k for k in expected if k not in complete],
         'caveats': ['Single medium-thinking pilot, not repeat-validated.',
