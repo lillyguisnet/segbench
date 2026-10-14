@@ -21,6 +21,12 @@ Fields:
   under load and rounds of answers. photo_rounds None: not timed by that script.
 - screen_seeds: scripts/run_screens_local.py, tries per screenshot (3 for a
   model that samples, 1 for a deterministic one). None: not run there.
+- screen_task: the finders task used on the screenshots, when the model has
+  one made for them (GroundingPI's `gui`); None: the same task as on the photos.
+- service: the finders model answers from a separate service (vLLM). Under
+  load, scripts/time_finders.py then starts one service that answers up to
+  max(photo_copies) requests at once, and "copies" are that many processes
+  sending requests to it (how a vLLM model is used), not copies of the model.
 - load_factor: measured by scripts/time_finders.py on the photos
   (results/run-<name>.timing.json, "load_factor"); cost = $/GPU-hour x
   single-copy seconds x this factor. Copied by hand on purpose: a published
@@ -46,6 +52,8 @@ class LocalModel:
     screen_seeds: int | None = None
     load_factor: float | None = None
     note: str = ""
+    screen_task: str | None = None
+    service: bool = False
 
 
 LOCAL_MODELS: tuple[LocalModel, ...] = (
@@ -81,6 +89,18 @@ LOCAL_MODELS: tuple[LocalModel, ...] = (
     LocalModel("moondream-3.1", "Moondream 3.1", "Moondream", "moondream", "point",
                photo_copies=(), photo_rounds=3, screen_seeds=1, load_factor=1.0,
                note="results/run-finders-4.timing.json"),
+    # Added 2026-10-14 (Maxime asked the same day; weights out that day).
+    # GroundingPI 4B, paper arXiv:2609.39601, through its authors' vLLM service
+    # (~/Projects/finders/models/groundingpi). Deterministic (temperature 0):
+    # one answer per screenshot. Photos: its category-point template
+    # ("Point to: cow."), singular like its own examples ("car</c>person").
+    # Screenshots: its GUI template ("Point to the UI element to click for the
+    # following instruction: ..."), made for exactly that.
+    # Not timed yet: load_factor comes from scripts/time_finders.py; then
+    # screen_seeds=1 (deterministic), as the guide orders it.
+    LocalModel("groundingpi-4b", "GroundingPI 4B", "GroundingPI", "groundingpi", "point",
+               photo_copies=(2, 4, 8), photo_rounds=3, screen_task="gui", service=True,
+               note="vLLM service; copies = requests at once to one service"),
 )
 
 BY_KEY = {m.key: m for m in LOCAL_MODELS}
@@ -94,5 +114,5 @@ def photo_setups() -> dict[str, tuple]:
 
 def screen_setups() -> dict[str, tuple]:
     """scripts/run_screens_local.py MODELS: key -> (finders model, task, variant, seeds, load factor)."""
-    return {m.key: (m.finders, m.task, m.variant, m.screen_seeds, m.load_factor)
+    return {m.key: (m.finders, m.screen_task or m.task, m.variant, m.screen_seeds, m.load_factor)
             for m in LOCAL_MODELS if m.screen_seeds is not None}

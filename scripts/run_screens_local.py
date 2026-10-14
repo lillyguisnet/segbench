@@ -52,7 +52,7 @@ PRICE_PER_GPU_HOUR = 0.22
 # dropped for them, so they get the documented wording, not "...group..".
 # Fixed 2026-10-11 after the first run; that run's LocateAnything answers are
 # kept apart (results/superseded/run-screens-local-1.locateanything-double-stop*.jsonl).
-ADDS_STOP = {"locateanything"}
+ADDS_STOP = {"locateanything", "groundingpi"}  # GroundingPI's GUI template ends "...: {q}."
 # key -> (finders model, task, variant, seeds, load factor measured on the photos),
 # from segbench/local_models.py (each model's notes are there).
 MODELS = screen_setups()

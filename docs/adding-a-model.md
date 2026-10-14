@@ -195,6 +195,14 @@ runs only when the GPU is free, by hand (Maxime's call each time).
    `uv run --with pillow scripts/run_screens_local.py --name screens-local-N --models KEY [--gpu 1]`.
 5. `uv run scripts/add_model.py preview KEY`, ask, then publish as above.
 
+**A model served by vLLM** (GroundingPI, 2026-10-14) runs as a small local
+service its finders script starts and stops. Set `service=True` in its
+`LocalModel`: `time_finders.py` then keeps one service running for the whole
+measurement, and its "copies" are processes sending requests to it at once
+(up to `max(photo_copies)`), which is how such a model is used under load;
+several copies of a 17 GB service would not fit on one card anyway. A model
+with a task made for screenshots (GroundingPI's `gui`) sets `screen_task`.
+
 Rules we kept for local models: a model that fails most questions stays in
 (failing is a result: RF-DETR, 2026-10-10); a model that cannot read a
 request can be paired with one that can (the pair is named on the chart);

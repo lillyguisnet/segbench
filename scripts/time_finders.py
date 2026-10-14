@@ -18,6 +18,13 @@ working, work done = the sum of the single-copy times of the queries finished.
 Load factor = window seconds / work done (below 1 = the GPU does more under
 load). The best K sets it (K = 1 gives 1). Cost of a question = $0.22 per
 GPU-hour x its single-copy time x the load factor.
+
+A model answered by a service (LocalModel.service, GroundingPI's vLLM): one
+service runs for the whole measurement, allowed max(photo_copies) requests
+at once. "K copies" are then K processes sending requests to it at once,
+which is how a vLLM model is used under load; the single-copy times are
+taken on the same service with one request at a time. Its own processes
+are not counted as other programs on the GPU.
 """
 from __future__ import annotations
 
@@ -61,20 +68,80 @@ GPUS = {"0": ("GPU-ed411651-10df-4a1c-981a-9cf0787065b1",
 TIMING_BASIS = GPUS["0"][1]
 
 
-def gpu_others() -> dict:
+def gpu_others(ours: set[str] = frozenset()) -> dict:
     out = subprocess.run(["nvidia-smi", "--query-compute-apps=gpu_uuid,pid,used_memory", "--format=csv,noheader,nounits"],
                          capture_output=True, text=True, timeout=10).stdout
     return {pid.strip(): int(mem) for uuid, pid, mem in (l.split(",") for l in out.splitlines() if l.strip())
-            if uuid.strip() == GPU_UUID}
+            if uuid.strip() == GPU_UUID and pid.strip() not in ours}
+
+
+def descendants(pid: int) -> set[str]:
+    """pid and every process started under it (from /proc)."""
+    children: dict[str, list[str]] = {}
+    for stat in Path("/proc").glob("[0-9]*/stat"):
+        try:
+            fields = stat.read_text().rsplit(")", 1)[1].split()
+        except OSError:
+            continue
+        children.setdefault(fields[1], []).append(stat.parent.name)
+    out, todo = set(), [str(pid)]
+    while todo:
+        p = todo.pop()
+        out.add(p)
+        todo += children.get(p, [])
+    return out
+
+
+class Service:
+    """One running model service (finders `find.py serve`), shared by every worker."""
+
+    def __init__(self, fmodel: str, max_at_once: int, log_path: Path):
+        cmd = ["uv", "run", "--frozen", "--quiet", "--directory", str(FINDERS / "models" / fmodel), "find.py", "serve",
+               "--max-num-seqs", str(max_at_once), "--port", str(_free_port())]
+        env = dict(os.environ, FINDERS_GPU=GPU_UUID)
+        env.pop("VIRTUAL_ENV", None)
+        self.max_at_once = max_at_once
+        self.proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=open(log_path, "w"), text=True, env=env)
+        self.url = self.proc.stdout.readline().strip()  # printed once it answers
+        if not self.url.startswith("http"):
+            self.proc.kill()
+            raise SystemExit(f"{fmodel} service did not start (log: {log_path})")
+        print(f"   service ready at {self.url} (up to {max_at_once} at once)", flush=True)
+
+    def pids(self) -> set[str]:
+        return descendants(self.proc.pid)
+
+    def gpu_mib(self) -> int:
+        ours = self.pids()
+        out = subprocess.run(["nvidia-smi", "--query-compute-apps=pid,used_memory", "--format=csv,noheader,nounits"],
+                             capture_output=True, text=True, timeout=10).stdout
+        return sum(int(m) for p, m in (l.split(",") for l in out.splitlines() if l.strip()) if p.strip() in ours)
+
+    def stop(self):
+        self.proc.terminate()
+        try:
+            self.proc.wait(60)
+        except subprocess.TimeoutExpired:
+            self.proc.kill()
+
+
+def _free_port() -> int:
+    import socket
+
+    with socket.socket() as s:
+        s.bind(("127.0.0.1", 0))
+        return s.getsockname()[1]
 
 
 class Worker:
     """One copy of a model: jobs in, (arrival time, record) out."""
 
-    def __init__(self, fmodel, variant, jobs, log_path=None):
+    def __init__(self, fmodel, variant, jobs, log_path=None, service=None):
         cmd = ["uv", "run", "--frozen", "--quiet", "--directory", str(FINDERS / "models" / fmodel), "find.py",
                "--jobs", "-", "--no-masks"] + (["--variant", variant] if variant else [])
         env = dict(os.environ, FINDERS_GPU=GPU_UUID)
+        if service is not None:
+            env["FINDERS_SERVER_URL"] = service.url
         env.pop("VIRTUAL_ENV", None)
         self.log = open(log_path, "w") if log_path else subprocess.DEVNULL
         self.proc = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=self.log,
@@ -121,8 +188,19 @@ def measure(key, name_out):
     others_before = gpu_others()
     print(f"== {key}: {len(jobs) - 1} timed queries, {len(trick)} trick", flush=True)
     t0 = time.monotonic()
-    out = Worker(fmodel, variant, jobs + trick).wait()
-    others = {**others_before, **gpu_others()}
+    service = Service(fmodel, max(copies, default=1), name_out.with_name(f"{name_out.stem}.{key}.service.log")) \
+        if LOCAL[key].service else None
+    try:
+        return _measure(key, name_out, fmodel, ftask, variant, copies, qs, jobs, trick, others_before, t0, service)
+    finally:
+        if service is not None:
+            service.stop()
+
+
+def _measure(key, name_out, fmodel, ftask, variant, copies, qs, jobs, trick, others_before, t0, service):
+    ours = service.pids() if service else set()
+    out = Worker(fmodel, variant, jobs + trick, service=service).wait()
+    others = {**others_before, **gpu_others(ours)}
     # single-copy time of each answer = gap from the previous answer (opening the photo included)
     single = []
     for (ta, ra), (tb, rb) in zip(out, out[1:]):
@@ -139,7 +217,7 @@ def measure(key, name_out):
     for k in copies:
         cyc = [job(key, ftask, t, q, s, 100 + r, "load") for r in range(4) for t, q, s in qs]
         logs = [name_out.with_name(f"{name_out.stem}.{key}.copy{i}of{k}.log") for i in range(k)]
-        ws = [Worker(fmodel, variant, cyc, lg) for lg in logs]
+        ws = [Worker(fmodel, variant, cyc, lg, service) for lg in logs]
         try:
             outs = [w.wait() for w in ws]
         except RuntimeError as e:  # a copy that does not fit (out of memory) is a result, not a crash
@@ -155,7 +233,8 @@ def measure(key, name_out):
                    for o in outs for t, r in o if start < t <= end)
         factor = (end - start) / done if done else None
         load.append({"copies": k, "window_s": round(end - start, 2), "work_done_s": round(done, 2),
-                     "load_factor": round(factor, 4) if factor else None, "peak_gib": max(r["gpu_peak_gib"] or 0 for o in outs for _, r in o)})
+                     "load_factor": round(factor, 4) if factor else None, "peak_gib": max(r["gpu_peak_gib"] or 0 for o in outs for _, r in o),
+                     **({"service_gpu_mib": service.gpu_mib(), "service_max_at_once": service.max_at_once} if service else {})})
         print(f"   {k} copies: load factor {factor:.3f} (window {end - start:.0f}s)", flush=True)
     best = min(l["load_factor"] for l in load if l["load_factor"])
 
@@ -181,7 +260,8 @@ def measure(key, name_out):
         rs = [r for r in recs if r["track"] == "find" and r["task"] == tkey]
         counts = [len(json.loads(r["text"])["objects"]) for r in rs]
         print(f"   {tkey:6} points per repeat {counts}  {statistics.median(r['seconds'] for r in rs):6.2f}s", flush=True)
-    return {"setup": key, "finders_model": fmodel, "variant": variant, "task": ftask, "rounds": rounds,
+    return {"setup": key, "finders_model": fmodel, "variant": variant, "task": ftask, "rounds": LOCAL[key].photo_rounds,
+            **({"service": {"url": service.url, "max_at_once": service.max_at_once}} if service else {}),
             "single": [{k: v for k, v in s.items() if k != "rec"} for s in single], "query_seconds": {
                 f"{t}|{q}": round(v, 4) for (t, q), v in work_of.items()}, "load": load, "load_factor": best,
             "gpu_others": others, "elapsed_s": round(time.monotonic() - t0, 1)}

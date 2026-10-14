@@ -48,18 +48,26 @@ SCREENS_LOCAL_MODELS_9AB38C9 = {  # scripts/run_screens_local.py MODELS
 PLURAL_MODELS_9AB38C9 = {"locateanything-3b", "molmopoint-8b"}  # scripts/run_finders.py
 
 
+def _earlier(table: dict, snapshot: dict) -> dict:
+    """The entries of `table` for the models in `snapshot`: models added later are left out."""
+    return {k: v for k, v in table.items() if k in snapshot}
+
+
 class LocalRegistryUnchanged(unittest.TestCase):
+    """Every model as it was at 9ab38c9; models added since then are free to be added."""
+
     def test_chart_names(self):
-        self.assertEqual(SPECIALISTS, SPECIALISTS_9AB38C9)
+        self.assertEqual(_earlier(SPECIALISTS, SPECIALISTS_9AB38C9), SPECIALISTS_9AB38C9)
 
     def test_photo_timing_setups(self):
-        self.assertEqual(photo_setups(), TIME_FINDERS_SETUPS_9AB38C9)
+        self.assertEqual(_earlier(photo_setups(), TIME_FINDERS_SETUPS_9AB38C9), TIME_FINDERS_SETUPS_9AB38C9)
 
     def test_screen_setups_and_load_factors(self):
-        self.assertEqual(screen_setups(), SCREENS_LOCAL_MODELS_9AB38C9)
+        self.assertEqual(_earlier(screen_setups(), SCREENS_LOCAL_MODELS_9AB38C9), SCREENS_LOCAL_MODELS_9AB38C9)
 
     def test_plural_wording(self):
-        self.assertEqual({m.key for m in LOCAL_MODELS if m.plural}, PLURAL_MODELS_9AB38C9)
+        self.assertEqual({m.key for m in LOCAL_MODELS if m.plural and m.key in SPECIALISTS_9AB38C9},
+                         PLURAL_MODELS_9AB38C9)
 
 
 class RegistryComplete(unittest.TestCase):
