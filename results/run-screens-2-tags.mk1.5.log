@@ -1,0 +1,16 @@
+15 calls planned, 0 already in run-screens-2-tags.jsonl, 15 to send
+[1/15    10s] mk1.5              news-1000    10.1s $0.0012  2 clicks (tags) (714,392) (714,488)
+[2/15    13s] mk1.5              news-1000    12.7s $0.0016  2 clicks (tags) (729,400) (729,492)
+[3/15    14s] mk1.5              news-1000    14.2s $0.0019  2 clicks (tags) (729,388) (729,489)
+[4/15    51s] mk1.5              onedrive-folders   38.4s $0.0023  4 clicks (tags) (107,397) (107,417) (107,438) (107,459)
+[5/15    62s] mk1.5              fold-groups   62.0s $0.0066  5 clicks (tags) (5,35) (35,35) (5,365) (5,415)
+[6/15    94s] mk1.5              dirty-labels   32.1s $0.0030  11 clicks (tags) (214,721) (373,726) (311,734) (530,690)
+[7/15   111s] mk1.5              dirty-labels   59.7s $0.0055  15 clicks (tags) (209,704) (311,735) (349,690) (375,726)
+[8/15   117s] mk1.5              fold-groups  117.0s $0.0126  unreadable: ''
+[9/15   120s] mk1.5              fold-groups  119.6s $0.0126  unreadable: ''
+[10/15   120s] mk1.5              sold-out      9.5s $0.0024  8 clicks (tags) (179,282) (179,456) (179,518) (179,580)
+[11/15   122s] mk1.5              sold-out      5.4s $0.0013  7 clicks (tags) (179,455) (179,515) (179,573) (179,690)
+[12/15   135s] mk1.5              dirty-labels   40.7s $0.0054  10 clicks (tags) (210,705) (312,734) (350,690) (375,725)
+[13/15   136s] mk1.5              onedrive-folders  125.8s $0.0126  unreadable: ''
+[14/15   139s] mk1.5              onedrive-folders  125.2s $0.0126  unreadable: ''
+[15/15   143s] mk1.5              sold-out     23.7s $0.0046  8 clicks (tags) (174,284) (174,456) (174,521) (174,585)

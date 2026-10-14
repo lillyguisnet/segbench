@@ -1,0 +1,269 @@
+2026-10-11T07:30:50-04:00 started by hand: GPU 0 holds only the desktop (window manager drawing the screen, 20-30% busy)
+== locateanything-3b: 30 questions
+[finders] GPU 0 (23119 MiB free)
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+/home/maxime/Projects/finders/models/locateanything/.venv/lib/python3.11/site-packages/transformers/models/auto/image_processing_auto.py:647: FutureWarning: The image_processor_class argument is deprecated and will be removed in v4.42. Please use `slow_image_processor_class`, or `fast_image_processor_class` instead
+  warnings.warn(
+Qwen2ForCausalLM has generative capabilities, as `prepare_inputs_for_generation` is explicitly defined. However, it doesn't directly inherit from `GenerationMixin`. From 👉v4.50👈 onwards, `PreTrainedModel` will NOT inherit from `GenerationMixin`, and this model will lose the ability to call `generate` and other related functions.
+  - If you're using `trust_remote_code=True`, you can get rid of this warning by loading the model with an auto class. See https://huggingface.co/docs/transformers/en/model_doc/auto#auto-classes
+  - If you are the owner of the model architecture code, please modify your model class such that it inherits from `GenerationMixin` (after `PreTrainedModel`, otherwise you'll get an exception).
+  - If you are not the owner of the model architecture class, please contact the model code owner to update it.
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.43s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.12it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.03it/s]
+[finders] locateanything loaded in 13.54s
+/home/maxime/.cache/huggingface/modules/transformers_modules/c32291ca5e996f5a7a485845b4f57a233936bba0/generate_utils.py:186: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  box_avg.append(torch.tensor(out_ref, dtype=x0.dtype, device=x0.device))
+[finders] 1/31 screen_chattering_chart.png "Collapse Lilly's conversation group.": 1 found in 1.878s
+[finders] 2/31 screen_chattering_chart.png "Collapse Lilly's conversation group.": 1 found in 1.058s
+[finders] 3/31 screen_chattering_chart.png "Collapse Lilly's conversation group.": 1 found in 1.065s
+[finders] 4/31 screen_chattering_chart.png "Collapse Lilly's conversation group.": 1 found in 1.054s
+[finders] 5/31 screen_x_feed.png 'Open a reply to Michael.': 1 found in 1.045s
+[finders] 6/31 screen_x_feed.png 'Open a reply to Michael.': 1 found in 1.071s
+[finders] 7/31 screen_x_feed.png 'Open a reply to Michael.': 1 found in 1.06s
+[finders] 8/31 screen_slack_photo_viewer.png 'Close the photo viewer.': 1 found in 1.059s
+[finders] 9/31 screen_slack_photo_viewer.png 'Close the photo viewer.': 1 found in 1.061s
+[finders] 10/31 screen_slack_photo_viewer.png 'Close the photo viewer.': 1 found in 1.047s
+[finders] 11/31 screen_review_app_dishes.png 'Add to favorites.': 1 found in 1.017s
+[finders] 12/31 screen_review_app_dishes.png 'Add to favorites.': 1 found in 1.016s
+[finders] 13/31 screen_review_app_dishes.png 'Add to favorites.': 1 found in 1.027s
+[finders] 14/31 screen_shopify_products.png 'Tick lamb-only products.': 1 found in 0.876s
+[finders] 15/31 screen_shopify_products.png 'Tick lamb-only products.': 1 found in 0.873s
+[finders] 16/31 screen_shopify_products.png 'Tick lamb-only products.': 1 found in 0.879s
+[finders] 17/31 screen_chattering_chart.png 'Fold every open conversation group except segbench.': 1 found in 1.052s
+[finders] 18/31 screen_chattering_chart.png 'Fold every open conversation group except segbench.': 1 found in 1.057s
+[finders] 19/31 screen_chattering_chart.png 'Fold every open conversation group except segbench.': 1 found in 1.049s
+[finders] 20/31 screen_x_feed.png 'Open every news story with more than 1,000 posts.': 1 found in 1.061s
+[finders] 21/31 screen_x_feed.png 'Open every news story with more than 1,000 posts.': 1 found in 1.07s
+[finders] 22/31 screen_x_feed.png 'Open every news story with more than 1,000 posts.': 1 found in 1.086s
+[finders] 23/31 screen_slack_photo_viewer.png 'Open every folder inside OneDrive.': 1 found in 1.047s
+[finders] 24/31 screen_slack_photo_viewer.png 'Open every folder inside OneDrive.': 1 found in 1.055s
+[finders] 25/31 screen_slack_photo_viewer.png 'Open every folder inside OneDrive.': 1 found in 1.047s
+[finders] 26/31 screen_review_app_dishes.png 'Click every D (dirty) label.': 1 found in 1.055s
+[finders] 27/31 screen_review_app_dishes.png 'Click every D (dirty) label.': 1 found in 1.053s
+[finders] 28/31 screen_review_app_dishes.png 'Click every D (dirty) label.': 1 found in 1.051s
+[finders] 29/31 screen_shopify_products.png 'Tick every product that has no more items to sell.': 1 found in 0.919s
+[finders] 30/31 screen_shopify_products.png 'Tick every product that has no more items to sell.': 1 found in 0.915s
+[finders] 31/31 screen_shopify_products.png 'Tick every product that has no more items to sell.': 1 found in 0.911s
+   chattering        seed 0    1 clicks    1.06s
+   chattering        seed 1    1 clicks    1.06s
+   chattering        seed 2    1 clicks    1.05s
+   x                 seed 0    1 clicks    1.04s
+   x                 seed 1    1 clicks    1.07s
+   x                 seed 2    1 clicks    1.06s
+   viewer            seed 0    1 clicks    1.06s
+   viewer            seed 1    1 clicks    1.06s
+   viewer            seed 2    1 clicks    1.05s
+   favorites         seed 0    1 clicks    1.02s
+   favorites         seed 1    1 clicks    1.02s
+   favorites         seed 2    1 clicks    1.03s
+   shopify           seed 0    1 clicks    0.88s
+   shopify           seed 1    1 clicks    0.87s
+   shopify           seed 2    1 clicks    0.88s
+   fold-groups       seed 0    1 clicks    1.05s
+   fold-groups       seed 1    1 clicks    1.06s
+   fold-groups       seed 2    1 clicks    1.05s
+   news-1000         seed 0    1 clicks    1.06s
+   news-1000         seed 1    1 clicks    1.07s
+   news-1000         seed 2    1 clicks    1.09s
+   onedrive-folders  seed 0    1 clicks    1.05s
+   onedrive-folders  seed 1    1 clicks    1.05s
+   onedrive-folders  seed 2    1 clicks    1.05s
+   dirty-labels      seed 0    1 clicks    1.05s
+   dirty-labels      seed 1    1 clicks    1.05s
+   dirty-labels      seed 2    1 clicks    1.05s
+   sold-out          seed 0    1 clicks    0.92s
+   sold-out          seed 1    1 clicks    0.92s
+   sold-out          seed 2    1 clicks    0.91s
+== molmopoint-8b: 10 questions
+[finders] GPU 0 (23153 MiB free)
+Loading checkpoint shards:   0%|          | 0/8 [00:00<?, ?it/s]Loading checkpoint shards:  12%|█▎        | 1/8 [00:03<00:26,  3.83s/it]Loading checkpoint shards:  25%|██▌       | 2/8 [00:06<00:19,  3.33s/it]Loading checkpoint shards:  38%|███▊      | 3/8 [00:09<00:15,  3.17s/it]Loading checkpoint shards:  50%|█████     | 4/8 [00:12<00:12,  3.16s/it]Loading checkpoint shards:  62%|██████▎   | 5/8 [00:15<00:09,  3.09s/it]Loading checkpoint shards:  75%|███████▌  | 6/8 [00:18<00:06,  3.05s/it]Loading checkpoint shards:  88%|████████▊ | 7/8 [00:21<00:02,  2.94s/it]Loading checkpoint shards: 100%|██████████| 8/8 [00:23<00:00,  2.51s/it]Loading checkpoint shards: 100%|██████████| 8/8 [00:23<00:00,  2.90s/it]
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+[finders] molmopoint loaded in 29.78s
+[finders] 1/11 screen_chattering_chart.png "Collapse Lilly's conversation group.": 1 found in 3.267s
+[finders] 2/11 screen_chattering_chart.png "Collapse Lilly's conversation group.": 1 found in 2.314s
+[finders] 3/11 screen_x_feed.png 'Open a reply to Michael.': 1 found in 2.156s
+[finders] 4/11 screen_slack_photo_viewer.png 'Close the photo viewer.': 2 found in 2.309s
+[finders] 5/11 screen_review_app_dishes.png 'Add to favorites.': 1 found in 2.015s
+[finders] 6/11 screen_shopify_products.png 'Tick lamb-only products.': 3 found in 3.428s
+[finders] 7/11 screen_chattering_chart.png 'Fold every open conversation group except segbench.': 4 found in 2.709s
+[finders] 8/11 screen_x_feed.png 'Open every news story with more than 1,000 posts.': 0 found in 1.528s
+[finders] 9/11 screen_slack_photo_viewer.png 'Open every folder inside OneDrive.': 0 found in 1.5s
+[finders] 10/11 screen_review_app_dishes.png 'Click every D (dirty) label.': 21 found in 5.871s
+[finders] 11/11 screen_shopify_products.png 'Tick every product that has no more items to sell.': 4 found in 4.632s
+   chattering        seed 0    1 clicks    2.31s
+   x                 seed 0    1 clicks    2.16s
+   viewer            seed 0    2 clicks    2.31s
+   favorites         seed 0    1 clicks    2.02s
+   shopify           seed 0    3 clicks    3.43s
+   fold-groups       seed 0    4 clicks    2.71s
+   news-1000         seed 0    0 clicks    1.53s
+   onedrive-folders  seed 0    0 clicks    1.50s
+   dirty-labels      seed 0   21 clicks    5.87s
+   sold-out          seed 0    4 clicks    4.63s
+== rexomni-3b: 10 questions
+[finders] GPU 0 (23065 MiB free)
+Initializing transformers backend...
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:05<00:05,  5.03s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:08<00:00,  3.82s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:08<00:00,  4.00s/it]
+[finders] rexomni loaded in 13.48s
+/home/maxime/Projects/finders/models/rexomni/.venv/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.0` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/home/maxime/Projects/finders/models/rexomni/.venv/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.05` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+/home/maxime/Projects/finders/models/rexomni/.venv/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:653: UserWarning: `do_sample` is set to `False`. However, `top_k` is set to `1` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_k`.
+  warnings.warn(
+[finders] 1/11 screen_chattering_chart.png "Collapse Lilly's conversation group.": 1 found in 3.037s
+/home/maxime/Projects/finders/models/rexomni/.venv/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.0` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/home/maxime/Projects/finders/models/rexomni/.venv/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.05` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+/home/maxime/Projects/finders/models/rexomni/.venv/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:653: UserWarning: `do_sample` is set to `False`. However, `top_k` is set to `1` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_k`.
+  warnings.warn(
+[finders] 2/11 screen_chattering_chart.png "Collapse Lilly's conversation group.": 1 found in 1.745s
+[finders] 3/11 screen_x_feed.png 'Open a reply to Michael.': 1 found in 1.417s
+[finders] 4/11 screen_slack_photo_viewer.png 'Close the photo viewer.': 1 found in 1.244s
+[finders] 5/11 screen_review_app_dishes.png 'Add to favorites.': 1 found in 1.235s
+[finders] 6/11 screen_shopify_products.png 'Tick lamb-only products.': 1 found in 1.31s
+/home/maxime/Projects/finders/models/rexomni/.venv/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.0` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/home/maxime/Projects/finders/models/rexomni/.venv/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.05` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+/home/maxime/Projects/finders/models/rexomni/.venv/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:653: UserWarning: `do_sample` is set to `False`. However, `top_k` is set to `1` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_k`.
+  warnings.warn(
+[finders] 7/11 screen_chattering_chart.png 'Fold every open conversation group except segbench.': 1 found in 1.353s
+[finders] 8/11 screen_x_feed.png 'Open every news story with more than 1,000 posts.': 1 found in 1.71s
+[finders] 9/11 screen_slack_photo_viewer.png 'Open every folder inside OneDrive.': 1 found in 1.373s
+[finders] 10/11 screen_review_app_dishes.png 'Click every D (dirty) label.': 1 found in 1.337s
+[finders] 11/11 screen_shopify_products.png 'Tick every product that has no more items to sell.': 1 found in 1.348s
+   chattering        seed 0    1 clicks    1.75s
+   x                 seed 0    1 clicks    1.42s
+   viewer            seed 0    1 clicks    1.24s
+   favorites         seed 0    1 clicks    1.24s
+   shopify           seed 0    1 clicks    1.31s
+   fold-groups       seed 0    1 clicks    1.35s
+   news-1000         seed 0    1 clicks    1.71s
+   onedrive-folders  seed 0    1 clicks    1.37s
+   dirty-labels      seed 0    1 clicks    1.34s
+   sold-out          seed 0    1 clicks    1.35s
+== florence2-large-grounding: 10 questions
+[finders] GPU 0 (23062 MiB free)
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+[finders] florence2-large loaded in 6.2s
+[finders] 1/11 screen_chattering_chart.png "Collapse Lilly's conversation group.": 4 found in 3.595s
+[finders] 2/11 screen_chattering_chart.png "Collapse Lilly's conversation group.": 4 found in 0.318s
+[finders] 3/11 screen_x_feed.png 'Open a reply to Michael.': 2 found in 0.199s
+[finders] 4/11 screen_slack_photo_viewer.png 'Close the photo viewer.': 1 found in 0.177s
+[finders] 5/11 screen_review_app_dishes.png 'Add to favorites.': 2 found in 0.24s
+[finders] 6/11 screen_shopify_products.png 'Tick lamb-only products.': 29 found in 1.203s
+[finders] 7/11 screen_chattering_chart.png 'Fold every open conversation group except segbench.': 2 found in 0.222s
+[finders] 8/11 screen_x_feed.png 'Open every news story with more than 1,000 posts.': 2 found in 0.225s
+[finders] 9/11 screen_slack_photo_viewer.png 'Open every folder inside OneDrive.': 3 found in 0.235s
+[finders] 10/11 screen_review_app_dishes.png 'Click every D (dirty) label.': 4 found in 0.306s
+[finders] 11/11 screen_shopify_products.png 'Tick every product that has no more items to sell.': 2 found in 0.222s
+   chattering        seed 0    4 clicks    0.32s
+   x                 seed 0    2 clicks    0.20s
+   viewer            seed 0    1 clicks    0.18s
+   favorites         seed 0    2 clicks    0.24s
+   shopify           seed 0   29 clicks    1.20s
+   fold-groups       seed 0    2 clicks    0.22s
+   news-1000         seed 0    2 clicks    0.23s
+   onedrive-folders  seed 0    3 clicks    0.23s
+   dirty-labels      seed 0    4 clicks    0.31s
+   sold-out          seed 0    2 clicks    0.22s
+== florence2-large-ovd: 10 questions
+[finders] GPU 0 (23084 MiB free)
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+[finders] florence2-large loaded in 3.81s
+[finders] 1/11 screen_chattering_chart.png "Collapse Lilly's conversation group.": 1 found in 3.062s
+[finders] 2/11 screen_chattering_chart.png "Collapse Lilly's conversation group.": 1 found in 0.254s
+[finders] 3/11 screen_x_feed.png 'Open a reply to Michael.': 0 found in 0.236s
+[finders] 4/11 screen_slack_photo_viewer.png 'Close the photo viewer.': 0 found in 0.242s
+[finders] 5/11 screen_review_app_dishes.png 'Add to favorites.': 0 found in 0.236s
+[finders] 6/11 screen_shopify_products.png 'Tick lamb-only products.': 1 found in 0.211s
+[finders] 7/11 screen_chattering_chart.png 'Fold every open conversation group except segbench.': 0 found in 0.297s
+[finders] 8/11 screen_x_feed.png 'Open every news story with more than 1,000 posts.': 0 found in 0.29s
+[finders] 9/11 screen_slack_photo_viewer.png 'Open every folder inside OneDrive.': 0 found in 0.252s
+[finders] 10/11 screen_review_app_dishes.png 'Click every D (dirty) label.': 0 found in 0.258s
+[finders] 11/11 screen_shopify_products.png 'Tick every product that has no more items to sell.': 1 found in 0.25s
+   chattering        seed 0    1 clicks    0.25s
+   x                 seed 0    0 clicks    0.24s
+   viewer            seed 0    0 clicks    0.24s
+   favorites         seed 0    0 clicks    0.24s
+   shopify           seed 0    1 clicks    0.21s
+   fold-groups       seed 0    0 clicks    0.30s
+   news-1000         seed 0    0 clicks    0.29s
+   onedrive-folders  seed 0    0 clicks    0.25s
+   dirty-labels      seed 0    0 clicks    0.26s
+   sold-out          seed 0    1 clicks    0.25s
+== sam3: 10 questions
+[finders] GPU 0 (23113 MiB free)
+/home/maxime/Projects/finders/models/sam3/.venv/lib/python3.12/site-packages/sam3/model_builder.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/home/maxime/Projects/finders/models/sam3/.venv/lib/python3.12/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+[finders] sam3 loaded in 14.06s
+[finders] 1/11 screen_chattering_chart.png "Collapse Lilly's conversation group.": 0 found in 0.803s
+[finders] 2/11 screen_chattering_chart.png "Collapse Lilly's conversation group.": 0 found in 0.178s
+[finders] 3/11 screen_x_feed.png 'Open a reply to Michael.': 0 found in 0.186s
+[finders] 4/11 screen_slack_photo_viewer.png 'Close the photo viewer.': 0 found in 0.18s
+[finders] 5/11 screen_review_app_dishes.png 'Add to favorites.': 0 found in 0.174s
+[finders] 6/11 screen_shopify_products.png 'Tick lamb-only products.': 0 found in 0.175s
+[finders] 7/11 screen_chattering_chart.png 'Fold every open conversation group except segbench.': 0 found in 0.174s
+[finders] 8/11 screen_x_feed.png 'Open every news story with more than 1,000 posts.': 0 found in 0.177s
+[finders] 9/11 screen_slack_photo_viewer.png 'Open every folder inside OneDrive.': 0 found in 0.177s
+[finders] 10/11 screen_review_app_dishes.png 'Click every D (dirty) label.': 0 found in 0.177s
+[finders] 11/11 screen_shopify_products.png 'Tick every product that has no more items to sell.': 0 found in 0.175s
+   chattering        seed 0    0 clicks    0.18s
+   x                 seed 0    0 clicks    0.19s
+   viewer            seed 0    0 clicks    0.18s
+   favorites         seed 0    0 clicks    0.17s
+   shopify           seed 0    0 clicks    0.17s
+   fold-groups       seed 0    0 clicks    0.17s
+   news-1000         seed 0    0 clicks    0.18s
+   onedrive-folders  seed 0    0 clicks    0.18s
+   dirty-labels      seed 0    0 clicks    0.18s
+   sold-out          seed 0    0 clicks    0.17s
+saved /home/maxime/Projects/segbench/results/run-screens-local-1.jsonl
+WARNING ⚠️ 'half' is deprecated and will be removed in the future. Use 'quantize' instead.
+WARNING ⚠️ 'half' is deprecated and will be removed in the future. Use 'quantize' instead.
+WARNING ⚠️ 'half' is deprecated and will be removed in the future. Use 'quantize' instead.
+WARNING ⚠️ 'half' is deprecated and will be removed in the future. Use 'quantize' instead.
+WARNING ⚠️ 'half' is deprecated and will be removed in the future. Use 'quantize' instead.
+WARNING ⚠️ 'half' is deprecated and will be removed in the future. Use 'quantize' instead.
+yoloe chattering          0 clicks  0.04s
+WARNING ⚠️ 'half' is deprecated and will be removed in the future. Use 'quantize' instead.
+WARNING ⚠️ 'half' is deprecated and will be removed in the future. Use 'quantize' instead.
+WARNING ⚠️ 'half' is deprecated and will be removed in the future. Use 'quantize' instead.
+yoloe x                   1 clicks  0.05s
+WARNING ⚠️ 'half' is deprecated and will be removed in the future. Use 'quantize' instead.
+WARNING ⚠️ 'half' is deprecated and will be removed in the future. Use 'quantize' instead.
+WARNING ⚠️ 'half' is deprecated and will be removed in the future. Use 'quantize' instead.
+yoloe viewer              0 clicks  0.05s
+WARNING ⚠️ 'half' is deprecated and will be removed in the future. Use 'quantize' instead.
+WARNING ⚠️ 'half' is deprecated and will be removed in the future. Use 'quantize' instead.
+WARNING ⚠️ 'half' is deprecated and will be removed in the future. Use 'quantize' instead.
+yoloe favorites           0 clicks  0.05s
+WARNING ⚠️ 'half' is deprecated and will be removed in the future. Use 'quantize' instead.
+WARNING ⚠️ 'half' is deprecated and will be removed in the future. Use 'quantize' instead.
+WARNING ⚠️ 'half' is deprecated and will be removed in the future. Use 'quantize' instead.
+yoloe shopify             0 clicks  0.04s
+WARNING ⚠️ 'half' is deprecated and will be removed in the future. Use 'quantize' instead.
+WARNING ⚠️ 'half' is deprecated and will be removed in the future. Use 'quantize' instead.
+WARNING ⚠️ 'half' is deprecated and will be removed in the future. Use 'quantize' instead.
+yoloe fold-groups         0 clicks  0.05s
+WARNING ⚠️ 'half' is deprecated and will be removed in the future. Use 'quantize' instead.
+WARNING ⚠️ 'half' is deprecated and will be removed in the future. Use 'quantize' instead.
+WARNING ⚠️ 'half' is deprecated and will be removed in the future. Use 'quantize' instead.
+yoloe news-1000           4 clicks  0.05s
+WARNING ⚠️ 'half' is deprecated and will be removed in the future. Use 'quantize' instead.
+WARNING ⚠️ 'half' is deprecated and will be removed in the future. Use 'quantize' instead.
+WARNING ⚠️ 'half' is deprecated and will be removed in the future. Use 'quantize' instead.
+yoloe onedrive-folders    1 clicks  0.05s
+WARNING ⚠️ 'half' is deprecated and will be removed in the future. Use 'quantize' instead.
+WARNING ⚠️ 'half' is deprecated and will be removed in the future. Use 'quantize' instead.
+WARNING ⚠️ 'half' is deprecated and will be removed in the future. Use 'quantize' instead.
+yoloe dirty-labels        0 clicks  0.05s
+WARNING ⚠️ 'half' is deprecated and will be removed in the future. Use 'quantize' instead.
+WARNING ⚠️ 'half' is deprecated and will be removed in the future. Use 'quantize' instead.
+WARNING ⚠️ 'half' is deprecated and will be removed in the future. Use 'quantize' instead.
+yoloe sold-out            0 clicks  0.04s
+saved /home/maxime/Projects/segbench/results/run-screens-local-1-yoloe.jsonl
+2026-10-11T07:34:19-04:00 done

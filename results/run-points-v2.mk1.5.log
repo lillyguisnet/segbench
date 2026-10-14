@@ -1,0 +1,33 @@
+30 calls planned, 0 already in run-points-v2.jsonl, 30 to send
+[1/30     29s] mk1.5              medium trick logs     28.8s $0.0016  0 items
+[2/30     46s] mk1.5              medium trick logs     46.0s $0.0017  0 items
+[3/30     50s] mk1.5              medium find  cows     21.3s $0.0021  11 items
+[4/30     65s] mk1.5              medium find  logs     65.5s $0.0059  79 items
+[5/30     68s] mk1.5              medium find  logs     67.7s $0.0045  unreadable: ValueError: No coordinate pairs found
+[6/30     68s] mk1.5              medium find  cows     18.0s $0.0020  11 items
+[7/30     77s] mk1.5              medium trick cows     11.6s $0.0017  0 items
+[8/30     78s] mk1.5              medium trick cows     10.3s $0.0018  0 items
+[9/30     78s] mk1.5              medium find  cows     32.4s $0.0020  11 items
+[10/30     91s] mk1.5              medium trick cows     23.3s $0.0017  0 items
+[11/30    123s] mk1.5              medium trick logs    123.2s $0.0136  unreadable: ValueError: No coordinate pairs found
+[12/30    134s] mk1.5              medium find  logs    134.5s $0.0136  unreadable: ValueError: No coordinate pairs found
+[13/30    147s] mk1.5              medium trick fig      55.9s $0.0136  unreadable: ValueError: No coordinate pairs found
+[14/30    161s] mk1.5              medium find  fig      83.9s $0.0136  unreadable: ValueError: No coordinate pairs found
+[15/30    161s] mk1.5              medium find  fig      82.7s $0.0136  unreadable: ValueError: No coordinate pairs found
+[16/30    164s] mk1.5              medium find  fig      85.6s $0.0136  unreadable: ValueError: No coordinate pairs found
+[17/30    167s] mk1.5              medium trick tree      5.5s $0.0017  0 items
+[18/30    167s] mk1.5              medium trick tree      6.3s $0.0017  0 items
+[19/30    171s] mk1.5              medium trick road      7.2s $0.0018  0 items
+[20/30    174s] mk1.5              medium trick road      6.8s $0.0018  0 items
+[21/30    176s] mk1.5              medium trick road      9.2s $0.0017  0 items
+[22/30    178s] mk1.5              medium trick fig      54.9s $0.0136  unreadable: ValueError: No coordinate pairs found
+[23/30    181s] mk1.5              medium find  dishes   10.1s $0.0026  17 items
+[24/30    187s] mk1.5              medium find  dishes   12.7s $0.0022  11 items
+[25/30    187s] mk1.5              medium find  dishes   11.5s $0.0022  10 items
+[26/30    188s] mk1.5              medium trick dishes    0.9s $0.0000  ERROR AuthError: Key limit exceeded (total limit). Manage it using https://openrouter.ai/workspaces/default/keys/7a1f3ac775b5e
+[27/30    191s] mk1.5              medium trick dishes   10.0s $0.0017  0 items
+[28/30    192s] mk1.5              medium trick fig      57.9s $0.0136  unreadable: ValueError: No coordinate pairs found
+[29/30    200s] mk1.5              medium trick tree     52.7s $0.0136  unreadable: ValueError: No coordinate pairs found
+[30/30    220s] mk1.5              medium trick dishes   41.8s $0.0136  unreadable: ValueError: No coordinate pairs found
+
+18 read, 11 unreadable, 1 errors; saved /home/maxime/Projects/segbench/results/run-points-v2.jsonl

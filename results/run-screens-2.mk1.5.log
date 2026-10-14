@@ -1,0 +1,16 @@
+15 calls planned, 0 already in run-screens-2.jsonl, 15 to send
+[1/15     9s] mk1.5              fold-groups    8.7s $0.0013  6 clicks (json) (10,30) (10,50) (10,100) (10,150)
+[2/15    10s] mk1.5              news-1000     9.9s $0.0012  2 clicks (json) (720,400) (720,500)
+[3/15    14s] mk1.5              news-1000    14.1s $0.0020  2 clicks (json) (720,370) (720,480)
+[4/15    15s] mk1.5              news-1000    14.7s $0.0018  2 clicks (text) (680,360) (680,480)
+[5/15    32s] mk1.5              onedrive-folders   23.6s $0.0018  4 clicks (json) (100,390) (100,410) (100,430) (100,450)
+[6/15   118s] mk1.5              fold-groups  117.5s $0.0126  unreadable: ''
+[7/15   118s] mk1.5              fold-groups  118.2s $0.0126  unreadable: ''
+[8/15   131s] mk1.5              dirty-labels   13.2s $0.0020  6 clicks (json) (214,715) (312,735) (350,690) (375,725)
+[9/15   133s] mk1.5              sold-out     14.7s $0.0028  8 clicks (json) (172,270) (172,445) (172,505) (172,565)
+[10/15   133s] mk1.5              onedrive-folders  119.2s $0.0126  unreadable: ''
+[11/15   136s] mk1.5              onedrive-folders  125.9s $0.0126  unreadable: ''
+[12/15   139s] mk1.5              dirty-labels  124.8s $0.0126  unreadable: ''
+[13/15   143s] mk1.5              dirty-labels  110.6s $0.0126  unreadable: ''
+[14/15   144s] mk1.5              sold-out     12.8s $0.0027  8 clicks (json) (180,280) (180,450) (180,510) (180,570)
+[15/15   146s] mk1.5              sold-out     13.3s $0.0030  8 clicks (json) (185,285) (185,455) (185,515) (185,575)

@@ -1,0 +1,33 @@
+== locateanything-3b: 15 timed queries, 6 trick
+   2 copies: did not run (worker exited 1)
+   logs   points per repeat [69, 67, 59]    8.84s
+   cows   points per repeat [11, 11, 11]    5.59s
+   fig    points per repeat [8, 9, 10]    4.54s
+   dishes points per repeat [21, 26, 30]   10.87s
+== molmopoint-8b: 10 timed queries, 6 trick
+   logs   points per repeat [76, 76]   19.19s
+   cows   points per repeat [10, 10]    4.20s
+   fig    points per repeat [3, 3]  368.60s
+   dishes points per repeat [23, 23]    9.11s
+== rexomni-3b: 15 timed queries, 6 trick
+   2 copies: load factor 0.625 (window 87s)
+   logs   points per repeat [78, 78, 78]    9.47s
+   cows   points per repeat [10, 10, 10]    2.19s
+   fig    points per repeat [9, 9, 9]    2.08s
+   dishes points per repeat [15, 15, 15]    3.84s
+== florence2-large-grounding: 15 timed queries, 6 trick
+   2 copies: load factor 0.600 (window 14s)
+   4 copies: load factor 0.404 (window 17s)
+   logs   points per repeat [6, 6, 6]    0.67s
+   cows   points per repeat [11, 11, 11]    0.73s
+   fig    points per repeat [5, 5, 5]    0.52s
+   dishes points per repeat [4, 4, 4]    1.00s
+== florence2-large-ovd: 15 timed queries, 6 trick
+   2 copies: load factor 0.853 (window 11s)
+   4 copies: load factor 0.528 (window 13s)
+   logs   points per repeat [1, 1, 1]    0.45s
+   cows   points per repeat [1, 1, 1]    0.29s
+   fig    points per repeat [1, 1, 1]    0.29s
+   dishes points per repeat [3, 3, 3]    0.65s
+saved /home/maxime/Projects/segbench/results/run-finders-3.jsonl
+restored Fri 09 Oct 2026 04:32:40 PM EDT

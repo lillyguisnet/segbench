@@ -1,0 +1,37 @@
+[finders] GPU 0 (22474 MiB free)
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+/home/maxime/Projects/finders/models/locateanything/.venv/lib/python3.11/site-packages/transformers/models/auto/image_processing_auto.py:647: FutureWarning: The image_processor_class argument is deprecated and will be removed in v4.42. Please use `slow_image_processor_class`, or `fast_image_processor_class` instead
+  warnings.warn(
+Qwen2ForCausalLM has generative capabilities, as `prepare_inputs_for_generation` is explicitly defined. However, it doesn't directly inherit from `GenerationMixin`. From 👉v4.50👈 onwards, `PreTrainedModel` will NOT inherit from `GenerationMixin`, and this model will lose the ability to call `generate` and other related functions.
+  - If you're using `trust_remote_code=True`, you can get rid of this warning by loading the model with an auto class. See https://huggingface.co/docs/transformers/en/model_doc/auto#auto-classes
+  - If you are the owner of the model architecture code, please modify your model class such that it inherits from `GenerationMixin` (after `PreTrainedModel`, otherwise you'll get an exception).
+  - If you are not the owner of the model architecture class, please contact the model code owner to update it.
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 30.61it/s]
+[finders] locateanything loaded in 6.92s
+Traceback (most recent call last):
+  File "/home/maxime/Projects/finders/models/locateanything/find.py", line 118, in <module>
+    main(MODEL)
+  File "/home/maxime/Projects/finders/common/finders_common.py", line 407, in main
+    run_jobs(model, a.variant, jobs, out, draw_dir, keep_masks=not a.no_masks)
+  File "/home/maxime/Projects/finders/common/finders_common.py", line 279, in run_jobs
+    ans = model.answer(state, image, job)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxime/Projects/finders/models/locateanything/find.py", line 93, in answer
+    resp = model.generate(
+           ^^^^^^^^^^^^^^^
+  File "/home/maxime/Projects/finders/models/locateanything/.venv/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxime/.cache/huggingface/modules/transformers_modules/c32291ca5e996f5a7a485845b4f57a233936bba0/modeling_locateanything.py", line 481, in generate
+    outputs = self.language_model(**prepare_inputs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxime/Projects/finders/models/locateanything/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxime/Projects/finders/models/locateanything/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxime/.cache/huggingface/modules/transformers_modules/c32291ca5e996f5a7a485845b4f57a233936bba0/modeling_qwen2.py", line 1496, in forward
+    logits = logits.float()
+             ^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 3.77 GiB. GPU 0 has a total capacity of 23.55 GiB of which 1.80 GiB is free. Process 603447 has 48.66 MiB memory in use. Process 1925731 has 60.60 MiB memory in use. Process 753117 has 1.03 GiB memory in use. Process 844611 has 10.07 GiB memory in use. Including non-PyTorch memory, this process has 10.07 GiB memory in use. Of the allocated memory 9.61 GiB is allocated by PyTorch, and 142.40 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

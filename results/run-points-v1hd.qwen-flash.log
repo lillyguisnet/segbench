@@ -1,0 +1,15 @@
+12 calls planned, 0 already in run-points-v1hd.jsonl, 12 to send
+[1/12     17s] qwen-flash         medium find  cows     16.7s $0.0007  11 items
+[2/12     19s] qwen-flash         medium find  cows     18.9s $0.0008  11 items
+[3/12     21s] qwen-flash         medium find  cows     20.5s $0.0007  unreadable: TypeError: list indices must be integers or slices, not str
+[4/12     30s] qwen-flash         medium find  logs     30.2s $0.0014  unreadable: JSONDecodeError: Extra data: line 1 column 20 (char 19)
+[5/12     36s] qwen-flash         medium find  logs     36.2s $0.0015  81 items
+[6/12     38s] qwen-flash         medium find  logs     38.1s $0.0015  82 items
+[7/12     40s] qwen-flash         medium find  fig      20.6s $0.0010  23 items
+[8/12     43s] qwen-flash         medium find  fig      26.0s $0.0011  20 items
+[9/12     52s] qwen-flash         medium find  fig      31.3s $0.0014  34 items
+[10/12     63s] qwen-flash         medium find  dishes   32.6s $0.0014  16 items
+[11/12     64s] qwen-flash         medium find  dishes   26.1s $0.0011  17 items
+[12/12     71s] qwen-flash         medium find  dishes   34.9s $0.0015  18 items
+
+10 read, 2 unreadable, 0 errors; saved /home/maxime/Projects/segbench/results/run-points-v1hd.jsonl

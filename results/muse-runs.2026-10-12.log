@@ -1,0 +1,3 @@
+plan before: {'plan': 'Muse Code Power Usage', 'active': True, 'usage': {'window': {'used_percent': 7, 'window_duration_mins': 300, 'resets_at': 1791859361}, 'weekly': {'used_percent': 2, 'resets_at': 1792368000}, 'tier': '27681631238169137'}, 'same_key_as_login': True}
+plan after: {'plan': 'Muse Code Power Usage', 'active': True, 'usage': {'window': {'used_percent': 15, 'window_duration_mins': 300, 'resets_at': 1791859361}, 'weekly': {'used_percent': 5, 'resets_at': 1792368000}, 'tier': '27681631238169137'}, 'same_key_as_login': True}
+ALL DONE

@@ -1,0 +1,15 @@
+12 calls planned, 0 already in run-points-v1hd.jsonl, 12 to send
+[1/12     26s] mk1.5              medium find  cows     25.8s $0.0020  11 items
+[2/12     26s] mk1.5              medium find  cows     26.4s $0.0020  unreadable: JSONDecodeError: Expecting ',' delimiter: line 1 column 30 (char 29)
+[3/12     26s] mk1.5              medium find  cows     26.4s $0.0020  11 items
+[4/12     53s] mk1.5              medium find  fig      27.3s $0.0033  18 items
+[5/12     59s] mk1.5              medium find  logs     58.6s $0.0045  unreadable: ValueError: no JSON object in the reply
+[6/12     73s] mk1.5              medium find  dishes   19.5s $0.0025  unreadable: JSONDecodeError: Expecting ',' delimiter: line 1 column 29 (char 28)
+[7/12     77s] mk1.5              medium find  logs     76.8s $0.0048  unreadable: JSONDecodeError: Expecting ',' delimiter: line 1 column 29 (char 28)
+[8/12     81s] mk1.5              medium find  dishes   22.7s $0.0021  11 items
+[9/12     86s] mk1.5              medium find  dishes   13.1s $0.0020  8 items
+[10/12    131s] mk1.5              medium find  logs    131.5s $0.0136  unreadable: ValueError: no JSON object in the reply
+[11/12    139s] mk1.5              medium find  fig     112.9s $0.0136  unreadable: ValueError: no JSON object in the reply
+[12/12    143s] mk1.5              medium find  fig     116.5s $0.0136  unreadable: ValueError: no JSON object in the reply
+
+5 read, 7 unreadable, 0 errors; saved /home/maxime/Projects/segbench/results/run-points-v1hd.jsonl

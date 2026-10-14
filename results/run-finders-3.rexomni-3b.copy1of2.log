@@ -1,0 +1,36 @@
+[finders] GPU 0 (22474 MiB free)
+Initializing transformers backend...
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.44s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:02<00:00,  1.04s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:02<00:00,  1.10s/it]
+[finders] rexomni loaded in 6.0s
+/home/maxime/Projects/finders/models/rexomni/.venv/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.0` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/home/maxime/Projects/finders/models/rexomni/.venv/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.05` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+/home/maxime/Projects/finders/models/rexomni/.venv/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:653: UserWarning: `do_sample` is set to `False`. However, `top_k` is set to `1` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_k`.
+  warnings.warn(
+[finders] 1/20 log_ends_closeup_1.jpg 'log end': 78 found in 11.384s
+/home/maxime/Projects/finders/models/rexomni/.venv/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.0` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/home/maxime/Projects/finders/models/rexomni/.venv/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.05` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+/home/maxime/Projects/finders/models/rexomni/.venv/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:653: UserWarning: `do_sample` is set to `False`. However, `top_k` is set to `1` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_k`.
+  warnings.warn(
+[finders] 2/20 field_with_cows.jpg 'cow': 10 found in 2.962s
+[finders] 3/20 fig_plant.jpg 'fig leaf': 9 found in 2.903s
+[finders] 4/20 kitchen_counter_dishes.jpg 'dirty dish': 10 found in 2.973s
+[finders] 5/20 kitchen_counter_dishes.jpg 'clean dish': 5 found in 2.388s
+[finders] 6/20 log_ends_closeup_1.jpg 'log end': 78 found in 10.536s
+[finders] 7/20 field_with_cows.jpg 'cow': 10 found in 2.905s
+[finders] 8/20 fig_plant.jpg 'fig leaf': 9 found in 2.852s
+[finders] 9/20 kitchen_counter_dishes.jpg 'dirty dish': 10 found in 2.945s
+[finders] 10/20 kitchen_counter_dishes.jpg 'clean dish': 5 found in 2.207s
+[finders] 11/20 log_ends_closeup_1.jpg 'log end': 78 found in 10.524s
+[finders] 12/20 field_with_cows.jpg 'cow': 10 found in 2.896s
+[finders] 13/20 fig_plant.jpg 'fig leaf': 9 found in 2.808s
+[finders] 14/20 kitchen_counter_dishes.jpg 'dirty dish': 10 found in 2.958s
+[finders] 15/20 kitchen_counter_dishes.jpg 'clean dish': 5 found in 2.179s
+[finders] 16/20 log_ends_closeup_1.jpg 'log end': 78 found in 10.564s
+[finders] 17/20 field_with_cows.jpg 'cow': 10 found in 2.948s
+[finders] 18/20 fig_plant.jpg 'fig leaf': 9 found in 2.845s
+[finders] 19/20 kitchen_counter_dishes.jpg 'dirty dish': 10 found in 3.136s
+[finders] 20/20 kitchen_counter_dishes.jpg 'clean dish': 5 found in 2.785s

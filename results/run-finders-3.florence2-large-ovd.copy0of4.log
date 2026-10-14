@@ -1,0 +1,23 @@
+[finders] GPU 0 (22474 MiB free)
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+[finders] florence2-large loaded in 4.29s
+[finders] 1/20 log_ends_closeup_1.jpg 'log end': 1 found in 3.449s
+[finders] 2/20 field_with_cows.jpg 'cow': 1 found in 0.415s
+[finders] 3/20 fig_plant.jpg 'fig leaf': 1 found in 0.461s
+[finders] 4/20 kitchen_counter_dishes.jpg 'dirty dish': 1 found in 0.463s
+[finders] 5/20 kitchen_counter_dishes.jpg 'clean dish': 2 found in 0.532s
+[finders] 6/20 log_ends_closeup_1.jpg 'log end': 1 found in 0.71s
+[finders] 7/20 field_with_cows.jpg 'cow': 1 found in 0.405s
+[finders] 8/20 fig_plant.jpg 'fig leaf': 1 found in 0.448s
+[finders] 9/20 kitchen_counter_dishes.jpg 'dirty dish': 1 found in 0.489s
+[finders] 10/20 kitchen_counter_dishes.jpg 'clean dish': 2 found in 0.531s
+[finders] 11/20 log_ends_closeup_1.jpg 'log end': 1 found in 0.674s
+[finders] 12/20 field_with_cows.jpg 'cow': 1 found in 0.365s
+[finders] 13/20 fig_plant.jpg 'fig leaf': 1 found in 0.5s
+[finders] 14/20 kitchen_counter_dishes.jpg 'dirty dish': 1 found in 0.557s
+[finders] 15/20 kitchen_counter_dishes.jpg 'clean dish': 2 found in 0.62s
+[finders] 16/20 log_ends_closeup_1.jpg 'log end': 1 found in 0.787s
+[finders] 17/20 field_with_cows.jpg 'cow': 1 found in 0.515s
+[finders] 18/20 fig_plant.jpg 'fig leaf': 1 found in 0.421s
+[finders] 19/20 kitchen_counter_dishes.jpg 'dirty dish': 1 found in 0.326s
+[finders] 20/20 kitchen_counter_dishes.jpg 'clean dish': 2 found in 0.418s

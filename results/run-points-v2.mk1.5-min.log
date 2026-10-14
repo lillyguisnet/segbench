@@ -1,0 +1,33 @@
+30 calls planned, 0 already in run-points-v2.jsonl, 30 to send
+[1/30     10s] mk1.5              min    trick logs      9.7s $0.0014  0 items
+[2/30     10s] mk1.5              min    trick logs      9.8s $0.0014  0 items
+[3/30     11s] mk1.5              min    trick logs      9.9s $0.0014  0 items
+[4/30     12s] mk1.5              min    find  logs     12.2s $0.0022  51 items
+[5/30     18s] mk1.5              min    find  cows      7.8s $0.0016  11 items
+[6/30     19s] mk1.5              min    trick cows      6.7s $0.0014  0 items
+[7/30     19s] mk1.5              min    find  cows      9.1s $0.0016  11 items
+[8/30     20s] mk1.5              min    find  cows      9.3s $0.0016  11 items
+[9/30     26s] mk1.5              min    trick cows      7.0s $0.0014  0 items
+[10/30     26s] mk1.5              min    trick cows      8.2s $0.0014  0 items
+[11/30     27s] mk1.5              min    find  fig       7.3s $0.0017  15 items
+[12/30     27s] mk1.5              min    find  fig       7.3s $0.0017  18 items
+[13/30     33s] mk1.5              min    trick fig       6.4s $0.0014  1 items
+[14/30     33s] mk1.5              min    trick fig       5.8s $0.0014  1 items
+[15/30     33s] mk1.5              min    trick fig       5.7s $0.0014  1 items
+[16/30     33s] mk1.5              min    find  fig       7.3s $0.0017  20 items
+[17/30     38s] mk1.5              min    trick tree      5.2s $0.0014  0 items
+[18/30     38s] mk1.5              min    trick tree      5.1s $0.0014  0 items
+[19/30     38s] mk1.5              min    trick tree      5.5s $0.0014  0 items
+[20/30     39s] mk1.5              min    trick road      5.6s $0.0014  0 items
+[21/30     44s] mk1.5              min    find  logs     42.8s $0.0136  710 items
+[22/30     44s] mk1.5              min    find  logs     43.1s $0.0136  543 items
+[23/30     46s] mk1.5              min    trick road      7.9s $0.0014  0 items
+[24/30     46s] mk1.5              min    trick road      8.1s $0.0014  0 items
+[25/30     46s] mk1.5              min    find  dishes    7.2s $0.0016  8 items
+[26/30     46s] mk1.5              min    find  dishes    8.1s $0.0016  7 items
+[27/30     50s] mk1.5              min    find  dishes    7.0s $0.0016  9 items
+[28/30     52s] mk1.5              min    trick dishes    8.5s $0.0014  0 items
+[29/30     54s] mk1.5              min    trick dishes    7.9s $0.0014  0 items
+[30/30     54s] mk1.5              min    trick dishes    8.3s $0.0014  0 items
+
+30 read, 0 unreadable, 0 errors; saved /home/maxime/Projects/segbench/results/run-points-v2.jsonl

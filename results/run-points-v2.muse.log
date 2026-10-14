@@ -1,0 +1,33 @@
+60 calls planned, 30 already in run-points-v2.jsonl, 30 to send
+[1/30     38s] muse-wonder-full   medium find  logs     37.5s $0.0000  82 items
+[2/30     44s] muse-wonder-full   medium trick logs      6.0s $0.0000  0 items
+[3/30     51s] muse-wonder-full   medium trick logs      7.2s $0.0000  0 items
+[4/30     57s] muse-wonder-full   medium trick logs      6.6s $0.0000  0 items
+[5/30     58s] muse-wonder-full   medium find  logs     57.9s $0.0000  85 items
+[6/30     63s] muse-wonder-full   medium find  logs     62.7s $0.0000  85 items
+[7/30     75s] muse-wonder-full   medium find  cows     16.8s $0.0000  12 items
+[8/30     80s] muse-wonder-full   medium find  cows     17.3s $0.0000  12 items
+[9/30     81s] muse-wonder-full   medium find  cows     23.4s $0.0000  12 items
+[10/30     83s] muse-wonder-full   medium trick cows      7.8s $0.0000  0 items
+[11/30     87s] muse-wonder-full   medium trick cows      5.7s $0.0000  0 items
+[12/30     89s] muse-wonder-full   medium trick cows      9.5s $0.0000  0 items
+[13/30    114s] muse-wonder-full   medium find  fig      24.4s $0.0000  28 items
+[14/30    115s] muse-wonder-full   medium find  fig      28.4s $0.0000  29 items
+[15/30    119s] muse-wonder-full   medium find  fig      36.6s $0.0000  29 items
+[16/30    123s] muse-wonder-full   medium trick fig       9.4s $0.0000  0 items
+[17/30    127s] muse-wonder-full   medium trick fig      12.3s $0.0000  0 items
+[18/30    133s] muse-wonder-full   medium trick fig      14.0s $0.0000  0 items
+[19/30    133s] muse-wonder-full   medium trick tree      6.2s $0.0000  0 items
+[20/30    136s] muse-wonder-full   medium trick tree     12.9s $0.0000  0 items
+[21/30    141s] muse-wonder-full   medium trick tree      7.6s $0.0000  0 items
+[22/30    144s] muse-wonder-full   medium trick road     10.6s $0.0000  0 items
+[23/30    146s] muse-wonder-full   medium trick road     10.0s $0.0000  0 items
+[24/30    149s] muse-wonder-full   medium trick road      8.4s $0.0000  0 items
+[25/30    179s] muse-wonder-full   medium find  dishes   34.8s $0.0000  24 items
+[26/30    188s] muse-wonder-full   medium find  dishes   42.0s $0.0000  25 items
+[27/30    189s] muse-wonder-full   medium find  dishes   39.5s $0.0000  26 items
+[28/30    204s] muse-wonder-full   medium trick dishes   15.5s $0.0000  0 items
+[29/30    204s] muse-wonder-full   medium trick dishes   16.3s $0.0000  0 items
+[30/30    205s] muse-wonder-full   medium trick dishes   25.8s $0.0000  0 items
+
+30 read, 0 unreadable, 0 errors; saved /home/maxime/Projects/segbench/results/run-points-v2.jsonl

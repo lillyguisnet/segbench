@@ -1,0 +1,90 @@
+== molmopoint-8b: 11 queries
+[finders] GPU 0 (23533 MiB free)
+Loading checkpoint shards:   0%|          | 0/8 [00:00<?, ?it/s]Loading checkpoint shards:  12%|█▎        | 1/8 [00:01<00:07,  1.02s/it]Loading checkpoint shards:  25%|██▌       | 2/8 [00:02<00:06,  1.01s/it]Loading checkpoint shards:  38%|███▊      | 3/8 [00:02<00:04,  1.01it/s]Loading checkpoint shards:  50%|█████     | 4/8 [00:03<00:03,  1.02it/s]Loading checkpoint shards:  62%|██████▎   | 5/8 [00:04<00:02,  1.04it/s]Loading checkpoint shards:  75%|███████▌  | 6/8 [00:05<00:01,  1.04it/s]Loading checkpoint shards:  88%|████████▊ | 7/8 [00:06<00:00,  1.05it/s]Loading checkpoint shards: 100%|██████████| 8/8 [00:07<00:00,  1.23it/s]Loading checkpoint shards: 100%|██████████| 8/8 [00:07<00:00,  1.10it/s]
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+[finders] molmopoint loaded in 12.96s
+[finders] 1/11 log_ends_closeup_1.jpg 'the log ends': 76 found in 17.024s
+[finders] 2/11 field_with_cows.jpg 'the cows': 10 found in 3.557s
+[finders] 3/11 fig_plant.jpg 'the fig leaves': 3 found in 443.089s
+[finders] 4/11 kitchen_counter_dishes.jpg 'the dirty dishes': 15 found in 6.229s
+[finders] 5/11 kitchen_counter_dishes.jpg 'the clean dishes': 8 found in 3.971s
+[finders] 6/11 log_ends_closeup_1.jpg 'the cows': 0 found in 2.026s
+[finders] 7/11 field_with_cows.jpg 'the tractors': 0 found in 2.124s
+[finders] 8/11 fig_plant.jpg 'the cars': 0 found in 1.984s
+[finders] 9/11 autumn_tree_orange_1.jpg 'the people': 0 found in 2.089s
+[finders] 10/11 farm_road_1.jpg 'the cows': 0 found in 2.097s
+[finders] 11/11 kitchen_counter_dishes.jpg 'the cats': 0 found in 2.12s
+   logs   find    76 points   17.02s  from ['model']
+   cows   find    10 points    3.56s  from ['model']
+   fig    find     3 points  443.09s  from ['model']
+   dishes find    23 points   10.20s  from ['model']
+   logs   trick    0 points    2.03s  from []
+   cows   trick    0 points    2.12s  from []
+   fig    trick    0 points    1.98s  from []
+   tree   trick    0 points    2.09s  from []
+   road   trick    0 points    2.10s  from []
+   dishes trick    0 points    2.12s  from []
+== rexomni-3b: 11 queries
+[finders] GPU 0 (22474 MiB free)
+Initializing transformers backend...
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.28s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.07it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.01it/s]
+[finders] rexomni loaded in 5.98s
+/home/maxime/Projects/finders/models/rexomni/.venv/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.0` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/home/maxime/Projects/finders/models/rexomni/.venv/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.05` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+/home/maxime/Projects/finders/models/rexomni/.venv/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:653: UserWarning: `do_sample` is set to `False`. However, `top_k` is set to `1` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_k`.
+  warnings.warn(
+[finders] 1/11 log_ends_closeup_1.jpg 'log end': 78 found in 10.994s
+/home/maxime/Projects/finders/models/rexomni/.venv/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.0` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/home/maxime/Projects/finders/models/rexomni/.venv/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.05` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+/home/maxime/Projects/finders/models/rexomni/.venv/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:653: UserWarning: `do_sample` is set to `False`. However, `top_k` is set to `1` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_k`.
+  warnings.warn(
+[finders] 2/11 field_with_cows.jpg 'cow': 10 found in 2.348s
+[finders] 3/11 fig_plant.jpg 'fig leaf': 9 found in 2.285s
+[finders] 4/11 kitchen_counter_dishes.jpg 'dirty dish': 10 found in 2.39s
+[finders] 5/11 kitchen_counter_dishes.jpg 'clean dish': 5 found in 1.826s
+[finders] 6/11 log_ends_closeup_1.jpg 'cow': 0 found in 1.318s
+[finders] 7/11 field_with_cows.jpg 'tractor': 1 found in 1.383s
+[finders] 8/11 fig_plant.jpg 'car': 1 found in 1.359s
+[finders] 9/11 autumn_tree_orange_1.jpg 'person': 1 found in 1.376s
+[finders] 10/11 farm_road_1.jpg 'cow': 1 found in 1.396s
+[finders] 11/11 kitchen_counter_dishes.jpg 'cat': 1 found in 1.405s
+   logs   find    78 points   10.99s  from ['model']
+   cows   find    10 points    2.35s  from ['model']
+   fig    find     9 points    2.29s  from ['model']
+   dishes find    15 points    4.22s  from ['model']
+   logs   trick    0 points    1.32s  from []
+   cows   trick    1 points    1.38s  from ['model']
+   fig    trick    1 points    1.36s  from ['model']
+   tree   trick    1 points    1.38s  from ['model']
+   road   trick    1 points    1.40s  from ['model']
+   dishes trick    1 points    1.41s  from ['model']
+== florence2-large: 11 queries
+[finders] GPU 0 (22474 MiB free)
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+[finders] florence2-large loaded in 3.91s
+[finders] 1/11 log_ends_closeup_1.jpg 'log end': 1 found in 3.309s
+[finders] 2/11 field_with_cows.jpg 'cow': 1 found in 0.261s
+[finders] 3/11 fig_plant.jpg 'fig leaf': 1 found in 0.278s
+[finders] 4/11 kitchen_counter_dishes.jpg 'dirty dish': 1 found in 0.263s
+[finders] 5/11 kitchen_counter_dishes.jpg 'clean dish': 2 found in 0.32s
+[finders] 6/11 log_ends_closeup_1.jpg 'cow': 1 found in 0.253s
+[finders] 7/11 field_with_cows.jpg 'tractor': 1 found in 0.28s
+[finders] 8/11 fig_plant.jpg 'car': 1 found in 0.269s
+[finders] 9/11 autumn_tree_orange_1.jpg 'person': 1 found in 0.292s
+[finders] 10/11 farm_road_1.jpg 'cow': 1 found in 0.252s
+[finders] 11/11 kitchen_counter_dishes.jpg 'cat': 1 found in 0.265s
+   logs   find     1 points    3.31s  from ['box_center']
+   cows   find     1 points    0.26s  from ['box_center']
+   fig    find     1 points    0.28s  from ['box_center']
+   dishes find     3 points    0.58s  from ['box_center']
+   logs   trick    1 points    0.25s  from ['box_center']
+   cows   trick    1 points    0.28s  from ['box_center']
+   fig    trick    1 points    0.27s  from ['box_center']
+   tree   trick    1 points    0.29s  from ['box_center']
+   road   trick    1 points    0.25s  from ['box_center']
+   dishes trick    1 points    0.27s  from ['box_center']
+saved /home/maxime/Projects/segbench/results/run-finders-2b.jsonl

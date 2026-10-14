@@ -1,0 +1,33 @@
+30 calls planned, 0 already in run-points-tags.jsonl, 30 to send
+[1/30     21s] mk1.5              medium trick logs     21.4s $0.0014  0 items
+[2/30     26s] mk1.5              medium trick logs     26.4s $0.0015  0 items
+[3/30     35s] mk1.5              medium find  cows     13.2s $0.0020  11 items
+[4/30     43s] mk1.5              medium trick logs     42.5s $0.0014  0 items
+[5/30     49s] mk1.5              medium find  cows     14.1s $0.0019  11 items
+[6/30     49s] mk1.5              medium find  cows     22.9s $0.0020  11 items
+[7/30     53s] mk1.5              medium find  logs     52.9s $0.0046  78 items
+[8/30     55s] mk1.5              medium find  logs     54.5s $0.0048  75 items
+[9/30     62s] mk1.5              medium trick cows     12.8s $0.0018  0 items
+[10/30     79s] mk1.5              medium find  fig      25.7s $0.0030  14 items
+[11/30     86s] mk1.5              medium find  fig      24.4s $0.0031  15 items
+[12/30    112s] mk1.5              medium trick fig      26.1s $0.0038  1 items
+[13/30    120s] mk1.5              medium trick fig       8.1s $0.0022  0 items
+[14/30    125s] mk1.5              medium find  logs    125.2s $0.0118  247 items
+[15/30    137s] mk1.5              medium trick tree     11.5s $0.0024  0 items
+[16/30    144s] mk1.5              medium trick tree      6.9s $0.0019  0 items
+[17/30    150s] mk1.5              medium trick cows    101.0s $0.0136  0 items
+[18/30    153s] mk1.5              medium find  fig      98.2s $0.0136  47 items
+[19/30    155s] mk1.5              medium trick cows    112.9s $0.0136  0 items
+[20/30    163s] mk1.5              medium trick fig      84.0s $0.0136  0 items
+[21/30    167s] mk1.5              medium find  dishes   11.4s $0.0023  14 items
+[22/30    176s] mk1.5              medium trick tree     55.4s $0.0136  0 items
+[23/30    176s] mk1.5              medium find  dishes   13.7s $0.0023  14 items
+[24/30    184s] mk1.5              medium trick dishes    8.8s $0.0018  0 items
+[25/30    185s] mk1.5              medium find  dishes   18.2s $0.0038  97 items
+[26/30    185s] mk1.5              medium trick dishes    0.9s $0.0000  ERROR AuthError: Key limit exceeded (total limit). Manage it using https://openrouter.ai/workspaces/default/keys/7a1f3ac775b5e
+[27/30    200s] mk1.5              medium trick road     56.9s $0.0136  0 items
+[28/30    204s] mk1.5              medium trick road     53.3s $0.0136  0 items
+[29/30    207s] mk1.5              medium trick road     54.4s $0.0136  0 items
+[30/30    219s] mk1.5              medium trick dishes   42.5s $0.0136  0 items
+
+29 read, 0 unreadable, 1 errors; saved /home/maxime/Projects/segbench/results/run-points-tags.jsonl

@@ -1,0 +1,33 @@
+finders done Fri 09 Oct 2026 04:05:19 PM EDT
+sam3   logs      0 masks  0.24s
+sam3   logs    trick 'cow': 0
+sam3   cows     11 masks  0.26s
+sam3   cows    trick 'tractor': 0
+sam3   fig       0 masks  0.23s
+sam3   fig     trick 'car': 0
+sam3   tree      0 masks  0.22s
+sam3   tree    trick 'person': 0
+sam3   road      1 masks  0.23s
+sam3   road    trick 'cow': 0
+sam3   dishes   14 masks  0.31s
+sam3   dishes  trick 'cat': 0
+yoloe logs      0 masks  0.08s
+yoloe logs    trick 'cow': 0
+yoloe cows     11 masks  0.18s
+yoloe cows    trick 'tractor': 0
+yoloe fig       0 masks  0.07s
+yoloe fig     trick 'car': 0
+yoloe tree      1 masks  0.07s
+yoloe tree    trick 'person': 0
+yoloe road      1 masks  0.08s
+yoloe road    trick 'cow': 0
+yoloe dishes    1 masks  0.09s
+yoloe dishes  trick 'cat': 0
+rfdetr cows    task  'cow': 9  0.10s
+rfdetr logs    trick 'cow': 0  0.10s
+rfdetr fig     trick 'car': 0  0.09s
+rfdetr tree    trick 'person': 0  0.08s
+rfdetr road    trick 'cow': 0  0.09s
+rfdetr dishes  trick 'cat': 0  0.12s
+specialists done Fri 09 Oct 2026 04:06:22 PM EDT
+restored Fri 09 Oct 2026 04:06:22 PM EDT

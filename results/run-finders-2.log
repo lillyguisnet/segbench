@@ -1,0 +1,43 @@
+== locateanything-3b: 11 queries
+[finders] GPU 0 (18552 MiB free)
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+/home/maxime/Projects/finders/models/locateanything/.venv/lib/python3.11/site-packages/transformers/models/auto/image_processing_auto.py:647: FutureWarning: The image_processor_class argument is deprecated and will be removed in v4.42. Please use `slow_image_processor_class`, or `fast_image_processor_class` instead
+  warnings.warn(
+Qwen2ForCausalLM has generative capabilities, as `prepare_inputs_for_generation` is explicitly defined. However, it doesn't directly inherit from `GenerationMixin`. From 👉v4.50👈 onwards, `PreTrainedModel` will NOT inherit from `GenerationMixin`, and this model will lose the ability to call `generate` and other related functions.
+  - If you're using `trust_remote_code=True`, you can get rid of this warning by loading the model with an auto class. See https://huggingface.co/docs/transformers/en/model_doc/auto#auto-classes
+  - If you are the owner of the model architecture code, please modify your model class such that it inherits from `GenerationMixin` (after `PreTrainedModel`, otherwise you'll get an exception).
+  - If you are not the owner of the model architecture class, please contact the model code owner to update it.
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 30.88it/s]
+[finders] locateanything loaded in 6.06s
+/home/maxime/.cache/huggingface/modules/transformers_modules/c32291ca5e996f5a7a485845b4f57a233936bba0/generate_utils.py:186: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  box_avg.append(torch.tensor(out_ref, dtype=x0.dtype, device=x0.device))
+[finders] 1/11 log_ends_closeup_1.jpg 'the log ends': 69 found in 7.078s
+[finders] 2/11 field_with_cows.jpg 'the cows': 11 found in 4.32s
+[finders] 3/11 fig_plant.jpg 'the fig leaves': 8 found in 4.296s
+[finders] 4/11 kitchen_counter_dishes.jpg 'the dirty dishes': 12 found in 4.738s
+[finders] 5/11 kitchen_counter_dishes.jpg 'the clean dishes': 9 found in 4.424s
+[finders] 6/11 log_ends_closeup_1.jpg 'the cows': 73 found in 6.942s
+[finders] 7/11 field_with_cows.jpg 'the tractors': 0 found in 3.92s
+[finders] 8/11 fig_plant.jpg 'the cars': 0 found in 3.929s
+[finders] 9/11 autumn_tree_orange_1.jpg 'the people': 0 found in 3.911s
+[finders] 10/11 farm_road_1.jpg 'the cows': 0 found in 3.948s
+[finders] 11/11 kitchen_counter_dishes.jpg 'the cats': 0 found in 3.952s
+   logs   find    69 points    7.08s  from ['model']
+   cows   find    11 points    4.32s  from ['model']
+   fig    find     8 points    4.30s  from ['model']
+   dishes find    21 points    9.16s  from ['model']
+   logs   trick   73 points    6.94s  from ['model']
+   cows   trick    0 points    3.92s  from []
+   fig    trick    0 points    3.93s  from []
+   tree   trick    0 points    3.91s  from []
+   road   trick    0 points    3.95s  from []
+   dishes trick    0 points    3.95s  from []
+== molmopoint-8b: 11 queries
+[finders] GPU 0 (18552 MiB free)
+[finders] only 17.9 GiB free on the GPU: 4 of 36 layers stay in CPU memory (same answers, slower)
+Loading checkpoint shards:   0%|          | 0/8 [00:00<?, ?it/s]Loading checkpoint shards:  12%|█▎        | 1/8 [00:01<00:07,  1.14s/it]Loading checkpoint shards:  25%|██▌       | 2/8 [00:02<00:06,  1.10s/it]Loading checkpoint shards:  38%|███▊      | 3/8 [00:03<00:05,  1.11s/it]Loading checkpoint shards:  50%|█████     | 4/8 [00:04<00:04,  1.10s/it]Loading checkpoint shards:  62%|██████▎   | 5/8 [00:05<00:03,  1.09s/it]Loading checkpoint shards:  75%|███████▌  | 6/8 [00:06<00:02,  1.04s/it]Loading checkpoint shards:  88%|████████▊ | 7/8 [00:07<00:00,  1.13it/s]Loading checkpoint shards: 100%|██████████| 8/8 [00:07<00:00,  1.28it/s]Loading checkpoint shards: 100%|██████████| 8/8 [00:07<00:00,  1.06it/s]
+Some parameters are on the meta device because they were offloaded to the cpu.
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+[finders] molmopoint loaded in 12.79s
+[finders] 1/11 log_ends_closeup_1.jpg 'the log ends': 76 found in 113.577s
+[finders] 2/11 field_with_cows.jpg 'the cows': 10 found in 17.021s
