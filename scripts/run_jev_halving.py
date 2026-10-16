@@ -38,6 +38,7 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "scripts"))
 from segbench import cost  # noqa: E402
 from segbench import jev_halving as jh  # noqa: E402
+from segbench import jev_verify as jv  # noqa: E402
 from segbench.tasks import BY_KEY as TASKS  # noqa: E402
 
 V3_TASKS = ["logs", "cows", "fig", "dishes", "ants", "beetles", "birds", "mushrooms", "jars", "pinkleaves", "whitecow"]
@@ -46,16 +47,23 @@ REPEATS = 3
 
 def commit() -> str:
     head = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True, text=True).stdout.strip()
-    dirty = subprocess.run(["git", "status", "--porcelain", "segbench/jev_halving.py", "scripts/run_jev_halving.py"],
+    dirty = subprocess.run(["git", "status", "--porcelain", "segbench/jev_halving.py", "segbench/jev_verify.py",
+                            "scripts/run_jev_halving.py"],
                            cwd=ROOT, capture_output=True, text=True).stdout.strip()
     return head + ("-dirty" if dirty else "")
 
 
-def one(im: Image.Image, target: str, note: str = "") -> tuple[dict, jh.Search]:
+def one(im: Image.Image, target: str, note: str = "", verify: bool = False) -> tuple[dict, jh.Search]:
     q = jh.questions(target, note)
     s = jh.Search(im, q)
     t = time.perf_counter()
     boxes = s.run()
+    s.verify_log = None
+    if verify:
+        v = jv.Verifier(s, target, note)
+        s.halving_boxes = boxes
+        boxes = v.run(boxes)
+        s.verify_log = v.log
     wall = time.perf_counter() - t
     w, h = s.im.size
     items = []
@@ -79,17 +87,18 @@ def one(im: Image.Image, target: str, note: str = "") -> tuple[dict, jh.Search]:
     return out, s
 
 
-def check():
+def check(verify=False):
     """The task wording on the synthetic ovals (the probe's own picture), before any photo."""
     from check_boxes import SIZES
     from probe_jev_split import draw, grade
     for name, (w, h) in SIZES.items():
         im, truth, masks = draw(w, h)
-        rec, s = one(im, "each red oval (not the blue squares)")
+        rec, s = one(im, "each red oval (not the blue squares)", verify=verify)
         found = [[i["box"][0] * w / 1000, i["box"][1] * h / 1000, i["box"][2] * w / 1000, i["box"][3] * h / 1000]
                  for i in rec["answer"]["items"]]
         print(f"{name:11s} {grade(found, truth, masks)} | {rec['requests']} requests, {rec['seconds']} s, "
-              f"${rec['cost_usd']:.4f}, forced {rec['forced']}")
+              f"${rec['cost_usd']:.4f}, forced {rec['forced']}"
+              + (f", verify {[e['outcome'] for e in s.verify_log]}" if s.verify_log else ""))
 
 
 def main():
@@ -98,12 +107,13 @@ def main():
     ap.add_argument("--tasks", nargs="+", default=V3_TASKS)
     ap.add_argument("--repeats", type=int, default=REPEATS)
     ap.add_argument("--check", action="store_true")
+    ap.add_argument("--verify", action="store_true", help="feedback loop on the final boxes (segbench/jev_verify.py)")
     ap.add_argument("--max-depth", type=int, default=jh.MAX_DEPTH,
                     help=f"most halvings of one piece (default {jh.MAX_DEPTH}, as run jev-halving-1)")
     a = ap.parse_args()
     jh.MAX_DEPTH = a.max_depth
     if a.check:
-        return check()
+        return check(a.verify)
     if not a.name:
         sys.exit("--name required")
     out = ROOT / "results" / f"run-{a.name}.jsonl"
@@ -123,12 +133,12 @@ def main():
                 continue
             started = datetime.now(timezone.utc).isoformat(timespec="seconds")
             try:
-                rec, s = one(im, task.target, task.note)
+                rec, s = one(im, task.target, task.note, verify=a.verify)
             except Exception as e:  # noqa: BLE001  a request that never got an answer: the try is recorded as failed
                 rec, s = {"error": f"{type(e).__name__}: {e}", "text": "", "answer": {"items": []}}, None
             record = {"model": jh.MODEL.key, "route": jh.MODEL.route, "provider": "typesafe", "level": "medium",
                       "track": "find", "task": key, "task_number": task.number, "repeat": repeat,
-                      "prompt_version": jh.VERSION, "image": task.photo,
+                      "prompt_version": jh.VERSION + (f"+{jv.VERSION}" if a.verify else ""), "image": task.photo,
                       "image_sha256": hashlib.sha256(raw).hexdigest(), "image_size": list(im.size),
                       "started_at": started, "prices_date": cost.PRICES_DATE, "code": code,
                       "max_depth": jh.MAX_DEPTH, **rec}
@@ -140,7 +150,9 @@ def main():
                         f.write(json.dumps({"task": key, "repeat": repeat, **r}) + "\n")
                 with trees_out.open("a") as f:
                     f.write(json.dumps({"task": key, "repeat": repeat, "image_size": list(s.im.size),
-                                        "nodes": s.nodes, "cuts": s.cuts, "raw": s.raw}) + "\n")
+                                        "nodes": s.nodes, "cuts": s.cuts, "raw": s.raw,
+                                        "verify": s.verify_log,
+                                        "halving_boxes": getattr(s, "halving_boxes", None)}) + "\n")
             print(f"{key:11s} try {repeat}: {len(rec['answer']['items']):3d} objects, "
                   f"{rec.get('requests', 0):4d} requests, {rec.get('seconds', 0):6.1f} s, "
                   f"${rec.get('cost_usd', 0):.4f}, forced {rec.get('forced', 0)}"
