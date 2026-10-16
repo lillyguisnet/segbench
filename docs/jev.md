@@ -166,3 +166,17 @@ side ("either") or of the longer one ("both"), grouped; on the halving's boxes
 all below the run's own join across cut lines (23.5) and around "nothing
 joined" (22.7). Loose rules chain touching neighbours (27 boxes for 83 logs);
 strict ones leave most parts apart (65 for 83).
+
+### Why the left plate on the dishes photo kept two boxes (2026-10-16)
+
+Maxime spotted it. The halving cut that plate into four parts (cut lines at
+x = 250 and 500, y = 1126). Three were joined. The part between x = 250 and
+500 ends at x = 492, 8 px short of the cut; the run's join allows 2% of the
+piece, 5 px for a 250 px piece, so it stayed apart from the part right of
+x = 500. Picture: `results/point-benchmark-v3-jev-halving-view/dishes-left-plate.jpg`.
+The touch merges join it ("either" at 25-90%, "both" up to 75%). The run's
+join with a tolerance of 0.5% of the photo (20 px) also joins it, and its
+middle then lands on the plate's answer-key dot, but it chains other dishes
+into large boxes too: 20.3 overall (dishes 7.8) against 23.5 (dishes 16.5)
+(`scripts/jev_join_photo_tol.py`, `results/point-benchmark-v3-jev-join-cut-photo-tol`;
+exploratory, found by looking at a test photo).
