@@ -155,3 +155,14 @@ Five ways to merge the same run's boxes, written down before scoring any
   Jev's per-piece boxes land on hands, leaves and between objects.
 - "overlap" equals "parts": boxes from different pieces stay inside their own
   pieces, so they never overlap by half.
+
+### Merging boxes whose sides touch (2026-10-16, `scripts/jev_touch_merge.py`)
+
+Maxime: the pieces never overlap, so merge when a share of a box's side
+touches another box. Eight rules, written before scoring: sides facing each
+other within 0.5% of the photo, shared length >= 25/50/75/90% of the shorter
+side ("either") or of the longer one ("both"), grouped; on the halving's boxes
+(no recheck). Scores 21.1 to 22.5 (`results/point-benchmark-v3-jev-touch-*`),
+all below the run's own join across cut lines (23.5) and around "nothing
+joined" (22.7). Loose rules chain touching neighbours (27 boxes for 83 logs);
+strict ones leave most parts apart (65 for 83).
