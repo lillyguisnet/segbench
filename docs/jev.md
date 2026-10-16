@@ -190,3 +190,78 @@ cream tube. `segbench/jev_halving` unchanged, "each pen", 3 tries
 same in every try; 10 requests, about 1 s, $0.0004 per try. The purple pen's
 tip crossed a cut line: the piece above answered "one" for the tip and the
 join put the two parts back together.
+
+### Beetles with up to 15 halvings (2026-10-16, `jev-halving-beetles-depth15`)
+
+Maxime: run only the butterflies-and-beetles photo, allowing 15 halvings
+instead of 7. `scripts/run_jev_halving.py --max-depth 15` (option added in
+a65da77; the search is otherwise unchanged), 3 tries, scored like v3
+(`results/point-benchmark-v3-jev-beetles-depth15`); pictures with every
+cut: `scripts/view_jev_halving_cuts.py` ->
+`results/point-benchmark-v3-jev-beetles-depth15-view/beetles-cuts.jpg`
+(the depth-7 run: `results/point-benchmark-v3-jev-halving-view/beetles-cuts.jpg`).
+
+| | depth 7 (jev-halving-1) | depth 15 |
+|---|---|---|
+| score (3 tries) | 33.6 (32, 32, 37) | **56.7** (61, 55, 54) |
+| beetles found, medium tolerance (of 22) | 8, 8, 9 | 21, 19, 18 |
+| boxes | 26, 24, 23 | 36, 37, 35 |
+| deepest cut reached | 7 (6 pieces forced) | 10, 11, 12 (none forced) |
+| requests, seconds, cost per try | 52-69, 1.6 s, $0.002 | 115-126, 3.4-5.4 s, $0.004 |
+
+- The limit of 15 was never reached; 7 was too low for this photo. About half
+  the parts (24-27 of 46-50) come from pieces cut 8-12 times.
+- Part of the gain is chance: the piece left of centre in the top half
+  ([0, 329, 371, 659]) is near 50/50 between "one" and "several" (0.53 "one"
+  in the depth-7 try 0; 0.37-0.58 here); when "one", its beetles are never
+  looked for. All three new tries still beat all three old ones.
+- Still wrong: the top-right quarter answers "one" (0.70-0.75) in every try,
+  so its corner beetle is never found; boxes on the light switch and on
+  butterflies (15-18 extra boxes per try).
+- 56.7 on beetles would be 24th of 29 on this task in v3 (Gemini 3.1 Pro
+  66.7, DeepSeek Flash 39.5; the leaders 98-100). Only this photo was run:
+  the eleven-photo score at depth 15 is unknown, and the logs photo, which
+  never stopped splitting at depth 7, could cost far more requests.
+
+### Feedback loop on the boxes (2026-10-16, `jev-halving-beetles-depth15-verify`)
+
+Maxime: once Jev gives a box, ask back whether it is on a beetle; no -> find
+again; no a second time -> reject; yes -> keep. `segbench/jev_verify.py`
+(7b59813), `--verify` in `scripts/run_jev_halving.py`, on the final boxes of
+the halving at depth 15:
+- Check: the box plus 25% margin on each side, cut from the photo; yes / no
+  "Is there a beetle (not the butterflies) in the middle of the image (whole,
+  or most of it)?"; yes at p >= 0.5.
+- Find again: an identical request gives (almost) the same box (three
+  identical requests, boxes within 0.03), so the halving piece holding the
+  box's middle is sent again with the rejected box painted grey, with the
+  halving's questions; "none" -> reject, else the new box is checked once.
+  A new box whose middle is inside a kept box is dropped.
+- Tried on the synthetic ovals first. One correct oval was rejected (p 0.37-0.44
+  under every margin and wording tried): in the square picture it is a circle.
+  Margin 25% kept the blue square out (at 100% the plain wordings said yes, 0.8).
+  Nothing was changed after that. The loop was designed after looking at this
+  photo, so the numbers below are exploratory.
+
+Same halving boxes scored before and after the check (the run saves both:
+`results/run-jev-halving-beetles-depth15-verify-before-check.jsonl`):
+
+| | before the check | after |
+|---|---|---|
+| score (3 tries) | 52.7 (55, 54, 50) | **65.4** (71, 65, 60) |
+| beetles found, medium tolerance (of 22) | 18, 16, 16 | 17, 14, 14 |
+| extra points, medium tolerance | 21, 14, 17 | 6, 4, 5 |
+| boxes | 39, 30, 33 | 23, 18, 19 |
+| requests per try | ~115-150 | 150-204 ($0.005-0.006, ~4 s) |
+
+- What the check did (a box counted "on a beetle" if an answer-key point is
+  inside it): 41 boxes on no beetle rejected over the three tries, 12 kept;
+  one box on a beetle rejected (p 0.41).
+- Finding again added nothing: 3 replacements in all, none on a beetle (one
+  dropped as a duplicate). The gain is all from rejecting.
+- Recall drops more than "one box on a beetle rejected" suggests: some boxes
+  rejected were near a beetle (counted at the medium tolerance) but not on it.
+- This halving run (52.7 before the check) scored below the earlier depth-15
+  run (56.7): run-to-run variation in Jev's answers.
+- Pictures: `scripts/view_jev_verify.py` ->
+  `results/point-benchmark-v3-jev-beetles-depth15-verify-view/beetles-verify.jpg`.
