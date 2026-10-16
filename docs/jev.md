@@ -131,3 +131,27 @@ What the pictures show (first try):
 Not done: box scores. The box answer key is still waiting for human review
 (docs/box-benchmark.md); the boxes are in `answer.items` of each record for
 `scripts/score_boxes.py` once it is.
+
+### Does merging change it? (2026-10-16, `scripts/jev_merge_variants.py`, no new requests)
+
+Five ways to merge the same run's boxes, written down before scoring any
+(`results/point-benchmark-v3-jev-merge-*`):
+
+| variant | score | logs boxes (83) | mushroom boxes (14) | cost / photo |
+|---|---|---|---|---|
+| parts (nothing joined) | 22.7 | 112 | 43-47 | $0.006 |
+| joined across cuts, no recheck | **23.5** | 44 | 16-19 | $0.006 |
+| final (as run: joined + recheck) | 23.4 | 215-256 | 29-40 | $0.018 |
+| parts, overlapping boxes merged | 22.7 | 112 | 43-47 | $0.006 |
+| joined, then overlapping merged | 21.0 | 20-28 | 4-13 | $0.006 |
+
+- The recheck is what multiplied the boxes (logs 44 -> 256): it tripled the
+  cost and changed the score by -0.1.
+- Merging moves the score by at most ~1 point either way. On the logs, joining
+  trades recall for precision (it merges touching neighbours: recall at the
+  loose tolerance 0.59 -> 0.35, precision 0.44 -> 0.66).
+- The limit is before any merging: with nothing joined, only 4 of ~43
+  mushroom boxes and 5 of 36 bird boxes have their middle near a real one.
+  Jev's per-piece boxes land on hands, leaves and between objects.
+- "overlap" equals "parts": boxes from different pieces stay inside their own
+  pieces, so they never overlap by half.
