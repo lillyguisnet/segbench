@@ -1,0 +1,6345 @@
+{
+ "calls": {
+  "astra medium box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "input": [
+       {
+        "content": [
+         {
+          "image_url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>",
+          "type": "input_image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "input_text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "instructions": "You are a helpful assistant.",
+      "model": "gpt-6-astra",
+      "reasoning": {
+       "effort": "medium"
+      },
+      "store": false,
+      "stream": true
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "chatgpt-account-id",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "openai-beta",
+       "responses=experimental"
+      ],
+      [
+       "originator",
+       "lm15"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://chatgpt.com/backend-api/codex/responses"
+    }
+   ]
+  },
+  "astra medium v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "input": [
+       {
+        "content": [
+         {
+          "image_url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>",
+          "type": "input_image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "input_text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "instructions": "You are a helpful assistant.",
+      "model": "gpt-6-astra",
+      "reasoning": {
+       "effort": "medium"
+      },
+      "store": false,
+      "stream": true
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "chatgpt-account-id",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "openai-beta",
+       "responses=experimental"
+      ],
+      [
+       "originator",
+       "lm15"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://chatgpt.com/backend-api/codex/responses"
+    }
+   ]
+  },
+  "astra min box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "input": [
+       {
+        "content": [
+         {
+          "image_url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>",
+          "type": "input_image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "input_text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "instructions": "You are a helpful assistant.",
+      "model": "gpt-6-astra",
+      "reasoning": {
+       "effort": "low"
+      },
+      "store": false,
+      "stream": true
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "chatgpt-account-id",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "openai-beta",
+       "responses=experimental"
+      ],
+      [
+       "originator",
+       "lm15"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://chatgpt.com/backend-api/codex/responses"
+    }
+   ]
+  },
+  "astra min v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "input": [
+       {
+        "content": [
+         {
+          "image_url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>",
+          "type": "input_image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "input_text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "instructions": "You are a helpful assistant.",
+      "model": "gpt-6-astra",
+      "reasoning": {
+       "effort": "low"
+      },
+      "store": false,
+      "stream": true
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "chatgpt-account-id",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "openai-beta",
+       "responses=experimental"
+      ],
+      [
+       "originator",
+       "lm15"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://chatgpt.com/backend-api/codex/responses"
+    }
+   ]
+  },
+  "deepseek-flash max box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "image_url": {
+           "url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>"
+          },
+          "type": "image_url"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "deepseek-flash",
+      "reasoning_effort": "max",
+      "thinking": {
+       "type": "enabled"
+      }
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.deepseek.com/chat/completions"
+    }
+   ]
+  },
+  "deepseek-flash max v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "image_url": {
+           "url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>"
+          },
+          "type": "image_url"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "deepseek-flash",
+      "reasoning_effort": "max",
+      "thinking": {
+       "type": "enabled"
+      }
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.deepseek.com/chat/completions"
+    }
+   ]
+  },
+  "deepseek-flash medium box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "image_url": {
+           "url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>"
+          },
+          "type": "image_url"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "deepseek-flash",
+      "reasoning_effort": "medium",
+      "thinking": {
+       "type": "enabled"
+      }
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.deepseek.com/chat/completions"
+    }
+   ]
+  },
+  "deepseek-flash medium v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "image_url": {
+           "url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>"
+          },
+          "type": "image_url"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "deepseek-flash",
+      "reasoning_effort": "medium",
+      "thinking": {
+       "type": "enabled"
+      }
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.deepseek.com/chat/completions"
+    }
+   ]
+  },
+  "deepseek-flash min box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "image_url": {
+           "url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>"
+          },
+          "type": "image_url"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "deepseek-flash",
+      "thinking": {
+       "type": "disabled"
+      }
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.deepseek.com/chat/completions"
+    }
+   ]
+  },
+  "deepseek-flash min v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "image_url": {
+           "url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>"
+          },
+          "type": "image_url"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "deepseek-flash",
+      "thinking": {
+       "type": "disabled"
+      }
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.deepseek.com/chat/completions"
+    }
+   ]
+  },
+  "deepseek-pro None box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "image_url": {
+           "url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>"
+          },
+          "type": "image_url"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "deepseek-v4-pro"
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.deepseek.com/chat/completions"
+    }
+   ]
+  },
+  "deepseek-pro None v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "image_url": {
+           "url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>"
+          },
+          "type": "image_url"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "deepseek-v4-pro"
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.deepseek.com/chat/completions"
+    }
+   ]
+  },
+  "gemini-argon max box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "contents": [
+       {
+        "parts": [
+         {
+          "inlineData": {
+           "data": "<2736 chars /9j/4AABAgMEBQYHCAkKCwwN...7u/w8fLz9PX29/j5+vv8/f7/>",
+           "mimeType": "image/jpeg"
+          },
+          "mediaResolution": {
+           "level": "MEDIA_RESOLUTION_ULTRA_HIGH"
+          }
+         },
+         {
+          "text": "Find each cow in this photo."
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "generationConfig": {
+       "maxOutputTokens": 32000,
+       "thinkingConfig": {
+        "thinkingLevel": "high"
+       }
+      }
+     },
+     "headers": [
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "x-goog-api-key",
+       "<redacted>"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-4-argon:generateContent"
+    }
+   ]
+  },
+  "gemini-argon max v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "contents": [
+       {
+        "parts": [
+         {
+          "inlineData": {
+           "data": "<2736 chars /9j/4AABAgMEBQYHCAkKCwwN...7u/w8fLz9PX29/j5+vv8/f7/>",
+           "mimeType": "image/jpeg"
+          },
+          "mediaResolution": {
+           "level": "MEDIA_RESOLUTION_ULTRA_HIGH"
+          }
+         },
+         {
+          "text": "Find each cow in this photo."
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "generationConfig": {
+       "maxOutputTokens": 32000,
+       "thinkingConfig": {
+        "thinkingLevel": "high"
+       }
+      }
+     },
+     "headers": [
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "x-goog-api-key",
+       "<redacted>"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-4-argon:generateContent"
+    }
+   ]
+  },
+  "gemini-argon medium box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "contents": [
+       {
+        "parts": [
+         {
+          "inlineData": {
+           "data": "<2736 chars /9j/4AABAgMEBQYHCAkKCwwN...7u/w8fLz9PX29/j5+vv8/f7/>",
+           "mimeType": "image/jpeg"
+          },
+          "mediaResolution": {
+           "level": "MEDIA_RESOLUTION_ULTRA_HIGH"
+          }
+         },
+         {
+          "text": "Find each cow in this photo."
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "generationConfig": {
+       "maxOutputTokens": 32000,
+       "thinkingConfig": {
+        "thinkingLevel": "medium"
+       }
+      }
+     },
+     "headers": [
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "x-goog-api-key",
+       "<redacted>"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-4-argon:generateContent"
+    }
+   ]
+  },
+  "gemini-argon medium v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "contents": [
+       {
+        "parts": [
+         {
+          "inlineData": {
+           "data": "<2736 chars /9j/4AABAgMEBQYHCAkKCwwN...7u/w8fLz9PX29/j5+vv8/f7/>",
+           "mimeType": "image/jpeg"
+          },
+          "mediaResolution": {
+           "level": "MEDIA_RESOLUTION_ULTRA_HIGH"
+          }
+         },
+         {
+          "text": "Find each cow in this photo."
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "generationConfig": {
+       "maxOutputTokens": 32000,
+       "thinkingConfig": {
+        "thinkingLevel": "medium"
+       }
+      }
+     },
+     "headers": [
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "x-goog-api-key",
+       "<redacted>"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-4-argon:generateContent"
+    }
+   ]
+  },
+  "gemini-argon min box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "contents": [
+       {
+        "parts": [
+         {
+          "inlineData": {
+           "data": "<2736 chars /9j/4AABAgMEBQYHCAkKCwwN...7u/w8fLz9PX29/j5+vv8/f7/>",
+           "mimeType": "image/jpeg"
+          },
+          "mediaResolution": {
+           "level": "MEDIA_RESOLUTION_ULTRA_HIGH"
+          }
+         },
+         {
+          "text": "Find each cow in this photo."
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "generationConfig": {
+       "maxOutputTokens": 32000,
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "headers": [
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "x-goog-api-key",
+       "<redacted>"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-4-argon:generateContent"
+    }
+   ]
+  },
+  "gemini-argon min v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "contents": [
+       {
+        "parts": [
+         {
+          "inlineData": {
+           "data": "<2736 chars /9j/4AABAgMEBQYHCAkKCwwN...7u/w8fLz9PX29/j5+vv8/f7/>",
+           "mimeType": "image/jpeg"
+          },
+          "mediaResolution": {
+           "level": "MEDIA_RESOLUTION_ULTRA_HIGH"
+          }
+         },
+         {
+          "text": "Find each cow in this photo."
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "generationConfig": {
+       "maxOutputTokens": 32000,
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "headers": [
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "x-goog-api-key",
+       "<redacted>"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-4-argon:generateContent"
+    }
+   ]
+  },
+  "gemini-flash max box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "contents": [
+       {
+        "parts": [
+         {
+          "inlineData": {
+           "data": "<2736 chars /9j/4AABAgMEBQYHCAkKCwwN...7u/w8fLz9PX29/j5+vv8/f7/>",
+           "mimeType": "image/jpeg"
+          },
+          "mediaResolution": {
+           "level": "MEDIA_RESOLUTION_ULTRA_HIGH"
+          }
+         },
+         {
+          "text": "Find each cow in this photo."
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "generationConfig": {
+       "maxOutputTokens": 32000,
+       "thinkingConfig": {
+        "thinkingLevel": "high"
+       }
+      }
+     },
+     "headers": [
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "x-goog-api-key",
+       "<redacted>"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent"
+    }
+   ]
+  },
+  "gemini-flash max v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "contents": [
+       {
+        "parts": [
+         {
+          "inlineData": {
+           "data": "<2736 chars /9j/4AABAgMEBQYHCAkKCwwN...7u/w8fLz9PX29/j5+vv8/f7/>",
+           "mimeType": "image/jpeg"
+          },
+          "mediaResolution": {
+           "level": "MEDIA_RESOLUTION_ULTRA_HIGH"
+          }
+         },
+         {
+          "text": "Find each cow in this photo."
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "generationConfig": {
+       "maxOutputTokens": 32000,
+       "thinkingConfig": {
+        "thinkingLevel": "high"
+       }
+      }
+     },
+     "headers": [
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "x-goog-api-key",
+       "<redacted>"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent"
+    }
+   ]
+  },
+  "gemini-flash medium box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "contents": [
+       {
+        "parts": [
+         {
+          "inlineData": {
+           "data": "<2736 chars /9j/4AABAgMEBQYHCAkKCwwN...7u/w8fLz9PX29/j5+vv8/f7/>",
+           "mimeType": "image/jpeg"
+          },
+          "mediaResolution": {
+           "level": "MEDIA_RESOLUTION_ULTRA_HIGH"
+          }
+         },
+         {
+          "text": "Find each cow in this photo."
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "generationConfig": {
+       "maxOutputTokens": 32000,
+       "thinkingConfig": {
+        "thinkingLevel": "medium"
+       }
+      }
+     },
+     "headers": [
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "x-goog-api-key",
+       "<redacted>"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent"
+    }
+   ]
+  },
+  "gemini-flash medium v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "contents": [
+       {
+        "parts": [
+         {
+          "inlineData": {
+           "data": "<2736 chars /9j/4AABAgMEBQYHCAkKCwwN...7u/w8fLz9PX29/j5+vv8/f7/>",
+           "mimeType": "image/jpeg"
+          },
+          "mediaResolution": {
+           "level": "MEDIA_RESOLUTION_ULTRA_HIGH"
+          }
+         },
+         {
+          "text": "Find each cow in this photo."
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "generationConfig": {
+       "maxOutputTokens": 32000,
+       "thinkingConfig": {
+        "thinkingLevel": "medium"
+       }
+      }
+     },
+     "headers": [
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "x-goog-api-key",
+       "<redacted>"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent"
+    }
+   ]
+  },
+  "gemini-flash min box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "contents": [
+       {
+        "parts": [
+         {
+          "inlineData": {
+           "data": "<2736 chars /9j/4AABAgMEBQYHCAkKCwwN...7u/w8fLz9PX29/j5+vv8/f7/>",
+           "mimeType": "image/jpeg"
+          },
+          "mediaResolution": {
+           "level": "MEDIA_RESOLUTION_ULTRA_HIGH"
+          }
+         },
+         {
+          "text": "Find each cow in this photo."
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "generationConfig": {
+       "maxOutputTokens": 32000,
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "headers": [
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "x-goog-api-key",
+       "<redacted>"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent"
+    }
+   ]
+  },
+  "gemini-flash min v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "contents": [
+       {
+        "parts": [
+         {
+          "inlineData": {
+           "data": "<2736 chars /9j/4AABAgMEBQYHCAkKCwwN...7u/w8fLz9PX29/j5+vv8/f7/>",
+           "mimeType": "image/jpeg"
+          },
+          "mediaResolution": {
+           "level": "MEDIA_RESOLUTION_ULTRA_HIGH"
+          }
+         },
+         {
+          "text": "Find each cow in this photo."
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "generationConfig": {
+       "maxOutputTokens": 32000,
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "headers": [
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "x-goog-api-key",
+       "<redacted>"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent"
+    }
+   ]
+  },
+  "gemini-flash-lite max box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "contents": [
+       {
+        "parts": [
+         {
+          "inlineData": {
+           "data": "<2736 chars /9j/4AABAgMEBQYHCAkKCwwN...7u/w8fLz9PX29/j5+vv8/f7/>",
+           "mimeType": "image/jpeg"
+          },
+          "mediaResolution": {
+           "level": "MEDIA_RESOLUTION_ULTRA_HIGH"
+          }
+         },
+         {
+          "text": "Find each cow in this photo."
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "generationConfig": {
+       "maxOutputTokens": 32000,
+       "thinkingConfig": {
+        "thinkingLevel": "high"
+       }
+      }
+     },
+     "headers": [
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "x-goog-api-key",
+       "<redacted>"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent"
+    }
+   ]
+  },
+  "gemini-flash-lite max v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "contents": [
+       {
+        "parts": [
+         {
+          "inlineData": {
+           "data": "<2736 chars /9j/4AABAgMEBQYHCAkKCwwN...7u/w8fLz9PX29/j5+vv8/f7/>",
+           "mimeType": "image/jpeg"
+          },
+          "mediaResolution": {
+           "level": "MEDIA_RESOLUTION_ULTRA_HIGH"
+          }
+         },
+         {
+          "text": "Find each cow in this photo."
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "generationConfig": {
+       "maxOutputTokens": 32000,
+       "thinkingConfig": {
+        "thinkingLevel": "high"
+       }
+      }
+     },
+     "headers": [
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "x-goog-api-key",
+       "<redacted>"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent"
+    }
+   ]
+  },
+  "gemini-flash-lite medium box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "contents": [
+       {
+        "parts": [
+         {
+          "inlineData": {
+           "data": "<2736 chars /9j/4AABAgMEBQYHCAkKCwwN...7u/w8fLz9PX29/j5+vv8/f7/>",
+           "mimeType": "image/jpeg"
+          },
+          "mediaResolution": {
+           "level": "MEDIA_RESOLUTION_ULTRA_HIGH"
+          }
+         },
+         {
+          "text": "Find each cow in this photo."
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "generationConfig": {
+       "maxOutputTokens": 32000,
+       "thinkingConfig": {
+        "thinkingLevel": "medium"
+       }
+      }
+     },
+     "headers": [
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "x-goog-api-key",
+       "<redacted>"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent"
+    }
+   ]
+  },
+  "gemini-flash-lite medium v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "contents": [
+       {
+        "parts": [
+         {
+          "inlineData": {
+           "data": "<2736 chars /9j/4AABAgMEBQYHCAkKCwwN...7u/w8fLz9PX29/j5+vv8/f7/>",
+           "mimeType": "image/jpeg"
+          },
+          "mediaResolution": {
+           "level": "MEDIA_RESOLUTION_ULTRA_HIGH"
+          }
+         },
+         {
+          "text": "Find each cow in this photo."
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "generationConfig": {
+       "maxOutputTokens": 32000,
+       "thinkingConfig": {
+        "thinkingLevel": "medium"
+       }
+      }
+     },
+     "headers": [
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "x-goog-api-key",
+       "<redacted>"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent"
+    }
+   ]
+  },
+  "gemini-flash-lite min box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "contents": [
+       {
+        "parts": [
+         {
+          "inlineData": {
+           "data": "<2736 chars /9j/4AABAgMEBQYHCAkKCwwN...7u/w8fLz9PX29/j5+vv8/f7/>",
+           "mimeType": "image/jpeg"
+          },
+          "mediaResolution": {
+           "level": "MEDIA_RESOLUTION_ULTRA_HIGH"
+          }
+         },
+         {
+          "text": "Find each cow in this photo."
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "generationConfig": {
+       "maxOutputTokens": 32000,
+       "thinkingConfig": {
+        "thinkingLevel": "minimal"
+       }
+      }
+     },
+     "headers": [
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "x-goog-api-key",
+       "<redacted>"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent"
+    }
+   ]
+  },
+  "gemini-flash-lite min v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "contents": [
+       {
+        "parts": [
+         {
+          "inlineData": {
+           "data": "<2736 chars /9j/4AABAgMEBQYHCAkKCwwN...7u/w8fLz9PX29/j5+vv8/f7/>",
+           "mimeType": "image/jpeg"
+          },
+          "mediaResolution": {
+           "level": "MEDIA_RESOLUTION_ULTRA_HIGH"
+          }
+         },
+         {
+          "text": "Find each cow in this photo."
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "generationConfig": {
+       "maxOutputTokens": 32000,
+       "thinkingConfig": {
+        "thinkingLevel": "minimal"
+       }
+      }
+     },
+     "headers": [
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "x-goog-api-key",
+       "<redacted>"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent"
+    }
+   ]
+  },
+  "gemini-pro max box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "contents": [
+       {
+        "parts": [
+         {
+          "inlineData": {
+           "data": "<2736 chars /9j/4AABAgMEBQYHCAkKCwwN...7u/w8fLz9PX29/j5+vv8/f7/>",
+           "mimeType": "image/jpeg"
+          },
+          "mediaResolution": {
+           "level": "MEDIA_RESOLUTION_ULTRA_HIGH"
+          }
+         },
+         {
+          "text": "Find each cow in this photo."
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "generationConfig": {
+       "maxOutputTokens": 32000,
+       "thinkingConfig": {
+        "thinkingLevel": "high"
+       }
+      }
+     },
+     "headers": [
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "x-goog-api-key",
+       "<redacted>"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent"
+    }
+   ]
+  },
+  "gemini-pro max v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "contents": [
+       {
+        "parts": [
+         {
+          "inlineData": {
+           "data": "<2736 chars /9j/4AABAgMEBQYHCAkKCwwN...7u/w8fLz9PX29/j5+vv8/f7/>",
+           "mimeType": "image/jpeg"
+          },
+          "mediaResolution": {
+           "level": "MEDIA_RESOLUTION_ULTRA_HIGH"
+          }
+         },
+         {
+          "text": "Find each cow in this photo."
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "generationConfig": {
+       "maxOutputTokens": 32000,
+       "thinkingConfig": {
+        "thinkingLevel": "high"
+       }
+      }
+     },
+     "headers": [
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "x-goog-api-key",
+       "<redacted>"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent"
+    }
+   ]
+  },
+  "gemini-pro medium box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "contents": [
+       {
+        "parts": [
+         {
+          "inlineData": {
+           "data": "<2736 chars /9j/4AABAgMEBQYHCAkKCwwN...7u/w8fLz9PX29/j5+vv8/f7/>",
+           "mimeType": "image/jpeg"
+          },
+          "mediaResolution": {
+           "level": "MEDIA_RESOLUTION_ULTRA_HIGH"
+          }
+         },
+         {
+          "text": "Find each cow in this photo."
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "generationConfig": {
+       "maxOutputTokens": 32000,
+       "thinkingConfig": {
+        "thinkingLevel": "medium"
+       }
+      }
+     },
+     "headers": [
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "x-goog-api-key",
+       "<redacted>"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent"
+    }
+   ]
+  },
+  "gemini-pro medium v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "contents": [
+       {
+        "parts": [
+         {
+          "inlineData": {
+           "data": "<2736 chars /9j/4AABAgMEBQYHCAkKCwwN...7u/w8fLz9PX29/j5+vv8/f7/>",
+           "mimeType": "image/jpeg"
+          },
+          "mediaResolution": {
+           "level": "MEDIA_RESOLUTION_ULTRA_HIGH"
+          }
+         },
+         {
+          "text": "Find each cow in this photo."
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "generationConfig": {
+       "maxOutputTokens": 32000,
+       "thinkingConfig": {
+        "thinkingLevel": "medium"
+       }
+      }
+     },
+     "headers": [
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "x-goog-api-key",
+       "<redacted>"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent"
+    }
+   ]
+  },
+  "gemini-pro min box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "contents": [
+       {
+        "parts": [
+         {
+          "inlineData": {
+           "data": "<2736 chars /9j/4AABAgMEBQYHCAkKCwwN...7u/w8fLz9PX29/j5+vv8/f7/>",
+           "mimeType": "image/jpeg"
+          },
+          "mediaResolution": {
+           "level": "MEDIA_RESOLUTION_ULTRA_HIGH"
+          }
+         },
+         {
+          "text": "Find each cow in this photo."
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "generationConfig": {
+       "maxOutputTokens": 32000,
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "headers": [
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "x-goog-api-key",
+       "<redacted>"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent"
+    }
+   ]
+  },
+  "gemini-pro min v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "contents": [
+       {
+        "parts": [
+         {
+          "inlineData": {
+           "data": "<2736 chars /9j/4AABAgMEBQYHCAkKCwwN...7u/w8fLz9PX29/j5+vv8/f7/>",
+           "mimeType": "image/jpeg"
+          },
+          "mediaResolution": {
+           "level": "MEDIA_RESOLUTION_ULTRA_HIGH"
+          }
+         },
+         {
+          "text": "Find each cow in this photo."
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "generationConfig": {
+       "maxOutputTokens": 32000,
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "headers": [
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "x-goog-api-key",
+       "<redacted>"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent"
+    }
+   ]
+  },
+  "glm-5.3 None box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "image_url": {
+           "url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>"
+          },
+          "type": "image_url"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "glm-5.3"
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.z.ai/api/paas/v4/chat/completions"
+    }
+   ]
+  },
+  "glm-5.3 None v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "image_url": {
+           "url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>"
+          },
+          "type": "image_url"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "glm-5.3"
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.z.ai/api/paas/v4/chat/completions"
+    }
+   ]
+  },
+  "glm-5.3-flash max box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "image_url": {
+           "url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>"
+          },
+          "type": "image_url"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "glm-5.3-flash",
+      "reasoning_effort": "max",
+      "thinking": {
+       "type": "enabled"
+      }
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.z.ai/api/paas/v4/chat/completions"
+    }
+   ]
+  },
+  "glm-5.3-flash max v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "image_url": {
+           "url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>"
+          },
+          "type": "image_url"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "glm-5.3-flash",
+      "reasoning_effort": "max",
+      "thinking": {
+       "type": "enabled"
+      }
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.z.ai/api/paas/v4/chat/completions"
+    }
+   ]
+  },
+  "glm-5.3-flash medium box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "image_url": {
+           "url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>"
+          },
+          "type": "image_url"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "glm-5.3-flash",
+      "reasoning_effort": "high",
+      "thinking": {
+       "type": "enabled"
+      }
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.z.ai/api/paas/v4/chat/completions"
+    }
+   ]
+  },
+  "glm-5.3-flash medium v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "image_url": {
+           "url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>"
+          },
+          "type": "image_url"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "glm-5.3-flash",
+      "reasoning_effort": "high",
+      "thinking": {
+       "type": "enabled"
+      }
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.z.ai/api/paas/v4/chat/completions"
+    }
+   ]
+  },
+  "glm-5.3-flash min box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "image_url": {
+           "url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>"
+          },
+          "type": "image_url"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "glm-5.3-flash",
+      "reasoning_effort": "low",
+      "thinking": {
+       "type": "enabled"
+      }
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.z.ai/api/paas/v4/chat/completions"
+    }
+   ]
+  },
+  "glm-5.3-flash min v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "image_url": {
+           "url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>"
+          },
+          "type": "image_url"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "glm-5.3-flash",
+      "reasoning_effort": "low",
+      "thinking": {
+       "type": "enabled"
+      }
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.z.ai/api/paas/v4/chat/completions"
+    }
+   ]
+  },
+  "haiku max box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "source": {
+           "data": "<2736 chars /9j/4AABAgMEBQYHCAkKCwwN...7u/w8fLz9PX29/j5+vv8/f7/>",
+           "media_type": "image/jpeg",
+           "type": "base64"
+          },
+          "type": "image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "claude-haiku-5-5",
+      "output_config": {
+       "effort": "max"
+      },
+      "stream": false,
+      "system": [
+       {
+        "text": "You are Claude Code, Anthropic's official CLI for Claude.",
+        "type": "text"
+       }
+      ],
+      "thinking": {
+       "type": "adaptive"
+      }
+     },
+     "headers": [
+      [
+       "anthropic-beta",
+       "claude-code-20250219,oauth-2025-04-20"
+      ],
+      [
+       "anthropic-dangerous-direct-browser-access",
+       "true"
+      ],
+      [
+       "anthropic-version",
+       "2023-06-01"
+      ],
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "user-agent",
+       "<redacted>"
+      ],
+      [
+       "x-app",
+       "cli"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.anthropic.com/v1/messages"
+    }
+   ]
+  },
+  "haiku max v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "source": {
+           "data": "<2736 chars /9j/4AABAgMEBQYHCAkKCwwN...7u/w8fLz9PX29/j5+vv8/f7/>",
+           "media_type": "image/jpeg",
+           "type": "base64"
+          },
+          "type": "image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "claude-haiku-5-5",
+      "output_config": {
+       "effort": "max"
+      },
+      "stream": false,
+      "system": [
+       {
+        "text": "You are Claude Code, Anthropic's official CLI for Claude.",
+        "type": "text"
+       }
+      ],
+      "thinking": {
+       "type": "adaptive"
+      }
+     },
+     "headers": [
+      [
+       "anthropic-beta",
+       "claude-code-20250219,oauth-2025-04-20"
+      ],
+      [
+       "anthropic-dangerous-direct-browser-access",
+       "true"
+      ],
+      [
+       "anthropic-version",
+       "2023-06-01"
+      ],
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "user-agent",
+       "<redacted>"
+      ],
+      [
+       "x-app",
+       "cli"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.anthropic.com/v1/messages"
+    }
+   ]
+  },
+  "haiku medium box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "source": {
+           "data": "<2736 chars /9j/4AABAgMEBQYHCAkKCwwN...7u/w8fLz9PX29/j5+vv8/f7/>",
+           "media_type": "image/jpeg",
+           "type": "base64"
+          },
+          "type": "image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "claude-haiku-5-5",
+      "output_config": {
+       "effort": "medium"
+      },
+      "stream": false,
+      "system": [
+       {
+        "text": "You are Claude Code, Anthropic's official CLI for Claude.",
+        "type": "text"
+       }
+      ],
+      "thinking": {
+       "type": "adaptive"
+      }
+     },
+     "headers": [
+      [
+       "anthropic-beta",
+       "claude-code-20250219,oauth-2025-04-20"
+      ],
+      [
+       "anthropic-dangerous-direct-browser-access",
+       "true"
+      ],
+      [
+       "anthropic-version",
+       "2023-06-01"
+      ],
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "user-agent",
+       "<redacted>"
+      ],
+      [
+       "x-app",
+       "cli"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.anthropic.com/v1/messages"
+    }
+   ]
+  },
+  "haiku medium v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "source": {
+           "data": "<2736 chars /9j/4AABAgMEBQYHCAkKCwwN...7u/w8fLz9PX29/j5+vv8/f7/>",
+           "media_type": "image/jpeg",
+           "type": "base64"
+          },
+          "type": "image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "claude-haiku-5-5",
+      "output_config": {
+       "effort": "medium"
+      },
+      "stream": false,
+      "system": [
+       {
+        "text": "You are Claude Code, Anthropic's official CLI for Claude.",
+        "type": "text"
+       }
+      ],
+      "thinking": {
+       "type": "adaptive"
+      }
+     },
+     "headers": [
+      [
+       "anthropic-beta",
+       "claude-code-20250219,oauth-2025-04-20"
+      ],
+      [
+       "anthropic-dangerous-direct-browser-access",
+       "true"
+      ],
+      [
+       "anthropic-version",
+       "2023-06-01"
+      ],
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "user-agent",
+       "<redacted>"
+      ],
+      [
+       "x-app",
+       "cli"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.anthropic.com/v1/messages"
+    }
+   ]
+  },
+  "haiku min box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "source": {
+           "data": "<2736 chars /9j/4AABAgMEBQYHCAkKCwwN...7u/w8fLz9PX29/j5+vv8/f7/>",
+           "media_type": "image/jpeg",
+           "type": "base64"
+          },
+          "type": "image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "claude-haiku-5-5",
+      "stream": false,
+      "system": [
+       {
+        "text": "You are Claude Code, Anthropic's official CLI for Claude.",
+        "type": "text"
+       }
+      ],
+      "thinking": {
+       "type": "disabled"
+      }
+     },
+     "headers": [
+      [
+       "anthropic-beta",
+       "claude-code-20250219,oauth-2025-04-20"
+      ],
+      [
+       "anthropic-dangerous-direct-browser-access",
+       "true"
+      ],
+      [
+       "anthropic-version",
+       "2023-06-01"
+      ],
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "user-agent",
+       "<redacted>"
+      ],
+      [
+       "x-app",
+       "cli"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.anthropic.com/v1/messages"
+    }
+   ]
+  },
+  "haiku min v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "source": {
+           "data": "<2736 chars /9j/4AABAgMEBQYHCAkKCwwN...7u/w8fLz9PX29/j5+vv8/f7/>",
+           "media_type": "image/jpeg",
+           "type": "base64"
+          },
+          "type": "image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "claude-haiku-5-5",
+      "stream": false,
+      "system": [
+       {
+        "text": "You are Claude Code, Anthropic's official CLI for Claude.",
+        "type": "text"
+       }
+      ],
+      "thinking": {
+       "type": "disabled"
+      }
+     },
+     "headers": [
+      [
+       "anthropic-beta",
+       "claude-code-20250219,oauth-2025-04-20"
+      ],
+      [
+       "anthropic-dangerous-direct-browser-access",
+       "true"
+      ],
+      [
+       "anthropic-version",
+       "2023-06-01"
+      ],
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "user-agent",
+       "<redacted>"
+      ],
+      [
+       "x-app",
+       "cli"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.anthropic.com/v1/messages"
+    }
+   ]
+  },
+  "kimi-k3 medium box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_completion_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "image_url": {
+           "url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>"
+          },
+          "type": "image_url"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "kimi-k3",
+      "reasoning_effort": "high"
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.moonshot.ai/v1/chat/completions"
+    }
+   ]
+  },
+  "kimi-k3 medium v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_completion_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "image_url": {
+           "url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>"
+          },
+          "type": "image_url"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "kimi-k3",
+      "reasoning_effort": "high"
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.moonshot.ai/v1/chat/completions"
+    }
+   ]
+  },
+  "kimi-k3 min box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_completion_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "image_url": {
+           "url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>"
+          },
+          "type": "image_url"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "kimi-k3",
+      "thinking": {
+       "type": "disabled"
+      }
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.moonshot.ai/v1/chat/completions"
+    }
+   ]
+  },
+  "kimi-k3 min v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_completion_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "image_url": {
+           "url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>"
+          },
+          "type": "image_url"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "kimi-k3",
+      "thinking": {
+       "type": "disabled"
+      }
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.moonshot.ai/v1/chat/completions"
+    }
+   ]
+  },
+  "luna max box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "input": [
+       {
+        "content": [
+         {
+          "image_url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>",
+          "type": "input_image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "input_text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "instructions": "You are a helpful assistant.",
+      "model": "gpt-6-luna",
+      "reasoning": {
+       "effort": "max"
+      },
+      "store": false,
+      "stream": true
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "chatgpt-account-id",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "openai-beta",
+       "responses=experimental"
+      ],
+      [
+       "originator",
+       "lm15"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://chatgpt.com/backend-api/codex/responses"
+    }
+   ]
+  },
+  "luna max v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "input": [
+       {
+        "content": [
+         {
+          "image_url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>",
+          "type": "input_image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "input_text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "instructions": "You are a helpful assistant.",
+      "model": "gpt-6-luna",
+      "reasoning": {
+       "effort": "max"
+      },
+      "store": false,
+      "stream": true
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "chatgpt-account-id",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "openai-beta",
+       "responses=experimental"
+      ],
+      [
+       "originator",
+       "lm15"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://chatgpt.com/backend-api/codex/responses"
+    }
+   ]
+  },
+  "luna medium box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "input": [
+       {
+        "content": [
+         {
+          "image_url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>",
+          "type": "input_image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "input_text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "instructions": "You are a helpful assistant.",
+      "model": "gpt-6-luna",
+      "reasoning": {
+       "effort": "medium"
+      },
+      "store": false,
+      "stream": true
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "chatgpt-account-id",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "openai-beta",
+       "responses=experimental"
+      ],
+      [
+       "originator",
+       "lm15"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://chatgpt.com/backend-api/codex/responses"
+    }
+   ]
+  },
+  "luna medium v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "input": [
+       {
+        "content": [
+         {
+          "image_url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>",
+          "type": "input_image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "input_text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "instructions": "You are a helpful assistant.",
+      "model": "gpt-6-luna",
+      "reasoning": {
+       "effort": "medium"
+      },
+      "store": false,
+      "stream": true
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "chatgpt-account-id",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "openai-beta",
+       "responses=experimental"
+      ],
+      [
+       "originator",
+       "lm15"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://chatgpt.com/backend-api/codex/responses"
+    }
+   ]
+  },
+  "luna min box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "input": [
+       {
+        "content": [
+         {
+          "image_url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>",
+          "type": "input_image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "input_text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "instructions": "You are a helpful assistant.",
+      "model": "gpt-6-luna",
+      "reasoning": {
+       "effort": "none"
+      },
+      "store": false,
+      "stream": true
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "chatgpt-account-id",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "openai-beta",
+       "responses=experimental"
+      ],
+      [
+       "originator",
+       "lm15"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://chatgpt.com/backend-api/codex/responses"
+    }
+   ]
+  },
+  "luna min v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "input": [
+       {
+        "content": [
+         {
+          "image_url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>",
+          "type": "input_image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "input_text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "instructions": "You are a helpful assistant.",
+      "model": "gpt-6-luna",
+      "reasoning": {
+       "effort": "none"
+      },
+      "store": false,
+      "stream": true
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "chatgpt-account-id",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "openai-beta",
+       "responses=experimental"
+      ],
+      [
+       "originator",
+       "lm15"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://chatgpt.com/backend-api/codex/responses"
+    }
+   ]
+  },
+  "mistral-large-4 medium box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "image_url": {
+           "url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>"
+          },
+          "type": "image_url"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "mistralai/mistral-large-4-0",
+      "provider": {
+       "allow_fallbacks": false,
+       "order": [
+        "Mistral"
+       ]
+      },
+      "reasoning": {
+       "effort": "high"
+      }
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://openrouter.ai/api/v1/chat/completions"
+    }
+   ]
+  },
+  "mistral-large-4 medium v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "image_url": {
+           "url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>"
+          },
+          "type": "image_url"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "mistralai/mistral-large-4-0",
+      "provider": {
+       "allow_fallbacks": false,
+       "order": [
+        "Mistral"
+       ]
+      },
+      "reasoning": {
+       "effort": "high"
+      }
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://openrouter.ai/api/v1/chat/completions"
+    }
+   ]
+  },
+  "mistral-large-4 min box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "image_url": {
+           "url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>"
+          },
+          "type": "image_url"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "mistralai/mistral-large-4-0",
+      "provider": {
+       "allow_fallbacks": false,
+       "order": [
+        "Mistral"
+       ]
+      },
+      "reasoning": {
+       "enabled": false
+      }
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://openrouter.ai/api/v1/chat/completions"
+    }
+   ]
+  },
+  "mistral-large-4 min v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "image_url": {
+           "url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>"
+          },
+          "type": "image_url"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "mistralai/mistral-large-4-0",
+      "provider": {
+       "allow_fallbacks": false,
+       "order": [
+        "Mistral"
+       ]
+      },
+      "reasoning": {
+       "enabled": false
+      }
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://openrouter.ai/api/v1/chat/completions"
+    }
+   ]
+  },
+  "mk1.5 max box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "image_url": {
+           "url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>"
+          },
+          "type": "image_url"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "perceptron/perceptron-mk1.5",
+      "provider": {
+       "allow_fallbacks": false,
+       "order": [
+        "Perceptron"
+       ]
+      },
+      "reasoning": {
+       "effort": "high"
+      }
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://openrouter.ai/api/v1/chat/completions"
+    }
+   ]
+  },
+  "mk1.5 max v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "image_url": {
+           "url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>"
+          },
+          "type": "image_url"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "perceptron/perceptron-mk1.5",
+      "provider": {
+       "allow_fallbacks": false,
+       "order": [
+        "Perceptron"
+       ]
+      },
+      "reasoning": {
+       "effort": "high"
+      }
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://openrouter.ai/api/v1/chat/completions"
+    }
+   ]
+  },
+  "mk1.5 medium box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "image_url": {
+           "url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>"
+          },
+          "type": "image_url"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "perceptron/perceptron-mk1.5",
+      "provider": {
+       "allow_fallbacks": false,
+       "order": [
+        "Perceptron"
+       ]
+      },
+      "reasoning": {
+       "effort": "medium"
+      }
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://openrouter.ai/api/v1/chat/completions"
+    }
+   ]
+  },
+  "mk1.5 medium v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "image_url": {
+           "url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>"
+          },
+          "type": "image_url"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "perceptron/perceptron-mk1.5",
+      "provider": {
+       "allow_fallbacks": false,
+       "order": [
+        "Perceptron"
+       ]
+      },
+      "reasoning": {
+       "effort": "medium"
+      }
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://openrouter.ai/api/v1/chat/completions"
+    }
+   ]
+  },
+  "mk1.5 min box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "image_url": {
+           "url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>"
+          },
+          "type": "image_url"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "perceptron/perceptron-mk1.5",
+      "provider": {
+       "allow_fallbacks": false,
+       "order": [
+        "Perceptron"
+       ]
+      },
+      "reasoning": {
+       "enabled": false
+      }
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://openrouter.ai/api/v1/chat/completions"
+    }
+   ]
+  },
+  "mk1.5 min v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "image_url": {
+           "url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>"
+          },
+          "type": "image_url"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "perceptron/perceptron-mk1.5",
+      "provider": {
+       "allow_fallbacks": false,
+       "order": [
+        "Perceptron"
+       ]
+      },
+      "reasoning": {
+       "enabled": false
+      }
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://openrouter.ai/api/v1/chat/completions"
+    }
+   ]
+  },
+  "muse-wonder max box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "input": [
+       {
+        "content": [
+         {
+          "image_url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>",
+          "type": "input_image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "input_text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "max_output_tokens": 32000,
+      "model": "muse-wonder-1.0",
+      "reasoning": {
+       "effort": "max"
+      },
+      "stream": false
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.meta.ai/v1/responses"
+    }
+   ]
+  },
+  "muse-wonder max v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "input": [
+       {
+        "content": [
+         {
+          "image_url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>",
+          "type": "input_image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "input_text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "max_output_tokens": 32000,
+      "model": "muse-wonder-1.0",
+      "reasoning": {
+       "effort": "max"
+      },
+      "stream": false
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.meta.ai/v1/responses"
+    }
+   ]
+  },
+  "muse-wonder medium box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "input": [
+       {
+        "content": [
+         {
+          "image_url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>",
+          "type": "input_image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "input_text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "max_output_tokens": 32000,
+      "model": "muse-wonder-1.0",
+      "reasoning": {
+       "effort": "medium"
+      },
+      "stream": false
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.meta.ai/v1/responses"
+    }
+   ]
+  },
+  "muse-wonder medium v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "input": [
+       {
+        "content": [
+         {
+          "image_url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>",
+          "type": "input_image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "input_text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "max_output_tokens": 32000,
+      "model": "muse-wonder-1.0",
+      "reasoning": {
+       "effort": "medium"
+      },
+      "stream": false
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.meta.ai/v1/responses"
+    }
+   ]
+  },
+  "muse-wonder min box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "input": [
+       {
+        "content": [
+         {
+          "image_url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>",
+          "type": "input_image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "input_text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "max_output_tokens": 32000,
+      "model": "muse-wonder-1.0",
+      "reasoning": {
+       "effort": "minimal"
+      },
+      "stream": false
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.meta.ai/v1/responses"
+    }
+   ]
+  },
+  "muse-wonder min v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "input": [
+       {
+        "content": [
+         {
+          "image_url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>",
+          "type": "input_image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "input_text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "max_output_tokens": 32000,
+      "model": "muse-wonder-1.0",
+      "reasoning": {
+       "effort": "minimal"
+      },
+      "stream": false
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.meta.ai/v1/responses"
+    }
+   ]
+  },
+  "muse-wonder-api max box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "input": [
+       {
+        "content": [
+         {
+          "image_url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>",
+          "type": "input_image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "input_text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "max_output_tokens": 32000,
+      "model": "muse-wonder-1.0",
+      "reasoning": {
+       "effort": "max"
+      },
+      "stream": false
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.meta.ai/v1/responses"
+    }
+   ]
+  },
+  "muse-wonder-api max v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "input": [
+       {
+        "content": [
+         {
+          "image_url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>",
+          "type": "input_image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "input_text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "max_output_tokens": 32000,
+      "model": "muse-wonder-1.0",
+      "reasoning": {
+       "effort": "max"
+      },
+      "stream": false
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.meta.ai/v1/responses"
+    }
+   ]
+  },
+  "muse-wonder-api medium box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "input": [
+       {
+        "content": [
+         {
+          "image_url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>",
+          "type": "input_image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "input_text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "max_output_tokens": 32000,
+      "model": "muse-wonder-1.0",
+      "reasoning": {
+       "effort": "medium"
+      },
+      "stream": false
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.meta.ai/v1/responses"
+    }
+   ]
+  },
+  "muse-wonder-api medium v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "input": [
+       {
+        "content": [
+         {
+          "image_url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>",
+          "type": "input_image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "input_text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "max_output_tokens": 32000,
+      "model": "muse-wonder-1.0",
+      "reasoning": {
+       "effort": "medium"
+      },
+      "stream": false
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.meta.ai/v1/responses"
+    }
+   ]
+  },
+  "muse-wonder-api min box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "input": [
+       {
+        "content": [
+         {
+          "image_url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>",
+          "type": "input_image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "input_text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "max_output_tokens": 32000,
+      "model": "muse-wonder-1.0",
+      "reasoning": {
+       "effort": "minimal"
+      },
+      "stream": false
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.meta.ai/v1/responses"
+    }
+   ]
+  },
+  "muse-wonder-api min v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "input": [
+       {
+        "content": [
+         {
+          "image_url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>",
+          "type": "input_image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "input_text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "max_output_tokens": 32000,
+      "model": "muse-wonder-1.0",
+      "reasoning": {
+       "effort": "minimal"
+      },
+      "stream": false
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.meta.ai/v1/responses"
+    }
+   ]
+  },
+  "muse-wonder-full max box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "input": [
+       {
+        "content": [
+         {
+          "image_url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>",
+          "type": "input_image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "input_text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "max_output_tokens": 32000,
+      "model": "muse-wonder-full-1.0",
+      "reasoning": {
+       "effort": "max"
+      },
+      "stream": false
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.meta.ai/v1/responses"
+    }
+   ]
+  },
+  "muse-wonder-full max v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "input": [
+       {
+        "content": [
+         {
+          "image_url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>",
+          "type": "input_image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "input_text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "max_output_tokens": 32000,
+      "model": "muse-wonder-full-1.0",
+      "reasoning": {
+       "effort": "max"
+      },
+      "stream": false
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.meta.ai/v1/responses"
+    }
+   ]
+  },
+  "muse-wonder-full medium box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "input": [
+       {
+        "content": [
+         {
+          "image_url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>",
+          "type": "input_image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "input_text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "max_output_tokens": 32000,
+      "model": "muse-wonder-full-1.0",
+      "reasoning": {
+       "effort": "medium"
+      },
+      "stream": false
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.meta.ai/v1/responses"
+    }
+   ]
+  },
+  "muse-wonder-full medium v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "input": [
+       {
+        "content": [
+         {
+          "image_url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>",
+          "type": "input_image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "input_text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "max_output_tokens": 32000,
+      "model": "muse-wonder-full-1.0",
+      "reasoning": {
+       "effort": "medium"
+      },
+      "stream": false
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.meta.ai/v1/responses"
+    }
+   ]
+  },
+  "muse-wonder-full min box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "input": [
+       {
+        "content": [
+         {
+          "image_url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>",
+          "type": "input_image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "input_text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "max_output_tokens": 32000,
+      "model": "muse-wonder-full-1.0",
+      "reasoning": {
+       "effort": "minimal"
+      },
+      "stream": false
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.meta.ai/v1/responses"
+    }
+   ]
+  },
+  "muse-wonder-full min v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "input": [
+       {
+        "content": [
+         {
+          "image_url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>",
+          "type": "input_image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "input_text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "max_output_tokens": 32000,
+      "model": "muse-wonder-full-1.0",
+      "reasoning": {
+       "effort": "minimal"
+      },
+      "stream": false
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.meta.ai/v1/responses"
+    }
+   ]
+  },
+  "opus max box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "source": {
+           "data": "<2736 chars /9j/4AABAgMEBQYHCAkKCwwN...7u/w8fLz9PX29/j5+vv8/f7/>",
+           "media_type": "image/jpeg",
+           "type": "base64"
+          },
+          "type": "image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "claude-opus-5-5",
+      "output_config": {
+       "effort": "max"
+      },
+      "stream": false,
+      "system": [
+       {
+        "text": "You are Claude Code, Anthropic's official CLI for Claude.",
+        "type": "text"
+       }
+      ],
+      "thinking": {
+       "type": "adaptive"
+      }
+     },
+     "headers": [
+      [
+       "anthropic-beta",
+       "claude-code-20250219,oauth-2025-04-20"
+      ],
+      [
+       "anthropic-dangerous-direct-browser-access",
+       "true"
+      ],
+      [
+       "anthropic-version",
+       "2023-06-01"
+      ],
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "user-agent",
+       "<redacted>"
+      ],
+      [
+       "x-app",
+       "cli"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.anthropic.com/v1/messages"
+    }
+   ]
+  },
+  "opus max v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "source": {
+           "data": "<2736 chars /9j/4AABAgMEBQYHCAkKCwwN...7u/w8fLz9PX29/j5+vv8/f7/>",
+           "media_type": "image/jpeg",
+           "type": "base64"
+          },
+          "type": "image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "claude-opus-5-5",
+      "output_config": {
+       "effort": "max"
+      },
+      "stream": false,
+      "system": [
+       {
+        "text": "You are Claude Code, Anthropic's official CLI for Claude.",
+        "type": "text"
+       }
+      ],
+      "thinking": {
+       "type": "adaptive"
+      }
+     },
+     "headers": [
+      [
+       "anthropic-beta",
+       "claude-code-20250219,oauth-2025-04-20"
+      ],
+      [
+       "anthropic-dangerous-direct-browser-access",
+       "true"
+      ],
+      [
+       "anthropic-version",
+       "2023-06-01"
+      ],
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "user-agent",
+       "<redacted>"
+      ],
+      [
+       "x-app",
+       "cli"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.anthropic.com/v1/messages"
+    }
+   ]
+  },
+  "opus medium box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "source": {
+           "data": "<2736 chars /9j/4AABAgMEBQYHCAkKCwwN...7u/w8fLz9PX29/j5+vv8/f7/>",
+           "media_type": "image/jpeg",
+           "type": "base64"
+          },
+          "type": "image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "claude-opus-5-5",
+      "output_config": {
+       "effort": "medium"
+      },
+      "stream": false,
+      "system": [
+       {
+        "text": "You are Claude Code, Anthropic's official CLI for Claude.",
+        "type": "text"
+       }
+      ],
+      "thinking": {
+       "type": "adaptive"
+      }
+     },
+     "headers": [
+      [
+       "anthropic-beta",
+       "claude-code-20250219,oauth-2025-04-20"
+      ],
+      [
+       "anthropic-dangerous-direct-browser-access",
+       "true"
+      ],
+      [
+       "anthropic-version",
+       "2023-06-01"
+      ],
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "user-agent",
+       "<redacted>"
+      ],
+      [
+       "x-app",
+       "cli"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.anthropic.com/v1/messages"
+    }
+   ]
+  },
+  "opus medium v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "source": {
+           "data": "<2736 chars /9j/4AABAgMEBQYHCAkKCwwN...7u/w8fLz9PX29/j5+vv8/f7/>",
+           "media_type": "image/jpeg",
+           "type": "base64"
+          },
+          "type": "image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "claude-opus-5-5",
+      "output_config": {
+       "effort": "medium"
+      },
+      "stream": false,
+      "system": [
+       {
+        "text": "You are Claude Code, Anthropic's official CLI for Claude.",
+        "type": "text"
+       }
+      ],
+      "thinking": {
+       "type": "adaptive"
+      }
+     },
+     "headers": [
+      [
+       "anthropic-beta",
+       "claude-code-20250219,oauth-2025-04-20"
+      ],
+      [
+       "anthropic-dangerous-direct-browser-access",
+       "true"
+      ],
+      [
+       "anthropic-version",
+       "2023-06-01"
+      ],
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "user-agent",
+       "<redacted>"
+      ],
+      [
+       "x-app",
+       "cli"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.anthropic.com/v1/messages"
+    }
+   ]
+  },
+  "opus min box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "source": {
+           "data": "<2736 chars /9j/4AABAgMEBQYHCAkKCwwN...7u/w8fLz9PX29/j5+vv8/f7/>",
+           "media_type": "image/jpeg",
+           "type": "base64"
+          },
+          "type": "image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "claude-opus-5-5",
+      "output_config": {
+       "effort": "low"
+      },
+      "stream": false,
+      "system": [
+       {
+        "text": "You are Claude Code, Anthropic's official CLI for Claude.",
+        "type": "text"
+       }
+      ],
+      "thinking": {
+       "type": "adaptive"
+      }
+     },
+     "headers": [
+      [
+       "anthropic-beta",
+       "claude-code-20250219,oauth-2025-04-20"
+      ],
+      [
+       "anthropic-dangerous-direct-browser-access",
+       "true"
+      ],
+      [
+       "anthropic-version",
+       "2023-06-01"
+      ],
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "user-agent",
+       "<redacted>"
+      ],
+      [
+       "x-app",
+       "cli"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.anthropic.com/v1/messages"
+    }
+   ]
+  },
+  "opus min v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "source": {
+           "data": "<2736 chars /9j/4AABAgMEBQYHCAkKCwwN...7u/w8fLz9PX29/j5+vv8/f7/>",
+           "media_type": "image/jpeg",
+           "type": "base64"
+          },
+          "type": "image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "claude-opus-5-5",
+      "output_config": {
+       "effort": "low"
+      },
+      "stream": false,
+      "system": [
+       {
+        "text": "You are Claude Code, Anthropic's official CLI for Claude.",
+        "type": "text"
+       }
+      ],
+      "thinking": {
+       "type": "adaptive"
+      }
+     },
+     "headers": [
+      [
+       "anthropic-beta",
+       "claude-code-20250219,oauth-2025-04-20"
+      ],
+      [
+       "anthropic-dangerous-direct-browser-access",
+       "true"
+      ],
+      [
+       "anthropic-version",
+       "2023-06-01"
+      ],
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "user-agent",
+       "<redacted>"
+      ],
+      [
+       "x-app",
+       "cli"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.anthropic.com/v1/messages"
+    }
+   ]
+  },
+  "qwen-27b max box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "image_url": {
+           "url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>"
+          },
+          "type": "image_url"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "qwen/qwen3.8-27b",
+      "provider": {
+       "allow_fallbacks": false,
+       "order": [
+        "Alibaba"
+       ]
+      },
+      "reasoning": {
+       "effort": "max"
+      }
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://openrouter.ai/api/v1/chat/completions"
+    }
+   ]
+  },
+  "qwen-27b max v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "image_url": {
+           "url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>"
+          },
+          "type": "image_url"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "qwen/qwen3.8-27b",
+      "provider": {
+       "allow_fallbacks": false,
+       "order": [
+        "Alibaba"
+       ]
+      },
+      "reasoning": {
+       "effort": "max"
+      }
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://openrouter.ai/api/v1/chat/completions"
+    }
+   ]
+  },
+  "qwen-27b medium box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "image_url": {
+           "url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>"
+          },
+          "type": "image_url"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "qwen/qwen3.8-27b",
+      "provider": {
+       "allow_fallbacks": false,
+       "order": [
+        "Alibaba"
+       ]
+      },
+      "reasoning": {
+       "effort": "medium"
+      }
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://openrouter.ai/api/v1/chat/completions"
+    }
+   ]
+  },
+  "qwen-27b medium v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "image_url": {
+           "url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>"
+          },
+          "type": "image_url"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "qwen/qwen3.8-27b",
+      "provider": {
+       "allow_fallbacks": false,
+       "order": [
+        "Alibaba"
+       ]
+      },
+      "reasoning": {
+       "effort": "medium"
+      }
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://openrouter.ai/api/v1/chat/completions"
+    }
+   ]
+  },
+  "qwen-27b min box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "image_url": {
+           "url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>"
+          },
+          "type": "image_url"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "qwen/qwen3.8-27b",
+      "provider": {
+       "allow_fallbacks": false,
+       "order": [
+        "Alibaba"
+       ]
+      },
+      "reasoning": {
+       "enabled": false
+      }
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://openrouter.ai/api/v1/chat/completions"
+    }
+   ]
+  },
+  "qwen-27b min v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "image_url": {
+           "url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>"
+          },
+          "type": "image_url"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "qwen/qwen3.8-27b",
+      "provider": {
+       "allow_fallbacks": false,
+       "order": [
+        "Alibaba"
+       ]
+      },
+      "reasoning": {
+       "enabled": false
+      }
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://openrouter.ai/api/v1/chat/completions"
+    }
+   ]
+  },
+  "qwen-flash max box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "image_url": {
+           "url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>"
+          },
+          "type": "image_url"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "qwen/qwen3.8-flash",
+      "provider": {
+       "allow_fallbacks": false,
+       "order": [
+        "Alibaba"
+       ]
+      },
+      "reasoning": {
+       "effort": "max"
+      }
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://openrouter.ai/api/v1/chat/completions"
+    }
+   ]
+  },
+  "qwen-flash max v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "image_url": {
+           "url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>"
+          },
+          "type": "image_url"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "qwen/qwen3.8-flash",
+      "provider": {
+       "allow_fallbacks": false,
+       "order": [
+        "Alibaba"
+       ]
+      },
+      "reasoning": {
+       "effort": "max"
+      }
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://openrouter.ai/api/v1/chat/completions"
+    }
+   ]
+  },
+  "qwen-flash medium box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "image_url": {
+           "url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>"
+          },
+          "type": "image_url"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "qwen/qwen3.8-flash",
+      "provider": {
+       "allow_fallbacks": false,
+       "order": [
+        "Alibaba"
+       ]
+      },
+      "reasoning": {
+       "effort": "medium"
+      }
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://openrouter.ai/api/v1/chat/completions"
+    }
+   ]
+  },
+  "qwen-flash medium v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "image_url": {
+           "url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>"
+          },
+          "type": "image_url"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "qwen/qwen3.8-flash",
+      "provider": {
+       "allow_fallbacks": false,
+       "order": [
+        "Alibaba"
+       ]
+      },
+      "reasoning": {
+       "effort": "medium"
+      }
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://openrouter.ai/api/v1/chat/completions"
+    }
+   ]
+  },
+  "qwen-flash min box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "image_url": {
+           "url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>"
+          },
+          "type": "image_url"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "qwen/qwen3.8-flash",
+      "provider": {
+       "allow_fallbacks": false,
+       "order": [
+        "Alibaba"
+       ]
+      },
+      "reasoning": {
+       "enabled": false
+      }
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://openrouter.ai/api/v1/chat/completions"
+    }
+   ]
+  },
+  "qwen-flash min v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "image_url": {
+           "url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>"
+          },
+          "type": "image_url"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "qwen/qwen3.8-flash",
+      "provider": {
+       "allow_fallbacks": false,
+       "order": [
+        "Alibaba"
+       ]
+      },
+      "reasoning": {
+       "enabled": false
+      }
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://openrouter.ai/api/v1/chat/completions"
+    }
+   ]
+  },
+  "sol max box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "input": [
+       {
+        "content": [
+         {
+          "image_url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>",
+          "type": "input_image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "input_text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "instructions": "You are a helpful assistant.",
+      "model": "gpt-6.1-sol",
+      "reasoning": {
+       "effort": "max"
+      },
+      "store": false,
+      "stream": true
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "chatgpt-account-id",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "openai-beta",
+       "responses=experimental"
+      ],
+      [
+       "originator",
+       "lm15"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://chatgpt.com/backend-api/codex/responses"
+    }
+   ]
+  },
+  "sol max v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "input": [
+       {
+        "content": [
+         {
+          "image_url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>",
+          "type": "input_image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "input_text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "instructions": "You are a helpful assistant.",
+      "model": "gpt-6.1-sol",
+      "reasoning": {
+       "effort": "max"
+      },
+      "store": false,
+      "stream": true
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "chatgpt-account-id",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "openai-beta",
+       "responses=experimental"
+      ],
+      [
+       "originator",
+       "lm15"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://chatgpt.com/backend-api/codex/responses"
+    }
+   ]
+  },
+  "sol medium box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "input": [
+       {
+        "content": [
+         {
+          "image_url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>",
+          "type": "input_image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "input_text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "instructions": "You are a helpful assistant.",
+      "model": "gpt-6.1-sol",
+      "reasoning": {
+       "effort": "medium"
+      },
+      "store": false,
+      "stream": true
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "chatgpt-account-id",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "openai-beta",
+       "responses=experimental"
+      ],
+      [
+       "originator",
+       "lm15"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://chatgpt.com/backend-api/codex/responses"
+    }
+   ]
+  },
+  "sol medium v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "input": [
+       {
+        "content": [
+         {
+          "image_url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>",
+          "type": "input_image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "input_text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "instructions": "You are a helpful assistant.",
+      "model": "gpt-6.1-sol",
+      "reasoning": {
+       "effort": "medium"
+      },
+      "store": false,
+      "stream": true
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "chatgpt-account-id",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "openai-beta",
+       "responses=experimental"
+      ],
+      [
+       "originator",
+       "lm15"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://chatgpt.com/backend-api/codex/responses"
+    }
+   ]
+  },
+  "sol min box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "input": [
+       {
+        "content": [
+         {
+          "image_url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>",
+          "type": "input_image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "input_text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "instructions": "You are a helpful assistant.",
+      "model": "gpt-6.1-sol",
+      "reasoning": {
+       "effort": "low"
+      },
+      "store": false,
+      "stream": true
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "chatgpt-account-id",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "openai-beta",
+       "responses=experimental"
+      ],
+      [
+       "originator",
+       "lm15"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://chatgpt.com/backend-api/codex/responses"
+    }
+   ]
+  },
+  "sol min v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "input": [
+       {
+        "content": [
+         {
+          "image_url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>",
+          "type": "input_image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "input_text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "instructions": "You are a helpful assistant.",
+      "model": "gpt-6.1-sol",
+      "reasoning": {
+       "effort": "low"
+      },
+      "store": false,
+      "stream": true
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "chatgpt-account-id",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "openai-beta",
+       "responses=experimental"
+      ],
+      [
+       "originator",
+       "lm15"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://chatgpt.com/backend-api/codex/responses"
+    }
+   ]
+  },
+  "sonnet max box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "source": {
+           "data": "<2736 chars /9j/4AABAgMEBQYHCAkKCwwN...7u/w8fLz9PX29/j5+vv8/f7/>",
+           "media_type": "image/jpeg",
+           "type": "base64"
+          },
+          "type": "image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "claude-sonnet-5-5",
+      "output_config": {
+       "effort": "max"
+      },
+      "stream": false,
+      "system": [
+       {
+        "text": "You are Claude Code, Anthropic's official CLI for Claude.",
+        "type": "text"
+       }
+      ],
+      "thinking": {
+       "type": "adaptive"
+      }
+     },
+     "headers": [
+      [
+       "anthropic-beta",
+       "claude-code-20250219,oauth-2025-04-20"
+      ],
+      [
+       "anthropic-dangerous-direct-browser-access",
+       "true"
+      ],
+      [
+       "anthropic-version",
+       "2023-06-01"
+      ],
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "user-agent",
+       "<redacted>"
+      ],
+      [
+       "x-app",
+       "cli"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.anthropic.com/v1/messages"
+    }
+   ]
+  },
+  "sonnet max v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "source": {
+           "data": "<2736 chars /9j/4AABAgMEBQYHCAkKCwwN...7u/w8fLz9PX29/j5+vv8/f7/>",
+           "media_type": "image/jpeg",
+           "type": "base64"
+          },
+          "type": "image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "claude-sonnet-5-5",
+      "output_config": {
+       "effort": "max"
+      },
+      "stream": false,
+      "system": [
+       {
+        "text": "You are Claude Code, Anthropic's official CLI for Claude.",
+        "type": "text"
+       }
+      ],
+      "thinking": {
+       "type": "adaptive"
+      }
+     },
+     "headers": [
+      [
+       "anthropic-beta",
+       "claude-code-20250219,oauth-2025-04-20"
+      ],
+      [
+       "anthropic-dangerous-direct-browser-access",
+       "true"
+      ],
+      [
+       "anthropic-version",
+       "2023-06-01"
+      ],
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "user-agent",
+       "<redacted>"
+      ],
+      [
+       "x-app",
+       "cli"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.anthropic.com/v1/messages"
+    }
+   ]
+  },
+  "sonnet medium box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "source": {
+           "data": "<2736 chars /9j/4AABAgMEBQYHCAkKCwwN...7u/w8fLz9PX29/j5+vv8/f7/>",
+           "media_type": "image/jpeg",
+           "type": "base64"
+          },
+          "type": "image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "claude-sonnet-5-5",
+      "output_config": {
+       "effort": "medium"
+      },
+      "stream": false,
+      "system": [
+       {
+        "text": "You are Claude Code, Anthropic's official CLI for Claude.",
+        "type": "text"
+       }
+      ],
+      "thinking": {
+       "type": "adaptive"
+      }
+     },
+     "headers": [
+      [
+       "anthropic-beta",
+       "claude-code-20250219,oauth-2025-04-20"
+      ],
+      [
+       "anthropic-dangerous-direct-browser-access",
+       "true"
+      ],
+      [
+       "anthropic-version",
+       "2023-06-01"
+      ],
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "user-agent",
+       "<redacted>"
+      ],
+      [
+       "x-app",
+       "cli"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.anthropic.com/v1/messages"
+    }
+   ]
+  },
+  "sonnet medium v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "source": {
+           "data": "<2736 chars /9j/4AABAgMEBQYHCAkKCwwN...7u/w8fLz9PX29/j5+vv8/f7/>",
+           "media_type": "image/jpeg",
+           "type": "base64"
+          },
+          "type": "image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "claude-sonnet-5-5",
+      "output_config": {
+       "effort": "medium"
+      },
+      "stream": false,
+      "system": [
+       {
+        "text": "You are Claude Code, Anthropic's official CLI for Claude.",
+        "type": "text"
+       }
+      ],
+      "thinking": {
+       "type": "adaptive"
+      }
+     },
+     "headers": [
+      [
+       "anthropic-beta",
+       "claude-code-20250219,oauth-2025-04-20"
+      ],
+      [
+       "anthropic-dangerous-direct-browser-access",
+       "true"
+      ],
+      [
+       "anthropic-version",
+       "2023-06-01"
+      ],
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "user-agent",
+       "<redacted>"
+      ],
+      [
+       "x-app",
+       "cli"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.anthropic.com/v1/messages"
+    }
+   ]
+  },
+  "sonnet min box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "source": {
+           "data": "<2736 chars /9j/4AABAgMEBQYHCAkKCwwN...7u/w8fLz9PX29/j5+vv8/f7/>",
+           "media_type": "image/jpeg",
+           "type": "base64"
+          },
+          "type": "image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "claude-sonnet-5-5",
+      "stream": false,
+      "system": [
+       {
+        "text": "You are Claude Code, Anthropic's official CLI for Claude.",
+        "type": "text"
+       }
+      ],
+      "thinking": {
+       "type": "between_tools"
+      }
+     },
+     "headers": [
+      [
+       "anthropic-beta",
+       "claude-code-20250219,oauth-2025-04-20"
+      ],
+      [
+       "anthropic-dangerous-direct-browser-access",
+       "true"
+      ],
+      [
+       "anthropic-version",
+       "2023-06-01"
+      ],
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "user-agent",
+       "<redacted>"
+      ],
+      [
+       "x-app",
+       "cli"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.anthropic.com/v1/messages"
+    }
+   ]
+  },
+  "sonnet min v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "max_tokens": 32000,
+      "messages": [
+       {
+        "content": [
+         {
+          "source": {
+           "data": "<2736 chars /9j/4AABAgMEBQYHCAkKCwwN...7u/w8fLz9PX29/j5+vv8/f7/>",
+           "media_type": "image/jpeg",
+           "type": "base64"
+          },
+          "type": "image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "model": "claude-sonnet-5-5",
+      "stream": false,
+      "system": [
+       {
+        "text": "You are Claude Code, Anthropic's official CLI for Claude.",
+        "type": "text"
+       }
+      ],
+      "thinking": {
+       "type": "between_tools"
+      }
+     },
+     "headers": [
+      [
+       "anthropic-beta",
+       "claude-code-20250219,oauth-2025-04-20"
+      ],
+      [
+       "anthropic-dangerous-direct-browser-access",
+       "true"
+      ],
+      [
+       "anthropic-version",
+       "2023-06-01"
+      ],
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "user-agent",
+       "<redacted>"
+      ],
+      [
+       "x-app",
+       "cli"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://api.anthropic.com/v1/messages"
+    }
+   ]
+  },
+  "terra max box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "input": [
+       {
+        "content": [
+         {
+          "image_url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>",
+          "type": "input_image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "input_text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "instructions": "You are a helpful assistant.",
+      "model": "gpt-5.6-terra",
+      "reasoning": {
+       "effort": "max"
+      },
+      "store": false,
+      "stream": true
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "chatgpt-account-id",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "openai-beta",
+       "responses=experimental"
+      ],
+      [
+       "originator",
+       "lm15"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://chatgpt.com/backend-api/codex/responses"
+    }
+   ]
+  },
+  "terra max v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "input": [
+       {
+        "content": [
+         {
+          "image_url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>",
+          "type": "input_image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "input_text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "instructions": "You are a helpful assistant.",
+      "model": "gpt-5.6-terra",
+      "reasoning": {
+       "effort": "max"
+      },
+      "store": false,
+      "stream": true
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "chatgpt-account-id",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "openai-beta",
+       "responses=experimental"
+      ],
+      [
+       "originator",
+       "lm15"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://chatgpt.com/backend-api/codex/responses"
+    }
+   ]
+  },
+  "terra medium box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "input": [
+       {
+        "content": [
+         {
+          "image_url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>",
+          "type": "input_image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "input_text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "instructions": "You are a helpful assistant.",
+      "model": "gpt-5.6-terra",
+      "reasoning": {
+       "effort": "medium"
+      },
+      "store": false,
+      "stream": true
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "chatgpt-account-id",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "openai-beta",
+       "responses=experimental"
+      ],
+      [
+       "originator",
+       "lm15"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://chatgpt.com/backend-api/codex/responses"
+    }
+   ]
+  },
+  "terra medium v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "input": [
+       {
+        "content": [
+         {
+          "image_url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>",
+          "type": "input_image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "input_text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "instructions": "You are a helpful assistant.",
+      "model": "gpt-5.6-terra",
+      "reasoning": {
+       "effort": "medium"
+      },
+      "store": false,
+      "stream": true
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "chatgpt-account-id",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "openai-beta",
+       "responses=experimental"
+      ],
+      [
+       "originator",
+       "lm15"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://chatgpt.com/backend-api/codex/responses"
+    }
+   ]
+  },
+  "terra min box-a": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "input": [
+       {
+        "content": [
+         {
+          "image_url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>",
+          "type": "input_image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "input_text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "instructions": "You are a helpful assistant.",
+      "model": "gpt-5.6-terra",
+      "reasoning": {
+       "effort": "none"
+      },
+      "store": false,
+      "stream": true
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "chatgpt-account-id",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "openai-beta",
+       "responses=experimental"
+      ],
+      [
+       "originator",
+       "lm15"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://chatgpt.com/backend-api/codex/responses"
+    }
+   ]
+  },
+  "terra min v2": {
+   "error": null,
+   "requests": [
+    {
+     "body": {
+      "input": [
+       {
+        "content": [
+         {
+          "image_url": "<2759 chars data:image/jpeg;base64,/...7u/w8fLz9PX29/j5+vv8/f7/>",
+          "type": "input_image"
+         },
+         {
+          "text": "Find each cow in this photo.",
+          "type": "input_text"
+         }
+        ],
+        "role": "user"
+       }
+      ],
+      "instructions": "You are a helpful assistant.",
+      "model": "gpt-5.6-terra",
+      "reasoning": {
+       "effort": "none"
+      },
+      "store": false,
+      "stream": true
+     },
+     "headers": [
+      [
+       "authorization",
+       "<redacted>"
+      ],
+      [
+       "chatgpt-account-id",
+       "<redacted>"
+      ],
+      [
+       "content-type",
+       "application/json"
+      ],
+      [
+       "openai-beta",
+       "responses=experimental"
+      ],
+      [
+       "originator",
+       "lm15"
+      ]
+     ],
+     "method": "POST",
+     "url": "https://chatgpt.com/backend-api/codex/responses"
+    }
+   ]
+  }
+ },
+ "lm15": "1.2.1"
+}

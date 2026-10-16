@@ -4,11 +4,11 @@ requires-python = ">=3.11"
 
 [[package]]
 name = "lm15"
-version = "1.2.1"
+version = "1.5.0"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/65/f8/504e5652a9bd0cdf5b78a1ef4f99eed90b41b9495c551ddfeaaa8b769693/lm15-1.2.1.tar.gz", hash = "sha256:f0e034f08fc6efaf2cc940f742b2aeed9b9c1ed6e0649fc0c9c1d5ef9fd6f4db", size = 698865, upload-time = "2026-10-06T18:33:59.162Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/88/79/731b9173ef55b41dc2a37e3dc8cd821051a081091bbfa60a4281e12dcd4e/lm15-1.5.0.tar.gz", hash = "sha256:c2bbcd9c3ee27701e3f557a3cbf97689af64ae3d56b74be5191490e82857a813", size = 712125, upload-time = "2026-10-15T23:21:20.214Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/e2/63/898be3a97d3e753ece54ea6b2a6a65fbd25b55350c707b8671574a3dc8f8/lm15-1.2.1-py3-none-any.whl", hash = "sha256:adec085c7632505f882a72167d9dc6eab7dbd7750fd20b96bf7d3199259676d0", size = 491995, upload-time = "2026-10-06T18:33:57.697Z" },
+    { url = "https://files.pythonhosted.org/packages/f2/43/47b5dfdad1b9a51878a2b1e414d0d1ed5ab5ec79d8b990341396ea273aa3/lm15-1.5.0-py3-none-any.whl", hash = "sha256:9ef3367b32f1bfd2b41c3258148fc20397d81558f667db68011dc0929fe3ce34", size = 497908, upload-time = "2026-10-15T23:21:18.744Z" },
 ]
 
 [[package]]
@@ -20,4 +20,4 @@ dependencies = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "lm15", specifier = ">=1.2.1" }]
+requires-dist = [{ name = "lm15", specifier = ">=1.5.0" }]

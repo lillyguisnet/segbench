@@ -49,6 +49,7 @@ def _gemini_media_resolution_patch() -> None:
     refused in generationConfig. lm15 1.2.1 has no door for it (extensions
     land at the top level of the payload), so the extension key below is
     removed after lm15 builds the payload and set on every image part.
+    Still needed with lm15 1.5.0 (checked 2026-10-16).
     """
     from lm15.providers.gemini import GeminiLM
 
@@ -83,6 +84,8 @@ def _gemini_4_thinking_level_patch() -> None:
     that the other Gemini models are benchmarked at. Checked 2026-10-14 on
     the API: Gemini 4 Argon takes thinkingLevel low, medium and high, and
     refuses minimal (HTTP 400) and max/xhigh (not a level).
+    Still needed with lm15 1.5.0 (checked 2026-10-16: gemini_level_class
+    still answers False for gemini-4 names).
     """
     from lm15.providers import gemini
 
