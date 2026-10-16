@@ -180,3 +180,13 @@ middle then lands on the plate's answer-key dot, but it chains other dishes
 into large boxes too: 20.3 overall (dishes 7.8) against 23.5 (dishes 16.5)
 (`scripts/jev_join_photo_tol.py`, `results/point-benchmark-v3-jev-join-cut-photo-tol`;
 exploratory, found by looking at a test photo).
+
+### Pens on a floor (2026-10-16, Maxime's photo from the chat)
+
+960x540, objects well apart: three pens (blue, grey-copper, purple), a
+yellow highlighter, a white remote with a stylus, an eraser, chewing gum, a
+cream tube. `segbench/jev_halving` unchanged, "each pen", 3 tries
+(`results/probe-jev-pens/`): all three pens boxed tightly, nothing else, the
+same in every try; 10 requests, about 1 s, $0.0004 per try. The purple pen's
+tip crossed a cut line: the piece above answered "one" for the tip and the
+join put the two parts back together.
