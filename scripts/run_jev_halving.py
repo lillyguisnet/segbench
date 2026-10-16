@@ -98,7 +98,10 @@ def main():
     ap.add_argument("--tasks", nargs="+", default=V3_TASKS)
     ap.add_argument("--repeats", type=int, default=REPEATS)
     ap.add_argument("--check", action="store_true")
+    ap.add_argument("--max-depth", type=int, default=jh.MAX_DEPTH,
+                    help=f"most halvings of one piece (default {jh.MAX_DEPTH}, as run jev-halving-1)")
     a = ap.parse_args()
+    jh.MAX_DEPTH = a.max_depth
     if a.check:
         return check()
     if not a.name:
