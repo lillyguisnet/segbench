@@ -84,3 +84,50 @@ the newest run: `results/probe-jev-split-view/` (`scripts/view_jev_split.py`).
   40 px, so halving is needed for small objects at strict overlap levels.
 - As an entrant it would be "Jev + halving", a search we wrote around the
   model, with every request counted in its cost and time; not "Jev" alone.
+
+## On the benchmark photos (2026-10-16): `jev-halving-1`
+
+Maxime: run Jev with halving on the photos only (no screenshots, no other
+model). The search (`segbench/jev_halving.py`, `scripts/run_jev_halving.py`)
+was committed (d3c79f7) before any photo was sent; nothing was changed after.
+Eleven object tasks of point benchmark v3, 3 tries each, the task's own words
+(dishes by location only). 7,285 requests, none failed, $0.27 for all 33
+searches. Scored as v3 (`scripts/score_points.py`, lenient, both approved
+references, cost and seconds from the first four tasks):
+`results/point-benchmark-v3-jev-halving`; pictures (first try):
+`results/point-benchmark-v3-jev-halving-view` (`scripts/view_jev_halving.py`).
+
+**23.4%**, 27th of 29 entrants (above YOLOE-26x and RF-DETR Seg, below
+Florence-2 Large at 25.8%); $0.018 and 3.9 s per photo on the first four
+tasks.
+
+| task | objects | Jev's boxes (3 tries) | score |
+|---|---|---|---|
+| logs | 83 | 256, 215, 227 | 22.7 |
+| cows | 11 | 7, 7, 9 | 40.2 |
+| fig | 33 | 53, 44, 47 | 33.6 |
+| dishes | 26 | 31, 30, 30 | 12.6 |
+| ants | 13 | 17, 16, 12 | 36.5 |
+| beetles | 22 | 26, 24, 23 | 33.6 |
+| birds | 16 | 31, 26, 22 | 16.7 |
+| mushrooms | 14 | 34, 40, 29 | 23.7 |
+| jars | 6 | 8, 6, 6 | 16.1 |
+| pinkleaves | 37 | 15, 16, 16 | 21.5 |
+| whitecow | 1 | 1, 1, 1 | 0.0 |
+
+What the pictures show (first try):
+- **Splitting does not stop on crowded photos.** "Cut-off ones count" means
+  almost every small piece of the log pile holds part of some log end, so Jev
+  keeps answering "several" down to the deepest level, which is then boxed
+  anyway: 211 such forced boxes on the first logs try, in clusters on fungus
+  and bark. The rule that worked on seven separate ovals is the cause; the
+  joining step cannot merge them (they are not parts of one object cut by a line).
+- **"One" for pieces that hold several.** Mushrooms: large boxes over two or
+  three caps, and boxes on the dead leaves around them.
+- **Box edges still too coarse for tiny targets.** White cow: Jev said "one"
+  for the whole photo (right), and boxed a spot about 40 px left of the cow
+  (its edges come in 1% steps of the 1439 px photo); the middle misses.
+
+Not done: box scores. The box answer key is still waiting for human review
+(docs/box-benchmark.md); the boxes are in `answer.items` of each record for
+`scripts/score_boxes.py` once it is.
