@@ -21,6 +21,9 @@ from . import cost, muse_plan
 from .models import THINKING, Model
 
 SUBSCRIPTION_PROVIDERS = {"openai-codex", "claude-code"}
+# Wires that take no reply ceiling: the Codex backend refuses one; Jev
+# (typesafe) answers decisions, not text, and lm15 drops it with a note.
+NO_TOKEN_CEILING = {"openai-codex", "typesafe"}
 # Plans reached with a key of their own rather than a provider route.
 SUBSCRIPTION_CREDENTIALS = {muse_plan.CREDENTIAL}
 
@@ -109,15 +112,23 @@ def pool(model: Model) -> str:
     return model.credential or _router.resolve(model.route).provider
 
 
-def call(model: Model, image: bytes | None, media_type: str, prompt: str,
+def call(model: Model, image: bytes | None, media_type: str, prompt: str | None,
          effort: str | None = None, level: str | None = None, detail: str | None = None,
-         media_resolution: str | None = None) -> dict:
+         media_resolution: str | None = None, response_format: dict | None = None) -> dict:
     """Send one picture and one prompt to `model`; return the measured record.
 
     `level` is our thinking level ("min", "medium", "max"; see
     segbench.models.THINKING), translated into the model's own settings.
     `effort` is lm15's raw dial (off, minimal, low, medium, high, xhigh, max),
     for probing. Neither: the provider's default. `image=None` sends text only.
+
+    `response_format`: lm15 judgments (lm15.judgments(choice(...),
+    bounding_box(...), ...)), for decision models such as Jev, whose
+    questions are the judgments themselves: then `prompt` may be None (the
+    picture alone is the state), and the record also gets `data` (each
+    judgment's answer) and `probabilities` (each keyed judgment's
+    distribution; a box has none, its confidence is in the response's
+    provider_data).
     """
     extensions = dict(model.extensions or {})
     if media_resolution:  # Gemini only; see _gemini_media_resolution_patch
@@ -152,14 +163,17 @@ def call(model: Model, image: bytes | None, media_type: str, prompt: str,
         record["error"] = f"route resolves to {route.provider!r}, which does not match billing {model.billing!r}"
         return record
 
-    settings: dict = {} if route.provider == "openai-codex" else {"max_tokens": MAX_TOKENS}
+    settings: dict = {} if route.provider in NO_TOKEN_CEILING else {"max_tokens": MAX_TOKENS}
+    if response_format is not None:
+        settings["response_format"] = response_format
     if extensions:
         settings["extensions"] = extensions
     if effort is not None:
         settings["reasoning"] = Reasoning(effort=effort)
     start = time.perf_counter()
     try:  # building the request can refuse a setting too (an effort word, an image detail)
-        content = [prompt] if image is None else [image_part(data=image, media_type=media_type, detail=detail), prompt]
+        text = [prompt] if prompt else []
+        content = text if image is None else [image_part(data=image, media_type=media_type, detail=detail), *text]
         request = Request(model=model.route, messages=(Message.user(content),), config=Config(**settings))
         response = router.complete(request)
     except Exception as error:
@@ -174,6 +188,9 @@ def call(model: Model, image: bytes | None, media_type: str, prompt: str,
     record["seconds"] = round(time.perf_counter() - start, 3)
     record["text"] = response.text or ""
     record["finish_reason"] = response.finish_reason
+    if response_format is not None:
+        record["data"] = response.data
+        record["probabilities"] = getattr(response, "probabilities", None)
     record["usage"] = usage_to_dict(response.usage)
     record["response"] = response_to_dict(response, include_provider_data=True)
     record["cost_usd"] = cost.usd(record)

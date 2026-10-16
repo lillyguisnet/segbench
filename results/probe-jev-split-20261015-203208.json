@@ -1,0 +1,6011 @@
+{
+ "model": "jev-1.14.0",
+ "max_depth": 7,
+ "count_q": {
+  "type": "choice",
+  "instructions": "How many red ovals are in `photo`? Count an oval that is cut off by the edge of `photo` too. The blue squares are not ovals.",
+  "criteria": {
+   "none": "No red oval, not even part of one.",
+   "one": "Exactly one red oval, whole or cut off by the edge.",
+   "several": "Two or more red ovals, whole or cut off by the edge."
+  }
+ },
+ "box_q": {
+  "type": "box",
+  "instructions": "the red oval in `photo` (only its visible part)"
+ },
+ "runs": {
+  "wide": {
+   "size": [
+    4000,
+    2252
+   ],
+   "truth": [
+    [
+     280,
+     270,
+     840,
+     721
+    ],
+    [
+     1200,
+     1531,
+     2160,
+     1802
+    ],
+    [
+     2580,
+     338,
+     2860,
+     923
+    ],
+    [
+     3240,
+     1689,
+     3640,
+     1914
+    ],
+    [
+     1120,
+     1025,
+     1280,
+     1137
+    ],
+    [
+     2160,
+     1081,
+     2640,
+     1441
+    ],
+    [
+     2560,
+     1194,
+     2960,
+     1509
+    ]
+   ],
+   "found": [
+    [
+     290.0,
+     281.5,
+     850.0,
+     731.9
+    ],
+    [
+     1120.0,
+     1013.4,
+     1290.0,
+     1154.1
+    ],
+    [
+     3240.0,
+     1666.48,
+     3650.0,
+     1925.46
+    ],
+    [
+     2575.0,
+     332.16999999999996,
+     2865.0,
+     908.86
+    ],
+    [
+     1210.0,
+     1520.1,
+     2160.0,
+     1795.97
+    ],
+    [
+     2155.0,
+     1069.7,
+     2945.0,
+     1440.84
+    ],
+    [
+     1200.0,
+     1533.9,
+     1500.0,
+     1686.18
+    ],
+    [
+     2750.0,
+     844.0,
+     2790.0,
+     877.84
+    ],
+    [
+     2000.0,
+     1581.84,
+     2147.5,
+     1689.0
+    ],
+    [
+     2505.0,
+     1407.0,
+     2922.5,
+     1683.3600000000001
+    ]
+   ],
+   "raw": [
+    [
+     290.0,
+     281.5,
+     850.0,
+     731.9
+    ],
+    [
+     1120.0,
+     1013.4,
+     1290.0,
+     1114.74
+    ],
+    [
+     3240.0,
+     1666.48,
+     3650.0,
+     1925.46
+    ],
+    [
+     1210.0,
+     1689.0,
+     2000.0,
+     1795.97
+    ],
+    [
+     2580.0,
+     332.16999999999996,
+     2840.0,
+     563.0
+    ],
+    [
+     2000.0,
+     1689.0,
+     2160.0,
+     1762.19
+    ],
+    [
+     1500.0,
+     1520.1,
+     2000.0,
+     1689.0
+    ],
+    [
+     2240.0,
+     1069.7,
+     2495.0,
+     1120.37
+    ],
+    [
+     1155.0,
+     1128.81,
+     1265.0,
+     1154.1
+    ],
+    [
+     1200.0,
+     1533.9,
+     1500.0,
+     1686.18
+    ],
+    [
+     2575.0,
+     565.81,
+     2865.0,
+     844.0
+    ],
+    [
+     2155.0,
+     1126.0,
+     2495.0,
+     1407.0
+    ],
+    [
+     2647.5,
+     844.0,
+     2742.5,
+     908.86
+    ],
+    [
+     2750.0,
+     844.0,
+     2790.0,
+     877.84
+    ],
+    [
+     2000.0,
+     1581.84,
+     2147.5,
+     1689.0
+    ],
+    [
+     2252.5,
+     1407.0,
+     2500.0,
+     1440.84
+    ],
+    [
+     2502.5,
+     1128.81,
+     2747.5,
+     1401.38
+    ],
+    [
+     2750.0,
+     1131.62,
+     2945.0,
+     1407.0
+    ],
+    [
+     2505.0,
+     1407.0,
+     2747.5,
+     1491.6
+    ],
+    [
+     2750.0,
+     1407.0,
+     2922.5,
+     1683.3600000000001
+    ]
+   ],
+   "cuts": [
+    [
+     "x",
+     2000,
+     0,
+     2252
+    ],
+    [
+     "y",
+     1126,
+     0,
+     2000
+    ],
+    [
+     "y",
+     1126,
+     2000,
+     4000
+    ],
+    [
+     "x",
+     1000,
+     0,
+     1126
+    ],
+    [
+     "x",
+     1000,
+     1126,
+     2252
+    ],
+    [
+     "x",
+     3000,
+     0,
+     1126
+    ],
+    [
+     "x",
+     3000,
+     1126,
+     2252
+    ],
+    [
+     "y",
+     1689,
+     1000,
+     2000
+    ],
+    [
+     "y",
+     563,
+     2000,
+     3000
+    ],
+    [
+     "y",
+     1689,
+     2000,
+     3000
+    ],
+    [
+     "x",
+     1500,
+     1126,
+     1689
+    ],
+    [
+     "x",
+     2500,
+     563,
+     1126
+    ],
+    [
+     "x",
+     2500,
+     1126,
+     1689
+    ],
+    [
+     "y",
+     1407,
+     1000,
+     1500
+    ],
+    [
+     "y",
+     844,
+     2500,
+     3000
+    ],
+    [
+     "y",
+     1407,
+     2000,
+     2500
+    ],
+    [
+     "y",
+     1407,
+     2500,
+     3000
+    ],
+    [
+     "x",
+     2750,
+     844,
+     1126
+    ],
+    [
+     "x",
+     2250,
+     1407,
+     1689
+    ],
+    [
+     "x",
+     2750,
+     1126,
+     1407
+    ],
+    [
+     "x",
+     2750,
+     1407,
+     1689
+    ]
+   ],
+   "nodes": [
+    {
+     "depth": 0,
+     "region": [
+      0,
+      0,
+      4000,
+      2252
+     ],
+     "sent_size": [
+      1568,
+      883
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 7,
+     "truth_word": "several",
+     "seconds": 0.199,
+     "tokens": 4027
+    },
+    {
+     "depth": 1,
+     "region": [
+      0,
+      0,
+      2000,
+      2252
+     ],
+     "sent_size": [
+      1393,
+      1568
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 3,
+     "truth_word": "several",
+     "seconds": 0.202,
+     "tokens": 6045
+    },
+    {
+     "depth": 1,
+     "region": [
+      2000,
+      0,
+      4000,
+      2252
+     ],
+     "sent_size": [
+      1393,
+      1568
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 5,
+     "truth_word": "several",
+     "seconds": 0.267,
+     "tokens": 6045
+    },
+    {
+     "depth": 2,
+     "region": [
+      0,
+      0,
+      2000,
+      1126
+     ],
+     "sent_size": [
+      1568,
+      883
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.196,
+     "tokens": 4028
+    },
+    {
+     "depth": 2,
+     "region": [
+      0,
+      1126,
+      2000,
+      2252
+     ],
+     "sent_size": [
+      1568,
+      883
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.01,
+      "several": 0.99
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.181,
+     "tokens": 4027
+    },
+    {
+     "depth": 2,
+     "region": [
+      2000,
+      0,
+      4000,
+      1126
+     ],
+     "sent_size": [
+      1568,
+      883
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.18,
+     "tokens": 4028
+    },
+    {
+     "depth": 2,
+     "region": [
+      2000,
+      1126,
+      4000,
+      2252
+     ],
+     "sent_size": [
+      1568,
+      883
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 4,
+     "truth_word": "several",
+     "seconds": 0.18,
+     "tokens": 4026
+    },
+    {
+     "depth": 3,
+     "region": [
+      0,
+      0,
+      1000,
+      1126
+     ],
+     "sent_size": [
+      1000,
+      1126
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.0,
+      "one": 1.0,
+      "several": 0.0
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.311,
+     "tokens": 3396,
+     "box": [
+      290.0,
+      281.5,
+      850.0,
+      731.9
+     ],
+     "box_confidence": 0.94,
+     "forced": false
+    },
+    {
+     "depth": 3,
+     "region": [
+      1000,
+      0,
+      2000,
+      1126
+     ],
+     "sent_size": [
+      1000,
+      1126
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.0,
+      "one": 1.0,
+      "several": 0.0
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.265,
+     "tokens": 3392,
+     "box": [
+      1120.0,
+      1013.4,
+      1290.0,
+      1114.74
+     ],
+     "box_confidence": 0.94,
+     "forced": false
+    },
+    {
+     "depth": 3,
+     "region": [
+      0,
+      1126,
+      1000,
+      2252
+     ],
+     "sent_size": [
+      1000,
+      1126
+     ],
+     "choice": "none",
+     "p": {
+      "none": 1.0,
+      "one": 0.0,
+      "several": 0.0
+     },
+     "truth": 0,
+     "truth_word": "none",
+     "seconds": 0.204,
+     "tokens": 3398
+    },
+    {
+     "depth": 3,
+     "region": [
+      1000,
+      1126,
+      2000,
+      2252
+     ],
+     "sent_size": [
+      1000,
+      1126
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.14,
+     "tokens": 3392
+    },
+    {
+     "depth": 3,
+     "region": [
+      2000,
+      0,
+      3000,
+      1126
+     ],
+     "sent_size": [
+      1000,
+      1126
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.316,
+     "tokens": 3392
+    },
+    {
+     "depth": 3,
+     "region": [
+      3000,
+      0,
+      4000,
+      1126
+     ],
+     "sent_size": [
+      1000,
+      1126
+     ],
+     "choice": "none",
+     "p": {
+      "none": 1.0,
+      "one": 0.0,
+      "several": 0.0
+     },
+     "truth": 0,
+     "truth_word": "none",
+     "seconds": 0.298,
+     "tokens": 3393
+    },
+    {
+     "depth": 3,
+     "region": [
+      2000,
+      1126,
+      3000,
+      2252
+     ],
+     "sent_size": [
+      1000,
+      1126
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 3,
+     "truth_word": "several",
+     "seconds": 0.176,
+     "tokens": 3393
+    },
+    {
+     "depth": 3,
+     "region": [
+      3000,
+      1126,
+      4000,
+      2252
+     ],
+     "sent_size": [
+      1000,
+      1126
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.0,
+      "one": 1.0,
+      "several": 0.0
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.263,
+     "tokens": 3396,
+     "box": [
+      3240.0,
+      1666.48,
+      3650.0,
+      1925.46
+     ],
+     "box_confidence": 0.93,
+     "forced": false
+    },
+    {
+     "depth": 4,
+     "region": [
+      1000,
+      1126,
+      2000,
+      1689
+     ],
+     "sent_size": [
+      1000,
+      563
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.149,
+     "tokens": 1956
+    },
+    {
+     "depth": 4,
+     "region": [
+      1000,
+      1689,
+      2000,
+      2252
+     ],
+     "sent_size": [
+      1000,
+      563
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.01,
+      "one": 0.99,
+      "several": 0.0
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.272,
+     "tokens": 1955,
+     "box": [
+      1210.0,
+      1689.0,
+      2000.0,
+      1795.97
+     ],
+     "box_confidence": 0.8,
+     "forced": false
+    },
+    {
+     "depth": 4,
+     "region": [
+      2000,
+      0,
+      3000,
+      563
+     ],
+     "sent_size": [
+      1000,
+      563
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.0,
+      "one": 1.0,
+      "several": 0.0
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.145,
+     "tokens": 1957,
+     "box": [
+      2580.0,
+      332.16999999999996,
+      2840.0,
+      563.0
+     ],
+     "box_confidence": 0.54,
+     "forced": false
+    },
+    {
+     "depth": 4,
+     "region": [
+      2000,
+      563,
+      3000,
+      1126
+     ],
+     "sent_size": [
+      1000,
+      563
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.163,
+     "tokens": 1954
+    },
+    {
+     "depth": 4,
+     "region": [
+      2000,
+      1126,
+      3000,
+      1689
+     ],
+     "sent_size": [
+      1000,
+      563
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 3,
+     "truth_word": "several",
+     "seconds": 0.137,
+     "tokens": 1955
+    },
+    {
+     "depth": 4,
+     "region": [
+      2000,
+      1689,
+      3000,
+      2252
+     ],
+     "sent_size": [
+      1000,
+      563
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.02,
+      "one": 0.98,
+      "several": 0.0
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.142,
+     "tokens": 1956,
+     "box": [
+      2000.0,
+      1689.0,
+      2160.0,
+      1762.19
+     ],
+     "box_confidence": 0.95,
+     "forced": false
+    },
+    {
+     "depth": 5,
+     "region": [
+      1000,
+      1126,
+      1500,
+      1689
+     ],
+     "sent_size": [
+      500,
+      563
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.01,
+      "several": 0.99
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.108,
+     "tokens": 1196
+    },
+    {
+     "depth": 5,
+     "region": [
+      1500,
+      1126,
+      2000,
+      1689
+     ],
+     "sent_size": [
+      500,
+      563
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.05,
+      "one": 0.95,
+      "several": 0.0
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.142,
+     "tokens": 1197,
+     "box": [
+      1500.0,
+      1520.1,
+      2000.0,
+      1689.0
+     ],
+     "box_confidence": 0.93,
+     "forced": false
+    },
+    {
+     "depth": 5,
+     "region": [
+      2000,
+      563,
+      2500,
+      1126
+     ],
+     "sent_size": [
+      500,
+      563
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.01,
+      "one": 0.98,
+      "several": 0.01
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.12,
+     "tokens": 1198,
+     "box": [
+      2240.0,
+      1069.7,
+      2495.0,
+      1120.37
+     ],
+     "box_confidence": 0.88,
+     "forced": false
+    },
+    {
+     "depth": 5,
+     "region": [
+      2500,
+      563,
+      3000,
+      1126
+     ],
+     "sent_size": [
+      500,
+      563
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.01,
+      "several": 0.99
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.174,
+     "tokens": 1196
+    },
+    {
+     "depth": 5,
+     "region": [
+      2000,
+      1126,
+      2500,
+      1689
+     ],
+     "sent_size": [
+      500,
+      563
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.136,
+     "tokens": 1200
+    },
+    {
+     "depth": 5,
+     "region": [
+      2500,
+      1126,
+      3000,
+      1689
+     ],
+     "sent_size": [
+      500,
+      563
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.133,
+     "tokens": 1201
+    },
+    {
+     "depth": 6,
+     "region": [
+      1000,
+      1126,
+      1500,
+      1407
+     ],
+     "sent_size": [
+      500,
+      281
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.0,
+      "one": 0.98,
+      "several": 0.02
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.132,
+     "tokens": 838,
+     "box": [
+      1155.0,
+      1128.81,
+      1265.0,
+      1154.1
+     ],
+     "box_confidence": 0.94,
+     "forced": false
+    },
+    {
+     "depth": 6,
+     "region": [
+      1000,
+      1407,
+      1500,
+      1689
+     ],
+     "sent_size": [
+      500,
+      282
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.0,
+      "one": 0.96,
+      "several": 0.04
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.172,
+     "tokens": 839,
+     "box": [
+      1200.0,
+      1533.9,
+      1500.0,
+      1686.18
+     ],
+     "box_confidence": 0.85,
+     "forced": false
+    },
+    {
+     "depth": 6,
+     "region": [
+      2500,
+      563,
+      3000,
+      844
+     ],
+     "sent_size": [
+      500,
+      281
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.0,
+      "one": 0.99,
+      "several": 0.01
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.104,
+     "tokens": 841,
+     "box": [
+      2575.0,
+      565.81,
+      2865.0,
+      844.0
+     ],
+     "box_confidence": 0.89,
+     "forced": false
+    },
+    {
+     "depth": 6,
+     "region": [
+      2500,
+      844,
+      3000,
+      1126
+     ],
+     "sent_size": [
+      500,
+      282
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.01,
+      "several": 0.99
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.139,
+     "tokens": 842
+    },
+    {
+     "depth": 6,
+     "region": [
+      2000,
+      1126,
+      2500,
+      1407
+     ],
+     "sent_size": [
+      500,
+      281
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.13,
+      "one": 0.87,
+      "several": 0.0
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.194,
+     "tokens": 837,
+     "box": [
+      2155.0,
+      1126.0,
+      2495.0,
+      1407.0
+     ],
+     "box_confidence": 0.77,
+     "forced": false
+    },
+    {
+     "depth": 6,
+     "region": [
+      2000,
+      1407,
+      2500,
+      1689
+     ],
+     "sent_size": [
+      500,
+      282
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.16,
+     "tokens": 840
+    },
+    {
+     "depth": 6,
+     "region": [
+      2500,
+      1126,
+      3000,
+      1407
+     ],
+     "sent_size": [
+      500,
+      281
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.01,
+      "one": 0.01,
+      "several": 0.98
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.133,
+     "tokens": 836
+    },
+    {
+     "depth": 6,
+     "region": [
+      2500,
+      1407,
+      3000,
+      1689
+     ],
+     "sent_size": [
+      500,
+      282
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.07,
+      "one": 0.18,
+      "several": 0.75
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.117,
+     "tokens": 841
+    },
+    {
+     "depth": 7,
+     "region": [
+      2500,
+      844,
+      2750,
+      1126
+     ],
+     "sent_size": [
+      280,
+      316
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.01,
+      "one": 0.02,
+      "several": 0.97
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.116,
+     "tokens": 681,
+     "box": [
+      2647.5,
+      844.0,
+      2742.5,
+      908.86
+     ],
+     "box_confidence": 0.19,
+     "forced": true
+    },
+    {
+     "depth": 7,
+     "region": [
+      2750,
+      844,
+      3000,
+      1126
+     ],
+     "sent_size": [
+      280,
+      316
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.09,
+      "one": 0.9,
+      "several": 0.01
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.162,
+     "tokens": 682,
+     "box": [
+      2750.0,
+      844.0,
+      2790.0,
+      877.84
+     ],
+     "box_confidence": 0.53,
+     "forced": false
+    },
+    {
+     "depth": 7,
+     "region": [
+      2000,
+      1407,
+      2250,
+      1689
+     ],
+     "sent_size": [
+      280,
+      316
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.0,
+      "one": 1.0,
+      "several": 0.0
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.14,
+     "tokens": 684,
+     "box": [
+      2000.0,
+      1581.84,
+      2147.5,
+      1689.0
+     ],
+     "box_confidence": 0.78,
+     "forced": false
+    },
+    {
+     "depth": 7,
+     "region": [
+      2250,
+      1407,
+      2500,
+      1689
+     ],
+     "sent_size": [
+      280,
+      316
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.03,
+      "one": 0.96,
+      "several": 0.01
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.134,
+     "tokens": 682,
+     "box": [
+      2252.5,
+      1407.0,
+      2500.0,
+      1440.84
+     ],
+     "box_confidence": 0.7,
+     "forced": false
+    },
+    {
+     "depth": 7,
+     "region": [
+      2500,
+      1126,
+      2750,
+      1407
+     ],
+     "sent_size": [
+      280,
+      315
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.05,
+      "one": 0.03,
+      "several": 0.92
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.148,
+     "tokens": 685,
+     "box": [
+      2502.5,
+      1128.81,
+      2747.5,
+      1401.38
+     ],
+     "box_confidence": 0.29,
+     "forced": true
+    },
+    {
+     "depth": 7,
+     "region": [
+      2750,
+      1126,
+      3000,
+      1407
+     ],
+     "sent_size": [
+      280,
+      315
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.03,
+      "one": 0.96,
+      "several": 0.01
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.144,
+     "tokens": 678,
+     "box": [
+      2750.0,
+      1131.62,
+      2945.0,
+      1407.0
+     ],
+     "box_confidence": 0.44,
+     "forced": false
+    },
+    {
+     "depth": 7,
+     "region": [
+      2500,
+      1407,
+      2750,
+      1689
+     ],
+     "sent_size": [
+      280,
+      316
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.02,
+      "one": 0.09,
+      "several": 0.89
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.121,
+     "tokens": 683,
+     "box": [
+      2505.0,
+      1407.0,
+      2747.5,
+      1491.6
+     ],
+     "box_confidence": 0.17,
+     "forced": true
+    },
+    {
+     "depth": 7,
+     "region": [
+      2750,
+      1407,
+      3000,
+      1689
+     ],
+     "sent_size": [
+      280,
+      316
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.1,
+      "one": 0.89,
+      "several": 0.01
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.15,
+     "tokens": 682,
+     "box": [
+      2750.0,
+      1407.0,
+      2922.5,
+      1683.3600000000001
+     ],
+     "box_confidence": 0.16,
+     "forced": false
+    }
+   ],
+   "grade": {
+    "boxes": 10,
+    "ovals": 7,
+    "iou50": 6,
+    "iou75": 4,
+    "iou90": 3,
+    "points_on_oval": 6,
+    "point_f1": 0.706
+   },
+   "requests": 43,
+   "wall_seconds": 2.21,
+   "request_seconds": 7.46,
+   "tokens": 90470,
+   "dollars": 0.0038,
+   "count_wrong": 0
+  },
+  "tall": {
+   "size": [
+    2252,
+    4000
+   ],
+   "truth": [
+    [
+     158,
+     480,
+     473,
+     1280
+    ],
+    [
+     676,
+     2720,
+     1216,
+     3200
+    ],
+    [
+     1453,
+     600,
+     1610,
+     1640
+    ],
+    [
+     1824,
+     3000,
+     2049,
+     3400
+    ],
+    [
+     631,
+     1820,
+     721,
+     2020
+    ],
+    [
+     1216,
+     1920,
+     1486,
+     2560
+    ],
+    [
+     1441,
+     2120,
+     1666,
+     2680
+    ]
+   ],
+   "found": [
+    [
+     157.64000000000001,
+     460.0,
+     472.91999999999996,
+     1280.0
+    ],
+    [
+     1446.9099999999999,
+     590.0,
+     1610.18,
+     1627.5
+    ],
+    [
+     630.56,
+     1810.0,
+     726.27,
+     2025.0
+    ],
+    [
+     1824.12,
+     3000.0,
+     2049.32,
+     3410.0
+    ],
+    [
+     664.3399999999999,
+     2720.0,
+     1216.08,
+     3210.0
+    ],
+    [
+     1210.3,
+     1752.5,
+     1443.66,
+     2547.5
+    ],
+    [
+     1412.64,
+     2107.5,
+     1680.54,
+     2662.5
+    ],
+    [
+     1126.0,
+     2757.5,
+     1199.06,
+     2997.5
+    ]
+   ],
+   "raw": [
+    [
+     157.64000000000001,
+     460.0,
+     472.91999999999996,
+     1000.0
+    ],
+    [
+     1463.8,
+     590.0,
+     1610.18,
+     1000.0
+    ],
+    [
+     664.3399999999999,
+     3010.0,
+     1114.74,
+     3210.0
+    ],
+    [
+     163.26999999999998,
+     1000.0,
+     461.65999999999997,
+     1280.0
+    ],
+    [
+     630.56,
+     1810.0,
+     726.27,
+     1990.0
+    ],
+    [
+     1126.0,
+     3000.0,
+     1216.08,
+     3140.0
+    ],
+    [
+     1824.12,
+     3000.0,
+     2049.32,
+     3410.0
+    ],
+    [
+     1446.9099999999999,
+     1000.0,
+     1604.55,
+     1500.0
+    ],
+    [
+     653.08,
+     2000.0,
+     720.64,
+     2025.0
+    ],
+    [
+     681.23,
+     2720.0,
+     1126.0,
+     3000.0
+    ],
+    [
+     1258.07,
+     1905.0,
+     1407.0,
+     1995.0
+    ],
+    [
+     1210.3,
+     2005.0,
+     1404.19,
+     2500.0
+    ],
+    [
+     1471.86,
+     1500.0,
+     1581.84,
+     1627.5
+    ],
+    [
+     1407.0,
+     1752.5,
+     1443.66,
+     1997.5
+    ],
+    [
+     1415.46,
+     2107.5,
+     1635.42,
+     2247.5
+    ],
+    [
+     1418.28,
+     2250.0,
+     1680.54,
+     2497.5
+    ],
+    [
+     1252.45,
+     2502.5,
+     1407.0,
+     2547.5
+    ],
+    [
+     1126.0,
+     2757.5,
+     1199.06,
+     2997.5
+    ],
+    [
+     1412.64,
+     2500.0,
+     1632.6,
+     2662.5
+    ]
+   ],
+   "cuts": [
+    [
+     "y",
+     2000,
+     0,
+     2252
+    ],
+    [
+     "x",
+     1126,
+     0,
+     2000
+    ],
+    [
+     "x",
+     1126,
+     2000,
+     4000
+    ],
+    [
+     "y",
+     1000,
+     0,
+     1126
+    ],
+    [
+     "y",
+     1000,
+     1126,
+     2252
+    ],
+    [
+     "y",
+     3000,
+     0,
+     1126
+    ],
+    [
+     "y",
+     3000,
+     1126,
+     2252
+    ],
+    [
+     "x",
+     563,
+     1000,
+     2000
+    ],
+    [
+     "x",
+     1689,
+     1000,
+     2000
+    ],
+    [
+     "x",
+     563,
+     2000,
+     3000
+    ],
+    [
+     "x",
+     1689,
+     2000,
+     3000
+    ],
+    [
+     "x",
+     1689,
+     3000,
+     4000
+    ],
+    [
+     "y",
+     1500,
+     1126,
+     1689
+    ],
+    [
+     "y",
+     2500,
+     563,
+     1126
+    ],
+    [
+     "y",
+     2500,
+     1126,
+     1689
+    ],
+    [
+     "x",
+     1407,
+     1500,
+     2000
+    ],
+    [
+     "x",
+     1407,
+     2000,
+     2500
+    ],
+    [
+     "x",
+     1407,
+     2500,
+     3000
+    ],
+    [
+     "y",
+     1750,
+     1407,
+     1689
+    ],
+    [
+     "y",
+     2250,
+     1407,
+     1689
+    ],
+    [
+     "y",
+     2750,
+     1126,
+     1407
+    ],
+    [
+     "y",
+     2750,
+     1407,
+     1689
+    ]
+   ],
+   "nodes": [
+    {
+     "depth": 0,
+     "region": [
+      0,
+      0,
+      2252,
+      4000
+     ],
+     "sent_size": [
+      883,
+      1568
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 7,
+     "truth_word": "several",
+     "seconds": 0.189,
+     "tokens": 4028
+    },
+    {
+     "depth": 1,
+     "region": [
+      0,
+      0,
+      2252,
+      2000
+     ],
+     "sent_size": [
+      1568,
+      1393
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 4,
+     "truth_word": "several",
+     "seconds": 0.203,
+     "tokens": 6043
+    },
+    {
+     "depth": 1,
+     "region": [
+      0,
+      2000,
+      2252,
+      4000
+     ],
+     "sent_size": [
+      1568,
+      1393
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 5,
+     "truth_word": "several",
+     "seconds": 0.305,
+     "tokens": 6043
+    },
+    {
+     "depth": 2,
+     "region": [
+      0,
+      0,
+      1126,
+      2000
+     ],
+     "sent_size": [
+      883,
+      1568
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.187,
+     "tokens": 4022
+    },
+    {
+     "depth": 2,
+     "region": [
+      1126,
+      0,
+      2252,
+      2000
+     ],
+     "sent_size": [
+      883,
+      1568
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.181,
+     "tokens": 4030
+    },
+    {
+     "depth": 2,
+     "region": [
+      0,
+      2000,
+      1126,
+      4000
+     ],
+     "sent_size": [
+      883,
+      1568
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.01,
+      "one": 0.11,
+      "several": 0.88
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.146,
+     "tokens": 4027
+    },
+    {
+     "depth": 2,
+     "region": [
+      1126,
+      2000,
+      2252,
+      4000
+     ],
+     "sent_size": [
+      883,
+      1568
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 4,
+     "truth_word": "several",
+     "seconds": 0.188,
+     "tokens": 4023
+    },
+    {
+     "depth": 3,
+     "region": [
+      0,
+      0,
+      1126,
+      1000
+     ],
+     "sent_size": [
+      1126,
+      1000
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.0,
+      "one": 1.0,
+      "several": 0.0
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.162,
+     "tokens": 3398,
+     "box": [
+      157.64000000000001,
+      460.0,
+      472.91999999999996,
+      1000.0
+     ],
+     "box_confidence": 0.87,
+     "forced": false
+    },
+    {
+     "depth": 3,
+     "region": [
+      0,
+      1000,
+      1126,
+      2000
+     ],
+     "sent_size": [
+      1126,
+      1000
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.159,
+     "tokens": 3397
+    },
+    {
+     "depth": 3,
+     "region": [
+      1126,
+      0,
+      2252,
+      1000
+     ],
+     "sent_size": [
+      1126,
+      1000
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.01,
+      "one": 0.99,
+      "several": 0.0
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.295,
+     "tokens": 3395,
+     "box": [
+      1463.8,
+      590.0,
+      1610.18,
+      1000.0
+     ],
+     "box_confidence": 0.82,
+     "forced": false
+    },
+    {
+     "depth": 3,
+     "region": [
+      1126,
+      1000,
+      2252,
+      2000
+     ],
+     "sent_size": [
+      1126,
+      1000
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.03,
+      "one": 0.2,
+      "several": 0.77
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.219,
+     "tokens": 3397
+    },
+    {
+     "depth": 3,
+     "region": [
+      0,
+      2000,
+      1126,
+      3000
+     ],
+     "sent_size": [
+      1126,
+      1000
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.11,
+      "one": 0.3,
+      "several": 0.59
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.311,
+     "tokens": 3392
+    },
+    {
+     "depth": 3,
+     "region": [
+      0,
+      3000,
+      1126,
+      4000
+     ],
+     "sent_size": [
+      1126,
+      1000
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.13,
+      "one": 0.87,
+      "several": 0.0
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.121,
+     "tokens": 3397,
+     "box": [
+      664.3399999999999,
+      3010.0,
+      1114.74,
+      3210.0
+     ],
+     "box_confidence": 0.84,
+     "forced": false
+    },
+    {
+     "depth": 3,
+     "region": [
+      1126,
+      2000,
+      2252,
+      3000
+     ],
+     "sent_size": [
+      1126,
+      1000
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 3,
+     "truth_word": "several",
+     "seconds": 0.175,
+     "tokens": 3393
+    },
+    {
+     "depth": 3,
+     "region": [
+      1126,
+      3000,
+      2252,
+      4000
+     ],
+     "sent_size": [
+      1126,
+      1000
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.268,
+     "tokens": 3394
+    },
+    {
+     "depth": 4,
+     "region": [
+      0,
+      1000,
+      563,
+      2000
+     ],
+     "sent_size": [
+      563,
+      1000
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.0,
+      "one": 1.0,
+      "several": 0.0
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.157,
+     "tokens": 1956,
+     "box": [
+      163.26999999999998,
+      1000.0,
+      461.65999999999997,
+      1280.0
+     ],
+     "box_confidence": 0.9,
+     "forced": false
+    },
+    {
+     "depth": 4,
+     "region": [
+      563,
+      1000,
+      1126,
+      2000
+     ],
+     "sent_size": [
+      563,
+      1000
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.0,
+      "one": 1.0,
+      "several": 0.0
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.141,
+     "tokens": 1957,
+     "box": [
+      630.56,
+      1810.0,
+      726.27,
+      1990.0
+     ],
+     "box_confidence": 0.94,
+     "forced": false
+    },
+    {
+     "depth": 4,
+     "region": [
+      1126,
+      1000,
+      1689,
+      2000
+     ],
+     "sent_size": [
+      563,
+      1000
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.03,
+      "one": 0.13,
+      "several": 0.84
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.316,
+     "tokens": 1952
+    },
+    {
+     "depth": 4,
+     "region": [
+      1689,
+      1000,
+      2252,
+      2000
+     ],
+     "sent_size": [
+      563,
+      1000
+     ],
+     "choice": "none",
+     "p": {
+      "none": 0.99,
+      "one": 0.01,
+      "several": 0.0
+     },
+     "truth": 0,
+     "truth_word": "none",
+     "seconds": 0.288,
+     "tokens": 1953
+    },
+    {
+     "depth": 4,
+     "region": [
+      0,
+      2000,
+      563,
+      3000
+     ],
+     "sent_size": [
+      563,
+      1000
+     ],
+     "choice": "none",
+     "p": {
+      "none": 0.99,
+      "one": 0.01,
+      "several": 0.0
+     },
+     "truth": 0,
+     "truth_word": "none",
+     "seconds": 0.128,
+     "tokens": 1951
+    },
+    {
+     "depth": 4,
+     "region": [
+      563,
+      2000,
+      1126,
+      3000
+     ],
+     "sent_size": [
+      563,
+      1000
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.1,
+      "one": 0.2,
+      "several": 0.7
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.144,
+     "tokens": 1956
+    },
+    {
+     "depth": 4,
+     "region": [
+      1126,
+      2000,
+      1689,
+      3000
+     ],
+     "sent_size": [
+      563,
+      1000
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 3,
+     "truth_word": "several",
+     "seconds": 0.294,
+     "tokens": 1955
+    },
+    {
+     "depth": 4,
+     "region": [
+      1689,
+      2000,
+      2252,
+      3000
+     ],
+     "sent_size": [
+      563,
+      1000
+     ],
+     "choice": "none",
+     "p": {
+      "none": 0.99,
+      "one": 0.01,
+      "several": 0.0
+     },
+     "truth": 0,
+     "truth_word": "none",
+     "seconds": 0.159,
+     "tokens": 1955
+    },
+    {
+     "depth": 4,
+     "region": [
+      1126,
+      3000,
+      1689,
+      4000
+     ],
+     "sent_size": [
+      563,
+      1000
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.05,
+      "one": 0.95,
+      "several": 0.0
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.338,
+     "tokens": 1952,
+     "box": [
+      1126.0,
+      3000.0,
+      1216.08,
+      3140.0
+     ],
+     "box_confidence": 0.97,
+     "forced": false
+    },
+    {
+     "depth": 4,
+     "region": [
+      1689,
+      3000,
+      2252,
+      4000
+     ],
+     "sent_size": [
+      563,
+      1000
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.0,
+      "one": 0.99,
+      "several": 0.01
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.194,
+     "tokens": 1952,
+     "box": [
+      1824.12,
+      3000.0,
+      2049.32,
+      3410.0
+     ],
+     "box_confidence": 0.89,
+     "forced": false
+    },
+    {
+     "depth": 5,
+     "region": [
+      1126,
+      1000,
+      1689,
+      1500
+     ],
+     "sent_size": [
+      563,
+      500
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.12,
+      "one": 0.87,
+      "several": 0.01
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.126,
+     "tokens": 1201,
+     "box": [
+      1446.9099999999999,
+      1000.0,
+      1604.55,
+      1500.0
+     ],
+     "box_confidence": 0.81,
+     "forced": false
+    },
+    {
+     "depth": 5,
+     "region": [
+      1126,
+      1500,
+      1689,
+      2000
+     ],
+     "sent_size": [
+      563,
+      500
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.119,
+     "tokens": 1195
+    },
+    {
+     "depth": 5,
+     "region": [
+      563,
+      2000,
+      1126,
+      2500
+     ],
+     "sent_size": [
+      563,
+      500
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.02,
+      "one": 0.94,
+      "several": 0.04
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.148,
+     "tokens": 1201,
+     "box": [
+      653.08,
+      2000.0,
+      720.64,
+      2025.0
+     ],
+     "box_confidence": 0.92,
+     "forced": false
+    },
+    {
+     "depth": 5,
+     "region": [
+      563,
+      2500,
+      1126,
+      3000
+     ],
+     "sent_size": [
+      563,
+      500
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.11,
+      "one": 0.89,
+      "several": 0.0
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.198,
+     "tokens": 1198,
+     "box": [
+      681.23,
+      2720.0,
+      1126.0,
+      3000.0
+     ],
+     "box_confidence": 0.76,
+     "forced": false
+    },
+    {
+     "depth": 5,
+     "region": [
+      1126,
+      2000,
+      1689,
+      2500
+     ],
+     "sent_size": [
+      563,
+      500
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.22,
+     "tokens": 1199
+    },
+    {
+     "depth": 5,
+     "region": [
+      1126,
+      2500,
+      1689,
+      3000
+     ],
+     "sent_size": [
+      563,
+      500
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 3,
+     "truth_word": "several",
+     "seconds": 0.142,
+     "tokens": 1198
+    },
+    {
+     "depth": 6,
+     "region": [
+      1126,
+      1500,
+      1407,
+      2000
+     ],
+     "sent_size": [
+      281,
+      500
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.01,
+      "one": 0.98,
+      "several": 0.01
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.122,
+     "tokens": 838,
+     "box": [
+      1258.07,
+      1905.0,
+      1407.0,
+      1995.0
+     ],
+     "box_confidence": 0.83,
+     "forced": false
+    },
+    {
+     "depth": 6,
+     "region": [
+      1407,
+      1500,
+      1689,
+      2000
+     ],
+     "sent_size": [
+      282,
+      500
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.01,
+      "several": 0.99
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.168,
+     "tokens": 838
+    },
+    {
+     "depth": 6,
+     "region": [
+      1126,
+      2000,
+      1407,
+      2500
+     ],
+     "sent_size": [
+      281,
+      500
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.03,
+      "one": 0.96,
+      "several": 0.01
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.108,
+     "tokens": 837,
+     "box": [
+      1210.3,
+      2005.0,
+      1404.19,
+      2500.0
+     ],
+     "box_confidence": 0.75,
+     "forced": false
+    },
+    {
+     "depth": 6,
+     "region": [
+      1407,
+      2000,
+      1689,
+      2500
+     ],
+     "sent_size": [
+      282,
+      500
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.142,
+     "tokens": 840
+    },
+    {
+     "depth": 6,
+     "region": [
+      1126,
+      2500,
+      1407,
+      3000
+     ],
+     "sent_size": [
+      281,
+      500
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.02,
+      "one": 0.01,
+      "several": 0.97
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.134,
+     "tokens": 841
+    },
+    {
+     "depth": 6,
+     "region": [
+      1407,
+      2500,
+      1689,
+      3000
+     ],
+     "sent_size": [
+      282,
+      500
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.04,
+      "several": 0.96
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.233,
+     "tokens": 837
+    },
+    {
+     "depth": 7,
+     "region": [
+      1407,
+      1500,
+      1689,
+      1750
+     ],
+     "sent_size": [
+      316,
+      280
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.01,
+      "one": 0.98,
+      "several": 0.01
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.119,
+     "tokens": 682,
+     "box": [
+      1471.86,
+      1500.0,
+      1581.84,
+      1627.5
+     ],
+     "box_confidence": 0.74,
+     "forced": false
+    },
+    {
+     "depth": 7,
+     "region": [
+      1407,
+      1750,
+      1689,
+      2000
+     ],
+     "sent_size": [
+      316,
+      280
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.17,
+      "one": 0.82,
+      "several": 0.01
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.163,
+     "tokens": 684,
+     "box": [
+      1407.0,
+      1752.5,
+      1443.66,
+      1997.5
+     ],
+     "box_confidence": 0.22,
+     "forced": false
+    },
+    {
+     "depth": 7,
+     "region": [
+      1407,
+      2000,
+      1689,
+      2250
+     ],
+     "sent_size": [
+      316,
+      280
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.01,
+      "one": 0.06,
+      "several": 0.93
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.139,
+     "tokens": 681,
+     "box": [
+      1415.46,
+      2107.5,
+      1635.42,
+      2247.5
+     ],
+     "box_confidence": 0.22,
+     "forced": true
+    },
+    {
+     "depth": 7,
+     "region": [
+      1407,
+      2250,
+      1689,
+      2500
+     ],
+     "sent_size": [
+      316,
+      280
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.03,
+      "several": 0.97
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.142,
+     "tokens": 679,
+     "box": [
+      1418.28,
+      2250.0,
+      1680.54,
+      2497.5
+     ],
+     "box_confidence": 0.2,
+     "forced": true
+    },
+    {
+     "depth": 7,
+     "region": [
+      1126,
+      2500,
+      1407,
+      2750
+     ],
+     "sent_size": [
+      315,
+      280
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.03,
+      "one": 0.96,
+      "several": 0.01
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.141,
+     "tokens": 684,
+     "box": [
+      1252.45,
+      2502.5,
+      1407.0,
+      2547.5
+     ],
+     "box_confidence": 0.64,
+     "forced": false
+    },
+    {
+     "depth": 7,
+     "region": [
+      1126,
+      2750,
+      1407,
+      3000
+     ],
+     "sent_size": [
+      315,
+      280
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.06,
+      "one": 0.94,
+      "several": 0.0
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.161,
+     "tokens": 682,
+     "box": [
+      1126.0,
+      2757.5,
+      1199.06,
+      2997.5
+     ],
+     "box_confidence": 0.54,
+     "forced": false
+    },
+    {
+     "depth": 7,
+     "region": [
+      1407,
+      2500,
+      1689,
+      2750
+     ],
+     "sent_size": [
+      316,
+      280
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.02,
+      "several": 0.98
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.148,
+     "tokens": 682,
+     "box": [
+      1412.64,
+      2500.0,
+      1632.6,
+      2662.5
+     ],
+     "box_confidence": 0.17,
+     "forced": true
+    },
+    {
+     "depth": 7,
+     "region": [
+      1407,
+      2750,
+      1689,
+      3000
+     ],
+     "sent_size": [
+      316,
+      280
+     ],
+     "choice": "none",
+     "p": {
+      "none": 1.0,
+      "one": 0.0,
+      "several": 0.0
+     },
+     "truth": 0,
+     "truth_word": "none",
+     "seconds": 0.116,
+     "tokens": 683
+    }
+   ],
+   "grade": {
+    "boxes": 8,
+    "ovals": 7,
+    "iou50": 7,
+    "iou75": 6,
+    "iou90": 4,
+    "points_on_oval": 7,
+    "point_f1": 0.933
+   },
+   "requests": 45,
+   "wall_seconds": 2.36,
+   "request_seconds": 8.26,
+   "tokens": 96598,
+   "dollars": 0.00406,
+   "count_wrong": 0
+  },
+  "square": {
+   "size": [
+    1015,
+    1015
+   ],
+   "truth": [
+    [
+     71,
+     122,
+     213,
+     325
+    ],
+    [
+     304,
+     690,
+     548,
+     812
+    ],
+    [
+     655,
+     152,
+     726,
+     416
+    ],
+    [
+     822,
+     761,
+     924,
+     863
+    ],
+    [
+     284,
+     462,
+     325,
+     513
+    ],
+    [
+     548,
+     487,
+     670,
+     650
+    ],
+    [
+     650,
+     538,
+     751,
+     680
+    ]
+   ],
+   "found": [
+    [
+     73.36999999999999,
+     121.67999999999999,
+     215.04999999999998,
+     334.62
+    ],
+    [
+     283.48,
+     456.3,
+     326.65999999999997,
+     517.16
+    ],
+    [
+     824.5,
+     755.92,
+     926.1,
+     867.6800000000001
+    ],
+    [
+     647.97,
+     164.45000000000002,
+     722.9,
+     419.37
+    ],
+    [
+     299.13,
+     684.8,
+     540.02,
+     811.8
+    ],
+    [
+     537.48,
+     473.98,
+     748.2,
+     646.7
+    ],
+    [
+     296.18,
+     675.91,
+     378.73,
+     759.73
+    ],
+    [
+     697.0,
+     380.0,
+     706.6,
+     407.94
+    ],
+    [
+     507.0,
+     710.2,
+     527.16,
+     759.73
+    ],
+    [
+     634.63,
+     634.0,
+     737.32,
+     691.15
+    ]
+   ],
+   "raw": [
+    [
+     73.36999999999999,
+     121.67999999999999,
+     215.04999999999998,
+     334.62
+    ],
+    [
+     283.48,
+     456.3,
+     326.65999999999997,
+     501.93
+    ],
+    [
+     299.13,
+     761.0,
+     486.71999999999997,
+     811.8
+    ],
+    [
+     824.5,
+     755.92,
+     926.1,
+     867.6800000000001
+    ],
+    [
+     659.4,
+     164.45000000000002,
+     722.9,
+     250.47
+    ],
+    [
+     507.0,
+     761.0,
+     540.02,
+     796.56
+    ],
+    [
+     380.0,
+     684.8,
+     507.0,
+     761.0
+    ],
+    [
+     562.88,
+     473.98,
+     630.19,
+     504.46000000000004
+    ],
+    [
+     284.75,
+     507.0,
+     321.58,
+     517.16
+    ],
+    [
+     296.18,
+     675.91,
+     378.73,
+     759.73
+    ],
+    [
+     647.97,
+     255.54,
+     717.82,
+     378.73
+    ],
+    [
+     537.48,
+     508.27,
+     631.46,
+     632.73
+    ],
+    [
+     681.25,
+     381.27,
+     696.37,
+     419.37
+    ],
+    [
+     697.0,
+     380.0,
+     706.6,
+     407.94
+    ],
+    [
+     507.0,
+     710.2,
+     527.16,
+     759.73
+    ],
+    [
+     570.0,
+     634.0,
+     633.36,
+     646.7
+    ],
+    [
+     635.26,
+     508.27,
+     695.74,
+     632.73
+    ],
+    [
+     697.0,
+     509.54,
+     748.2,
+     632.73
+    ],
+    [
+     634.63,
+     634.0,
+     696.37,
+     687.34
+    ],
+    [
+     697.0,
+     634.0,
+     737.32,
+     691.15
+    ]
+   ],
+   "cuts": [
+    [
+     "x",
+     507,
+     0,
+     1015
+    ],
+    [
+     "y",
+     507,
+     0,
+     507
+    ],
+    [
+     "y",
+     507,
+     507,
+     1015
+    ],
+    [
+     "x",
+     253,
+     0,
+     507
+    ],
+    [
+     "y",
+     761,
+     0,
+     507
+    ],
+    [
+     "x",
+     761,
+     0,
+     507
+    ],
+    [
+     "x",
+     761,
+     507,
+     1015
+    ],
+    [
+     "x",
+     253,
+     507,
+     761
+    ],
+    [
+     "y",
+     253,
+     507,
+     761
+    ],
+    [
+     "y",
+     761,
+     507,
+     761
+    ],
+    [
+     "x",
+     380,
+     507,
+     761
+    ],
+    [
+     "x",
+     634,
+     253,
+     507
+    ],
+    [
+     "x",
+     634,
+     507,
+     761
+    ],
+    [
+     "y",
+     634,
+     253,
+     380
+    ],
+    [
+     "y",
+     380,
+     634,
+     761
+    ],
+    [
+     "y",
+     634,
+     507,
+     634
+    ],
+    [
+     "y",
+     634,
+     634,
+     761
+    ],
+    [
+     "x",
+     697,
+     380,
+     507
+    ],
+    [
+     "x",
+     570,
+     634,
+     761
+    ],
+    [
+     "x",
+     697,
+     507,
+     634
+    ],
+    [
+     "x",
+     697,
+     634,
+     761
+    ]
+   ],
+   "nodes": [
+    {
+     "depth": 0,
+     "region": [
+      0,
+      0,
+      1015,
+      1015
+     ],
+     "sent_size": [
+      1015,
+      1015
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 7,
+     "truth_word": "several",
+     "seconds": 0.153,
+     "tokens": 3182
+    },
+    {
+     "depth": 1,
+     "region": [
+      0,
+      0,
+      507,
+      1015
+     ],
+     "sent_size": [
+      507,
+      1015
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 3,
+     "truth_word": "several",
+     "seconds": 0.131,
+     "tokens": 1848
+    },
+    {
+     "depth": 1,
+     "region": [
+      507,
+      0,
+      1015,
+      1015
+     ],
+     "sent_size": [
+      508,
+      1015
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 5,
+     "truth_word": "several",
+     "seconds": 0.265,
+     "tokens": 1851
+    },
+    {
+     "depth": 2,
+     "region": [
+      0,
+      0,
+      507,
+      507
+     ],
+     "sent_size": [
+      507,
+      507
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.17,
+     "tokens": 1163
+    },
+    {
+     "depth": 2,
+     "region": [
+      0,
+      507,
+      507,
+      1015
+     ],
+     "sent_size": [
+      507,
+      508
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.29,
+      "several": 0.71
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.174,
+     "tokens": 1166
+    },
+    {
+     "depth": 2,
+     "region": [
+      507,
+      0,
+      1015,
+      507
+     ],
+     "sent_size": [
+      508,
+      507
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.149,
+     "tokens": 1167
+    },
+    {
+     "depth": 2,
+     "region": [
+      507,
+      507,
+      1015,
+      1015
+     ],
+     "sent_size": [
+      508,
+      508
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.01,
+      "one": 0.02,
+      "several": 0.97
+     },
+     "truth": 4,
+     "truth_word": "several",
+     "seconds": 0.101,
+     "tokens": 1164
+    },
+    {
+     "depth": 3,
+     "region": [
+      0,
+      0,
+      253,
+      507
+     ],
+     "sent_size": [
+      280,
+      561
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.0,
+      "one": 1.0,
+      "several": 0.0
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.133,
+     "tokens": 863,
+     "box": [
+      73.36999999999999,
+      121.67999999999999,
+      215.04999999999998,
+      334.62
+     ],
+     "box_confidence": 0.93,
+     "forced": false
+    },
+    {
+     "depth": 3,
+     "region": [
+      253,
+      0,
+      507,
+      507
+     ],
+     "sent_size": [
+      280,
+      559
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.0,
+      "one": 1.0,
+      "several": 0.0
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.179,
+     "tokens": 845,
+     "box": [
+      283.48,
+      456.3,
+      326.65999999999997,
+      501.93
+     ],
+     "box_confidence": 0.91,
+     "forced": false
+    },
+    {
+     "depth": 3,
+     "region": [
+      0,
+      507,
+      507,
+      761
+     ],
+     "sent_size": [
+      559,
+      280
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.03,
+      "one": 0.42,
+      "several": 0.55
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.125,
+     "tokens": 841
+    },
+    {
+     "depth": 3,
+     "region": [
+      0,
+      761,
+      507,
+      1015
+     ],
+     "sent_size": [
+      559,
+      280
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.01,
+      "one": 0.99,
+      "several": 0.0
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.217,
+     "tokens": 844,
+     "box": [
+      299.13,
+      761.0,
+      486.71999999999997,
+      811.8
+     ],
+     "box_confidence": 0.63,
+     "forced": false
+    },
+    {
+     "depth": 3,
+     "region": [
+      507,
+      0,
+      761,
+      507
+     ],
+     "sent_size": [
+      280,
+      559
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.01,
+      "several": 0.99
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.236,
+     "tokens": 841
+    },
+    {
+     "depth": 3,
+     "region": [
+      761,
+      0,
+      1015,
+      507
+     ],
+     "sent_size": [
+      280,
+      559
+     ],
+     "choice": "none",
+     "p": {
+      "none": 1.0,
+      "one": 0.0,
+      "several": 0.0
+     },
+     "truth": 0,
+     "truth_word": "none",
+     "seconds": 0.113,
+     "tokens": 844
+    },
+    {
+     "depth": 3,
+     "region": [
+      507,
+      507,
+      761,
+      1015
+     ],
+     "sent_size": [
+      280,
+      560
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 3,
+     "truth_word": "several",
+     "seconds": 0.158,
+     "tokens": 842
+    },
+    {
+     "depth": 3,
+     "region": [
+      761,
+      507,
+      1015,
+      1015
+     ],
+     "sent_size": [
+      280,
+      560
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.26,
+      "one": 0.74,
+      "several": 0.0
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.265,
+     "tokens": 843,
+     "box": [
+      824.5,
+      755.92,
+      926.1,
+      867.6800000000001
+     ],
+     "box_confidence": 0.93,
+     "forced": false
+    },
+    {
+     "depth": 4,
+     "region": [
+      0,
+      507,
+      253,
+      761
+     ],
+     "sent_size": [
+      280,
+      281
+     ],
+     "choice": "none",
+     "p": {
+      "none": 1.0,
+      "one": 0.0,
+      "several": 0.0
+     },
+     "truth": 0,
+     "truth_word": "none",
+     "seconds": 0.279,
+     "tokens": 664
+    },
+    {
+     "depth": 4,
+     "region": [
+      253,
+      507,
+      507,
+      761
+     ],
+     "sent_size": [
+      280,
+      280
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.01,
+      "one": 0.03,
+      "several": 0.96
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.139,
+     "tokens": 646
+    },
+    {
+     "depth": 4,
+     "region": [
+      507,
+      0,
+      761,
+      253
+     ],
+     "sent_size": [
+      281,
+      280
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.0,
+      "one": 1.0,
+      "several": 0.0
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.132,
+     "tokens": 660,
+     "box": [
+      659.4,
+      164.45000000000002,
+      722.9,
+      250.47
+     ],
+     "box_confidence": 0.27,
+     "forced": false
+    },
+    {
+     "depth": 4,
+     "region": [
+      507,
+      253,
+      761,
+      507
+     ],
+     "sent_size": [
+      280,
+      280
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.02,
+      "several": 0.98
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.276,
+     "tokens": 639
+    },
+    {
+     "depth": 4,
+     "region": [
+      507,
+      507,
+      761,
+      761
+     ],
+     "sent_size": [
+      280,
+      280
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 3,
+     "truth_word": "several",
+     "seconds": 0.276,
+     "tokens": 644
+    },
+    {
+     "depth": 4,
+     "region": [
+      507,
+      761,
+      761,
+      1015
+     ],
+     "sent_size": [
+      280,
+      280
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.06,
+      "one": 0.94,
+      "several": 0.0
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.114,
+     "tokens": 641,
+     "box": [
+      507.0,
+      761.0,
+      540.02,
+      796.56
+     ],
+     "box_confidence": 0.8,
+     "forced": false
+    },
+    {
+     "depth": 5,
+     "region": [
+      253,
+      507,
+      380,
+      761
+     ],
+     "sent_size": [
+      280,
+      560
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.03,
+      "one": 0.05,
+      "several": 0.92
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.153,
+     "tokens": 841
+    },
+    {
+     "depth": 5,
+     "region": [
+      380,
+      507,
+      507,
+      761
+     ],
+     "sent_size": [
+      280,
+      560
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.02,
+      "one": 0.98,
+      "several": 0.0
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.198,
+     "tokens": 841,
+     "box": [
+      380.0,
+      684.8,
+      507.0,
+      761.0
+     ],
+     "box_confidence": 0.81,
+     "forced": false
+    },
+    {
+     "depth": 5,
+     "region": [
+      507,
+      253,
+      634,
+      507
+     ],
+     "sent_size": [
+      280,
+      560
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.04,
+      "one": 0.95,
+      "several": 0.01
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.158,
+     "tokens": 842,
+     "box": [
+      562.88,
+      473.98,
+      630.19,
+      504.46000000000004
+     ],
+     "box_confidence": 0.36,
+     "forced": false
+    },
+    {
+     "depth": 5,
+     "region": [
+      634,
+      253,
+      761,
+      507
+     ],
+     "sent_size": [
+      280,
+      560
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.02,
+      "several": 0.98
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.175,
+     "tokens": 842
+    },
+    {
+     "depth": 5,
+     "region": [
+      507,
+      507,
+      634,
+      761
+     ],
+     "sent_size": [
+      280,
+      560
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.01,
+      "several": 0.99
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.284,
+     "tokens": 844
+    },
+    {
+     "depth": 5,
+     "region": [
+      634,
+      507,
+      761,
+      761
+     ],
+     "sent_size": [
+      280,
+      560
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.199,
+     "tokens": 843
+    },
+    {
+     "depth": 6,
+     "region": [
+      253,
+      507,
+      380,
+      634
+     ],
+     "sent_size": [
+      280,
+      280
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.02,
+      "one": 0.97,
+      "several": 0.01
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.132,
+     "tokens": 640,
+     "box": [
+      284.75,
+      507.0,
+      321.58,
+      517.16
+     ],
+     "box_confidence": 0.58,
+     "forced": false
+    },
+    {
+     "depth": 6,
+     "region": [
+      253,
+      634,
+      380,
+      761
+     ],
+     "sent_size": [
+      280,
+      280
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.04,
+      "one": 0.96,
+      "several": 0.0
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.165,
+     "tokens": 644,
+     "box": [
+      296.18,
+      675.91,
+      378.73,
+      759.73
+     ],
+     "box_confidence": 0.21,
+     "forced": false
+    },
+    {
+     "depth": 6,
+     "region": [
+      634,
+      253,
+      761,
+      380
+     ],
+     "sent_size": [
+      280,
+      280
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.03,
+      "one": 0.97,
+      "several": 0.0
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.139,
+     "tokens": 642,
+     "box": [
+      647.97,
+      255.54,
+      717.82,
+      378.73
+     ],
+     "box_confidence": 0.48,
+     "forced": false
+    },
+    {
+     "depth": 6,
+     "region": [
+      634,
+      380,
+      761,
+      507
+     ],
+     "sent_size": [
+      280,
+      280
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.01,
+      "several": 0.99
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.126,
+     "tokens": 642
+    },
+    {
+     "depth": 6,
+     "region": [
+      507,
+      507,
+      634,
+      634
+     ],
+     "sent_size": [
+      280,
+      280
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.1,
+      "one": 0.9,
+      "several": 0.0
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.149,
+     "tokens": 642,
+     "box": [
+      537.48,
+      508.27,
+      631.46,
+      632.73
+     ],
+     "box_confidence": 0.2,
+     "forced": false
+    },
+    {
+     "depth": 6,
+     "region": [
+      507,
+      634,
+      634,
+      761
+     ],
+     "sent_size": [
+      280,
+      280
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.02,
+      "one": 0.02,
+      "several": 0.96
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.126,
+     "tokens": 642
+    },
+    {
+     "depth": 6,
+     "region": [
+      634,
+      507,
+      761,
+      634
+     ],
+     "sent_size": [
+      280,
+      280
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.328,
+     "tokens": 642
+    },
+    {
+     "depth": 6,
+     "region": [
+      634,
+      634,
+      761,
+      761
+     ],
+     "sent_size": [
+      280,
+      280
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.06,
+      "several": 0.94
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.167,
+     "tokens": 644
+    },
+    {
+     "depth": 7,
+     "region": [
+      634,
+      380,
+      697,
+      507
+     ],
+     "sent_size": [
+      280,
+      564
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.15,
+     "tokens": 864,
+     "box": [
+      681.25,
+      381.27,
+      696.37,
+      419.37
+     ],
+     "box_confidence": 0.26,
+     "forced": true
+    },
+    {
+     "depth": 7,
+     "region": [
+      697,
+      380,
+      761,
+      507
+     ],
+     "sent_size": [
+      280,
+      556
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.08,
+      "one": 0.92,
+      "several": 0.0
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.186,
+     "tokens": 843,
+     "box": [
+      697.0,
+      380.0,
+      706.6,
+      407.94
+     ],
+     "box_confidence": 0.52,
+     "forced": false
+    },
+    {
+     "depth": 7,
+     "region": [
+      507,
+      634,
+      570,
+      761
+     ],
+     "sent_size": [
+      280,
+      564
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.05,
+      "one": 0.95,
+      "several": 0.0
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.133,
+     "tokens": 863,
+     "box": [
+      507.0,
+      710.2,
+      527.16,
+      759.73
+     ],
+     "box_confidence": 0.47,
+     "forced": false
+    },
+    {
+     "depth": 7,
+     "region": [
+      570,
+      634,
+      634,
+      761
+     ],
+     "sent_size": [
+      280,
+      556
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.02,
+      "one": 0.98,
+      "several": 0.0
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.147,
+     "tokens": 844,
+     "box": [
+      570.0,
+      634.0,
+      633.36,
+      646.7
+     ],
+     "box_confidence": 0.73,
+     "forced": false
+    },
+    {
+     "depth": 7,
+     "region": [
+      634,
+      507,
+      697,
+      634
+     ],
+     "sent_size": [
+      280,
+      564
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.05,
+      "one": 0.04,
+      "several": 0.91
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.149,
+     "tokens": 862,
+     "box": [
+      635.26,
+      508.27,
+      695.74,
+      632.73
+     ],
+     "box_confidence": 0.26,
+     "forced": true
+    },
+    {
+     "depth": 7,
+     "region": [
+      697,
+      507,
+      761,
+      634
+     ],
+     "sent_size": [
+      280,
+      556
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.06,
+      "one": 0.94,
+      "several": 0.0
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.198,
+     "tokens": 845,
+     "box": [
+      697.0,
+      509.54,
+      748.2,
+      632.73
+     ],
+     "box_confidence": 0.29,
+     "forced": false
+    },
+    {
+     "depth": 7,
+     "region": [
+      634,
+      634,
+      697,
+      761
+     ],
+     "sent_size": [
+      280,
+      564
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.05,
+      "one": 0.16,
+      "several": 0.79
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.18,
+     "tokens": 860,
+     "box": [
+      634.63,
+      634.0,
+      696.37,
+      687.34
+     ],
+     "box_confidence": 0.18,
+     "forced": true
+    },
+    {
+     "depth": 7,
+     "region": [
+      697,
+      634,
+      761,
+      761
+     ],
+     "sent_size": [
+      280,
+      556
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.11,
+      "one": 0.88,
+      "several": 0.01
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.192,
+     "tokens": 844,
+     "box": [
+      697.0,
+      634.0,
+      737.32,
+      691.15
+     ],
+     "box_confidence": 0.32,
+     "forced": false
+    }
+   ],
+   "grade": {
+    "boxes": 10,
+    "ovals": 7,
+    "iou50": 6,
+    "iou75": 5,
+    "iou90": 2,
+    "points_on_oval": 7,
+    "point_f1": 0.824
+   },
+   "requests": 43,
+   "wall_seconds": 2.03,
+   "request_seconds": 7.62,
+   "tokens": 39214,
+   "dollars": 0.00165,
+   "count_wrong": 0
+  },
+  "small-tall": {
+   "size": [
+    743,
+    1319
+   ],
+   "truth": [
+    [
+     52,
+     158,
+     156,
+     422
+    ],
+    [
+     223,
+     897,
+     401,
+     1055
+    ],
+    [
+     479,
+     198,
+     531,
+     541
+    ],
+    [
+     602,
+     989,
+     676,
+     1121
+    ],
+    [
+     208,
+     600,
+     238,
+     666
+    ],
+    [
+     401,
+     633,
+     490,
+     844
+    ],
+    [
+     476,
+     699,
+     550,
+     884
+    ]
+   ],
+   "found": [
+    [
+     218.89,
+     896.6,
+     406.34000000000003,
+     1068.2
+    ],
+    [
+     51.800000000000004,
+     148.05,
+     159.53,
+     431.3
+    ],
+    [
+     482.6,
+     194.10999999999999,
+     534.6800000000001,
+     329.0
+    ],
+    [
+     211.04,
+     599.5999999999999,
+     242.66,
+     655.7
+    ],
+    [
+     601.64,
+     989.0,
+     676.04,
+     1124.3
+    ],
+    [
+     469.58,
+     332.3,
+     497.48,
+     490.7
+    ],
+    [
+     394.25,
+     576.83,
+     476.09,
+     835.48
+    ],
+    [
+     485.39,
+     494.82,
+     522.59,
+     530.9
+    ],
+    [
+     465.86,
+     660.64,
+     553.28,
+     904.36
+    ],
+    [
+     371.0,
+     906.83,
+     390.53,
+     988.17
+    ]
+   ],
+   "raw": [
+    [
+     218.89,
+     896.6,
+     367.29,
+     1068.2
+    ],
+    [
+     51.940000000000005,
+     148.05,
+     159.53,
+     329.0
+    ],
+    [
+     482.6,
+     194.10999999999999,
+     534.6800000000001,
+     329.0
+    ],
+    [
+     51.800000000000004,
+     329.0,
+     140.6,
+     431.3
+    ],
+    [
+     211.04,
+     599.5999999999999,
+     242.66,
+     655.7
+    ],
+    [
+     371.0,
+     989.0,
+     406.34000000000003,
+     1028.6
+    ],
+    [
+     601.64,
+     989.0,
+     676.04,
+     1124.3
+    ],
+    [
+     469.58,
+     332.3,
+     497.48,
+     490.7
+    ],
+    [
+     433.31,
+     635.9,
+     461.21,
+     657.35
+    ],
+    [
+     394.25,
+     659.0,
+     463.07,
+     822.35
+    ],
+    [
+     485.39,
+     494.82,
+     522.59,
+     530.9
+    ],
+    [
+     464.0,
+     576.83,
+     476.09,
+     658.17
+    ],
+    [
+     483.53,
+     660.64,
+     548.63,
+     739.36
+    ],
+    [
+     466.79,
+     741.83,
+     553.28,
+     822.34
+    ],
+    [
+     421.22,
+     824.82,
+     462.14,
+     835.48
+    ],
+    [
+     371.0,
+     906.83,
+     390.53,
+     988.17
+    ],
+    [
+     465.86,
+     824.82,
+     517.01,
+     904.36
+    ]
+   ],
+   "cuts": [
+    [
+     "y",
+     659,
+     0,
+     743
+    ],
+    [
+     "x",
+     371,
+     0,
+     659
+    ],
+    [
+     "x",
+     371,
+     659,
+     1319
+    ],
+    [
+     "y",
+     329,
+     0,
+     371
+    ],
+    [
+     "y",
+     329,
+     371,
+     743
+    ],
+    [
+     "y",
+     989,
+     371,
+     743
+    ],
+    [
+     "x",
+     185,
+     329,
+     659
+    ],
+    [
+     "x",
+     557,
+     329,
+     659
+    ],
+    [
+     "x",
+     557,
+     659,
+     989
+    ],
+    [
+     "x",
+     557,
+     989,
+     1319
+    ],
+    [
+     "y",
+     494,
+     371,
+     557
+    ],
+    [
+     "y",
+     824,
+     371,
+     557
+    ],
+    [
+     "x",
+     464,
+     494,
+     659
+    ],
+    [
+     "x",
+     464,
+     659,
+     824
+    ],
+    [
+     "x",
+     464,
+     824,
+     989
+    ],
+    [
+     "y",
+     576,
+     464,
+     557
+    ],
+    [
+     "y",
+     741,
+     464,
+     557
+    ],
+    [
+     "y",
+     906,
+     371,
+     464
+    ],
+    [
+     "y",
+     906,
+     464,
+     557
+    ]
+   ],
+   "nodes": [
+    {
+     "depth": 0,
+     "region": [
+      0,
+      0,
+      743,
+      1319
+     ],
+     "sent_size": [
+      743,
+      1319
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 7,
+     "truth_word": "several",
+     "seconds": 0.216,
+     "tokens": 3038
+    },
+    {
+     "depth": 1,
+     "region": [
+      0,
+      0,
+      743,
+      659
+     ],
+     "sent_size": [
+      743,
+      659
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 4,
+     "truth_word": "several",
+     "seconds": 0.113,
+     "tokens": 1739
+    },
+    {
+     "depth": 1,
+     "region": [
+      0,
+      659,
+      743,
+      1319
+     ],
+     "sent_size": [
+      743,
+      660
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 5,
+     "truth_word": "several",
+     "seconds": 0.239,
+     "tokens": 1740
+    },
+    {
+     "depth": 2,
+     "region": [
+      0,
+      0,
+      371,
+      659
+     ],
+     "sent_size": [
+      371,
+      659
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.132,
+     "tokens": 1115
+    },
+    {
+     "depth": 2,
+     "region": [
+      371,
+      0,
+      743,
+      659
+     ],
+     "sent_size": [
+      372,
+      659
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.162,
+     "tokens": 1115
+    },
+    {
+     "depth": 2,
+     "region": [
+      0,
+      659,
+      371,
+      1319
+     ],
+     "sent_size": [
+      371,
+      660
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.01,
+      "one": 0.72,
+      "several": 0.27
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.115,
+     "tokens": 1113,
+     "box": [
+      218.89,
+      896.6,
+      367.29,
+      1068.2
+     ],
+     "box_confidence": 0.4,
+     "forced": false
+    },
+    {
+     "depth": 2,
+     "region": [
+      371,
+      659,
+      743,
+      1319
+     ],
+     "sent_size": [
+      372,
+      660
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 4,
+     "truth_word": "several",
+     "seconds": 0.163,
+     "tokens": 1113
+    },
+    {
+     "depth": 3,
+     "region": [
+      0,
+      0,
+      371,
+      329
+     ],
+     "sent_size": [
+      371,
+      329
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.0,
+      "one": 1.0,
+      "several": 0.0
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.112,
+     "tokens": 773,
+     "box": [
+      51.940000000000005,
+      148.05,
+      159.53,
+      329.0
+     ],
+     "box_confidence": 0.9,
+     "forced": false
+    },
+    {
+     "depth": 3,
+     "region": [
+      0,
+      329,
+      371,
+      659
+     ],
+     "sent_size": [
+      371,
+      330
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.137,
+     "tokens": 778
+    },
+    {
+     "depth": 3,
+     "region": [
+      371,
+      0,
+      743,
+      329
+     ],
+     "sent_size": [
+      372,
+      329
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.05,
+      "one": 0.95,
+      "several": 0.0
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.131,
+     "tokens": 778,
+     "box": [
+      482.6,
+      194.10999999999999,
+      534.6800000000001,
+      329.0
+     ],
+     "box_confidence": 0.69,
+     "forced": false
+    },
+    {
+     "depth": 3,
+     "region": [
+      371,
+      329,
+      743,
+      659
+     ],
+     "sent_size": [
+      372,
+      330
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.04,
+      "several": 0.96
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.137,
+     "tokens": 775
+    },
+    {
+     "depth": 3,
+     "region": [
+      371,
+      659,
+      743,
+      989
+     ],
+     "sent_size": [
+      372,
+      330
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 3,
+     "truth_word": "several",
+     "seconds": 0.135,
+     "tokens": 780
+    },
+    {
+     "depth": 3,
+     "region": [
+      371,
+      989,
+      743,
+      1319
+     ],
+     "sent_size": [
+      372,
+      330
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.119,
+     "tokens": 779
+    },
+    {
+     "depth": 4,
+     "region": [
+      0,
+      329,
+      185,
+      659
+     ],
+     "sent_size": [
+      280,
+      499
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.0,
+      "one": 1.0,
+      "several": 0.0
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.191,
+     "tokens": 800,
+     "box": [
+      51.800000000000004,
+      329.0,
+      140.6,
+      431.3
+     ],
+     "box_confidence": 0.83,
+     "forced": false
+    },
+    {
+     "depth": 4,
+     "region": [
+      185,
+      329,
+      371,
+      659
+     ],
+     "sent_size": [
+      280,
+      497
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.0,
+      "one": 1.0,
+      "several": 0.0
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.148,
+     "tokens": 800,
+     "box": [
+      211.04,
+      599.5999999999999,
+      242.66,
+      655.7
+     ],
+     "box_confidence": 0.85,
+     "forced": false
+    },
+    {
+     "depth": 4,
+     "region": [
+      371,
+      329,
+      557,
+      659
+     ],
+     "sent_size": [
+      280,
+      497
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.01,
+      "one": 0.03,
+      "several": 0.96
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.143,
+     "tokens": 804
+    },
+    {
+     "depth": 4,
+     "region": [
+      557,
+      329,
+      743,
+      659
+     ],
+     "sent_size": [
+      280,
+      497
+     ],
+     "choice": "none",
+     "p": {
+      "none": 0.99,
+      "one": 0.01,
+      "several": 0.0
+     },
+     "truth": 0,
+     "truth_word": "none",
+     "seconds": 0.19,
+     "tokens": 806
+    },
+    {
+     "depth": 4,
+     "region": [
+      371,
+      659,
+      557,
+      989
+     ],
+     "sent_size": [
+      280,
+      497
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 3,
+     "truth_word": "several",
+     "seconds": 0.146,
+     "tokens": 804
+    },
+    {
+     "depth": 4,
+     "region": [
+      557,
+      659,
+      743,
+      989
+     ],
+     "sent_size": [
+      280,
+      497
+     ],
+     "choice": "none",
+     "p": {
+      "none": 1.0,
+      "one": 0.0,
+      "several": 0.0
+     },
+     "truth": 0,
+     "truth_word": "none",
+     "seconds": 0.159,
+     "tokens": 804
+    },
+    {
+     "depth": 4,
+     "region": [
+      371,
+      989,
+      557,
+      1319
+     ],
+     "sent_size": [
+      280,
+      497
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.15,
+      "one": 0.85,
+      "several": 0.0
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.192,
+     "tokens": 804,
+     "box": [
+      371.0,
+      989.0,
+      406.34000000000003,
+      1028.6
+     ],
+     "box_confidence": 0.88,
+     "forced": false
+    },
+    {
+     "depth": 4,
+     "region": [
+      557,
+      989,
+      743,
+      1319
+     ],
+     "sent_size": [
+      280,
+      497
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.0,
+      "one": 0.99,
+      "several": 0.01
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.172,
+     "tokens": 801,
+     "box": [
+      601.64,
+      989.0,
+      676.04,
+      1124.3
+     ],
+     "box_confidence": 0.86,
+     "forced": false
+    },
+    {
+     "depth": 5,
+     "region": [
+      371,
+      329,
+      557,
+      494
+     ],
+     "sent_size": [
+      316,
+      280
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.21,
+      "one": 0.78,
+      "several": 0.01
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.108,
+     "tokens": 684,
+     "box": [
+      469.58,
+      332.3,
+      497.48,
+      490.7
+     ],
+     "box_confidence": 0.32,
+     "forced": false
+    },
+    {
+     "depth": 5,
+     "region": [
+      371,
+      494,
+      557,
+      659
+     ],
+     "sent_size": [
+      316,
+      280
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.138,
+     "tokens": 682
+    },
+    {
+     "depth": 5,
+     "region": [
+      371,
+      659,
+      557,
+      824
+     ],
+     "sent_size": [
+      316,
+      280
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.158,
+     "tokens": 682
+    },
+    {
+     "depth": 5,
+     "region": [
+      371,
+      824,
+      557,
+      989
+     ],
+     "sent_size": [
+      316,
+      280
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 3,
+     "truth_word": "several",
+     "seconds": 0.142,
+     "tokens": 684
+    },
+    {
+     "depth": 6,
+     "region": [
+      371,
+      494,
+      464,
+      659
+     ],
+     "sent_size": [
+      280,
+      497
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.05,
+      "one": 0.95,
+      "several": 0.0
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.111,
+     "tokens": 804,
+     "box": [
+      433.31,
+      635.9,
+      461.21,
+      657.35
+     ],
+     "box_confidence": 0.4,
+     "forced": false
+    },
+    {
+     "depth": 6,
+     "region": [
+      464,
+      494,
+      557,
+      659
+     ],
+     "sent_size": [
+      280,
+      497
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.01,
+      "several": 0.99
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.108,
+     "tokens": 805
+    },
+    {
+     "depth": 6,
+     "region": [
+      371,
+      659,
+      464,
+      824
+     ],
+     "sent_size": [
+      280,
+      497
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.06,
+      "one": 0.94,
+      "several": 0.0
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.131,
+     "tokens": 803,
+     "box": [
+      394.25,
+      659.0,
+      463.07,
+      822.35
+     ],
+     "box_confidence": 0.32,
+     "forced": false
+    },
+    {
+     "depth": 6,
+     "region": [
+      464,
+      659,
+      557,
+      824
+     ],
+     "sent_size": [
+      280,
+      497
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.0,
+      "several": 1.0
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.112,
+     "tokens": 801
+    },
+    {
+     "depth": 6,
+     "region": [
+      371,
+      824,
+      464,
+      989
+     ],
+     "sent_size": [
+      280,
+      497
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.01,
+      "one": 0.01,
+      "several": 0.98
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.142,
+     "tokens": 803
+    },
+    {
+     "depth": 6,
+     "region": [
+      464,
+      824,
+      557,
+      989
+     ],
+     "sent_size": [
+      280,
+      497
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.22,
+      "several": 0.78
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.144,
+     "tokens": 804
+    },
+    {
+     "depth": 7,
+     "region": [
+      464,
+      494,
+      557,
+      576
+     ],
+     "sent_size": [
+      318,
+      280
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.02,
+      "one": 0.98,
+      "several": 0.0
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.156,
+     "tokens": 684,
+     "box": [
+      485.39,
+      494.82,
+      522.59,
+      530.9
+     ],
+     "box_confidence": 0.42,
+     "forced": false
+    },
+    {
+     "depth": 7,
+     "region": [
+      464,
+      576,
+      557,
+      659
+     ],
+     "sent_size": [
+      314,
+      280
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.11,
+      "one": 0.89,
+      "several": 0.0
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.126,
+     "tokens": 679,
+     "box": [
+      464.0,
+      576.83,
+      476.09,
+      658.17
+     ],
+     "box_confidence": 0.25,
+     "forced": false
+    },
+    {
+     "depth": 7,
+     "region": [
+      464,
+      659,
+      557,
+      741
+     ],
+     "sent_size": [
+      318,
+      280
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.03,
+      "one": 0.11,
+      "several": 0.86
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.099,
+     "tokens": 681,
+     "box": [
+      483.53,
+      660.64,
+      548.63,
+      739.36
+     ],
+     "box_confidence": 0.12,
+     "forced": true
+    },
+    {
+     "depth": 7,
+     "region": [
+      464,
+      741,
+      557,
+      824
+     ],
+     "sent_size": [
+      314,
+      280
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.03,
+      "several": 0.97
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.145,
+     "tokens": 682,
+     "box": [
+      466.79,
+      741.83,
+      553.28,
+      822.34
+     ],
+     "box_confidence": 0.21,
+     "forced": true
+    },
+    {
+     "depth": 7,
+     "region": [
+      371,
+      824,
+      464,
+      906
+     ],
+     "sent_size": [
+      318,
+      280
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.09,
+      "one": 0.91,
+      "several": 0.0
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.119,
+     "tokens": 681,
+     "box": [
+      421.22,
+      824.82,
+      462.14,
+      835.48
+     ],
+     "box_confidence": 0.29,
+     "forced": false
+    },
+    {
+     "depth": 7,
+     "region": [
+      371,
+      906,
+      464,
+      989
+     ],
+     "sent_size": [
+      314,
+      280
+     ],
+     "choice": "one",
+     "p": {
+      "none": 0.09,
+      "one": 0.91,
+      "several": 0.0
+     },
+     "truth": 1,
+     "truth_word": "one",
+     "seconds": 0.143,
+     "tokens": 681,
+     "box": [
+      371.0,
+      906.83,
+      390.53,
+      988.17
+     ],
+     "box_confidence": 0.46,
+     "forced": false
+    },
+    {
+     "depth": 7,
+     "region": [
+      464,
+      824,
+      557,
+      906
+     ],
+     "sent_size": [
+      318,
+      280
+     ],
+     "choice": "several",
+     "p": {
+      "none": 0.0,
+      "one": 0.06,
+      "several": 0.94
+     },
+     "truth": 2,
+     "truth_word": "several",
+     "seconds": 0.127,
+     "tokens": 684,
+     "box": [
+      465.86,
+      824.82,
+      517.01,
+      904.36
+     ],
+     "box_confidence": 0.06,
+     "forced": true
+    },
+    {
+     "depth": 7,
+     "region": [
+      464,
+      906,
+      557,
+      989
+     ],
+     "sent_size": [
+      314,
+      280
+     ],
+     "choice": "none",
+     "p": {
+      "none": 1.0,
+      "one": 0.0,
+      "several": 0.0
+     },
+     "truth": 0,
+     "truth_word": "none",
+     "seconds": 0.13,
+     "tokens": 685
+    }
+   ],
+   "grade": {
+    "boxes": 10,
+    "ovals": 7,
+    "iou50": 6,
+    "iou75": 3,
+    "iou90": 1,
+    "points_on_oval": 7,
+    "point_f1": 0.824
+   },
+   "requests": 39,
+   "wall_seconds": 1.48,
+   "request_seconds": 5.59,
+   "tokens": 35068,
+   "dollars": 0.00147,
+   "count_wrong": 1
+  }
+ }
+}

@@ -1,0 +1,39 @@
+<!doctype html><meta charset="utf-8"><title>Jev 1.14 + halving</title>
+<style>
+body{font:15px/1.45 system-ui,sans-serif;max-width:1500px;margin:1.5em auto;padding:0 1em;color:#222;background:#fafafa}
+section{background:#fff;border:1px solid #ddd;border-radius:8px;padding:.6em 1em 1em;margin:1.2em 0}
+img{max-width:100%;max-height:85vh;border:1px solid #ccc} h2{margin:.2em 0} p{margin:.3em 0 .6em}
+.k span{display:inline-block;width:1.6em;height:.8em;margin:0 .3em 0 1em;vertical-align:middle}
+table{border-collapse:collapse;margin-top:.5em} td,th{border:1px solid #ddd;padding:2px 10px;text-align:left}
+</style>
+<h1>Jev 1.14 + halving: final boxes</h1>
+<p>Synthetic test picture (7 red ovals, 4 blue squares), no benchmark photo. Run: <code>results/probe-jev-split-20261015-210225.json</code></p>
+<p class="k"><span style="background:rgb(230, 0, 160)"></span>Jev's final box (numbered)
+<span style="background:rgb(0, 170, 60)"></span>true box of each oval
+<span style="background:rgb(255, 210, 0);border:1px solid #000;border-radius:50%;width:.8em"></span>middle of Jev's box (its point)
+<span style="background:rgb(150, 150, 150);height:2px"></span>where the picture was cut in half</p>
+<section><h2>wide · 4000×2252</h2>
+<p>6 boxes for 7 ovals · 6 middles on an oval ·
+overlap ≥50%: 6, ≥75%: 4, ≥90%: 2 ·
+85 requests, 1.85 s, $0.0052</p>
+<a href="wide.png"><img src="wide.png" alt="wide"></a>
+<details><summary>each box</summary><table><tr><th>box</th><th>best overlap</th><th>with</th><th>middle on an oval</th></tr><tr><td>1</td><td>91%</td><td>oval 1</td><td>yes</td></tr><tr><td>2</td><td>73%</td><td>oval 5</td><td>yes</td></tr><tr><td>3</td><td>81%</td><td>oval 4</td><td>yes</td></tr><tr><td>4</td><td>95%</td><td>oval 2</td><td>yes</td></tr><tr><td>5</td><td>90%</td><td>oval 3</td><td>yes</td></tr><tr><td>6</td><td>51%</td><td>oval 6</td><td>yes</td></tr></table></details>
+</section><section><h2>tall · 2252×4000</h2>
+<p>7 boxes for 7 ovals · 7 middles on an oval ·
+overlap ≥50%: 7, ≥75%: 7, ≥90%: 5 ·
+81 requests, 1.74 s, $0.0052</p>
+<a href="tall.png"><img src="tall.png" alt="tall"></a>
+<details><summary>each box</summary><table><tr><th>box</th><th>best overlap</th><th>with</th><th>middle on an oval</th></tr><tr><td>1</td><td>96%</td><td>oval 1</td><td>yes</td></tr><tr><td>2</td><td>99%</td><td>oval 3</td><td>yes</td></tr><tr><td>3</td><td>96%</td><td>oval 2</td><td>yes</td></tr><tr><td>4</td><td>94%</td><td>oval 5</td><td>yes</td></tr><tr><td>5</td><td>93%</td><td>oval 4</td><td>yes</td></tr><tr><td>6</td><td>80%</td><td>oval 6</td><td>yes</td></tr><tr><td>7</td><td>86%</td><td>oval 7</td><td>yes</td></tr></table></details>
+</section><section><h2>square · 1015×1015</h2>
+<p>7 boxes for 7 ovals · 7 middles on an oval ·
+overlap ≥50%: 7, ≥75%: 6, ≥90%: 1 ·
+84 requests, 1.19 s, $0.0028</p>
+<a href="square.png"><img src="square.png" alt="square"></a>
+<details><summary>each box</summary><table><tr><th>box</th><th>best overlap</th><th>with</th><th>middle on an oval</th></tr><tr><td>1</td><td>91%</td><td>oval 1</td><td>yes</td></tr><tr><td>2</td><td>71%</td><td>oval 5</td><td>yes</td></tr><tr><td>3</td><td>85%</td><td>oval 2</td><td>yes</td></tr><tr><td>4</td><td>85%</td><td>oval 4</td><td>yes</td></tr><tr><td>5</td><td>81%</td><td>oval 3</td><td>yes</td></tr><tr><td>6</td><td>83%</td><td>oval 6</td><td>yes</td></tr><tr><td>7</td><td>83%</td><td>oval 7</td><td>yes</td></tr></table></details>
+</section><section><h2>small-tall · 743×1319</h2>
+<p>8 boxes for 7 ovals · 7 middles on an oval ·
+overlap ≥50%: 6, ≥75%: 4, ≥90%: 0 ·
+59 requests, 1.15 s, $0.0021</p>
+<a href="small-tall.png"><img src="small-tall.png" alt="small-tall"></a>
+<details><summary>each box</summary><table><tr><th>box</th><th>best overlap</th><th>with</th><th>middle on an oval</th></tr><tr><td>1</td><td>86%</td><td>oval 1</td><td>yes</td></tr><tr><td>2</td><td>76%</td><td>oval 3</td><td>yes</td></tr><tr><td>3</td><td>42%</td><td>oval 5</td><td>yes</td></tr><tr><td>4</td><td>82%</td><td>oval 2</td><td>yes</td></tr><tr><td>5</td><td>86%</td><td>oval 4</td><td>yes</td></tr><tr><td>6</td><td>74%</td><td>oval 6</td><td>yes</td></tr><tr><td>7</td><td>15%</td><td>oval 7</td><td>yes</td></tr><tr><td>8</td><td>50%</td><td>oval 7</td><td>yes</td></tr></table></details>
+</section>
