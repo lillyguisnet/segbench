@@ -1,0 +1,35 @@
+model loaded in 13.5 s
+logs        try 0:  64 objects,  330 requests,   98.2 s, forced 0, depth 8
+model loaded in 12.1 s
+logs        try 1:  64 objects,  330 requests,   45.3 s, forced 0, depth 8
+logs        try 2:  64 objects,  330 requests,   41.9 s, forced 0, depth 8
+cows        try 0:   6 objects,   48 requests,   23.0 s, forced 0, depth 8
+cows        try 1:   6 objects,   48 requests,   24.3 s, forced 0, depth 8
+cows        try 2:   6 objects,   48 requests,   23.6 s, forced 0, depth 8
+fig         try 0:  16 objects,  101 requests,   39.3 s, forced 0, depth 7
+fig         try 1:  16 objects,  101 requests,   22.2 s, forced 0, depth 7
+fig         try 2:  16 objects,  101 requests,   22.2 s, forced 0, depth 7
+dishes      try 0:  14 objects,   82 requests,   34.2 s, forced 0, depth 10
+dishes      try 1:  14 objects,   82 requests,   40.2 s, forced 0, depth 10
+dishes      try 2:  14 objects,   82 requests,   41.1 s, forced 0, depth 10
+ants        try 0:   2 objects,   16 requests,    5.9 s, forced 0, depth 2
+ants        try 1:   2 objects,   16 requests,    6.0 s, forced 0, depth 2
+ants        try 2:   2 objects,   16 requests,    5.9 s, forced 0, depth 2
+beetles     try 0:   9 objects,   61 requests,   13.4 s, forced 0, depth 7
+beetles     try 1:   9 objects,   61 requests,   13.4 s, forced 0, depth 7
+beetles     try 2:   9 objects,   61 requests,   13.3 s, forced 0, depth 7
+birds       try 0:  14 objects,   88 requests,   17.0 s, forced 0, depth 7
+birds       try 1:  14 objects,   88 requests,   16.1 s, forced 0, depth 7
+birds       try 2:  14 objects,   88 requests,   12.7 s, forced 0, depth 7
+mushrooms   try 0:   9 objects,   65 requests,    5.8 s, forced 0, depth 5
+mushrooms   try 1:   9 objects,   65 requests,    5.9 s, forced 0, depth 5
+mushrooms   try 2:   9 objects,   65 requests,    5.8 s, forced 0, depth 5
+jars        try 0:   4 objects,   25 requests,    2.5 s, forced 0, depth 3
+jars        try 1:   4 objects,   25 requests,    2.5 s, forced 0, depth 3
+jars        try 2:   4 objects,   25 requests,    2.5 s, forced 0, depth 3
+pinkleaves  try 0:  13 objects,   91 requests,    6.3 s, forced 0, depth 10
+pinkleaves  try 1:  13 objects,   91 requests,    6.4 s, forced 0, depth 10
+pinkleaves  try 2:  13 objects,   91 requests,    6.5 s, forced 0, depth 10
+whitecow    try 0:   0 objects,    1 requests,    0.5 s, forced 0, depth 0
+whitecow    try 1:   0 objects,    1 requests,    0.5 s, forced 0, depth 0
+whitecow    try 2:   0 objects,    1 requests,    0.5 s, forced 0, depth 0
