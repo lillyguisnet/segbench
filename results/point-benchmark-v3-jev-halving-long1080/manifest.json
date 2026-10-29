@@ -1,0 +1,43 @@
+{
+  "metric": "point-localisation-v1",
+  "parser": "lenient",
+  "dish_labels": "separate",
+  "created_at": "2026-10-18T20:39:36.179943+00:00",
+  "references": {
+    "segbench-review-6187f623-approved.json": "2862bb074507022fbfdd58d017f57520abcafb4b8366b9824adeae066c9c120b",
+    "segbench-review-5682a4be-approved.json": "8170b69a5bb5468ce1a745ef9517ef619421117e4bf413083de9c01b4a120dd2"
+  },
+  "tasks": [
+    "logs",
+    "cows",
+    "fig",
+    "dishes",
+    "ants",
+    "beetles",
+    "birds",
+    "mushrooms",
+    "jars",
+    "pinkleaves",
+    "whitecow"
+  ],
+  "timing_tasks": [
+    "logs",
+    "cows",
+    "fig",
+    "dishes"
+  ],
+  "input_files": {
+    "run-jev-halving-long1080.jsonl": "17b425e18655f6709d566eaabf0e3d6a6e70a2749c4523feb6267ae4ad71105d"
+  },
+  "tolerances": {
+    "tight": 0.1,
+    "medium": 0.25,
+    "loose": 0.5
+  },
+  "diagonal_cap": 0.02,
+  "scope": "Point localisation only. Not point-inside-object or segmentation.",
+  "aggregation": "Equal mean over three F1 tolerances, then 11 tasks. Complete coverage required.",
+  "specification": "docs/point-benchmark-v2.md",
+  "specification_sha256": "255d3e040a23317d07912a0510de570edc942b9d85808675672995126a8dd8ca",
+  "scorer_sha256": "18764a82bae5881aff972aebf5ec0ab0698c9a6c33489b65d7f57e5b15f1ebea"
+}

@@ -1,0 +1,321 @@
+{
+ "summary": {
+  "status": "found",
+  "maps": 4,
+  "final_zoom": 15,
+  "final_error_m": 13279,
+  "final_box_touches_bridge": false,
+  "final_bridge_iou": 0.0,
+  "yes_no_right": 2,
+  "zoom_outs": 0,
+  "cost_usd": 0.000518448,
+  "model": "typesafe:jev-1.14.0",
+  "when": "2026-10-16T17:15:54+00:00"
+ },
+ "steps": [
+  {
+   "step": 1,
+   "zoom": 7,
+   "centre": [
+    37.2,
+    -119.5
+   ],
+   "map_width_m": 997530,
+   "said_on_map": true,
+   "p_on_map": {
+    "true": 0.96,
+    "false": 0.040000000000000036
+   },
+   "really_on_map": true,
+   "box_px": [
+    235.5,
+    419.8,
+    256.0,
+    491.5
+   ],
+   "box_confidence": 0.52,
+   "box_touches_bridge": true,
+   "error_m": 14115,
+   "bridge_iou": 0.0,
+   "seconds": 0.192,
+   "cost_usd": 0.000129612,
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "on_map": {
+       "type": "boolean",
+       "description": "Is the Golden Gate Bridge on this map? Answer yes also when the map is too zoomed out to draw the bridge but the place where it stands is on the map."
+      },
+      "box": {
+       "type": "object",
+       "description": "the Golden Gate Bridge on this map. If the map is too zoomed out to draw the bridge, box the place where it stands.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "on_map",
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "then": "zoom in to 10"
+  },
+  {
+   "step": 2,
+   "zoom": 10,
+   "centre": [
+    37.69124138642671,
+    -122.42499999999998
+   ],
+   "map_width_m": 123875,
+   "said_on_map": true,
+   "p_on_map": {
+    "true": 0.97,
+    "false": 0.030000000000000027
+   },
+   "really_on_map": true,
+   "box_px": [
+    440.3,
+    245.8,
+    501.8,
+    337.9
+   ],
+   "box_confidence": 0.4,
+   "box_touches_bridge": false,
+   "error_m": 11305,
+   "bridge_iou": 0.0,
+   "seconds": 0.245,
+   "cost_usd": 0.000129612,
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "on_map": {
+       "type": "boolean",
+       "description": "Is the Golden Gate Bridge on this map? Answer yes also when the map is too zoomed out to draw the bridge but the place where it stands is on the map."
+      },
+      "box": {
+       "type": "object",
+       "description": "the Golden Gate Bridge on this map. If the map is too zoomed out to draw the bridge, box the place where it stands.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "on_map",
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "then": "zoom in to 13"
+  },
+  {
+   "step": 3,
+   "zoom": 13,
+   "centre": [
+    37.93010491092625,
+    -122.48124999999999
+   ],
+   "map_width_m": 15434,
+   "said_on_map": true,
+   "p_on_map": {
+    "true": 0.9,
+    "false": 0.09999999999999998
+   },
+   "really_on_map": false,
+   "box_px": [
+    337.9,
+    337.9,
+    471.0,
+    450.6
+   ],
+   "box_confidence": 0.22,
+   "box_touches_bridge": false,
+   "error_m": 13199,
+   "bridge_iou": 0.0,
+   "seconds": 0.19,
+   "cost_usd": 0.000129612,
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "on_map": {
+       "type": "boolean",
+       "description": "Is the Golden Gate Bridge on this map? Answer yes also when the map is too zoomed out to draw the bridge but the place where it stands is on the map."
+      },
+      "box": {
+       "type": "object",
+       "description": "the Golden Gate Bridge on this map. If the map is too zoomed out to draw the bridge, box the place where it stands.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "on_map",
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "then": "zoom in to 15"
+  },
+  {
+   "step": 4,
+   "zoom": 15,
+   "centre": [
+    37.94604786649864,
+    -122.49970703125
+   ],
+   "map_width_m": 3858,
+   "said_on_map": true,
+   "p_on_map": {
+    "true": 0.67,
+    "false": 0.32999999999999996
+   },
+   "really_on_map": false,
+   "box_px": [
+    112.6,
+    532.5,
+    153.6,
+    593.9
+   ],
+   "box_confidence": 0.13,
+   "box_touches_bridge": false,
+   "error_m": 13279,
+   "bridge_iou": 0.0,
+   "seconds": 0.208,
+   "cost_usd": 0.000129612,
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "on_map": {
+       "type": "boolean",
+       "description": "Is the Golden Gate Bridge on this map? Answer yes also when the map is too zoomed out to draw the bridge but the place where it stands is on the map."
+      },
+      "box": {
+       "type": "object",
+       "description": "the Golden Gate Bridge on this map. If the map is too zoomed out to draw the bridge, box the place where it stands.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "on_map",
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "then": "STOP (found)"
+  }
+ ]
+}

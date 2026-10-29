@@ -1,0 +1,4 @@
+entrant,task,repeat,score,predicted_count,reference_count,count_error,readable,read_as,error,tight,medium,loose
+jev@medium,beetles,0,0.7111111111111111,23,22,1,True,strict,,0.4888888888888889,0.7555555555555555,0.8888888888888888
+jev@medium,beetles,1,0.65,18,22,-4,True,strict,,0.45,0.7,0.8
+jev@medium,beetles,2,0.6016260162601627,19,22,-3,True,strict,,0.2926829268292683,0.6829268292682927,0.8292682926829268

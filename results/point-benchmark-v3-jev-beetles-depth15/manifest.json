@@ -1,0 +1,30 @@
+{
+  "metric": "point-localisation-v1",
+  "parser": "lenient",
+  "dish_labels": "separate",
+  "created_at": "2026-10-16T20:26:29.309545+00:00",
+  "references": {
+    "segbench-review-6187f623-approved.json": "2862bb074507022fbfdd58d017f57520abcafb4b8366b9824adeae066c9c120b",
+    "segbench-review-5682a4be-approved.json": "8170b69a5bb5468ce1a745ef9517ef619421117e4bf413083de9c01b4a120dd2"
+  },
+  "tasks": [
+    "beetles"
+  ],
+  "timing_tasks": [
+    "beetles"
+  ],
+  "input_files": {
+    "run-jev-halving-beetles-depth15.jsonl": "1072cdd1d0406e6ec9da2f7cffa7ea339d53d561e033105e2788a3aa895809bb"
+  },
+  "tolerances": {
+    "tight": 0.1,
+    "medium": 0.25,
+    "loose": 0.5
+  },
+  "diagonal_cap": 0.02,
+  "scope": "Point localisation only. Not point-inside-object or segmentation.",
+  "aggregation": "Equal mean over three F1 tolerances, then 1 tasks. Complete coverage required.",
+  "specification": "docs/point-benchmark-v1.md",
+  "specification_sha256": "749e920df1a0627d1b0dbbdde0eebe8427256d83b7d4d69e10a52909366f5eb5",
+  "scorer_sha256": "18764a82bae5881aff972aebf5ec0ab0698c9a6c33489b65d7f57e5b15f1ebea"
+}

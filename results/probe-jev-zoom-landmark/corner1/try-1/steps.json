@@ -1,0 +1,399 @@
+{
+ "summary": {
+  "status": "found",
+  "maps": 5,
+  "final_zoom": 18,
+  "final_error_m": 38,
+  "final_box_touches_bridge": false,
+  "final_bridge_iou": null,
+  "yes_no_right": 5,
+  "zoom_outs": 0,
+  "cost_usd": 0.00065268,
+  "model": "typesafe:jev-1.14.0",
+  "target": "corner",
+  "map": "OpenStreetMap standard (with names)",
+  "when": "2026-10-16T17:22:40+00:00"
+ },
+ "steps": [
+  {
+   "step": 1,
+   "zoom": 7,
+   "centre": [
+    37.2,
+    -119.5
+   ],
+   "map_width_m": 997530,
+   "said_on_map": true,
+   "p_on_map": {
+    "true": 0.96,
+    "false": 0.040000000000000036
+   },
+   "really_on_map": true,
+   "box_px": [
+    235.5,
+    419.8,
+    266.2,
+    460.8
+   ],
+   "box_confidence": 0.55,
+   "box_touches_bridge": true,
+   "error_m": 4448,
+   "bridge_iou": null,
+   "seconds": 0.3,
+   "cost_usd": 0.000130536,
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "on_map": {
+       "type": "boolean",
+       "description": "Is the corner of California Street and Battery Street, San Francisco, on this map? Answer yes also when the map is too zoomed out to draw those streets but the place where they cross is on the map."
+      },
+      "box": {
+       "type": "object",
+       "description": "the corner of California Street and Battery Street, San Francisco (where the two streets cross), on this map. If the map is too zoomed out to draw those streets, box the place where they cross.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "on_map",
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "then": "zoom in to 10"
+  },
+  {
+   "step": 2,
+   "zoom": 10,
+   "centre": [
+    37.82465585202755,
+    -122.36874999999999
+   ],
+   "map_width_m": 123652,
+   "said_on_map": true,
+   "p_on_map": {
+    "true": 0.97,
+    "false": 0.030000000000000027
+   },
+   "really_on_map": true,
+   "box_px": [
+    419.8,
+    532.5,
+    481.3,
+    593.9
+   ],
+   "box_confidence": 0.63,
+   "box_touches_bridge": false,
+   "error_m": 5393,
+   "bridge_iou": null,
+   "seconds": 0.204,
+   "cost_usd": 0.000130536,
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "on_map": {
+       "type": "boolean",
+       "description": "Is the corner of California Street and Battery Street, San Francisco, on this map? Answer yes also when the map is too zoomed out to draw those streets but the place where they cross is on the map."
+      },
+      "box": {
+       "type": "object",
+       "description": "the corner of California Street and Battery Street, San Francisco (where the two streets cross), on this map. If the map is too zoomed out to draw those streets, box the place where they cross.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "on_map",
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "then": "zoom in to 13"
+  },
+  {
+   "step": 3,
+   "zoom": 13,
+   "centre": [
+    37.769095732725184,
+    -122.453125
+   ],
+   "map_width_m": 15468,
+   "said_on_map": true,
+   "p_on_map": {
+    "true": 0.89,
+    "false": 0.10999999999999999
+   },
+   "really_on_map": true,
+   "box_px": [
+    778.2,
+    327.7,
+    809.0,
+    419.8
+   ],
+   "box_confidence": 0.53,
+   "box_touches_bridge": false,
+   "error_m": 732,
+   "bridge_iou": null,
+   "seconds": 0.263,
+   "cost_usd": 0.000130536,
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "on_map": {
+       "type": "boolean",
+       "description": "Is the corner of California Street and Battery Street, San Francisco, on this map? Answer yes also when the map is too zoomed out to draw those streets but the place where they cross is on the map."
+      },
+      "box": {
+       "type": "object",
+       "description": "the corner of California Street and Battery Street, San Francisco (where the two streets cross), on this map. If the map is too zoomed out to draw those streets, box the place where they cross.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "on_map",
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "then": "zoom in to 16"
+  },
+  {
+   "step": 4,
+   "zoom": 16,
+   "centre": [
+    37.78785194447654,
+    -122.40478515625
+   ],
+   "map_width_m": 1933,
+   "said_on_map": true,
+   "p_on_map": {
+    "true": 0.95,
+    "false": 0.050000000000000044
+   },
+   "really_on_map": true,
+   "box_px": [
+    706.6,
+    204.8,
+    778.2,
+    266.2
+   ],
+   "box_confidence": 0.63,
+   "box_touches_bridge": false,
+   "error_m": 76,
+   "bridge_iou": null,
+   "seconds": 0.245,
+   "cost_usd": 0.000130536,
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "on_map": {
+       "type": "boolean",
+       "description": "Is the corner of California Street and Battery Street, San Francisco, on this map? Answer yes also when the map is too zoomed out to draw those streets but the place where they cross is on the map."
+      },
+      "box": {
+       "type": "object",
+       "description": "the corner of California Street and Battery Street, San Francisco (where the two streets cross), on this map. If the map is too zoomed out to draw those streets, box the place where they cross.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "on_map",
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "then": "zoom in to 18"
+  },
+  {
+   "step": 5,
+   "zoom": 18,
+   "centre": [
+    37.79254025379393,
+    -122.39984130859375
+   ],
+   "map_width_m": 483,
+   "said_on_map": true,
+   "p_on_map": {
+    "true": 0.96,
+    "false": 0.040000000000000036
+   },
+   "really_on_map": true,
+   "box_px": [
+    460.8,
+    368.6,
+    563.2,
+    491.5
+   ],
+   "box_confidence": 0.63,
+   "box_touches_bridge": false,
+   "error_m": 38,
+   "bridge_iou": null,
+   "seconds": 0.202,
+   "cost_usd": 0.000130536,
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "on_map": {
+       "type": "boolean",
+       "description": "Is the corner of California Street and Battery Street, San Francisco, on this map? Answer yes also when the map is too zoomed out to draw those streets but the place where they cross is on the map."
+      },
+      "box": {
+       "type": "object",
+       "description": "the corner of California Street and Battery Street, San Francisco (where the two streets cross), on this map. If the map is too zoomed out to draw those streets, box the place where they cross.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "on_map",
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "then": "STOP (found)"
+  }
+ ]
+}

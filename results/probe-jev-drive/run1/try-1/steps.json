@@ -1,0 +1,508 @@
+{
+ "summary": {
+  "status": "lost",
+  "maps": 1,
+  "wrong_moves": 3,
+  "requests": 4,
+  "cost_usd": 0.0005317200000000001,
+  "metres_driven": 460,
+  "left_m": 5660,
+  "model": "typesafe:jev-1.14.0",
+  "map": "OpenStreetMap standard, zoom 17, 1024px",
+  "reference_m": 9106,
+  "when": "2026-10-16T15:05:30+00:00"
+ },
+ "steps": [
+  {
+   "step": 1,
+   "map": "map-01.png",
+   "car": [
+    37.793256237009615,
+    -122.39965795935002
+   ],
+   "on": "California Street",
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "box": {
+       "type": "object",
+       "description": "the next street the car must drive on. This is a street map. The red dot is a car on California Street. The car must drive to the blue dot (UCSF Parnassus Campus, 505 Parnassus Avenue); when the blue dot is not on the map, the blue arrow at the edge of the map points toward it. Box only the part of the next street that the car will drive: from where the car turns onto it up to its next turn or the edge of the map. If the car should keep going on California Street, box the part of California Street ahead of it. Arrows on a street mean it is one-way: the car may only drive in the arrows' direction.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "box_px": [
+    30.7,
+    481.3,
+    471.0,
+    788.5
+   ],
+   "box_confidence": 0.06,
+   "seconds": 0.342,
+   "cost_usd": 0.00013293000000000002,
+   "candidates": 23,
+   "top": [
+    {
+     "kind": "keep going",
+     "street": "California Street",
+     "fit": 0.281,
+     "legal": true,
+     "inside_px": 446,
+     "turn_at": "car0"
+    },
+    {
+     "kind": "turn",
+     "street": "Sansome Street",
+     "fit": 0.109,
+     "legal": true,
+     "inside_px": 257,
+     "turn_at": "65295281"
+    },
+    {
+     "kind": "turn",
+     "street": "Montgomery Street",
+     "fit": 0.093,
+     "legal": true,
+     "inside_px": 233,
+     "turn_at": "65295287"
+    },
+    {
+     "kind": "turn",
+     "street": "Kearny Street",
+     "fit": 0.075,
+     "legal": false,
+     "inside_px": 208,
+     "turn_at": "65295289"
+    },
+    {
+     "kind": "turn",
+     "street": "Kearny Street",
+     "fit": 0.026,
+     "legal": true,
+     "inside_px": 103,
+     "turn_at": "65295289"
+    },
+    {
+     "kind": "turn",
+     "street": "Montgomery Street",
+     "fit": 0.018,
+     "legal": false,
+     "inside_px": 78,
+     "turn_at": "65295287"
+    }
+   ],
+   "result": "move",
+   "kind": "keep going",
+   "to": "California Street",
+   "fit": 0.281,
+   "metres": 460,
+   "dist_to_dest_m": 5660
+  },
+  {
+   "step": 2,
+   "map": "map-02.png",
+   "car": [
+    37.792604397739595,
+    -122.40482153356878
+   ],
+   "on": "California Street",
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "box": {
+       "type": "object",
+       "description": "the next street the car must drive on. This is a street map. The red dot is a car on California Street. The car must drive to the blue dot (UCSF Parnassus Campus, 505 Parnassus Avenue); when the blue dot is not on the map, the blue arrow at the edge of the map points toward it. Box only the part of the next street that the car will drive: from where the car turns onto it up to its next turn or the edge of the map. If the car should keep going on California Street, box the part of California Street ahead of it. Arrows on a street mean it is one-way: the car may only drive in the arrows' direction.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "box_px": [
+    481.3,
+    450.6,
+    563.2,
+    532.5
+   ],
+   "box_confidence": 0.26,
+   "seconds": 0.203,
+   "cost_usd": 0.00013293000000000002,
+   "candidates": 27,
+   "top": [
+    {
+     "kind": "turn",
+     "street": "Kearny Street",
+     "fit": 0.236,
+     "legal": true,
+     "inside_px": 56,
+     "turn_at": "65295289"
+    },
+    {
+     "kind": "keep going",
+     "street": "California Street",
+     "fit": 0.214,
+     "legal": true,
+     "inside_px": 52,
+     "turn_at": "car1"
+    },
+    {
+     "kind": "keep going",
+     "street": "California Street",
+     "fit": 0.121,
+     "legal": true,
+     "inside_px": 31,
+     "turn_at": "car1"
+    },
+    {
+     "kind": "turn",
+     "street": "Kearny Street",
+     "fit": 0.104,
+     "legal": false,
+     "inside_px": 27,
+     "turn_at": "65295289"
+    }
+   ],
+   "result": "not a road"
+  },
+  {
+   "step": 2,
+   "map": "map-02-retry1.png",
+   "car": [
+    37.792604397739595,
+    -122.40482153356878
+   ],
+   "on": "California Street",
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "box": {
+       "type": "object",
+       "description": "the next street the car must drive on. This is a street map. The red dot is a car on California Street. The car must drive to the blue dot (UCSF Parnassus Campus, 505 Parnassus Avenue); when the blue dot is not on the map, the blue arrow at the edge of the map points toward it. Box only the part of the next street that the car will drive: from where the car turns onto it up to its next turn or the edge of the map. If the car should keep going on California Street, box the part of California Street ahead of it. Arrows on a street mean it is one-way: the car may only drive in the arrows' direction.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "box_px": [
+    481.3,
+    450.6,
+    573.4,
+    542.7
+   ],
+   "box_confidence": 0.21,
+   "seconds": 0.2,
+   "cost_usd": 0.00013293000000000002,
+   "candidates": 27,
+   "top": [
+    {
+     "kind": "keep going",
+     "street": "California Street",
+     "fit": 0.211,
+     "legal": true,
+     "inside_px": 62,
+     "turn_at": "car1"
+    },
+    {
+     "kind": "turn",
+     "street": "Kearny Street",
+     "fit": 0.186,
+     "legal": true,
+     "inside_px": 56,
+     "turn_at": "65295289"
+    },
+    {
+     "kind": "turn",
+     "street": "Kearny Street",
+     "fit": 0.115,
+     "legal": false,
+     "inside_px": 37,
+     "turn_at": "65295289"
+    },
+    {
+     "kind": "keep going",
+     "street": "California Street",
+     "fit": 0.096,
+     "legal": true,
+     "inside_px": 31,
+     "turn_at": "car1"
+    }
+   ],
+   "result": "not a road"
+  },
+  {
+   "step": 2,
+   "map": "map-02-retry2.png",
+   "car": [
+    37.792604397739595,
+    -122.40482153356878
+   ],
+   "on": "California Street",
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "box": {
+       "type": "object",
+       "description": "the next street the car must drive on. This is a street map. The red dot is a car on California Street. The car must drive to the blue dot (UCSF Parnassus Campus, 505 Parnassus Avenue); when the blue dot is not on the map, the blue arrow at the edge of the map points toward it. Box only the part of the next street that the car will drive: from where the car turns onto it up to its next turn or the edge of the map. If the car should keep going on California Street, box the part of California Street ahead of it. Arrows on a street mean it is one-way: the car may only drive in the arrows' direction.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "box_px": [
+    481.3,
+    460.8,
+    553.0,
+    542.7
+   ],
+   "box_confidence": 0.23,
+   "seconds": 0.391,
+   "cost_usd": 0.00013293000000000002,
+   "candidates": 27,
+   "top": [
+    {
+     "kind": "keep going",
+     "street": "California Street",
+     "fit": 0.189,
+     "legal": true,
+     "inside_px": 42,
+     "turn_at": "car1"
+    },
+    {
+     "kind": "turn",
+     "street": "Kearny Street",
+     "fit": 0.175,
+     "legal": true,
+     "inside_px": 46,
+     "turn_at": "65295289"
+    },
+    {
+     "kind": "keep going",
+     "street": "California Street",
+     "fit": 0.139,
+     "legal": true,
+     "inside_px": 31,
+     "turn_at": "car1"
+    },
+    {
+     "kind": "turn",
+     "street": "Kearny Street",
+     "fit": 0.086,
+     "legal": false,
+     "inside_px": 26,
+     "turn_at": "65295289"
+    }
+   ],
+   "result": "not a road"
+  }
+ ],
+ "path": [
+  [
+   37.793256237009615,
+   -122.39965795935002
+  ],
+  [
+   37.7932286,
+   -122.3998767
+  ],
+  [
+   37.7932159,
+   -122.3999769
+  ],
+  [
+   37.7932022,
+   -122.400085
+  ],
+  [
+   37.7932005,
+   -122.4000988
+  ],
+  [
+   37.7930797,
+   -122.4010539
+  ],
+  [
+   37.7930673,
+   -122.4011522
+  ],
+  [
+   37.7930542,
+   -122.4012567
+  ],
+  [
+   37.7929634,
+   -122.4019738
+  ],
+  [
+   37.7928706,
+   -122.4027033
+  ],
+  [
+   37.7928594,
+   -122.4027912
+  ],
+  [
+   37.7928473,
+   -122.4028874
+  ],
+  [
+   37.7927794,
+   -122.403427
+  ],
+  [
+   37.792753,
+   -122.4036376
+  ],
+  [
+   37.7927285,
+   -122.4038309
+  ],
+  [
+   37.7927132,
+   -122.4039516
+  ],
+  [
+   37.7926675,
+   -122.4043285
+  ],
+  [
+   37.7926558,
+   -122.4044255
+  ],
+  [
+   37.7926379,
+   -122.4045632
+  ],
+  [
+   37.792604397739595,
+   -122.40482153356878
+  ]
+ ]
+}

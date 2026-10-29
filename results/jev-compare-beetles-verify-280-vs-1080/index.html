@@ -1,0 +1,31 @@
+<!doctype html><meta charset="utf-8"><title>Jev beetles: feedback loop, 280 vs 1080 px</title>
+<style>body{font:15px/1.45 system-ui,sans-serif;max-width:2000px;margin:1.2em auto;padding:0 1em;color:#222;background:#fafafa}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:1em} @media(max-width:900px){.pair{grid-template-columns:1fr}}
+.col{background:#fff;border:1px solid #ddd;border-radius:8px;padding:.5em 1em 1em}
+img{width:100%;max-height:85vh;object-fit:contain;border:1px solid #ccc;background:#eee} h3{margin:.2em 0 .4em;font-size:1em}
+.avg{font-weight:normal;color:#666;margin-left:.5em} .info{margin:.3em 0 .5em;color:#444;font-size:.92em}
+button{font:inherit;font-size:.85em;margin:0 .3em .2em 0;padding:.15em .6em;border:1px solid #bbb;border-radius:5px;background:#fff;cursor:pointer}
+button.on{background:#222;color:#fff;border-color:#222}
+.k span{display:inline-block;width:1.4em;height:.8em;margin:0 .3em 0 1em;vertical-align:middle}</style>
+<h1>Jev + halving (up to 15 cuts) + feedback loop, on the beetles photo</h1>
+<p>Left: small pieces enlarged to 280 px (run of 2026-10-16). Right: enlarged to 1080 px (2026-10-18). Everything else identical. Each side starts on its middle-scoring try.</p>
+<p class="k"><span style="border:2px solid rgb(230,0,160)"></span>kept (check said "a beetle")
+<span style="border:2px solid rgb(90,90,90)"></span>rejected (grey, crossed)
+<span style="border:2px solid rgb(255,140,0)"></span>found again after a rejection, kept
+<span style="background:rgb(255,210,0);border-radius:50%;width:.8em"></span>point scored
+<span style="background:rgb(0,200,70);border-radius:50%;width:.8em"></span>beetle found
+<span style="border:2px solid rgb(0,200,70);border-radius:50%;width:.6em"></span>beetle missed
+· thin white lines: the cuts</p>
+<div class="pair"><div class="col" data-views='[{&quot;src&quot;: &quot;beetles-0-0.jpg&quot;, &quot;label&quot;: &quot;Try 1: 71%&quot;, &quot;info&quot;: &quot;23 boxes kept for 22 beetles \u00b7 17 beetles found \u00b7 6 extra \u00b7 204 questions, 4.1 s, $0.0064&quot;}, {&quot;src&quot;: &quot;beetles-0-1.jpg&quot;, &quot;label&quot;: &quot;Try 2: 65%&quot;, &quot;info&quot;: &quot;18 boxes kept for 22 beetles \u00b7 14 beetles found \u00b7 4 extra \u00b7 150 questions, 4.1 s, $0.0047&quot;}, {&quot;src&quot;: &quot;beetles-0-2.jpg&quot;, &quot;label&quot;: &quot;Try 3: 60%&quot;, &quot;info&quot;: &quot;19 boxes kept for 22 beetles \u00b7 14 beetles found \u00b7 5 extra \u00b7 170 questions, 3.5 s, $0.0054&quot;}]'><h3>Before: pieces enlarged to 280 px <span class="avg">average 65.4%</span></h3>
+<div><button data-i="0">Try 1: 71%</button><button data-i="1" class=on>Try 2: 65%</button><button data-i="2">Try 3: 60%</button></div><p class="info">18 boxes kept for 22 beetles · 14 beetles found · 4 extra · 150 questions, 4.1 s, $0.0047</p><a href="beetles-0-1.jpg" target="_blank"><img src="beetles-0-1.jpg"></a></div><div class="col" data-views='[{&quot;src&quot;: &quot;beetles-1-0.jpg&quot;, &quot;label&quot;: &quot;Try 1: 83%&quot;, &quot;info&quot;: &quot;22 boxes kept for 22 beetles \u00b7 19 beetles found \u00b7 3 extra \u00b7 205 questions, 6.0 s, $0.0224&quot;}, {&quot;src&quot;: &quot;beetles-1-1.jpg&quot;, &quot;label&quot;: &quot;Try 2: 93%&quot;, &quot;info&quot;: &quot;21 boxes kept for 22 beetles \u00b7 21 beetles found \u00b7 0 extra \u00b7 198 questions, 6.4 s, $0.0215&quot;}, {&quot;src&quot;: &quot;beetles-1-2.jpg&quot;, &quot;label&quot;: &quot;Try 3: 89%&quot;, &quot;info&quot;: &quot;20 boxes kept for 22 beetles \u00b7 20 beetles found \u00b7 0 extra \u00b7 220 questions, 5.8 s, $0.0239&quot;}]'><h3>After: pieces enlarged to 1080 px <span class="avg">average 88.4%</span></h3>
+<div><button data-i="0">Try 1: 83%</button><button data-i="1">Try 2: 93%</button><button data-i="2" class=on>Try 3: 89%</button></div><p class="info">20 boxes kept for 22 beetles · 20 beetles found · 0 extra · 220 questions, 5.8 s, $0.0239</p><a href="beetles-1-2.jpg" target="_blank"><img src="beetles-1-2.jpg"></a></div></div>
+<script>
+document.querySelectorAll('.col').forEach(col => {
+  const views = JSON.parse(col.dataset.views);
+  col.querySelectorAll('button').forEach(b => b.onclick = () => {
+    const v = views[+b.dataset.i];
+    col.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b));
+    col.querySelector('img').src = v.src; col.querySelector('a').href = v.src; col.querySelector('.info').textContent = v.info;
+  });
+});
+</script>

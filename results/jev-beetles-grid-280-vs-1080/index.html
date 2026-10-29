@@ -1,0 +1,35 @@
+<!doctype html><meta charset="utf-8"><title>Jev on the beetles: 280 vs 1080 px, before vs after the check</title>
+<style>body{font:15px/1.45 system-ui,sans-serif;max-width:2100px;margin:1em auto;padding:0 1em;color:#222;background:#fafafa}
+h1{font-size:1.35em;margin:.2em 0} h2{font-size:1.05em;margin:.1em 0}
+.grid{display:grid;grid-template-columns:9em 1fr 1fr;gap:.8em;align-items:start}
+.colhead,.cell,.rowhead{background:#fff;border:1px solid #ddd;border-radius:8px;padding:.5em .8em}
+.rowhead{align-self:stretch;display:flex;flex-direction:column;justify-content:center} .rowhead p{color:#555;font-size:.88em;margin:.3em 0}
+img{width:100%;max-height:78vh;object-fit:contain;display:block;background:#eee;border:1px solid #ccc}
+.cap{margin:.3em 0 .1em;font-size:.92em} .cost{margin:0 0 .4em;color:#555;font-size:.85em}
+button{font:inherit;font-size:.85em;margin:.3em .3em 0 0;padding:.15em .7em;border:1px solid #bbb;border-radius:5px;background:#fff;cursor:pointer}
+button.on{background:#222;color:#fff;border-color:#222}
+.k span{display:inline-block;width:1.4em;height:.8em;margin:0 .3em 0 1em;vertical-align:middle}
+@media(max-width:1000px){.grid{grid-template-columns:1fr 1fr} .grid>div:first-child,.rowhead{display:none}}</style>
+<h1>Jev + halving (up to 15 cuts) + feedback loop, beetles photo (22 beetles)</h1>
+<p>Same search on both sides; only the size small pieces are enlarged to before being sent differs. Every picture has its own try buttons. All four start on their column's middle try after the check, so each column starts with the same try top and bottom (the check runs on that try's boxes).</p>
+<p class="k"><span style="border:2px solid rgb(230, 0, 160)"></span>box (kept)
+<span style="border:2px solid rgb(90,90,90)"></span>rejected by the check (grey, crossed)
+<span style="border:2px solid rgb(255,140,0)"></span>found again after a rejection
+<span style="background:rgb(255, 210, 0);border-radius:50%;width:.8em"></span>point scored
+<span style="background:rgb(0, 200, 70);border-radius:50%;width:.8em"></span>beetle found
+<span style="border:2px solid rgb(0, 200, 70);border-radius:50%;width:.6em"></span>beetle missed
+· thin white lines: cuts</p>
+<div class="grid"><div></div><div class="colhead"><h2>Pieces enlarged to 280 px</h2></div><div class="colhead"><h2>Pieces enlarged to 1080 px</h2></div><div class="rowhead"><h2>Before the check</h2><p>the halving's boxes</p></div><div class="cell" data-col="0" data-row="before"><div><button data-i="0">Try 1</button><button data-i="1" class=on>Try 2</button><button data-i="2">Try 3</button></div><p class="cap"><b>average 52.7%</b> · shown: <span>54% · 16 of 22 beetles found · 14 extra · 30 boxes</span></p><p class="cost">whole try: 150 questions, 4.1 s, $0.0047</p><a href="before-0-1.jpg" target="_blank"><img src="before-0-1.jpg"></a></div><div class="cell" data-col="1" data-row="before"><div><button data-i="0">Try 1</button><button data-i="1">Try 2</button><button data-i="2" class=on>Try 3</button></div><p class="cap"><b>average 70.9%</b> · shown: <span>69% · 22 of 22 beetles found · 16 extra · 38 boxes</span></p><p class="cost">whole try: 220 questions, 5.8 s, $0.0239</p><a href="before-1-2.jpg" target="_blank"><img src="before-1-2.jpg"></a></div><div class="rowhead"><h2>After the check</h2><p>each box shown to Jev again close up: "is this a beetle?"</p></div><div class="cell" data-col="0" data-row="after"><div><button data-i="0">Try 1</button><button data-i="1" class=on>Try 2</button><button data-i="2">Try 3</button></div><p class="cap"><b>average 65.4%</b> · shown: <span>65% · 14 of 22 beetles found · 4 extra · 18 boxes</span></p><p class="cost">whole try: 150 questions, 4.1 s, $0.0047</p><a href="after-0-1.jpg" target="_blank"><img src="after-0-1.jpg"></a></div><div class="cell" data-col="1" data-row="after"><div><button data-i="0">Try 1</button><button data-i="1">Try 2</button><button data-i="2" class=on>Try 3</button></div><p class="cap"><b>average 88.4%</b> · shown: <span>89% · 20 of 22 beetles found · 0 extra · 20 boxes</span></p><p class="cost">whole try: 220 questions, 5.8 s, $0.0239</p><a href="after-1-2.jpg" target="_blank"><img src="after-1-2.jpg"></a></div></div>
+<script>
+const V = [[{"before": "before-0-0.jpg", "after": "after-0-0.jpg", "label": "Try 1", "bcap": "55% \u00b7 18 of 22 beetles found \u00b7 21 extra \u00b7 39 boxes", "acap": "71% \u00b7 17 of 22 beetles found \u00b7 6 extra \u00b7 23 boxes", "cost": "whole try: 204 questions, 4.1 s, $0.0064"}, {"before": "before-0-1.jpg", "after": "after-0-1.jpg", "label": "Try 2", "bcap": "54% \u00b7 16 of 22 beetles found \u00b7 14 extra \u00b7 30 boxes", "acap": "65% \u00b7 14 of 22 beetles found \u00b7 4 extra \u00b7 18 boxes", "cost": "whole try: 150 questions, 4.1 s, $0.0047"}, {"before": "before-0-2.jpg", "after": "after-0-2.jpg", "label": "Try 3", "bcap": "50% \u00b7 16 of 22 beetles found \u00b7 17 extra \u00b7 33 boxes", "acap": "60% \u00b7 14 of 22 beetles found \u00b7 5 extra \u00b7 19 boxes", "cost": "whole try: 170 questions, 3.5 s, $0.0054"}], [{"before": "before-1-0.jpg", "after": "after-1-0.jpg", "label": "Try 1", "bcap": "70% \u00b7 21 of 22 beetles found \u00b7 15 extra \u00b7 36 boxes", "acap": "83% \u00b7 19 of 22 beetles found \u00b7 3 extra \u00b7 22 boxes", "cost": "whole try: 205 questions, 6.0 s, $0.0224"}, {"before": "before-1-1.jpg", "after": "after-1-1.jpg", "label": "Try 2", "bcap": "74% \u00b7 22 of 22 beetles found \u00b7 13 extra \u00b7 35 boxes", "acap": "93% \u00b7 21 of 22 beetles found \u00b7 0 extra \u00b7 21 boxes", "cost": "whole try: 198 questions, 6.4 s, $0.0215"}, {"before": "before-1-2.jpg", "after": "after-1-2.jpg", "label": "Try 3", "bcap": "69% \u00b7 22 of 22 beetles found \u00b7 16 extra \u00b7 38 boxes", "acap": "89% \u00b7 20 of 22 beetles found \u00b7 0 extra \u00b7 20 boxes", "cost": "whole try: 220 questions, 5.8 s, $0.0239"}]];
+document.querySelectorAll('.cell').forEach(c => {
+  const n = +c.dataset.col, row = c.dataset.row;
+  c.querySelectorAll('button').forEach(b => b.onclick = () => {
+    const v = V[n][+b.dataset.i];
+    c.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b));
+    c.querySelector('img').src = v[row]; c.querySelector('a').href = v[row];
+    c.querySelector('.cap span').textContent = row === 'before' ? v.bcap : v.acap;
+    c.querySelector('.cost').textContent = v.cost;
+  });
+});
+</script>

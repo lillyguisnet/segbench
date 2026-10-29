@@ -1,0 +1,402 @@
+{
+ "summary": {
+  "maps": 6,
+  "final_error_m": 296,
+  "first_miss_step": 4,
+  "cost_usd": 0.0007728840000000002,
+  "model": "typesafe:jev-1.14.0",
+  "when": "2026-10-16T16:43:15+00:00"
+ },
+ "steps": [
+  {
+   "step": 1,
+   "zoom": 7,
+   "centre": [
+    37.2,
+    -119.5
+   ],
+   "map_width_m": 989640,
+   "box_px": [
+    225.3,
+    419.8,
+    276.5,
+    471.0
+   ],
+   "box_confidence": 0.72,
+   "on_map": true,
+   "in_box": true,
+   "error_m": 3063,
+   "next_zoom": 10,
+   "seconds": 0.157,
+   "cost_usd": 0.00012881400000000002,
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "box": {
+       "type": "object",
+       "description": "where 255 California Street, San Francisco, CA 94111 (the office of TypeSafe AI) is on this street map. If the address itself is not on the map, box the part of the map closest to it.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   }
+  },
+  {
+   "step": 2,
+   "zoom": 10,
+   "centre": [
+    37.78021109934816,
+    -122.36874999999999
+   ],
+   "map_width_m": 123705,
+   "box_px": [
+    430.1,
+    481.3,
+    501.8,
+    553.0
+   ],
+   "box_confidence": 0.81,
+   "on_map": true,
+   "in_box": true,
+   "error_m": 3507,
+   "next_zoom": 13,
+   "seconds": 0.216,
+   "cost_usd": 0.00012881400000000002,
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "box": {
+       "type": "object",
+       "description": "where 255 California Street, San Francisco, CA 94111 (the office of TypeSafe AI) is on this street map. If the address itself is not on the map, box the part of the map closest to it.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   }
+  },
+  {
+   "step": 3,
+   "zoom": 13,
+   "centre": [
+    37.774653624928064,
+    -122.43203125
+   ],
+   "map_width_m": 15463,
+   "box_px": [
+    593.9,
+    348.2,
+    706.6,
+    471.0
+   ],
+   "box_confidence": 0.42,
+   "on_map": true,
+   "in_box": true,
+   "error_m": 910,
+   "next_zoom": 16,
+   "seconds": 0.231,
+   "cost_usd": 0.00012881400000000002,
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "box": {
+       "type": "object",
+       "description": "where 255 California Street, San Francisco, CA 94111 (the office of TypeSafe AI) is on this street map. If the address itself is not on the map, box the part of the map closest to it.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   }
+  },
+  {
+   "step": 4,
+   "zoom": 16,
+   "centre": [
+    37.788546527589965,
+    -122.40830078125
+   ],
+   "map_width_m": 1933,
+   "box_px": [
+    583.7,
+    215.0,
+    788.5,
+    235.5
+   ],
+   "box_confidence": 0.12,
+   "on_map": true,
+   "in_box": false,
+   "error_m": 440,
+   "next_zoom": 18,
+   "seconds": 0.198,
+   "cost_usd": 0.00012881400000000002,
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "box": {
+       "type": "object",
+       "description": "where 255 California Street, San Francisco, CA 94111 (the office of TypeSafe AI) is on this street map. If the address itself is not on the map, box the part of the map closest to it.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   }
+  },
+  {
+   "step": 5,
+   "zoom": 18,
+   "centre": [
+    37.79340842657892,
+    -122.40456542968751
+   ],
+   "map_width_m": 483,
+   "box_px": [
+    757.8,
+    665.6,
+    778.2,
+    686.1
+   ],
+   "box_confidence": 0.07,
+   "on_map": false,
+   "in_box": false,
+   "error_m": 317,
+   "next_zoom": 19,
+   "seconds": 0.216,
+   "cost_usd": 0.00012881400000000002,
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "box": {
+       "type": "object",
+       "description": "where 255 California Street, San Francisco, CA 94111 (the office of TypeSafe AI) is on this street map. If the address itself is not on the map, box the part of the map closest to it.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   }
+  },
+  {
+   "step": 6,
+   "zoom": 19,
+   "centre": [
+    37.79271388916703,
+    -122.40319213867188
+   ],
+   "map_width_m": 242,
+   "box_px": [
+    573.4,
+    471.0,
+    665.6,
+    798.7
+   ],
+   "box_confidence": 0.07,
+   "on_map": false,
+   "in_box": false,
+   "error_m": 296,
+   "next_zoom": 19,
+   "seconds": 0.217,
+   "cost_usd": 0.00012881400000000002,
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "box": {
+       "type": "object",
+       "description": "where 255 California Street, San Francisco, CA 94111 (the office of TypeSafe AI) is on this street map. If the address itself is not on the map, box the part of the map closest to it.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   }
+  }
+ ]
+}

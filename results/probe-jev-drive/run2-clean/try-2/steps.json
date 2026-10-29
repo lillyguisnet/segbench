@@ -1,0 +1,4020 @@
+{
+ "summary": {
+  "status": "lost",
+  "maps": 17,
+  "wrong_moves": 9,
+  "requests": 26,
+  "cost_usd": 0.0034081320000000008,
+  "metres_driven": 5276,
+  "left_m": 6117,
+  "model": "typesafe:jev-1.14.0",
+  "map": "clean (OpenStreetMap data), zoom 17, 1024px",
+  "one_way_rules": false,
+  "destination_mark": "none",
+  "reference_m": 9106,
+  "when": "2026-10-16T15:28:50+00:00"
+ },
+ "steps": [
+  {
+   "step": 1,
+   "map": "map-01.png",
+   "car": [
+    37.793256237009615,
+    -122.39965795935002
+   ],
+   "on": "California Street",
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "box": {
+       "type": "object",
+       "description": "the next street the car must drive on. This is a street map of San Francisco. The red dot is a car on California Street. The car must drive to UCSF Parnassus Campus, 505 Parnassus Avenue, San Francisco. Box only the part of the next street that the car will drive: from where the car turns onto it up to its next turn or the edge of the map. If the car should keep going on California Street, box the part of California Street ahead of it.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "box_px": [
+    471.0,
+    450.6,
+    491.5,
+    563.2
+   ],
+   "box_confidence": 0.13,
+   "seconds": 0.159,
+   "cost_usd": 0.00013108200000000003,
+   "candidates": 23,
+   "top": [
+    {
+     "kind": "turn",
+     "street": "Battery Street",
+     "fit": 0.619,
+     "legal": true,
+     "inside_px": 67,
+     "turn_at": "65295279"
+    },
+    {
+     "kind": "turn",
+     "street": "Battery Street",
+     "fit": 0.407,
+     "legal": true,
+     "inside_px": 47,
+     "turn_at": "65295279"
+    },
+    {
+     "kind": "keep going",
+     "street": "California Street",
+     "fit": 0.171,
+     "legal": true,
+     "inside_px": 21,
+     "turn_at": "car0"
+    }
+   ],
+   "result": "move",
+   "kind": "turn",
+   "to": "Battery Street",
+   "fit": 0.619,
+   "metres": 92,
+   "dist_to_dest_m": 6077
+  },
+  {
+   "step": 2,
+   "map": "map-02.png",
+   "car": [
+    37.793777136687666,
+    -122.40008966580947
+   ],
+   "on": "Battery Street",
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "box": {
+       "type": "object",
+       "description": "the next street the car must drive on. This is a street map of San Francisco. The red dot is a car on Battery Street. The car must drive to UCSF Parnassus Campus, 505 Parnassus Avenue, San Francisco. Box only the part of the next street that the car will drive: from where the car turns onto it up to its next turn or the edge of the map. If the car should keep going on Battery Street, box the part of Battery Street ahead of it.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "box_px": [
+    471.0,
+    204.8,
+    532.5,
+    686.1
+   ],
+   "box_confidence": 0.22,
+   "seconds": 0.149,
+   "cost_usd": 0.00013108200000000003,
+   "candidates": 22,
+   "top": [
+    {
+     "kind": "keep going",
+     "street": "Battery Street",
+     "fit": 0.45,
+     "legal": true,
+     "inside_px": 259,
+     "turn_at": "car1"
+    },
+    {
+     "kind": "keep going",
+     "street": "Battery Street",
+     "fit": 0.14,
+     "legal": true,
+     "inside_px": 131,
+     "turn_at": "car1"
+    },
+    {
+     "kind": "turn",
+     "street": "Washington Street",
+     "fit": 0.055,
+     "legal": true,
+     "inside_px": 60,
+     "turn_at": "65336485"
+    },
+    {
+     "kind": "turn",
+     "street": "Washington Street",
+     "fit": 0.055,
+     "legal": true,
+     "inside_px": 60,
+     "turn_at": "65336485"
+    },
+    {
+     "kind": "turn",
+     "street": "Washington Street",
+     "fit": 0.055,
+     "legal": true,
+     "inside_px": 60,
+     "turn_at": "65336485"
+    },
+    {
+     "kind": "turn",
+     "street": "Washington Street",
+     "fit": 0.055,
+     "legal": true,
+     "inside_px": 60,
+     "turn_at": "65336485"
+    }
+   ],
+   "result": "move",
+   "kind": "keep going",
+   "to": "Battery Street",
+   "fit": 0.45,
+   "metres": 245,
+   "dist_to_dest_m": 6183
+  },
+  {
+   "step": 3,
+   "map": "map-03.png",
+   "car": [
+    37.79594680154461,
+    -122.40052911893447
+   ],
+   "on": "Battery Street",
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "box": {
+       "type": "object",
+       "description": "the next street the car must drive on. This is a street map of San Francisco. The red dot is a car on Battery Street. The car must drive to UCSF Parnassus Campus, 505 Parnassus Avenue, San Francisco. Box only the part of the next street that the car will drive: from where the car turns onto it up to its next turn or the edge of the map. If the car should keep going on Battery Street, box the part of Battery Street ahead of it.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "box_px": [
+    471.0,
+    122.9,
+    583.7,
+    993.3
+   ],
+   "box_confidence": 0.2,
+   "seconds": 0.164,
+   "cost_usd": 0.00013108200000000003,
+   "candidates": 23,
+   "top": [
+    {
+     "kind": "keep going",
+     "street": "Battery Street",
+     "fit": 0.379,
+     "legal": true,
+     "inside_px": 456,
+     "turn_at": "car2"
+    },
+    {
+     "kind": "keep going",
+     "street": "Battery Street",
+     "fit": 0.135,
+     "legal": true,
+     "inside_px": 257,
+     "turn_at": "car2"
+    },
+    {
+     "kind": "turn",
+     "street": "Broadway",
+     "fit": 0.039,
+     "legal": true,
+     "inside_px": 114,
+     "turn_at": "65333972"
+    },
+    {
+     "kind": "turn",
+     "street": "Pine Street",
+     "fit": 0.038,
+     "legal": true,
+     "inside_px": 112,
+     "turn_at": "65336474"
+    },
+    {
+     "kind": "turn",
+     "street": "Pacific Avenue",
+     "fit": 0.037,
+     "legal": true,
+     "inside_px": 106,
+     "turn_at": "65336489"
+    },
+    {
+     "kind": "turn",
+     "street": "California Street",
+     "fit": 0.032,
+     "legal": true,
+     "inside_px": 94,
+     "turn_at": "65295279"
+    }
+   ],
+   "result": "move",
+   "kind": "keep going",
+   "to": "Battery Street",
+   "fit": 0.379,
+   "metres": 430,
+   "dist_to_dest_m": 6002
+  },
+  {
+   "step": 4,
+   "map": "map-04.png",
+   "car": [
+    37.79213302763507,
+    -122.39976007596573
+   ],
+   "on": "Battery Street",
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "box": {
+       "type": "object",
+       "description": "the next street the car must drive on. This is a street map of San Francisco. The red dot is a car on Battery Street. The car must drive to UCSF Parnassus Campus, 505 Parnassus Avenue, San Francisco. Box only the part of the next street that the car will drive: from where the car turns onto it up to its next turn or the edge of the map. If the car should keep going on Battery Street, box the part of Battery Street ahead of it.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "box_px": [
+    440.3,
+    41.0,
+    501.8,
+    553.0
+   ],
+   "box_confidence": 0.21,
+   "seconds": 0.148,
+   "cost_usd": 0.00013108200000000003,
+   "candidates": 16,
+   "top": [
+    {
+     "kind": "keep going",
+     "street": "Battery Street",
+     "fit": 0.783,
+     "legal": true,
+     "inside_px": 390,
+     "turn_at": "car3"
+    },
+    {
+     "kind": "turn",
+     "street": "Washington Street",
+     "fit": 0.051,
+     "legal": true,
+     "inside_px": 60,
+     "turn_at": "65336485"
+    },
+    {
+     "kind": "turn",
+     "street": "Washington Street",
+     "fit": 0.051,
+     "legal": true,
+     "inside_px": 60,
+     "turn_at": "65336485"
+    },
+    {
+     "kind": "turn",
+     "street": "Pine Street",
+     "fit": 0.05,
+     "legal": true,
+     "inside_px": 62,
+     "turn_at": "65336474"
+    },
+    {
+     "kind": "turn",
+     "street": "California Street",
+     "fit": 0.046,
+     "legal": true,
+     "inside_px": 52,
+     "turn_at": "65295279"
+    },
+    {
+     "kind": "turn",
+     "street": "Clay Street",
+     "fit": 0.044,
+     "legal": true,
+     "inside_px": 44,
+     "turn_at": "65336479"
+    }
+   ],
+   "result": "move",
+   "kind": "keep going",
+   "to": "Battery Street",
+   "fit": 0.783,
+   "metres": 430,
+   "dist_to_dest_m": 6183
+  },
+  {
+   "step": 5,
+   "map": "map-05.png",
+   "car": [
+    37.79594680154461,
+    -122.40052911893447
+   ],
+   "on": "Battery Street",
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "box": {
+       "type": "object",
+       "description": "the next street the car must drive on. This is a street map of San Francisco. The red dot is a car on Battery Street. The car must drive to UCSF Parnassus Campus, 505 Parnassus Avenue, San Francisco. Box only the part of the next street that the car will drive: from where the car turns onto it up to its next turn or the edge of the map. If the car should keep going on Battery Street, box the part of Battery Street ahead of it.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "box_px": [
+    471.0,
+    798.7,
+    573.4,
+    993.3
+   ],
+   "box_confidence": 0.27,
+   "seconds": 0.164,
+   "cost_usd": 0.00013108200000000003,
+   "candidates": 23,
+   "top": [
+    {
+     "kind": "turn",
+     "street": "Pine Street",
+     "fit": 0.164,
+     "legal": true,
+     "inside_px": 104,
+     "turn_at": "65336474"
+    },
+    {
+     "kind": "turn",
+     "street": "California Street",
+     "fit": 0.155,
+     "legal": true,
+     "inside_px": 94,
+     "turn_at": "65295279"
+    },
+    {
+     "kind": "keep going",
+     "street": "Battery Street",
+     "fit": 0.126,
+     "legal": true,
+     "inside_px": 99,
+     "turn_at": "car2"
+    }
+   ],
+   "result": "not a road"
+  },
+  {
+   "step": 5,
+   "map": "map-05-retry1.png",
+   "car": [
+    37.79594680154461,
+    -122.40052911893447
+   ],
+   "on": "Battery Street",
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "box": {
+       "type": "object",
+       "description": "the next street the car must drive on. This is a street map of San Francisco. The red dot is a car on Battery Street. The car must drive to UCSF Parnassus Campus, 505 Parnassus Avenue, San Francisco. Box only the part of the next street that the car will drive: from where the car turns onto it up to its next turn or the edge of the map. If the car should keep going on Battery Street, box the part of Battery Street ahead of it.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "box_px": [
+    471.0,
+    450.6,
+    573.4,
+    983.0
+   ],
+   "box_confidence": 0.22,
+   "seconds": 0.169,
+   "cost_usd": 0.00013108200000000003,
+   "candidates": 23,
+   "top": [
+    {
+     "kind": "keep going",
+     "street": "Battery Street",
+     "fit": 0.51,
+     "legal": true,
+     "inside_px": 390,
+     "turn_at": "car2"
+    },
+    {
+     "kind": "turn",
+     "street": "Pine Street",
+     "fit": 0.06,
+     "legal": true,
+     "inside_px": 104,
+     "turn_at": "65336474"
+    },
+    {
+     "kind": "turn",
+     "street": "California Street",
+     "fit": 0.057,
+     "legal": true,
+     "inside_px": 94,
+     "turn_at": "65295279"
+    },
+    {
+     "kind": "turn",
+     "street": "Sacramento Street",
+     "fit": 0.043,
+     "legal": true,
+     "inside_px": 76,
+     "turn_at": "65307356"
+    },
+    {
+     "kind": "keep going",
+     "street": "Battery Street",
+     "fit": 0.033,
+     "legal": true,
+     "inside_px": 62,
+     "turn_at": "car2"
+    },
+    {
+     "kind": "turn",
+     "street": "Clay Street",
+     "fit": 0.032,
+     "legal": true,
+     "inside_px": 60,
+     "turn_at": "65336479"
+    }
+   ],
+   "result": "move",
+   "kind": "keep going",
+   "to": "Battery Street",
+   "fit": 0.51,
+   "metres": 368,
+   "dist_to_dest_m": 6027
+  },
+  {
+   "step": 6,
+   "map": "map-06.png",
+   "car": [
+    37.79268429623488,
+    -122.39986993924697
+   ],
+   "on": "Battery Street",
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "box": {
+       "type": "object",
+       "description": "the next street the car must drive on. This is a street map of San Francisco. The red dot is a car on Battery Street. The car must drive to UCSF Parnassus Campus, 505 Parnassus Avenue, San Francisco. Box only the part of the next street that the car will drive: from where the car turns onto it up to its next turn or the edge of the map. If the car should keep going on Battery Street, box the part of Battery Street ahead of it.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "box_px": [
+    440.3,
+    81.9,
+    501.8,
+    460.8
+   ],
+   "box_confidence": 0.25,
+   "seconds": 0.211,
+   "cost_usd": 0.00013108200000000003,
+   "candidates": 20,
+   "top": [
+    {
+     "kind": "keep going",
+     "street": "Battery Street",
+     "fit": 0.986,
+     "legal": true,
+     "inside_px": 370,
+     "turn_at": "car5"
+    },
+    {
+     "kind": "turn",
+     "street": "Washington Street",
+     "fit": 0.06,
+     "legal": true,
+     "inside_px": 50,
+     "turn_at": "65336485"
+    },
+    {
+     "kind": "turn",
+     "street": "Washington Street",
+     "fit": 0.06,
+     "legal": true,
+     "inside_px": 50,
+     "turn_at": "65336485"
+    },
+    {
+     "kind": "turn",
+     "street": "Washington Street",
+     "fit": 0.06,
+     "legal": true,
+     "inside_px": 50,
+     "turn_at": "65336485"
+    },
+    {
+     "kind": "turn",
+     "street": "Washington Street",
+     "fit": 0.06,
+     "legal": true,
+     "inside_px": 50,
+     "turn_at": "65336485"
+    },
+    {
+     "kind": "turn",
+     "street": "Sacramento Street",
+     "fit": 0.052,
+     "legal": true,
+     "inside_px": 45,
+     "turn_at": "65307356"
+    }
+   ],
+   "result": "move",
+   "kind": "keep going",
+   "to": "Battery Street",
+   "fit": 0.986,
+   "metres": 411,
+   "dist_to_dest_m": 6202
+  },
+  {
+   "step": 7,
+   "map": "map-07.png",
+   "car": [
+    37.79633054530821,
+    -122.40061015599588
+   ],
+   "on": "Battery Street",
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "box": {
+       "type": "object",
+       "description": "the next street the car must drive on. This is a street map of San Francisco. The red dot is a car on Battery Street. The car must drive to UCSF Parnassus Campus, 505 Parnassus Avenue, San Francisco. Box only the part of the next street that the car will drive: from where the car turns onto it up to its next turn or the edge of the map. If the car should keep going on Battery Street, box the part of Battery Street ahead of it.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "box_px": [
+    491.5,
+    440.3,
+    583.7,
+    983.0
+   ],
+   "box_confidence": 0.13,
+   "seconds": 0.166,
+   "cost_usd": 0.00013108200000000003,
+   "candidates": 25,
+   "top": [
+    {
+     "kind": "keep going",
+     "street": "Battery Street",
+     "fit": 0.737,
+     "legal": true,
+     "inside_px": 453,
+     "turn_at": "car6"
+    },
+    {
+     "kind": "turn",
+     "street": "California Street",
+     "fit": 0.05,
+     "legal": true,
+     "inside_px": 81,
+     "turn_at": "65295279"
+    },
+    {
+     "kind": "turn",
+     "street": "Jackson Street",
+     "fit": 0.047,
+     "legal": true,
+     "inside_px": 81,
+     "turn_at": "65336487"
+    },
+    {
+     "kind": "keep going",
+     "street": "Battery Street",
+     "fit": 0.044,
+     "legal": true,
+     "inside_px": 73,
+     "turn_at": "car6"
+    },
+    {
+     "kind": "turn",
+     "street": "Washington Street",
+     "fit": 0.037,
+     "legal": true,
+     "inside_px": 63,
+     "turn_at": "65336485"
+    },
+    {
+     "kind": "turn",
+     "street": "Washington Street",
+     "fit": 0.037,
+     "legal": true,
+     "inside_px": 63,
+     "turn_at": "65336485"
+    }
+   ],
+   "result": "move",
+   "kind": "keep going",
+   "to": "Battery Street",
+   "fit": 0.737,
+   "metres": 427,
+   "dist_to_dest_m": 6021
+  },
+  {
+   "step": 8,
+   "map": "map-08.png",
+   "car": [
+    37.79254296255711,
+    -122.39984111302714
+   ],
+   "on": "Battery Street",
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "box": {
+       "type": "object",
+       "description": "the next street the car must drive on. This is a street map of San Francisco. The red dot is a car on Battery Street. The car must drive to UCSF Parnassus Campus, 505 Parnassus Avenue, San Francisco. Box only the part of the next street that the car will drive: from where the car turns onto it up to its next turn or the edge of the map. If the car should keep going on Battery Street, box the part of Battery Street ahead of it.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "box_px": [
+    460.8,
+    112.6,
+    501.8,
+    542.7
+   ],
+   "box_confidence": 0.3,
+   "seconds": 0.157,
+   "cost_usd": 0.00013108200000000003,
+   "candidates": 20,
+   "top": [
+    {
+     "kind": "keep going",
+     "street": "Battery Street",
+     "fit": 0.645,
+     "legal": true,
+     "inside_px": 265,
+     "turn_at": "car7"
+    },
+    {
+     "kind": "turn",
+     "street": "Clay Street",
+     "fit": 0.058,
+     "legal": true,
+     "inside_px": 37,
+     "turn_at": "65336479"
+    },
+    {
+     "kind": "turn",
+     "street": "California Street",
+     "fit": 0.052,
+     "legal": true,
+     "inside_px": 39,
+     "turn_at": "65295279"
+    },
+    {
+     "kind": "turn",
+     "street": "Sacramento Street",
+     "fit": 0.032,
+     "legal": true,
+     "inside_px": 21,
+     "turn_at": "65307356"
+    },
+    {
+     "kind": "turn",
+     "street": "Sacramento Street",
+     "fit": 0.03,
+     "legal": true,
+     "inside_px": 20,
+     "turn_at": "65307356"
+    },
+    {
+     "kind": "turn",
+     "street": "Washington Street",
+     "fit": 0.023,
+     "legal": true,
+     "inside_px": 26,
+     "turn_at": "65336485"
+    }
+   ],
+   "result": "move",
+   "kind": "keep going",
+   "to": "Battery Street",
+   "fit": 0.645,
+   "metres": 311,
+   "dist_to_dest_m": 6151
+  },
+  {
+   "step": 9,
+   "map": "map-09.png",
+   "car": [
+    37.79530557238279,
+    -122.40039042943339
+   ],
+   "on": "Battery Street",
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "box": {
+       "type": "object",
+       "description": "the next street the car must drive on. This is a street map of San Francisco. The red dot is a car on Battery Street. The car must drive to UCSF Parnassus Campus, 505 Parnassus Avenue, San Francisco. Box only the part of the next street that the car will drive: from where the car turns onto it up to its next turn or the edge of the map. If the car should keep going on Battery Street, box the part of Battery Street ahead of it.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "box_px": [
+    471.0,
+    225.3,
+    542.7,
+    368.6
+   ],
+   "box_confidence": 0.49,
+   "seconds": 0.151,
+   "cost_usd": 0.00013108200000000003,
+   "candidates": 26,
+   "top": [
+    {
+     "kind": "keep going",
+     "street": "Battery Street",
+     "fit": 0.273,
+     "legal": true,
+     "inside_px": 106,
+     "turn_at": "car8"
+    },
+    {
+     "kind": "turn",
+     "street": "Jackson Street",
+     "fit": 0.17,
+     "legal": true,
+     "inside_px": 61,
+     "turn_at": "65336487"
+    },
+    {
+     "kind": "turn",
+     "street": "Pacific Avenue",
+     "fit": 0.095,
+     "legal": true,
+     "inside_px": 53,
+     "turn_at": "65336489"
+    }
+   ],
+   "result": "move",
+   "kind": "keep going",
+   "to": "Battery Street",
+   "fit": 0.273,
+   "metres": 238,
+   "dist_to_dest_m": 6258
+  },
+  {
+   "step": 10,
+   "map": "map-10.png",
+   "car": [
+    37.797410164972135,
+    -122.40082988255838
+   ],
+   "on": "Battery Street",
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "box": {
+       "type": "object",
+       "description": "the next street the car must drive on. This is a street map of San Francisco. The red dot is a car on Battery Street. The car must drive to UCSF Parnassus Campus, 505 Parnassus Avenue, San Francisco. Box only the part of the next street that the car will drive: from where the car turns onto it up to its next turn or the edge of the map. If the car should keep going on Battery Street, box the part of Battery Street ahead of it.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "box_px": [
+    501.8,
+    471.0,
+    573.4,
+    1003.5
+   ],
+   "box_confidence": 0.27,
+   "seconds": 0.17,
+   "cost_usd": 0.00013108200000000003,
+   "candidates": 25,
+   "top": [
+    {
+     "kind": "keep going",
+     "street": "Battery Street",
+     "fit": 0.722,
+     "legal": true,
+     "inside_px": 386,
+     "turn_at": "car9"
+    },
+    {
+     "kind": "turn",
+     "street": "Sacramento Street",
+     "fit": 0.052,
+     "legal": true,
+     "inside_px": 73,
+     "turn_at": "65307356"
+    },
+    {
+     "kind": "turn",
+     "street": "Clay Street",
+     "fit": 0.044,
+     "legal": true,
+     "inside_px": 58,
+     "turn_at": "65336479"
+    },
+    {
+     "kind": "turn",
+     "street": "Pacific Avenue",
+     "fit": 0.036,
+     "legal": true,
+     "inside_px": 67,
+     "turn_at": "65336489"
+    },
+    {
+     "kind": "turn",
+     "street": "Jackson Street",
+     "fit": 0.036,
+     "legal": true,
+     "inside_px": 50,
+     "turn_at": "65336487"
+    },
+    {
+     "kind": "turn",
+     "street": "Washington Street",
+     "fit": 0.029,
+     "legal": true,
+     "inside_px": 41,
+     "turn_at": "65336485"
+    }
+   ],
+   "result": "move",
+   "kind": "keep going",
+   "to": "Battery Street",
+   "fit": 0.722,
+   "metres": 364,
+   "dist_to_dest_m": 6096
+  },
+  {
+   "step": 11,
+   "map": "map-11.png",
+   "car": [
+    37.794180689623545,
+    -122.40017070287088
+   ],
+   "on": "Battery Street",
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "box": {
+       "type": "object",
+       "description": "the next street the car must drive on. This is a street map of San Francisco. The red dot is a car on Battery Street. The car must drive to UCSF Parnassus Campus, 505 Parnassus Avenue, San Francisco. Box only the part of the next street that the car will drive: from where the car turns onto it up to its next turn or the edge of the map. If the car should keep going on Battery Street, box the part of Battery Street ahead of it.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "box_px": [
+    471.0,
+    122.9,
+    532.5,
+    368.6
+   ],
+   "box_confidence": 0.32,
+   "seconds": 0.142,
+   "cost_usd": 0.00013108200000000003,
+   "candidates": 22,
+   "top": [
+    {
+     "kind": "keep going",
+     "street": "Battery Street",
+     "fit": 0.211,
+     "legal": true,
+     "inside_px": 112,
+     "turn_at": "car10"
+    },
+    {
+     "kind": "turn",
+     "street": "Jackson Street",
+     "fit": 0.107,
+     "legal": true,
+     "inside_px": 62,
+     "turn_at": "65336487"
+    },
+    {
+     "kind": "turn",
+     "street": "Washington Street",
+     "fit": 0.099,
+     "legal": true,
+     "inside_px": 53,
+     "turn_at": "65336485"
+    },
+    {
+     "kind": "turn",
+     "street": "Washington Street",
+     "fit": 0.099,
+     "legal": true,
+     "inside_px": 53,
+     "turn_at": "65336485"
+    },
+    {
+     "kind": "turn",
+     "street": "Washington Street",
+     "fit": 0.099,
+     "legal": true,
+     "inside_px": 53,
+     "turn_at": "65336485"
+    },
+    {
+     "kind": "turn",
+     "street": "Washington Street",
+     "fit": 0.099,
+     "legal": true,
+     "inside_px": 53,
+     "turn_at": "65336485"
+    }
+   ],
+   "result": "not a road"
+  },
+  {
+   "step": 11,
+   "map": "map-11-retry1.png",
+   "car": [
+    37.794180689623545,
+    -122.40017070287088
+   ],
+   "on": "Battery Street",
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "box": {
+       "type": "object",
+       "description": "the next street the car must drive on. This is a street map of San Francisco. The red dot is a car on Battery Street. The car must drive to UCSF Parnassus Campus, 505 Parnassus Avenue, San Francisco. Box only the part of the next street that the car will drive: from where the car turns onto it up to its next turn or the edge of the map. If the car should keep going on Battery Street, box the part of Battery Street ahead of it.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "box_px": [
+    471.0,
+    225.3,
+    542.7,
+    368.6
+   ],
+   "box_confidence": 0.26,
+   "seconds": 0.134,
+   "cost_usd": 0.00013108200000000003,
+   "candidates": 22,
+   "top": [
+    {
+     "kind": "keep going",
+     "street": "Battery Street",
+     "fit": 0.31,
+     "legal": true,
+     "inside_px": 112,
+     "turn_at": "car10"
+    },
+    {
+     "kind": "turn",
+     "street": "Washington Street",
+     "fit": 0.182,
+     "legal": true,
+     "inside_px": 63,
+     "turn_at": "65336485"
+    },
+    {
+     "kind": "turn",
+     "street": "Washington Street",
+     "fit": 0.182,
+     "legal": true,
+     "inside_px": 63,
+     "turn_at": "65336485"
+    },
+    {
+     "kind": "turn",
+     "street": "Washington Street",
+     "fit": 0.182,
+     "legal": true,
+     "inside_px": 63,
+     "turn_at": "65336485"
+    },
+    {
+     "kind": "turn",
+     "street": "Washington Street",
+     "fit": 0.182,
+     "legal": true,
+     "inside_px": 63,
+     "turn_at": "65336485"
+    }
+   ],
+   "result": "move",
+   "kind": "keep going",
+   "to": "Battery Street",
+   "fit": 0.31,
+   "metres": 243,
+   "dist_to_dest_m": 6202
+  },
+  {
+   "step": 12,
+   "map": "map-12.png",
+   "car": [
+    37.79633054530821,
+    -122.40061015599588
+   ],
+   "on": "Battery Street",
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "box": {
+       "type": "object",
+       "description": "the next street the car must drive on. This is a street map of San Francisco. The red dot is a car on Battery Street. The car must drive to UCSF Parnassus Campus, 505 Parnassus Avenue, San Francisco. Box only the part of the next street that the car will drive: from where the car turns onto it up to its next turn or the edge of the map. If the car should keep going on Battery Street, box the part of Battery Street ahead of it.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "box_px": [
+    491.5,
+    430.1,
+    583.7,
+    471.0
+   ],
+   "box_confidence": 0.15,
+   "seconds": 0.182,
+   "cost_usd": 0.00013108200000000003,
+   "candidates": 25,
+   "top": [
+    {
+     "kind": "turn",
+     "street": "Jackson Street",
+     "fit": 0.681,
+     "legal": true,
+     "inside_px": 81,
+     "turn_at": "65336487"
+    },
+    {
+     "kind": "keep going",
+     "street": "Battery Street",
+     "fit": 0.237,
+     "legal": true,
+     "inside_px": 41,
+     "turn_at": "car6"
+    }
+   ],
+   "result": "move",
+   "kind": "turn",
+   "to": "Jackson Street",
+   "fit": 0.681,
+   "metres": 128,
+   "dist_to_dest_m": 6293
+  },
+  {
+   "step": 13,
+   "map": "map-13.png",
+   "car": [
+    37.79689280232644,
+    -122.39984111302714
+   ],
+   "on": "Jackson Street",
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "box": {
+       "type": "object",
+       "description": "the next street the car must drive on. This is a street map of San Francisco. The red dot is a car on Jackson Street. The car must drive to UCSF Parnassus Campus, 505 Parnassus Avenue, San Francisco. Box only the part of the next street that the car will drive: from where the car turns onto it up to its next turn or the edge of the map. If the car should keep going on Jackson Street, box the part of Jackson Street ahead of it.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "box_px": [
+    122.9,
+    481.3,
+    358.4,
+    563.2
+   ],
+   "box_confidence": 0.37,
+   "seconds": 0.174,
+   "cost_usd": 0.00013108200000000003,
+   "candidates": 17,
+   "top": [
+    {
+     "kind": "keep going",
+     "street": "Jackson Street",
+     "fit": 0.307,
+     "legal": true,
+     "inside_px": 166,
+     "turn_at": "car12"
+    },
+    {
+     "kind": "turn",
+     "street": "Montgomery Street",
+     "fit": 0.124,
+     "legal": true,
+     "inside_px": 83,
+     "turn_at": "65305835"
+    },
+    {
+     "kind": "turn",
+     "street": "Sansome Street",
+     "fit": 0.092,
+     "legal": true,
+     "inside_px": 62,
+     "turn_at": "65337375"
+    },
+    {
+     "kind": "turn",
+     "street": "Sansome Street",
+     "fit": 0.028,
+     "legal": true,
+     "inside_px": 21,
+     "turn_at": "65337375"
+    }
+   ],
+   "result": "move",
+   "kind": "keep going",
+   "to": "Jackson Street",
+   "fit": 0.307,
+   "metres": 304,
+   "dist_to_dest_m": 6024
+  },
+  {
+   "step": 14,
+   "map": "map-14.png",
+   "car": [
+    37.79645873767571,
+    -122.40325255254649
+   ],
+   "on": "Jackson Street",
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "box": {
+       "type": "object",
+       "description": "the next street the car must drive on. This is a street map of San Francisco. The red dot is a car on Jackson Street. The car must drive to UCSF Parnassus Campus, 505 Parnassus Avenue, San Francisco. Box only the part of the next street that the car will drive: from where the car turns onto it up to its next turn or the edge of the map. If the car should keep going on Jackson Street, box the part of Jackson Street ahead of it.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "box_px": [
+    41.0,
+    440.3,
+    266.2,
+    542.7
+   ],
+   "box_confidence": 0.07,
+   "seconds": 0.292,
+   "cost_usd": 0.00013108200000000003,
+   "candidates": 22,
+   "top": [
+    {
+     "kind": "turn",
+     "street": "Grant Avenue",
+     "fit": 0.143,
+     "legal": true,
+     "inside_px": 104,
+     "turn_at": "65328716"
+    }
+   ],
+   "result": "not a road"
+  },
+  {
+   "step": 14,
+   "map": "map-14-retry1.png",
+   "car": [
+    37.79645873767571,
+    -122.40325255254649
+   ],
+   "on": "Jackson Street",
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "box": {
+       "type": "object",
+       "description": "the next street the car must drive on. This is a street map of San Francisco. The red dot is a car on Jackson Street. The car must drive to UCSF Parnassus Campus, 505 Parnassus Avenue, San Francisco. Box only the part of the next street that the car will drive: from where the car turns onto it up to its next turn or the edge of the map. If the car should keep going on Jackson Street, box the part of Jackson Street ahead of it.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "box_px": [
+    20.5,
+    419.8,
+    972.8,
+    532.5
+   ],
+   "box_confidence": 0.07,
+   "seconds": 0.206,
+   "cost_usd": 0.00013108200000000003,
+   "candidates": 22,
+   "top": [
+    {
+     "kind": "keep going",
+     "street": "Jackson Street",
+     "fit": 0.4,
+     "legal": true,
+     "inside_px": 467,
+     "turn_at": "car13"
+    },
+    {
+     "kind": "turn",
+     "street": "Columbus Avenue",
+     "fit": 0.15,
+     "legal": true,
+     "inside_px": 168,
+     "turn_at": "65337383"
+    },
+    {
+     "kind": "turn",
+     "street": "Columbus Avenue",
+     "fit": 0.15,
+     "legal": true,
+     "inside_px": 168,
+     "turn_at": "65337383"
+    },
+    {
+     "kind": "turn",
+     "street": "Columbus Avenue",
+     "fit": 0.15,
+     "legal": true,
+     "inside_px": 168,
+     "turn_at": "65337383"
+    },
+    {
+     "kind": "turn",
+     "street": "Columbus Avenue",
+     "fit": 0.15,
+     "legal": true,
+     "inside_px": 168,
+     "turn_at": "65337383"
+    },
+    {
+     "kind": "keep going",
+     "street": "Jackson Street",
+     "fit": 0.038,
+     "legal": true,
+     "inside_px": 129,
+     "turn_at": "car13"
+    }
+   ],
+   "result": "move",
+   "kind": "keep going",
+   "to": "Jackson Street",
+   "fit": 0.4,
+   "metres": 441,
+   "dist_to_dest_m": 6416
+  },
+  {
+   "step": 15,
+   "map": "map-15.png",
+   "car": [
+    37.797099342951405,
+    -122.39830870489024
+   ],
+   "on": "Jackson Street",
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "box": {
+       "type": "object",
+       "description": "the next street the car must drive on. This is a street map of San Francisco. The red dot is a car on Jackson Street. The car must drive to UCSF Parnassus Campus, 505 Parnassus Avenue, San Francisco. Box only the part of the next street that the car will drive: from where the car turns onto it up to its next turn or the edge of the map. If the car should keep going on Jackson Street, box the part of Jackson Street ahead of it.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "box_px": [
+    20.5,
+    450.6,
+    471.0,
+    553.0
+   ],
+   "box_confidence": 0.28,
+   "seconds": 0.14,
+   "cost_usd": 0.00013108200000000003,
+   "candidates": 13,
+   "top": [
+    {
+     "kind": "keep going",
+     "street": "Jackson Street",
+     "fit": 0.194,
+     "legal": true,
+     "inside_px": 206,
+     "turn_at": "car14"
+    },
+    {
+     "kind": "turn",
+     "street": "Sansome Street",
+     "fit": 0.071,
+     "legal": true,
+     "inside_px": 104,
+     "turn_at": "65337375"
+    },
+    {
+     "kind": "turn",
+     "street": "Battery Street",
+     "fit": 0.071,
+     "legal": true,
+     "inside_px": 100,
+     "turn_at": "65336487"
+    },
+    {
+     "kind": "turn",
+     "street": "Front Street",
+     "fit": 0.054,
+     "legal": true,
+     "inside_px": 81,
+     "turn_at": "65327381"
+    }
+   ],
+   "result": "not a road"
+  },
+  {
+   "step": 15,
+   "map": "map-15-retry1.png",
+   "car": [
+    37.797099342951405,
+    -122.39830870489024
+   ],
+   "on": "Jackson Street",
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "box": {
+       "type": "object",
+       "description": "the next street the car must drive on. This is a street map of San Francisco. The red dot is a car on Jackson Street. The car must drive to UCSF Parnassus Campus, 505 Parnassus Avenue, San Francisco. Box only the part of the next street that the car will drive: from where the car turns onto it up to its next turn or the edge of the map. If the car should keep going on Jackson Street, box the part of Jackson Street ahead of it.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "box_px": [
+    30.7,
+    471.0,
+    481.3,
+    563.2
+   ],
+   "box_confidence": 0.27,
+   "seconds": 0.173,
+   "cost_usd": 0.00013108200000000003,
+   "candidates": 13,
+   "top": [
+    {
+     "kind": "keep going",
+     "street": "Jackson Street",
+     "fit": 0.374,
+     "legal": true,
+     "inside_px": 282,
+     "turn_at": "car14"
+    },
+    {
+     "kind": "turn",
+     "street": "Sansome Street",
+     "fit": 0.068,
+     "legal": true,
+     "inside_px": 93,
+     "turn_at": "65337375"
+    },
+    {
+     "kind": "turn",
+     "street": "Battery Street",
+     "fit": 0.06,
+     "legal": true,
+     "inside_px": 79,
+     "turn_at": "65336487"
+    },
+    {
+     "kind": "turn",
+     "street": "Front Street",
+     "fit": 0.041,
+     "legal": true,
+     "inside_px": 60,
+     "turn_at": "65327381"
+    }
+   ],
+   "result": "move",
+   "kind": "keep going",
+   "to": "Jackson Street",
+   "fit": 0.374,
+   "metres": 295,
+   "dist_to_dest_m": 6152
+  },
+  {
+   "step": 16,
+   "map": "map-16.png",
+   "car": [
+    37.79666527951459,
+    -122.40161982129696
+   ],
+   "on": "Jackson Street",
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "box": {
+       "type": "object",
+       "description": "the next street the car must drive on. This is a street map of San Francisco. The red dot is a car on Jackson Street. The car must drive to UCSF Parnassus Campus, 505 Parnassus Avenue, San Francisco. Box only the part of the next street that the car will drive: from where the car turns onto it up to its next turn or the edge of the map. If the car should keep going on Jackson Street, box the part of Jackson Street ahead of it.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "box_px": [
+    573.4,
+    440.3,
+    778.2,
+    532.5
+   ],
+   "box_confidence": 0.27,
+   "seconds": 0.145,
+   "cost_usd": 0.00013108200000000003,
+   "candidates": 22,
+   "top": [
+    {
+     "kind": "keep going",
+     "street": "Jackson Street",
+     "fit": 0.55,
+     "legal": true,
+     "inside_px": 208,
+     "turn_at": "car15"
+    },
+    {
+     "kind": "turn",
+     "street": "Battery Street",
+     "fit": 0.089,
+     "legal": true,
+     "inside_px": 59,
+     "turn_at": "65336487"
+    },
+    {
+     "kind": "turn",
+     "street": "Front Street",
+     "fit": 0.055,
+     "legal": true,
+     "inside_px": 39,
+     "turn_at": "65327381"
+    },
+    {
+     "kind": "turn",
+     "street": "Battery Street",
+     "fit": 0.048,
+     "legal": true,
+     "inside_px": 35,
+     "turn_at": "65336487"
+    }
+   ],
+   "result": "move",
+   "kind": "keep going",
+   "to": "Jackson Street",
+   "fit": 0.55,
+   "metres": 255,
+   "dist_to_dest_m": 6380
+  },
+  {
+   "step": 17,
+   "map": "map-17.png",
+   "car": [
+    37.797041684370434,
+    -122.39876337598446
+   ],
+   "on": "Jackson Street",
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "box": {
+       "type": "object",
+       "description": "the next street the car must drive on. This is a street map of San Francisco. The red dot is a car on Jackson Street. The car must drive to UCSF Parnassus Campus, 505 Parnassus Avenue, San Francisco. Box only the part of the next street that the car will drive: from where the car turns onto it up to its next turn or the edge of the map. If the car should keep going on Jackson Street, box the part of Jackson Street ahead of it.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "box_px": [
+    20.5,
+    450.6,
+    553.0,
+    553.0
+   ],
+   "box_confidence": 0.21,
+   "seconds": 0.193,
+   "cost_usd": 0.00013108200000000003,
+   "candidates": 13,
+   "top": [
+    {
+     "kind": "keep going",
+     "street": "Jackson Street",
+     "fit": 0.234,
+     "legal": true,
+     "inside_px": 248,
+     "turn_at": "car16"
+    },
+    {
+     "kind": "turn",
+     "street": "Montgomery Street",
+     "fit": 0.061,
+     "legal": true,
+     "inside_px": 104,
+     "turn_at": "65305835"
+    },
+    {
+     "kind": "turn",
+     "street": "Sansome Street",
+     "fit": 0.06,
+     "legal": true,
+     "inside_px": 104,
+     "turn_at": "65337375"
+    },
+    {
+     "kind": "turn",
+     "street": "Battery Street",
+     "fit": 0.057,
+     "legal": true,
+     "inside_px": 93,
+     "turn_at": "65336487"
+    },
+    {
+     "kind": "turn",
+     "street": "Front Street",
+     "fit": 0.041,
+     "legal": true,
+     "inside_px": 74,
+     "turn_at": "65327381"
+    },
+    {
+     "kind": "turn",
+     "street": "Davis Street",
+     "fit": 0.023,
+     "legal": true,
+     "inside_px": 56,
+     "turn_at": "65328969"
+    }
+   ],
+   "result": "not a road"
+  },
+  {
+   "step": 17,
+   "map": "map-17-retry1.png",
+   "car": [
+    37.797041684370434,
+    -122.39876337598446
+   ],
+   "on": "Jackson Street",
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "box": {
+       "type": "object",
+       "description": "the next street the car must drive on. This is a street map of San Francisco. The red dot is a car on Jackson Street. The car must drive to UCSF Parnassus Campus, 505 Parnassus Avenue, San Francisco. Box only the part of the next street that the car will drive: from where the car turns onto it up to its next turn or the edge of the map. If the car should keep going on Jackson Street, box the part of Jackson Street ahead of it.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "box_px": [
+    20.5,
+    440.3,
+    553.0,
+    553.0
+   ],
+   "box_confidence": 0.23,
+   "seconds": 0.189,
+   "cost_usd": 0.00013108200000000003,
+   "candidates": 13,
+   "top": [
+    {
+     "kind": "keep going",
+     "street": "Jackson Street",
+     "fit": 0.213,
+     "legal": true,
+     "inside_px": 248,
+     "turn_at": "car16"
+    },
+    {
+     "kind": "turn",
+     "street": "Montgomery Street",
+     "fit": 0.064,
+     "legal": true,
+     "inside_px": 114,
+     "turn_at": "65305835"
+    },
+    {
+     "kind": "turn",
+     "street": "Sansome Street",
+     "fit": 0.064,
+     "legal": true,
+     "inside_px": 114,
+     "turn_at": "65337375"
+    },
+    {
+     "kind": "turn",
+     "street": "Battery Street",
+     "fit": 0.06,
+     "legal": true,
+     "inside_px": 104,
+     "turn_at": "65336487"
+    },
+    {
+     "kind": "turn",
+     "street": "Front Street",
+     "fit": 0.044,
+     "legal": true,
+     "inside_px": 84,
+     "turn_at": "65327381"
+    },
+    {
+     "kind": "turn",
+     "street": "Davis Street",
+     "fit": 0.026,
+     "legal": true,
+     "inside_px": 66,
+     "turn_at": "65328969"
+    }
+   ],
+   "result": "not a road"
+  },
+  {
+   "step": 17,
+   "map": "map-17-retry2.png",
+   "car": [
+    37.797041684370434,
+    -122.39876337598446
+   ],
+   "on": "Jackson Street",
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "box": {
+       "type": "object",
+       "description": "the next street the car must drive on. This is a street map of San Francisco. The red dot is a car on Jackson Street. The car must drive to UCSF Parnassus Campus, 505 Parnassus Avenue, San Francisco. Box only the part of the next street that the car will drive: from where the car turns onto it up to its next turn or the edge of the map. If the car should keep going on Jackson Street, box the part of Jackson Street ahead of it.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "box_px": [
+    20.5,
+    450.6,
+    563.2,
+    563.2
+   ],
+   "box_confidence": 0.21,
+   "seconds": 0.192,
+   "cost_usd": 0.00013108200000000003,
+   "candidates": 13,
+   "top": [
+    {
+     "kind": "keep going",
+     "street": "Jackson Street",
+     "fit": 0.314,
+     "legal": true,
+     "inside_px": 313,
+     "turn_at": "car16"
+    },
+    {
+     "kind": "turn",
+     "street": "Montgomery Street",
+     "fit": 0.063,
+     "legal": true,
+     "inside_px": 114,
+     "turn_at": "65305835"
+    },
+    {
+     "kind": "turn",
+     "street": "Sansome Street",
+     "fit": 0.061,
+     "legal": true,
+     "inside_px": 111,
+     "turn_at": "65337375"
+    },
+    {
+     "kind": "turn",
+     "street": "Battery Street",
+     "fit": 0.051,
+     "legal": true,
+     "inside_px": 93,
+     "turn_at": "65336487"
+    },
+    {
+     "kind": "turn",
+     "street": "Front Street",
+     "fit": 0.036,
+     "legal": true,
+     "inside_px": 74,
+     "turn_at": "65327381"
+    },
+    {
+     "kind": "turn",
+     "street": "Davis Street",
+     "fit": 0.025,
+     "legal": true,
+     "inside_px": 56,
+     "turn_at": "65328969"
+    }
+   ],
+   "result": "move",
+   "kind": "keep going",
+   "to": "Jackson Street",
+   "fit": 0.314,
+   "metres": 295,
+   "dist_to_dest_m": 6117
+  },
+  {
+   "step": 18,
+   "map": "map-18.png",
+   "car": [
+    37.796607620600284,
+    -122.40207579030752
+   ],
+   "on": "Jackson Street",
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "box": {
+       "type": "object",
+       "description": "the next street the car must drive on. This is a street map of San Francisco. The red dot is a car on Jackson Street. The car must drive to UCSF Parnassus Campus, 505 Parnassus Avenue, San Francisco. Box only the part of the next street that the car will drive: from where the car turns onto it up to its next turn or the edge of the map. If the car should keep going on Jackson Street, box the part of Jackson Street ahead of it.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "box_px": [
+    30.7,
+    450.6,
+    675.8,
+    553.0
+   ],
+   "box_confidence": 0.09,
+   "seconds": 0.252,
+   "cost_usd": 0.00013108200000000003,
+   "candidates": 22,
+   "top": [
+    {
+     "kind": "keep going",
+     "street": "Jackson Street",
+     "fit": 0.202,
+     "legal": true,
+     "inside_px": 260,
+     "turn_at": "car17"
+    },
+    {
+     "kind": "turn",
+     "street": "Columbus Avenue",
+     "fit": 0.198,
+     "legal": true,
+     "inside_px": 148,
+     "turn_at": "65337383"
+    },
+    {
+     "kind": "turn",
+     "street": "Columbus Avenue",
+     "fit": 0.198,
+     "legal": true,
+     "inside_px": 148,
+     "turn_at": "65337383"
+    },
+    {
+     "kind": "turn",
+     "street": "Columbus Avenue",
+     "fit": 0.198,
+     "legal": true,
+     "inside_px": 148,
+     "turn_at": "65337383"
+    },
+    {
+     "kind": "turn",
+     "street": "Columbus Avenue",
+     "fit": 0.198,
+     "legal": true,
+     "inside_px": 148,
+     "turn_at": "65337383"
+    },
+    {
+     "kind": "keep going",
+     "street": "Jackson Street",
+     "fit": 0.11,
+     "legal": true,
+     "inside_px": 166,
+     "turn_at": "car17"
+    }
+   ],
+   "result": "not a road"
+  },
+  {
+   "step": 18,
+   "map": "map-18-retry1.png",
+   "car": [
+    37.796607620600284,
+    -122.40207579030752
+   ],
+   "on": "Jackson Street",
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "box": {
+       "type": "object",
+       "description": "the next street the car must drive on. This is a street map of San Francisco. The red dot is a car on Jackson Street. The car must drive to UCSF Parnassus Campus, 505 Parnassus Avenue, San Francisco. Box only the part of the next street that the car will drive: from where the car turns onto it up to its next turn or the edge of the map. If the car should keep going on Jackson Street, box the part of Jackson Street ahead of it.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "box_px": [
+    645.1,
+    450.6,
+    686.1,
+    553.0
+   ],
+   "box_confidence": 0.2,
+   "seconds": 0.196,
+   "cost_usd": 0.00013108200000000003,
+   "candidates": 22,
+   "top": [
+    {
+     "kind": "keep going",
+     "street": "Jackson Street",
+     "fit": 0.222,
+     "legal": true,
+     "inside_px": 42,
+     "turn_at": "car17"
+    },
+    {
+     "kind": "turn",
+     "street": "Battery Street",
+     "fit": 0.115,
+     "legal": true,
+     "inside_px": 30,
+     "turn_at": "65336487"
+    }
+   ],
+   "result": "not a road"
+  },
+  {
+   "step": 18,
+   "map": "map-18-retry2.png",
+   "car": [
+    37.796607620600284,
+    -122.40207579030752
+   ],
+   "on": "Jackson Street",
+   "question": {
+    "type": "json_schema",
+    "name": "judgments",
+    "strict": true,
+    "schema": {
+     "type": "object",
+     "properties": {
+      "box": {
+       "type": "object",
+       "description": "the next street the car must drive on. This is a street map of San Francisco. The red dot is a car on Jackson Street. The car must drive to UCSF Parnassus Campus, 505 Parnassus Avenue, San Francisco. Box only the part of the next street that the car will drive: from where the car turns onto it up to its next turn or the edge of the map. If the car should keep going on Jackson Street, box the part of Jackson Street ahead of it.",
+       "properties": {
+        "top": {
+         "type": "number",
+         "description": "Top edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "bottom": {
+         "type": "number",
+         "description": "Bottom edge, as a fraction of the image's height from the top, from 0 to 1"
+        },
+        "left": {
+         "type": "number",
+         "description": "Left edge, as a fraction of the image's width from the left, from 0 to 1"
+        },
+        "right": {
+         "type": "number",
+         "description": "Right edge, as a fraction of the image's width from the left, from 0 to 1"
+        }
+       },
+       "required": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "box"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "box_px": [
+    30.7,
+    450.6,
+    675.8,
+    542.7
+   ],
+   "box_confidence": 0.1,
+   "seconds": 0.348,
+   "cost_usd": 0.00013108200000000003,
+   "candidates": 22,
+   "top": [
+    {
+     "kind": "turn",
+     "street": "Columbus Avenue",
+     "fit": 0.189,
+     "legal": true,
+     "inside_px": 140,
+     "turn_at": "65337383"
+    },
+    {
+     "kind": "turn",
+     "street": "Columbus Avenue",
+     "fit": 0.189,
+     "legal": true,
+     "inside_px": 140,
+     "turn_at": "65337383"
+    },
+    {
+     "kind": "turn",
+     "street": "Columbus Avenue",
+     "fit": 0.189,
+     "legal": true,
+     "inside_px": 140,
+     "turn_at": "65337383"
+    },
+    {
+     "kind": "turn",
+     "street": "Columbus Avenue",
+     "fit": 0.189,
+     "legal": true,
+     "inside_px": 140,
+     "turn_at": "65337383"
+    },
+    {
+     "kind": "keep going",
+     "street": "Jackson Street",
+     "fit": 0.135,
+     "legal": true,
+     "inside_px": 193,
+     "turn_at": "car17"
+    },
+    {
+     "kind": "keep going",
+     "street": "Jackson Street",
+     "fit": 0.122,
+     "legal": true,
+     "inside_px": 166,
+     "turn_at": "car17"
+    }
+   ],
+   "result": "not a road"
+  }
+ ],
+ "path": [
+  [
+   37.793256237009615,
+   -122.39965795935002
+  ],
+  [
+   37.7932286,
+   -122.3998767
+  ],
+  [
+   37.7932159,
+   -122.3999769
+  ],
+  [
+   37.7932343,
+   -122.3999806
+  ],
+  [
+   37.7933146,
+   -122.3999967
+  ],
+  [
+   37.7936968,
+   -122.4000735
+  ],
+  [
+   37.793777136687666,
+   -122.40008966580947
+  ],
+  [
+   37.7940884,
+   -122.4001523
+  ],
+  [
+   37.794144,
+   -122.4001635
+  ],
+  [
+   37.7942092,
+   -122.4001763
+  ],
+  [
+   37.7942482,
+   -122.400184
+  ],
+  [
+   37.7945787,
+   -122.4002492
+  ],
+  [
+   37.7948759,
+   -122.4003104
+  ],
+  [
+   37.7949126,
+   -122.4003187
+  ],
+  [
+   37.7949983,
+   -122.4003318
+  ],
+  [
+   37.7950902,
+   -122.400348
+  ],
+  [
+   37.7951946,
+   -122.4003708
+  ],
+  [
+   37.7954213,
+   -122.4004109
+  ],
+  [
+   37.795469,
+   -122.4004193
+  ],
+  [
+   37.7957982,
+   -122.4004837
+  ],
+  [
+   37.7958741,
+   -122.4005077
+  ],
+  [
+   37.79594680154461,
+   -122.40052911893447
+  ],
+  [
+   37.7958741,
+   -122.4005077
+  ],
+  [
+   37.7957982,
+   -122.4004837
+  ],
+  [
+   37.795469,
+   -122.4004193
+  ],
+  [
+   37.7954213,
+   -122.4004109
+  ],
+  [
+   37.7951946,
+   -122.4003708
+  ],
+  [
+   37.7950902,
+   -122.400348
+  ],
+  [
+   37.7949983,
+   -122.4003318
+  ],
+  [
+   37.7949126,
+   -122.4003187
+  ],
+  [
+   37.7948759,
+   -122.4003104
+  ],
+  [
+   37.7945787,
+   -122.4002492
+  ],
+  [
+   37.7942482,
+   -122.400184
+  ],
+  [
+   37.7942092,
+   -122.4001763
+  ],
+  [
+   37.794144,
+   -122.4001635
+  ],
+  [
+   37.7940884,
+   -122.4001523
+  ],
+  [
+   37.793777136687666,
+   -122.40008966580947
+  ],
+  [
+   37.7936968,
+   -122.4000735
+  ],
+  [
+   37.7933146,
+   -122.3999967
+  ],
+  [
+   37.7932343,
+   -122.3999806
+  ],
+  [
+   37.7932159,
+   -122.3999769
+  ],
+  [
+   37.793207,
+   -122.3999747
+  ],
+  [
+   37.7931249,
+   -122.3999582
+  ],
+  [
+   37.7927741,
+   -122.3998879
+  ],
+  [
+   37.7926711,
+   -122.3998673
+  ],
+  [
+   37.7925062,
+   -122.3998336
+  ],
+  [
+   37.7924828,
+   -122.399829
+  ],
+  [
+   37.7923542,
+   -122.3998036
+  ],
+  [
+   37.7922611,
+   -122.3997849
+  ],
+  [
+   37.7921916,
+   -122.3997717
+  ],
+  [
+   37.79213302763507,
+   -122.39976007596573
+  ],
+  [
+   37.7921916,
+   -122.3997717
+  ],
+  [
+   37.7922611,
+   -122.3997849
+  ],
+  [
+   37.7923542,
+   -122.3998036
+  ],
+  [
+   37.7924828,
+   -122.399829
+  ],
+  [
+   37.7925062,
+   -122.3998336
+  ],
+  [
+   37.7926711,
+   -122.3998673
+  ],
+  [
+   37.7927741,
+   -122.3998879
+  ],
+  [
+   37.7931249,
+   -122.3999582
+  ],
+  [
+   37.793207,
+   -122.3999747
+  ],
+  [
+   37.7932159,
+   -122.3999769
+  ],
+  [
+   37.7932343,
+   -122.3999806
+  ],
+  [
+   37.7933146,
+   -122.3999967
+  ],
+  [
+   37.7936968,
+   -122.4000735
+  ],
+  [
+   37.793777136687666,
+   -122.40008966580947
+  ],
+  [
+   37.7940884,
+   -122.4001523
+  ],
+  [
+   37.794144,
+   -122.4001635
+  ],
+  [
+   37.7942092,
+   -122.4001763
+  ],
+  [
+   37.7942482,
+   -122.400184
+  ],
+  [
+   37.7945787,
+   -122.4002492
+  ],
+  [
+   37.7948759,
+   -122.4003104
+  ],
+  [
+   37.7949126,
+   -122.4003187
+  ],
+  [
+   37.7949983,
+   -122.4003318
+  ],
+  [
+   37.7950902,
+   -122.400348
+  ],
+  [
+   37.7951946,
+   -122.4003708
+  ],
+  [
+   37.7954213,
+   -122.4004109
+  ],
+  [
+   37.795469,
+   -122.4004193
+  ],
+  [
+   37.7957982,
+   -122.4004837
+  ],
+  [
+   37.7958741,
+   -122.4005077
+  ],
+  [
+   37.79594680154461,
+   -122.40052911893447
+  ],
+  [
+   37.79594680154462,
+   -122.40052911893447
+  ],
+  [
+   37.7958741,
+   -122.4005077
+  ],
+  [
+   37.7957982,
+   -122.4004837
+  ],
+  [
+   37.795469,
+   -122.4004193
+  ],
+  [
+   37.7954213,
+   -122.4004109
+  ],
+  [
+   37.7951946,
+   -122.4003708
+  ],
+  [
+   37.7950902,
+   -122.400348
+  ],
+  [
+   37.7949983,
+   -122.4003318
+  ],
+  [
+   37.7949126,
+   -122.4003187
+  ],
+  [
+   37.7948759,
+   -122.4003104
+  ],
+  [
+   37.7945787,
+   -122.4002492
+  ],
+  [
+   37.7942482,
+   -122.400184
+  ],
+  [
+   37.7942092,
+   -122.4001763
+  ],
+  [
+   37.794144,
+   -122.4001635
+  ],
+  [
+   37.7940884,
+   -122.4001523
+  ],
+  [
+   37.793777136687666,
+   -122.40008966580947
+  ],
+  [
+   37.7936968,
+   -122.4000735
+  ],
+  [
+   37.7933146,
+   -122.3999967
+  ],
+  [
+   37.7932343,
+   -122.3999806
+  ],
+  [
+   37.7932159,
+   -122.3999769
+  ],
+  [
+   37.793207,
+   -122.3999747
+  ],
+  [
+   37.7931249,
+   -122.3999582
+  ],
+  [
+   37.7927741,
+   -122.3998879
+  ],
+  [
+   37.79268429623488,
+   -122.39986993924697
+  ],
+  [
+   37.7927741,
+   -122.3998879
+  ],
+  [
+   37.7931249,
+   -122.3999582
+  ],
+  [
+   37.793207,
+   -122.3999747
+  ],
+  [
+   37.7932159,
+   -122.3999769
+  ],
+  [
+   37.7932343,
+   -122.3999806
+  ],
+  [
+   37.7933146,
+   -122.3999967
+  ],
+  [
+   37.7936968,
+   -122.4000735
+  ],
+  [
+   37.793777136687666,
+   -122.40008966580947
+  ],
+  [
+   37.7940884,
+   -122.4001523
+  ],
+  [
+   37.794144,
+   -122.4001635
+  ],
+  [
+   37.7942092,
+   -122.4001763
+  ],
+  [
+   37.7942482,
+   -122.400184
+  ],
+  [
+   37.7945787,
+   -122.4002492
+  ],
+  [
+   37.7948759,
+   -122.4003104
+  ],
+  [
+   37.7949126,
+   -122.4003187
+  ],
+  [
+   37.7949983,
+   -122.4003318
+  ],
+  [
+   37.7950902,
+   -122.400348
+  ],
+  [
+   37.7951946,
+   -122.4003708
+  ],
+  [
+   37.7954213,
+   -122.4004109
+  ],
+  [
+   37.795469,
+   -122.4004193
+  ],
+  [
+   37.7957982,
+   -122.4004837
+  ],
+  [
+   37.7958741,
+   -122.4005077
+  ],
+  [
+   37.79594680154461,
+   -122.40052911893447
+  ],
+  [
+   37.7959688,
+   -122.4005356
+  ],
+  [
+   37.79633054530821,
+   -122.40061015599588
+  ],
+  [
+   37.7959688,
+   -122.4005356
+  ],
+  [
+   37.79594680154461,
+   -122.40052911893447
+  ],
+  [
+   37.7958741,
+   -122.4005077
+  ],
+  [
+   37.7957982,
+   -122.4004837
+  ],
+  [
+   37.795469,
+   -122.4004193
+  ],
+  [
+   37.7954213,
+   -122.4004109
+  ],
+  [
+   37.7951946,
+   -122.4003708
+  ],
+  [
+   37.7950902,
+   -122.400348
+  ],
+  [
+   37.7949983,
+   -122.4003318
+  ],
+  [
+   37.7949126,
+   -122.4003187
+  ],
+  [
+   37.7948759,
+   -122.4003104
+  ],
+  [
+   37.7945787,
+   -122.4002492
+  ],
+  [
+   37.7942482,
+   -122.400184
+  ],
+  [
+   37.7942092,
+   -122.4001763
+  ],
+  [
+   37.794144,
+   -122.4001635
+  ],
+  [
+   37.7940884,
+   -122.4001523
+  ],
+  [
+   37.793777136687666,
+   -122.40008966580947
+  ],
+  [
+   37.7936968,
+   -122.4000735
+  ],
+  [
+   37.7933146,
+   -122.3999967
+  ],
+  [
+   37.7932343,
+   -122.3999806
+  ],
+  [
+   37.7932159,
+   -122.3999769
+  ],
+  [
+   37.793207,
+   -122.3999747
+  ],
+  [
+   37.7931249,
+   -122.3999582
+  ],
+  [
+   37.7927741,
+   -122.3998879
+  ],
+  [
+   37.79268429623488,
+   -122.39986993924697
+  ],
+  [
+   37.7926711,
+   -122.3998673
+  ],
+  [
+   37.79254296255711,
+   -122.39984111302714
+  ],
+  [
+   37.7926711,
+   -122.3998673
+  ],
+  [
+   37.79268429623488,
+   -122.39986993924697
+  ],
+  [
+   37.7927741,
+   -122.3998879
+  ],
+  [
+   37.7931249,
+   -122.3999582
+  ],
+  [
+   37.793207,
+   -122.3999747
+  ],
+  [
+   37.7932159,
+   -122.3999769
+  ],
+  [
+   37.7932343,
+   -122.3999806
+  ],
+  [
+   37.7933146,
+   -122.3999967
+  ],
+  [
+   37.7936968,
+   -122.4000735
+  ],
+  [
+   37.793777136687666,
+   -122.40008966580947
+  ],
+  [
+   37.7940884,
+   -122.4001523
+  ],
+  [
+   37.794144,
+   -122.4001635
+  ],
+  [
+   37.7942092,
+   -122.4001763
+  ],
+  [
+   37.7942482,
+   -122.400184
+  ],
+  [
+   37.7945787,
+   -122.4002492
+  ],
+  [
+   37.7948759,
+   -122.4003104
+  ],
+  [
+   37.7949126,
+   -122.4003187
+  ],
+  [
+   37.7949983,
+   -122.4003318
+  ],
+  [
+   37.7950902,
+   -122.400348
+  ],
+  [
+   37.7951946,
+   -122.4003708
+  ],
+  [
+   37.79530557238279,
+   -122.40039042943339
+  ],
+  [
+   37.7954213,
+   -122.4004109
+  ],
+  [
+   37.795469,
+   -122.4004193
+  ],
+  [
+   37.7957982,
+   -122.4004837
+  ],
+  [
+   37.7958741,
+   -122.4005077
+  ],
+  [
+   37.79594680154461,
+   -122.40052911893447
+  ],
+  [
+   37.7959688,
+   -122.4005356
+  ],
+  [
+   37.79633054530821,
+   -122.40061015599588
+  ],
+  [
+   37.7967228,
+   -122.400691
+  ],
+  [
+   37.7967813,
+   -122.4007017
+  ],
+  [
+   37.7968484,
+   -122.4007159
+  ],
+  [
+   37.7969173,
+   -122.4007293
+  ],
+  [
+   37.7970756,
+   -122.400761
+  ],
+  [
+   37.7971743,
+   -122.4007815
+  ],
+  [
+   37.797410164972135,
+   -122.40082988255838
+  ],
+  [
+   37.7971743,
+   -122.4007815
+  ],
+  [
+   37.7970756,
+   -122.400761
+  ],
+  [
+   37.7969173,
+   -122.4007293
+  ],
+  [
+   37.7968484,
+   -122.4007159
+  ],
+  [
+   37.7967813,
+   -122.4007017
+  ],
+  [
+   37.7967228,
+   -122.400691
+  ],
+  [
+   37.79633054530821,
+   -122.40061015599588
+  ],
+  [
+   37.7959688,
+   -122.4005356
+  ],
+  [
+   37.79594680154461,
+   -122.40052911893447
+  ],
+  [
+   37.7958741,
+   -122.4005077
+  ],
+  [
+   37.7957982,
+   -122.4004837
+  ],
+  [
+   37.795469,
+   -122.4004193
+  ],
+  [
+   37.7954213,
+   -122.4004109
+  ],
+  [
+   37.79530557238279,
+   -122.40039042943339
+  ],
+  [
+   37.7951946,
+   -122.4003708
+  ],
+  [
+   37.7950902,
+   -122.400348
+  ],
+  [
+   37.7949983,
+   -122.4003318
+  ],
+  [
+   37.7949126,
+   -122.4003187
+  ],
+  [
+   37.7948759,
+   -122.4003104
+  ],
+  [
+   37.7945787,
+   -122.4002492
+  ],
+  [
+   37.7942482,
+   -122.400184
+  ],
+  [
+   37.7942092,
+   -122.4001763
+  ],
+  [
+   37.794180689623545,
+   -122.40017070287088
+  ],
+  [
+   37.7942092,
+   -122.4001763
+  ],
+  [
+   37.7942482,
+   -122.400184
+  ],
+  [
+   37.7945787,
+   -122.4002492
+  ],
+  [
+   37.7948759,
+   -122.4003104
+  ],
+  [
+   37.7949126,
+   -122.4003187
+  ],
+  [
+   37.7949983,
+   -122.4003318
+  ],
+  [
+   37.7950902,
+   -122.400348
+  ],
+  [
+   37.7951946,
+   -122.4003708
+  ],
+  [
+   37.79530557238279,
+   -122.40039042943339
+  ],
+  [
+   37.7954213,
+   -122.4004109
+  ],
+  [
+   37.795469,
+   -122.4004193
+  ],
+  [
+   37.7957982,
+   -122.4004837
+  ],
+  [
+   37.7958741,
+   -122.4005077
+  ],
+  [
+   37.79594680154461,
+   -122.40052911893447
+  ],
+  [
+   37.7959688,
+   -122.4005356
+  ],
+  [
+   37.79633054530821,
+   -122.40061015599588
+  ],
+  [
+   37.79633054530821,
+   -122.40061015599588
+  ],
+  [
+   37.7967228,
+   -122.400691
+  ],
+  [
+   37.7967813,
+   -122.4007017
+  ],
+  [
+   37.7967928,
+   -122.4006027
+  ],
+  [
+   37.79689280232644,
+   -122.39984111302714
+  ],
+  [
+   37.7967928,
+   -122.4006027
+  ],
+  [
+   37.7967813,
+   -122.4007017
+  ],
+  [
+   37.7967668,
+   -122.4008097
+  ],
+  [
+   37.7967062,
+   -122.4012956
+  ],
+  [
+   37.796645,
+   -122.4017805
+  ],
+  [
+   37.7966325,
+   -122.4018767
+  ],
+  [
+   37.7966188,
+   -122.4019877
+  ],
+  [
+   37.7966055,
+   -122.4020925
+  ],
+  [
+   37.796562,
+   -122.4024369
+  ],
+  [
+   37.7965008,
+   -122.4029202
+  ],
+  [
+   37.79645873767571,
+   -122.40325255254649
+  ],
+  [
+   37.7965008,
+   -122.4029202
+  ],
+  [
+   37.796562,
+   -122.4024369
+  ],
+  [
+   37.7966055,
+   -122.4020925
+  ],
+  [
+   37.7966188,
+   -122.4019877
+  ],
+  [
+   37.7966325,
+   -122.4018767
+  ],
+  [
+   37.796645,
+   -122.4017805
+  ],
+  [
+   37.7967062,
+   -122.4012956
+  ],
+  [
+   37.7967668,
+   -122.4008097
+  ],
+  [
+   37.7967813,
+   -122.4007017
+  ],
+  [
+   37.7967928,
+   -122.4006027
+  ],
+  [
+   37.79689280232644,
+   -122.39984111302714
+  ],
+  [
+   37.7969177,
+   -122.3996515
+  ],
+  [
+   37.7969191,
+   -122.3996409
+  ],
+  [
+   37.7969423,
+   -122.3995154
+  ],
+  [
+   37.7969602,
+   -122.3993951
+  ],
+  [
+   37.796962,
+   -122.399381
+  ],
+  [
+   37.7970756,
+   -122.3985005
+  ],
+  [
+   37.7970806,
+   -122.398462
+  ],
+  [
+   37.797093,
+   -122.3983581
+  ],
+  [
+   37.797099342951405,
+   -122.39830870489024
+  ],
+  [
+   37.797093,
+   -122.3983581
+  ],
+  [
+   37.7970806,
+   -122.398462
+  ],
+  [
+   37.7970756,
+   -122.3985005
+  ],
+  [
+   37.796962,
+   -122.399381
+  ],
+  [
+   37.7969602,
+   -122.3993951
+  ],
+  [
+   37.7969423,
+   -122.3995154
+  ],
+  [
+   37.7969191,
+   -122.3996409
+  ],
+  [
+   37.7969177,
+   -122.3996515
+  ],
+  [
+   37.79689280232644,
+   -122.39984111302714
+  ],
+  [
+   37.7967928,
+   -122.4006027
+  ],
+  [
+   37.7967813,
+   -122.4007017
+  ],
+  [
+   37.7967668,
+   -122.4008097
+  ],
+  [
+   37.7967062,
+   -122.4012956
+  ],
+  [
+   37.79666527951459,
+   -122.40161982129696
+  ],
+  [
+   37.7967062,
+   -122.4012956
+  ],
+  [
+   37.7967668,
+   -122.4008097
+  ],
+  [
+   37.7967813,
+   -122.4007017
+  ],
+  [
+   37.7967928,
+   -122.4006027
+  ],
+  [
+   37.79689280232644,
+   -122.39984111302714
+  ],
+  [
+   37.7969177,
+   -122.3996515
+  ],
+  [
+   37.7969191,
+   -122.3996409
+  ],
+  [
+   37.7969423,
+   -122.3995154
+  ],
+  [
+   37.7969602,
+   -122.3993951
+  ],
+  [
+   37.796962,
+   -122.399381
+  ],
+  [
+   37.797041684370434,
+   -122.39876337598446
+  ],
+  [
+   37.796962,
+   -122.399381
+  ],
+  [
+   37.7969602,
+   -122.3993951
+  ],
+  [
+   37.7969423,
+   -122.3995154
+  ],
+  [
+   37.7969191,
+   -122.3996409
+  ],
+  [
+   37.7969177,
+   -122.3996515
+  ],
+  [
+   37.79689280232644,
+   -122.39984111302714
+  ],
+  [
+   37.7967928,
+   -122.4006027
+  ],
+  [
+   37.7967813,
+   -122.4007017
+  ],
+  [
+   37.7967668,
+   -122.4008097
+  ],
+  [
+   37.7967062,
+   -122.4012956
+  ],
+  [
+   37.79666527951459,
+   -122.40161982129696
+  ],
+  [
+   37.796645,
+   -122.4017805
+  ],
+  [
+   37.7966325,
+   -122.4018767
+  ],
+  [
+   37.7966188,
+   -122.4019877
+  ],
+  [
+   37.796607620600284,
+   -122.40207579030752
+  ]
+ ]
+}
