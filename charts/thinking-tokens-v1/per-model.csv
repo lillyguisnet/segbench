@@ -1,0 +1,20 @@
+entrant,label,maker,answers,mean,sd,median,q1,q3,min,max,no_thinking
+mistral-large-4@medium,Mistral Large 4,Mistral,33,8064.6,5731.0,6006,4862.0,8981.0,146,25773,0
+deepseek-flash@medium,DeepSeek Flash,DeepSeek,33,3660.8,2999.3,2828,1715.0,4760.0,314,16062,0
+mk1.5@medium,Perceptron Mk1.5,Perceptron,33,2013.8,2634.5,314,228.0,5429.0,170,7433,0
+kimi-k3@medium,Kimi K3,Moonshot,33,1578.0,1186.8,1194,892.0,1856.0,425,6729,0
+muse-wonder-api@medium,Muse Wonder (API),Meta,33,1440.8,530.8,1364,1210.0,1702.0,485,3050,0
+qwen-flash@medium,Qwen 3.8 Flash Next,Alibaba,33,1403.2,1037.7,1168,706.0,1514.0,175,4356,0
+gemini-pro@medium,Gemini 3.1 Pro,Google,33,1326.4,849.8,1267,859.0,1725.0,0,4189,3
+terra@medium,GPT-5.6 Terra,OpenAI,33,1204.5,684.8,1034,852.0,1618.0,95,2686,0
+gemini-flash@medium,Gemini 3.8 Flash,Google,33,1156.8,638.2,1018,740.0,1289.0,31,2695,0
+haiku@medium,Claude Haiku 5.5,Anthropic,33,876.6,600.6,688,568.0,912.0,241,2654,0
+qwen-27b@medium,Qwen 3.8 27B,Alibaba,33,827.6,406.5,807,614.0,980.0,138,2034,0
+gemini-flash-lite@medium,Gemini 3.5 Flash Lite,Google,33,817.6,696.9,823,321.0,947.0,0,2743,6
+luna@medium,GPT-6 Luna,OpenAI,33,411.2,204.7,459,328.0,516.0,0,768,4
+glm-5.3-flash@medium,GLM 5.3 Flash,Z.AI,33,400.2,291.5,258,167.0,649.0,69,1212,0
+sol@medium,GPT-6.1 Sol,OpenAI,33,390.7,259.0,329,168.0,506.0,29,1034,0
+astra@medium,GPT-6 Astra,OpenAI,33,140.5,94.3,125,72.0,189.0,17,379,0
+opus@medium,Claude Opus 5.5,Anthropic,33,113.1,174.3,0,0.0,227.0,0,468,21
+gemini-argon@medium,Gemini 4 Argon,Google,33,26.1,92.0,0,0.0,0.0,0,460,30
+sonnet@medium,Claude Sonnet 5.5,Anthropic,33,0,0.0,0,0.0,0.0,0,0,33

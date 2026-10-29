@@ -1,0 +1,43 @@
+{
+  "metric": "point-localisation-v1",
+  "parser": "lenient",
+  "dish_labels": "separate",
+  "created_at": "2026-10-20T16:38:29.567632+00:00",
+  "references": {
+    "segbench-review-6187f623-approved.json": "2862bb074507022fbfdd58d017f57520abcafb4b8366b9824adeae066c9c120b",
+    "segbench-review-5682a4be-approved.json": "8170b69a5bb5468ce1a745ef9517ef619421117e4bf413083de9c01b4a120dd2"
+  },
+  "tasks": [
+    "logs",
+    "cows",
+    "fig",
+    "dishes",
+    "ants",
+    "beetles",
+    "birds",
+    "mushrooms",
+    "jars",
+    "pinkleaves",
+    "whitecow"
+  ],
+  "timing_tasks": [
+    "logs",
+    "cows",
+    "fig",
+    "dishes"
+  ],
+  "input_files": {
+    "run-thinking-levels-v1.jsonl": "267a07e0171093735ecc1ebeaed7c907bbce589dbec55c7ded62c6a2fb8efa07"
+  },
+  "tolerances": {
+    "tight": 0.1,
+    "medium": 0.25,
+    "loose": 0.5
+  },
+  "diagonal_cap": 0.02,
+  "scope": "Point localisation only. Not point-inside-object or segmentation.",
+  "aggregation": "Equal mean over three F1 tolerances, then 11 tasks. Complete coverage required.",
+  "specification": "docs/thinking-levels.md",
+  "specification_sha256": "fc75a7ad8284a1d3fdf286988ceb8b32435b6fd30ba494469be80e8b4682f8c2",
+  "scorer_sha256": "18764a82bae5881aff972aebf5ec0ab0698c9a6c33489b65d7f57e5b15f1ebea"
+}
