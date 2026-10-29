@@ -1,0 +1,3233 @@
+{
+  "schema": "segbench-consensus-review/v1",
+  "source_sha256": "5682a4be254beff9549dcb549cd091ac49de2070f052079f238f4bbae8a2d28a",
+  "source_file": "consensus-consensus-2.json",
+  "coordinate_system": "original upright photo pixels; region masks have their own explicit grid",
+  "purpose": "human-reviewed annotation hints; NOT benchmark ground truth",
+  "created_at": "2026-10-14T23:55:19.822Z",
+  "updated_at": "2026-10-15T00:01:57.339980+00:00",
+  "tasks": {
+    "ants": {
+      "kind": "objects",
+      "width": 1439,
+      "height": 810,
+      "image_sha256": "7021e7e5dc11571083d9dca788982d876472caa611bcf4987b77059839ec2450",
+      "full_photo_checked": true,
+      "notes": "",
+      "objects": [
+        {
+          "id": "ants-0000",
+          "x": 697.5,
+          "y": 322.8,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "ants-0001",
+          "x": 752.9,
+          "y": 474.7,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "ants-0002",
+          "x": 546.8,
+          "y": 375,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "ants-0003",
+          "x": 223.2,
+          "y": 431,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "ants-0004",
+          "x": 108.6,
+          "y": 364.1,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "ants-0005",
+          "x": 223.8,
+          "y": 375,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "ants-0006",
+          "x": 316.6,
+          "y": 595.4,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "ants-0007",
+          "x": 53.2,
+          "y": 562.1,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "ants-0008",
+          "x": 2.9,
+          "y": 454.4,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "ants-0009",
+          "x": 1237.1,
+          "y": 161.2,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "ants-0010",
+          "x": 1266.3,
+          "y": 210.6,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "ants-0011",
+          "x": 337,
+          "y": 336.6,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "ants-0012",
+          "x": 466.4,
+          "y": 391.4,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        }
+      ]
+    },
+    "beetles": {
+      "kind": "objects",
+      "width": 743,
+      "height": 1319,
+      "image_sha256": "310c7db499479009b9fb5df81609bc046f0cf24d40e3610ae415d6c7a510983d",
+      "full_photo_checked": true,
+      "notes": "",
+      "objects": [
+        {
+          "id": "beetles-0000",
+          "x": 368.9,
+          "y": 332.4,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "beetles-0001",
+          "x": 367.8,
+          "y": 456.2,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "beetles-0002",
+          "x": 55.7,
+          "y": 358.8,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "beetles-0003",
+          "x": 695.4,
+          "y": 359.4,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "beetles-0004",
+          "x": 649.8,
+          "y": 676.6,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "beetles-0005",
+          "x": 710.3,
+          "y": 676.6,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "beetles-0006",
+          "x": 167.9,
+          "y": 849.4,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "beetles-0007",
+          "x": 64.3,
+          "y": 956.9,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "beetles-0008",
+          "x": 661.9,
+          "y": 964.2,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "beetles-0009",
+          "x": 345.5,
+          "y": 881.1,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "beetles-0010",
+          "x": 385.2,
+          "y": 881.1,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "beetles-0011",
+          "x": 366.3,
+          "y": 924.6,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "beetles-0012",
+          "x": 326.2,
+          "y": 958.6,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "beetles-0013",
+          "x": 412,
+          "y": 956.3,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "beetles-0014",
+          "x": 368.5,
+          "y": 979.5,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "beetles-0015",
+          "x": 34.9,
+          "y": 657.5,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "beetles-0016",
+          "x": 225.1,
+          "y": 778,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "beetles-0017",
+          "x": 82.1,
+          "y": 659.5,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "beetles-0018",
+          "x": 227.4,
+          "y": 747.9,
+          "status": "pending",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": null
+        },
+        {
+          "id": "beetles-0019",
+          "x": 198.8,
+          "y": 814.6,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "beetles-0020",
+          "x": 497.8,
+          "y": 769.7,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "beetles-0021",
+          "x": 529,
+          "y": 809.4,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "beetles-0022",
+          "x": 561,
+          "y": 850.4,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        }
+      ]
+    },
+    "birds": {
+      "kind": "objects",
+      "width": 743,
+      "height": 1319,
+      "image_sha256": "49a9767db0454c3f0d23d7a2ec4e73de23df853c739ba7874ce55db237be2386",
+      "full_photo_checked": true,
+      "notes": "",
+      "objects": [
+        {
+          "id": "birds-0000",
+          "x": 664.6,
+          "y": 229.4,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "birds-0001",
+          "x": 191.7,
+          "y": 393,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "birds-0002",
+          "x": 409.8,
+          "y": 471.5,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "birds-0003",
+          "x": 517.1,
+          "y": 807.5,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "birds-0004",
+          "x": 294.4,
+          "y": 1049.9,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "birds-0005",
+          "x": 370.8,
+          "y": 197.2,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "birds-0006",
+          "x": 551.4,
+          "y": 489.5,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "birds-0007",
+          "x": 220.3,
+          "y": 613.2,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "birds-0008",
+          "x": 46,
+          "y": 782,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "birds-0009",
+          "x": 40.1,
+          "y": 803.3,
+          "status": "pending",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": null
+        },
+        {
+          "id": "birds-0010",
+          "x": 7.1,
+          "y": 847.5,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "birds-0011",
+          "x": 520.3,
+          "y": 893,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "birds-0012",
+          "x": 501.8,
+          "y": 614.5,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "birds-0013",
+          "x": 240,
+          "y": 676,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "birds-human-mv8rqgcg-ls839q",
+          "x": 54,
+          "y": 800,
+          "status": "accepted",
+          "label": null,
+          "origin": "human",
+          "edited_at": "2026-10-14T23:56:15.808Z"
+        },
+        {
+          "id": "birds-human-mv8rqnbk-xxdn4z",
+          "x": 304,
+          "y": 784,
+          "status": "accepted",
+          "label": null,
+          "origin": "human",
+          "edited_at": "2026-10-14T23:56:24.848Z"
+        },
+        {
+          "id": "birds-human-mv8rr7ww-2qb7wd",
+          "x": 84,
+          "y": 790,
+          "status": "accepted",
+          "label": null,
+          "origin": "human",
+          "edited_at": "2026-10-14T23:56:51.537Z"
+        }
+      ]
+    },
+    "mushrooms": {
+      "kind": "objects",
+      "width": 1015,
+      "height": 1015,
+      "image_sha256": "b69d8ea92b1bc1227b602fb822399cc6f97c82aea01bd5f0ab26e269f11a61d3",
+      "full_photo_checked": true,
+      "notes": "",
+      "objects": [
+        {
+          "id": "mushrooms-0000",
+          "x": 318.2,
+          "y": 123.3,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "mushrooms-0001",
+          "x": 232.4,
+          "y": 331.4,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "mushrooms-0002",
+          "x": 287.8,
+          "y": 492.3,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "mushrooms-0003",
+          "x": 227.1,
+          "y": 671.4,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "mushrooms-0004",
+          "x": 397.2,
+          "y": 678.5,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "mushrooms-0005",
+          "x": 525.3,
+          "y": 729.8,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "mushrooms-0006",
+          "x": 680,
+          "y": 621.2,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "mushrooms-0007",
+          "x": 702.9,
+          "y": 782.1,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "mushrooms-0008",
+          "x": 874.9,
+          "y": 469.9,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "mushrooms-0009",
+          "x": 601.9,
+          "y": 399.9,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "mushrooms-0010",
+          "x": 484.2,
+          "y": 433.4,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "mushrooms-0011",
+          "x": 462.8,
+          "y": 358.3,
+          "status": "rejected",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-14T23:57:19.329Z"
+        },
+        {
+          "id": "mushrooms-0012",
+          "x": 726.7,
+          "y": 433.9,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "mushrooms-0013",
+          "x": 769.4,
+          "y": 204.1,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "mushrooms-0014",
+          "x": 770.4,
+          "y": 167.5,
+          "status": "pending",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": null
+        },
+        {
+          "id": "mushrooms-0015",
+          "x": 592.8,
+          "y": 175.4,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "mushrooms-0016",
+          "x": 416.1,
+          "y": 502.4,
+          "status": "pending",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": null
+        }
+      ]
+    },
+    "jars": {
+      "kind": "objects",
+      "width": 1015,
+      "height": 457,
+      "image_sha256": "21dca6ce4f8004c1172578f1cc02ef0a616aaaf7a01c90e0fd7d7a06ce94f2ba",
+      "full_photo_checked": true,
+      "notes": "",
+      "objects": [
+        {
+          "id": "jars-0000",
+          "x": 478.6,
+          "y": 232.8,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "jars-0001",
+          "x": 700.9,
+          "y": 150.1,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "jars-0002",
+          "x": 908.9,
+          "y": 184.9,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "jars-0003",
+          "x": 793.7,
+          "y": 110.6,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "jars-0004",
+          "x": 348,
+          "y": 155,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "jars-0005",
+          "x": 904.4,
+          "y": 56.7,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "jars-0006",
+          "x": 120.9,
+          "y": 100.4,
+          "status": "pending",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": null
+        },
+        {
+          "id": "jars-0007",
+          "x": 53.5,
+          "y": 162.4,
+          "status": "pending",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": null
+        }
+      ]
+    },
+    "pinkleaves": {
+      "kind": "objects",
+      "width": 727,
+      "height": 1030,
+      "image_sha256": "0f9ba908d4aed38a7c96e0ebc12c2c1f9c53dfaf04ec5884f26857f82d72490e",
+      "full_photo_checked": true,
+      "notes": "",
+      "objects": [
+        {
+          "id": "pinkleaves-0000",
+          "x": 259.2,
+          "y": 488,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "pinkleaves-0001",
+          "x": 303.9,
+          "y": 434.5,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "pinkleaves-0002",
+          "x": 278.4,
+          "y": 625.7,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "pinkleaves-0003",
+          "x": 302.8,
+          "y": 600.5,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "pinkleaves-0004",
+          "x": 330.4,
+          "y": 608.7,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "pinkleaves-0005",
+          "x": 355.5,
+          "y": 614.9,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "pinkleaves-0006",
+          "x": 375.9,
+          "y": 643.8,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "pinkleaves-0007",
+          "x": 424.6,
+          "y": 628.3,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "pinkleaves-0008",
+          "x": 446.7,
+          "y": 634,
+          "status": "pending",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": null
+        },
+        {
+          "id": "pinkleaves-0009",
+          "x": 473.3,
+          "y": 620.3,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "pinkleaves-0010",
+          "x": 470.9,
+          "y": 589.2,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "pinkleaves-0011",
+          "x": 443,
+          "y": 559.3,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "pinkleaves-0012",
+          "x": 419.2,
+          "y": 575,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "pinkleaves-0013",
+          "x": 427.5,
+          "y": 596.4,
+          "status": "pending",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": null
+        },
+        {
+          "id": "pinkleaves-0014",
+          "x": 388.2,
+          "y": 589.2,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "pinkleaves-0015",
+          "x": 386,
+          "y": 573,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "pinkleaves-0016",
+          "x": 351.1,
+          "y": 567.5,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "pinkleaves-0017",
+          "x": 377.3,
+          "y": 530.5,
+          "status": "pending",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": null
+        },
+        {
+          "id": "pinkleaves-0018",
+          "x": 410.8,
+          "y": 538.7,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "pinkleaves-0019",
+          "x": 396.9,
+          "y": 508.8,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "pinkleaves-0020",
+          "x": 372.6,
+          "y": 469.7,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "pinkleaves-0021",
+          "x": 349.5,
+          "y": 533.9,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "pinkleaves-0022",
+          "x": 364.2,
+          "y": 540.8,
+          "status": "pending",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": null
+        },
+        {
+          "id": "pinkleaves-0023",
+          "x": 447.8,
+          "y": 601,
+          "status": "pending",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": null
+        },
+        {
+          "id": "pinkleaves-0024",
+          "x": 392.9,
+          "y": 619.8,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "pinkleaves-0025",
+          "x": 250,
+          "y": 594.3,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "pinkleaves-0026",
+          "x": 551.1,
+          "y": 405.8,
+          "status": "pending",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": null
+        },
+        {
+          "id": "pinkleaves-0027",
+          "x": 561.2,
+          "y": 421.3,
+          "status": "pending",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": null
+        },
+        {
+          "id": "pinkleaves-0028",
+          "x": 500.2,
+          "y": 415.1,
+          "status": "pending",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": null
+        },
+        {
+          "id": "pinkleaves-0029",
+          "x": 476.2,
+          "y": 428.5,
+          "status": "pending",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": null
+        },
+        {
+          "id": "pinkleaves-0030",
+          "x": 366.4,
+          "y": 771.5,
+          "status": "pending",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": null
+        },
+        {
+          "id": "pinkleaves-0031",
+          "x": 241.4,
+          "y": 470.7,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "pinkleaves-0032",
+          "x": 293.7,
+          "y": 465.6,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "pinkleaves-0033",
+          "x": 312.6,
+          "y": 636.5,
+          "status": "pending",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": null
+        },
+        {
+          "id": "pinkleaves-0034",
+          "x": 323.5,
+          "y": 582,
+          "status": "pending",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": null
+        },
+        {
+          "id": "pinkleaves-0035",
+          "x": 335.1,
+          "y": 635.5,
+          "status": "pending",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": null
+        },
+        {
+          "id": "pinkleaves-0036",
+          "x": 359.9,
+          "y": 591.2,
+          "status": "pending",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": null
+        },
+        {
+          "id": "pinkleaves-0037",
+          "x": 410.8,
+          "y": 592.2,
+          "status": "pending",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": null
+        },
+        {
+          "id": "pinkleaves-0038",
+          "x": 412.9,
+          "y": 642.7,
+          "status": "pending",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": null
+        },
+        {
+          "id": "pinkleaves-human-mv8rsrpt-bxp00n",
+          "x": 307,
+          "y": 630,
+          "status": "accepted",
+          "label": null,
+          "origin": "human",
+          "edited_at": "2026-10-14T23:58:03.857Z"
+        },
+        {
+          "id": "pinkleaves-human-mv8rsug1-8834lm",
+          "x": 446,
+          "y": 634,
+          "status": "accepted",
+          "label": null,
+          "origin": "human",
+          "edited_at": "2026-10-14T23:58:07.393Z"
+        },
+        {
+          "id": "pinkleaves-human-mv8rsv0p-r1v3r8",
+          "x": 451,
+          "y": 611,
+          "status": "accepted",
+          "label": null,
+          "origin": "human",
+          "edited_at": "2026-10-14T23:58:08.137Z"
+        },
+        {
+          "id": "pinkleaves-human-mv8rsvqp-i2cktv",
+          "x": 429,
+          "y": 596,
+          "status": "accepted",
+          "label": null,
+          "origin": "human",
+          "edited_at": "2026-10-14T23:58:09.073Z"
+        },
+        {
+          "id": "pinkleaves-human-mv8rsx0q-lj7xeu",
+          "x": 425,
+          "y": 612,
+          "status": "accepted",
+          "label": null,
+          "origin": "human",
+          "edited_at": "2026-10-14T23:58:10.730Z"
+        },
+        {
+          "id": "pinkleaves-human-mv8rsxop-7210vd",
+          "x": 407,
+          "y": 615,
+          "status": "accepted",
+          "label": null,
+          "origin": "human",
+          "edited_at": "2026-10-14T23:58:11.593Z"
+        },
+        {
+          "id": "pinkleaves-human-mv8rt28x-uat4id",
+          "x": 360,
+          "y": 552,
+          "status": "accepted",
+          "label": null,
+          "origin": "human",
+          "edited_at": "2026-10-14T23:58:17.505Z"
+        },
+        {
+          "id": "pinkleaves-human-mv8rt2qp-e4un1r",
+          "x": 377,
+          "y": 539,
+          "status": "accepted",
+          "label": null,
+          "origin": "human",
+          "edited_at": "2026-10-14T23:58:18.145Z"
+        },
+        {
+          "id": "pinkleaves-human-mv8rt3i9-wagp7q",
+          "x": 384,
+          "y": 558,
+          "status": "accepted",
+          "label": null,
+          "origin": "human",
+          "edited_at": "2026-10-14T23:58:19.137Z"
+        },
+        {
+          "id": "pinkleaves-human-mv8rt4my-tpvlo4",
+          "x": 415,
+          "y": 561,
+          "status": "accepted",
+          "label": null,
+          "origin": "human",
+          "edited_at": "2026-10-14T23:58:20.602Z"
+        },
+        {
+          "id": "pinkleaves-human-mv8rt6b5-y5dddf",
+          "x": 333,
+          "y": 542,
+          "status": "accepted",
+          "label": null,
+          "origin": "human",
+          "edited_at": "2026-10-14T23:58:22.770Z"
+        },
+        {
+          "id": "pinkleaves-human-mv8rte57-3qfojt",
+          "x": 438,
+          "y": 549,
+          "status": "accepted",
+          "label": null,
+          "origin": "human",
+          "edited_at": "2026-10-14T23:58:32.923Z"
+        },
+        {
+          "id": "pinkleaves-human-mv8rtf95-1ey4qk",
+          "x": 445,
+          "y": 586,
+          "status": "accepted",
+          "label": null,
+          "origin": "human",
+          "edited_at": "2026-10-14T23:58:34.361Z"
+        },
+        {
+          "id": "pinkleaves-human-mv8rtl55-7ke2gt",
+          "x": 364,
+          "y": 594,
+          "status": "accepted",
+          "label": null,
+          "origin": "human",
+          "edited_at": "2026-10-14T23:58:41.993Z"
+        }
+      ]
+    },
+    "whitecow": {
+      "kind": "objects",
+      "width": 1439,
+      "height": 810,
+      "image_sha256": "f1d50c369f033fae958538c5a7f14ceb925ebe4e47b6d1e5fd85719a1a172bba",
+      "full_photo_checked": true,
+      "notes": "",
+      "objects": [
+        {
+          "id": "whitecow-0000",
+          "x": 967.7,
+          "y": 341.4,
+          "status": "accepted",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-15T00:01:57.339980+00:00"
+        },
+        {
+          "id": "whitecow-0001",
+          "x": 1043.3,
+          "y": 319.9,
+          "status": "rejected",
+          "label": null,
+          "origin": "consensus",
+          "edited_at": "2026-10-14T23:59:16.874Z"
+        }
+      ]
+    }
+  },
+  "audit": [
+    {
+      "at": "2026-10-14T23:55:51.059Z",
+      "task": "ants",
+      "action": "full_photo_check",
+      "checked": true
+    },
+    {
+      "at": "2026-10-14T23:56:06.425Z",
+      "task": "beetles",
+      "action": "full_photo_check",
+      "checked": true
+    },
+    {
+      "at": "2026-10-14T23:56:15.808Z",
+      "task": "birds",
+      "action": "add",
+      "id": "birds-human-mv8rqgcg-ls839q"
+    },
+    {
+      "at": "2026-10-14T23:56:24.848Z",
+      "task": "birds",
+      "action": "add",
+      "id": "birds-human-mv8rqnbk-xxdn4z"
+    },
+    {
+      "at": "2026-10-14T23:56:30.841Z",
+      "task": "birds",
+      "action": "move",
+      "id": "birds-0013"
+    },
+    {
+      "at": "2026-10-14T23:56:46.408Z",
+      "task": "birds",
+      "action": "move",
+      "id": "birds-0008"
+    },
+    {
+      "at": "2026-10-14T23:56:51.537Z",
+      "task": "birds",
+      "action": "add",
+      "id": "birds-human-mv8rr7ww-2qb7wd"
+    },
+    {
+      "at": "2026-10-14T23:57:08.545Z",
+      "task": "birds",
+      "action": "full_photo_check",
+      "checked": true
+    },
+    {
+      "at": "2026-10-14T23:57:19.329Z",
+      "task": "mushrooms",
+      "action": "rejected",
+      "id": "mushrooms-0011"
+    },
+    {
+      "at": "2026-10-14T23:57:29.002Z",
+      "task": "mushrooms",
+      "action": "full_photo_check",
+      "checked": true
+    },
+    {
+      "at": "2026-10-14T23:57:47.441Z",
+      "task": "jars",
+      "action": "move",
+      "id": "jars-0004"
+    },
+    {
+      "at": "2026-10-14T23:57:51.809Z",
+      "task": "jars",
+      "action": "full_photo_check",
+      "checked": true
+    },
+    {
+      "at": "2026-10-14T23:58:03.857Z",
+      "task": "pinkleaves",
+      "action": "add",
+      "id": "pinkleaves-human-mv8rsrpt-bxp00n"
+    },
+    {
+      "at": "2026-10-14T23:58:07.393Z",
+      "task": "pinkleaves",
+      "action": "add",
+      "id": "pinkleaves-human-mv8rsug1-8834lm"
+    },
+    {
+      "at": "2026-10-14T23:58:08.137Z",
+      "task": "pinkleaves",
+      "action": "add",
+      "id": "pinkleaves-human-mv8rsv0p-r1v3r8"
+    },
+    {
+      "at": "2026-10-14T23:58:09.073Z",
+      "task": "pinkleaves",
+      "action": "add",
+      "id": "pinkleaves-human-mv8rsvqp-i2cktv"
+    },
+    {
+      "at": "2026-10-14T23:58:10.730Z",
+      "task": "pinkleaves",
+      "action": "add",
+      "id": "pinkleaves-human-mv8rsx0q-lj7xeu"
+    },
+    {
+      "at": "2026-10-14T23:58:11.593Z",
+      "task": "pinkleaves",
+      "action": "add",
+      "id": "pinkleaves-human-mv8rsxop-7210vd"
+    },
+    {
+      "at": "2026-10-14T23:58:17.505Z",
+      "task": "pinkleaves",
+      "action": "add",
+      "id": "pinkleaves-human-mv8rt28x-uat4id"
+    },
+    {
+      "at": "2026-10-14T23:58:18.145Z",
+      "task": "pinkleaves",
+      "action": "add",
+      "id": "pinkleaves-human-mv8rt2qp-e4un1r"
+    },
+    {
+      "at": "2026-10-14T23:58:19.137Z",
+      "task": "pinkleaves",
+      "action": "add",
+      "id": "pinkleaves-human-mv8rt3i9-wagp7q"
+    },
+    {
+      "at": "2026-10-14T23:58:20.602Z",
+      "task": "pinkleaves",
+      "action": "add",
+      "id": "pinkleaves-human-mv8rt4my-tpvlo4"
+    },
+    {
+      "at": "2026-10-14T23:58:22.770Z",
+      "task": "pinkleaves",
+      "action": "add",
+      "id": "pinkleaves-human-mv8rt6b5-y5dddf"
+    },
+    {
+      "at": "2026-10-14T23:58:32.923Z",
+      "task": "pinkleaves",
+      "action": "add",
+      "id": "pinkleaves-human-mv8rte57-3qfojt"
+    },
+    {
+      "at": "2026-10-14T23:58:34.361Z",
+      "task": "pinkleaves",
+      "action": "add",
+      "id": "pinkleaves-human-mv8rtf95-1ey4qk"
+    },
+    {
+      "at": "2026-10-14T23:58:38.665Z",
+      "task": "pinkleaves",
+      "action": "move",
+      "id": "pinkleaves-0015"
+    },
+    {
+      "at": "2026-10-14T23:58:41.994Z",
+      "task": "pinkleaves",
+      "action": "add",
+      "id": "pinkleaves-human-mv8rtl55-7ke2gt"
+    },
+    {
+      "at": "2026-10-14T23:59:09.090Z",
+      "task": "pinkleaves",
+      "action": "full_photo_check",
+      "checked": true
+    },
+    {
+      "at": "2026-10-14T23:59:16.874Z",
+      "task": "whitecow",
+      "action": "rejected",
+      "id": "whitecow-0001"
+    },
+    {
+      "at": "2026-10-14T23:59:21.402Z",
+      "task": "whitecow",
+      "action": "full_photo_check",
+      "checked": true
+    },
+    {
+      "at": "2026-10-15T00:01:57.339980+00:00",
+      "task": "ants",
+      "action": "human_bulk_approval",
+      "ids": [
+        "ants-0000",
+        "ants-0001",
+        "ants-0002",
+        "ants-0003",
+        "ants-0004",
+        "ants-0005",
+        "ants-0006",
+        "ants-0007",
+        "ants-0008",
+        "ants-0009",
+        "ants-0010",
+        "ants-0011",
+        "ants-0012"
+      ],
+      "basis": "Explicit user confirmation: yes all approved",
+      "scope": "Visible non-rejected dots on fully checked photos; hidden low-support proposals excluded"
+    },
+    {
+      "at": "2026-10-15T00:01:57.339980+00:00",
+      "task": "beetles",
+      "action": "human_bulk_approval",
+      "ids": [
+        "beetles-0000",
+        "beetles-0001",
+        "beetles-0002",
+        "beetles-0003",
+        "beetles-0004",
+        "beetles-0005",
+        "beetles-0006",
+        "beetles-0007",
+        "beetles-0008",
+        "beetles-0009",
+        "beetles-0010",
+        "beetles-0011",
+        "beetles-0012",
+        "beetles-0013",
+        "beetles-0014",
+        "beetles-0015",
+        "beetles-0016",
+        "beetles-0017",
+        "beetles-0019",
+        "beetles-0020",
+        "beetles-0021",
+        "beetles-0022"
+      ],
+      "basis": "Explicit user confirmation: yes all approved",
+      "scope": "Visible non-rejected dots on fully checked photos; hidden low-support proposals excluded"
+    },
+    {
+      "at": "2026-10-15T00:01:57.339980+00:00",
+      "task": "birds",
+      "action": "human_bulk_approval",
+      "ids": [
+        "birds-0000",
+        "birds-0001",
+        "birds-0002",
+        "birds-0003",
+        "birds-0004",
+        "birds-0005",
+        "birds-0006",
+        "birds-0007",
+        "birds-0008",
+        "birds-0010",
+        "birds-0011",
+        "birds-0012",
+        "birds-0013"
+      ],
+      "basis": "Explicit user confirmation: yes all approved",
+      "scope": "Visible non-rejected dots on fully checked photos; hidden low-support proposals excluded"
+    },
+    {
+      "at": "2026-10-15T00:01:57.339980+00:00",
+      "task": "mushrooms",
+      "action": "human_bulk_approval",
+      "ids": [
+        "mushrooms-0000",
+        "mushrooms-0001",
+        "mushrooms-0002",
+        "mushrooms-0003",
+        "mushrooms-0004",
+        "mushrooms-0005",
+        "mushrooms-0006",
+        "mushrooms-0007",
+        "mushrooms-0008",
+        "mushrooms-0009",
+        "mushrooms-0010",
+        "mushrooms-0012",
+        "mushrooms-0013",
+        "mushrooms-0015"
+      ],
+      "basis": "Explicit user confirmation: yes all approved",
+      "scope": "Visible non-rejected dots on fully checked photos; hidden low-support proposals excluded"
+    },
+    {
+      "at": "2026-10-15T00:01:57.339980+00:00",
+      "task": "jars",
+      "action": "human_bulk_approval",
+      "ids": [
+        "jars-0000",
+        "jars-0001",
+        "jars-0002",
+        "jars-0003",
+        "jars-0004",
+        "jars-0005"
+      ],
+      "basis": "Explicit user confirmation: yes all approved",
+      "scope": "Visible non-rejected dots on fully checked photos; hidden low-support proposals excluded"
+    },
+    {
+      "at": "2026-10-15T00:01:57.339980+00:00",
+      "task": "pinkleaves",
+      "action": "human_bulk_approval",
+      "ids": [
+        "pinkleaves-0000",
+        "pinkleaves-0001",
+        "pinkleaves-0002",
+        "pinkleaves-0003",
+        "pinkleaves-0004",
+        "pinkleaves-0005",
+        "pinkleaves-0006",
+        "pinkleaves-0007",
+        "pinkleaves-0009",
+        "pinkleaves-0010",
+        "pinkleaves-0011",
+        "pinkleaves-0012",
+        "pinkleaves-0014",
+        "pinkleaves-0015",
+        "pinkleaves-0016",
+        "pinkleaves-0018",
+        "pinkleaves-0019",
+        "pinkleaves-0020",
+        "pinkleaves-0021",
+        "pinkleaves-0024",
+        "pinkleaves-0025",
+        "pinkleaves-0031",
+        "pinkleaves-0032"
+      ],
+      "basis": "Explicit user confirmation: yes all approved",
+      "scope": "Visible non-rejected dots on fully checked photos; hidden low-support proposals excluded"
+    },
+    {
+      "at": "2026-10-15T00:01:57.339980+00:00",
+      "task": "whitecow",
+      "action": "human_bulk_approval",
+      "ids": [
+        "whitecow-0000"
+      ],
+      "basis": "Explicit user confirmation: yes all approved",
+      "scope": "Visible non-rejected dots on fully checked photos; hidden low-support proposals excluded"
+    }
+  ],
+  "exported_at": "2026-10-15T00:01:57.339980+00:00",
+  "source_snapshot": {
+    "schema": 1,
+    "source": "consensus-consensus-2.json",
+    "source_sha256": "5682a4be254beff9549dcb549cd091ac49de2070f052079f238f4bbae8a2d28a",
+    "run": "run-consensus-2",
+    "tasks": [
+      {
+        "key": "ants",
+        "title": "Leaf pieces carried by ants",
+        "target": "each leaf piece carried by an ant",
+        "kind": "objects",
+        "photo": "images/leafcutter_ants_branch.jpg",
+        "width": 1439,
+        "height": 810,
+        "image_sha256": "7021e7e5dc11571083d9dca788982d876472caa611bcf4987b77059839ec2450",
+        "objects": [
+          {
+            "id": "ants-0000",
+            "x": 697.5,
+            "y": 322.8,
+            "support": 0.992,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "ants-0001",
+            "x": 752.9,
+            "y": 474.7,
+            "support": 0.992,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "ants-0002",
+            "x": 546.8,
+            "y": 375,
+            "support": 0.977,
+            "votes": [
+              "gemini-flash/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "ants-0003",
+            "x": 223.2,
+            "y": 431,
+            "support": 0.992,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "ants-0004",
+            "x": 108.6,
+            "y": 364.1,
+            "support": 0.992,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "ants-0005",
+            "x": 223.8,
+            "y": 375,
+            "support": 0.954,
+            "votes": [
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "ants-0006",
+            "x": 316.6,
+            "y": 595.4,
+            "support": 0.983,
+            "votes": [
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "ants-0007",
+            "x": 53.2,
+            "y": 562.1,
+            "support": 0.954,
+            "votes": [
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "ants-0008",
+            "x": 2.9,
+            "y": 454.4,
+            "support": 0.728,
+            "votes": [
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "ants-0009",
+            "x": 1237.1,
+            "y": 161.2,
+            "support": 0.992,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "ants-0010",
+            "x": 1266.3,
+            "y": 210.6,
+            "support": 0.983,
+            "votes": [
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "ants-0011",
+            "x": 337,
+            "y": 336.6,
+            "support": 0.992,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "ants-0012",
+            "x": 466.4,
+            "y": 391.4,
+            "support": 0.992,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          }
+        ]
+      },
+      {
+        "key": "beetles",
+        "title": "Beetles",
+        "target": "each beetle (not the butterflies)",
+        "kind": "objects",
+        "photo": "images/butterfly_display_case.jpg",
+        "width": 743,
+        "height": 1319,
+        "image_sha256": "310c7db499479009b9fb5df81609bc046f0cf24d40e3610ae415d6c7a510983d",
+        "objects": [
+          {
+            "id": "beetles-0000",
+            "x": 368.9,
+            "y": 332.4,
+            "support": 0.997,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "beetles-0001",
+            "x": 367.8,
+            "y": 456.2,
+            "support": 0.997,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "beetles-0002",
+            "x": 55.7,
+            "y": 358.8,
+            "support": 0.87,
+            "votes": [
+              "gemini-flash/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "beetles-0003",
+            "x": 695.4,
+            "y": 359.4,
+            "support": 0.87,
+            "votes": [
+              "gemini-flash/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "beetles-0004",
+            "x": 649.8,
+            "y": 676.6,
+            "support": 0.997,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "beetles-0005",
+            "x": 710.3,
+            "y": 676.6,
+            "support": 0.997,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "beetles-0006",
+            "x": 167.9,
+            "y": 849.4,
+            "support": 0.997,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "beetles-0007",
+            "x": 64.3,
+            "y": 956.9,
+            "support": 0.997,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "beetles-0008",
+            "x": 661.9,
+            "y": 964.2,
+            "support": 0.997,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "beetles-0009",
+            "x": 345.5,
+            "y": 881.1,
+            "support": 0.997,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "beetles-0010",
+            "x": 385.2,
+            "y": 881.1,
+            "support": 0.997,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "beetles-0011",
+            "x": 366.3,
+            "y": 924.6,
+            "support": 0.997,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "beetles-0012",
+            "x": 326.2,
+            "y": 958.6,
+            "support": 0.997,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "beetles-0013",
+            "x": 412,
+            "y": 956.3,
+            "support": 0.997,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "beetles-0014",
+            "x": 368.5,
+            "y": 979.5,
+            "support": 0.997,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "beetles-0015",
+            "x": 34.9,
+            "y": 657.5,
+            "support": 0.997,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "beetles-0016",
+            "x": 225.1,
+            "y": 778,
+            "support": 0.991,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "beetles-0017",
+            "x": 82.1,
+            "y": 659.5,
+            "support": 0.997,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "beetles-0018",
+            "x": 227.4,
+            "y": 747.9,
+            "support": 0.02,
+            "votes": [
+              "muse-wonder-api/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "beetles-0019",
+            "x": 198.8,
+            "y": 814.6,
+            "support": 0.997,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "beetles-0020",
+            "x": 497.8,
+            "y": 769.7,
+            "support": 0.997,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "beetles-0021",
+            "x": 529,
+            "y": 809.4,
+            "support": 0.997,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "beetles-0022",
+            "x": 561,
+            "y": 850.4,
+            "support": 0.997,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          }
+        ]
+      },
+      {
+        "key": "birds",
+        "title": "Birds",
+        "target": "each bird",
+        "kind": "objects",
+        "photo": "images/mounted_birds_display.jpg",
+        "width": 743,
+        "height": 1319,
+        "image_sha256": "49a9767db0454c3f0d23d7a2ec4e73de23df853c739ba7874ce55db237be2386",
+        "objects": [
+          {
+            "id": "birds-0000",
+            "x": 664.6,
+            "y": 229.4,
+            "support": 0.99,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "birds-0001",
+            "x": 191.7,
+            "y": 393,
+            "support": 0.99,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "birds-0002",
+            "x": 409.8,
+            "y": 471.5,
+            "support": 0.6,
+            "votes": [
+              "gemini-flash/find",
+              "muse-wonder-api/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "birds-0003",
+            "x": 517.1,
+            "y": 807.5,
+            "support": 0.99,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "birds-0004",
+            "x": 294.4,
+            "y": 1049.9,
+            "support": 0.99,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "birds-0005",
+            "x": 370.8,
+            "y": 197.2,
+            "support": 0.99,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "birds-0006",
+            "x": 551.4,
+            "y": 489.5,
+            "support": 0.99,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "birds-0007",
+            "x": 220.3,
+            "y": 613.2,
+            "support": 0.99,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "birds-0008",
+            "x": 60.6,
+            "y": 769.6,
+            "support": 0.99,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "birds-0009",
+            "x": 40.1,
+            "y": 803.3,
+            "support": 0.028,
+            "votes": [
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "birds-0010",
+            "x": 7.1,
+            "y": 847.5,
+            "support": 0.239,
+            "votes": [
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "birds-0011",
+            "x": 520.3,
+            "y": 893,
+            "support": 0.99,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "birds-0012",
+            "x": 501.8,
+            "y": 614.5,
+            "support": 0.99,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "birds-0013",
+            "x": 242.2,
+            "y": 715,
+            "support": 0.99,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          }
+        ]
+      },
+      {
+        "key": "mushrooms",
+        "title": "Mushroom caps",
+        "target": "each mushroom cap",
+        "kind": "objects",
+        "photo": "images/oyster_mushrooms_hands.jpg",
+        "width": 1015,
+        "height": 1015,
+        "image_sha256": "b69d8ea92b1bc1227b602fb822399cc6f97c82aea01bd5f0ab26e269f11a61d3",
+        "objects": [
+          {
+            "id": "mushrooms-0000",
+            "x": 318.2,
+            "y": 123.3,
+            "support": 0.992,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "mushrooms-0001",
+            "x": 232.4,
+            "y": 331.4,
+            "support": 0.992,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "mushrooms-0002",
+            "x": 287.8,
+            "y": 492.3,
+            "support": 0.992,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "mushrooms-0003",
+            "x": 227.1,
+            "y": 671.4,
+            "support": 0.992,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "mushrooms-0004",
+            "x": 397.2,
+            "y": 678.5,
+            "support": 0.992,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "mushrooms-0005",
+            "x": 525.3,
+            "y": 729.8,
+            "support": 0.992,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "mushrooms-0006",
+            "x": 680,
+            "y": 621.2,
+            "support": 0.992,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "mushrooms-0007",
+            "x": 702.9,
+            "y": 782.1,
+            "support": 0.992,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "mushrooms-0008",
+            "x": 874.9,
+            "y": 469.9,
+            "support": 0.992,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "mushrooms-0009",
+            "x": 601.9,
+            "y": 399.9,
+            "support": 0.94,
+            "votes": [
+              "gemini-flash/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "mushrooms-0010",
+            "x": 484.2,
+            "y": 433.4,
+            "support": 0.94,
+            "votes": [
+              "gemini-flash/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "mushrooms-0011",
+            "x": 462.8,
+            "y": 358.3,
+            "support": 0.94,
+            "votes": [
+              "gemini-flash/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "mushrooms-0012",
+            "x": 726.7,
+            "y": 433.9,
+            "support": 0.532,
+            "votes": [
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "mushrooms-0013",
+            "x": 769.4,
+            "y": 204.1,
+            "support": 0.992,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "mushrooms-0014",
+            "x": 770.4,
+            "y": 167.5,
+            "support": 0.106,
+            "votes": [
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "mushrooms-0015",
+            "x": 592.8,
+            "y": 175.4,
+            "support": 0.895,
+            "votes": [
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "mushrooms-0016",
+            "x": 416.1,
+            "y": 502.4,
+            "support": 0.106,
+            "votes": [
+              "muse-wonder-api/find"
+            ],
+            "label": null,
+            "label_support": null
+          }
+        ]
+      },
+      {
+        "key": "jars",
+        "title": "Strawberry coulis jars",
+        "target": "each jar of strawberry coulis (not the jars of other preserves)",
+        "kind": "objects",
+        "photo": "images/strawberry_coulis_jars.jpg",
+        "width": 1015,
+        "height": 457,
+        "image_sha256": "21dca6ce4f8004c1172578f1cc02ef0a616aaaf7a01c90e0fd7d7a06ce94f2ba",
+        "objects": [
+          {
+            "id": "jars-0000",
+            "x": 478.6,
+            "y": 232.8,
+            "support": 0.989,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "jars-0001",
+            "x": 700.9,
+            "y": 150.1,
+            "support": 0.989,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "jars-0002",
+            "x": 908.9,
+            "y": 184.9,
+            "support": 0.989,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "jars-0003",
+            "x": 793.7,
+            "y": 110.6,
+            "support": 0.989,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "jars-0004",
+            "x": 374.5,
+            "y": 139.8,
+            "support": 0.989,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "jars-0005",
+            "x": 904.4,
+            "y": 56.7,
+            "support": 0.915,
+            "votes": [
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "jars-0006",
+            "x": 120.9,
+            "y": 100.4,
+            "support": 0.039,
+            "votes": [
+              "moondream-3.1/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "jars-0007",
+            "x": 53.5,
+            "y": 162.4,
+            "support": 0.039,
+            "votes": [
+              "moondream-3.1/find"
+            ],
+            "label": null,
+            "label_support": null
+          }
+        ]
+      },
+      {
+        "key": "pinkleaves",
+        "title": "Pink leaves",
+        "target": "each pink leaf",
+        "kind": "objects",
+        "photo": "images/living_plant_wall.jpg",
+        "width": 727,
+        "height": 1030,
+        "image_sha256": "0f9ba908d4aed38a7c96e0ebc12c2c1f9c53dfaf04ec5884f26857f82d72490e",
+        "objects": [
+          {
+            "id": "pinkleaves-0000",
+            "x": 259.2,
+            "y": 488,
+            "support": 0.992,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "pinkleaves-0001",
+            "x": 303.9,
+            "y": 434.5,
+            "support": 0.962,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "pinkleaves-0002",
+            "x": 278.4,
+            "y": 625.7,
+            "support": 0.992,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "pinkleaves-0003",
+            "x": 302.8,
+            "y": 600.5,
+            "support": 0.992,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "pinkleaves-0004",
+            "x": 330.4,
+            "y": 608.7,
+            "support": 0.992,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "pinkleaves-0005",
+            "x": 355.5,
+            "y": 614.9,
+            "support": 0.72,
+            "votes": [
+              "gemini-flash/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "pinkleaves-0006",
+            "x": 375.9,
+            "y": 643.8,
+            "support": 0.72,
+            "votes": [
+              "gemini-flash/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "pinkleaves-0007",
+            "x": 424.6,
+            "y": 628.3,
+            "support": 0.992,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "pinkleaves-0008",
+            "x": 446.7,
+            "y": 634,
+            "support": 0.141,
+            "votes": [
+              "gemini-flash/find",
+              "muse-wonder-api/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "pinkleaves-0009",
+            "x": 473.3,
+            "y": 620.3,
+            "support": 0.992,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "pinkleaves-0010",
+            "x": 470.9,
+            "y": 589.2,
+            "support": 0.992,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "pinkleaves-0011",
+            "x": 443,
+            "y": 559.3,
+            "support": 0.962,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "pinkleaves-0012",
+            "x": 419.2,
+            "y": 575,
+            "support": 0.992,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "pinkleaves-0013",
+            "x": 427.5,
+            "y": 596.4,
+            "support": 0.032,
+            "votes": [
+              "gemini-flash/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "pinkleaves-0014",
+            "x": 388.2,
+            "y": 589.2,
+            "support": 0.72,
+            "votes": [
+              "gemini-flash/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "pinkleaves-0015",
+            "x": 375.1,
+            "y": 568.6,
+            "support": 0.341,
+            "votes": [
+              "gemini-flash/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "pinkleaves-0016",
+            "x": 351.1,
+            "y": 567.5,
+            "support": 0.72,
+            "votes": [
+              "gemini-flash/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "pinkleaves-0017",
+            "x": 377.3,
+            "y": 530.5,
+            "support": 0.032,
+            "votes": [
+              "gemini-flash/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "pinkleaves-0018",
+            "x": 410.8,
+            "y": 538.7,
+            "support": 0.72,
+            "votes": [
+              "gemini-flash/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "pinkleaves-0019",
+            "x": 396.9,
+            "y": 508.8,
+            "support": 0.992,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "pinkleaves-0020",
+            "x": 372.6,
+            "y": 469.7,
+            "support": 0.341,
+            "votes": [
+              "gemini-flash/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "pinkleaves-0021",
+            "x": 349.5,
+            "y": 533.9,
+            "support": 0.992,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "pinkleaves-0022",
+            "x": 364.2,
+            "y": 540.8,
+            "support": 0.014,
+            "votes": [
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "pinkleaves-0023",
+            "x": 447.8,
+            "y": 601,
+            "support": 0.064,
+            "votes": [
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "pinkleaves-0024",
+            "x": 392.9,
+            "y": 619.8,
+            "support": 0.992,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "pinkleaves-0025",
+            "x": 250,
+            "y": 594.3,
+            "support": 0.992,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "pinkleaves-0026",
+            "x": 551.1,
+            "y": 405.8,
+            "support": 0.014,
+            "votes": [
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "pinkleaves-0027",
+            "x": 561.2,
+            "y": 421.3,
+            "support": 0.014,
+            "votes": [
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "pinkleaves-0028",
+            "x": 500.2,
+            "y": 415.1,
+            "support": 0.014,
+            "votes": [
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "pinkleaves-0029",
+            "x": 476.2,
+            "y": 428.5,
+            "support": 0.014,
+            "votes": [
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "pinkleaves-0030",
+            "x": 366.4,
+            "y": 771.5,
+            "support": 0.014,
+            "votes": [
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "pinkleaves-0031",
+            "x": 241.4,
+            "y": 470.7,
+            "support": 0.992,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "pinkleaves-0032",
+            "x": 293.7,
+            "y": 465.6,
+            "support": 0.992,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "pinkleaves-0033",
+            "x": 312.6,
+            "y": 636.5,
+            "support": 0.004,
+            "votes": [
+              "muse-wonder-api/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "pinkleaves-0034",
+            "x": 323.5,
+            "y": 582,
+            "support": 0.004,
+            "votes": [
+              "muse-wonder-api/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "pinkleaves-0035",
+            "x": 335.1,
+            "y": 635.5,
+            "support": 0.004,
+            "votes": [
+              "muse-wonder-api/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "pinkleaves-0036",
+            "x": 359.9,
+            "y": 591.2,
+            "support": 0.004,
+            "votes": [
+              "muse-wonder-api/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "pinkleaves-0037",
+            "x": 410.8,
+            "y": 592.2,
+            "support": 0.004,
+            "votes": [
+              "muse-wonder-api/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "pinkleaves-0038",
+            "x": 412.9,
+            "y": 642.7,
+            "support": 0.004,
+            "votes": [
+              "muse-wonder-api/find"
+            ],
+            "label": null,
+            "label_support": null
+          }
+        ]
+      },
+      {
+        "key": "whitecow",
+        "title": "White cow with a bit of red",
+        "target": "each white cow with a bit of red",
+        "kind": "objects",
+        "photo": "images/cows_under_pine_tree.jpg",
+        "width": 1439,
+        "height": 810,
+        "image_sha256": "f1d50c369f033fae958538c5a7f14ceb925ebe4e47b6d1e5fd85719a1a172bba",
+        "objects": [
+          {
+            "id": "whitecow-0000",
+            "x": 967.7,
+            "y": 341.4,
+            "support": 0.965,
+            "votes": [
+              "gemini-flash/find",
+              "moondream-3.1/find",
+              "muse-wonder-api/find",
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          },
+          {
+            "id": "whitecow-0001",
+            "x": 1043.3,
+            "y": 319.9,
+            "support": 0.965,
+            "votes": [
+              "sol/find"
+            ],
+            "label": null,
+            "label_support": null
+          }
+        ]
+      }
+    ]
+  },
+  "approval_provenance": {
+    "original_export": "segbench-review-5682a4be-2026-10-14T23-59-59-460Z.json",
+    "original_export_sha256": "7657b518a4c245a7b1761030129df73a2122e80140c4d13ef3be2bcd68365726",
+    "original_export_preserved": true
+  }
+}

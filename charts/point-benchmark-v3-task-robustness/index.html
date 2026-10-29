@@ -1,0 +1,16 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Point benchmark v3 · how much the ranking depends on the photos</title><style>
+*{box-sizing:border-box}body{margin:0;padding:16px;background:var(--color-background-primary,#fafaf8);color:var(--color-text-primary,#202520);font:14px/1.55 var(--font-sans,system-ui)}main{max-width:1000px;margin:auto}h2{font-size:17px;margin:22px 0 6px}p,li{max-width:80ch}img{width:100%;height:auto;display:block;margin:10px 0;background:#fff;border-radius:6px}nav{display:flex;gap:6px;align-items:center;flex-wrap:wrap}button{font:inherit;cursor:pointer;border:1px solid var(--color-border-primary,#cdd4c8);border-radius:8px;background:transparent;color:inherit;padding:4px 11px}button[aria-pressed=true]{background:#202520;color:#fff;border-color:#202520}table{border-collapse:collapse;margin:8px 0}td,th{padding:3px 10px;text-align:right;border-bottom:1px solid #e5e7eb}th:first-child,td:first-child{text-align:left}
+</style></head><body><main>
+<h2>The whole ranking</h2>
+<img src="agreement.png" alt="Ranking agreement against the number of tasks used" width="2160" height="1339">
+<p><b>Red:</b> keep only x of the 11 tasks (every possible choice) and compare the ranking with the one on all 11. <b>Blue:</b> split the tasks into two separate groups of x that share no task, and compare their two rankings. Blue is the fair test of “would other photos give the same ranking”; red looks better partly because the groups share tasks with the full set. The dashed line projects blue to two separate sets of 11 tasks (Spearman-Brown).</p>
+<p>Agreement is Spearman's rank correlation: 1 means the same order, 0 means unrelated. 0.91 means the broad order holds, but neighbours often swap.</p>
+<table><tr><th>Tasks kept</th><th>Agreement with all 11</th><th>Same winner</th><th>Same top 5 (any order)</th></tr>
+<tr><td>6</td><td>0.96</td><td>33%</td><td>72%</td></tr><tr><td>8</td><td>0.98</td><td>47%</td><td>92%</td></tr><tr><td>9</td><td>0.98</td><td>56%</td><td>98%</td></tr><tr><td>10</td><td>0.99</td><td>73%</td><td>100%</td></tr></table>
+<h2>Each model</h2>
+<nav>Tasks kept: <button data-x="6">6</button><button data-x="7">7</button><button data-x="8" aria-pressed="true">8</button><button data-x="9">9</button><button data-x="10">10</button></nav>
+<img id="ranks" src="ranks-8.png" alt="Each model's range of ranks over every choice of tasks" width="2160" height="2544">
+<p>How it is scored: each model's best run on the tasks kept (re-chosen for each choice of tasks); 28 models. Using the mean of the runs instead gives almost the same ranking (agreement 0.98). Every choice of tasks is counted, none sampled. Each task has its own photo, so leaving out a task also leaves out its photo. Numbers: <code>robustness.json</code>; drawn by <code>uv run scripts/task_robustness.py point-benchmark-v3</code>.</p>
+</main><script>
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{document.querySelector('#ranks').src='ranks-'+b.dataset.x+'.png';document.querySelectorAll('nav button').forEach(o=>o.setAttribute('aria-pressed',String(o===b)));});
+</script></body></html>

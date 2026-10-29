@@ -1,0 +1,52 @@
+{
+  "all 4": [
+    "YOLOE-26x",
+    "RF-DETR Seg",
+    "SAM 3",
+    "Florence-2 Large",
+    "Moondream 3.1",
+    "Claude Haiku 5.5",
+    "Qwen 3.8 Flash Next",
+    "Gemini 4 Argon",
+    "Muse Wonder"
+  ],
+  "without log ends": [
+    "YOLOE-26x",
+    "RF-DETR Seg",
+    "SAM 3",
+    "Florence-2 Large",
+    "Moondream 3.1",
+    "Claude Haiku 5.5",
+    "Qwen 3.8 Flash Next",
+    "Gemini 3.8 Flash",
+    "Muse Wonder"
+  ],
+  "without cows": [
+    "YOLOE-26x",
+    "RF-DETR Seg",
+    "SAM 3",
+    "Florence-2 Large",
+    "Moondream 3.1",
+    "Qwen 3.8 Flash Next",
+    "Gemini 4 Argon",
+    "Muse Wonder"
+  ],
+  "without fig leaves": [
+    "YOLOE-26x",
+    "RF-DETR Seg",
+    "SAM 3",
+    "Moondream 3.1",
+    "GroundingPI 4B",
+    "Claude Haiku 5.5",
+    "Qwen 3.8 Flash Next"
+  ],
+  "without dishes": [
+    "YOLOE-26x",
+    "SAM 3",
+    "Florence-2 Large",
+    "Moondream 3.1",
+    "Qwen 3.8 Flash Next",
+    "Gemini 4 Argon",
+    "Muse Wonder"
+  ]
+}

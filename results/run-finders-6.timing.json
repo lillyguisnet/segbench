@@ -1,0 +1,107 @@
+[
+ {
+  "setup": "falcon-perception-hd",
+  "finders_model": "falcon",
+  "variant": "hd",
+  "task": "segment",
+  "rounds": 3,
+  "single": [
+   {
+    "id": "single|logs|log end|0",
+    "wall": 8.57796671599499,
+    "model_seconds": 5.538
+   },
+   {
+    "id": "single|cows|cow|0",
+    "wall": 1.326261049020104,
+    "model_seconds": 0.945
+   },
+   {
+    "id": "single|fig|fig leaf|0",
+    "wall": 0.4056145880022086,
+    "model_seconds": 0.366
+   },
+   {
+    "id": "single|dishes|dirty dish|0",
+    "wall": 0.560016742994776,
+    "model_seconds": 0.451
+   },
+   {
+    "id": "single|dishes|clean dish|0",
+    "wall": 1.3081159470020793,
+    "model_seconds": 0.928
+   },
+   {
+    "id": "single|logs|log end|1",
+    "wall": 7.691199578985106,
+    "model_seconds": 5.097
+   },
+   {
+    "id": "single|cows|cow|1",
+    "wall": 1.3310716889973264,
+    "model_seconds": 0.944
+   },
+   {
+    "id": "single|fig|fig leaf|1",
+    "wall": 0.37380859500262886,
+    "model_seconds": 0.332
+   },
+   {
+    "id": "single|dishes|dirty dish|1",
+    "wall": 0.5593296810111497,
+    "model_seconds": 0.457
+   },
+   {
+    "id": "single|dishes|clean dish|1",
+    "wall": 1.296485794999171,
+    "model_seconds": 0.925
+   },
+   {
+    "id": "single|logs|log end|2",
+    "wall": 7.749720991996583,
+    "model_seconds": 5.183
+   },
+   {
+    "id": "single|cows|cow|2",
+    "wall": 1.340358223009389,
+    "model_seconds": 0.943
+   },
+   {
+    "id": "single|fig|fig leaf|2",
+    "wall": 0.38400696200551465,
+    "model_seconds": 0.342
+   },
+   {
+    "id": "single|dishes|dirty dish|2",
+    "wall": 0.5662336169916671,
+    "model_seconds": 0.457
+   },
+   {
+    "id": "single|dishes|clean dish|2",
+    "wall": 1.346015583985718,
+    "model_seconds": 0.938
+   }
+  ],
+  "query_seconds": {
+   "logs|log end": 7.7497,
+   "cows|cow": 1.3311,
+   "fig|fig leaf": 0.384,
+   "dishes|dirty dish": 0.56,
+   "dishes|clean dish": 1.3081
+  },
+  "load": [
+   {
+    "copies": 1,
+    "load_factor": 1.0
+   },
+   {
+    "copies": 2,
+    "load_factor": null,
+    "failed": "worker exited 1; f.gen.throw(value) File \"/home/maxime/Projects/finders/models/falcon/.venv/lib/python3.12/site-packages/falcon_perception/paged_inference.py\", line 59, in _oom_guard raise RuntimeError( RuntimeError: CUDA OOM during FINALIZE: n_segm_tokens=90, image_size=(2252, 4000), alloc=10.28GB, reserved=10.33GB"
+   }
+  ],
+  "load_factor": 1.0,
+  "gpu_others": {},
+  "elapsed_s": 166.4
+ }
+]

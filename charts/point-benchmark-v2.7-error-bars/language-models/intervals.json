@@ -1,0 +1,367 @@
+{
+  "source": "charts/point-benchmark-v2.7/language-models/calls.jsonl",
+  "alpha_family": 0.05,
+  "method": "(written for the page too, see METHOD below):\n- A model's score is the mean over the tasks (4 in v2.7, 11 in v3) of its mean over tries.\n  The bar covers run-to-run variation only: how much the score could move\n  if the same photos were asked again. The tasks are fixed (they define the\n  benchmark); the photos chosen are not a source of variation in the bar.\n- Standard error: sqrt(sum over tasks of s_t^2 / n_t) / T (T tasks), with s_t the\n  sample variance of the task's tries and n_t their number (stratified mean).\n- Degrees of freedom: Welch-Satterthwaite over the tasks' variances.\n- Bonferroni: each bar is a two-sided Student-t interval at confidence\n  1 - 0.05 / m, m = number of models on that chart, so that all bars on the\n  chart hold together with at least 95% confidence.\n- Cut to 0-100%, the only possible scores.\n- No bar: models whose tries gave identical answers (deterministic\n  specialists, checked here: zero variance), or with one try.",
+  "entrants": {
+    "sonnet@medium": {
+      "mean": 0.37201367289846,
+      "tries": {
+        "logs": 3,
+        "cows": 3,
+        "fig": 3,
+        "dishes": 3
+      },
+      "m": 20,
+      "confidence_each": 0.9975,
+      "se": 0.043388351813839265,
+      "df": 2.0921492573497456,
+      "t": 18.007312063606093,
+      "half_width": 0.7813075910373332,
+      "low": 0.0,
+      "high": 1.0,
+      "bar": true
+    },
+    "opus@medium": {
+      "mean": 0.5912309813485204,
+      "tries": {
+        "logs": 3,
+        "cows": 3,
+        "dishes": 3,
+        "fig": 3
+      },
+      "m": 20,
+      "confidence_each": 0.9975,
+      "se": 0.014267994877850151,
+      "df": 3.6868223761998626,
+      "t": 7.343507389545866,
+      "half_width": 0.10477712581949514,
+      "low": 0.4864538555290252,
+      "high": 0.6960081071680155,
+      "bar": true
+    },
+    "gemini-pro@medium": {
+      "mean": 0.5681096584093938,
+      "tries": {
+        "logs": 3,
+        "cows": 3,
+        "dishes": 3,
+        "fig": 3
+      },
+      "m": 20,
+      "confidence_each": 0.9975,
+      "se": 0.04135248563298169,
+      "df": 3.9662740155666407,
+      "t": 6.814051708969752,
+      "half_width": 0.281777975397566,
+      "low": 0.28633168301182776,
+      "high": 0.8498876338069598,
+      "bar": true
+    },
+    "gemini-flash@medium": {
+      "mean": 0.7082463190494169,
+      "tries": {
+        "logs": 3,
+        "cows": 3,
+        "fig": 3,
+        "dishes": 3
+      },
+      "m": 20,
+      "confidence_each": 0.9975,
+      "se": 0.01101166584456619,
+      "df": 4.961354505833098,
+      "t": 5.635922332991547,
+      "half_width": 0.062060893456830815,
+      "low": 0.6461854255925861,
+      "high": 0.7703072125062478,
+      "bar": true
+    },
+    "gemini-flash-lite@medium": {
+      "mean": 0.3867207464929593,
+      "tries": {
+        "logs": 3,
+        "cows": 3,
+        "fig": 3,
+        "dishes": 3
+      },
+      "m": 20,
+      "confidence_each": 0.9975,
+      "se": 0.029112876340003212,
+      "df": 6.8407009356863115,
+      "t": 4.645877095924062,
+      "half_width": 0.13525484538449045,
+      "low": 0.25146590110846884,
+      "high": 0.5219755918774498,
+      "bar": true
+    },
+    "terra@medium": {
+      "mean": 0.051697186496715085,
+      "tries": {
+        "logs": 3,
+        "cows": 3,
+        "fig": 3,
+        "dishes": 3
+      },
+      "m": 20,
+      "confidence_each": 0.9975,
+      "se": 0.0027469455721129197,
+      "df": 3.5427890464778136,
+      "t": 7.673121475866476,
+      "half_width": 0.02107764706241597,
+      "low": 0.030619539434299115,
+      "high": 0.07277483355913106,
+      "bar": true
+    },
+    "deepseek-flash@medium": {
+      "mean": 0.28109365338446063,
+      "tries": {
+        "logs": 3,
+        "fig": 3,
+        "dishes": 3,
+        "cows": 3
+      },
+      "m": 20,
+      "confidence_each": 0.9975,
+      "se": 0.016166889081823038,
+      "df": 5.53702528319599,
+      "t": 5.22879318983507,
+      "half_width": 0.08453331953185525,
+      "low": 0.19656033385260538,
+      "high": 0.36562697291631585,
+      "bar": true
+    },
+    "qwen-27b@medium": {
+      "mean": 0.682577700778329,
+      "tries": {
+        "cows": 3,
+        "logs": 3,
+        "fig": 3,
+        "dishes": 3
+      },
+      "m": 20,
+      "confidence_each": 0.9975,
+      "se": 0.004752921394858924,
+      "df": 3.3054403441815605,
+      "t": 8.329153893263305,
+      "half_width": 0.039587813740363666,
+      "low": 0.6429898870379653,
+      "high": 0.7221655145186927,
+      "bar": true
+    },
+    "qwen-flash@medium": {
+      "mean": 0.7158889066992461,
+      "tries": {
+        "cows": 3,
+        "logs": 3,
+        "fig": 3,
+        "dishes": 3
+      },
+      "m": 20,
+      "confidence_each": 0.9975,
+      "se": 0.007675509822785507,
+      "df": 3.8612908733476683,
+      "t": 6.998116408577659,
+      "half_width": 0.05371411123503426,
+      "low": 0.6621747954642119,
+      "high": 0.7696030179342803,
+      "bar": true
+    },
+    "mk1.5@medium": {
+      "mean": 0.38859669512124295,
+      "tries": {
+        "cows": 3,
+        "logs": 3,
+        "fig": 3,
+        "dishes": 3
+      },
+      "m": 20,
+      "confidence_each": 0.9975,
+      "se": 0.05384606715616789,
+      "df": 2.0523701084214645,
+      "t": 18.802630657377115,
+      "half_width": 1.0124477130897493,
+      "low": 0.0,
+      "high": 1.0,
+      "bar": true
+    },
+    "muse-wonder-full@medium": {
+      "mean": 0.7462260885882233,
+      "tries": {
+        "logs": 3,
+        "cows": 3,
+        "fig": 3,
+        "dishes": 3
+      },
+      "m": 20,
+      "confidence_each": 0.9975,
+      "se": 0.009155079348726012,
+      "df": 5.764276794306351,
+      "t": 5.09988106346028,
+      "half_width": 0.046689815805044055,
+      "low": 0.6995362727831792,
+      "high": 0.7929159043932673,
+      "bar": true
+    },
+    "mistral-large-4@medium": {
+      "mean": 0.5084830784880445,
+      "tries": {
+        "cows": 3,
+        "logs": 3,
+        "fig": 3,
+        "dishes": 3
+      },
+      "m": 20,
+      "confidence_each": 0.9975,
+      "se": 0.0160690082277284,
+      "df": 3.5554996676272497,
+      "t": 7.642188639518203,
+      "half_width": 0.12280239212627052,
+      "low": 0.385680686361774,
+      "high": 0.6312854706143151,
+      "bar": true
+    },
+    "haiku@medium": {
+      "mean": 0.629092933989014,
+      "tries": {
+        "logs": 3,
+        "cows": 3,
+        "fig": 3,
+        "dishes": 3
+      },
+      "m": 20,
+      "confidence_each": 0.9975,
+      "se": 0.014129100297617846,
+      "df": 5.213141844155413,
+      "t": 5.441477556093754,
+      "half_width": 0.07688318215728508,
+      "low": 0.5522097518317289,
+      "high": 0.7059761161462991,
+      "bar": true
+    },
+    "gemini-argon@medium": {
+      "mean": 0.7175174520216568,
+      "tries": {
+        "cows": 3,
+        "logs": 3,
+        "fig": 3,
+        "dishes": 3
+      },
+      "m": 20,
+      "confidence_each": 0.9975,
+      "se": 0.012823921201565953,
+      "df": 5.937326391101961,
+      "t": 5.011072966520677,
+      "half_width": 0.06426160485795851,
+      "low": 0.6532558471636983,
+      "high": 0.7817790568796154,
+      "bar": true
+    },
+    "luna@medium": {
+      "mean": 0.16832518020955758,
+      "tries": {
+        "cows": 3,
+        "logs": 3,
+        "fig": 3,
+        "dishes": 3
+      },
+      "m": 20,
+      "confidence_each": 0.9975,
+      "se": 0.02892658527822734,
+      "df": 5.578726817827168,
+      "t": 5.2039974872969825,
+      "half_width": 0.15053387710397698,
+      "low": 0.017791303105580608,
+      "high": 0.3188590573135346,
+      "bar": true
+    },
+    "sol@medium": {
+      "mean": 0.6735555051424708,
+      "tries": {
+        "fig": 3,
+        "cows": 3,
+        "logs": 3,
+        "dishes": 3
+      },
+      "m": 20,
+      "confidence_each": 0.9975,
+      "se": 0.023658701920430115,
+      "df": 2.0563572178044156,
+      "t": 18.719765470115142,
+      "half_width": 0.4428853512778145,
+      "low": 0.23067015386465628,
+      "high": 1.0,
+      "bar": true
+    },
+    "glm-5.3-flash@medium": {
+      "mean": 0.18152117274564897,
+      "tries": {
+        "cows": 3,
+        "dishes": 3,
+        "logs": 3,
+        "fig": 3
+      },
+      "m": 20,
+      "confidence_each": 0.9975,
+      "se": 0.03410495223518108,
+      "df": 2.794779481750512,
+      "t": 10.503527952450765,
+      "half_width": 0.35822231911922264,
+      "low": 0.0,
+      "high": 0.5397434918648716,
+      "bar": true
+    },
+    "kimi-k3@medium": {
+      "mean": 0.34033375306980956,
+      "tries": {
+        "cows": 3,
+        "logs": 3,
+        "fig": 3,
+        "dishes": 3
+      },
+      "m": 20,
+      "confidence_each": 0.9975,
+      "se": 0.03239019444448423,
+      "df": 7.50599761973694,
+      "t": 4.450976372138015,
+      "half_width": 0.1441679901613553,
+      "low": 0.19616576290845425,
+      "high": 0.4845017432311649,
+      "bar": true
+    },
+    "astra@medium": {
+      "mean": 0.6983147180064706,
+      "tries": {
+        "logs": 3,
+        "cows": 3,
+        "fig": 3,
+        "dishes": 3
+      },
+      "m": 20,
+      "confidence_each": 0.9975,
+      "se": 0.026105301143980256,
+      "df": 2.973460278890744,
+      "t": 9.584331523801222,
+      "half_width": 0.25020186069257405,
+      "low": 0.44811285731389655,
+      "high": 0.9485165786990446,
+      "bar": true
+    },
+    "muse-wonder@medium": {
+      "mean": 0.7544704834704844,
+      "tries": {
+        "logs": 3,
+        "cows": 3,
+        "fig": 3,
+        "dishes": 3
+      },
+      "m": 20,
+      "confidence_each": 0.9975,
+      "se": 0.010051205809724843,
+      "df": 6.461000958932521,
+      "t": 4.782172252756119,
+      "half_width": 0.04806659753000725,
+      "low": 0.7064038859404771,
+      "high": 0.8025370810004917,
+      "bar": true
+    }
+  }
+}
