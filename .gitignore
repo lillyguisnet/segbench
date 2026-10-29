@@ -70,3 +70,13 @@ results/run-thinking-levels-v1.jsonl
 
 # duplicate photos in the thinking-levels report (originals are in images/)
 results/thinking-levels-*/images/
+
+# OpenStreetMap map pictures from the Jev map tests: kept on lambda only, redrawn by
+# scripts/jev_drive.py, jev_zoom.py and jev_zoom_landmark.py (the steps.json records stay in git)
+results/probe-jev-drive/**/*.png
+results/probe-jev-drive/**/*.jpg
+results/probe-jev-zoom/**/*.png
+results/probe-jev-zoom/**/*.jpg
+results/probe-jev-zoom-landmark/**/*.png
+results/probe-jev-zoom-landmark/**/*.jpg
+results/probe-jev-zoom-landmark/**/*.mp4

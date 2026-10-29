@@ -507,10 +507,6 @@ specialists/  one environment per specialist model family (see its README)
 - **Font in `assets/fonts/`:** [Inter](https://github.com/rsms/inter) by
   The Inter Project Authors, under the [SIL Open Font License 1.1](assets/fonts/OFL.txt);
   cut down to Latin letters for the charts.
-- **Map pictures in `results/probe-jev-*/`:** © [OpenStreetMap](https://www.openstreetmap.org/copyright)
-  contributors. The maps with names are OpenStreetMap's standard tiles (CC BY-SA 2.0);
-  the maps without words are drawn from OpenFreeMap tiles of OpenStreetMap data (ODbL).
-  Not covered by the Apache licence.
 - **Logos in `assets/logos/`:** trademarks of their owners, used only to
   show who made each model; not covered by the Apache licence. Sources in
   `assets/logos/SOURCES.md`.
