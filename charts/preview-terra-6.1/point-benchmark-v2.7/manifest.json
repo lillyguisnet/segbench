@@ -1,0 +1,27 @@
+{
+  "source": "results/preview/terra-6.1/point-benchmark-v2.7/scored.jsonl",
+  "source_sha256": "279a2b122fbde72fde65da936798b681a6daaa02a6f920e01bdf199426a94ae4",
+  "renderer": "scripts/draw_charts.py --style editorial --track find --names all",
+  "renderer_sha256": {
+    "scripts/draw_charts.py": "16dab20f7199e896a2abbf60a54acd5ced2879c9b8981106f1992925dde20534",
+    "segbench/chart_editorial.py": "b88d37e9ecba17aef942c4e8fe7838880b4fd1383f3134552b630f597f39dd78",
+    "segbench/chart.py": "1fe75877b2f264aa49a0d76d93611f8660ccba6cd9b4c4d46af82296dc4d2a27",
+    "segbench/chart_data.py": "ef0392b10f9e34413aec1dcfd53d76d7807630992c4971dafec8ad02f6c7c395"
+  },
+  "label_spots": {
+    "point-benchmark-v2.7": {
+      "gemini-pro@medium": "left"
+    },
+    "point-benchmark-v2.7/language-models": {
+      "qwen-27b@medium": "left"
+    }
+  },
+  "metric": "point-localisation-v1; tolerance-average F1; equal weighting of 4 tasks",
+  "excluded_incomplete": [],
+  "caveats": [
+    "Single medium-thinking pilot, not repeat-validated.",
+    "Reference-point proximity is not point-inside-mask correctness.",
+    "Specialist cost estimates and shared-GPU timings are provisional.",
+    "The smooth curve is a visual guide, not measured intermediate models."
+  ]
+}

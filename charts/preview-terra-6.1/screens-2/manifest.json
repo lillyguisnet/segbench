@@ -1,0 +1,34 @@
+{
+  "sources": {
+    "results/run-screens-2.jsonl": "b61d47935de278052d51ad0e83a16a0b9dbb1badf69ba416087c64e60665b4cf",
+    "results/run-screens-local-1.jsonl": "60f0311a125163b6de91f1fcbdd8cde91f1b82d47953dfb326dee89fc524faf3",
+    "results/run-screens-local-1-la.jsonl": "a7bef5b0f3f1a273aec6b7b2fcfa68b9e005ab42ae8b503677cfb4e8fcbaf183",
+    "results/run-screens-local-1-ovd.jsonl": "edfdd840b6042e1dac179301e8fc682d917ae6fb94d970fd88b745e0b7500635",
+    "results/run-screens-local-1-rfdetr.jsonl": "2bf53e314e394ca9e03a423520241bbb5b2b2ea660bd88796d97424c4618d3a3",
+    "results/run-screens-local-1-yoloe.jsonl": "8b14548c635988145d09368b1c6259e95b325668953007b7c6881352a97d73c4",
+    "results/run-screens-local-2.jsonl": "3c519c59b7be9e53545c88e977e146b07069e9070ace0adbe21a142967c0b2e0",
+    "results/run-screens-local-2-moondream.jsonl": "08969780da9111082608b73030f2ff8d47097574ac101ac3de31cd2257f27253"
+  },
+  "key": "annotations/screens/key-round2.json",
+  "key_sha256": "4aa377d4607a346895a4abaeb1d7309ccda3e5288c3d0333e849a778e3c7b489",
+  "key_status": "accepted by lilly",
+  "renderer": "scripts/draw_charts.py --style editorial --track find --names all --title ...",
+  "label_spots": {
+    "preview-terra-6.1/screens-2": {
+      "sam3": "right",
+      "florence2-large-grounding": "above",
+      "muse-wonder@medium": "right"
+    },
+    "preview-terra-6.1/screens-2/language-models": {
+      "opus@medium": "above"
+    }
+  },
+  "metric": "F1 of clicks on the key's targets (one click per target), mean over tries, then over the questions",
+  "caveats": [
+    "Five screenshots cannot support broad claims.",
+    "Language-model seconds include the internet and the provider's queue; local models' do not.",
+    "Local models: cost uses each model's load factor measured on the photos, not on screenshots.",
+    "Local models timed on GPU 0 while it also drew the desktop (window manager, 20-30% busy); Moondream 3.1 (added 2026-10-11) on the whole of GPU 1, the same card model, with nothing else on it.",
+    "The smooth curve is a visual guide, not measured intermediate models."
+  ]
+}
