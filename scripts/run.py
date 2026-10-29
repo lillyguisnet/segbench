@@ -38,8 +38,9 @@ from segbench.call import call, pool as call_pool
 from segbench.models import BENCHMARKED, BY_KEY, levels_for
 from segbench.tasks import BY_KEY as TASKS_BY_KEY
 from segbench.perceptron import read_tag_answer
-from segbench.tasks import (PROMPT_VERSION, PROMPT_VERSION_TAGS, PROMPT_VERSION_V2, TASKS, TRACKS, applies, prompt,
-                            prompt_tags, prompt_v2)
+from segbench.box_read import read_box_a
+from segbench.tasks import (BOX_VERSIONS, PROMPT_VERSION, PROMPT_VERSION_BOX_A, PROMPT_VERSION_TAGS, PROMPT_VERSION_V2,
+                            TASKS, TRACKS, applies, prompt, prompt_box, prompt_tags, prompt_v2)
 
 ROOT = Path(__file__).resolve().parents[1]
 ATTEMPTS = 3
@@ -65,12 +66,14 @@ PROMPT_VERSION_V1_HD = "v1-hd"
 
 
 def image_settings(model, version: str) -> dict:
-    if version not in (PROMPT_VERSION_V2, PROMPT_VERSION_V1_HD, PROMPT_VERSION_TAGS):
+    if version not in (PROMPT_VERSION_V2, PROMPT_VERSION_V1_HD, PROMPT_VERSION_TAGS, *BOX_VERSIONS):
         return {}
     return IMAGE_SETTINGS_V2.get(model.route.split(":")[0], {})
 
 
 def prompt_for(version: str, track: str, task) -> str:
+    if version in BOX_VERSIONS:  # box benchmark (2026-10-15): find track only
+        return prompt_box(version, task)
     if version == PROMPT_VERSION_TAGS:
         return prompt_tags(track, task)
     return prompt_v2(track, task) if version == PROMPT_VERSION_V2 else prompt(track, task)
@@ -124,7 +127,17 @@ def run_one(model, level, task, track, repeat, images, semaphores, version=PROMP
     })
     if "error" not in record:
         try:
-            if version == PROMPT_VERSION_TAGS:  # Perceptron's tags; same reader as the scorer
+            if version in BOX_VERSIONS:
+                # box-a: named corners, read here as the scorer will; box-free: no
+                # format was asked, so the reply is read later by the rules of
+                # segbench/box_read.py (fixed on the synthetic pictures), not here.
+                if version == PROMPT_VERSION_BOX_A:
+                    boxes, how = read_box_a(record["text"], labelled=track == "find" and bool(task.labels))
+                    answer, record["read_as"] = {"items": boxes}, how
+                else:
+                    answer = {"items": []}
+                    record["read_as"] = "later (box-free)"
+            elif version == PROMPT_VERSION_TAGS:  # Perceptron's tags; same reader as the scorer
                 labels = task.labels if track == "find" else ()
                 points, how = read_tag_answer(record["text"], labels)
                 answer, record["read_as"] = {"items": points}, how
@@ -150,7 +163,7 @@ def main(argv: list[str]) -> int:
     ap.add_argument("--repeats", type=int, default=1)
     ap.add_argument("--dry-run", action="store_true", help="print the plan and one prompt per track, call nothing")
     ap.add_argument("--prompt-version", choices=(PROMPT_VERSION, PROMPT_VERSION_V2, PROMPT_VERSION_V1_HD,
-                                                 PROMPT_VERSION_TAGS),
+                                                 PROMPT_VERSION_TAGS, *BOX_VERSIONS),
                     default=PROMPT_VERSION,
                     help="v2: named x/y, 'mark every one', most image detail; find and trick tracks only")
     args = ap.parse_args(argv)
@@ -165,6 +178,8 @@ def main(argv: list[str]) -> int:
     version = args.prompt_version
     if version in (PROMPT_VERSION_V2, PROMPT_VERSION_TAGS) and set(args.tracks) - {"find", "trick"}:
         ap.error(f"prompt {version} covers --tracks find trick only")
+    if version in BOX_VERSIONS and set(args.tracks) != {"find"}:
+        ap.error(f"prompt {version} covers --tracks find only (no trick questions in the box benchmark)")
     todo = [j for j in jobs if (j[3], j[2].key, j[0].key, j[1], j[4], version) not in done]
     print(f"{len(jobs)} calls planned, {len(jobs) - len(todo)} already in {out.name}, {len(todo)} to send")
 

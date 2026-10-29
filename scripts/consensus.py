@@ -35,11 +35,19 @@ sys.path.insert(0, str(ROOT))
 
 from segbench import consensus as cs  # noqa: E402
 from segbench import parse  # noqa: E402
+from segbench.point_score import read_points  # noqa: E402
+from segbench.local_models import BY_KEY as LOCAL_MODELS  # noqa: E402
 from segbench.models import BY_KEY as MODELS  # noqa: E402
 from segbench.tasks import BY_KEY as TASKS  # noqa: E402
 
 REAL, CONTESTED_LOW, CONTESTED_HIGH = 0.5, 0.2, 0.8
 REGION_GRID = 300  # longest side of the grid regions are merged on
+LONE_RADIUS = 0.03  # x photo diagonal, when there is no other way to size the objects (see object_task)
+
+
+def entrant(key: str):
+    """A remote model (segbench/models.py) or a local one (segbench/local_models.py)."""
+    return MODELS[key] if key in MODELS else LOCAL_MODELS[key]
 
 
 def load(run: Path):
@@ -52,7 +60,12 @@ def load(run: Path):
         try:
             items = parse.read(r["track"], task.kind, r["text"], task.labels)["items"]
         except Exception:
-            continue  # unreadable: it gives no evidence (it still scores 0 in the benchmark)
+            if r["track"] != "find":
+                continue  # unreadable: it gives no evidence (it still scores 0 in the benchmark)
+            try:  # prompt v2's {"x", "y"} answers: the benchmark's own point reader (added 2026-10-14)
+                items = read_points(r["text"], bool(task.labels), "lenient")[0]
+            except Exception:
+                continue
         with Image.open(ROOT / "images" / task.photo) as im:
             W, H = im.size
         for it in items:  # 0..1000 -> photo pixels
@@ -61,7 +74,7 @@ def load(run: Path):
             if "polygon" in it:
                 it["polygon"] = [[x * W / 1000, y * H / 1000] for x, y in it["polygon"]]
         answers.setdefault(r["task"], {})[f"{r['model']}/{r['track']}"] = {
-            "model": r["model"], "maker": MODELS[r["model"]].maker, "track": r["track"], "items": items, "size": (W, H)}
+            "model": r["model"], "maker": entrant(r["model"]).maker, "track": r["track"], "items": items, "size": (W, H)}
     return answers
 
 
@@ -85,7 +98,23 @@ def merge_objects(answers: dict[str, dict], radius: float, labels: tuple[str, ..
 def object_task(task, answers):
     sizes = [2 * np.sqrt(cs.polygon_area(it["polygon"]) / np.pi)
              for a in answers.values() for it in a["items"] if "polygon" in it]
-    radius = 0.5 * statistics.median(sizes)
+    if not sizes:
+        # Points only (no outline answers; added 2026-10-14 for run consensus-2):
+        # the objects one model marks are separate objects, so the distance from
+        # each of its dots to its nearest other dot sizes them (median over all
+        # answers). A task where every answer has one dot gives no such
+        # distance: then 3% of the photo diagonal.
+        for a in answers.values():
+            d = np.array(dots_of(a))
+            if len(d) > 1:
+                gaps = np.sqrt(((d[:, None] - d[None]) ** 2).sum(-1))
+                np.fill_diagonal(gaps, np.inf)
+                sizes += list(gaps.min(1))
+    if len(sizes) < 3:
+        W, H = next(iter(answers.values()))["size"]
+        radius = LONE_RADIUS * float(np.hypot(W, H))
+    else:
+        radius = 0.5 * statistics.median(sizes)
     groups, p, recall, false, precision, q, acc = merge_objects(answers, radius, task.labels)
     objects = []
     for c, g in enumerate(groups):
@@ -164,7 +193,7 @@ def main(path: str) -> None:
         W, H = next(iter(answers[key].values()))["size"]
         view = {"key": key, "number": task.number, "target": task.target, "photo": task.photo, "w": W, "h": H,
                 "kind": task.kind, "labels": list(task.labels), **{k: v for k, v in res.items() if k != "prob"},
-                "answers": {n: {"model": a["model"], "label": MODELS[a["model"]].label, "maker": a["maker"],
+                "answers": {n: {"model": a["model"], "label": entrant(a["model"]).label, "maker": a["maker"],
                                 "track": a["track"], "dots": [[round(v) for v in d] for d in dots_of(a)]
                                 if task.kind == "objects" else None,
                                 "polys": [[[round(v) for v in p] for p in it["polygon"]] for it in a["items"]]
@@ -181,6 +210,7 @@ def main(path: str) -> None:
     (ROOT / "results" / f"consensus-{name}.json").write_text(json.dumps(out, separators=(",", ":")))
     html = (ROOT / "scripts" / "consensus.html").read_text().replace("/*DATA*/null", json.dumps({"run": run.stem, "tasks": page}, separators=(",", ":")))
     dest = ROOT / "results" / "views" / name / "consensus.html"
+    dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_text(html)
     print(f"wrote results/consensus-{name}.json and {dest.relative_to(ROOT)}")
 

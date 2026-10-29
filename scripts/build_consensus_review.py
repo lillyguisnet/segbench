@@ -6,6 +6,7 @@
 
 uv run scripts/build_consensus_review.py
 uv run scripts/build_consensus_review.py results/consensus-pilot-1.json
+uv run scripts/build_consensus_review.py results/consensus-consensus-2.json results/views/consensus-2/review
 
 Input is snapshotted and hashed; a new source has a separate browser save.
 Full-resolution JPEGs retain their original pixel grid. This builds assets
@@ -20,7 +21,7 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from segbench.tasks import TASKS
+from segbench.tasks import BY_KEY
 
 
 def build(source: Path, dest: Path):
@@ -30,8 +31,14 @@ def build(source: Path, dest: Path):
             "run": data["run"], "tasks": []}
     (dest / "images").mkdir(parents=True, exist_ok=True)
     titles = {"logs": "Log ends", "cows": "Cows", "fig": "Fig leaves", "tree": "Red foliage",
-              "road": "Gravel road", "dishes": "Dishes"}
-    for task in TASKS:
+              "road": "Gravel road", "dishes": "Dishes", "ants": "Leaf pieces carried by ants",
+              "beetles": "Beetles", "birds": "Birds", "mushrooms": "Mushroom caps", "jars": "Strawberry coulis jars",
+              "pinkleaves": "Pink leaves", "whitecow": "White cow with a bit of red"}
+    app = ROOT / "apps/consensus-review"
+    if dest != app:  # another consensus: its own copy of the app, so each keeps its own seed
+        for name in ("index.html", "app.js", "style.css"):
+            shutil.copyfile(app / name, dest / name)
+    for task in BY_KEY.values():
         if task.key not in data["tasks"]:
             continue
         photo = ROOT / "images" / task.photo
@@ -59,5 +66,6 @@ def build(source: Path, dest: Path):
 
 
 if __name__ == "__main__":
+    # A second argument builds into another folder (e.g. results/views/consensus-2/review).
     build(Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "results/consensus-pilot-1.json",
-          ROOT / "apps/consensus-review")
+          (ROOT / sys.argv[2]).resolve() if len(sys.argv) > 2 else ROOT / "apps/consensus-review")

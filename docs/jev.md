@@ -265,3 +265,67 @@ Same halving boxes scored before and after the check (the run saves both:
   run (56.7): run-to-run variation in Jev's answers.
 - Pictures: `scripts/view_jev_verify.py` ->
   `results/point-benchmark-v3-jev-beetles-depth15-verify-view/beetles-verify.jpg`.
+
+### Pieces enlarged to 1080 px (2026-10-18, `jev-halving-long1080`)
+
+Maxime: instead of enlarging small pieces only to the 280 px minimum, enlarge
+them to ~1080 px. `--min-long 1080` in `scripts/run_jev_halving.py`
+(`segbench/jev_halving.MIN_LONG`; default unchanged): every piece whose long
+side is under 1080 px is enlarged with Lanczos, keeping its shape, until its
+long side is 1080 (a 250x281 piece is sent as 961x1080 instead of 280x315).
+Pieces already larger are unchanged (the whole photos still go at <= 1568), so
+the white cow (one request on the whole photo) cannot change. Otherwise the
+search is that of jev-halving-1 (depth 7, no check, 3 tries, same scoring:
+`results/point-benchmark-v3-jev-halving-long1080`). The 1080 was chosen
+before any run, not tuned; the synthetic ovals were about the same either way
+(`--check`: within the run-to-run variation).
+
+| | 280 px (jev-halving-1) | 1080 px |
+|---|---|---|
+| score | 23.4 (27th of 29) | **29.8** (25th, above GLM 5.3 Flash 29.3, below DeepSeek Flash 32.6) |
+| tries | 20.5, 25.1, 24.6 | 28.3, 29.7, 31.6 |
+| tight / medium / loose | 12.0 / 24.7 / 33.4 | 20.6 / 30.5 / 38.4 |
+| logs boxes (83), forced | 256, 215, 227; ~211 forced | 177-182; 98-106 forced |
+| seconds, cost per photo (first four tasks) | 3.9 s, $0.018 | 6.2 s, $0.035 |
+
+- Every try beats every old try on logs, cows, fig, dishes and beetles
+  (beetles 32-37 -> 62-63, about what depth 15 gave at 280 px); the other six
+  tasks overlap.
+- The tight tolerance gains most (12 -> 21): boxes are placed more precisely
+  on the bigger pictures (box edges still come in 1% steps of what is sent,
+  but that is now 1% of a zoomed piece).
+- About twice the cost per photo and 1.6x the waiting: a request is ~2,700
+  tokens (median) against ~740. Fewer requests (5,519 against 7,285: fewer
+  pieces answered "several"); $0.62 for all 33 searches against $0.27, none failed.
+- One setting, one run of 3 tries; whether 1568 (the maximum) or a size in
+  between does better is not known.
+
+### Beetles: 1080 px pieces + up to 15 halvings + feedback loop (2026-10-18)
+
+Maxime: the beetles photo only, with the 1080 px enlargement and the
+feedback loop. `scripts/run_jev_halving.py --tasks beetles --max-depth 15
+--verify --min-long 1080` (`jev-halving-beetles-depth15-verify-long1080`):
+identical to the 2026-10-16 feedback-loop run except the piece size; the
+check's crops and the find-again pieces go through the same enlargement.
+Boxes before the check rebuilt from the trees' `halving_boxes`
+(`results/run-...-long1080-before-check.jsonl`, as for the 280 px run).
+Pictures side by side: `results/jev-compare-beetles-verify-280-vs-1080/`.
+
+| | 280 px | 1080 px |
+|---|---|---|
+| before the check | 52.7 (55, 54, 50) | 70.9 (70, 74, 69) |
+| after the check | 65.4 (71, 65, 60) | **88.4** (83, 93, 89) |
+| beetles found after the check, medium (of 22) | 17, 14, 14 | 19, 21, 20 |
+| extra points after the check, medium | 6, 4, 5 | 3, 0, 0 |
+| boxes the check rejected: on no beetle / on a beetle | 41 / 1 | 42 / 4 |
+| boxes the check kept on no beetle | 12 | 4 |
+| requests, cost, seconds per try | 150-204, $0.005-0.006, ~4 s | 198-220, $0.022-0.024, ~6 s |
+
+- 88.4 would be 19th of 29 on this photo in v3 (65.4 was 24th); the leaders
+  are at 98-100, SAM 3 93.7.
+- Both steps gain: the halving finds more beetles (21-22 of 22 before the
+  check, against 16-18), and the check is more accurate on bigger crops
+  (4 wrong boxes kept against 12). It also rejects more real beetles (4
+  against 1): the remaining misses.
+- Exploratory: the feedback loop was designed after looking at this photo,
+  and 1080 px was chosen before any run but only this one setting was tried.

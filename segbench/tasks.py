@@ -54,7 +54,51 @@ TASKS: tuple[Task, ...] = (
     Task(6, "dishes", "kitchen_counter_dishes.jpg", "each dish", "objects", "each cat",
          note=DISH_DEFINITION, labels=("dirty", "clean")),
 )
-BY_KEY = {t.key: t for t in TASKS}
+
+# ---------------- second photo batch (2026-10-14): draft questions ----------------
+# Photos added 2026-10-14 (images/README.md). NOT in TASKS: the published
+# benchmark (v2.x) keeps its four point tasks and runs that default to "all
+# tasks" are unchanged. Asked with --tasks KEY... to build a draft answer key
+# from model consensus (run consensus-2), for a person to review. The cow
+# question was chosen in the 2026-10-14 conversation; the others are proposals,
+# approved the same day.
+# The mineral photo has no question: nothing in it to point at one by one.
+TASKS_BATCH_2: tuple[Task, ...] = (
+    Task(7, "ants", "leafcutter_ants_branch.jpg", "each leaf piece carried by an ant", "objects", "each spider"),
+    Task(8, "beetles", "butterfly_display_case.jpg", "each beetle (not the butterflies)", "objects", "each bird"),
+    Task(9, "birds", "mounted_birds_display.jpg", "each bird", "objects", "each butterfly"),
+    Task(10, "mushrooms", "oyster_mushrooms_hands.jpg", "each mushroom cap", "objects", "each strawberry"),
+    Task(11, "jars", "strawberry_coulis_jars.jpg",
+         "each jar of strawberry coulis (not the jars of other preserves)", "objects", "each mushroom"),
+    Task(12, "pinkleaves", "living_plant_wall.jpg", "each pink leaf", "objects", "each cat"),
+    Task(13, "whitecow", "cows_under_pine_tree.jpg", "each white cow with a bit of red", "objects", "each horse"),
+)
+BY_KEY = {t.key: t for t in TASKS + TASKS_BATCH_2}
+
+# The local models' short phrases for the second batch, as for the first
+# (specialists/common/answers.py PHRASES): one noun phrase per task, the
+# question without "each". Written 2026-10-14 before any local model answered
+# on the benchmark (Moondream saw them once, to draft the answer key).
+# Open-vocabulary models cannot be told "not the butterflies"; that is part
+# of what is measured. Plurals for the models whose documentation asks for
+# all instances that way (segbench/local_models.py plural=True).
+PHRASES_BATCH_2 = {
+    "ants": "leaf piece carried by an ant",
+    "beetles": "beetle",
+    "birds": "bird",
+    "mushrooms": "mushroom cap",
+    "jars": "jar of strawberry coulis",
+    "pinkleaves": "pink leaf",
+    "whitecow": "white cow with a bit of red",
+}
+PLURAL_BATCH_2 = {
+    "leaf piece carried by an ant": "the leaf pieces carried by ants", "beetle": "the beetles", "bird": "the birds",
+    "mushroom cap": "the mushroom caps", "jar of strawberry coulis": "the jars of strawberry coulis",
+    "pink leaf": "the pink leaves", "white cow with a bit of red": "the white cows with a bit of red",
+    # trick questions (TASKS_BATCH_2 absent, without "each")
+    "spider": "the spiders", "butterfly": "the butterflies", "strawberry": "the strawberries",
+    "mushroom": "the mushrooms", "cat": "the cats", "horse": "the horses",
+}
 
 TRACKS = ("find", "whole", "trick")
 
@@ -121,6 +165,61 @@ Mark every one you can see, however many there are. Do not stop early or give on
 
 Return one point annotation per object.{mention}
 If there are none, say so without inventing a point."""
+
+
+# ---------------- box prompts (2026-10-15): the picture benchmark with boxes ----------------
+# Maxime, 2026-10-15: rerun the whole picture benchmark asking for boxes
+# instead of points; two prompts per model, each model keeps the better one
+# (as for points); no trick questions. Both prompts say "visible part" (the
+# answer-key boxes are drawn around the visible part only: hidden parts
+# cannot be checked) and ask for one box per object, never one around a
+# group (the box form of "one point on each").
+# - "box-a": named corners on the 0..1000 grid (named keys because unnamed
+#   pairs were read [y, x] by two Gemini models in point v1), JSON reply;
+# - "box-free": no answer format and no coordinate system at all (Maxime:
+#   "let them choose on their own"); every reply is read by the rules in
+#   segbench/box_read.py, fixed on synthetic pictures before any benchmark
+#   photo was sent.
+# Same words for every model. Checked on synthetic pictures only
+# (scripts/check_boxes.py) before any benchmark photo.
+PROMPT_VERSION_BOX_A = "box-a"
+PROMPT_VERSION_BOX_FREE = "box-free"
+BOX_VERSIONS = (PROMPT_VERSION_BOX_A, PROMPT_VERSION_BOX_FREE)
+
+COORDINATES_BOX_A = """x_min, y_min, x_max and y_max are integers from 0 to 1000 over the whole
+photo: x is the horizontal position (0 = left edge, 1000 = right edge) and y
+the vertical position (0 = top edge, 1000 = bottom edge). They are not pixels:
+whatever the photo's size, the right edge is x = 1000 and the bottom edge is
+y = 1000."""
+
+
+def _box_request(task: Task, verb: str) -> str:
+    rule = _label_rule(task)
+    note = f"\n{task.note}" if task.labels and task.note else ""
+    return (f"Find {task.target} in this photo. {verb}: the smallest rectangle that "
+            f"contains all of its visible part. Leave out any part that is hidden behind something else. "
+            f"Give each object its own box, even when objects touch or overlap; never one box around a group."
+            f"{rule}{note}\n"
+            "Mark every one you can see, however many there are. Do not stop early or give only a sample.")
+
+
+def prompt_box(version: str, task: Task) -> str:
+    """The box question for one task (find track only: no trick questions in the box benchmark)."""
+    if task.kind != "objects":
+        raise ValueError(f"{task.key} is a region: nothing to box one by one")
+    if version == PROMPT_VERSION_BOX_FREE:
+        return _box_request(task, "Give the bounding box of each one")
+    if version != PROMPT_VERSION_BOX_A:
+        raise ValueError(f"unknown box prompt {version!r}")
+    corners = '"x_min": 0, "y_min": 0, "x_max": 0, "y_max": 0'
+    item = f'{{{corners}, "label": "..."}}' if task.labels else f"{{{corners}}}"
+    return f"""{_box_request(task, "Draw one box around each one")}
+
+Reply with JSON only, in this shape:
+{{"objects": [{item}, ...]}}
+If there are none, reply {{"objects": []}}.
+
+{COORDINATES_BOX_A}"""
 
 
 def applies(track: str, task: Task) -> bool:

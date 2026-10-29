@@ -40,7 +40,7 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
-from segbench.tasks import TASKS  # noqa: E402  (no third-party imports there)
+from segbench.tasks import PHRASES_BATCH_2, TASKS, TASKS_BATCH_2  # noqa: E402  (no third-party imports there)
 
 import harness  # noqa: E402  (same folder; already imported by the caller, pins the GPU)
 
@@ -61,8 +61,10 @@ PHRASES = {
     "road": ["gravel road"],
     "dishes": ["dirty dish", "clean dish"],  # one prompt per label
 }
+PHRASES.update({k: [v] for k, v in PHRASES_BATCH_2.items()})  # second photo batch (2026-10-14), segbench/tasks.py
 LABEL_OF_PHRASE = {"dirty dish": "dirty", "clean dish": "clean"}
-TRICK_PHRASES = {t.key: t.absent.removeprefix("each ") for t in TASKS}
+TRICK_PHRASES = {t.key: t.absent.removeprefix("each ") for t in TASKS + TASKS_BATCH_2}
+BATCHES = {1: TASKS, 2: TASKS_BATCH_2}  # bench.py --batch
 
 
 def load_factor(model_id: str) -> float:

@@ -30,6 +30,7 @@ from pathlib import Path
 import matplotlib
 
 matplotlib.use("Agg")
+import matplotlib.patheffects as pe  # noqa: E402
 import matplotlib.pyplot as plt  # noqa: E402
 import numpy as np  # noqa: E402
 from matplotlib.colors import to_rgb  # noqa: E402
@@ -47,6 +48,7 @@ INK_3 = "#8b93a1"
 MUTED = "#b4bac4"  # labels and logos of every model but the highlighted ones (draw(highlight=...))
 GRID = "#e4e8ef"
 RIM = "#cfd5df"
+ERRORBAR = "#a3abb8"  # draw(errorbars=...)
 ACCENT = "#f03441"  # Maxime, 2026-10-09 (was #1d5fe0)
 FAKE_RED = "#d62839"
 
@@ -219,6 +221,7 @@ def _place(cx, cy, r, w, h, prefer, rings, step, placed, circles, own, frame, ga
 def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, float] | None = None,
          header: bool = True, title: str | None = None, accent: str = ACCENT, names: str = "all",
          label_spots: dict[str, str] | None = None, highlight: set[str] | None = None,
+         errorbars: dict[str, tuple[float, float]] | None = None,
          xlabel: str = "Cost ($ per 1,000 images)", dpi: int = 216) -> list[Path]:
     """Draw the points of one track; return the files written (PNG 2160 x 2160, PDF, SVG).
 
@@ -233,7 +236,12 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
     pinned too (drawn in their own large style).
     `xlabel`: the cost axis's caption.
     `highlight` (entrants): only these keep their colours; every other
-    model's label and logo is light grey. Layout, discs and rings unchanged."""
+    model's label and logo is light grey. Layout, discs and rings unchanged.
+    `errorbars` (entrant -> (low, high), 0..1 like quality): a thin grey
+    vertical bar with caps, drawn behind the discs, so a bar shorter than
+    its disc is hidden by it. Entrants not in it, or with low == high, get
+    none. A bar running past the chart's top or bottom is cut at the edge
+    (no cap there). Charts drawn without it are unchanged."""
     pts = [p for p in points if p.track == track]
     if not pts:
         raise ValueError(f"no points for track {track!r}")
@@ -254,7 +262,11 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
     if sum(100 * p.quality <= 0.05 for p in pts) >= 3:  # models tied at 0% pile up at the cheap end: room on the left too
         xlim = (xlim[0] / 10 ** 0.6, xlim[1])
     qs = [100 * p.quality for p in pts]
-    y0 = max(0, 10 * math.floor((min(qs) - 5) / 10))
+    # Error bars (2026-10-14): the bottom of the chart also leaves room for the
+    # lowest bar end, else long bars ran off the bottom with no end mark.
+    bar_lows = [100 * lo for lo, _ in (errorbars or {}).values()]
+    lowest = min(min(qs) - 5, min(bar_lows) - 2) if bar_lows else min(qs) - 5
+    y0 = max(0, 10 * math.floor(lowest / 10))
     # Discs at or near 0%: the 0% line is the bottom of the chart (Maxime, 2026-10-11). Discs on it
     # are drawn whole, over the line; every label stays above it; the cost numbers move down.
     floor_at_zero = y0 == 0 and min(qs) < 5  # only when discs actually sit on the floor
@@ -266,6 +278,9 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
     tied_top = sum(q >= max(qs) - 2 for q in qs)
     if tied_top >= 4:  # a crowd at the top: its labels need room above it
         y1 = max(y1, max(qs) + 6 + 3 * min(6, tied_top))
+    bar_highs = [100 * hi for _, hi in (errorbars or {}).values()]
+    if bar_highs:  # likewise the top leaves room for the highest bar end (at most the 100% line)
+        y1 = max(y1, min(100, 10 * math.ceil((max(bar_highs) + 2) / 10)))
 
     def style_axes():
         ax.set_xscale("log")
@@ -349,6 +364,14 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
     def small_z(p, i):
         return (7 if highlight is not None and p.entrant in highlight else 4) + i * 0.01
 
+    for p in pts:
+        lo, hi = (errorbars or {}).get(p.entrant, (p.quality, p.quality))
+        if hi - lo > 1e-9:
+            ax.plot([X(p)] * 2, [100 * lo, 100 * hi], color=ERRORBAR, lw=1.4, zorder=3.4,
+                    solid_capstyle="butt")
+            ax.plot([X(p)] * 2, [100 * lo, 100 * hi], ls="none", marker="_", ms=9, mew=1.4,
+                    color=ERRORBAR, zorder=3.4)
+
     for i, p in enumerate(sorted(others, key=lambda p: -p.seconds)):
         _disc(ax, X(p), Y(p), p.maker, SMALL_PT, rim=RIM, rim_w=1.0, fonts=fonts, z=small_z(p, i), colour=muted(p))
         if p.kind == "pair":
@@ -360,7 +383,7 @@ def draw(points: list[Point], track: str, out_base: Path, *, xlim: tuple[float, 
             _badge(ax, X(p), Y(p), p.outliner_maker, BIG_PT, fonts, 6 + i * 0.01, colour=muted(p))
 
     _labels(fig, ax, fonts, pts, best_ids, names, X, Y, curve, accent, floor_at_zero, label_spots or {},
-            highlight)
+            highlight, halo=bool(errorbars))
     if header:
         _header(fig, fonts, title or TITLES[track])
     if any(p.synthetic for p in pts):
@@ -380,7 +403,12 @@ EXTRA = (0, 25, 50, 90)  # pt further out a label column may sit from its cluste
 
 
 def _labels(fig, ax, fonts: Fonts, pts, best_ids, names, X, Y, curve, accent: str, floor_at_zero: bool = False,
-            label_spots: dict[str, str] | None = None, highlight: set[str] | None = None) -> None:
+            label_spots: dict[str, str] | None = None, highlight: set[str] | None = None,
+            halo: bool = False) -> None:
+    # halo: a white outline around each label's letters, so error bars passing
+    # behind a label stop at its letters instead of running through them.
+    effects = {"path_effects": [pe.withStroke(linewidth=4, foreground="white")]} if halo else {}
+
     def parse(spec):
         spot, _, nudge = spec.partition("@")
         line = not nudge.endswith("!")
@@ -429,7 +457,7 @@ def _labels(fig, ax, fonts: Fonts, pts, best_ids, names, X, Y, curve, accent: st
         for line, ws, lw, lh in sized:
             x = x0 if align == "left" else x1 - lw if align == "right" else (x0 + x1 - lw) / 2
             for (text, pr), w in zip(line, ws):
-                ax.text(*inv.transform((x, y)), text, ha="left", va="top", zorder=8, **pr)
+                ax.text(*inv.transform((x, y)), text, ha="left", va="top", zorder=8, **pr, **effects)
                 x += w
             y -= lh + 1 * ppt
 

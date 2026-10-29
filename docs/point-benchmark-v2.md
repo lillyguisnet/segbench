@@ -302,7 +302,8 @@ mark that fits a disc, so "GPI" in its purple (`assets/logos/SOURCES.md`).
 Labels on the best-value line now keep a small margin between each other
 (GroundingPI's ran into MolmoPoint's on the screens chart); every earlier
 chart redraws identically with it (checked v2.5, v2.6 and screens-1).
-Pinned labels: v2.7 Gemini 3.1 Pro left (and Qwen 3.8 27B left on the
+Pinned labels (v3: MolmoPoint 8B lower left, Gemini 3.5 Flash Lite below,
+Gemini 4 Argon and Claude Sonnet 5.5 lower right). Pinned labels: v2.7 Gemini 3.1 Pro left (and Qwen 3.8 27B left on the
 language-model chart), `scripts/plot_point_pilot.py`; on screens-2,
 Moondream's pin removed (GroundingPI's disc now sits where it pointed),
 `scripts/plot_screens.py`.
@@ -311,3 +312,100 @@ Candidate scores: `results/point-benchmark-v2-loc-2026-10-14`,
 `results/point-benchmark-v1hd-loc-2026-10-14`. Report:
 `results/point-benchmark-v2.7`; charts: `charts/point-benchmark-v2.7`,
 `charts/screens-2`.
+
+## v3 (2026-10-14): seven more photos, eleven tasks
+
+Seven tasks on the second photo batch (`images/README.md`, "Added
+2026-10-14"; `segbench/tasks.py` TASKS_BATCH_2): leaf pieces carried by
+ants, beetles (not the butterflies), birds, mushroom caps, jars of
+strawberry coulis (not the other preserves), pink leaves, and the white cow
+with a bit of red (the cow question was asked for in the 2026-10-14
+conversation; the others were proposed there and approved the same day). The mineral photo has no task. These photos are
+resized copies (0.5 to 1.2 megapixels), not phone originals like the first
+eighteen.
+
+Reference points: a draft from four models (Gemini 3.8 Flash, GPT-6.1 Sol,
+Muse Wonder through the pay-per-use API because the plan's quota was used up,
+Moondream 3.1; `results/run-consensus-2.jsonl`, `scripts/consensus.py`),
+then reviewed dot by dot by the photos' author in the review app: 17 added, 4 moved, 2
+rejected, every photo checked whole; then approved
+(`annotations/reviews/segbench-review-5682a4be-approved.json`, 109 points).
+The two reviews are separate files; `scripts/score_points.py --reference`
+takes both.
+
+Same treatment as v2.7 on all eleven tasks (`scripts/build_v3.py`): every
+language model with both fixed prompts, 3 tries at medium thinking
+(`results/run-points-v2-b2.jsonl`, `run-points-v1hd-b2.jsonl`), keeping
+the prompt with the better eleven-task score. Three models change prompt
+from v2.7 because of that (GPT-6 Astra to v2, Kimi K3 to v2, Mistral Large
+4 to v1-hd), so their scores on the first four tasks differ from v2.7's.
+Local models: their published runs on the first photos plus the second
+batch (`run-finders-b2.jsonl`, `run-specialists-b2.jsonl`,
+`run-rfdetr-b2.jsonl`), with the same kind of short phrase
+(`segbench/tasks.py` PHRASES_BATCH_2). RF-DETR has COCO words only for
+birds and cows (and cannot be told the colour of the cow).
+
+Cost and seconds come from the first four tasks only, for every entrant:
+the local models were timed on those photos only, and the new photos are
+about ten times smaller, so cost would otherwise depend on which photos a
+model happened to be timed on. Each new record keeps its measured values
+as `seconds_measured` and `cost_usd_measured`.
+
+Muse Wonder is in through Meta's pay-per-token API, with lm15's meta
+provider (entrant `muse-wonder-api`, "Muse Wonder (API)"): the first
+photos from its 2026-10-14 API reruns (`run-points-v2-muse-api-20261014.jsonl`,
+`run-points-v1hd-muse-api-20261014.jsonl`), the new photos in the `-b2`
+runs; both prompts, 3 tries at medium, as for every model (v2 kept, 72.3).
+Its plan copy (`muse-wonder`, the one on v2.7) is out of quota until
+2026-10-19. Not in v3: Muse Wonder Full, which exists only on the plan
+(HTTP 404 on the pay-per-token key, checked again 2026-10-14). Muse Wonder's
+cost on the chart is the API's per-token price. The white-cow task is easy for most models (one object,
+found by nearly all); it mostly separates the few that miss it.
+
+Report: `results/point-benchmark-v3`; candidates `-v2`, `-v1hd`; charts:
+`charts/point-benchmark-v3`.
+
+Error bars (`uv run scripts/plot_error_bars.py point-benchmark-v3`,
+`charts/point-benchmark-v3-error-bars`): the same method as for v2.7
+(run-to-run variation from the 3 tries, Student-t, Bonferroni over the
+models on each chart: 28, and 19 language models), now with the published
+chart's pinned labels for whichever version is drawn. On a chart with error
+bars the bottom of the scale now also makes room for the lowest bar end
+(`segbench/chart_editorial.py`): on v3's language-model chart, which starts
+at 20% without bars, four bars ran off the bottom with no end mark. Charts
+without error bars redraw identically (checked v2.7 and v3).
+
+### v3 with error bars over the tasks (2026-10-14)
+
+Asked for the same day: each model's best run, and error bars over the
+tasks instead of over the tries (`uv run scripts/plot_task_error_bars.py
+point-benchmark-v3`, `charts/point-benchmark-v3-task-error-bars`). A run
+is one complete pass over the 11 tasks (language models 3, local models 1);
+the dot is the run with the highest mean. The bar is a Student-t interval
+over the run's 11 task scores, Bonferroni over the models on the chart (28,
+or 19). The bars are long (about ±25 to ±50 points) because the tasks
+differ in difficulty; that difficulty is shared by every model, so a
+comparison of two models should use their per-task differences (paired):
+for the top models about ±2 to ±5 points of standard error, and 17 of the
+378 pairs differ under a Bonferroni correction over all pairs. Best-run
+selection is made on the test photos and favours models with more runs and
+more erratic answers (GLM 5.3 Flash +10 points over its mean of runs,
+Mistral Large 4 +7). Drawn both ranked (one row per model) and against
+cost; on the cost chart the scale now also leaves room for the highest bar
+end (`segbench/chart_editorial.py`; charts without bars unchanged).
+
+### v3: how much the ranking depends on the photos chosen (2026-10-14)
+
+`uv run scripts/task_robustness.py point-benchmark-v3`,
+`charts/point-benchmark-v3-task-robustness`. Asked: "if I had kept only x
+of the y tasks, how robust is the relative ranking". Each model scored by
+its best run, re-chosen within every subset; every subset of the 11 tasks
+enumerated. Results: keeping 8 of 11, rank agreement with the full ranking
+0.98 (Spearman, median), same top five in 92% of choices, same winner in
+47%. Two disjoint sets of 5 tasks agree at 0.82, projected (Spearman-Brown)
+to 0.91 for two disjoint sets of 11: the broad order is robust, the order
+of neighbours is not. GPT-6 Astra wins on 8 of the 11 leave-one-out sets
+(Gemini 4 Argon without ants or jars, GPT-6.1 Sol without fig leaves).
+With the mean of runs instead of the best run the ranking is nearly the
+same (0.98). This replaces the error-bar-over-tasks view
+(`plot_task_error_bars.py`) as the answer to that question.

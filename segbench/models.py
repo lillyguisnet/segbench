@@ -41,6 +41,11 @@ MODELS: tuple[Model, ...] = (
           "not in the plan's model list, but callable; checked on the plan 2026-10-09"),
     Model("terra", "GPT-5.6 Terra", "OpenAI", "openai-codex:gpt-5.6-terra", "subscription", True,
           "newest Terra on 2026-10-08: there is no GPT-6 Terra"),
+    # Added 2026-10-26 (Lilly). GPT-6.1 Terra, listed on OpenRouter 2026-10-26;
+    # not in the plan's model list that day, but callable on it (the server
+    # answers as gpt-6.1-terra; gpt-6-terra and gpt-6.1 are refused).
+    Model("terra-6.1", "GPT-6.1 Terra", "OpenAI", "openai-codex:gpt-6.1-terra", "subscription", True,
+          "not in the plan's model list on 2026-10-26, but callable; released that day"),
     Model("sonnet", "Claude Sonnet 5.5", "Anthropic", "claude-code:claude-sonnet-5-5", "subscription", True),
     Model("opus", "Claude Opus 5.5", "Anthropic", "claude-code:claude-opus-5-5", "subscription", True),
     # Added 2026-10-14 (Maxime). Claude Haiku 5.5, released 2026-10-07, the
@@ -110,6 +115,14 @@ MODELS: tuple[Model, ...] = (
           "Muse Code Power or Maximum Usage plan only; circle test passed on the plan 2026-10-12 (4 of 4, 32 s); "
           "no per-token price exists (see prices.json)",
           credential="muse-code"),
+    # Added 2026-10-14 (Maxime: "rerun Muse Wonder benchmark through lm15 API
+    # calls"). The same model as "muse-wonder", called on Meta's pay-per-token
+    # API with META_API_KEY through lm15's own meta provider, not the Muse
+    # Code plan. A separate key so its answers never mix with the plan run
+    # that is published; a side run, not in BENCHMARKED (see SIDE_RUNS).
+    # Muse Wonder Full has no API counterpart (HTTP 404 on the paid key).
+    Model("muse-wonder-api", "Muse Wonder (API)", "Meta", "meta:muse-wonder-1.0", "per-token", True,
+          "pay-per-token rerun of muse-wonder, 2026-10-14; same settings as the plan run"),
     # Added 2026-10-13 (Maxime). Mistral Large 4 (released 2026-10-06, "Public
     # Preview": Mistral says it keeps training it under the same name, so a
     # score holds for its run date). Weights promised for end of October 2026;
@@ -118,6 +131,16 @@ MODELS: tuple[Model, ...] = (
     Model("mistral-large-4", "Mistral Large 4", "Mistral", "openrouter:mistralai/mistral-large-4-0", "per-token", True,
           "OpenRouter mistralai/mistral-large-4-0 (snapshot 20261006), pinned to Mistral; circle test passed 3 of 3 on 2026-10-12",
           extensions={"provider": {"order": ["Mistral"], "allow_fallbacks": False}}),
+    # Added 2026-10-16 (Maxime: Jev's vision release, try it in our benchmarks).
+    # TypeSafe's decision model: no text answer, only typed judgments (choices,
+    # yes/no, scores and, since 1.14 of 2026-10-14, one bounding box per
+    # question), so it cannot answer the prompts of the ordinary runs and is
+    # kept out of them (JUDGMENT_ONLY). Pinned to jev-1.14.0, not jev-preview,
+    # which moves. Images are TypeSafe's beta ("dreamer-ready"). It sees the
+    # picture (synthetic ovals, scripts/probe_jev.py, 2026-10-15), but the
+    # circle test asks for text, so vision stays None.
+    Model("jev", "Jev 1.14", "TypeSafe", "typesafe:jev-1.14.0", "per-token", None,
+          "judgments only (choice, yes/no, score, box); pictures 280..1568 px a side, never resized by the API"),
 )
 
 # Minimum, medium and maximum thinking, in each model's own levels (checked
@@ -147,8 +170,15 @@ THINKING = {
     # Thinking tokens on the test question, one try each: minimal 194, low 187,
     # medium 274, high 209, xhigh 204, max 392 (default 190).
     "haiku":             {"min": {"extensions": {"thinking": {"type": "disabled"}}}, "medium": {"effort": "medium"}, "max": {"effort": "max"}},
-    "astra":             {"min": {"effort": "low"}, "medium": {"effort": "medium"}},
+    # max restored 2026-10-20 (Maxime: every Claude and GPT model at no and at
+    # maximum thinking): Astra is called on our plan, where the price that
+    # dropped it (below) is quota, not money.
+    "astra":             {"min": {"effort": "low"}, "medium": {"effort": "medium"}, "max": {"effort": "max"}},
     "sol":               {"min": {"effort": "low"}, "medium": {"effort": "medium"}, "max": {"effort": "max"}},
+    # Checked 2026-10-26 (scripts/probe_thinking.py): off 0 thinking tokens,
+    # minimal refused, low/medium/high/xhigh/max accepted (45, 35, 42, 49, 61
+    # on the test question; default 54). Same levels as GPT-5.6 Terra.
+    "terra-6.1":         {"min": {"effort": "off"}, "medium": {"effort": "medium"}, "max": {"effort": "max"}},
     "gemini-pro":        {"min": {"effort": "low"}, "medium": {"effort": "medium"}, "max": {"effort": "high"}},
     "gemini-flash":      {"min": {"effort": "low"}, "medium": {"effort": "medium"}, "max": {"effort": "high"}},
     "gemini-flash-lite": {"min": {"effort": "minimal"}, "medium": {"effort": "medium"}, "max": {"effort": "high"}},
@@ -176,7 +206,12 @@ THINKING = {
     # 367). Like GPT-6 Astra and Sol, they cannot stop thinking: min is their
     # lowest level, medium the middle.
     "muse-wonder":       {"min": {"effort": "minimal"}, "medium": {"effort": "medium"}, "max": {"effort": "max"}},
+    "muse-wonder-api":   {"min": {"effort": "minimal"}, "medium": {"effort": "medium"}, "max": {"effort": "max"}},
     "muse-wonder-full":  {"min": {"effort": "minimal"}, "medium": {"effort": "medium"}, "max": {"effort": "max"}},
+    # Jev does not think: it answers in one pass and has no such control
+    # (lm15 drops a reasoning setting on the typesafe wire). One level, the
+    # one every model is run at, with nothing sent.
+    "jev":               {"medium": {}},
     # Mistral's docs (docs.mistral.ai/studio/conversations/reasoning, read
     # 2026-10-13) give Large 4 two reasoning_effort values only: "none" and
     # "high". OpenRouter accepts the other words, but on 2026-10-12 they gave
@@ -187,7 +222,8 @@ THINKING = {
     "mistral-large-4":   {"min": {"effort": "off"}, "medium": {"effort": "high"}},
 }
 LEVELS = ("min", "medium", "max")
-# Dropped 2026-10-09: "max" for Kimi K3 and GPT-6 Astra. Measured at up to
+# Dropped 2026-10-09: "max" for Kimi K3 and GPT-6 Astra (Astra's restored
+# 2026-10-20, see above). Measured at up to
 # $0.16 and $0.24 per call on one small picture (and up to 4 minutes for
 # Kimi), too expensive for the benchmark's ~thousands of calls.
 
@@ -198,5 +234,15 @@ def levels_for(key: str) -> tuple[str, ...]:
 
 BY_KEY = {m.key: m for m in MODELS}
 
+# Reruns of a benchmarked model by another route, run only when named
+# (--models KEY), never by a default "every model" run.
+SIDE_RUNS = {"muse-wonder-api"}
+
+# Decision models: they answer judgments (lm15 response_format), never a
+# prompt's text, so the ordinary runs cannot ask them anything; they are run
+# by their own scripts (scripts/probe_jev_split.py).
+JUDGMENT_ONLY = {"jev"}
+
 # The models that can take part: they see the picture.
-BENCHMARKED: tuple[Model, ...] = tuple(m for m in MODELS if m.vision)
+BENCHMARKED: tuple[Model, ...] = tuple(m for m in MODELS
+                                       if m.vision and m.key not in SIDE_RUNS and m.key not in JUDGMENT_ONLY)

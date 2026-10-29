@@ -189,6 +189,9 @@ is computed: `segbench/chart_data.py`. Choices made for readability:
 **Adding one:** `docs/adding-a-model.md` (the steps, and the rules every
 model so far was added by), helped by `uv run scripts/add_model.py status KEY`.
 
+**Prepared, not benchmarked:** [Falcon Perception-HD](docs/falcon.md), installed
+through the shared `~/Projects/finders` setup (2026-10-23).
+
 ### General models (vision + language, called through an API)
 
 The list, with exact routes, lives in `segbench/models.py`; list prices in
@@ -473,6 +476,7 @@ specialists/  one environment per specialist model family (see its README)
 - [x] GPU 0 taken for the benchmark; SAM 1/2.1/3, YOLOE-26, RF-DETR Seg, gen2seg installed, smoke-tested and priced (`specialists/README.md`)
 - [ ] DINOv3 + segmentation head
 - [x] first batch of photos (18, location data removed)
+- [x] second batch of photos (8, added 2026-10-14; resized copies, no tasks yet)
 - [x] six tasks chosen (`docs/task-ideas.md`); horns, engine and screenshot left out for now
 - [x] three-track design locked (above)
 - [ ] answer-key masks in recorn (SAM 3.1 service moved to GPU 0 for this; photos prepared)
@@ -503,6 +507,10 @@ specialists/  one environment per specialist model family (see its README)
 - **Font in `assets/fonts/`:** [Inter](https://github.com/rsms/inter) by
   The Inter Project Authors, under the [SIL Open Font License 1.1](assets/fonts/OFL.txt);
   cut down to Latin letters for the charts.
+- **Map pictures in `results/probe-jev-*/`:** © [OpenStreetMap](https://www.openstreetmap.org/copyright)
+  contributors. The maps with names are OpenStreetMap's standard tiles (CC BY-SA 2.0);
+  the maps without words are drawn from OpenFreeMap tiles of OpenStreetMap data (ODbL).
+  Not covered by the Apache licence.
 - **Logos in `assets/logos/`:** trademarks of their owners, used only to
   show who made each model; not covered by the Apache licence. Sources in
   `assets/logos/SOURCES.md`.

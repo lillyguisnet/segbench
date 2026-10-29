@@ -110,8 +110,12 @@ def main():
     ap.add_argument("--verify", action="store_true", help="feedback loop on the final boxes (segbench/jev_verify.py)")
     ap.add_argument("--max-depth", type=int, default=jh.MAX_DEPTH,
                     help=f"most halvings of one piece (default {jh.MAX_DEPTH}, as run jev-halving-1)")
+    ap.add_argument("--min-long", type=int, default=None,
+                    help="enlarge (Lanczos) every piece whose long side is shorter than this many px, keeping "
+                         "its shape (default: only up to the 280 px minimum, as run jev-halving-1)")
     a = ap.parse_args()
     jh.MAX_DEPTH = a.max_depth
+    jh.MIN_LONG = a.min_long
     if a.check:
         return check(a.verify)
     if not a.name:
@@ -138,10 +142,11 @@ def main():
                 rec, s = {"error": f"{type(e).__name__}: {e}", "text": "", "answer": {"items": []}}, None
             record = {"model": jh.MODEL.key, "route": jh.MODEL.route, "provider": "typesafe", "level": "medium",
                       "track": "find", "task": key, "task_number": task.number, "repeat": repeat,
-                      "prompt_version": jh.VERSION + (f"+{jv.VERSION}" if a.verify else ""), "image": task.photo,
+                      "prompt_version": jh.VERSION + (f"+long{jh.MIN_LONG}" if jh.MIN_LONG else "")
+                      + (f"+{jv.VERSION}" if a.verify else ""), "image": task.photo,
                       "image_sha256": hashlib.sha256(raw).hexdigest(), "image_size": list(im.size),
                       "started_at": started, "prices_date": cost.PRICES_DATE, "code": code,
-                      "max_depth": jh.MAX_DEPTH, **rec}
+                      "max_depth": jh.MAX_DEPTH, "min_long_side": jh.MIN_LONG, **rec}
             with out.open("a") as f:
                 f.write(json.dumps(record) + "\n")
             if s is not None:

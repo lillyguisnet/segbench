@@ -41,7 +41,7 @@ torch.backends.cudnn.allow_tf32 = True
 # ---------- SAM 3, text ----------
 
 
-def sam3(writer: A.Writer) -> None:
+def sam3(writer: A.Writer, tasks=ALL_TASKS) -> None:
     from sam3.model.sam3_image_processor import Sam3Processor
     from sam3.model_builder import build_sam3_image_model
 
@@ -63,7 +63,7 @@ def sam3(writer: A.Writer) -> None:
 
     data0, _ = A.photo(ALL_TASKS[0].photo)
     A.timed(ask(["cow"]), data0, repeats=2)  # warm-up, not recorded
-    for task in ALL_TASKS:
+    for task in tasks:
         data, sha = A.photo(task.photo)
         result, walls, models = A.timed(ask(A.PHRASES[task.key]), data)
         masks, labels, scores = [], [], []
@@ -193,6 +193,7 @@ if __name__ == "__main__":
     ap.add_argument("mode", choices=["sam3", "pairs"])
     ap.add_argument("--name", required=True)
     ap.add_argument("--finders", type=Path)
+    ap.add_argument("--batch", type=int, choices=sorted(A.BATCHES), default=1, help="photo batch (2: added 2026-10-14)")
     args = ap.parse_args()
     writer = A.Writer(args.name)
-    sam3(writer) if args.mode == "sam3" else pairs(writer, args.finders)
+    sam3(writer, A.BATCHES[args.batch]) if args.mode == "sam3" else pairs(writer, args.finders)

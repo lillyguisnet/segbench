@@ -37,6 +37,8 @@ INITIALS = {"UC Davis": "UCD", "IDEA": "IDEA"}  # no logo in Simple Icons or Lob
 # GroundingPI (checked 2026-10-14): in neither library, and its only mark is
 # a wide picture of its name (the README title), not a mark for a small disc.
 INITIALS["GroundingPI"] = "GPI"
+# TypeLLM (2026-10-17): no logo in either library, and its site's mark is its name in type.
+INITIALS["TypeLLM"] = "TL"
 
 # Brand colours (as on the 2026-10-09 brand-colour charts, commit 3aca946),
 # used where colour shows the maker (the point overlays, site and video; the
@@ -61,6 +63,7 @@ BRAND = {
     "Perceptron": "#1e130e",  # its mark's dark brown (Lobe Icons' Perceptron avatar), near Kimi's black
     "Mistral": "#fa520f",  # Mistral orange (Simple Icons' colour for Mistral AI)
     "GroundingPI": "#7050ad",  # the purple of its name and of the first badge on its README
+    "TypeLLM": "#2f6f5e",  # its site is black and white; a dark teal distinct from the others
 }
 OTHER = "#7a808a"
 

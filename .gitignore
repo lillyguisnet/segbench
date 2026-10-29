@@ -47,3 +47,26 @@ apps/screen-key-review/seed.js
 # trial reports: duplicate photos (originals in images/) and drawings on the private screenshots
 results/*-trial/*/images/
 results/*-trial/screens*/*.png
+apps/box-review/images/
+apps/box-review/seed.js
+apps/measure-clicks/images/
+apps/measure-clicks/seed.js
+annotations/measure/history/
+
+# Third-party PixMo evaluation images, masks and downloaded source files
+cache/pixmo-points-eval/
+
+# run logs stay on the machine (the ones already in the repo were added before this rule)
+*.log
+
+# local caches of model replies and judge runs
+cache/
+
+# YOLOE text-encoder file (243 MB, over GitHub's file limit); Ultralytics downloads it on first run
+specialists/yoloe/mobileclip2_b.ts
+
+# first thinking-levels run (51 MB), not read by scripts/build_thinking_levels.py; kept on lambda only
+results/run-thinking-levels-v1.jsonl
+
+# duplicate photos in the thinking-levels report (originals are in images/)
+results/thinking-levels-*/images/

@@ -47,6 +47,9 @@ MODEL = BY_KEY["jev"]
 MAX_DEPTH = 7
 RECHECK_ROUNDS = 2
 MIN_SIDE, MAX_SIDE = 280, 1568  # the API's real minimum (the docs say 256), and its maximum
+# Enlarge (Lanczos) every piece whose long side is shorter than this, keeping its shape;
+# None = only as much as MIN_SIDE needs (as run jev-halving-1). Set by run_jev_halving --min-long.
+MIN_LONG: int | None = None
 ATTEMPTS = 5  # per request, for answers never given (rate limit, dropped connection)
 VERSION = "jev-halving-v1"
 
@@ -68,6 +71,8 @@ def fit(crop: Image.Image):
     """Into Jev's limits, keeping the shape. Returns (picture sent, (pad_x, pad_y, inner_w, inner_h))."""
     w, h = crop.size
     k = min(1.0, MAX_SIDE / max(w, h))
+    if MIN_LONG and max(w, h) * k < MIN_LONG:
+        k = min(MIN_LONG, MAX_SIDE) / max(w, h)
     if min(w, h) * k < MIN_SIDE:
         k = min(MIN_SIDE / min(w, h), MAX_SIDE / max(w, h))
     iw, ih = max(1, round(w * k)), max(1, round(h * k))

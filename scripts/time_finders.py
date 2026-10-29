@@ -184,17 +184,27 @@ def job(key, ftask, task_key, q, sent, rnd, tag):
             "seed": rnd, "id": f"{tag}|{task_key}|{q}|{rnd}"}
 
 
+def warmups(key, ftask, qs):
+    """Untimed questions before timing: the cows question, as every model had; one per
+    photo for a model that compiles on its first questions (LocalModel.warmup_photos)."""
+    if not LOCAL[key].warmup_photos:
+        return [job(key, ftask, "cows", qs[1][1], qs[1][2], 99, "warmup")]
+    first = {}
+    for t, q, s in qs:
+        first.setdefault(t, (q, s))
+    return [job(key, ftask, t, q, s, 99, "warmup") for t, (q, s) in first.items()]
+
+
 def measure(key, name_out):
     fmodel, ftask, variant, copies, rounds = SETUPS[key]
     qs = queries(key)
-    warm = job(key, ftask, "cows", qs[1][1], qs[1][2], 99, "warmup")
-    jobs = [warm] + [job(key, ftask, t, q, s, r, "single") for r in range(rounds) for t, q, s in qs]
+    jobs = warmups(key, ftask, qs) + [job(key, ftask, t, q, s, r, "single") for r in range(rounds) for t, q, s in qs]
     plural = key in PLURAL_MODELS
     trick = [{"image": str(ROOT / "images" / t.photo), "task": ftask, "seed": 0,
               "query": PLURAL.get(t.absent.removeprefix("each "), t.absent.removeprefix("each ")) if plural
               else t.absent.removeprefix("each "), "id": f"trick|{t.key}|{t.absent}|0"} for t in ALL_TASKS]
     others_before = gpu_others()
-    print(f"== {key}: {len(jobs) - 1} timed queries, {len(trick)} trick", flush=True)
+    print(f"== {key}: {sum(j['id'].startswith('single') for j in jobs)} timed queries, {len(trick)} trick", flush=True)
     t0 = time.monotonic()
     service = Service(fmodel, max(copies, default=1), name_out.with_name(f"{name_out.stem}.{key}.service.log")) \
         if LOCAL[key].service else None
@@ -223,7 +233,10 @@ def _measure(key, name_out, fmodel, ftask, variant, copies, qs, jobs, trick, oth
     # under load
     load = [{"copies": 1, "load_factor": 1.0}]
     for k in copies:
-        cyc = [job(key, ftask, t, q, s, 100 + r, "load") for r in range(4) for t, q, s in qs]
+        # warmup_photos: each copy first answers its untimed warm-up, and the window
+        # starts once every copy has done so; otherwise as before (no warm-up here).
+        warm = warmups(key, ftask, qs) if LOCAL[key].warmup_photos else []
+        cyc = warm + [job(key, ftask, t, q, s, 100 + r, "load") for r in range(4) for t, q, s in qs]
         logs = [name_out.with_name(f"{name_out.stem}.{key}.copy{i}of{k}.log") for i in range(k)]
         ws = [Worker(fmodel, variant, cyc, lg, service) for lg in logs]
         try:
@@ -235,10 +248,11 @@ def _measure(key, name_out, fmodel, ftask, variant, copies, qs, jobs, trick, oth
             load.append({"copies": k, "load_factor": None, "failed": f"{e}; {tail[-300:]}"})
             print(f"   {k} copies: did not run ({e})", flush=True)
             continue
-        start = max(o[0][0] - o[0][1]["seconds"] for o in outs)  # all copies loaded and working
+        nw = len(warm)
+        start = max(o[nw - 1][0] if nw else o[0][0] - o[0][1]["seconds"] for o in outs)  # all copies loaded and working
         end = min(o[-1][0] for o in outs)  # until the first copy runs out of work
         done = sum(work_of[(r["id"].split("|")[1], r["id"].split("|")[2])]
-                   for o in outs for t, r in o if start < t <= end)
+                   for o in outs for t, r in o[nw:] if start < t <= end)
         factor = (end - start) / done if done else None
         load.append({"copies": k, "window_s": round(end - start, 2), "work_done_s": round(done, 2),
                      "load_factor": round(factor, 4) if factor else None, "peak_gib": max(r["gpu_peak_gib"] or 0 for o in outs for _, r in o),

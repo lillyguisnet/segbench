@@ -52,6 +52,15 @@ SPECIALISTS: dict[str, tuple[str, str]] = {m.key: (m.label, m.maker) for m in LO
 
 LEVEL_SHORT = {"min": "min", "medium": "med", "max": "max"}
 
+# Remote entrants outside segbench/models.py (they do not answer text, so the
+# ordinary runs cannot call them): model key -> (label, maker, kind).
+# TypeLLM (2026-10-17, docs/typellm.md): its own entry, and "+ count first",
+# our pipeline (a thinking count question asked before the list).
+EXTRA_ENTRANTS: dict[str, tuple[str, str, str]] = {
+    "typellm": ("TypeLLM", "TypeLLM", "general"),
+    "typellm-count": ("TypeLLM + count first", "TypeLLM", "general"),
+}
+
 
 @dataclass
 class Point:
@@ -84,6 +93,8 @@ def describe(model: str) -> tuple[str, str, str]:
     if model in SPECIALISTS:
         label, maker = SPECIALISTS[model]
         return label, maker, "specialist"
+    if model in EXTRA_ENTRANTS:
+        return EXTRA_ENTRANTS[model]
     return model, "Other", "specialist"
 
 

@@ -27,6 +27,11 @@ Fields:
   load, scripts/time_finders.py then starts one service that answers up to
   max(photo_copies) requests at once, and "copies" are that many processes
   sending requests to it (how a vLLM model is used), not copies of the model.
+- warmup_photos: one untimed question per photo before timing starts, in the
+  single-copy pass and in every copy of the load test (whose window then starts
+  after each copy's warm-up). For models that compile on their first question
+  (Falcon: ~20-50 s once per process), which is not answering time. Default
+  off: the other models keep the single warm-up question they were timed with.
 - load_factor: measured by scripts/time_finders.py on the photos
   (results/run-<name>.timing.json, "load_factor"); cost = $/GPU-hour x
   single-copy seconds x this factor. Copied by hand on purpose: a published
@@ -54,6 +59,7 @@ class LocalModel:
     note: str = ""
     screen_task: str | None = None
     service: bool = False
+    warmup_photos: bool = False
 
 
 LOCAL_MODELS: tuple[LocalModel, ...] = (
@@ -104,6 +110,17 @@ LOCAL_MODELS: tuple[LocalModel, ...] = (
     LocalModel("groundingpi-4b", "GroundingPI 4B", "GroundingPI", "groundingpi", "point",
                photo_copies=(2, 4, 8, 16), photo_rounds=3, screen_seeds=1, screen_task="gui", service=True,
                load_factor=0.3148, note="vLLM service; copies = requests at once to one service"),
+    # Added 2026-10-23 at the user's request; photos benchmarked 2026-10-23 on the
+    # whole of GPU 1 (its six services stopped, user's go-ahead). Native masks and
+    # boxes; its point is the deepest point inside its mask, not a native point.
+    # Singular phrases, like its own examples ("cat"). Deterministic (greedy).
+    # ~10.7 GB per copy: two copies fit on 24 GB. Compiles on its first question
+    # in each process: warmup_photos. Screenshots not run (screen_seeds unset).
+    LocalModel("falcon-perception-hd", "Falcon Perception-HD", "TII", "falcon", "segment", "hd",
+               photo_copies=(2,), photo_rounds=3, warmup_photos=True, load_factor=1.0,
+               note="RL release 19-08-2026; points: 2 copies ran out of memory (90 full-size masks on "
+                    "the logs photo), so 1 copy, factor 1.0, results/run-finders-6.timing.json; "
+                    "boxes: 2 copies 1.004, so 1.0 (run-finders-boxes-4-falcon.timing.json); docs/falcon.md"),
 )
 
 BY_KEY = {m.key: m for m in LOCAL_MODELS}

@@ -28,7 +28,7 @@ import torch  # noqa: E402
 from rfdetr import RFDETRSeg2XLarge  # noqa: E402
 from rfdetr.assets.coco_classes import COCO_CLASSES  # noqa: E402
 
-from segbench.tasks import BY_KEY  # noqa: E402
+from segbench.tasks import BY_KEY, TASKS  # noqa: E402
 
 COCO = set(COCO_CLASSES.values()) if isinstance(COCO_CLASSES, dict) else set(COCO_CLASSES)
 CATEGORY = {"cows": "cow"}  # task -> COCO category
@@ -52,7 +52,7 @@ def main(name: str) -> None:
         return fn
 
     jobs = [(BY_KEY[t], "task", c) for t, c in CATEGORY.items()]
-    jobs += [(task, "trick", A.TRICK_PHRASES[task.key]) for task in BY_KEY.values()
+    jobs += [(task, "trick", A.TRICK_PHRASES[task.key]) for task in TASKS
              if A.TRICK_PHRASES[task.key] in COCO]
     data0, _ = A.photo(jobs[0][0].photo)
     A.timed(ask("cow"), data0, repeats=3)  # warm-up

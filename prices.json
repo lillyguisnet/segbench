@@ -96,6 +96,12 @@
           "listed_as": "meta/muse-wonder",
           "note": "added 2026-10-12: price read from OpenRouter's catalogue that day, kept in this snapshot so one price table serves the run; called direct on Meta's API. Meta counts thinking inside output_tokens. Called through our Muse Code plan; API price"
         },
+        "muse-wonder-api": {
+          "input": 4.0,
+          "output": 20.0,
+          "listed_as": "meta/muse-wonder",
+          "note": "added 2026-10-14: the same price as muse-wonder (Meta's standard per-token price, $4 / $20; no discount mode exists for Muse Wonder), here actually paid: called on Meta's API with the pay-per-token key. Meta counts thinking inside output_tokens"
+        },
         "muse-wonder-full": {
           "input": 4.0,
           "output": 20.0,
@@ -119,6 +125,18 @@
           "output": 10.0,
           "listed_as": "google/gemini-4-argon",
           "note": "added 2026-10-14: price read from OpenRouter that day (Google's own API price; no higher long-prompt tier listed, unlike Gemini 3.1 Pro), kept in this snapshot so one price table serves the run. The batch copy (google/gemini-4-argon:batch) is half price; not used. Google counts thinking outside output_tokens (segbench/cost.py THINKING_NOT_IN_OUTPUT)"
+        },
+        "jev": {
+          "input": 0.042,
+          "output": 0.0,
+          "listed_as": "typesafe jev-1.14.0",
+          "note": "read 2026-10-16 on docs.typesafe.ai/models ($0.042 per million input tokens, output free; pictures billed as input tokens at the same price). Not on OpenRouter; added to this snapshot after its date, as for later models"
+        },
+        "terra-6.1": {
+          "input": 1.0,
+          "output": 5.0,
+          "listed_as": "openai/gpt-6.1-terra",
+          "note": "added 2026-10-26: price read from OpenRouter's catalogue that day (OpenAI's own API price; the :batch copy is half price, not used), kept in this snapshot so one price table serves the run. Called through our ChatGPT plan; API price"
         }
       }
     }

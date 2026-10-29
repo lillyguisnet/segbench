@@ -31,7 +31,14 @@ OUT = ROOT / 'charts' / (sys.argv[2] if len(sys.argv) > 2 else 'point-pilot-edit
 # crossed GPT-6.1 Sol's. On the language-model chart, Qwen 3.8 27B's left of
 # its disc (it ran into Claude Haiku 5.5's; labels on the best-value line,
 # like Haiku's, cannot be pinned).
-LABEL_SPOTS = {'point-benchmark-v2.7': {'gemini-pro@medium': 'left'},
+# v3 (2026-10-14): with Muse Wonder (API) added, the placer sent MolmoPoint's,
+# Gemini 3.5 Flash Lite's, Gemini 4 Argon's and Claude Sonnet's labels far
+# away on long crossing lines; pinned beside their discs (positions chosen so
+# the pinned labels do not cover each other: pins are not checked against
+# one another, only the automatic labels avoid them).
+LABEL_SPOTS = {'point-benchmark-v3': {'molmopoint-8b': 'll', 'gemini-flash-lite@medium': 'below',
+                                      'gemini-argon@medium': 'lr', 'sonnet@medium': 'lr'},
+               'point-benchmark-v2.7': {'gemini-pro@medium': 'left'},
                'point-benchmark-v2.7/language-models': {'qwen-27b@medium': 'left'}}
 
 
@@ -39,7 +46,8 @@ def main():
     records = [json.loads(line) for line in SOURCE.read_text().splitlines()]
     with SUMMARY.open() as f:
         expected = {r['entrant']: r for r in csv.DictReader(f)}
-    complete = {k for k, r in expected.items() if int(r['coverage']) == 4}
+    n_tasks = len(json.loads((SOURCE.parent / 'manifest.json').read_text()).get('tasks') or [0] * 4)
+    complete = {k for k, r in expected.items() if int(r['coverage']) == n_tasks}
     variants = {
         'language-models': [r for r in records if r['entrant'] in complete and r['kind'] == 'general'],
         'with-specialists': [r for r in records if r['entrant'] in complete],
@@ -70,7 +78,7 @@ def main():
                             for name in ['scripts/draw_charts.py', 'segbench/chart_editorial.py', 'segbench/chart.py', 'segbench/chart_data.py']},
         **({'label_spots': spots} if (spots := {k: v for k, v in LABEL_SPOTS.items()
                                                  if k == OUT.name or k.startswith(OUT.name + '/')}) else {}),
-        'metric': 'point-localisation-v1; tolerance-average F1; equal weighting of four tasks',
+        'metric': f'point-localisation-v1; tolerance-average F1; equal weighting of {n_tasks} tasks',
         'excluded_incomplete': [k for k in expected if k not in complete],
         'caveats': ['Single medium-thinking pilot, not repeat-validated.',
                     'Reference-point proximity is not point-inside-mask correctness.',

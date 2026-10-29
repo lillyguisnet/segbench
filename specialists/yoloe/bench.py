@@ -30,7 +30,7 @@ from segbench.tasks import TASKS  # noqa: E402
 CONFIG = {"weights": "yoloe-26x-seg.pt", "imgsz": 640, "conf": 0.25, "precision": "fp16", "retina_masks": True}
 
 
-def main(name: str) -> None:
+def main(name: str, tasks=TASKS) -> None:
     writer = A.Writer(name)
     model = YOLOE("yoloe-26x-seg.pt")
     factor = A.load_factor("yoloe-26x-text")
@@ -50,7 +50,7 @@ def main(name: str) -> None:
 
     data0, _ = A.photo(TASKS[0].photo)
     A.timed(ask(["cow"]), data0, repeats=3)  # warm-up
-    for task in TASKS:
+    for task in tasks:
         data, sha = A.photo(task.photo)
         (masks, phrases, scores), walls, models = A.timed(ask(A.PHRASES[task.key]), data)
         labels = [A.LABEL_OF_PHRASE.get(p) for p in phrases]
@@ -74,4 +74,6 @@ def main(name: str) -> None:
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--name", required=True)
-    main(ap.parse_args().name)
+    ap.add_argument("--batch", type=int, choices=sorted(A.BATCHES), default=1, help="photo batch (2: added 2026-10-14)")
+    args = ap.parse_args()
+    main(args.name, A.BATCHES[args.batch])

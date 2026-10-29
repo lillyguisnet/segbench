@@ -1,6 +1,7 @@
 """RF-DETR Seg 2XL on the four point tasks, with whatever of its 80 COCO categories fit each request.
 
 uv run points.py --name rfdetr-3      ->  results/run-rfdetr-3.jsonl
+uv run points.py --name rfdetr-b2 --batch 2   (second photo batch, 2026-10-14)
 
 Maxime, 2026-10-10: enter RF-DETR on every task; failing where its fixed
 vocabulary has no word for the thing is part of the result. Categories,
@@ -43,6 +44,13 @@ from rfdetr.assets.coco_classes import COCO_CLASSES  # noqa: E402
 from segbench.tasks import BY_KEY  # noqa: E402
 
 CATEGORIES = {"logs": [], "cows": ["cow"], "fig": [], "dishes": ["bowl", "cup"]}
+# Second photo batch (2026-10-14, --batch 2), fixed before running, same rule:
+#   ants, beetles, mushrooms, pink leaves: no COCO category -> no dots
+#   ("potted plant" is a whole plant, not a leaf, as for the fig);
+#   jars: none (COCO has bottle, cup and vase, not a jar);
+#   birds: bird; white cow: cow (it cannot be told the colour, so it gives every cow).
+CATEGORIES_BATCH_2 = {"ants": [], "beetles": [], "birds": ["bird"], "mushrooms": [], "jars": [], "pinkleaves": [],
+                      "whitecow": ["cow"]}
 CONFIG = {"weights": "RFDETRSeg2XLarge (COCO)", "threshold": 0.5, "precision": "fp16, traced"}
 CLEAN = harness.ROOT / "results" / "run-specialists-2.jsonl"
 
@@ -57,7 +65,7 @@ def clean_timing() -> dict:
     return out
 
 
-def main(name: str) -> None:
+def main(name: str, batch: int = 1) -> None:
     out = harness.ROOT / "results" / f"run-{name}.jsonl"
     if out.exists():
         sys.exit(f"{out} exists: choose a new --name")
@@ -78,12 +86,16 @@ def main(name: str) -> None:
     data0, _ = A.photo(BY_KEY["cows"].photo)
     A.timed(ask(["cow"]), data0, repeats=3)  # warm-up
     with out.open("w") as f:
-        for key, cats in CATEGORIES.items():
+        for key, cats in (CATEGORIES if batch == 1 else CATEGORIES_BATCH_2).items():
             task = BY_KEY[key]
             data, sha = A.photo(task.photo)
             (masks, scores), walls, models = A.timed(ask(cats), data)
             ans = A.to_answers(task, masks, [None] * len(masks), scores)
-            line, src = clean[task.photo]
+            if batch == 2:  # no clean timing on these photos: answers only (the chart times it on batch 1)
+                line, src = None, {"seconds": None, "model_seconds": None, "cost_usd": None, "started_at": None,
+                                   "gpu_others": None, "cost_method": "not timed (batch 2): see run-specialists-2"}
+            else:
+                line, src = clean[task.photo]
             prompt = ("COCO categories: " + ", ".join(cats)) if cats else "none of its 80 COCO categories fit: no dots"
             rec = A.record(model="rfdetr-seg-2xl", track="find", task=task, text=ans["find"], walls=walls,
                            models=models, factor=1.0, prompt=prompt, sha=sha,
@@ -92,17 +104,18 @@ def main(name: str) -> None:
                 "seconds_this_run": rec["seconds"], "gpu_others_this_run": rec["gpu_others"],
                 "seconds": src["seconds"], "model_seconds": src["model_seconds"], "cost_usd": src["cost_usd"],
                 "cost_method": src["cost_method"],
-                "timing_source": {"record": f"results/run-specialists-2.jsonl:{line}",
+                "timing_source": {"record": f"results/run-specialists-2.jsonl:{line}" if line else None,
                                   "started_at": src["started_at"], "gpu_others": src["gpu_others"]},
-                "timing_trustworthy": True, "gpu_others": src["gpu_others"],
+                "timing_trustworthy": batch == 1, "gpu_others": src["gpu_others"],
             })
             f.write(json.dumps(rec) + "\n")
-            print(f"rfdetr {key:7} {prompt:45} {len(masks):3} dots  (clean {src['seconds']:.3f}s, "
-                  f"today {rec['seconds_this_run']:.3f}s)", flush=True)
+            print(f"rfdetr {key:7} {prompt:45} {len(masks):3} dots  (today {rec['seconds_this_run']:.3f}s)", flush=True)
     print("saved", out)
 
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--name", required=True)
-    main(ap.parse_args().name)
+    ap.add_argument("--batch", type=int, choices=(1, 2), default=1, help="photo batch (2: added 2026-10-14)")
+    args = ap.parse_args()
+    main(args.name, args.batch)
