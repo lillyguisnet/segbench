@@ -1,0 +1,18 @@
+{
+  "model": "molmopoint-8b",
+  "metric": "pixmo-pointing-eval-distance-assignment-mask-hit-v1",
+  "dataset_revision": "e237f0491ca49bf8dec04e06fc0c3807a37ef157",
+  "total_questions": 436,
+  "verified_questions": 209,
+  "selected_questions": 209,
+  "scored_questions": 209,
+  "complete_selected_run": true,
+  "full_test_set": false,
+  "missing_prediction_ids": [],
+  "note": "Partial/available-only runs are NOT full published-benchmark reproductions.",
+  "precision": 0.8884901648059543,
+  "recall": 0.8690476190476191,
+  "f1": 0.8710610080966262,
+  "warm_seconds_total": 279.372,
+  "warm_seconds_median": 1.232
+}

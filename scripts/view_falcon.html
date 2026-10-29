@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Falcon Perception-HD on the benchmark photos</title>
+<style>
+:root{--bg:#f7f8f5;--panel:#eceee8;--text:#1f241d;--muted:#5f6a5a;--border:#d4dacb}
+@media(prefers-color-scheme:dark){:root{--bg:#151916;--panel:#202720;--text:#e9efe6;--muted:#a1ad9c;--border:#364335}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.5 system-ui,sans-serif}
+main{max-width:1250px;margin:auto;padding:22px}h1{font-size:25px;margin:0 0 4px}.muted{color:var(--muted)}
+.bar{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 0;border-bottom:1px solid var(--border);
+ display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center}
+.bar label{display:flex;gap:6px;align-items:center;cursor:pointer;user-select:none}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin:10px 0 4px;font-size:13px}
+.sw{display:inline-block;width:12px;height:12px;border-radius:50%;vertical-align:-1px;margin-right:5px}
+nav{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}nav a{padding:2px 9px;border:1px solid var(--border);
+ border-radius:12px;color:var(--text);text-decoration:none;font-size:13px}nav a:hover{background:var(--panel)}
+section{margin:26px 0 34px}section h2{font-size:19px;margin:0}.meta{display:flex;flex-wrap:wrap;gap:4px 18px;margin:4px 0 10px}
+.zero{color:#c2410c;font-weight:600}
+.stage{position:relative;width:100%;border-radius:8px;overflow:hidden;background:#000;cursor:zoom-in}
+.stage.zoomed{cursor:zoom-out}.stage img,.stage svg{display:block;width:100%;height:auto}
+.stage .ov{position:absolute;inset:0;width:100%;height:100%}
+.off{display:none!important}
+</style></head><body><main>
+<h1>Falcon Perception-HD: its answers on the 11 benchmark photos</h1>
+<div class="muted">Exactly the answers that were scored (same questions asked again with outlines on; checked
+identical). Scores: points benchmark v3 and box benchmark v1, preview, not published.</div>
+<div class="legend">
+ <span><span class="sw" style="background:rgba(0,150,255,.6)"></span>Falcon's outline of each object</span>
+ <span><span class="sw" style="background:#22c55e"></span>Falcon's point, on a right object</span>
+ <span><span class="sw" style="background:#ef4444"></span>Falcon's point, on nothing in the answer key</span>
+ <span><span class="sw" style="border:3px solid #facc15"></span>answer-key object Falcon missed</span>
+ <span><span class="sw" style="border-radius:2px;border:2px solid #22d3ee"></span>Falcon's box</span>
+ <span><span class="sw" style="border-radius:2px;border:2px dashed #fff;background:#666"></span>answer-key box</span>
+</div>
+<div class="bar">
+ <label><input type="checkbox" data-layer="masks" checked>outlines</label>
+ <label><input type="checkbox" data-layer="points" checked>points</label>
+ <label><input type="checkbox" data-layer="missed" checked>missed objects</label>
+ <label><input type="checkbox" data-layer="boxes">Falcon's boxes</label>
+ <label><input type="checkbox" data-layer="keyboxes">answer-key boxes</label>
+ <span class="muted">click a photo to see it larger</span>
+</div>
+<nav id="nav"></nav>
+<div id="list"></div>
+</main>
+<script>
+const DATA = __DATA__;
+const NAMES = {logs:"Log ends",cows:"Cows",fig:"Fig leaves",dishes:"Dishes (dirty and clean)",ants:"Ants",
+  beetles:"Beetles",birds:"Birds",mushrooms:"Mushrooms",jars:"Jars",pinkleaves:"Pink leaves",whitecow:"The white cow"};
+const nav = document.getElementById("nav"), list = document.getElementById("list");
+for (const [t, v] of Object.entries(DATA)) {
+  nav.insertAdjacentHTML("beforeend", `<a href="#${t}">${NAMES[t]||t} · ${v.score}</a>`);
+  const s = Math.max(v.W, v.H) / 1000;           // stroke scale: photo pixels per 1000
+  const hits = v.points.filter(p => p.hit).length;
+  const pts = v.points.map(p => `<circle cx="${p.x}" cy="${p.y}" r="${9*s}" fill="${p.hit?'#22c55e':'#ef4444'}" stroke="#fff" stroke-width="${2.5*s}"/>`).join("");
+  const miss = v.missed.map(m => `<circle cx="${m.x}" cy="${m.y}" r="${Math.max(m.r, 12*s)}" fill="none" stroke="#facc15" stroke-width="${3.5*s}"/>`).join("");
+  const box = (b, st) => `<rect x="${b[0]}" y="${b[1]}" width="${b[2]-b[0]}" height="${b[3]-b[1]}" ${st}/>`;
+  const fb = v.boxes.map(b => box(b, `fill="none" stroke="#22d3ee" stroke-width="${3*s}"`)).join("");
+  const kb = v.key_boxes.map(b => box(b, `fill="none" stroke="#fff" stroke-dasharray="${8*s} ${6*s}" stroke-width="${2.5*s}"`)).join("");
+  const zero = v.points.length === 0 ? ` <span class="zero">answered "not in the photo"</span>` : "";
+  list.insertAdjacentHTML("beforeend", `<section id="${t}">
+   <h2>${NAMES[t]||t}</h2>
+   <div class="meta"><span>asked: ${v.queries.map((q, i) => v.query_colors
+      ? `<b style="color:${v.query_colors[i]}">“${q}”</b> (${i ? 'purple' : 'orange'} outlines)` : `<b>“${q}”</b>`).join(" and ")}</span>
+    <span>point score <b>${v.score}</b> · box score <b>${v.box_score}</b></span>
+    <span>${v.points.length} points, ${hits} right, ${v.points.length-hits} wrong · ${v.missed.length} of ${v.n_refs} missed${zero}</span></div>
+   <div class="stage">
+    <img src="${t}.webp" alt="${t} photo" loading="lazy">
+    <img class="ov masks" src="${t}.masks.webp" alt="" loading="lazy">
+    <svg class="ov" viewBox="0 0 ${v.W} ${v.H}" preserveAspectRatio="none">
+     <g class="keyboxes off">${kb}</g><g class="boxes off">${fb}</g><g class="missed">${miss}</g><g class="points">${pts}</g>
+    </svg></div></section>`);
+}
+document.querySelectorAll(".bar input").forEach(cb => cb.addEventListener("change", () =>
+  document.querySelectorAll("." + cb.dataset.layer).forEach(el => el.classList.toggle("off", !cb.checked))));
+document.querySelectorAll(".stage").forEach(st => st.addEventListener("click", () => {
+  const z = st.classList.toggle("zoomed");
+  st.style.width = z ? "200%" : "100%";
+  st.parentElement.style.overflowX = z ? "auto" : "";
+}));
+</script></body></html>

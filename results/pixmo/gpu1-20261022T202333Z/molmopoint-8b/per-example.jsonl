@@ -1,0 +1,209 @@
+{"id": "pixmo-test-0095", "label": "red heart ", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.88, "point_from": ["model"]}
+{"id": "pixmo-test-0396", "label": "car icons", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 6, "predicted": 6, "reference": 6, "seconds": 3.644, "point_from": ["model"]}
+{"id": "pixmo-test-0211", "label": "blue shirt", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 0.847, "point_from": ["model"]}
+{"id": "pixmo-test-0328", "label": "forrest", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.498, "point_from": ["model"]}
+{"id": "pixmo-test-0102", "label": "plain dough", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 0.995, "point_from": ["model"]}
+{"id": "pixmo-test-0376", "label": "support tab", "precision": 0.0, "recall": 0.0, "f1": 0.0, "hits": 0, "predicted": 1, "reference": 1, "seconds": 0.847, "point_from": ["model"]}
+{"id": "pixmo-test-0386", "label": "archive", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 0.895, "point_from": ["model"]}
+{"id": "pixmo-test-0329", "label": "social media links", "precision": 1.0, "recall": 1.0, "f1": 1.0, "hits": 0, "predicted": 0, "reference": 0, "seconds": 0.41, "point_from": []}
+{"id": "pixmo-test-0430", "label": "kneeling mat", "precision": 1.0, "recall": 1.0, "f1": 1.0, "hits": 0, "predicted": 0, "reference": 0, "seconds": 1.694, "point_from": []}
+{"id": "pixmo-test-0301", "label": "buff logo", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.533, "point_from": ["model"]}
+{"id": "pixmo-test-0030", "label": "ear", "precision": 1.0, "recall": 0.5, "f1": 0.6666666666222222, "hits": 1, "predicted": 1, "reference": 2, "seconds": 1.576, "point_from": ["model"]}
+{"id": "pixmo-test-0385", "label": "poster board", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.203, "point_from": ["model"]}
+{"id": "pixmo-test-0111", "label": "watch", "precision": 1.0, "recall": 0.5, "f1": 0.6666666666222222, "hits": 1, "predicted": 1, "reference": 2, "seconds": 0.991, "point_from": ["model"]}
+{"id": "pixmo-test-0349", "label": "resort hotels button", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 0.862, "point_from": ["model"]}
+{"id": "pixmo-test-0120", "label": "plate rim", "precision": 0.5, "recall": 1.0, "f1": 0.6666666666222222, "hits": 1, "predicted": 2, "reference": 1, "seconds": 1.381, "point_from": ["model"]}
+{"id": "pixmo-test-0063", "label": "menu bar", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 3, "predicted": 3, "reference": 3, "seconds": 1.168, "point_from": ["model"]}
+{"id": "pixmo-test-0390", "label": "green and white latte art", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.559, "point_from": ["model"]}
+{"id": "pixmo-test-0097", "label": "jet black header banner", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 0.902, "point_from": ["model"]}
+{"id": "pixmo-test-0338", "label": "white background", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.103, "point_from": ["model"]}
+{"id": "pixmo-test-0279", "label": "Hair", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.102, "point_from": ["model"]}
+{"id": "pixmo-test-0248", "label": "branding tab", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 2.151, "point_from": ["model"]}
+{"id": "pixmo-test-0217", "label": "tacks", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 2, "predicted": 2, "reference": 2, "seconds": 1.081, "point_from": ["model"]}
+{"id": "pixmo-test-0318", "label": "where i'd turn on the faucet", "precision": 0.0, "recall": 0.0, "f1": 0.0, "hits": 0, "predicted": 1, "reference": 1, "seconds": 1.25, "point_from": ["model"]}
+{"id": "pixmo-test-0079", "label": "white divider line", "precision": 1.0, "recall": 0.5, "f1": 0.6666666666222222, "hits": 1, "predicted": 1, "reference": 2, "seconds": 1.408, "point_from": ["model"]}
+{"id": "pixmo-test-0150", "label": "scarves", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 2, "predicted": 2, "reference": 2, "seconds": 1.278, "point_from": ["model"]}
+{"id": "pixmo-test-0365", "label": "hair", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.323, "point_from": ["model"]}
+{"id": "pixmo-test-0067", "label": "floor to ceiling window", "precision": 0.0, "recall": 0.0, "f1": 0.0, "hits": 0, "predicted": 1, "reference": 1, "seconds": 1.049, "point_from": ["model"]}
+{"id": "pixmo-test-0195", "label": "power pole", "precision": 0.0, "recall": 0.0, "f1": 0.0, "hits": 0, "predicted": 1, "reference": 2, "seconds": 0.777, "point_from": ["model"]}
+{"id": "pixmo-test-0377", "label": "Right feets", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 4, "predicted": 4, "reference": 4, "seconds": 2.196, "point_from": ["model"]}
+{"id": "pixmo-test-0202", "label": "pink hair", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.217, "point_from": ["model"]}
+{"id": "pixmo-test-0149", "label": "blue athletic pan with red stripe down the leg", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.718, "point_from": ["model"]}
+{"id": "pixmo-test-0091", "label": "sword and scale logo", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.571, "point_from": ["model"]}
+{"id": "pixmo-test-0056", "label": "groovebox label", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.112, "point_from": ["model"]}
+{"id": "pixmo-test-0344", "label": "Symbol", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 0.994, "point_from": ["model"]}
+{"id": "pixmo-test-0193", "label": "stair railing", "precision": 1.0, "recall": 0.5, "f1": 0.6666666666222222, "hits": 1, "predicted": 1, "reference": 2, "seconds": 2.518, "point_from": ["model"]}
+{"id": "pixmo-test-0228", "label": "back tire", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.054, "point_from": ["model"]}
+{"id": "pixmo-test-0360", "label": "back right rear spider leg", "precision": 0.0, "recall": 0.0, "f1": 0.0, "hits": 0, "predicted": 1, "reference": 1, "seconds": 1.751, "point_from": ["model"]}
+{"id": "pixmo-test-0304", "label": "cars", "precision": 1.0, "recall": 0.6666666666666666, "f1": 0.799999999952, "hits": 2, "predicted": 2, "reference": 3, "seconds": 1.094, "point_from": ["model"]}
+{"id": "pixmo-test-0014", "label": "hat", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.459, "point_from": ["model"]}
+{"id": "pixmo-test-0274", "label": "light brown object", "precision": 0.0, "recall": 0.0, "f1": 0.0, "hits": 0, "predicted": 1, "reference": 1, "seconds": 1.007, "point_from": ["model"]}
+{"id": "pixmo-test-0160", "label": "metal pitcher`s plate", "precision": 0.0, "recall": 0.0, "f1": 0.0, "hits": 0, "predicted": 1, "reference": 1, "seconds": 1.416, "point_from": ["model"]}
+{"id": "pixmo-test-0106", "label": "face", "precision": 1.0, "recall": 1.0, "f1": 1.0, "hits": 0, "predicted": 0, "reference": 0, "seconds": 0.364, "point_from": []}
+{"id": "pixmo-test-0403", "label": "grey background", "precision": 0.0, "recall": 0.0, "f1": 0.0, "hits": 0, "predicted": 1, "reference": 1, "seconds": 1.173, "point_from": ["model"]}
+{"id": "pixmo-test-0022", "label": "add button", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 2.744, "point_from": ["model"]}
+{"id": "pixmo-test-0207", "label": "first name", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.033, "point_from": ["model"]}
+{"id": "pixmo-test-0281", "label": "carpet", "precision": 1.0, "recall": 0.25, "f1": 0.399999999968, "hits": 1, "predicted": 1, "reference": 4, "seconds": 1.348, "point_from": ["model"]}
+{"id": "pixmo-test-0186", "label": "sky", "precision": 1.0, "recall": 1.0, "f1": 1.0, "hits": 0, "predicted": 0, "reference": 0, "seconds": 0.619, "point_from": []}
+{"id": "pixmo-test-0246", "label": "camera lens", "precision": 0.0, "recall": 0.0, "f1": 0.0, "hits": 0, "predicted": 0, "reference": 1, "seconds": 0.36, "point_from": []}
+{"id": "pixmo-test-0249", "label": "boxes that indicate percentage of daily value", "precision": 1.0, "recall": 0.6666666666666666, "f1": 0.799999999952, "hits": 10, "predicted": 10, "reference": 15, "seconds": 2.573, "point_from": ["model"]}
+{"id": "pixmo-test-0005", "label": "elbow", "precision": 1.0, "recall": 1.0, "f1": 1.0, "hits": 0, "predicted": 0, "reference": 0, "seconds": 0.619, "point_from": []}
+{"id": "pixmo-test-0121", "label": "clicking source medium attribution ", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.155, "point_from": ["model"]}
+{"id": "pixmo-test-0307", "label": "Ceiling", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.228, "point_from": ["model"]}
+{"id": "pixmo-test-0313", "label": "White cap", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.209, "point_from": ["model"]}
+{"id": "pixmo-test-0420", "label": "Rating that is greater than 4 stars", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.267, "point_from": ["model"]}
+{"id": "pixmo-test-0143", "label": "gray border on bottom", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 0.863, "point_from": ["model"]}
+{"id": "pixmo-test-0363", "label": "Search icon ", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.652, "point_from": ["model"]}
+{"id": "pixmo-test-0383", "label": "grass", "precision": 0.5, "recall": 1.0, "f1": 0.6666666666222222, "hits": 1, "predicted": 2, "reference": 1, "seconds": 2.175, "point_from": ["model"]}
+{"id": "pixmo-test-0309", "label": "sky", "precision": 1.0, "recall": 0.5, "f1": 0.6666666666222222, "hits": 1, "predicted": 1, "reference": 2, "seconds": 1.121, "point_from": ["model"]}
+{"id": "pixmo-test-0200", "label": "moon", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.951, "point_from": ["model"]}
+{"id": "pixmo-test-0089", "label": "shoes", "precision": 1.0, "recall": 1.0, "f1": 1.0, "hits": 0, "predicted": 0, "reference": 0, "seconds": 1.215, "point_from": []}
+{"id": "pixmo-test-0147", "label": "fruit", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.482, "point_from": ["model"]}
+{"id": "pixmo-test-0092", "label": "thorax", "precision": 0.0, "recall": 0.0, "f1": 0.0, "hits": 0, "predicted": 1, "reference": 1, "seconds": 1.369, "point_from": ["model"]}
+{"id": "pixmo-test-0232", "label": "brown belt", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.04, "point_from": ["model"]}
+{"id": "pixmo-test-0336", "label": "arrow pointing ends", "precision": 0.5, "recall": 1.0, "f1": 0.6666666666222222, "hits": 1, "predicted": 2, "reference": 1, "seconds": 2.025, "point_from": ["model"]}
+{"id": "pixmo-test-0017", "label": "TERRITORY license plate", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.361, "point_from": ["model"]}
+{"id": "pixmo-test-0013", "label": "Nothing Bundt Cakes logo", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.508, "point_from": ["model"]}
+{"id": "pixmo-test-0197", "label": "headphone wire", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.398, "point_from": ["model"]}
+{"id": "pixmo-test-0370", "label": "profile picture", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 4, "predicted": 4, "reference": 4, "seconds": 1.595, "point_from": ["model"]}
+{"id": "pixmo-test-0021", "label": "dog", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 0.754, "point_from": ["model"]}
+{"id": "pixmo-test-0015", "label": "circled numeral 3", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 2, "predicted": 2, "reference": 2, "seconds": 1.305, "point_from": ["model"]}
+{"id": "pixmo-test-0116", "label": "back of phone", "precision": 1.0, "recall": 1.0, "f1": 1.0, "hits": 0, "predicted": 0, "reference": 0, "seconds": 1.373, "point_from": []}
+{"id": "pixmo-test-0297", "label": "Organic Label", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 3, "predicted": 3, "reference": 3, "seconds": 1.466, "point_from": ["model"]}
+{"id": "pixmo-test-0052", "label": "hat on woman's head", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.464, "point_from": ["model"]}
+{"id": "pixmo-test-0268", "label": "flower pattern", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.228, "point_from": ["model"]}
+{"id": "pixmo-test-0066", "label": "execute now green button", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.635, "point_from": ["model"]}
+{"id": "pixmo-test-0419", "label": "white parking lines on road", "precision": 0.0, "recall": 0.0, "f1": 0.0, "hits": 0, "predicted": 7, "reference": 4, "seconds": 2.034, "point_from": ["model"]}
+{"id": "pixmo-test-0084", "label": "word \"sublimation\"", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 2.225, "point_from": ["model"]}
+{"id": "pixmo-test-0006", "label": "Outlined Star Icons", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 2, "predicted": 2, "reference": 2, "seconds": 1.233, "point_from": ["model"]}
+{"id": "pixmo-test-0284", "label": "red light", "precision": 1.0, "recall": 1.0, "f1": 1.0, "hits": 0, "predicted": 0, "reference": 0, "seconds": 0.612, "point_from": []}
+{"id": "pixmo-test-0326", "label": "where you'd open door", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.615, "point_from": ["model"]}
+{"id": "pixmo-test-0094", "label": "Long brown banjo handle", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.086, "point_from": ["model"]}
+{"id": "pixmo-test-0359", "label": "wall", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.295, "point_from": ["model"]}
+{"id": "pixmo-test-0241", "label": "grey", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 0.801, "point_from": ["model"]}
+{"id": "pixmo-test-0323", "label": "SAND/BIDR dropdown", "precision": 0.0, "recall": 0.0, "f1": 0.0, "hits": 0, "predicted": 1, "reference": 1, "seconds": 1.967, "point_from": ["model"]}
+{"id": "pixmo-test-0024", "label": "sign in button", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 0.995, "point_from": ["model"]}
+{"id": "pixmo-test-0347", "label": "toilet scrubber", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.31, "point_from": ["model"]}
+{"id": "pixmo-test-0093", "label": "feet", "precision": 1.0, "recall": 1.0, "f1": 1.0, "hits": 0, "predicted": 0, "reference": 0, "seconds": 0.417, "point_from": []}
+{"id": "pixmo-test-0229", "label": "child", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.698, "point_from": ["model"]}
+{"id": "pixmo-test-0098", "label": "people looking at cannon", "precision": 1.0, "recall": 1.0, "f1": 1.0, "hits": 0, "predicted": 0, "reference": 0, "seconds": 1.379, "point_from": []}
+{"id": "pixmo-test-0170", "label": "car", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 0.794, "point_from": ["model"]}
+{"id": "pixmo-test-0253", "label": "ribbon", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 2.142, "point_from": ["model"]}
+{"id": "pixmo-test-0130", "label": "White wall between window blinds", "precision": 1.0, "recall": 0.3333333333333333, "f1": 0.4999999999625, "hits": 1, "predicted": 1, "reference": 3, "seconds": 2.128, "point_from": ["model"]}
+{"id": "pixmo-test-0119", "label": "brown jacket", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.522, "point_from": ["model"]}
+{"id": "pixmo-test-0212", "label": "watch", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.008, "point_from": ["model"]}
+{"id": "pixmo-test-0269", "label": "spider", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 0.976, "point_from": ["model"]}
+{"id": "pixmo-test-0114", "label": "grass", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.007, "point_from": ["model"]}
+{"id": "pixmo-test-0158", "label": "Tie", "precision": 0.0, "recall": 0.0, "f1": 0.0, "hits": 0, "predicted": 1, "reference": 1, "seconds": 0.839, "point_from": ["model"]}
+{"id": "pixmo-test-0245", "label": "My Account", "precision": 1.0, "recall": 1.0, "f1": 1.0, "hits": 0, "predicted": 0, "reference": 0, "seconds": 0.618, "point_from": []}
+{"id": "pixmo-test-0357", "label": "Intercepted results button", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 2.138, "point_from": ["model"]}
+{"id": "pixmo-test-0068", "label": "letter \"A\"", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 2, "predicted": 2, "reference": 2, "seconds": 1.115, "point_from": ["model"]}
+{"id": "pixmo-test-0341", "label": "white turning part", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.089, "point_from": ["model"]}
+{"id": "pixmo-test-0389", "label": "green arrow", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.328, "point_from": ["model"]}
+{"id": "pixmo-test-0146", "label": "click here to search SKYMODS", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 2.048, "point_from": ["model"]}
+{"id": "pixmo-test-0384", "label": "add version button", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.558, "point_from": ["model"]}
+{"id": "pixmo-test-0110", "label": "dresser", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 0.976, "point_from": ["model"]}
+{"id": "pixmo-test-0185", "label": "back arrow", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.125, "point_from": ["model"]}
+{"id": "pixmo-test-0148", "label": "pin button", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 3, "predicted": 3, "reference": 3, "seconds": 1.663, "point_from": ["model"]}
+{"id": "pixmo-test-0220", "label": "Green spot above toilet paper on wall", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.171, "point_from": ["model"]}
+{"id": "pixmo-test-0187", "label": "Yellow bin", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.349, "point_from": ["model"]}
+{"id": "pixmo-test-0428", "label": "1 jacket", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 3.124, "point_from": ["model"]}
+{"id": "pixmo-test-0429", "label": "Dog standing with man", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 0.959, "point_from": ["model"]}
+{"id": "pixmo-test-0257", "label": "paws", "precision": 1.0, "recall": 1.0, "f1": 1.0, "hits": 0, "predicted": 0, "reference": 0, "seconds": 1.277, "point_from": []}
+{"id": "pixmo-test-0041", "label": "boys leg", "precision": 0.0, "recall": 0.0, "f1": 0.0, "hits": 0, "predicted": 0, "reference": 1, "seconds": 0.369, "point_from": []}
+{"id": "pixmo-test-0235", "label": "street sign", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 0.96, "point_from": ["model"]}
+{"id": "pixmo-test-0319", "label": "clothes", "precision": 1.0, "recall": 0.5, "f1": 0.6666666666222222, "hits": 1, "predicted": 1, "reference": 2, "seconds": 1.525, "point_from": ["model"]}
+{"id": "pixmo-test-0201", "label": "tail feathers", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.038, "point_from": ["model"]}
+{"id": "pixmo-test-0181", "label": "LOCATION PIN", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 0.829, "point_from": ["model"]}
+{"id": "pixmo-test-0020", "label": "sunglasses", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.011, "point_from": ["model"]}
+{"id": "pixmo-test-0016", "label": "lock button on tape measure", "precision": 0.0, "recall": 0.0, "f1": 0.0, "hits": 0, "predicted": 1, "reference": 1, "seconds": 1.156, "point_from": ["model"]}
+{"id": "pixmo-test-0122", "label": "Blue lids of test tubes", "precision": 0.75, "recall": 1.0, "f1": 0.8571428570938775, "hits": 3, "predicted": 4, "reference": 3, "seconds": 2.623, "point_from": ["model"]}
+{"id": "pixmo-test-0083", "label": "black tie", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 2.219, "point_from": ["model"]}
+{"id": "pixmo-test-0366", "label": "right sidewalk", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 0.971, "point_from": ["model"]}
+{"id": "pixmo-test-0162", "label": "nose", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 0.979, "point_from": ["model"]}
+{"id": "pixmo-test-0010", "label": "man's shorts", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.391, "point_from": ["model"]}
+{"id": "pixmo-test-0276", "label": "left side of hand gun", "precision": 1.0, "recall": 1.0, "f1": 1.0, "hits": 0, "predicted": 0, "reference": 0, "seconds": 0.411, "point_from": []}
+{"id": "pixmo-test-0219", "label": "Search bar", "precision": 0.0, "recall": 0.0, "f1": 0.0, "hits": 0, "predicted": 1, "reference": 1, "seconds": 1.115, "point_from": ["model"]}
+{"id": "pixmo-test-0388", "label": "flower ring", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.844, "point_from": ["model"]}
+{"id": "pixmo-test-0103", "label": "red cross symbol", "precision": 0.6666666666666666, "recall": 1.0, "f1": 0.799999999952, "hits": 2, "predicted": 3, "reference": 2, "seconds": 2.371, "point_from": ["model"]}
+{"id": "pixmo-test-0285", "label": "dogs", "precision": 1.0, "recall": 1.0, "f1": 1.0, "hits": 0, "predicted": 0, "reference": 0, "seconds": 0.609, "point_from": []}
+{"id": "pixmo-test-0397", "label": "pink shirt", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.24, "point_from": ["model"]}
+{"id": "pixmo-test-0364", "label": "keyboard with white buttons", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.435, "point_from": ["model"]}
+{"id": "pixmo-test-0431", "label": "Options button", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.694, "point_from": ["model"]}
+{"id": "pixmo-test-0316", "label": "mobile network signal", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.19, "point_from": ["model"]}
+{"id": "pixmo-test-0346", "label": "Right and left side of rug, beige section", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 2, "predicted": 2, "reference": 2, "seconds": 1.425, "point_from": ["model"]}
+{"id": "pixmo-test-0155", "label": "question mark", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.132, "point_from": ["model"]}
+{"id": "pixmo-test-0355", "label": "blue rectangle", "precision": 0.0, "recall": 0.0, "f1": 0.0, "hits": 0, "predicted": 3, "reference": 1, "seconds": 1.836, "point_from": ["model"]}
+{"id": "pixmo-test-0387", "label": "bird", "precision": 1.0, "recall": 1.0, "f1": 1.0, "hits": 0, "predicted": 0, "reference": 0, "seconds": 0.626, "point_from": []}
+{"id": "pixmo-test-0071", "label": "facebook icon", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.502, "point_from": ["model"]}
+{"id": "pixmo-test-0156", "label": "Dug Out ", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.339, "point_from": ["model"]}
+{"id": "pixmo-test-0410", "label": "gray circle", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 2.357, "point_from": ["model"]}
+{"id": "pixmo-test-0064", "label": "Hosting", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.105, "point_from": ["model"]}
+{"id": "pixmo-test-0262", "label": "metal pole", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.393, "point_from": ["model"]}
+{"id": "pixmo-test-0421", "label": "land", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 0.804, "point_from": ["model"]}
+{"id": "pixmo-test-0165", "label": "Voyagers", "precision": 1.0, "recall": 1.0, "f1": 1.0, "hits": 0, "predicted": 0, "reference": 0, "seconds": 1.129, "point_from": []}
+{"id": "pixmo-test-0045", "label": "butterfly", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.266, "point_from": ["model"]}
+{"id": "pixmo-test-0335", "label": "Signal strength", "precision": 1.0, "recall": 1.0, "f1": 1.0, "hits": 0, "predicted": 0, "reference": 0, "seconds": 1.226, "point_from": []}
+{"id": "pixmo-test-0239", "label": "black smoke", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.446, "point_from": ["model"]}
+{"id": "pixmo-test-0286", "label": "Yellow advertisement", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.493, "point_from": ["model"]}
+{"id": "pixmo-test-0086", "label": "Red circle sign", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 2.303, "point_from": ["model"]}
+{"id": "pixmo-test-0123", "label": "cart button", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.522, "point_from": ["model"]}
+{"id": "pixmo-test-0118", "label": "other 4 fingers of hand", "precision": 1.0, "recall": 1.0, "f1": 1.0, "hits": 0, "predicted": 0, "reference": 0, "seconds": 0.624, "point_from": []}
+{"id": "pixmo-test-0302", "label": "The two languages you are translating between - in this case English and Gujarati", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 2, "predicted": 2, "reference": 2, "seconds": 1.673, "point_from": ["model"]}
+{"id": "pixmo-test-0105", "label": "white space", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.052, "point_from": ["model"]}
+{"id": "pixmo-test-0027", "label": "Small wooden shutters", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 2, "predicted": 2, "reference": 2, "seconds": 1.29, "point_from": ["model"]}
+{"id": "pixmo-test-0171", "label": "Orange and yellow rounded rectangular buttons", "precision": 0.0, "recall": 0.0, "f1": 0.0, "hits": 0, "predicted": 2, "reference": 3, "seconds": 1.96, "point_from": ["model"]}
+{"id": "pixmo-test-0128", "label": "D", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 6, "predicted": 6, "reference": 6, "seconds": 2.248, "point_from": ["model"]}
+{"id": "pixmo-test-0178", "label": "surface", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.032, "point_from": ["model"]}
+{"id": "pixmo-test-0267", "label": "Mixed ingredients", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.995, "point_from": ["model"]}
+{"id": "pixmo-test-0358", "label": "mustache ", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.077, "point_from": ["model"]}
+{"id": "pixmo-test-0001", "label": "black bomb", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 3, "predicted": 3, "reference": 3, "seconds": 1.107, "point_from": ["model"]}
+{"id": "pixmo-test-0213", "label": "left hand", "precision": 1.0, "recall": 1.0, "f1": 1.0, "hits": 0, "predicted": 0, "reference": 0, "seconds": 0.544, "point_from": []}
+{"id": "pixmo-test-0057", "label": "contact button", "precision": 1.0, "recall": 1.0, "f1": 1.0, "hits": 0, "predicted": 0, "reference": 0, "seconds": 1.532, "point_from": []}
+{"id": "pixmo-test-0008", "label": "Spray paint can", "precision": 1.0, "recall": 1.0, "f1": 1.0, "hits": 0, "predicted": 0, "reference": 0, "seconds": 0.914, "point_from": []}
+{"id": "pixmo-test-0290", "label": "black pants", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.365, "point_from": ["model"]}
+{"id": "pixmo-test-0025", "label": "red jacket", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 0.996, "point_from": ["model"]}
+{"id": "pixmo-test-0424", "label": "flag", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.031, "point_from": ["model"]}
+{"id": "pixmo-test-0277", "label": "questions mark / clickable for more information", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 3, "predicted": 3, "reference": 3, "seconds": 1.494, "point_from": ["model"]}
+{"id": "pixmo-test-0237", "label": "\"Route\" Button", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.209, "point_from": ["model"]}
+{"id": "pixmo-test-0408", "label": "Click here to schedule an appointment with BOA", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.78, "point_from": ["model"]}
+{"id": "pixmo-test-0293", "label": "shawl", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.113, "point_from": ["model"]}
+{"id": "pixmo-test-0113", "label": "car", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.603, "point_from": ["model"]}
+{"id": "pixmo-test-0337", "label": "search bar", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.338, "point_from": ["model"]}
+{"id": "pixmo-test-0324", "label": "lamp post", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.126, "point_from": ["model"]}
+{"id": "pixmo-test-0164", "label": "clear nose trim", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.013, "point_from": ["model"]}
+{"id": "pixmo-test-0234", "label": "Cabinets handles knobs", "precision": 0.7777777777777778, "recall": 1.0, "f1": 0.8749999999507813, "hits": 7, "predicted": 9, "reference": 7, "seconds": 2.362, "point_from": ["model"]}
+{"id": "pixmo-test-0188", "label": "dark orange berry", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 2, "predicted": 2, "reference": 2, "seconds": 1.24, "point_from": ["model"]}
+{"id": "pixmo-test-0373", "label": "red flag", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 0.975, "point_from": ["model"]}
+{"id": "pixmo-test-0300", "label": "Apply button", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.047, "point_from": ["model"]}
+{"id": "pixmo-test-0251", "label": "front arrow", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.055, "point_from": ["model"]}
+{"id": "pixmo-test-0172", "label": "metal roof", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 0.986, "point_from": ["model"]}
+{"id": "pixmo-test-0361", "label": "Click here to show My Rewards", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.658, "point_from": ["model"]}
+{"id": "pixmo-test-0031", "label": "far left building", "precision": 0.0, "recall": 0.0, "f1": 0.0, "hits": 0, "predicted": 1, "reference": 1, "seconds": 1.086, "point_from": ["model"]}
+{"id": "pixmo-test-0061", "label": "green bottle", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 2.576, "point_from": ["model"]}
+{"id": "pixmo-test-0163", "label": "nose", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 0.8, "point_from": ["model"]}
+{"id": "pixmo-test-0087", "label": "nose", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.037, "point_from": ["model"]}
+{"id": "pixmo-test-0321", "label": "Blue sticky note graphics", "precision": 1.0, "recall": 0.21428571428571427, "f1": 0.3529411764415225, "hits": 3, "predicted": 3, "reference": 14, "seconds": 2.463, "point_from": ["model"]}
+{"id": "pixmo-test-0369", "label": "Name Input Box", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.067, "point_from": ["model"]}
+{"id": "pixmo-test-0282", "label": "settings ", "precision": 0.0, "recall": 0.0, "f1": 0.0, "hits": 0, "predicted": 1, "reference": 1, "seconds": 1.654, "point_from": ["model"]}
+{"id": "pixmo-test-0141", "label": "left wrist", "precision": 1.0, "recall": 1.0, "f1": 1.0, "hits": 0, "predicted": 0, "reference": 0, "seconds": 0.38, "point_from": []}
+{"id": "pixmo-test-0327", "label": "roundabout", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.239, "point_from": ["model"]}
+{"id": "pixmo-test-0059", "label": "Unselected bubble", "precision": 0.0, "recall": 0.0, "f1": 0.0, "hits": 0, "predicted": 1, "reference": 1, "seconds": 1.007, "point_from": ["model"]}
+{"id": "pixmo-test-0392", "label": "black bench space", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 0.989, "point_from": ["model"]}
+{"id": "pixmo-test-0153", "label": "bottom piece of bread", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 3, "predicted": 3, "reference": 3, "seconds": 1.757, "point_from": ["model"]}
+{"id": "pixmo-test-0085", "label": "blue coat", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.166, "point_from": ["model"]}
+{"id": "pixmo-test-0270", "label": "planet", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.481, "point_from": ["model"]}
+{"id": "pixmo-test-0117", "label": "sun icon", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 2.423, "point_from": ["model"]}
+{"id": "pixmo-test-0311", "label": "search icon", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 0.853, "point_from": ["model"]}
+{"id": "pixmo-test-0192", "label": "Back of heel", "precision": 1.0, "recall": 0.5, "f1": 0.6666666666222222, "hits": 1, "predicted": 1, "reference": 2, "seconds": 0.89, "point_from": ["model"]}
+{"id": "pixmo-test-0255", "label": "time", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.487, "point_from": ["model"]}
+{"id": "pixmo-test-0161", "label": "medium pan", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.055, "point_from": ["model"]}
+{"id": "pixmo-test-0417", "label": "entry", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.322, "point_from": ["model"]}
+{"id": "pixmo-test-0216", "label": "Wall", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 2.208, "point_from": ["model"]}
+{"id": "pixmo-test-0258", "label": "cat", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.232, "point_from": ["model"]}
+{"id": "pixmo-test-0272", "label": "shoes", "precision": 1.0, "recall": 1.0, "f1": 1.0, "hits": 0, "predicted": 0, "reference": 0, "seconds": 1.102, "point_from": []}
+{"id": "pixmo-test-0144", "label": "purple arrow", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 0.938, "point_from": ["model"]}
+{"id": "pixmo-test-0019", "label": "website name", "precision": 1.0, "recall": 1.0, "f1": 1.0, "hits": 0, "predicted": 0, "reference": 0, "seconds": 0.628, "point_from": []}
+{"id": "pixmo-test-0224", "label": "cellphone ", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.354, "point_from": ["model"]}
+{"id": "pixmo-test-0393", "label": "swirled ice cream", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 1.099, "point_from": ["model"]}
+{"id": "pixmo-test-0204", "label": "window", "precision": 1.0, "recall": 1.0, "f1": 0.99999999995, "hits": 1, "predicted": 1, "reference": 1, "seconds": 0.949, "point_from": ["model"]}

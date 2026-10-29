@@ -1,0 +1,34 @@
+{
+  "state": "completed",
+  "pid": 2377836,
+  "started_at": "2026-10-22T20:23:34.620823+00:00",
+  "models": [
+    "moondream-3.1",
+    "molmopoint-8b"
+  ],
+  "questions_per_model": 209,
+  "completed": [
+    {
+      "model": "moondream-3.1",
+      "f1": 0.6741348274614337,
+      "questions": 209
+    },
+    {
+      "model": "molmopoint-8b",
+      "f1": 0.8710610080966262,
+      "questions": 209
+    }
+  ],
+  "requested_gpu": "1",
+  "manifest_sha256": "7204bdff80a7a8ebcfe2d6a89924598048d499c30374fc12b7136a2df4a8b30e",
+  "wait_limit_hours": 1.0,
+  "policy": "no compute processes, at least 20 GiB free, utilization <=5%; never stop other jobs",
+  "updated_at": "2026-10-22T20:30:15.532775+00:00",
+  "next_model": "molmopoint-8b",
+  "gpu": {
+    "index": "1",
+    "uuid": "GPU-73bb8110-4d4b-f645-dce4-724b0baf767f",
+    "free_mib": 24120
+  },
+  "finished_at": "2026-10-22T20:30:15.532757+00:00"
+}

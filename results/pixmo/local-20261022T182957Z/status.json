@@ -1,0 +1,17 @@
+{
+  "state": "superseded",
+  "pid": 2165691,
+  "started_at": "2026-10-22T18:29:57.070773+00:00",
+  "models": [
+    "moondream-3.1",
+    "molmopoint-8b"
+  ],
+  "questions_per_model": 209,
+  "completed": [],
+  "manifest_sha256": "7204bdff80a7a8ebcfe2d6a89924598048d499c30374fc12b7136a2df4a8b30e",
+  "wait_limit_hours": 24,
+  "policy": "no compute processes, at least 20 GiB free, utilization <=5%; never stop other jobs",
+  "updated_at": "2026-10-22T20:23:24.659924+00:00",
+  "next_model": "moondream-3.1",
+  "note": "User freed GPU 1; replaced by GPU-1-only supervised run with SAM restoration"
+}
