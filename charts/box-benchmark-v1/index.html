@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Box benchmark v1 · segbench</title>
+<style>
+:root{color-scheme:light dark;--bg:#fafaf8;--fg:#15171b;--muted:#5b6270;--line:#dde1e7;--card:#fff}
+@media(prefers-color-scheme:dark){:root{--bg:#141619;--fg:#e9ecef;--muted:#a1a9b5;--line:#2c3138;--card:#1c1f23}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,sans-serif}
+header{max-width:1100px;margin:0 auto;padding:28px 20px 8px}
+h1{margin:0 0 4px;font-size:26px;letter-spacing:-.5px}
+header p{margin:0;color:var(--muted)}
+nav{max-width:1100px;margin:0 auto;padding:10px 20px;display:flex;flex-wrap:wrap;gap:8px}
+nav a{color:var(--fg);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:13px;background:var(--card)}
+nav a:hover{border-color:var(--muted)}
+section{max-width:1100px;margin:0 auto;padding:22px 20px}
+h2{font-size:19px;margin:0 0 4px}
+section p{margin:0 0 12px;color:var(--muted);max-width:820px}
+figure{margin:0;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+figure img{display:block;width:100%;height:auto}
+.dl{font-size:13px;margin-top:8px;color:var(--muted)}.dl a{color:inherit}
+</style></head>
+<body>
+<header><h1>Box benchmark v1</h1>
+<p>27 models drew a box around each object in 11 photos; scored against a hand-checked answer key at 50, 75, 90 and 95% overlap. 16 October 2026.</p></header>
+<nav>
+<a href="#all">All models</a><a href="#lm">Language models</a><a href="#pvb">Points vs boxes</a>
+<a href="#levels-logos">Loose to strict</a><a href="#levels">Each overlap level</a><a href="#four">4 original photos</a><a href="#pvb4">Points vs boxes, 4 photos</a>
+</nav>
+
+<section id="all"><h2>Score against cost: all models</h2>
+<p>Average of the four overlap levels over all 11 photos. The red line joins the best value at each price.</p>
+<figure><img src="with-local-models/find.png" alt="Box score against cost, all 27 models" loading="lazy"></figure>
+<div class="dl">Download: <a href="with-local-models/find.png">PNG</a> · <a href="with-local-models/find.pdf">PDF</a> · <a href="with-local-models/find.svg">SVG</a></div></section>
+
+<section id="lm"><h2>Score against cost: language models only</h2>
+<p>The same chart without the models run on our own GPU.</p>
+<figure><img src="language-models/find.png" alt="Box score against cost, language models" loading="lazy"></figure>
+<div class="dl">Download: <a href="language-models/find.png">PNG</a> · <a href="language-models/find.pdf">PDF</a> · <a href="language-models/find.svg">SVG</a></div></section>
+
+<section id="pvb"><h2>Pointing vs. drawing boxes</h2>
+<p>Round: point score (point benchmark v3). Square: box score. Different tests and answer keys: compare the order more than the size of each gap.</p>
+<figure><img src="points-vs-boxes/points-vs-boxes.png" alt="Point score and box score per model" loading="lazy"></figure>
+<div class="dl">Download: <a href="points-vs-boxes/points-vs-boxes.png">PNG</a> · <a href="points-vs-boxes/points-vs-boxes.pdf">PDF</a> · <a href="points-vs-boxes/points-vs-boxes.svg">SVG</a></div></section>
+
+<section id="levels-logos"><h2>Box scores, from loose to strict</h2>
+<p>Each model at 50, 75, 90 and 95% overlap; darker squares are stricter levels.</p>
+<figure><img src="levels-logos/levels-logos.png" alt="Box scores at four overlap levels, with logos" loading="lazy"></figure>
+<div class="dl">Download: <a href="levels-logos/levels-logos.png">PNG</a> · <a href="levels-logos/levels-logos.pdf">PDF</a> · <a href="levels-logos/levels-logos.svg">SVG</a></div></section>
+
+<section id="levels"><h2>Box scores at each overlap level (first version)</h2>
+<p>The same numbers as above, in the earlier style with round dots.</p>
+<figure><img src="overlap-levels/levels.png" alt="Box scores at four overlap levels" loading="lazy"></figure>
+<div class="dl">Download: <a href="overlap-levels/levels.png">PNG</a> · <a href="overlap-levels/levels.pdf">PDF</a> · <a href="overlap-levels/levels.svg">SVG</a></div></section>
+
+<section id="four"><h2>Score against cost: the 4 original photos only</h2>
+<p>Logs, cows, fig leaves and dishes. Each model keeps the prompt chosen on all 11 photos.</p>
+<figure><img src="original-4-photos/find.png" alt="Box score against cost on the four original photos" loading="lazy"></figure>
+<div class="dl">Download: <a href="original-4-photos/find.png">PNG</a> · <a href="original-4-photos/find.pdf">PDF</a> · <a href="original-4-photos/find.svg">SVG</a></div></section>
+
+<section id="pvb4"><h2>Pointing vs. drawing boxes: the 4 original photos only</h2>
+<p>Logs, cows, fig leaves and dishes. Round: point score on these four photos (point benchmark v3). Square: box score on the same four.</p>
+<figure><img src="points-vs-boxes-4-photos/points-vs-boxes-4-photos.png" alt="Point and box score per model on the four original photos" loading="lazy"></figure>
+<div class="dl">Download: <a href="points-vs-boxes-4-photos/points-vs-boxes-4-photos.png">PNG</a> · <a href="points-vs-boxes-4-photos/points-vs-boxes-4-photos.pdf">PDF</a> · <a href="points-vs-boxes-4-photos/points-vs-boxes-4-photos.svg">SVG</a></div></section>
+</body></html>

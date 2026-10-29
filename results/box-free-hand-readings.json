@@ -1,0 +1,381 @@
+{
+ "qwen-flash|medium|box-free|dishes|2": {
+  "boxes": [
+   {
+    "box": [
+     11.25,
+     255.32859680284193,
+     107.5,
+     319.7158081705151
+    ],
+    "label": "dirty"
+   },
+   {
+    "box": [
+     0.0,
+     208.70337477797514,
+     24.25,
+     293.0728241563055
+    ],
+    "label": "dirty"
+   },
+   {
+    "box": [
+     172.5,
+     208.70337477797514,
+     212.5,
+     257.5488454706927
+    ],
+    "label": "dirty"
+   },
+   {
+    "box": [
+     122.5,
+     281.9715808170515,
+     192.5,
+     359.6802841918295
+    ],
+    "label": "dirty"
+   },
+   {
+    "box": [
+     175.0,
+     244.22735346358792,
+     230.5,
+     299.7335701598579
+    ],
+    "label": "dirty"
+   },
+   {
+    "box": [
+     181.0,
+     250.88809946714034,
+     251.5,
+     315.2753108348135
+    ],
+    "label": "dirty"
+   },
+   {
+    "box": [
+     90.0,
+     259.7690941385435,
+     178.0,
+     297.5133214920071
+    ],
+    "label": "dirty"
+   },
+   {
+    "box": [
+     371.75,
+     235.34635879218473,
+     462.0,
+     310.83481349911193
+    ],
+    "label": "dirty"
+   },
+   {
+    "box": [
+     390.5,
+     239.78685612788632,
+     476.25,
+     337.4777975133215
+    ],
+    "label": "dirty"
+   },
+   {
+    "box": [
+     411.0,
+     301.9538188277087,
+     472.25,
+     359.6802841918295
+    ],
+    "label": "dirty"
+   },
+   {
+    "box": [
+     481.25,
+     119.89342806394316,
+     549.0,
+     186.50088809946715
+    ],
+    "label": "clean"
+   },
+   {
+    "box": [
+     472.25,
+     164.29840142095915,
+     519.75,
+     261.98934280639435
+    ],
+    "label": "clean"
+   },
+   {
+    "box": [
+     507.0,
+     177.61989342806396,
+     555.5,
+     235.34635879218473
+    ],
+    "label": "clean"
+   },
+   {
+    "box": [
+     507.0,
+     186.50088809946715,
+     551.75,
+     275.3108348134991
+    ],
+    "label": "clean"
+   },
+   {
+    "box": [
+     519.75,
+     195.38188277087033,
+     577.25,
+     288.6323268206039
+    ],
+    "label": "clean"
+   },
+   {
+    "box": [
+     519.75,
+     235.34635879218473,
+     611.75,
+     315.2753108348135
+    ],
+    "label": "clean"
+   },
+   {
+    "box": [
+     603.0,
+     244.22735346358792,
+     640.0,
+     288.6323268206039
+    ],
+    "label": "clean"
+   },
+   {
+    "box": [
+     600.25,
+     133.21492007104797,
+     640.0,
+     217.58436944937833
+    ],
+    "label": "clean"
+   },
+   {
+    "box": [
+     577.25,
+     186.50088809946715,
+     624.0,
+     257.5488454706927
+    ],
+    "label": "clean"
+   }
+  ],
+  "why": "Qwen 3.8 Flash Next usually writes 0..1000 (its habit in rules v3), but this reply has numbers far above 1000 (up to 2560), which cannot be on a 0..1000 grid, and names no picture size. Read by hand with the rules' own reading for numbers above 1000 and no stated frame (rule 3: pixels of the photo, 4000x2252), x first as written. Not using the answer key. The reply's frame is uncertain: its largest x is 2560, so another frame (a resized copy of the photo) is possible; the photo's pixels is the documented default.",
+  "read_on": "2026-10-15",
+  "rule_applied": {
+   "flags": [],
+   "source": "json",
+   "order": "xy",
+   "order_from": "default",
+   "scale": "px",
+   "scale_from": "numbers"
+  }
+ },
+ "qwen-flash|medium|box-free|dishes|0": {
+  "boxes": [
+   {
+    "box": [
+     19.0,
+     400.5328596802842,
+     167.0,
+     512.4333925399645
+    ],
+    "label": "dirty"
+   },
+   {
+    "box": [
+     117.0,
+     410.7460035523979,
+     313.0,
+     475.57726465364124
+    ],
+    "label": "dirty"
+   },
+   {
+    "box": [
+     192.0,
+     436.50088809946715,
+     302.0,
+     566.607460035524
+    ],
+    "label": "dirty"
+   },
+   {
+    "box": [
+     275.0,
+     385.87921847246895,
+     360.0,
+     475.57726465364124
+    ],
+    "label": "dirty"
+   },
+   {
+    "box": [
+     313.0,
+     395.64831261101244,
+     393.0,
+     475.57726465364124
+    ],
+    "label": "dirty"
+   },
+   {
+    "box": [
+     292.0,
+     432.50444049733574,
+     383.0,
+     500.4440497335702
+    ],
+    "label": "dirty"
+   },
+   {
+    "box": [
+     269.0,
+     327.708703374778,
+     332.0,
+     410.7460035523979
+    ],
+    "label": "dirty"
+   },
+   {
+    "box": [
+     582.0,
+     367.6731793960924,
+     743.0,
+     520.4262877442274
+    ],
+    "label": "dirty"
+   },
+   {
+    "box": [
+     612.0,
+     436.50088809946715,
+     740.0,
+     567.4955595026643
+    ],
+    "label": "dirty"
+   },
+   {
+    "box": [
+     0.0,
+     327.708703374778,
+     38.0,
+     466.696269982238
+    ],
+    "label": "dirty"
+   },
+   {
+    "box": [
+     752.0,
+     186.056838365897,
+     859.0,
+     295.7371225577265
+    ],
+    "label": "clean"
+   },
+   {
+    "box": [
+     739.0,
+     262.87744227353465,
+     811.0,
+     400.5328596802842
+    ],
+    "label": "clean"
+   },
+   {
+    "box": [
+     792.0,
+     279.7513321492007,
+     868.0,
+     410.7460035523979
+    ],
+    "label": "clean"
+   },
+   {
+    "box": [
+     803.0,
+     302.84191829484905,
+     888.0,
+     436.50088809946715
+    ],
+    "label": "clean"
+   },
+   {
+    "box": [
+     826.0,
+     327.708703374778,
+     922.0,
+     400.5328596802842
+    ],
+    "label": "clean"
+   },
+   {
+    "box": [
+     812.0,
+     370.7815275310835,
+     956.0,
+     494.6714031971581
+    ],
+    "label": "clean"
+   },
+   {
+    "box": [
+     942.0,
+     380.550621669627,
+     999.0,
+     452.4866785079929
+    ],
+    "label": "clean"
+   },
+   {
+    "box": [
+     940.0,
+     210.0355239786856,
+     999.0,
+     341.9182948490231
+    ],
+    "label": "clean"
+   },
+   {
+    "box": [
+     883.0,
+     327.708703374778,
+     975.0,
+     410.7460035523979
+    ],
+    "label": "clean"
+   },
+   {
+    "box": [
+     897.0,
+     436.50088809946715,
+     999.0,
+     583.48134991119
+    ],
+    "label": "clean"
+   }
+  ],
+  "why": "Qwen 3.8 Flash Next usually writes 0..1000 (its habit in rules v3), but this reply has numbers far above 1000 (up to 3996), which cannot be on a 0..1000 grid, and names no picture size. Read by hand with the rules' own reading for numbers above 1000 and no stated frame (rule 3: pixels of the photo, 4000x2252), x first as written. Not using the answer key. The reply's frame is uncertain: its largest x is 3996, so another frame (a resized copy of the photo) is possible; the photo's pixels is the documented default.",
+  "read_on": "2026-10-15",
+  "rule_applied": {
+   "flags": [],
+   "source": "groups of four",
+   "order": "xy",
+   "order_from": "default",
+   "scale": "px",
+   "scale_from": "numbers"
+  }
+ }
+}

@@ -1,0 +1,69 @@
+{
+ "answer_key": "annotations/boxes/answer-key-boxes-v1.json",
+ "inputs": [
+  "run-boxes-box-a.jsonl",
+  "run-boxes-box-a-resent.jsonl",
+  "run-boxes-box-free.jsonl",
+  "run-boxes-box-free-subs.jsonl",
+  "run-boxes-box-free-resent.jsonl",
+  "run-finders-boxes-1-without-rexomni.jsonl",
+  "run-finders-boxes-2-rexomni.jsonl",
+  "run-specialists-boxes-1.jsonl"
+ ],
+ "tasks": [
+  "logs",
+  "cows",
+  "fig",
+  "dishes",
+  "ants",
+  "beetles",
+  "birds",
+  "mushrooms",
+  "jars",
+  "pinkleaves",
+  "whitecow"
+ ],
+ "timing_tasks": [
+  "logs",
+  "cows",
+  "fig",
+  "dishes"
+ ],
+ "overlap_levels": [
+  0.5,
+  0.75,
+  0.9,
+  0.95
+ ],
+ "prompt_choice": {
+  "gemini-argon@medium": "box-free",
+  "opus@medium": "box-free",
+  "sonnet@medium": "box-free",
+  "astra@medium": "box-a",
+  "gemini-flash@medium": "box-free",
+  "sol@medium": "box-a",
+  "qwen-flash@medium": "box-a",
+  "groundingpi-4b": "finders-box-v1",
+  "haiku@medium": "box-free",
+  "gemini-pro@medium": "box-free",
+  "gemini-flash-lite@medium": "box-free",
+  "qwen-27b@medium": "box-free",
+  "locateanything-3b": "finders-box-v1",
+  "rexomni-3b": "finders-box-v1",
+  "muse-wonder-api@medium": "box-a",
+  "moondream-3.1": "finders-box-v1",
+  "sam3": "spec-box-v1",
+  "mk1.5@medium": "box-a",
+  "kimi-k3@medium": "box-free",
+  "mistral-large-4@medium": "box-free",
+  "luna@medium": "box-free",
+  "florence2-large-grounding": "finders-box-v1",
+  "terra@medium": "box-free",
+  "rfdetr-seg-2xl": "spec-box-v1",
+  "deepseek-flash@medium": "box-a",
+  "yoloe-26x": "spec-box-v1",
+  "glm-5.3-flash@medium": "box-a"
+ },
+ "tie_rule": "box-a",
+ "method": "docs/box-benchmark.md"
+}

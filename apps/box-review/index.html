@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Box review · segbench</title><link rel="stylesheet" href="base.css?v=1"><link rel="stylesheet" href="style.css?v=1"></head>
+<body>
+<header><div><span class="eyebrow">SEGBENCH / ANSWER-KEY BOXES</span><h1>Check the boxes</h1></div><div class="save"><span id="saveStatus" role="status">Loading…</span><button id="export">Export boxes ↓</button><button id="import">Import</button><input id="file" type="file" accept=".json,application/json" hidden></div></header>
+<div class="notice">Drafts from the top pointing models' boxes around your approved dots (median of up to 30 answers; SAM 2.1 where fewer than 3 models gave one). Each box should be the smallest rectangle around the <b>visible part</b> of one object. Your kept boxes become the answer key.</div>
+<nav id="tasks" aria-label="Photos"></nav>
+<div class="workspace">
+<section class="editor">
+ <div class="toolbar"><button data-mode="select" title="V · select, move, resize">↖ Select</button><button data-mode="add" title="A · drag to draw a missing box">＋ Draw box</button><button data-mode="pan" title="Space + drag also pans">✥ Pan</button><span class="spacer"></span><button id="undo" title="Ctrl/Cmd Z">↶ Undo</button><button id="redo" title="Ctrl/Cmd Shift Z">↷ Redo</button></div>
+ <div id="labels" class="dish-labelbar" hidden><div><strong>Dish label</strong><span id="labelHint">Select a box, then choose its label.</span></div><div class="label-buttons" role="group"><button data-label="dirty">Dirty · D</button><button data-label="clean">Clean · C</button><button data-label="unsure">Unsure · S</button></div></div>
+ <div class="canvas-wrap" id="viewport"><canvas id="canvas" tabindex="0"></canvas><div id="loading">Loading photo…</div><div class="zoom"><button id="zoomOut">−</button><span id="zoomLevel">Fit</span><button id="zoomIn">＋</button><button id="fit">Fit · F</button></div></div>
+ <div class="under"><label><input id="overlay" type="checkbox" checked> Show boxes <small>(hold H to peek)</small></label><label><input id="others" type="checkbox" checked> Show other boxes while one is selected</label><span id="pointerHint">Drag a corner or edge to resize · drag inside to move · arrows nudge 1 px (Shift: 10)</span></div>
+</section>
+<aside>
+ <div class="section-heading"><span class="eyebrow">BOX REVIEW</span><h2 id="taskTitle"></h2><p id="target"></p></div>
+ <div id="counts" class="counts"></div>
+ <div class="review-nav"><button id="prev">← Previous · P</button><button id="next">Next unchecked · N</button></div><button id="unsure" class="wide">Least sure first · U</button>
+ <div id="selection" class="selection"></div>
+ <div id="decisions"><button id="accept" class="primary" title="Enter">✓ Keep · Enter</button><button id="reject" title="Delete">✕ Not an object · Del</button></div>
+ <button id="reset" class="wide">↺ Back to the draft</button>
+ <p class="legend">Amber: SAM draft, not checked<br>Green: kept by you<br>Grey dashed: removed<br>● the approved dot of the object</p>
+ <div class="review-finish"><label><input id="reviewed" type="checkbox"> I checked the entire photo</label><label class="note-label" for="notes">Review notes</label><textarea id="notes" rows="3" placeholder="Hidden parts, unclear edges…"></textarea></div>
+ <details class="help"><summary>Controls & saving</summary><p>Wheel: zoom at cursor. Space + drag: pan. F: fit. N: next unchecked. U: least sure unchecked. P: previous. Enter: keep & next. Delete: remove & next. A: draw a box. V: select. Arrows: move the box's edge under the last handle you used, or the whole box. Ctrl/Cmd Z: undo.</p><p>Autosave is in this browser only. Export the JSON to keep or move your work; Import restores it.</p><p id="source"></p></details>
+</aside>
+</div>
+<div id="toast" role="status" hidden></div>
+<script src="seed.js"></script><script src="app.js?v=3"></script>
+</body></html>

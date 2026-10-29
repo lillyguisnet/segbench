@@ -1,0 +1,1141 @@
+[
+ {
+  "setup": "locateanything-3b",
+  "finders_model": "locateanything",
+  "variant": null,
+  "task": "box",
+  "rounds": 3,
+  "single": [
+   {
+    "id": "single|logs|log end|0",
+    "wall": 9.370069986995077,
+    "model_seconds": 9.305
+   },
+   {
+    "id": "single|cows|cow|0",
+    "wall": 4.452390135003952,
+    "model_seconds": 4.389
+   },
+   {
+    "id": "single|fig|fig leaf|0",
+    "wall": 4.684366359986598,
+    "model_seconds": 4.628
+   },
+   {
+    "id": "single|dishes|dirty dish|0",
+    "wall": 4.34473587499815,
+    "model_seconds": 4.283
+   },
+   {
+    "id": "single|dishes|clean dish|0",
+    "wall": 4.8903899480064865,
+    "model_seconds": 4.837
+   },
+   {
+    "id": "single|ants|leaf piece carried by an ant|0",
+    "wall": 1.13685522499145,
+    "model_seconds": 1.13
+   },
+   {
+    "id": "single|beetles|beetle|0",
+    "wall": 1.8678398760093842,
+    "model_seconds": 1.863
+   },
+   {
+    "id": "single|birds|bird|0",
+    "wall": 2.432855813007336,
+    "model_seconds": 2.428
+   },
+   {
+    "id": "single|mushrooms|mushroom cap|0",
+    "wall": 1.094658891990548,
+    "model_seconds": 1.09
+   },
+   {
+    "id": "single|jars|jar of strawberry coulis|0",
+    "wall": 0.7391915119951591,
+    "model_seconds": 0.737
+   },
+   {
+    "id": "single|pinkleaves|pink leaf|0",
+    "wall": 0.5559079500089865,
+    "model_seconds": 0.55
+   },
+   {
+    "id": "single|whitecow|white cow with a bit of red|0",
+    "wall": 0.6368724009953439,
+    "model_seconds": 0.631
+   },
+   {
+    "id": "single|logs|log end|1",
+    "wall": 9.378103173017735,
+    "model_seconds": 9.329
+   },
+   {
+    "id": "single|cows|cow|1",
+    "wall": 4.518213448987808,
+    "model_seconds": 4.467
+   },
+   {
+    "id": "single|fig|fig leaf|1",
+    "wall": 4.743281942006433,
+    "model_seconds": 4.689
+   },
+   {
+    "id": "single|dishes|dirty dish|1",
+    "wall": 4.35968536400469,
+    "model_seconds": 4.303
+   },
+   {
+    "id": "single|dishes|clean dish|1",
+    "wall": 4.748171591985738,
+    "model_seconds": 4.695
+   },
+   {
+    "id": "single|ants|leaf piece carried by an ant|1",
+    "wall": 1.16342505600187,
+    "model_seconds": 1.159
+   },
+   {
+    "id": "single|beetles|beetle|1",
+    "wall": 1.8684071649913676,
+    "model_seconds": 1.865
+   },
+   {
+    "id": "single|birds|bird|1",
+    "wall": 2.431893842993304,
+    "model_seconds": 2.428
+   },
+   {
+    "id": "single|mushrooms|mushroom cap|1",
+    "wall": 1.1144539470260497,
+    "model_seconds": 1.111
+   },
+   {
+    "id": "single|jars|jar of strawberry coulis|1",
+    "wall": 0.7703252559877001,
+    "model_seconds": 0.768
+   },
+   {
+    "id": "single|pinkleaves|pink leaf|1",
+    "wall": 0.5560689260018989,
+    "model_seconds": 0.552
+   },
+   {
+    "id": "single|whitecow|white cow with a bit of red|1",
+    "wall": 0.6440253680048045,
+    "model_seconds": 0.638
+   },
+   {
+    "id": "single|logs|log end|2",
+    "wall": 9.26200746698305,
+    "model_seconds": 9.213
+   },
+   {
+    "id": "single|cows|cow|2",
+    "wall": 4.554998621024424,
+    "model_seconds": 4.503
+   },
+   {
+    "id": "single|fig|fig leaf|2",
+    "wall": 4.787001840973971,
+    "model_seconds": 4.732
+   },
+   {
+    "id": "single|dishes|dirty dish|2",
+    "wall": 4.383999246027088,
+    "model_seconds": 4.326
+   },
+   {
+    "id": "single|dishes|clean dish|2",
+    "wall": 4.7635712059854995,
+    "model_seconds": 4.711
+   },
+   {
+    "id": "single|ants|leaf piece carried by an ant|2",
+    "wall": 1.058120367990341,
+    "model_seconds": 1.054
+   },
+   {
+    "id": "single|beetles|beetle|2",
+    "wall": 1.8912083250179421,
+    "model_seconds": 1.887
+   },
+   {
+    "id": "single|birds|bird|2",
+    "wall": 2.496306653978536,
+    "model_seconds": 2.492
+   },
+   {
+    "id": "single|mushrooms|mushroom cap|2",
+    "wall": 1.1515117520175409,
+    "model_seconds": 1.147
+   },
+   {
+    "id": "single|jars|jar of strawberry coulis|2",
+    "wall": 0.9028502319997642,
+    "model_seconds": 0.901
+   },
+   {
+    "id": "single|pinkleaves|pink leaf|2",
+    "wall": 0.5427850949927233,
+    "model_seconds": 0.539
+   },
+   {
+    "id": "single|whitecow|white cow with a bit of red|2",
+    "wall": 0.6449097649892792,
+    "model_seconds": 0.638
+   }
+  ],
+  "query_seconds": {
+   "logs|log end": 9.3701,
+   "cows|cow": 4.5182,
+   "fig|fig leaf": 4.7433,
+   "dishes|dirty dish": 4.3597,
+   "dishes|clean dish": 4.7636,
+   "ants|leaf piece carried by an ant": 1.1369,
+   "beetles|beetle": 1.8684,
+   "birds|bird": 2.4329,
+   "mushrooms|mushroom cap": 1.1145,
+   "jars|jar of strawberry coulis": 0.7703,
+   "pinkleaves|pink leaf": 0.5559,
+   "whitecow|white cow with a bit of red": 0.644
+  },
+  "load": [
+   {
+    "copies": 1,
+    "load_factor": 1.0
+   },
+   {
+    "copies": 2,
+    "load_factor": null,
+    "failed": "worker exited 1; rch, and 144.15 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation. See documentation for Memory Management (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)"
+   }
+  ],
+  "load_factor": 1.0,
+  "gpu_others": {
+   "4920": 130,
+   "204993": 276
+  },
+  "elapsed_s": 149.2
+ },
+ {
+  "setup": "rexomni-3b",
+  "finders_model": "rexomni",
+  "variant": null,
+  "task": "box",
+  "rounds": 3,
+  "single": [
+   {
+    "id": "single|logs|log end|0",
+    "wall": 13.384154072991805,
+    "model_seconds": 13.31
+   },
+   {
+    "id": "single|cows|cow|0",
+    "wall": 7.993151754984865,
+    "model_seconds": 7.928
+   },
+   {
+    "id": "single|fig|fig leaf|0",
+    "wall": 3.395715505001135,
+    "model_seconds": 3.343
+   },
+   {
+    "id": "single|dishes|dirty dish|0",
+    "wall": 5.4312362460186705,
+    "model_seconds": 5.366
+   },
+   {
+    "id": "single|dishes|clean dish|0",
+    "wall": 1.824200976989232,
+    "model_seconds": 1.765
+   },
+   {
+    "id": "single|ants|leaf piece carried by an ant|0",
+    "wall": 1.0019516370084602,
+    "model_seconds": 0.997
+   },
+   {
+    "id": "single|beetles|beetle|0",
+    "wall": 4.115710529003991,
+    "model_seconds": 4.112
+   },
+   {
+    "id": "single|birds|bird|0",
+    "wall": 2.7021303679794073,
+    "model_seconds": 2.698
+   },
+   {
+    "id": "single|mushrooms|mushroom cap|0",
+    "wall": 3.2928135429974645,
+    "model_seconds": 3.289
+   },
+   {
+    "id": "single|jars|jar of strawberry coulis|0",
+    "wall": 1.4069688660092652,
+    "model_seconds": 1.405
+   },
+   {
+    "id": "single|pinkleaves|pink leaf|0",
+    "wall": 5.038290275988402,
+    "model_seconds": 5.035
+   },
+   {
+    "id": "single|whitecow|white cow with a bit of red|0",
+    "wall": 1.056709143012995,
+    "model_seconds": 1.051
+   },
+   {
+    "id": "single|logs|log end|1",
+    "wall": 13.379107026004931,
+    "model_seconds": 13.321
+   },
+   {
+    "id": "single|cows|cow|1",
+    "wall": 2.876140120002674,
+    "model_seconds": 2.809
+   },
+   {
+    "id": "single|fig|fig leaf|1",
+    "wall": 2.5898765699821524,
+    "model_seconds": 2.534
+   },
+   {
+    "id": "single|dishes|dirty dish|1",
+    "wall": 3.140648979024263,
+    "model_seconds": 3.071
+   },
+   {
+    "id": "single|dishes|clean dish|1",
+    "wall": 1.934926899994025,
+    "model_seconds": 1.871
+   },
+   {
+    "id": "single|ants|leaf piece carried by an ant|1",
+    "wall": 1.0043401180009823,
+    "model_seconds": 1.0
+   },
+   {
+    "id": "single|beetles|beetle|1",
+    "wall": 5.33116532699205,
+    "model_seconds": 5.326
+   },
+   {
+    "id": "single|birds|bird|1",
+    "wall": 3.9085184739960823,
+    "model_seconds": 3.904
+   },
+   {
+    "id": "single|mushrooms|mushroom cap|1",
+    "wall": 4.67842295000446,
+    "model_seconds": 4.673
+   },
+   {
+    "id": "single|jars|jar of strawberry coulis|1",
+    "wall": 1.902522702992428,
+    "model_seconds": 1.899
+   },
+   {
+    "id": "single|pinkleaves|pink leaf|1",
+    "wall": 9.615894639020553,
+    "model_seconds": 9.61
+   },
+   {
+    "id": "single|whitecow|white cow with a bit of red|1",
+    "wall": 2.007474428974092,
+    "model_seconds": 1.977
+   },
+   {
+    "id": "single|logs|log end|2",
+    "wall": 23.39644984100596,
+    "model_seconds": 23.287
+   },
+   {
+    "id": "single|cows|cow|2",
+    "wall": 7.052577538997866,
+    "model_seconds": 6.93
+   },
+   {
+    "id": "single|fig|fig leaf|2",
+    "wall": 5.651108877995284,
+    "model_seconds": 5.449
+   },
+   {
+    "id": "single|dishes|dirty dish|2",
+    "wall": 4.280345057020895,
+    "model_seconds": 4.22
+   },
+   {
+    "id": "single|dishes|clean dish|2",
+    "wall": 2.4416183309804182,
+    "model_seconds": 2.375
+   },
+   {
+    "id": "single|ants|leaf piece carried by an ant|2",
+    "wall": 1.024111492006341,
+    "model_seconds": 1.019
+   },
+   {
+    "id": "single|beetles|beetle|2",
+    "wall": 4.271183689008467,
+    "model_seconds": 4.267
+   },
+   {
+    "id": "single|birds|bird|2",
+    "wall": 3.825820655009011,
+    "model_seconds": 3.822
+   },
+   {
+    "id": "single|mushrooms|mushroom cap|2",
+    "wall": 3.2658036399807315,
+    "model_seconds": 3.261
+   },
+   {
+    "id": "single|jars|jar of strawberry coulis|2",
+    "wall": 1.3937726989970542,
+    "model_seconds": 1.391
+   },
+   {
+    "id": "single|pinkleaves|pink leaf|2",
+    "wall": 5.076941434002947,
+    "model_seconds": 5.073
+   },
+   {
+    "id": "single|whitecow|white cow with a bit of red|2",
+    "wall": 1.0482107019925024,
+    "model_seconds": 1.042
+   }
+  ],
+  "query_seconds": {
+   "logs|log end": 13.3842,
+   "cows|cow": 7.0526,
+   "fig|fig leaf": 3.3957,
+   "dishes|dirty dish": 4.2803,
+   "dishes|clean dish": 1.9349,
+   "ants|leaf piece carried by an ant": 1.0043,
+   "beetles|beetle": 4.2712,
+   "birds|bird": 3.8258,
+   "mushrooms|mushroom cap": 3.2928,
+   "jars|jar of strawberry coulis": 1.407,
+   "pinkleaves|pink leaf": 5.0769,
+   "whitecow|white cow with a bit of red": 1.0567
+  },
+  "load": [
+   {
+    "copies": 1,
+    "load_factor": 1.0
+   },
+   {
+    "copies": 2,
+    "window_s": 114.33,
+    "work_done_s": 238.45,
+    "load_factor": 0.4795,
+    "peak_gib": 7.9
+   }
+  ],
+  "load_factor": 0.4795,
+  "gpu_others": {
+   "4920": 130,
+   "204993": 276,
+   "319669": 10312
+  },
+  "elapsed_s": 303.1
+ },
+ {
+  "setup": "florence2-large-grounding",
+  "finders_model": "florence2",
+  "variant": "large",
+  "task": "box",
+  "rounds": 3,
+  "single": [
+   {
+    "id": "single|logs|log end|0",
+    "wall": 0.5069738019956276,
+    "model_seconds": 0.43
+   },
+   {
+    "id": "single|cows|cow|0",
+    "wall": 0.6756033260026015,
+    "model_seconds": 0.608
+   },
+   {
+    "id": "single|fig|fig leaf|0",
+    "wall": 0.45555918200989254,
+    "model_seconds": 0.395
+   },
+   {
+    "id": "single|dishes|dirty dish|0",
+    "wall": 0.37251316200126894,
+    "model_seconds": 0.307
+   },
+   {
+    "id": "single|dishes|clean dish|0",
+    "wall": 0.3408160510007292,
+    "model_seconds": 0.274
+   },
+   {
+    "id": "single|ants|leaf piece carried by an ant|0",
+    "wall": 0.3460266070032958,
+    "model_seconds": 0.337
+   },
+   {
+    "id": "single|beetles|beetle|0",
+    "wall": 0.19285917197703384,
+    "model_seconds": 0.188
+   },
+   {
+    "id": "single|birds|bird|0",
+    "wall": 0.5158975440135691,
+    "model_seconds": 0.51
+   },
+   {
+    "id": "single|mushrooms|mushroom cap|0",
+    "wall": 0.44615041799261235,
+    "model_seconds": 0.441
+   },
+   {
+    "id": "single|jars|jar of strawberry coulis|0",
+    "wall": 0.6227378600160591,
+    "model_seconds": 0.621
+   },
+   {
+    "id": "single|pinkleaves|pink leaf|0",
+    "wall": 0.28720535399043,
+    "model_seconds": 0.283
+   },
+   {
+    "id": "single|whitecow|white cow with a bit of red|0",
+    "wall": 0.18892119100200944,
+    "model_seconds": 0.183
+   },
+   {
+    "id": "single|logs|log end|1",
+    "wall": 0.4995541110110935,
+    "model_seconds": 0.429
+   },
+   {
+    "id": "single|cows|cow|1",
+    "wall": 0.6474632699973881,
+    "model_seconds": 0.574
+   },
+   {
+    "id": "single|fig|fig leaf|1",
+    "wall": 0.43310374199063517,
+    "model_seconds": 0.385
+   },
+   {
+    "id": "single|dishes|dirty dish|1",
+    "wall": 0.3772001249890309,
+    "model_seconds": 0.31
+   },
+   {
+    "id": "single|dishes|clean dish|1",
+    "wall": 0.34025869800825603,
+    "model_seconds": 0.274
+   },
+   {
+    "id": "single|ants|leaf piece carried by an ant|1",
+    "wall": 0.3256756009941455,
+    "model_seconds": 0.317
+   },
+   {
+    "id": "single|beetles|beetle|1",
+    "wall": 0.19707293101237155,
+    "model_seconds": 0.193
+   },
+   {
+    "id": "single|birds|bird|1",
+    "wall": 0.515589999005897,
+    "model_seconds": 0.511
+   },
+   {
+    "id": "single|mushrooms|mushroom cap|1",
+    "wall": 0.436023716989439,
+    "model_seconds": 0.431
+   },
+   {
+    "id": "single|jars|jar of strawberry coulis|1",
+    "wall": 0.5932404980121646,
+    "model_seconds": 0.591
+   },
+   {
+    "id": "single|pinkleaves|pink leaf|1",
+    "wall": 0.2892998799798079,
+    "model_seconds": 0.285
+   },
+   {
+    "id": "single|whitecow|white cow with a bit of red|1",
+    "wall": 0.1770416240033228,
+    "model_seconds": 0.171
+   },
+   {
+    "id": "single|logs|log end|2",
+    "wall": 0.48522580199642107,
+    "model_seconds": 0.414
+   },
+   {
+    "id": "single|cows|cow|2",
+    "wall": 0.6114639310108032,
+    "model_seconds": 0.541
+   },
+   {
+    "id": "single|fig|fig leaf|2",
+    "wall": 0.395484017994022,
+    "model_seconds": 0.354
+   },
+   {
+    "id": "single|dishes|dirty dish|2",
+    "wall": 0.3527774639951531,
+    "model_seconds": 0.293
+   },
+   {
+    "id": "single|dishes|clean dish|2",
+    "wall": 0.32751562900375575,
+    "model_seconds": 0.267
+   },
+   {
+    "id": "single|ants|leaf piece carried by an ant|2",
+    "wall": 0.32675952001591213,
+    "model_seconds": 0.318
+   },
+   {
+    "id": "single|beetles|beetle|2",
+    "wall": 0.18599203598569147,
+    "model_seconds": 0.182
+   },
+   {
+    "id": "single|birds|bird|2",
+    "wall": 0.5360595090023708,
+    "model_seconds": 0.532
+   },
+   {
+    "id": "single|mushrooms|mushroom cap|2",
+    "wall": 0.42997001300682314,
+    "model_seconds": 0.425
+   },
+   {
+    "id": "single|jars|jar of strawberry coulis|2",
+    "wall": 0.5744521839951631,
+    "model_seconds": 0.572
+   },
+   {
+    "id": "single|pinkleaves|pink leaf|2",
+    "wall": 0.27751705498667434,
+    "model_seconds": 0.274
+   },
+   {
+    "id": "single|whitecow|white cow with a bit of red|2",
+    "wall": 0.17684226902201772,
+    "model_seconds": 0.171
+   }
+  ],
+  "query_seconds": {
+   "logs|log end": 0.4996,
+   "cows|cow": 0.6475,
+   "fig|fig leaf": 0.4331,
+   "dishes|dirty dish": 0.3725,
+   "dishes|clean dish": 0.3403,
+   "ants|leaf piece carried by an ant": 0.3268,
+   "beetles|beetle": 0.1929,
+   "birds|bird": 0.5159,
+   "mushrooms|mushroom cap": 0.436,
+   "jars|jar of strawberry coulis": 0.5932,
+   "pinkleaves|pink leaf": 0.2872,
+   "whitecow|white cow with a bit of red": 0.177
+  },
+  "load": [
+   {
+    "copies": 1,
+    "load_factor": 1.0
+   },
+   {
+    "copies": 2,
+    "window_s": 14.44,
+    "work_done_s": 18.0,
+    "load_factor": 0.8023,
+    "peak_gib": 1.78
+   },
+   {
+    "copies": 4,
+    "window_s": 17.34,
+    "work_done_s": 31.95,
+    "load_factor": 0.5426,
+    "peak_gib": 1.78
+   }
+  ],
+  "load_factor": 0.5426,
+  "gpu_others": {
+   "4920": 130
+  },
+  "elapsed_s": 74.8
+ },
+ {
+  "setup": "moondream-3.1",
+  "finders_model": "moondream",
+  "variant": null,
+  "task": "box",
+  "rounds": 3,
+  "single": [
+   {
+    "id": "single|logs|log end|0",
+    "wall": 1.3894920110178646,
+    "model_seconds": 1.326
+   },
+   {
+    "id": "single|cows|cow|0",
+    "wall": 0.4028864299762063,
+    "model_seconds": 0.339
+   },
+   {
+    "id": "single|fig|fig leaf|0",
+    "wall": 0.5475500730099156,
+    "model_seconds": 0.506
+   },
+   {
+    "id": "single|dishes|dirty dish|0",
+    "wall": 0.376701161992969,
+    "model_seconds": 0.302
+   },
+   {
+    "id": "single|dishes|clean dish|0",
+    "wall": 0.48819697301951237,
+    "model_seconds": 0.433
+   },
+   {
+    "id": "single|ants|leaf piece carried by an ant|0",
+    "wall": 0.3552725359913893,
+    "model_seconds": 0.351
+   },
+   {
+    "id": "single|beetles|beetle|0",
+    "wall": 0.44565100999898277,
+    "model_seconds": 0.442
+   },
+   {
+    "id": "single|birds|bird|0",
+    "wall": 0.34753211500355974,
+    "model_seconds": 0.344
+   },
+   {
+    "id": "single|mushrooms|mushroom cap|0",
+    "wall": 0.3905967820028309,
+    "model_seconds": 0.386
+   },
+   {
+    "id": "single|jars|jar of strawberry coulis|0",
+    "wall": 0.3563254539913032,
+    "model_seconds": 0.354
+   },
+   {
+    "id": "single|pinkleaves|pink leaf|0",
+    "wall": 0.4675417779944837,
+    "model_seconds": 0.464
+   },
+   {
+    "id": "single|whitecow|white cow with a bit of red|0",
+    "wall": 0.24704746901988983,
+    "model_seconds": 0.24
+   },
+   {
+    "id": "single|logs|log end|1",
+    "wall": 1.3425905689946376,
+    "model_seconds": 1.269
+   },
+   {
+    "id": "single|cows|cow|1",
+    "wall": 0.40186890499899164,
+    "model_seconds": 0.342
+   },
+   {
+    "id": "single|fig|fig leaf|1",
+    "wall": 0.5816542299871799,
+    "model_seconds": 0.538
+   },
+   {
+    "id": "single|dishes|dirty dish|1",
+    "wall": 0.36975990200880915,
+    "model_seconds": 0.304
+   },
+   {
+    "id": "single|dishes|clean dish|1",
+    "wall": 0.6354120649921242,
+    "model_seconds": 0.587
+   },
+   {
+    "id": "single|ants|leaf piece carried by an ant|1",
+    "wall": 0.3555814450082835,
+    "model_seconds": 0.343
+   },
+   {
+    "id": "single|beetles|beetle|1",
+    "wall": 0.44726048299344257,
+    "model_seconds": 0.443
+   },
+   {
+    "id": "single|birds|bird|1",
+    "wall": 0.34474899401539005,
+    "model_seconds": 0.341
+   },
+   {
+    "id": "single|mushrooms|mushroom cap|1",
+    "wall": 0.39007399999536574,
+    "model_seconds": 0.385
+   },
+   {
+    "id": "single|jars|jar of strawberry coulis|1",
+    "wall": 0.35833308700239286,
+    "model_seconds": 0.356
+   },
+   {
+    "id": "single|pinkleaves|pink leaf|1",
+    "wall": 0.4636016179865692,
+    "model_seconds": 0.46
+   },
+   {
+    "id": "single|whitecow|white cow with a bit of red|1",
+    "wall": 0.2483584629953839,
+    "model_seconds": 0.242
+   },
+   {
+    "id": "single|logs|log end|2",
+    "wall": 1.3692211550078355,
+    "model_seconds": 1.303
+   },
+   {
+    "id": "single|cows|cow|2",
+    "wall": 0.4037801169906743,
+    "model_seconds": 0.34
+   },
+   {
+    "id": "single|fig|fig leaf|2",
+    "wall": 0.756957108998904,
+    "model_seconds": 0.713
+   },
+   {
+    "id": "single|dishes|dirty dish|2",
+    "wall": 0.36834083701251075,
+    "model_seconds": 0.302
+   },
+   {
+    "id": "single|dishes|clean dish|2",
+    "wall": 0.3649124889925588,
+    "model_seconds": 0.317
+   },
+   {
+    "id": "single|ants|leaf piece carried by an ant|2",
+    "wall": 0.3541766889975406,
+    "model_seconds": 0.343
+   },
+   {
+    "id": "single|beetles|beetle|2",
+    "wall": 0.44710313199902885,
+    "model_seconds": 0.443
+   },
+   {
+    "id": "single|birds|bird|2",
+    "wall": 0.3487219480157364,
+    "model_seconds": 0.345
+   },
+   {
+    "id": "single|mushrooms|mushroom cap|2",
+    "wall": 0.38593039399711415,
+    "model_seconds": 0.381
+   },
+   {
+    "id": "single|jars|jar of strawberry coulis|2",
+    "wall": 0.36423103100969456,
+    "model_seconds": 0.362
+   },
+   {
+    "id": "single|pinkleaves|pink leaf|2",
+    "wall": 0.46306424497743137,
+    "model_seconds": 0.459
+   },
+   {
+    "id": "single|whitecow|white cow with a bit of red|2",
+    "wall": 0.246015273994999,
+    "model_seconds": 0.239
+   }
+  ],
+  "query_seconds": {
+   "logs|log end": 1.3692,
+   "cows|cow": 0.4029,
+   "fig|fig leaf": 0.5817,
+   "dishes|dirty dish": 0.3698,
+   "dishes|clean dish": 0.4882,
+   "ants|leaf piece carried by an ant": 0.3553,
+   "beetles|beetle": 0.4471,
+   "birds|bird": 0.3475,
+   "mushrooms|mushroom cap": 0.3901,
+   "jars|jar of strawberry coulis": 0.3583,
+   "pinkleaves|pink leaf": 0.4636,
+   "whitecow|white cow with a bit of red": 0.247
+  },
+  "load": [
+   {
+    "copies": 1,
+    "load_factor": 1.0
+   }
+  ],
+  "load_factor": 1.0,
+  "gpu_others": {
+   "4920": 130
+  },
+  "elapsed_s": 42.1
+ },
+ {
+  "setup": "groundingpi-4b",
+  "finders_model": "groundingpi",
+  "variant": null,
+  "task": "box",
+  "rounds": 3,
+  "service": {
+   "url": "http://127.0.0.1:43589/v1",
+   "max_at_once": 16
+  },
+  "single": [
+   {
+    "id": "single|logs|log end|0",
+    "wall": 10.809924775996478,
+    "model_seconds": 10.736
+   },
+   {
+    "id": "single|cows|cow|0",
+    "wall": 2.5469045220233966,
+    "model_seconds": 2.475
+   },
+   {
+    "id": "single|fig|fig leaf|0",
+    "wall": 4.370214369002497,
+    "model_seconds": 4.295
+   },
+   {
+    "id": "single|dishes|dirty dish|0",
+    "wall": 2.4160460059938487,
+    "model_seconds": 2.353
+   },
+   {
+    "id": "single|dishes|clean dish|0",
+    "wall": 1.5827047719794791,
+    "model_seconds": 1.517
+   },
+   {
+    "id": "single|ants|leaf piece carried by an ant|0",
+    "wall": 2.196451492025517,
+    "model_seconds": 2.193
+   },
+   {
+    "id": "single|beetles|beetle|0",
+    "wall": 10.00567236597999,
+    "model_seconds": 9.993
+   },
+   {
+    "id": "single|birds|bird|0",
+    "wall": 2.546271212020656,
+    "model_seconds": 2.541
+   },
+   {
+    "id": "single|mushrooms|mushroom cap|0",
+    "wall": 3.2799054979986977,
+    "model_seconds": 3.275
+   },
+   {
+    "id": "single|jars|jar of strawberry coulis|0",
+    "wall": 1.0318802389956545,
+    "model_seconds": 1.03
+   },
+   {
+    "id": "single|pinkleaves|pink leaf|0",
+    "wall": 5.2319767529843375,
+    "model_seconds": 5.228
+   },
+   {
+    "id": "single|whitecow|white cow with a bit of red|0",
+    "wall": 1.163198188005481,
+    "model_seconds": 1.156
+   },
+   {
+    "id": "single|logs|log end|1",
+    "wall": 10.88330158800818,
+    "model_seconds": 10.802
+   },
+   {
+    "id": "single|cows|cow|1",
+    "wall": 2.531999659986468,
+    "model_seconds": 2.454
+   },
+   {
+    "id": "single|fig|fig leaf|1",
+    "wall": 4.4178361340018455,
+    "model_seconds": 4.355
+   },
+   {
+    "id": "single|dishes|dirty dish|1",
+    "wall": 2.4610060499981046,
+    "model_seconds": 2.382
+   },
+   {
+    "id": "single|dishes|clean dish|1",
+    "wall": 1.6190047010022681,
+    "model_seconds": 1.549
+   },
+   {
+    "id": "single|ants|leaf piece carried by an ant|1",
+    "wall": 2.215861575008603,
+    "model_seconds": 2.211
+   },
+   {
+    "id": "single|beetles|beetle|1",
+    "wall": 10.286641604994657,
+    "model_seconds": 10.276
+   },
+   {
+    "id": "single|birds|bird|1",
+    "wall": 2.492320352990646,
+    "model_seconds": 2.487
+   },
+   {
+    "id": "single|mushrooms|mushroom cap|1",
+    "wall": 3.322498326015193,
+    "model_seconds": 3.318
+   },
+   {
+    "id": "single|jars|jar of strawberry coulis|1",
+    "wall": 1.0167855079926085,
+    "model_seconds": 1.014
+   },
+   {
+    "id": "single|pinkleaves|pink leaf|1",
+    "wall": 5.323167576018022,
+    "model_seconds": 5.319
+   },
+   {
+    "id": "single|whitecow|white cow with a bit of red|1",
+    "wall": 1.1653114779910538,
+    "model_seconds": 1.159
+   },
+   {
+    "id": "single|logs|log end|2",
+    "wall": 10.916615880996687,
+    "model_seconds": 10.836
+   },
+   {
+    "id": "single|cows|cow|2",
+    "wall": 2.55685657900176,
+    "model_seconds": 2.482
+   },
+   {
+    "id": "single|fig|fig leaf|2",
+    "wall": 4.327767246984877,
+    "model_seconds": 4.264
+   },
+   {
+    "id": "single|dishes|dirty dish|2",
+    "wall": 2.4918317530245986,
+    "model_seconds": 2.42
+   },
+   {
+    "id": "single|dishes|clean dish|2",
+    "wall": 1.6002508550009225,
+    "model_seconds": 1.532
+   },
+   {
+    "id": "single|ants|leaf piece carried by an ant|2",
+    "wall": 2.218749953986844,
+    "model_seconds": 2.215
+   },
+   {
+    "id": "single|beetles|beetle|2",
+    "wall": 10.071693298988976,
+    "model_seconds": 10.061
+   },
+   {
+    "id": "single|birds|bird|2",
+    "wall": 2.4975247270194814,
+    "model_seconds": 2.491
+   },
+   {
+    "id": "single|mushrooms|mushroom cap|2",
+    "wall": 3.295054774993332,
+    "model_seconds": 3.289
+   },
+   {
+    "id": "single|jars|jar of strawberry coulis|2",
+    "wall": 0.9846408400044311,
+    "model_seconds": 0.983
+   },
+   {
+    "id": "single|pinkleaves|pink leaf|2",
+    "wall": 5.13484454099671,
+    "model_seconds": 5.131
+   },
+   {
+    "id": "single|whitecow|white cow with a bit of red|2",
+    "wall": 1.1525579580047633,
+    "model_seconds": 1.146
+   }
+  ],
+  "query_seconds": {
+   "logs|log end": 10.8833,
+   "cows|cow": 2.5469,
+   "fig|fig leaf": 4.3702,
+   "dishes|dirty dish": 2.461,
+   "dishes|clean dish": 1.6003,
+   "ants|leaf piece carried by an ant": 2.2159,
+   "beetles|beetle": 10.0717,
+   "birds|bird": 2.4975,
+   "mushrooms|mushroom cap": 3.2951,
+   "jars|jar of strawberry coulis": 1.0168,
+   "pinkleaves|pink leaf": 5.232,
+   "whitecow|white cow with a bit of red": 1.1632
+  },
+  "load": [
+   {
+    "copies": 1,
+    "load_factor": 1.0
+   },
+   {
+    "copies": 2,
+    "window_s": 101.52,
+    "work_done_s": 173.29,
+    "load_factor": 0.5858,
+    "peak_gib": 0,
+    "service_gpu_mib": 17138,
+    "service_max_at_once": 16
+   },
+   {
+    "copies": 4,
+    "window_s": 124.05,
+    "work_done_s": 337.6,
+    "load_factor": 0.3674,
+    "peak_gib": 0,
+    "service_gpu_mib": 17240,
+    "service_max_at_once": 16
+   },
+   {
+    "copies": 8,
+    "window_s": 178.1,
+    "work_done_s": 688.37,
+    "load_factor": 0.2587,
+    "peak_gib": 0,
+    "service_gpu_mib": 17240,
+    "service_max_at_once": 16
+   },
+   {
+    "copies": 16,
+    "window_s": 282.3,
+    "work_done_s": 1367.76,
+    "load_factor": 0.2064,
+    "peak_gib": 0,
+    "service_gpu_mib": 17240,
+    "service_max_at_once": 16
+   }
+  ],
+  "load_factor": 0.2064,
+  "gpu_others": {
+   "4920": 130
+  },
+  "elapsed_s": 923.4
+ }
+]
