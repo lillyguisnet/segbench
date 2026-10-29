@@ -1,0 +1,42 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kinds of mistakes</title><style>
+body{font-family:Inter,system-ui,sans-serif;margin:24px auto;max-width:1500px;padding:0 16px;color:#0f1115;background:#fff}
+img{max-width:100%;display:block} h2{margin-top:40px} p{color:#4b5260;max-width:900px;line-height:1.5}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+figure{margin:0} figcaption{font-size:13px;color:#4b5260;margin-top:4px}
+</style></head><body>
+<h1>Kinds of mistakes on the eleven photos</h1>
+<p>Points (point benchmark v3) and boxes (box benchmark v1), every model and every try. Scores are unchanged; this only explains them.
+Downloads: <a href="overview.svg">overview.svg</a> · <a href="overview.pdf">pdf</a> · <a href="by-model.svg">by-model.svg</a> · <a href="by-model.pdf">pdf</a> · <a href="families.svg">families.svg</a> · <a href="families.pdf">pdf</a>.</p>
+<h2>What went wrong</h2><img src="overview.png">
+<h2>Correct points and the four kinds of mistakes (square)</h2><img src="families-points-correct.png" style="max-width:900px">
+<p><a href="families-points-correct.svg">svg</a> · <a href="families-points-correct.pdf">pdf</a></p>
+<h2>Pointing mistakes in four kinds (square)</h2><img src="families-points.png" style="max-width:900px">
+<p><a href="families-points.svg">svg</a> · <a href="families-points.pdf">pdf</a></p>
+<h2>Correct boxes and the four kinds of mistakes (square)</h2><img src="families-boxes-correct.png" style="max-width:900px">
+<p>"Correct" here means the box overlaps a real object's box by at least half (the loosest of the four levels). The score also checks 75%, 90% and 95%, so a model with many loose boxes can be high here and lower in the score (GPT-6 Astra: 86% correct, score 57; Gemini 4 Argon: 84%, score 63).
+<a href="families-boxes-correct.svg">svg</a> · <a href="families-boxes-correct.pdf">pdf</a></p>
+<h2>Box mistakes in four kinds (square)</h2><img src="families-boxes.png" style="max-width:900px">
+<p>Orange includes one box drawn around several objects; the objects inside it count as orange too, not as never found.
+<a href="families-boxes.svg">svg</a> · <a href="families-boxes.pdf">pdf</a></p>
+<h2>Where each model's mistakes go (four families, points and boxes)</h2><img src="families.png">
+<p>Each mistake weighted by 1 / the number of objects in its photo, so every photo counts as it does in the score.</p>
+<h2>What each kind costs each model</h2><img src="by-model.png">
+<h2>Examples</h2>
+<p>White outline and box: answer-key objects. Blue box: an object left unfound. Khaki outline: look-alikes. Each point or box is coloured by its kind (legend under each picture).</p>
+<div class="grid"><figure><a href="examples/boxes-Claude_Opus_5.5-dishes-0.png"><img src="examples/boxes-Claude_Opus_5.5-dishes-0.png" loading="lazy"></a><figcaption>boxes · Claude Opus 5.5-dishes-0</figcaption></figure>
+<figure><a href="examples/boxes-DeepSeek_Flash-birds-0.png"><img src="examples/boxes-DeepSeek_Flash-birds-0.png" loading="lazy"></a><figcaption>boxes · DeepSeek Flash-birds-0</figcaption></figure>
+<figure><a href="examples/boxes-Florence-2_Large-logs-0.png"><img src="examples/boxes-Florence-2_Large-logs-0.png" loading="lazy"></a><figcaption>boxes · Florence-2 Large-logs-0</figcaption></figure>
+<figure><a href="examples/boxes-GPT-6_Luna-cows-1.png"><img src="examples/boxes-GPT-6_Luna-cows-1.png" loading="lazy"></a><figcaption>boxes · GPT-6 Luna-cows-1</figcaption></figure>
+<figure><a href="examples/boxes-Gemini_3.5_Flash_Lite-logs-0.png"><img src="examples/boxes-Gemini_3.5_Flash_Lite-logs-0.png" loading="lazy"></a><figcaption>boxes · Gemini 3.5 Flash Lite-logs-0</figcaption></figure>
+<figure><a href="examples/boxes-Kimi_K3-fig-0.png"><img src="examples/boxes-Kimi_K3-fig-0.png" loading="lazy"></a><figcaption>boxes · Kimi K3-fig-0</figcaption></figure>
+<figure><a href="examples/boxes-LocateAnything_3B-pinkleaves-0.png"><img src="examples/boxes-LocateAnything_3B-pinkleaves-0.png" loading="lazy"></a><figcaption>boxes · LocateAnything 3B-pinkleaves-0</figcaption></figure>
+<figure><a href="examples/boxes-RF-DETR_Seg-whitecow-0.png"><img src="examples/boxes-RF-DETR_Seg-whitecow-0.png" loading="lazy"></a><figcaption>boxes · RF-DETR Seg-whitecow-0</figcaption></figure>
+<figure><a href="examples/points-Claude_Sonnet_5.5-jars-0.png"><img src="examples/points-Claude_Sonnet_5.5-jars-0.png" loading="lazy"></a><figcaption>points · Claude Sonnet 5.5-jars-0</figcaption></figure>
+<figure><a href="examples/points-GPT-5.6_Terra-cows-2.png"><img src="examples/points-GPT-5.6_Terra-cows-2.png" loading="lazy"></a><figcaption>points · GPT-5.6 Terra-cows-2</figcaption></figure>
+<figure><a href="examples/points-GPT-6_Astra-fig-0.png"><img src="examples/points-GPT-6_Astra-fig-0.png" loading="lazy"></a><figcaption>points · GPT-6 Astra-fig-0</figcaption></figure>
+<figure><a href="examples/points-GPT-6_Luna-beetles-0.png"><img src="examples/points-GPT-6_Luna-beetles-0.png" loading="lazy"></a><figcaption>points · GPT-6 Luna-beetles-0</figcaption></figure>
+<figure><a href="examples/points-Gemini_3.1_Pro-beetles-0.png"><img src="examples/points-Gemini_3.1_Pro-beetles-0.png" loading="lazy"></a><figcaption>points · Gemini 3.1 Pro-beetles-0</figcaption></figure>
+<figure><a href="examples/points-Kimi_K3-dishes-0.png"><img src="examples/points-Kimi_K3-dishes-0.png" loading="lazy"></a><figcaption>points · Kimi K3-dishes-0</figcaption></figure>
+<figure><a href="examples/points-RF-DETR_Seg-whitecow-0.png"><img src="examples/points-RF-DETR_Seg-whitecow-0.png" loading="lazy"></a><figcaption>points · RF-DETR Seg-whitecow-0</figcaption></figure>
+<figure><a href="examples/points-SAM_3-birds-0.png"><img src="examples/points-SAM_3-birds-0.png" loading="lazy"></a><figcaption>points · SAM 3-birds-0</figcaption></figure></div></body></html>
