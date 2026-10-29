@@ -1,0 +1,5765 @@
+{
+ "revision": 1,
+ "saved_at": "2026-10-17T00:02:16+00:00",
+ "data": {
+  "schema": "segbench-measure-clicks/v1",
+  "questions_sha256": "5f64a29fbc830000f87403fe236903080c46c3515bb7a75cc4dcbe9c129aace9",
+  "coordinate_system": "original upright photo pixels, [x, y]",
+  "purpose": "reference measurements for outline-from-a-dot questions: a line along the middle of a part, or two points; dot = what the models are shown",
+  "created_at": "2026-10-17T00:02:16+00:00",
+  "updated_at": "2026-10-17T00:02:16+00:00",
+  "items": [
+   {
+    "id": "birds-neck-draft00",
+    "q": "birds-neck",
+    "points": [
+     [
+      466.6,
+      789.7
+     ],
+     [
+      478.0,
+      797.0
+     ],
+     [
+      481.0,
+      801.0
+     ],
+     [
+      493.0,
+      800.0
+     ],
+     [
+      501.0,
+      804.8
+     ]
+    ],
+    "dot": [
+     482.4,
+     800.9
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      466.6,
+      789.7
+     ],
+     [
+      478.0,
+      797.0
+     ],
+     [
+      481.0,
+      801.0
+     ],
+     [
+      493.0,
+      800.0
+     ],
+     [
+      501.0,
+      804.8
+     ]
+    ],
+    "draft_dot": [
+     482.4,
+     800.9
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "birds-neck-draft01",
+    "q": "birds-neck",
+    "points": [
+     [
+      464.9,
+      844.6
+     ],
+     [
+      481.0,
+      860.0
+     ],
+     [
+      487.0,
+      865.0
+     ],
+     [
+      489.0,
+      869.0
+     ],
+     [
+      494.6,
+      873.3
+     ]
+    ],
+    "dot": [
+     479.9,
+     859.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      464.9,
+      844.6
+     ],
+     [
+      481.0,
+      860.0
+     ],
+     [
+      487.0,
+      865.0
+     ],
+     [
+      489.0,
+      869.0
+     ],
+     [
+      494.6,
+      873.3
+     ]
+    ],
+    "draft_dot": [
+     479.9,
+     859.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "birds-beak-draft00",
+    "q": "birds-beak",
+    "points": [
+     [
+      112.0,
+      1023.0
+     ],
+     [
+      62.0,
+      1046.0
+     ]
+    ],
+    "dot": [
+     87.0,
+     1034.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      112.0,
+      1023.0
+     ],
+     [
+      62.0,
+      1046.0
+     ]
+    ],
+    "draft_dot": [
+     87.0,
+     1034.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "birds-beak-draft01",
+    "q": "birds-beak",
+    "points": [
+     [
+      151.0,
+      433.0
+     ],
+     [
+      158.0,
+      461.0
+     ]
+    ],
+    "dot": [
+     154.5,
+     447.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      151.0,
+      433.0
+     ],
+     [
+      158.0,
+      461.0
+     ]
+    ],
+    "draft_dot": [
+     154.5,
+     447.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "birds-beak-draft02",
+    "q": "birds-beak",
+    "points": [
+     [
+      184.0,
+      614.0
+     ],
+     [
+      174.0,
+      653.0
+     ]
+    ],
+    "dot": [
+     179.0,
+     633.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      184.0,
+      614.0
+     ],
+     [
+      174.0,
+      653.0
+     ]
+    ],
+    "draft_dot": [
+     179.0,
+     633.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "birds-beak-draft03",
+    "q": "birds-beak",
+    "points": [
+     [
+      449.0,
+      783.0
+     ],
+     [
+      425.0,
+      798.0
+     ]
+    ],
+    "dot": [
+     437.0,
+     790.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra",
+    "draft_points": [
+     [
+      449.0,
+      783.0
+     ],
+     [
+      425.0,
+      798.0
+     ]
+    ],
+    "draft_dot": [
+     437.0,
+     790.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "birds-beak-draft04",
+    "q": "birds-beak",
+    "points": [
+     [
+      181.0,
+      712.0
+     ],
+     [
+      184.0,
+      735.0
+     ]
+    ],
+    "dot": [
+     182.5,
+     723.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      181.0,
+      712.0
+     ],
+     [
+      184.0,
+      735.0
+     ]
+    ],
+    "draft_dot": [
+     182.5,
+     723.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "birds-wingspan-draft00",
+    "q": "birds-wingspan",
+    "points": [
+     [
+      326.0,
+      680.0
+     ],
+     [
+      742.0,
+      837.0
+     ]
+    ],
+    "dot": [
+     534.0,
+     758.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      326.0,
+      680.0
+     ],
+     [
+      742.0,
+      837.0
+     ]
+    ],
+    "draft_dot": [
+     534.0,
+     758.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "birds-wingspan-draft01",
+    "q": "birds-wingspan",
+    "points": [
+     [
+      367.0,
+      876.0
+     ],
+     [
+      700.0,
+      982.0
+     ]
+    ],
+    "dot": [
+     533.5,
+     929.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      367.0,
+      876.0
+     ],
+     [
+      700.0,
+      982.0
+     ]
+    ],
+    "draft_dot": [
+     533.5,
+     929.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "birds-wingspan-draft02",
+    "q": "birds-wingspan",
+    "points": [
+     [
+      442.0,
+      325.0
+     ],
+     [
+      729.0,
+      495.0
+     ]
+    ],
+    "dot": [
+     585.5,
+     410.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra",
+    "draft_points": [
+     [
+      442.0,
+      325.0
+     ],
+     [
+      729.0,
+      495.0
+     ]
+    ],
+    "draft_dot": [
+     585.5,
+     410.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "birds-wingspan-draft03",
+    "q": "birds-wingspan",
+    "points": [
+     [
+      78.0,
+      258.0
+     ],
+     [
+      301.0,
+      404.0
+     ]
+    ],
+    "dot": [
+     189.5,
+     331.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      78.0,
+      258.0
+     ],
+     [
+      301.0,
+      404.0
+     ]
+    ],
+    "draft_dot": [
+     189.5,
+     331.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "birds-wingspan-draft04",
+    "q": "birds-wingspan",
+    "points": [
+     [
+      75.0,
+      875.0
+     ],
+     [
+      493.0,
+      1000.0
+     ]
+    ],
+    "dot": [
+     284.0,
+     937.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      75.0,
+      875.0
+     ],
+     [
+      493.0,
+      1000.0
+     ]
+    ],
+    "draft_dot": [
+     284.0,
+     937.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "birds-wing-draft00",
+    "q": "birds-wing",
+    "points": [
+     [
+      533.3,
+      814.1
+     ],
+     [
+      588.0,
+      812.0
+     ],
+     [
+      624.0,
+      808.0
+     ],
+     [
+      675.0,
+      809.0
+     ],
+     [
+      737.0,
+      835.8
+     ]
+    ],
+    "dot": [
+     637.8,
+     808.3
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      533.3,
+      814.1
+     ],
+     [
+      588.0,
+      812.0
+     ],
+     [
+      624.0,
+      808.0
+     ],
+     [
+      675.0,
+      809.0
+     ],
+     [
+      737.0,
+      835.8
+     ]
+    ],
+    "draft_dot": [
+     637.8,
+     808.3
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "birds-wing-draft01",
+    "q": "birds-wing",
+    "points": [
+     [
+      561.0,
+      902.7
+     ],
+     [
+      608.0,
+      918.0
+     ],
+     [
+      629.0,
+      930.0
+     ],
+     [
+      662.0,
+      952.0
+     ],
+     [
+      705.2,
+      993.4
+     ]
+    ],
+    "dot": [
+     639.8,
+     937.2
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      561.0,
+      902.7
+     ],
+     [
+      608.0,
+      918.0
+     ],
+     [
+      629.0,
+      930.0
+     ],
+     [
+      662.0,
+      952.0
+     ],
+     [
+      705.2,
+      993.4
+     ]
+    ],
+    "draft_dot": [
+     639.8,
+     937.2
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "birds-wing-draft02",
+    "q": "birds-wing",
+    "points": [
+     [
+      469.3,
+      777.6
+     ],
+     [
+      437.0,
+      741.0
+     ],
+     [
+      412.0,
+      722.0
+     ],
+     [
+      344.0,
+      688.0
+     ],
+     [
+      325.0,
+      680.0
+     ]
+    ],
+    "dot": [
+     404.7,
+     718.3
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      469.3,
+      777.6
+     ],
+     [
+      437.0,
+      741.0
+     ],
+     [
+      412.0,
+      722.0
+     ],
+     [
+      344.0,
+      688.0
+     ],
+     [
+      325.0,
+      680.0
+     ]
+    ],
+    "draft_dot": [
+     404.7,
+     718.3
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "birds-wing-draft03",
+    "q": "birds-wing",
+    "points": [
+     [
+      483.9,
+      865.7
+     ],
+     [
+      452.0,
+      861.0
+     ],
+     [
+      413.0,
+      861.0
+     ],
+     [
+      401.0,
+      864.0
+     ],
+     [
+      381.8,
+      873.9
+     ]
+    ],
+    "dot": [
+     431.6,
+     861.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      483.9,
+      865.7
+     ],
+     [
+      452.0,
+      861.0
+     ],
+     [
+      413.0,
+      861.0
+     ],
+     [
+      401.0,
+      864.0
+     ],
+     [
+      381.8,
+      873.9
+     ]
+    ],
+    "draft_dot": [
+     431.6,
+     861.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "birds-wing-draft04",
+    "q": "birds-wing",
+    "points": [
+     [
+      558.0,
+      491.7
+     ],
+     [
+      612.0,
+      495.0
+     ],
+     [
+      632.0,
+      490.0
+     ],
+     [
+      661.0,
+      483.0
+     ],
+     [
+      693.0,
+      478.0
+     ],
+     [
+      723.0,
+      493.7
+     ]
+    ],
+    "dot": [
+     642.4,
+     487.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      558.0,
+      491.7
+     ],
+     [
+      612.0,
+      495.0
+     ],
+     [
+      632.0,
+      490.0
+     ],
+     [
+      661.0,
+      483.0
+     ],
+     [
+      693.0,
+      478.0
+     ],
+     [
+      723.0,
+      493.7
+     ]
+    ],
+    "draft_dot": [
+     642.4,
+     487.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "birds-wing-draft05",
+    "q": "birds-wing",
+    "points": [
+     [
+      222.5,
+      607.9
+     ],
+     [
+      265.0,
+      596.0
+     ],
+     [
+      287.0,
+      592.0
+     ],
+     [
+      329.0,
+      592.0
+     ],
+     [
+      385.0,
+      610.0
+     ],
+     [
+      424.2,
+      640.4
+     ]
+    ],
+    "dot": [
+     329.0,
+     592.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      222.5,
+      607.9
+     ],
+     [
+      265.0,
+      596.0
+     ],
+     [
+      287.0,
+      592.0
+     ],
+     [
+      329.0,
+      592.0
+     ],
+     [
+      385.0,
+      610.0
+     ],
+     [
+      424.2,
+      640.4
+     ]
+    ],
+    "draft_dot": [
+     329.0,
+     592.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "birds-wing-draft06",
+    "q": "birds-wing",
+    "points": [
+     [
+      177.1,
+      598.8
+     ],
+     [
+      137.0,
+      601.0
+     ],
+     [
+      82.0,
+      610.0
+     ],
+     [
+      72.0,
+      613.0
+     ],
+     [
+      40.0,
+      625.0
+     ],
+     [
+      1.8,
+      649.4
+     ]
+    ],
+    "dot": [
+     84.9,
+     609.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      177.1,
+      598.8
+     ],
+     [
+      137.0,
+      601.0
+     ],
+     [
+      82.0,
+      610.0
+     ],
+     [
+      72.0,
+      613.0
+     ],
+     [
+      40.0,
+      625.0
+     ],
+     [
+      1.8,
+      649.4
+     ]
+    ],
+    "draft_dot": [
+     84.9,
+     609.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "birds-wing-draft07",
+    "q": "birds-wing",
+    "points": [
+     [
+      205.6,
+      370.1
+     ],
+     [
+      185.0,
+      363.0
+     ],
+     [
+      141.0,
+      318.0
+     ],
+     [
+      136.0,
+      315.0
+     ],
+     [
+      117.0,
+      295.0
+     ],
+     [
+      84.1,
+      261.8
+     ]
+    ],
+    "dot": [
+     142.6,
+     319.6
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      205.6,
+      370.1
+     ],
+     [
+      185.0,
+      363.0
+     ],
+     [
+      141.0,
+      318.0
+     ],
+     [
+      136.0,
+      315.0
+     ],
+     [
+      117.0,
+      295.0
+     ],
+     [
+      84.1,
+      261.8
+     ]
+    ],
+    "draft_dot": [
+     142.6,
+     319.6
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "birds-wing-draft08",
+    "q": "birds-wing",
+    "points": [
+     [
+      325.5,
+      213.6
+     ],
+     [
+      312.0,
+      224.0
+     ],
+     [
+      300.0,
+      262.0
+     ],
+     [
+      300.0,
+      271.0
+     ],
+     [
+      288.1,
+      303.6
+     ]
+    ],
+    "dot": [
+     302.0,
+     255.7
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      325.5,
+      213.6
+     ],
+     [
+      312.0,
+      224.0
+     ],
+     [
+      300.0,
+      262.0
+     ],
+     [
+      300.0,
+      271.0
+     ],
+     [
+      288.1,
+      303.6
+     ]
+    ],
+    "draft_dot": [
+     302.0,
+     255.7
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "birds-wing-draft09",
+    "q": "birds-wing",
+    "points": [
+     [
+      360.0,
+      1034.4
+     ],
+     [
+      413.0,
+      1037.0
+     ],
+     [
+      422.0,
+      1038.0
+     ],
+     [
+      474.0,
+      1041.0
+     ],
+     [
+      524.0,
+      1056.0
+     ],
+     [
+      470.1,
+      1056.2
+     ]
+    ],
+    "dot": [
+     470.0,
+     1040.8
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      360.0,
+      1034.4
+     ],
+     [
+      413.0,
+      1037.0
+     ],
+     [
+      422.0,
+      1038.0
+     ],
+     [
+      474.0,
+      1041.0
+     ],
+     [
+      524.0,
+      1056.0
+     ],
+     [
+      470.1,
+      1056.2
+     ]
+    ],
+    "draft_dot": [
+     470.0,
+     1040.8
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "birds-wing-draft10",
+    "q": "birds-wing",
+    "points": [
+     [
+      285.2,
+      989.7
+     ],
+     [
+      275.0,
+      974.0
+     ],
+     [
+      266.0,
+      962.0
+     ],
+     [
+      239.0,
+      933.0
+     ],
+     [
+      202.6,
+      911.2
+     ]
+    ],
+    "dot": [
+     249.5,
+     944.3
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      285.2,
+      989.7
+     ],
+     [
+      275.0,
+      974.0
+     ],
+     [
+      266.0,
+      962.0
+     ],
+     [
+      239.0,
+      933.0
+     ],
+     [
+      202.6,
+      911.2
+     ]
+    ],
+    "draft_dot": [
+     249.5,
+     944.3
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "birds-wing-draft11",
+    "q": "birds-wing",
+    "points": [
+     [
+      637.8,
+      234.7
+     ],
+     [
+      620.0,
+      228.0
+     ],
+     [
+      593.0,
+      213.0
+     ],
+     [
+      563.0,
+      198.0
+     ],
+     [
+      521.6,
+      180.1
+     ]
+    ],
+    "dot": [
+     580.1,
+     206.6
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      637.8,
+      234.7
+     ],
+     [
+      620.0,
+      228.0
+     ],
+     [
+      593.0,
+      213.0
+     ],
+     [
+      563.0,
+      198.0
+     ],
+     [
+      521.6,
+      180.1
+     ]
+    ],
+    "draft_dot": [
+     580.1,
+     206.6
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "birds-wing-draft12",
+    "q": "birds-wing",
+    "points": [
+     [
+      502.7,
+      444.9
+     ],
+     [
+      502.0,
+      424.0
+     ],
+     [
+      489.0,
+      400.0
+     ],
+     [
+      473.0,
+      366.0
+     ],
+     [
+      444.0,
+      329.7
+     ]
+    ],
+    "dot": [
+     481.4,
+     383.8
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      502.7,
+      444.9
+     ],
+     [
+      502.0,
+      424.0
+     ],
+     [
+      489.0,
+      400.0
+     ],
+     [
+      473.0,
+      366.0
+     ],
+     [
+      444.0,
+      329.7
+     ]
+    ],
+    "draft_dot": [
+     481.4,
+     383.8
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "birds-wing-draft13",
+    "q": "birds-wing",
+    "points": [
+     [
+      475.4,
+      478.5
+     ],
+     [
+      448.0,
+      477.0
+     ],
+     [
+      432.0,
+      474.0
+     ],
+     [
+      412.0,
+      465.0
+     ],
+     [
+      378.1,
+      440.5
+     ]
+    ],
+    "dot": [
+     422.9,
+     469.9
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      475.4,
+      478.5
+     ],
+     [
+      448.0,
+      477.0
+     ],
+     [
+      432.0,
+      474.0
+     ],
+     [
+      412.0,
+      465.0
+     ],
+     [
+      378.1,
+      440.5
+     ]
+    ],
+    "draft_dot": [
+     422.9,
+     469.9
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "kitchen-handle-draft00",
+    "q": "kitchen-handle",
+    "points": [
+     [
+      2489.8,
+      752.9
+     ],
+     [
+      2506.0,
+      752.0
+     ],
+     [
+      2553.0,
+      742.0
+     ],
+     [
+      2555.0,
+      738.0
+     ],
+     [
+      2573.0,
+      671.0
+     ],
+     [
+      2573.0,
+      668.0
+     ],
+     [
+      2575.7,
+      633.1
+     ]
+    ],
+    "dot": [
+     2560.0,
+     719.3
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      2489.8,
+      752.9
+     ],
+     [
+      2506.0,
+      752.0
+     ],
+     [
+      2553.0,
+      742.0
+     ],
+     [
+      2555.0,
+      738.0
+     ],
+     [
+      2573.0,
+      671.0
+     ],
+     [
+      2573.0,
+      668.0
+     ],
+     [
+      2575.7,
+      633.1
+     ]
+    ],
+    "draft_dot": [
+     2560.0,
+     719.3
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "kitchen-knife-draft00",
+    "q": "kitchen-knife",
+    "points": [
+     [
+      1608.0,
+      1059.0
+     ],
+     [
+      1340.0,
+      1239.0
+     ]
+    ],
+    "dot": [
+     1474.0,
+     1149.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      1608.0,
+      1059.0
+     ],
+     [
+      1340.0,
+      1239.0
+     ]
+    ],
+    "draft_dot": [
+     1474.0,
+     1149.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "kitchen-knife-draft01",
+    "q": "kitchen-knife",
+    "points": [
+     [
+      647.0,
+      1036.0
+     ],
+     [
+      1102.0,
+      934.0
+     ]
+    ],
+    "dot": [
+     874.5,
+     985.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      647.0,
+      1036.0
+     ],
+     [
+      1102.0,
+      934.0
+     ]
+    ],
+    "draft_dot": [
+     874.5,
+     985.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "kitchen-dish-width-draft00",
+    "q": "kitchen-dish-width",
+    "points": [
+     [
+      770.0,
+      1131.0
+     ],
+     [
+      1209.0,
+      1067.0
+     ]
+    ],
+    "dot": [
+     989.5,
+     1099.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      770.0,
+      1131.0
+     ],
+     [
+      1209.0,
+      1067.0
+     ]
+    ],
+    "draft_dot": [
+     989.5,
+     1099.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "kitchen-dish-width-draft01",
+    "q": "kitchen-dish-width",
+    "points": [
+     [
+      1103.0,
+      967.0
+     ],
+     [
+      1439.0,
+      910.0
+     ]
+    ],
+    "dot": [
+     1271.0,
+     938.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      1103.0,
+      967.0
+     ],
+     [
+      1439.0,
+      910.0
+     ]
+    ],
+    "draft_dot": [
+     1271.0,
+     938.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "kitchen-dish-width-draft02",
+    "q": "kitchen-dish-width",
+    "points": [
+     [
+      73.0,
+      1092.0
+     ],
+     [
+      668.0,
+      971.0
+     ]
+    ],
+    "dot": [
+     370.5,
+     1031.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      73.0,
+      1092.0
+     ],
+     [
+      668.0,
+      971.0
+     ]
+    ],
+    "draft_dot": [
+     370.5,
+     1031.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "ants-branch-draft00",
+    "q": "ants-branch",
+    "points": [
+     [
+      522.2,
+      609.2
+     ],
+     [
+      579.0,
+      637.0
+     ],
+     [
+      611.0,
+      655.0
+     ],
+     [
+      734.0,
+      729.0
+     ],
+     [
+      754.0,
+      738.0
+     ],
+     [
+      848.0,
+      809.0
+     ],
+     [
+      902.4,
+      810
+     ]
+    ],
+    "dot": [
+     712.9,
+     716.3
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      522.2,
+      609.2
+     ],
+     [
+      579.0,
+      637.0
+     ],
+     [
+      611.0,
+      655.0
+     ],
+     [
+      734.0,
+      729.0
+     ],
+     [
+      754.0,
+      738.0
+     ],
+     [
+      848.0,
+      809.0
+     ],
+     [
+      902.4,
+      810
+     ]
+    ],
+    "draft_dot": [
+     712.9,
+     716.3
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "ants-leaf-draft00",
+    "q": "ants-leaf",
+    "points": [
+     [
+      1211.0,
+      96.0
+     ],
+     [
+      1302.0,
+      238.0
+     ]
+    ],
+    "dot": [
+     1256.5,
+     167.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      1211.0,
+      96.0
+     ],
+     [
+      1302.0,
+      238.0
+     ]
+    ],
+    "draft_dot": [
+     1256.5,
+     167.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "ants-leaf-draft01",
+    "q": "ants-leaf",
+    "points": [
+     [
+      372.0,
+      245.0
+     ],
+     [
+      292.0,
+      403.0
+     ]
+    ],
+    "dot": [
+     332.0,
+     324.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      372.0,
+      245.0
+     ],
+     [
+      292.0,
+      403.0
+     ]
+    ],
+    "draft_dot": [
+     332.0,
+     324.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "ants-leaf-draft02",
+    "q": "ants-leaf",
+    "points": [
+     [
+      35.0,
+      364.0
+     ],
+     [
+      179.0,
+      327.0
+     ]
+    ],
+    "dot": [
+     107.0,
+     345.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      35.0,
+      364.0
+     ],
+     [
+      179.0,
+      327.0
+     ]
+    ],
+    "draft_dot": [
+     107.0,
+     345.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "ants-leaf-draft03",
+    "q": "ants-leaf",
+    "points": [
+     [
+      657.0,
+      445.0
+     ],
+     [
+      829.0,
+      491.0
+     ]
+    ],
+    "dot": [
+     743.0,
+     468.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      657.0,
+      445.0
+     ],
+     [
+      829.0,
+      491.0
+     ]
+    ],
+    "draft_dot": [
+     743.0,
+     468.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "ants-leaf-draft04",
+    "q": "ants-leaf",
+    "points": [
+     [
+      503.0,
+      341.0
+     ],
+     [
+      427.0,
+      451.0
+     ]
+    ],
+    "dot": [
+     465.0,
+     396.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      503.0,
+      341.0
+     ],
+     [
+      427.0,
+      451.0
+     ]
+    ],
+    "draft_dot": [
+     465.0,
+     396.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "ants-leaf-draft05",
+    "q": "ants-leaf",
+    "points": [
+     [
+      592.0,
+      346.0
+     ],
+     [
+      497.0,
+      411.0
+     ]
+    ],
+    "dot": [
+     544.5,
+     378.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      592.0,
+      346.0
+     ],
+     [
+      497.0,
+      411.0
+     ]
+    ],
+    "draft_dot": [
+     544.5,
+     378.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "ants-leaf-draft06",
+    "q": "ants-leaf",
+    "points": [
+     [
+      720.0,
+      283.0
+     ],
+     [
+      655.0,
+      359.0
+     ]
+    ],
+    "dot": [
+     687.5,
+     321.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      720.0,
+      283.0
+     ],
+     [
+      655.0,
+      359.0
+     ]
+    ],
+    "draft_dot": [
+     687.5,
+     321.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "ants-leaf-draft07",
+    "q": "ants-leaf",
+    "points": [
+     [
+      174.0,
+      378.0
+     ],
+     [
+      242.0,
+      486.0
+     ]
+    ],
+    "dot": [
+     208.0,
+     432.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      174.0,
+      378.0
+     ],
+     [
+      242.0,
+      486.0
+     ]
+    ],
+    "draft_dot": [
+     208.0,
+     432.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "ants-leaf-draft08",
+    "q": "ants-leaf",
+    "points": [
+     [
+      165.0,
+      409.0
+     ],
+     [
+      270.0,
+      354.0
+     ]
+    ],
+    "dot": [
+     217.5,
+     381.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      165.0,
+      409.0
+     ],
+     [
+      270.0,
+      354.0
+     ]
+    ],
+    "draft_dot": [
+     217.5,
+     381.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "ants-leaf-draft09",
+    "q": "ants-leaf",
+    "points": [
+     [
+      331.0,
+      559.0
+     ],
+     [
+      286.0,
+      634.0
+     ]
+    ],
+    "dot": [
+     308.5,
+     596.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      331.0,
+      559.0
+     ],
+     [
+      286.0,
+      634.0
+     ]
+    ],
+    "draft_dot": [
+     308.5,
+     596.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "ants-leaf-draft10",
+    "q": "ants-leaf",
+    "points": [
+     [
+      99.0,
+      526.0
+     ],
+     [
+      25.0,
+      597.0
+     ]
+    ],
+    "dot": [
+     62.0,
+     561.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      99.0,
+      526.0
+     ],
+     [
+      25.0,
+      597.0
+     ]
+    ],
+    "draft_dot": [
+     62.0,
+     561.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "road1-pole-draft00",
+    "q": "road1-pole",
+    "points": [
+     [
+      1059.0,
+      1589.0
+     ],
+     [
+      1019.0,
+      798.0
+     ]
+    ],
+    "dot": [
+     1039.0,
+     1193.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      1059.0,
+      1589.0
+     ],
+     [
+      1019.0,
+      798.0
+     ]
+    ],
+    "draft_dot": [
+     1039.0,
+     1193.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "road1-pole-draft01",
+    "q": "road1-pole",
+    "points": [
+     [
+      1746.0,
+      1894.0
+     ],
+     [
+      1920.0,
+      0
+     ]
+    ],
+    "dot": [
+     1833.0,
+     947.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      1746.0,
+      1894.0
+     ],
+     [
+      1920.0,
+      0
+     ]
+    ],
+    "draft_dot": [
+     1833.0,
+     947.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "road1-wire-draft00",
+    "q": "road1-wire",
+    "points": [
+     [
+      787.0,
+      1325.0
+     ],
+     [
+      796.0,
+      1310.0
+     ],
+     [
+      903.0,
+      1276.0
+     ],
+     [
+      920.0,
+      1256.0
+     ],
+     [
+      1018.1,
+      1284.5
+     ]
+    ],
+    "dot": [
+     902.4,
+     1276.2
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      787.0,
+      1325.0
+     ],
+     [
+      796.0,
+      1310.0
+     ],
+     [
+      903.0,
+      1276.0
+     ],
+     [
+      920.0,
+      1256.0
+     ],
+     [
+      1018.1,
+      1284.5
+     ]
+    ],
+    "draft_dot": [
+     902.4,
+     1276.2
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "road1-wire-draft01",
+    "q": "road1-wire",
+    "points": [
+     [
+      1040.0,
+      1284.0
+     ],
+     [
+      1164.0,
+      1298.0
+     ],
+     [
+      1292.0,
+      1312.0
+     ],
+     [
+      1420.0,
+      1324.0
+     ],
+     [
+      1554.0,
+      1335.0
+     ]
+    ],
+    "dot": [
+     1296.7,
+     1312.4
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra",
+    "draft_points": [
+     [
+      1040.0,
+      1284.0
+     ],
+     [
+      1164.0,
+      1298.0
+     ],
+     [
+      1292.0,
+      1312.0
+     ],
+     [
+      1420.0,
+      1324.0
+     ],
+     [
+      1554.0,
+      1335.0
+     ]
+    ],
+    "draft_dot": [
+     1296.7,
+     1312.4
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "butterfly-wingspan-draft00",
+    "q": "butterfly-wingspan",
+    "points": [
+     [
+      311.0,
+      472.0
+     ],
+     [
+      428.0,
+      476.0
+     ]
+    ],
+    "dot": [
+     369.5,
+     474.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra",
+    "draft_points": [
+     [
+      311.0,
+      472.0
+     ],
+     [
+      428.0,
+      476.0
+     ]
+    ],
+    "draft_dot": [
+     369.5,
+     474.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "butterfly-wingspan-draft01",
+    "q": "butterfly-wingspan",
+    "points": [
+     [
+      231.0,
+      423.0
+     ],
+     [
+      161.0,
+      521.0
+     ]
+    ],
+    "dot": [
+     196.0,
+     472.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      231.0,
+      423.0
+     ],
+     [
+      161.0,
+      521.0
+     ]
+    ],
+    "draft_dot": [
+     196.0,
+     472.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "butterfly-wingspan-draft02",
+    "q": "butterfly-wingspan",
+    "points": [
+     [
+      499.0,
+      430.0
+     ],
+     [
+      568.0,
+      520.0
+     ]
+    ],
+    "dot": [
+     533.5,
+     475.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra",
+    "draft_points": [
+     [
+      499.0,
+      430.0
+     ],
+     [
+      568.0,
+      520.0
+     ]
+    ],
+    "draft_dot": [
+     533.5,
+     475.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "butterfly-wingspan-draft03",
+    "q": "butterfly-wingspan",
+    "points": [
+     [
+      180.0,
+      551.0
+     ],
+     [
+      117.0,
+      643.0
+     ]
+    ],
+    "dot": [
+     148.5,
+     597.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      180.0,
+      551.0
+     ],
+     [
+      117.0,
+      643.0
+     ]
+    ],
+    "draft_dot": [
+     148.5,
+     597.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "butterfly-wingspan-draft04",
+    "q": "butterfly-wingspan",
+    "points": [
+     [
+      559.0,
+      544.0
+     ],
+     [
+      606.0,
+      652.0
+     ]
+    ],
+    "dot": [
+     582.5,
+     598.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra",
+    "draft_points": [
+     [
+      559.0,
+      544.0
+     ],
+     [
+      606.0,
+      652.0
+     ]
+    ],
+    "draft_dot": [
+     582.5,
+     598.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "butterfly-wingspan-draft05",
+    "q": "butterfly-wingspan",
+    "points": [
+     [
+      107.0,
+      689.0
+     ],
+     [
+      191.0,
+      750.0
+     ]
+    ],
+    "dot": [
+     149.0,
+     719.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      107.0,
+      689.0
+     ],
+     [
+      191.0,
+      750.0
+     ]
+    ],
+    "draft_dot": [
+     149.0,
+     719.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "butterfly-wingspan-draft06",
+    "q": "butterfly-wingspan",
+    "points": [
+     [
+      621.0,
+      675.0
+     ],
+     [
+      550.0,
+      799.0
+     ]
+    ],
+    "dot": [
+     585.5,
+     737.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      621.0,
+      675.0
+     ],
+     [
+      550.0,
+      799.0
+     ]
+    ],
+    "draft_dot": [
+     585.5,
+     737.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "butterfly-wingspan-draft07",
+    "q": "butterfly-wingspan",
+    "points": [
+     [
+      346.0,
+      369.0
+     ],
+     [
+      387.0,
+      368.0
+     ]
+    ],
+    "dot": [
+     366.5,
+     368.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      346.0,
+      369.0
+     ],
+     [
+      387.0,
+      368.0
+     ]
+    ],
+    "draft_dot": [
+     366.5,
+     368.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "butterfly-wingspan-draft08",
+    "q": "butterfly-wingspan",
+    "points": [
+     [
+      252.0,
+      416.0
+     ],
+     [
+      282.0,
+      397.0
+     ]
+    ],
+    "dot": [
+     267.0,
+     406.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra",
+    "draft_points": [
+     [
+      252.0,
+      416.0
+     ],
+     [
+      282.0,
+      397.0
+     ]
+    ],
+    "draft_dot": [
+     267.0,
+     406.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "butterfly-wingspan-draft09",
+    "q": "butterfly-wingspan",
+    "points": [
+     [
+      461.0,
+      405.0
+     ],
+     [
+      485.0,
+      433.0
+     ]
+    ],
+    "dot": [
+     473.0,
+     419.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra",
+    "draft_points": [
+     [
+      461.0,
+      405.0
+     ],
+     [
+      485.0,
+      433.0
+     ]
+    ],
+    "draft_dot": [
+     473.0,
+     419.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "butterfly-wingspan-draft10",
+    "q": "butterfly-wingspan",
+    "points": [
+     [
+      203.0,
+      608.0
+     ],
+     [
+      250.0,
+      609.0
+     ]
+    ],
+    "dot": [
+     226.5,
+     608.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra",
+    "draft_points": [
+     [
+      203.0,
+      608.0
+     ],
+     [
+      250.0,
+      609.0
+     ]
+    ],
+    "draft_dot": [
+     226.5,
+     608.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "butterfly-wingspan-draft11",
+    "q": "butterfly-wingspan",
+    "points": [
+     [
+      480.0,
+      615.0
+     ],
+     [
+      519.0,
+      614.0
+     ]
+    ],
+    "dot": [
+     499.5,
+     614.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra",
+    "draft_points": [
+     [
+      480.0,
+      615.0
+     ],
+     [
+      519.0,
+      614.0
+     ]
+    ],
+    "draft_dot": [
+     499.5,
+     614.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "butterfly-wingspan-draft12",
+    "q": "butterfly-wingspan",
+    "points": [
+     [
+      192.0,
+      681.0
+     ],
+     [
+      272.0,
+      695.0
+     ]
+    ],
+    "dot": [
+     232.0,
+     688.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      192.0,
+      681.0
+     ],
+     [
+      272.0,
+      695.0
+     ]
+    ],
+    "draft_dot": [
+     232.0,
+     688.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "butterfly-wingspan-draft13",
+    "q": "butterfly-wingspan",
+    "points": [
+     [
+      465.0,
+      700.0
+     ],
+     [
+      540.0,
+      689.0
+     ]
+    ],
+    "dot": [
+     502.5,
+     694.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      465.0,
+      700.0
+     ],
+     [
+      540.0,
+      689.0
+     ]
+    ],
+    "draft_dot": [
+     502.5,
+     694.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "butterfly-wingspan-draft14",
+    "q": "butterfly-wingspan",
+    "points": [
+     [
+      293.0,
+      729.0
+     ],
+     [
+      354.0,
+      770.0
+     ]
+    ],
+    "dot": [
+     323.5,
+     749.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra",
+    "draft_points": [
+     [
+      293.0,
+      729.0
+     ],
+     [
+      354.0,
+      770.0
+     ]
+    ],
+    "draft_dot": [
+     323.5,
+     749.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "butterfly-wingspan-draft15",
+    "q": "butterfly-wingspan",
+    "points": [
+     [
+      385.0,
+      772.0
+     ],
+     [
+      450.0,
+      747.0
+     ]
+    ],
+    "dot": [
+     417.5,
+     759.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      385.0,
+      772.0
+     ],
+     [
+      450.0,
+      747.0
+     ]
+    ],
+    "draft_dot": [
+     417.5,
+     759.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "butterfly-tail-draft00",
+    "q": "butterfly-tail",
+    "points": [
+     [
+      675.9,
+      587.0
+     ],
+     [
+      680.0,
+      584.0
+     ],
+     [
+      688.0,
+      587.0
+     ],
+     [
+      702.0,
+      589.0
+     ]
+    ],
+    "dot": [
+     688.3,
+     587.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      675.9,
+      587.0
+     ],
+     [
+      680.0,
+      584.0
+     ],
+     [
+      688.0,
+      587.0
+     ],
+     [
+      702.0,
+      589.0
+     ]
+    ],
+    "draft_dot": [
+     688.3,
+     587.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "butterfly-tail-draft01",
+    "q": "butterfly-tail",
+    "points": [
+     [
+      651.5,
+      533.2
+     ],
+     [
+      652.0,
+      529.0
+     ],
+     [
+      657.0,
+      520.0
+     ],
+     [
+      659.0,
+      517.0
+     ],
+     [
+      658.0,
+      514.0
+     ]
+    ],
+    "dot": [
+     655.1,
+     523.4
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      651.5,
+      533.2
+     ],
+     [
+      652.0,
+      529.0
+     ],
+     [
+      657.0,
+      520.0
+     ],
+     [
+      659.0,
+      517.0
+     ],
+     [
+      658.0,
+      514.0
+     ]
+    ],
+    "draft_dot": [
+     655.1,
+     523.4
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "butterfly-tail-draft02",
+    "q": "butterfly-tail",
+    "points": [
+     [
+      630.0,
+      822.0
+     ],
+     [
+      636.0,
+      831.0
+     ],
+     [
+      640.0,
+      839.0
+     ],
+     [
+      642.0,
+      846.0
+     ],
+     [
+      648.0,
+      847.0
+     ],
+     [
+      650.0,
+      843.0
+     ]
+    ],
+    "dot": [
+     639.6,
+     838.1
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra",
+    "draft_points": [
+     [
+      630.0,
+      822.0
+     ],
+     [
+      636.0,
+      831.0
+     ],
+     [
+      640.0,
+      839.0
+     ],
+     [
+      642.0,
+      846.0
+     ],
+     [
+      648.0,
+      847.0
+     ],
+     [
+      650.0,
+      843.0
+     ]
+    ],
+    "draft_dot": [
+     639.6,
+     838.1
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "butterfly-tail-draft03",
+    "q": "butterfly-tail",
+    "points": [
+     [
+      670.0,
+      777.0
+     ],
+     [
+      677.0,
+      785.0
+     ],
+     [
+      681.0,
+      784.0
+     ],
+     [
+      690.0,
+      784.0
+     ],
+     [
+      694.0,
+      782.0
+     ]
+    ],
+    "dot": [
+     680.4,
+     784.2
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      670.0,
+      777.0
+     ],
+     [
+      677.0,
+      785.0
+     ],
+     [
+      681.0,
+      784.0
+     ],
+     [
+      690.0,
+      784.0
+     ],
+     [
+      694.0,
+      782.0
+     ]
+    ],
+    "draft_dot": [
+     680.4,
+     784.2
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "butterfly-tail-draft04",
+    "q": "butterfly-tail",
+    "points": [
+     [
+      62.6,
+      757.7
+     ],
+     [
+      59.0,
+      763.0
+     ],
+     [
+      56.0,
+      768.0
+     ],
+     [
+      46.0,
+      770.0
+     ],
+     [
+      42.3,
+      769.3
+     ]
+    ],
+    "dot": [
+     55.2,
+     768.2
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      62.6,
+      757.7
+     ],
+     [
+      59.0,
+      763.0
+     ],
+     [
+      56.0,
+      768.0
+     ],
+     [
+      46.0,
+      770.0
+     ],
+     [
+      42.3,
+      769.3
+     ]
+    ],
+    "draft_dot": [
+     55.2,
+     768.2
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "butterfly-tail-draft05",
+    "q": "butterfly-tail",
+    "points": [
+     [
+      113.0,
+      797.0
+     ],
+     [
+      108.0,
+      807.0
+     ],
+     [
+      102.0,
+      815.0
+     ],
+     [
+      97.0,
+      821.0
+     ],
+     [
+      92.0,
+      820.0
+     ]
+    ],
+    "dot": [
+     104.5,
+     811.7
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra",
+    "draft_points": [
+     [
+      113.0,
+      797.0
+     ],
+     [
+      108.0,
+      807.0
+     ],
+     [
+      102.0,
+      815.0
+     ],
+     [
+      97.0,
+      821.0
+     ],
+     [
+      92.0,
+      820.0
+     ]
+    ],
+    "draft_dot": [
+     104.5,
+     811.7
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "butterfly-tail-draft06",
+    "q": "butterfly-tail",
+    "points": [
+     [
+      67.6,
+      571.5
+     ],
+     [
+      66.0,
+      568.0
+     ],
+     [
+      58.0,
+      572.0
+     ],
+     [
+      56.0,
+      572.0
+     ],
+     [
+      51.0,
+      570.0
+     ]
+    ],
+    "dot": [
+     60.4,
+     570.8
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      67.6,
+      571.5
+     ],
+     [
+      66.0,
+      568.0
+     ],
+     [
+      58.0,
+      572.0
+     ],
+     [
+      56.0,
+      572.0
+     ],
+     [
+      51.0,
+      570.0
+     ]
+    ],
+    "draft_dot": [
+     60.4,
+     570.8
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "butterfly-tail-draft07",
+    "q": "butterfly-tail",
+    "points": [
+     [
+      111.6,
+      536.8
+     ],
+     [
+      104.0,
+      527.0
+     ],
+     [
+      102.0,
+      520.0
+     ],
+     [
+      101.0,
+      512.0
+     ],
+     [
+      97.0,
+      506.0
+     ]
+    ],
+    "dot": [
+     102.6,
+     522.1
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      111.6,
+      536.8
+     ],
+     [
+      104.0,
+      527.0
+     ],
+     [
+      102.0,
+      520.0
+     ],
+     [
+      101.0,
+      512.0
+     ],
+     [
+      97.0,
+      506.0
+     ]
+    ],
+    "draft_dot": [
+     102.6,
+     522.1
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "pine-branch-draft00",
+    "q": "pine-branch",
+    "points": [
+     [
+      308.2,
+      283.8
+     ],
+     [
+      334.0,
+      296.0
+     ],
+     [
+      377.0,
+      332.0
+     ],
+     [
+      377.0,
+      332.0
+     ],
+     [
+      407.0,
+      353.0
+     ],
+     [
+      435.0,
+      373.0
+     ],
+     [
+      449.6,
+      382.9
+     ]
+    ],
+    "dot": [
+     378.7,
+     333.2
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      308.2,
+      283.8
+     ],
+     [
+      334.0,
+      296.0
+     ],
+     [
+      377.0,
+      332.0
+     ],
+     [
+      377.0,
+      332.0
+     ],
+     [
+      407.0,
+      353.0
+     ],
+     [
+      435.0,
+      373.0
+     ],
+     [
+      449.6,
+      382.9
+     ]
+    ],
+    "draft_dot": [
+     378.7,
+     333.2
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "pine-cow-draft00",
+    "q": "pine-cow",
+    "points": [
+     [
+      737.0,
+      389.0
+     ],
+     [
+      832.0,
+      369.0
+     ]
+    ],
+    "dot": [
+     784.5,
+     379.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      737.0,
+      389.0
+     ],
+     [
+      832.0,
+      369.0
+     ]
+    ],
+    "draft_dot": [
+     784.5,
+     379.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "pine-cow-draft01",
+    "q": "pine-cow",
+    "points": [
+     [
+      537.0,
+      382.0
+     ],
+     [
+      435.0,
+      343.0
+     ]
+    ],
+    "dot": [
+     486.0,
+     362.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      537.0,
+      382.0
+     ],
+     [
+      435.0,
+      343.0
+     ]
+    ],
+    "draft_dot": [
+     486.0,
+     362.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "pine-cow-draft02",
+    "q": "pine-cow",
+    "points": [
+     [
+      642.0,
+      408.0
+     ],
+     [
+      722.0,
+      368.0
+     ]
+    ],
+    "dot": [
+     682.0,
+     388.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      642.0,
+      408.0
+     ],
+     [
+      722.0,
+      368.0
+     ]
+    ],
+    "draft_dot": [
+     682.0,
+     388.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "pine-cow-draft03",
+    "q": "pine-cow",
+    "points": [
+     [
+      759.0,
+      325.0
+     ],
+     [
+      782.0,
+      319.0
+     ]
+    ],
+    "dot": [
+     770.5,
+     322.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      759.0,
+      325.0
+     ],
+     [
+      782.0,
+      319.0
+     ]
+    ],
+    "draft_dot": [
+     770.5,
+     322.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "road2-pole-draft00",
+    "q": "road2-pole",
+    "points": [
+     [
+      2187.0,
+      1467.0
+     ],
+     [
+      2304.0,
+      0
+     ]
+    ],
+    "dot": [
+     2245.5,
+     733.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      2187.0,
+      1467.0
+     ],
+     [
+      2304.0,
+      0
+     ]
+    ],
+    "draft_dot": [
+     2245.5,
+     733.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "road2-pole-draft01",
+    "q": "road2-pole",
+    "points": [
+     [
+      1523.0,
+      1159.0
+     ],
+     [
+      1492.0,
+      410.0
+     ]
+    ],
+    "dot": [
+     1507.5,
+     784.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      1523.0,
+      1159.0
+     ],
+     [
+      1492.0,
+      410.0
+     ]
+    ],
+    "draft_dot": [
+     1507.5,
+     784.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "jars-lid-draft00",
+    "q": "jars-lid",
+    "points": [
+     [
+      365.0,
+      107.0
+     ],
+     [
+      591.0,
+      108.0
+     ]
+    ],
+    "dot": [
+     478.0,
+     107.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      365.0,
+      107.0
+     ],
+     [
+      591.0,
+      108.0
+     ]
+    ],
+    "draft_dot": [
+     478.0,
+     107.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "jars-lid-draft01",
+    "q": "jars-lid",
+    "points": [
+     [
+      829.0,
+      80.0
+     ],
+     [
+      1014.0,
+      82.0
+     ]
+    ],
+    "dot": [
+     921.5,
+     81.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      829.0,
+      80.0
+     ],
+     [
+      1014.0,
+      82.0
+     ]
+    ],
+    "draft_dot": [
+     921.5,
+     81.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "jars-lid-draft02",
+    "q": "jars-lid",
+    "points": [
+     [
+      622.0,
+      72.0
+     ],
+     [
+      786.0,
+      71.0
+     ]
+    ],
+    "dot": [
+     704.0,
+     71.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      622.0,
+      72.0
+     ],
+     [
+      786.0,
+      71.0
+     ]
+    ],
+    "draft_dot": [
+     704.0,
+     71.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "jars-lid-draft03",
+    "q": "jars-lid",
+    "points": [
+     [
+      315.0,
+      61.0
+     ],
+     [
+      477.0,
+      67.0
+     ]
+    ],
+    "dot": [
+     396.0,
+     64.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      315.0,
+      61.0
+     ],
+     [
+      477.0,
+      67.0
+     ]
+    ],
+    "draft_dot": [
+     396.0,
+     64.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "jars-lid-draft04",
+    "q": "jars-lid",
+    "points": [
+     [
+      5.0,
+      43.0
+     ],
+     [
+      168.0,
+      49.0
+     ]
+    ],
+    "dot": [
+     86.5,
+     46.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      5.0,
+      43.0
+     ],
+     [
+      168.0,
+      49.0
+     ]
+    ],
+    "draft_dot": [
+     86.5,
+     46.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "jars-lid-draft05",
+    "q": "jars-lid",
+    "points": [
+     [
+      724.0,
+      39.0
+     ],
+     [
+      851.0,
+      54.0
+     ]
+    ],
+    "dot": [
+     787.5,
+     46.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      724.0,
+      39.0
+     ],
+     [
+      851.0,
+      54.0
+     ]
+    ],
+    "draft_dot": [
+     787.5,
+     46.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "logs-diameter-draft00",
+    "q": "logs-diameter",
+    "points": [
+     [
+      2073.0,
+      1520.0
+     ],
+     [
+      2797.0,
+      1817.0
+     ]
+    ],
+    "dot": [
+     2435.0,
+     1668.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      2073.0,
+      1520.0
+     ],
+     [
+      2797.0,
+      1817.0
+     ]
+    ],
+    "draft_dot": [
+     2435.0,
+     1668.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "logs-diameter-draft01",
+    "q": "logs-diameter",
+    "points": [
+     [
+      448.0,
+      863.0
+     ],
+     [
+      1234.0,
+      1192.0
+     ]
+    ],
+    "dot": [
+     841.0,
+     1027.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      448.0,
+      863.0
+     ],
+     [
+      1234.0,
+      1192.0
+     ]
+    ],
+    "draft_dot": [
+     841.0,
+     1027.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "logs-diameter-draft02",
+    "q": "logs-diameter",
+    "points": [
+     [
+      1986.0,
+      1037.0
+     ],
+     [
+      2323.0,
+      1270.0
+     ]
+    ],
+    "dot": [
+     2154.5,
+     1153.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      1986.0,
+      1037.0
+     ],
+     [
+      2323.0,
+      1270.0
+     ]
+    ],
+    "draft_dot": [
+     2154.5,
+     1153.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "logs-diameter-draft03",
+    "q": "logs-diameter",
+    "points": [
+     [
+      1660.0,
+      1349.0
+     ],
+     [
+      1971.0,
+      1596.0
+     ]
+    ],
+    "dot": [
+     1815.5,
+     1472.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      1660.0,
+      1349.0
+     ],
+     [
+      1971.0,
+      1596.0
+     ]
+    ],
+    "draft_dot": [
+     1815.5,
+     1472.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "logs-diameter-draft04",
+    "q": "logs-diameter",
+    "points": [
+     [
+      1265.0,
+      1490.0
+     ],
+     [
+      1636.0,
+      1617.0
+     ]
+    ],
+    "dot": [
+     1450.5,
+     1553.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      1265.0,
+      1490.0
+     ],
+     [
+      1636.0,
+      1617.0
+     ]
+    ],
+    "draft_dot": [
+     1450.5,
+     1553.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "logs-diameter-draft05",
+    "q": "logs-diameter",
+    "points": [
+     [
+      2164.0,
+      371.0
+     ],
+     [
+      2487.0,
+      527.0
+     ]
+    ],
+    "dot": [
+     2325.5,
+     449.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      2164.0,
+      371.0
+     ],
+     [
+      2487.0,
+      527.0
+     ]
+    ],
+    "draft_dot": [
+     2325.5,
+     449.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "logs-diameter-draft06",
+    "q": "logs-diameter",
+    "points": [
+     [
+      2230.0,
+      737.0
+     ],
+     [
+      2519.0,
+      848.0
+     ]
+    ],
+    "dot": [
+     2374.5,
+     792.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      2230.0,
+      737.0
+     ],
+     [
+      2519.0,
+      848.0
+     ]
+    ],
+    "draft_dot": [
+     2374.5,
+     792.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "logs-diameter-draft07",
+    "q": "logs-diameter",
+    "points": [
+     [
+      2567.0,
+      1092.0
+     ],
+     [
+      2926.0,
+      1302.0
+     ]
+    ],
+    "dot": [
+     2746.5,
+     1197.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      2567.0,
+      1092.0
+     ],
+     [
+      2926.0,
+      1302.0
+     ]
+    ],
+    "draft_dot": [
+     2746.5,
+     1197.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "logs-diameter-draft08",
+    "q": "logs-diameter",
+    "points": [
+     [
+      2784.0,
+      965.0
+     ],
+     [
+      3201.0,
+      1144.0
+     ]
+    ],
+    "dot": [
+     2992.5,
+     1054.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      2784.0,
+      965.0
+     ],
+     [
+      3201.0,
+      1144.0
+     ]
+    ],
+    "draft_dot": [
+     2992.5,
+     1054.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "logs-diameter-draft09",
+    "q": "logs-diameter",
+    "points": [
+     [
+      3183.0,
+      766.0
+     ],
+     [
+      3422.0,
+      966.0
+     ]
+    ],
+    "dot": [
+     3302.5,
+     866.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      3183.0,
+      766.0
+     ],
+     [
+      3422.0,
+      966.0
+     ]
+    ],
+    "draft_dot": [
+     3302.5,
+     866.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "logs-diameter-draft10",
+    "q": "logs-diameter",
+    "points": [
+     [
+      1499.0,
+      489.0
+     ],
+     [
+      1864.0,
+      707.0
+     ]
+    ],
+    "dot": [
+     1681.5,
+     598.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      1499.0,
+      489.0
+     ],
+     [
+      1864.0,
+      707.0
+     ]
+    ],
+    "draft_dot": [
+     1681.5,
+     598.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "logs-diameter-draft11",
+    "q": "logs-diameter",
+    "points": [
+     [
+      1379.0,
+      863.0
+     ],
+     [
+      1633.0,
+      1041.0
+     ]
+    ],
+    "dot": [
+     1506.0,
+     952.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      1379.0,
+      863.0
+     ],
+     [
+      1633.0,
+      1041.0
+     ]
+    ],
+    "draft_dot": [
+     1506.0,
+     952.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "logs-diameter-draft12",
+    "q": "logs-diameter",
+    "points": [
+     [
+      1646.0,
+      1012.0
+     ],
+     [
+      1938.0,
+      1160.0
+     ]
+    ],
+    "dot": [
+     1792.0,
+     1086.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      1646.0,
+      1012.0
+     ],
+     [
+      1938.0,
+      1160.0
+     ]
+    ],
+    "draft_dot": [
+     1792.0,
+     1086.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "logs-diameter-draft13",
+    "q": "logs-diameter",
+    "points": [
+     [
+      1767.0,
+      793.0
+     ],
+     [
+      1958.0,
+      942.0
+     ]
+    ],
+    "dot": [
+     1862.5,
+     867.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      1767.0,
+      793.0
+     ],
+     [
+      1958.0,
+      942.0
+     ]
+    ],
+    "draft_dot": [
+     1862.5,
+     867.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "logs-diameter-draft14",
+    "q": "logs-diameter",
+    "points": [
+     [
+      2005.0,
+      809.0
+     ],
+     [
+      2202.0,
+      938.0
+     ]
+    ],
+    "dot": [
+     2103.5,
+     873.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      2005.0,
+      809.0
+     ],
+     [
+      2202.0,
+      938.0
+     ]
+    ],
+    "draft_dot": [
+     2103.5,
+     873.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "logs-diameter-draft15",
+    "q": "logs-diameter",
+    "points": [
+     [
+      2533.0,
+      809.0
+     ],
+     [
+      2759.0,
+      997.0
+     ]
+    ],
+    "dot": [
+     2646.0,
+     903.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      2533.0,
+      809.0
+     ],
+     [
+      2759.0,
+      997.0
+     ]
+    ],
+    "draft_dot": [
+     2646.0,
+     903.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "logs-diameter-draft16",
+    "q": "logs-diameter",
+    "points": [
+     [
+      2775.0,
+      762.0
+     ],
+     [
+      3089.0,
+      837.0
+     ]
+    ],
+    "dot": [
+     2932.0,
+     799.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      2775.0,
+      762.0
+     ],
+     [
+      3089.0,
+      837.0
+     ]
+    ],
+    "draft_dot": [
+     2932.0,
+     799.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "logs-diameter-draft17",
+    "q": "logs-diameter",
+    "points": [
+     [
+      3223.0,
+      533.0
+     ],
+     [
+      3513.0,
+      627.0
+     ]
+    ],
+    "dot": [
+     3368.0,
+     580.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      3223.0,
+      533.0
+     ],
+     [
+      3513.0,
+      627.0
+     ]
+    ],
+    "draft_dot": [
+     3368.0,
+     580.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "logs-diameter-draft18",
+    "q": "logs-diameter",
+    "points": [
+     [
+      2767.0,
+      447.0
+     ],
+     [
+      3093.0,
+      562.0
+     ]
+    ],
+    "dot": [
+     2930.0,
+     504.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      2767.0,
+      447.0
+     ],
+     [
+      3093.0,
+      562.0
+     ]
+    ],
+    "draft_dot": [
+     2930.0,
+     504.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "logs-diameter-draft19",
+    "q": "logs-diameter",
+    "points": [
+     [
+      2513.0,
+      504.0
+     ],
+     [
+      2720.0,
+      661.0
+     ]
+    ],
+    "dot": [
+     2616.5,
+     582.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      2513.0,
+      504.0
+     ],
+     [
+      2720.0,
+      661.0
+     ]
+    ],
+    "draft_dot": [
+     2616.5,
+     582.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "barn-log-length-draft00",
+    "q": "barn-log-length",
+    "points": [
+     [
+      3974.0,
+      1735.0
+     ],
+     [
+      4377.0,
+      1811.0
+     ]
+    ],
+    "dot": [
+     4175.5,
+     1773.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      3974.0,
+      1735.0
+     ],
+     [
+      4377.0,
+      1811.0
+     ]
+    ],
+    "draft_dot": [
+     4175.5,
+     1773.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "barn-log-length-draft01",
+    "q": "barn-log-length",
+    "points": [
+     [
+      3430.0,
+      1665.0
+     ],
+     [
+      3835.0,
+      1550.0
+     ]
+    ],
+    "dot": [
+     3632.5,
+     1607.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra",
+    "draft_points": [
+     [
+      3430.0,
+      1665.0
+     ],
+     [
+      3835.0,
+      1550.0
+     ]
+    ],
+    "draft_dot": [
+     3632.5,
+     1607.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "barn-log-length-draft02",
+    "q": "barn-log-length",
+    "points": [
+     [
+      4332.0,
+      1935.0
+     ],
+     [
+      4795.0,
+      1715.0
+     ]
+    ],
+    "dot": [
+     4563.5,
+     1825.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      4332.0,
+      1935.0
+     ],
+     [
+      4795.0,
+      1715.0
+     ]
+    ],
+    "draft_dot": [
+     4563.5,
+     1825.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "barn-log-length-draft03",
+    "q": "barn-log-length",
+    "points": [
+     [
+      4930.0,
+      1840.0
+     ],
+     [
+      5150.0,
+      1690.0
+     ]
+    ],
+    "dot": [
+     5040.0,
+     1765.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra",
+    "draft_points": [
+     [
+      4930.0,
+      1840.0
+     ],
+     [
+      5150.0,
+      1690.0
+     ]
+    ],
+    "draft_dot": [
+     5040.0,
+     1765.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "barn-log-length-draft04",
+    "q": "barn-log-length",
+    "points": [
+     [
+      3580.0,
+      1460.0
+     ],
+     [
+      3990.0,
+      1355.0
+     ]
+    ],
+    "dot": [
+     3785.0,
+     1407.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra",
+    "draft_points": [
+     [
+      3580.0,
+      1460.0
+     ],
+     [
+      3990.0,
+      1355.0
+     ]
+    ],
+    "draft_dot": [
+     3785.0,
+     1407.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "barn-log-length-draft05",
+    "q": "barn-log-length",
+    "points": [
+     [
+      4253.0,
+      1400.0
+     ],
+     [
+      4670.0,
+      1388.0
+     ]
+    ],
+    "dot": [
+     4587.0,
+     1402.0
+    ],
+    "dot_moved": true,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      4253.0,
+      1400.0
+     ],
+     [
+      4670.0,
+      1388.0
+     ]
+    ],
+    "draft_dot": [
+     4587.0,
+     1402.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "wall-pinkleaf-draft00",
+    "q": "wall-pinkleaf",
+    "points": [
+     [
+      492.0,
+      595.0
+     ],
+     [
+      451.0,
+      583.0
+     ]
+    ],
+    "dot": [
+     471.5,
+     589.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      492.0,
+      595.0
+     ],
+     [
+      451.0,
+      583.0
+     ]
+    ],
+    "draft_dot": [
+     471.5,
+     589.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "wall-pinkleaf-draft01",
+    "q": "wall-pinkleaf",
+    "points": [
+     [
+      487.0,
+      630.0
+     ],
+     [
+      458.0,
+      610.0
+     ]
+    ],
+    "dot": [
+     472.5,
+     620.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      487.0,
+      630.0
+     ],
+     [
+      458.0,
+      610.0
+     ]
+    ],
+    "draft_dot": [
+     472.5,
+     620.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "wall-pinkleaf-draft02",
+    "q": "wall-pinkleaf",
+    "points": [
+     [
+      416.0,
+      506.0
+     ],
+     [
+      377.0,
+      510.0
+     ]
+    ],
+    "dot": [
+     396.5,
+     508.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      416.0,
+      506.0
+     ],
+     [
+      377.0,
+      510.0
+     ]
+    ],
+    "draft_dot": [
+     396.5,
+     508.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "wall-pinkleaf-draft03",
+    "q": "wall-pinkleaf",
+    "points": [
+     [
+      294.0,
+      586.0
+     ],
+     [
+      311.0,
+      607.0
+     ]
+    ],
+    "dot": [
+     302.5,
+     596.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      294.0,
+      586.0
+     ],
+     [
+      311.0,
+      607.0
+     ]
+    ],
+    "draft_dot": [
+     302.5,
+     596.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "wall-pinkleaf-draft04",
+    "q": "wall-pinkleaf",
+    "points": [
+     [
+      371.0,
+      623.0
+     ],
+     [
+      344.0,
+      603.0
+     ]
+    ],
+    "dot": [
+     357.5,
+     613.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      371.0,
+      623.0
+     ],
+     [
+      344.0,
+      603.0
+     ]
+    ],
+    "draft_dot": [
+     357.5,
+     613.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "wall-pinkleaf-draft05",
+    "q": "wall-pinkleaf",
+    "points": [
+     [
+      325.0,
+      589.0
+     ],
+     [
+      334.0,
+      625.0
+     ]
+    ],
+    "dot": [
+     329.5,
+     607.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      325.0,
+      589.0
+     ],
+     [
+      334.0,
+      625.0
+     ]
+    ],
+    "draft_dot": [
+     329.5,
+     607.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "wall-pinkleaf-draft06",
+    "q": "wall-pinkleaf",
+    "points": [
+     [
+      263.0,
+      610.0
+     ],
+     [
+      294.0,
+      636.0
+     ]
+    ],
+    "dot": [
+     278.5,
+     623.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      263.0,
+      610.0
+     ],
+     [
+      294.0,
+      636.0
+     ]
+    ],
+    "draft_dot": [
+     278.5,
+     623.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "wall-pinkleaf-draft07",
+    "q": "wall-pinkleaf",
+    "points": [
+     [
+      384.0,
+      654.0
+     ],
+     [
+      367.0,
+      629.0
+     ]
+    ],
+    "dot": [
+     375.5,
+     641.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      384.0,
+      654.0
+     ],
+     [
+      367.0,
+      629.0
+     ]
+    ],
+    "draft_dot": [
+     375.5,
+     641.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "wall-pinkleaf-draft08",
+    "q": "wall-pinkleaf",
+    "points": [
+     [
+      336.0,
+      519.0
+     ],
+     [
+      355.0,
+      541.0
+     ]
+    ],
+    "dot": [
+     345.5,
+     530.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      336.0,
+      519.0
+     ],
+     [
+      355.0,
+      541.0
+     ]
+    ],
+    "draft_dot": [
+     345.5,
+     530.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "wall-pinkleaf-draft09",
+    "q": "wall-pinkleaf",
+    "points": [
+     [
+      343.0,
+      582.0
+     ],
+     [
+      362.0,
+      564.0
+     ]
+    ],
+    "dot": [
+     352.5,
+     573.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      343.0,
+      582.0
+     ],
+     [
+      362.0,
+      564.0
+     ]
+    ],
+    "draft_dot": [
+     352.5,
+     573.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "mushroom-cap-draft00",
+    "q": "mushroom-cap",
+    "points": [
+     [
+      14.0,
+      331.0
+     ],
+     [
+      453.0,
+      281.0
+     ]
+    ],
+    "dot": [
+     233.5,
+     306.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      14.0,
+      331.0
+     ],
+     [
+      453.0,
+      281.0
+     ]
+    ],
+    "draft_dot": [
+     233.5,
+     306.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "mushroom-cap-draft01",
+    "q": "mushroom-cap",
+    "points": [
+     [
+      132.0,
+      113.0
+     ],
+     [
+      514.0,
+      135.0
+     ]
+    ],
+    "dot": [
+     323.0,
+     124.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      132.0,
+      113.0
+     ],
+     [
+      514.0,
+      135.0
+     ]
+    ],
+    "draft_dot": [
+     323.0,
+     124.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "mushroom-cap-draft02",
+    "q": "mushroom-cap",
+    "points": [
+     [
+      802.0,
+      346.0
+     ],
+     [
+      969.0,
+      601.0
+     ]
+    ],
+    "dot": [
+     885.5,
+     473.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      802.0,
+      346.0
+     ],
+     [
+      969.0,
+      601.0
+     ]
+    ],
+    "draft_dot": [
+     885.5,
+     473.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "mushroom-cap-draft03",
+    "q": "mushroom-cap",
+    "points": [
+     [
+      637.0,
+      151.0
+     ],
+     [
+      911.0,
+      234.0
+     ]
+    ],
+    "dot": [
+     774.0,
+     192.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      637.0,
+      151.0
+     ],
+     [
+      911.0,
+      234.0
+     ]
+    ],
+    "draft_dot": [
+     774.0,
+     192.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "mushroom-cap-draft04",
+    "q": "mushroom-cap",
+    "points": [
+     [
+      551.0,
+      389.0
+     ],
+     [
+      652.0,
+      411.0
+     ]
+    ],
+    "dot": [
+     601.5,
+     400.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      551.0,
+      389.0
+     ],
+     [
+      652.0,
+      411.0
+     ]
+    ],
+    "draft_dot": [
+     601.5,
+     400.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "fig-leaf-draft00",
+    "q": "fig-leaf",
+    "points": [
+     [
+      840.0,
+      3742.0
+     ],
+     [
+      768.0,
+      3384.0
+     ]
+    ],
+    "dot": [
+     804.0,
+     3563.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      840.0,
+      3742.0
+     ],
+     [
+      768.0,
+      3384.0
+     ]
+    ],
+    "draft_dot": [
+     804.0,
+     3563.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "fig-leaf-draft01",
+    "q": "fig-leaf",
+    "points": [
+     [
+      128.0,
+      3145.0
+     ],
+     [
+      412.0,
+      2838.0
+     ]
+    ],
+    "dot": [
+     270.0,
+     2991.5
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      128.0,
+      3145.0
+     ],
+     [
+      412.0,
+      2838.0
+     ]
+    ],
+    "draft_dot": [
+     270.0,
+     2991.5
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "fig-leaf-draft02",
+    "q": "fig-leaf",
+    "points": [
+     [
+      813.0,
+      2931.0
+     ],
+     [
+      567.0,
+      2681.0
+     ]
+    ],
+    "dot": [
+     690.0,
+     2806.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      813.0,
+      2931.0
+     ],
+     [
+      567.0,
+      2681.0
+     ]
+    ],
+    "draft_dot": [
+     690.0,
+     2806.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "fig-leaf-draft03",
+    "q": "fig-leaf",
+    "points": [
+     [
+      2192.0,
+      3454.0
+     ],
+     [
+      1988.0,
+      3110.0
+     ]
+    ],
+    "dot": [
+     2090.0,
+     3282.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      2192.0,
+      3454.0
+     ],
+     [
+      1988.0,
+      3110.0
+     ]
+    ],
+    "draft_dot": [
+     2090.0,
+     3282.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   },
+   {
+    "id": "fig-leaf-draft04",
+    "q": "fig-leaf",
+    "points": [
+     [
+      1577.0,
+      3391.0
+     ],
+     [
+      1783.0,
+      3085.0
+     ]
+    ],
+    "dot": [
+     1680.0,
+     3238.0
+    ],
+    "dot_moved": false,
+    "status": "draft",
+    "origin": "astra+sam3",
+    "draft_points": [
+     [
+      1577.0,
+      3391.0
+     ],
+     [
+      1783.0,
+      3085.0
+     ]
+    ],
+    "draft_dot": [
+     1680.0,
+     3238.0
+    ],
+    "created_at": "2026-10-17T00:02:16+00:00",
+    "edited_at": null
+   }
+  ],
+  "questions": {
+   "birds-wing": {
+    "done": false,
+    "dropped": false,
+    "notes": ""
+   },
+   "birds-neck": {
+    "done": false,
+    "dropped": false,
+    "notes": ""
+   },
+   "birds-beak": {
+    "done": false,
+    "dropped": false,
+    "notes": ""
+   },
+   "birds-wingspan": {
+    "done": false,
+    "dropped": false,
+    "notes": ""
+   },
+   "kitchen-handle": {
+    "done": false,
+    "dropped": false,
+    "notes": ""
+   },
+   "kitchen-knife": {
+    "done": false,
+    "dropped": false,
+    "notes": ""
+   },
+   "kitchen-dish-width": {
+    "done": false,
+    "dropped": false,
+    "notes": ""
+   },
+   "butterfly-wingspan": {
+    "done": false,
+    "dropped": false,
+    "notes": ""
+   },
+   "butterfly-tail": {
+    "done": false,
+    "dropped": false,
+    "notes": ""
+   },
+   "ants-leaf": {
+    "done": false,
+    "dropped": false,
+    "notes": ""
+   },
+   "ants-branch": {
+    "done": false,
+    "dropped": false,
+    "notes": ""
+   },
+   "road1-pole": {
+    "done": false,
+    "dropped": false,
+    "notes": ""
+   },
+   "road1-wire": {
+    "done": false,
+    "dropped": false,
+    "notes": ""
+   },
+   "road2-pole": {
+    "done": false,
+    "dropped": false,
+    "notes": ""
+   },
+   "pine-branch": {
+    "done": false,
+    "dropped": false,
+    "notes": ""
+   },
+   "pine-cow": {
+    "done": false,
+    "dropped": false,
+    "notes": ""
+   },
+   "logs-diameter": {
+    "done": false,
+    "dropped": false,
+    "notes": ""
+   },
+   "barn-log-length": {
+    "done": false,
+    "dropped": false,
+    "notes": ""
+   },
+   "jars-lid": {
+    "done": false,
+    "dropped": false,
+    "notes": ""
+   },
+   "mushroom-cap": {
+    "done": false,
+    "dropped": false,
+    "notes": ""
+   },
+   "wall-pinkleaf": {
+    "done": false,
+    "dropped": false,
+    "notes": ""
+   },
+   "fig-leaf": {
+    "done": false,
+    "dropped": false,
+    "notes": ""
+   }
+  },
+  "audit": [
+   {
+    "at": "2026-10-17T00:02:16+00:00",
+    "action": "drafts added",
+    "count": 131,
+    "source": "GPT-6 Astra clicks, moved onto SAM 3 outlines (scripts/draft_measure_clicks.py)"
+   }
+  ]
+ }
+}

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Measurement clicks · segbench</title><link rel="stylesheet" href="style.css?v=2"></head>
+<body>
+<header>
+ <div><span class="eyebrow">SEGBENCH / MEASUREMENT ANSWER KEY</span><h1>Click the measurements</h1></div>
+ <div class="save"><span id="saveStatus" role="status">Loading…</span><button id="export">Export ↓</button><button id="import">Import</button><input id="file" type="file" accept=".json,application/json" hidden></div>
+</header>
+<div class="layout">
+ <nav id="questions" aria-label="Questions"></nav>
+ <section class="editor">
+  <div class="canvas-wrap" id="viewport"><canvas id="canvas" tabindex="0"></canvas><div id="loading">Loading photo…</div>
+   <div class="zoom"><button id="zoomOut" title="−">−</button><span id="zoomLevel">Fit</span><button id="zoomIn" title="+">＋</button><button id="fit" title="F">Fit · F</button></div></div>
+  <div class="under"><span id="hint"></span><label><input id="others" type="checkbox" checked> Show the other questions on this photo</label></div>
+ </section>
+ <aside>
+  <span class="eyebrow" id="qPhoto"></span><h2 id="qTitle"></h2>
+  <div class="how"><b>Click:</b> <span id="qHow"></span><p id="qNote" class="note"></p></div>
+  <details class="prompt"><summary>What the models will be asked</summary><pre id="qPrompt"></pre></details>
+  <div class="counts"><b id="qCount"></b> <span id="qSuggest"></span></div>
+  <div class="row"><button id="keep" class="primary">✓ Keep draft · Enter</button><button id="nextDraft">Next draft · J</button></div>
+  <div class="row"><button id="finish" class="primary">✓ Finish line · Enter</button><button id="cancel">Cancel · Esc</button></div>
+  <ol id="items"></ol>
+  <div class="row"><button id="undo">↶ Undo</button><button id="redo">↷ Redo</button><button id="resetDot" title="Put the red dot back in the middle of the clicks">Dot to middle</button><button id="delete">✕ Delete · Del</button></div>
+  <div class="finish">
+   <label><input id="done" type="checkbox"> Done with this question</label>
+   <label><input id="dropped" type="checkbox"> Drop this question (unclear, not worth it)</label>
+   <textarea id="qNotes" rows="2" placeholder="Notes for this question…"></textarea>
+  </div>
+  <details class="help"><summary>Controls</summary><p>
+   <b>Drafts</b> (orange, dashed) come from GPT-6 Astra and SAM 3: fix their points and dot, then Enter keeps one and goes to the next; Delete removes a wrong or unclear one. Only kept items count.<br>
+   <b>Click</b> to add a point. A <b>span</b> ends by itself after 2 clicks; a <b>line</b> ends with Enter (or a double-click).
+   Backspace removes the last point while clicking. Esc cancels.<br>
+   <b>Drag</b> an empty spot to pan; wheel to zoom at the cursor; F to fit.
+   <b>Drag</b> a point or the red dot to move it.<br>
+   The red dot is what the models will see, at the size they will see it. It goes to the middle of your clicks
+   (half-way along a line); drag it if it is not clearly on the part.<br>
+   N / P: next / previous question. Ctrl/Cmd Z: undo.</p><p id="source"></p></details>
+ </aside>
+</div>
+<div id="toast" role="status" hidden></div>
+<script src="seed.js"></script><script src="app.js?v=3"></script>
+</body></html>

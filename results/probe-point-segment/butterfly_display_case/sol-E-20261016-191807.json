@@ -1,0 +1,39 @@
+{
+ "model": "sol",
+ "label": "GPT-6.1 Sol",
+ "prompt_version": "E",
+ "route": "openai-codex:gpt-6.1-sol",
+ "billing": "subscription",
+ "level": "medium",
+ "image": "butterfly_display_case.jpg",
+ "size": [
+  743,
+  1319
+ ],
+ "requests": 1,
+ "errors": 0,
+ "unreadable": 0,
+ "cost_usd_total": 0.007592,
+ "cost_usd_per_dot": 0.007592,
+ "seconds_per_dot_mean": 11.122,
+ "wall_seconds": 11.134679317474365,
+ "dots": [
+  {
+   "dot": 5,
+   "x": 279,
+   "y": 495,
+   "how": "box + 20x20 grid",
+   "n_polygons": 0,
+   "n_vertices": 0,
+   "area_px": 4941,
+   "dot_inside": false,
+   "seconds": 11.122,
+   "cost_usd": 0.007592,
+   "input_tokens": 1411,
+   "output_tokens": 477,
+   "reasoning_tokens": 285,
+   "error": null,
+   "polygons": []
+  }
+ ]
+}
