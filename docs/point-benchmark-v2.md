@@ -313,6 +313,31 @@ Candidate scores: `results/point-benchmark-v2-loc-2026-10-14`,
 `results/point-benchmark-v2.7`; charts: `charts/point-benchmark-v2.7`,
 `charts/screens-2`.
 
+## v2.8 (2026-10-29): GPT-6.1 Terra, published
+
+GPT-6.1 Terra (`terra-6.1`, ChatGPT plan, medium thinking, 3 tries; added
+2026-10-26, checks in `scripts/add_model.py status terra-6.1`), published on
+the site at Lilly's request of 2026-10-29. GPT-5.6 Terra stays.
+
+- Both prompts rescored for every model (`results/point-benchmark-v2-loc-2026-10-29`,
+  `-v1hd-loc-2026-10-29`): every earlier score identical to the 2026-10-14 folders;
+  the only new entrant is GPT-6.1 Terra (v2 72.6, v1-hd 71.3, keeps v2).
+  `results/run-points-best.jsonl` gains its 12 lines and nothing else changes.
+- Photos (four tasks): **72.6**, 3rd of 30 (after Muse Wonder 75.4 and
+  Muse Wonder Full 74.6), at about $12 per 1,000 photos and 4.9 s; its disc
+  nearly covers Gemini 4 Argon's (71.8, about $10): both are on the
+  best-value line. Every other row of `results/point-benchmark-v2.8` equals v2.7.
+- Screenshots, round 2: **100**, tied with GPT-6 Astra, GPT-6.1 Sol,
+  Gemini 4 Argon and Muse Wonder Full, and the cheapest of them, so it
+  joins the best-value line. `charts/screens-2` redrawn from the same files
+  plus its lines; every other point unchanged.
+- Label pins: v2.7's, carried over (`scripts/plot_point_pilot.py`).
+- On the 11-photo version (v3, not on the site) it scores 73.9
+  (`charts/preview-terra-6.1/`).
+
+Report: `results/point-benchmark-v2.8`; charts: `charts/point-benchmark-v2.8`,
+`charts/screens-2`.
+
 ## v3 (2026-10-14): seven more photos, eleven tasks
 
 Seven tasks on the second photo batch (`images/README.md`, "Added

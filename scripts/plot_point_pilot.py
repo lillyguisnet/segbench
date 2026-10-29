@@ -39,7 +39,9 @@ OUT = ROOT / 'charts' / (sys.argv[2] if len(sys.argv) > 2 else 'point-pilot-edit
 LABEL_SPOTS = {'point-benchmark-v3': {'molmopoint-8b': 'll', 'gemini-flash-lite@medium': 'below',
                                       'gemini-argon@medium': 'lr', 'sonnet@medium': 'lr'},
                'point-benchmark-v2.7': {'gemini-pro@medium': 'left'},
-               'point-benchmark-v2.7/language-models': {'qwen-27b@medium': 'left'}}
+               'point-benchmark-v2.7/language-models': {'qwen-27b@medium': 'left'},
+               'point-benchmark-v2.8': {'gemini-pro@medium': 'left'},
+               'point-benchmark-v2.8/language-models': {'qwen-27b@medium': 'left'}}
 
 
 def main():

@@ -189,8 +189,8 @@ is computed: `segbench/chart_data.py`. Choices made for readability:
 **Adding one:** `docs/adding-a-model.md` (the steps, and the rules every
 model so far was added by), helped by `uv run scripts/add_model.py status KEY`.
 
-**Prepared, not benchmarked:** [Falcon Perception-HD](docs/falcon.md), installed
-through the shared `~/Projects/finders` setup (2026-10-23).
+**Run, not published:** [Falcon Perception-HD](docs/falcon.md) (installed
+through the shared `~/Projects/finders` setup, 2026-10-23; preview scores only).
 
 ### General models (vision + language, called through an API)
 
@@ -217,6 +217,7 @@ passes when it outlines exactly the four circles in the right places).
 | Gemini 4 Argon | `gemini-4-argon` (added 2026-10-14) | Google API | yes | pass |
 | Claude Haiku 5.5 | `claude-haiku-5-5` (added 2026-10-14) | Claude plan (`claude-code:`) | yes | pass |
 | Mistral Large 4 | `mistralai/mistral-large-4-0` (public preview; added 2026-10-13) | OpenRouter, **Mistral host only** | yes | pass |
+| GPT-6.1 Terra | `gpt-6.1-terra` (added 2026-10-26, published 2026-10-29) | ChatGPT plan (`openai-codex:`) | yes | pass |
 | ~~GLM 5.3~~ | `glm-5.3` | Z.AI API | **no**: rejected with an error | excluded |
 | ~~DeepSeek Pro~~ | `deepseek-v4-pro` | DeepSeek API | **no**, and silently: the picture is replaced by "[Unsupported Image]" and the model answers anyway | excluded |
 

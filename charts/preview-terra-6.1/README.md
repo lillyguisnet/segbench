@@ -2,8 +2,10 @@
 
 GPT-6.1 Terra (`terra-6.1`, our ChatGPT plan, medium thinking, 3 tries of
 each question) added to the existing results. GPT-5.6 Terra stays on every
-chart. Nothing published was changed: the site still reads
-`charts/point-benchmark-v2.7` and `charts/screens-2`.
+chart. When made, nothing published was changed (the site read
+`charts/point-benchmark-v2.7` and `charts/screens-2`). Published on
+2026-10-29 as point benchmark v2.8 and in `charts/screens-2`
+(docs/point-benchmark-v2.md, "v2.8").
 
 ## Photos, all 11 photos (point benchmark v3)
 

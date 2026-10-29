@@ -1,0 +1,34 @@
+{
+  "metric": "point-localisation-v1",
+  "parser": "lenient",
+  "dish_labels": "separate",
+  "created_at": "2026-10-29T19:17:48.514893+00:00",
+  "reference": "segbench-review-6187f623-approved.json",
+  "reference_sha256": "2862bb074507022fbfdd58d017f57520abcafb4b8366b9824adeae066c9c120b",
+  "tasks": [
+    "logs",
+    "cows",
+    "fig",
+    "dishes"
+  ],
+  "timing_tasks": [
+    "logs",
+    "cows",
+    "fig",
+    "dishes"
+  ],
+  "input_files": {
+    "run-points-best.jsonl": "06df60fdd23ec3f75223cdeef833c7b68e0d022e2b26ac2f615fed09425b8612"
+  },
+  "tolerances": {
+    "tight": 0.1,
+    "medium": 0.25,
+    "loose": 0.5
+  },
+  "diagonal_cap": 0.02,
+  "scope": "Point localisation only. Not point-inside-object or segmentation.",
+  "aggregation": "Equal mean over three F1 tolerances, then 4 tasks. Complete coverage required.",
+  "specification": "docs/point-benchmark-v2.md",
+  "specification_sha256": "255d3e040a23317d07912a0510de570edc942b9d85808675672995126a8dd8ca",
+  "scorer_sha256": "18764a82bae5881aff972aebf5ec0ab0698c9a6c33489b65d7f57e5b15f1ebea"
+}

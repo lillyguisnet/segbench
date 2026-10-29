@@ -49,7 +49,7 @@ PHOTO_REFERENCE = "annotations/reviews/segbench-review-6187f623-approved.json"
 
 # What is published now. A new entrant gets a new version (v2.7, ...); move
 # these when it is published, and the sites follow (scripts/build_site.py).
-PUBLISHED_PHOTOS = "point-benchmark-v2.7"  # results/<this>/ (scores) and charts/<this>/ (chart)
+PUBLISHED_PHOTOS = "point-benchmark-v2.8"  # results/<this>/ (scores) and charts/<this>/ (chart)
 PUBLISHED_SCREENS = "screens-2"  # charts/<this>/
 
 # Local models' answer files on the photos, as chosen into the published

@@ -19,6 +19,7 @@ find,qwen-flash@medium,Qwen 3.8 Flash Next,general,Alibaba,qwen-flash,medium,,,0
 find,sol@medium,GPT-6.1 Sol,general,OpenAI,sol,medium,,,1.0,1.0,1.0,0.006211866666666666,4.652,15,3,5,5,False
 find,sonnet@medium,Claude Sonnet 5.5,general,Anthropic,sonnet,medium,,,0.9697435897435899,0.9533333333333334,0.9846153846153847,0.008931999999999999,3.253,15,3,5,5,False
 find,terra@medium,GPT-5.6 Terra,general,OpenAI,terra,medium,,,0.8386772486772486,0.7549206349206349,0.8944444444444445,0.012858000000000001,10.49,15,3,5,5,False
+find,terra-6.1@medium,GPT-6.1 Terra,general,OpenAI,terra-6.1,medium,,,1.0,1.0,1.0,0.0029429333333333336,2.569,15,3,5,5,False
 find,florence2-large-grounding,Florence-2 Large,specialist,Microsoft,florence2-large-grounding,,,,0.0,0.0,0.0,5.97619e-06,0.225,5,1,5,5,False
 find,florence2-large-ovd,Florence-2 · detection,specialist,Microsoft,florence2-large-ovd,,,,0.13333333333333333,0.13333333333333333,0.13333333333333333,8.395786666666666e-06,0.245,5,1,5,5,False
 find,groundingpi-4b,GroundingPI 4B,specialist,GroundingPI,groundingpi-4b,,,,0.17777777777777776,0.17777777777777776,0.17777777777777776,2.2477419555555555e-05,1.129,5,1,5,5,False
